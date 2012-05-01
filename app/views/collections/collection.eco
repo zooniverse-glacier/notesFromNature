@@ -1,0 +1,13 @@
+<li class="mine">
+  <img src="/images/img-collections2.png"/> 
+  <div class="translucent-box">
+    <div class="progress-bar">
+      <div class="bar" style="width:49%"></div>
+        <span class="progress">49%</span>
+    </div>
+    <p>
+      After the nephew died without heirs in 1835, President Andrew Jackson informed Congress of the bequest, which amounted to 104,960 gold sovereigns, or US$500,000 ($10,100,997 in 2008 U.S. dollars after inflation). <a class="object" href="">Check this collection</a>
+    </p>
+  </div>
+  <h3 class="title"><a href="/#/collections/<%=@slug()%>">Birds Collection<span class="subtitle">The Natural History Museum</span></a></h3>
+</li>

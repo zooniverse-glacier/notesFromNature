@@ -1,0 +1,52 @@
+<div class="box-general">       
+        <div class="col3">
+            <h3 class="title">Why this is important?</h3>
+        </div>
+        <div class="col1 omega">
+            <div class="center">
+                <img src="images/badge-x.png" alt="avian best friend">
+                <h3 class="badge">Museums have lots of interesting specimens</h3>
+                <p class="badge"> Without having all the information that the collections have on the specimens, scienfics cannot get all the value behind them.<p> 
+            </div>
+        </div>
+        <div class="col1 omega">  
+            <div class="center">
+                <img src="images/badge-x.png" alt="avian best friend">
+                <h3 class="badge">Become a real <br/> transcriber!</h3>
+                <p class="badge">Get started contributing to any collection and get badges on the way. Are you ready to be a real transcripter and do real science?<p>
+            </div>
+        </div>
+        <div class="col1">  
+            <div class="center">
+                <img src="images/badge-x.png" alt="avian best friend">
+                <h3 class="badge">You are contributing to the science. Thank you!</h3>
+                <p class="badge">Without having all the information that the collections have on the specimens, scienfics cannot get all the value behind them.<p>
+            </div>    
+        </div>
+
+    </div>
+
+    <div class="box-general laptop laptop-home">        
+        <div class="col2">
+            <h3 class="title">3,123 Users already participating</h3>
+            <p> We have thousands of pages from bioligists and researches that contain information about where and when the species was in the past. All we need in this case is to transcibe all this hand-written text. With that information being transcribed, we will be able to know more about the past of our birds which sounds really interesting by the way. With that information being transcribed, we will be able to know more about the past of our birds!  </p>
+        </div>
+        <div class="col3">  
+            <ul class="status-list inline">
+                <li class="logos">
+                <span class="text">MUSEUMS INVOLVED</span>
+
+                <ul class="logos">
+                    <li><a href="#"><img alt="Natural History Museum" src="images/natural_history_museum.png" /></a></li>
+                    <li><a href="#"><img alt="Sernec" src="images/sernec.png" /></a></li>
+                    <li><a href="#"><img alt="National Science Foundation" src="images/national_science_foundation.png" /></a></li>
+                </ul>
+
+                <p>Interested in publishing your collection? <a href="" class="object">Contact us</a></p>
+                </li>
+                <li class="mar-button">
+                    <a href="/#/transcribe" class="button next"><span>TRY WITH ONE PAGE</span> </a>
+                </li>
+            </ul>
+        </div>
+    </div>

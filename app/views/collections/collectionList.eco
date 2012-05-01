@@ -1,0 +1,8 @@
+<div>
+  <ul class="collection-list">                  
+    <% for collection in @collections : %>
+      <%-@collectionTemplate(collection) %>
+    <%end%>
+  </ul>
+</div>
+
