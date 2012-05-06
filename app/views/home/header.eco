@@ -1,16 +1,20 @@
-<header>
-  <div class="link-navigation bg left alpha col1">
-    <a href="/#/collections" class="alpha">COLLECTIONS</a>
-    <a href="">BLOG</a>
-  </div>
-  <div class="center col1">
-    <h1 class="title">
-      <span>Notes from</span>
-      <span class="green">Nature</span>
-    </h1>
-  </div>              
-  <div class="link-navigation bg right omega">
+<div class="link-navigation bg left alpha col1">
+  <a href="/#/collections" class="alpha">COLLECTIONS</a>
+  <a href="">BLOG</a>
+</div>
+
+<div class="center col1">
+  <h1 class="title">
+    <span>Notes from</span>
+    <span class="green">Nature</span>
+  </h1>
+</div>              
+
+<div class="link-navigation bg right omega">
     <a href="">FORUM</a>
-    <a href="">SIGNIN / SIGNUP</a>
-  </div>
-</header>
+    <%if @user? : %>
+        <a class='signin_nav_link' href="/#/profile"><%=@user.name%></a>
+    <%else : %>
+        <a class='signin_nav_link' href="/#/login">SIGNIN / SIGNUP</a>
+    <%end%>
+</div>

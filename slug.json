@@ -8,7 +8,12 @@
     "spine/lib/ajax",
     "spine/lib/route",
     "spine/lib/tmpl",
-    "spine/lib/manager"
+    "spine/lib/manager",
+    "spine/lib/relation"
   ],
-  "libs": []
+  "libs": ["lib/jquery-1.7.2.min.js", 
+           "lib/jquery-ui-1.8.20.custom.min.js",
+           "lib/underscore.js",
+           "lib/underscore.string.js"
+           ]
 }

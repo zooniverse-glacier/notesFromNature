@@ -1,11 +1,10 @@
 Spine = require('spine')
 Collection = require('models/Collection')
 class CollectionsShowController extends Spine.Controller
-  className : "wrapper"
+  # className : "wrapper"
 
   constructor: ->
     super
-    @render()
 
   active:(params)=>
     super 
@@ -13,10 +12,12 @@ class CollectionsShowController extends Spine.Controller
     @render(collection[0])
 
   render:(collection=undefined)=>
+
     if collection?
-      @replace require('/views/collections/collectionShow')(collection)
+      @html require('/views/collections/collectionShow')
+        collection: collection
     else
-      @replace require('/views/collections/collectionNotFound')()
+      @html require('/views/collections/collectionNotFound')()
 
 
 module.exports = CollectionsShowController

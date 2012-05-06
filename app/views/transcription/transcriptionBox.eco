@@ -1,0 +1,37 @@
+<div id="transcriber" class='' style="width: 1022px; opacity: 1; margin-top: 0px;">
+  <div class='top'>
+    <ul class="titles">
+      <li class='selected'><label><%=@currentEntity.name%></label></li>
+    </ul>
+    <span class="tail left"></span><span class="tail right"></span>
+    
+  </div>
+  <div class='bottom'>
+    <ul class='explanations'>
+        <li class='selected'>
+          <%-@entityTemplate @currentEntity%>
+        </li>
+    </ul>
+
+    <div class='record right'>
+      <div class='right'>
+        <a class="button checkRecord orange" href="#finish">FINISH THE RECORD</a>
+        <div class="step_viewer" style="display: block; ">
+          <a class="choose_step" href="#choose_step"><%=@currentEntityNo+1%> / <%=@noOfEntities%></a>
+          <ul class="steps">
+            <%for entity,index in @entities : %>
+              <li class="<%= 'selected' if index == @currentEntityNo%>">
+                <a href="" data-step-no=<%=index%> >
+                  <span class="circle"></span>
+                  <%=entity.name%>
+                </a>
+              </li>
+            <%end%>
+            <span class="tail"></span>
+          </ul>
+        </div>
+        </div
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<form class="in">
+  <input type="text" value="" placeholder="<%=@placeholder%>" name="collector" class="long">
+  <input type="submit" value="ok" class="button green small"></form>
+  <p>
+    <%=@instructions%>
+    <a href="#" class='example'>See Example</a> | <a href="#" class='skip'>Skip This Field</a>
+    <span class='tail'></span>
+  </p>
+</form>
