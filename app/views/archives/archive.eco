@@ -1,0 +1,16 @@
+<li class="mine <%='completed' if @complete()%>">
+  <img src="<%=@metadata.mainImage%>"/> 
+  <div class="translucent-box">
+    <div class="progress-bar  <%='completed' if @complete()%>">
+      <div class="bar" style="width:<%=@metadata.progress%>%"></div>
+        <span class="progress"> <%=@metadata.progress%>%</span>
+    </div>
+    <p>
+      <%=@metadata.description[0..200]%> ...
+       <a class="object" href='<%="/#/archives/#{@slug()}"%>'>Checkout this collection</a>
+    </p>
+  </div>
+  <% console.log @%>
+  <h3 class="title"><a href="/#/archives/<%=@slug()%>"><%=@name%><span class="subtitle"><%=@institute().name%></span></a></h3>
+</li>
+

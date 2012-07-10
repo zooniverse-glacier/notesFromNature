@@ -16,12 +16,12 @@ User = require('models/User')
 
 window.OuroborusHost = "http://localhost:3000/"
 
-window.ProjectId = "4fa2f7dc40af4735bf000001"
-window.WorkflowId = "4fa2f7dc40af4735bf000002"
+window.ProjectId = "4fa833dd40af47e6ae000001"
+window.WorkflowId = "4fa833dd40af47e6ae000002"
 
 window.OuroborusBase = "http://localhost:3000/projects/#{ProjectId}"
 window.OuroborusWorkflowBase = "http://localhost:3000/projects/#{ProjectId}/workflows/#{WorkflowId}"
-window.OuroborusGroupBase = "http://localhost:3000/projects/#{ProjectId}/NotesFromNatureGroups/#{WorkflowId}"
+window.OuroborusGroupBase = "http://localhost:3000/projects/#{ProjectId}/groups/"
 
 $.ajaxSetup beforeSend: (xhr) ->
  user = User.current()

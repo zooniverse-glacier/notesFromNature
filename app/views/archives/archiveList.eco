@@ -1,0 +1,8 @@
+<div>
+  <ul class="archive-list">                  
+    <% for archive in @archives : %>
+      <%-@archiveTemplate(archive) %>
+    <%end%>
+  </ul>
+</div>
+

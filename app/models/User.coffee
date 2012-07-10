@@ -1,5 +1,5 @@
 Spine = require('spine')
-Collection = require('models/Collection')
+Archive = require('models/Archive')
 
 class User extends Spine.Model
   @configure 'User', 'id', 'name', 'key', 'collection_ids', 'avatar'

@@ -1,26 +1,37 @@
 Spine = require('spine')
 Subject= require('models/Subject')
+EOL = require('models/EOL')
 
 class TranscriptionController extends Spine.Controller
   # className: "wrapper"
   elements:
-    "div.transcribing": "transcriptionSubject"
-    "#transcriber" : "transcriptionBox"
-    "ul.steps" : "steps"
+    "div.transcribing"   : "transcriptionSubject"
+    "#transcriber"       : "transcriptionBox"
+    "ul.steps"           : "steps"
+    "div.tooltip.skip"   : "skipConfirmation"
+    "div.tooltip.right"  : "finishRecordCheck"
+
 
   events:
-    "submit #transcriber form"     : "record"
-    "click .button .checkRecord "  : "finishRecord"
-    "click ul.steps li a"          : "goToEntity"
-    "click a.choose_step"          : "showSteps"
-
+    "submit #transcriber form"              : "record"
+    "click ul.steps li a"                   : "goToEntity"
+    "click a.choose_step"                   : "showSteps"
+    "click a.skip"                          : "showSkipConfimation"
+    "click div.tooltip.skip .cancel"        : "hideSkipConfimation"
+    "click div.tooltip.skip .continue"      : "nextEntity"
+    "click .button.checkRecord"             : "checkDone"
+    "click .tooltip.right .button.cancel"   : "hideDone" 
+    "click .tooltip.right .button.continue" : "finishRecord" 
+    # "keyup .GENUS" : "autofillSpecies"
 
   constructor: ->
     super
     @resetClassification()
     @currentEntityNo=0
+    @eol = new EOL
 
   resetClassification:->
+    @currentAnnotation = []
     @annotations = []
 
   active:(params)=>
@@ -52,8 +63,44 @@ class TranscriptionController extends Spine.Controller
 
   record:(e)=>
     e.preventDefault()
-    @annotations.push $(e.currentTarget).serializeArray()
+    data = @grabData  $(e.currentTarget)
+    @currentAnnotation.push (data)
+    if entities[@currentEntityNo].name=="GENUS & SPECIES"
+      @fetchSpeciesInfo(data.collector)
+    
     @nextEntity()
+
+  fetchSpeciesInfo:(species)=>
+    console.log "searching for ", species
+    @eol.search species, (result)=>
+      console.log result
+      @eol.getMediaForSpecies result[0], ['text','videos','images','sound'], (media)=>
+        @append require('views/transcription/speciesInfo')
+          species: result[0]
+          media : media
+
+  grabData:(target)=>
+    result = {}
+    for field in target.serializeArray()
+      result[field.name] = field.value
+    result
+
+  checkDone:(e)=>
+    e.preventDefault()
+    @finishRecordCheck.show()
+
+  hideDone:(e)=>
+    e.preventDefault()
+    @finishRecordCheck.hide()
+
+  showSkipConfimation:(e)=>
+    e.preventDefault()
+    @skipConfirmation.css {left : '0px'}
+    @skipConfirmation.show()
+
+  hideSkipConfimation:(e)=>
+    e.preventDefault()
+    @skipConfirmation.hide()
 
   showSteps:(e)=>
     e.preventDefault()
@@ -64,16 +111,23 @@ class TranscriptionController extends Spine.Controller
     @currentEntityNo = $(e.currentTarget).data().stepNo 
     @setUpEntity()
 
+
+  autofillSpecies:(e)=>
+    searchText = $(e.currentTarget).val();
+    @eol.search searchText, (result)=>
+      console.log result
+
   nextEntity:=>
     @currentEntityNo += 1
     @setUpEntity()
 
   setUpEntity:=>
+    if @currentEntityNo == entities.length
+      @finishRecord() 
     if entities[@currentEntityNo].draggable
       @transcriptionBox.draggable( "enable" )
     else
       @transcriptionBox.draggable( "disable" )
-
 
     @transcriptionBox.html require("views/transcription/transcriptionBox")
       entityTemplate       : require('views/transcription/entity')
@@ -85,8 +139,16 @@ class TranscriptionController extends Spine.Controller
     @refreshElements()
 
   finishRecord:(e)=>
-    console.log annotations 
-    e.preventDefault if e?
-    @resetClassification()
+    e.preventDefault() if e?
+    @transcriptionSubject.append require("views/transcription/marker")
+      annotation : @currentAnnotation
+      
+    @annotations.push @currentAnnotation
+    @currentAnnotation=[]
 
+    @currentEntityNo=0
+
+    @transcriptionBox.animate {top:"+=200"}, 200, =>
+      @setUpEntity() 
+  
 module.exports = TranscriptionController

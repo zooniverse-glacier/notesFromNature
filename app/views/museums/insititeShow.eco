@@ -1,0 +1,101 @@
+
+      
+      <div class="box-general museum">
+        <div class="col3">
+          <h2 class="title">
+            <%=@institute.name%>
+            <span class="subtitle"><%=@institute.location%></span>
+            <img class="logo" src="/images/logoMuseum.png" alt="Natural History Museum" />
+          </h2>
+        </div>
+      </div>          
+
+      <div class="box-general divided">
+      
+        <div class="col2">
+          <div>
+            <p><%-@institute.description%></p>
+          </div>
+
+        </div>
+        <div class="col1">
+          <div class="links-left">            
+            <span class="text">MORE INFORMATION</span>
+            <a href="<%=@institute.url%>" class="object noline"><%=@institute.url%></a>
+            <span class="text">MORE INFORMATION</span>
+            <ul>
+              <% for insitite in @institute.insitites().all(): %>
+                <li class="bullet"><a href="" class="object noline"><%=insitite.name%></a></li>
+              <%end%>
+              
+            </ul>       
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      <% for insitite in @institute.insitites().all(): %>
+        <%- @insititeTemplate(insitite)%>
+      <%end%>    
+    
+      <div class="box-general divided-bg">
+      
+        <div class="col2">
+          <div>
+            <h3 class="title">Big Numbers
+            <span class="subtitle">Some numbers about the museum on Notes from Nature</span>
+            </h3>
+            <ul class="list-graphics">
+              <li>
+                            <div class="count"><strong>13,931</strong>
+                                <span>Pages transcribed</span>
+                            </div>
+                            <img class="chart" src="http://chart.apis.google.com/chart?chf=bg,s,F5F8F8&chs=145x115&cht=lc&chco=FFFFFF&chd=s:Xhiugtqi&chg=-1,-1,0,0&chls=2,4,0&chm=B,C5D4B5BB,0,0,0&cht=lc:nda" />
+                            </li>
+
+              <li>
+                            <div class="count"><strong>13,931</strong>
+                                <span>Pages pending</span>
+                            </div>
+                            <img class="chart" src="http://chart.apis.google.com/chart?chf=bg,s,F5F8F8&chs=145x115&cht=lc&chco=FFFFFF&chd=s:Xhiugtqi&chg=-1,-1,0,0&chls=2,4,0&chm=B,C5D4B5BB,0,0,0&cht=lc:nda" />
+                            </li>
+
+              <li>
+                            <div class="count"><strong>13,931</strong>
+                                <span>Volunteers</span>
+                            </div>
+                            <img class="chart" src="http://chart.apis.google.com/chart?chf=bg,s,F5F8F8&chs=145x115&cht=lc&chco=FFFFFF&chd=s:Xhiugtqi&chg=-1,-1,0,0&chls=2,4,0&chm=B,C5D4B5BB,0,0,0&cht=lc:nda" />
+                            </li>
+
+
+
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col1">
+          <div class="box-right">
+            <h3 class="title">Top contributors
+            <span class="subtitle">We love you all</span>
+            </h3>
+            <ul class="list-contributors">
+              <li>
+                <img class="contributors" src="img/contributors.png" alt="" />
+                <div>                 
+                  <a href="" class="name">Luis Villa </a><br/>
+                  <span>with 3,291 contributions</span>
+                </div>
+              </li>
+              <li>
+                <img class="contributors" src="img/contributors.png" alt="" />
+                <div>                 
+                  <a href="" class="name">Fernado Espinosa </a><br/>
+                  <span>with 1,932 contributions</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>          

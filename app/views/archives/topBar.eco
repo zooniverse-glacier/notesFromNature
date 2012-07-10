@@ -1,0 +1,17 @@
+<div class="box-general">
+    <div class="col2">
+        <h2 class="title">
+            <%=@archives.length%> collections available <br/>
+            <span>Browse through them and select your favourite</span>                      
+        </h2>
+    </div>
+
+    <div class="switch">
+        <a href="#" class="selected">VIEW ALL</a>
+        <a href="#">ONLY YOURS</a>
+        <div class="bkg"></div>
+    </div>
+    <span class="switch selected" data-show="Show completed collections" data-selected="Hide completed collections">
+        Show completed collections
+    </span>
+</div>  

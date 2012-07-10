@@ -16,12 +16,21 @@
     <div class='record right'>
       <div class='right'>
         <a class="button checkRecord orange" href="#finish">FINISH THE RECORD</a>
+
+        <div class="tooltip skip center" style=" display: none; ">
+          <h5>ARE YOU SURE?</h5>
+          <p>If you can’t find the value, you can see <a class="example" href="#see_examples">examples</a> that surely will help you</p>
+          <a class="continue orange button small" href="#skip_field">SKIP FIELD</a>
+          <a class="cancel white button small" href="#cancel">CANCEL</a>
+          <span class="tail"></span>
+        </div>
+
         <div class="step_viewer" style="display: block; ">
           <a class="choose_step" href="#choose_step"><%=@currentEntityNo+1%> / <%=@noOfEntities%></a>
           <ul class="steps">
             <%for entity,index in @entities : %>
               <li class="<%= 'selected' if index == @currentEntityNo%>">
-                <a href="" data-step-no=<%=index%> >
+                <a href="" data-stepNo=<%=index%> >
                   <span class="circle"></span>
                   <%=entity.name%>
                 </a>
@@ -30,7 +39,15 @@
             <span class="tail"></span>
           </ul>
         </div>
-        </div
+
+        <div class="tooltip right" style="display: none; ">
+          <h5>ARE YOU SURE?</h5>
+          <p>There are still <u>14 empty fields</u> for this record that should be completed before finishing.</p>
+          <a class="continue orange button small" href="#finish">FINISH</a>
+          <a class="cancel white button small" href="#cancel">CANCEL</a>
+          <span class="tail"></span>
+        </div>
+
       </div>
     </div>
   </div>
