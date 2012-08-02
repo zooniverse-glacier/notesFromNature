@@ -3,6 +3,7 @@ Spine = require('spine')
 Archive = require('models/Archive')
 class ArchiveIndexController extends Spine.Controller
   # className: "wrapper"
+  className: "ArchivesIndexController"
 
   events:
     "click .switch a" : 'toggleUserArchives'
@@ -36,9 +37,12 @@ class ArchiveIndexController extends Spine.Controller
     @html ""
     @append require('views/archives/topBar')
       archives: archives
+      options : options
+
     @append require('views/archives/archiveList')
       archives : archives
       archiveTemplate: require("views/archives/archive")
+
 
   toggleUserArchives:(e)=>
     e.preventDefault()

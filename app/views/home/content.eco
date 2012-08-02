@@ -45,7 +45,7 @@
                 <p>Interested in publishing your collection? <a href="" class="object">Contact us</a></p>
                 </li>
                 <li class="mar-button">
-                    <a href="/#/transcribe" class="button next"><span>TRY WITH ONE PAGE</span> </a>
+                    <a href="#/transcribe" class="button next"><span>TRY WITH ONE PAGE</span> </a>
                 </li>
             </ul>
         </div>

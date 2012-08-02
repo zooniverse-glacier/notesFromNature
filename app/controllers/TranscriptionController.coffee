@@ -1,154 +1,81 @@
 Spine = require('spine')
 Subject= require('models/Subject')
+Archive= require('models/Archive')
 EOL = require('models/EOL')
 
+SernacTranscriptionController = require('controllers/SernacTranscriptionController')
+DoubleTranscriptionController = require('controllers/DoubleTranscriptionController')
+
 class TranscriptionController extends Spine.Controller
-  # className: "wrapper"
-  elements:
-    "div.transcribing"   : "transcriptionSubject"
-    "#transcriber"       : "transcriptionBox"
-    "ul.steps"           : "steps"
-    "div.tooltip.skip"   : "skipConfirmation"
-    "div.tooltip.right"  : "finishRecordCheck"
+  className: "TranscriptionController"
 
+  transcriptionControllers: 
+    'double' : new DoubleTranscriptionController()
+    'sernac' : new SernacTranscriptionController()
 
-  events:
-    "submit #transcriber form"              : "record"
-    "click ul.steps li a"                   : "goToEntity"
-    "click a.choose_step"                   : "showSteps"
-    "click a.skip"                          : "showSkipConfimation"
-    "click div.tooltip.skip .cancel"        : "hideSkipConfimation"
-    "click div.tooltip.skip .continue"      : "nextEntity"
-    "click .button.checkRecord"             : "checkDone"
-    "click .tooltip.right .button.cancel"   : "hideDone" 
-    "click .tooltip.right .button.continue" : "finishRecord" 
-    # "keyup .GENUS" : "autofillSpecies"
-
-  constructor: ->
+  constructor:->
     super
-    @resetClassification()
-    @currentEntityNo=0
-    @eol = new EOL
+    $("body").bind "doneClassification", (data)=>
+      @saveAnnotation data.values
 
-  resetClassification:->
-    @currentAnnotation = []
-    @annotations = []
+    $("body.transcribingScreen .wrapper .right .button").on 'click', =>
+      alert("HERE")
 
-  active:(params)=>
-    super 
-    @render()
-    $("body").addClass("transcribingScreen")
+    Spine.bind("nextSubject", @nextSubject)
 
-  startWorkflow:=>
-    @render()
+  saveAnnotation:(values)=>
+    @annotations||=[]
+    @annotations.push values
+
+  saveTranscription:(data)=>
+    zooApi.saveClassification
+      project : "notes_from_nature"
+      subjects: [@currnetSubject.id]
+      workflow: @currnetSubject.workflow_ids[0]
+      annotations: @annotations
+    ,(result)=>
+      console.log "save result"
 
   render:=>
-    @html("")
+    if @currnetSubject
+      transcriptionType = @currnetSubject.metadata.workflow_type
+      @transcriptionControllers[transcriptionType].startWorkflow(@currnetSubject)
+      @html @transcriptionControllers[transcriptionType].el
+      $("body").addClass(transcriptionType)
+      $("body").addClass("transcribingScreen")
+    else 
+      @html require('views/transcription/outOfSubjects')
+
+  nextSubject:=>
     
-    @append require("views/transcription/main")()
-    @transcriptionSubject.append require("views/transcription/transcriptionBox")
-      entityTemplate       : require('views/transcription/entity')
-      currentEntityNo      : @currentEntityNo
-      noOfEntities         : entities.length
-      currentEntity        : entities[@currentEntityNo]
-      entities             : entities
+    if @currnetSubject?
+      console.log @currnetSubject      
+      archive = Archive.find(@currnetSubject.archive_id)
+      @archive.nextSubject (subject)=>
+        $("div.transcribing.sernac img").attr("src", subject.location.standard)
+          
 
 
-    @refreshElements()
-
-    @transcriptionBox.draggable
-        scroll: true
-        containment: ".transcribing"
-        enabled : false 
-
-  record:(e)=>
-    e.preventDefault()
-    data = @grabData  $(e.currentTarget)
-    @currentAnnotation.push (data)
-    if entities[@currentEntityNo].name=="GENUS & SPECIES"
-      @fetchSpeciesInfo(data.collector)
+  active:(params)=>
+    super
     
-    @nextEntity()
+    if Archive.count() ==0 
+      Archive.bind 'refresh', =>
+        @active params
+    if params.id
+      @currnetSubject = Subject.find(params.id)
+      @render()
+    else if params.archiveID
+      @archive = Archive.findBySlug(params.archiveID)
+      if @archive
+        @archive.nextSubject (subject)=>
+          @currnetSubject=subject
+          @render()
 
-  fetchSpeciesInfo:(species)=>
-    console.log "searching for ", species
-    @eol.search species, (result)=>
-      console.log result
-      @eol.getMediaForSpecies result[0], ['text','videos','images','sound'], (media)=>
-        @append require('views/transcription/speciesInfo')
-          species: result[0]
-          media : media
+    else if !@currnetSubject?
+      @currnetSubject = Subject.random()
+      @render()
 
-  grabData:(target)=>
-    result = {}
-    for field in target.serializeArray()
-      result[field.name] = field.value
-    result
-
-  checkDone:(e)=>
-    e.preventDefault()
-    @finishRecordCheck.show()
-
-  hideDone:(e)=>
-    e.preventDefault()
-    @finishRecordCheck.hide()
-
-  showSkipConfimation:(e)=>
-    e.preventDefault()
-    @skipConfirmation.css {left : '0px'}
-    @skipConfirmation.show()
-
-  hideSkipConfimation:(e)=>
-    e.preventDefault()
-    @skipConfirmation.hide()
-
-  showSteps:(e)=>
-    e.preventDefault()
-    @steps.toggle()
-
-  goToEntity:(e)=>
-    e.preventDefault() if e?
-    @currentEntityNo = $(e.currentTarget).data().stepNo 
-    @setUpEntity()
-
-
-  autofillSpecies:(e)=>
-    searchText = $(e.currentTarget).val();
-    @eol.search searchText, (result)=>
-      console.log result
-
-  nextEntity:=>
-    @currentEntityNo += 1
-    @setUpEntity()
-
-  setUpEntity:=>
-    if @currentEntityNo == entities.length
-      @finishRecord() 
-    if entities[@currentEntityNo].draggable
-      @transcriptionBox.draggable( "enable" )
-    else
-      @transcriptionBox.draggable( "disable" )
-
-    @transcriptionBox.html require("views/transcription/transcriptionBox")
-      entityTemplate       : require('views/transcription/entity')
-      currentEntityNo      : @currentEntityNo
-      noOfEntities         : entities.length
-      currentEntity        : entities[@currentEntityNo]
-      entities             : entities
-
-    @refreshElements()
-
-  finishRecord:(e)=>
-    e.preventDefault() if e?
-    @transcriptionSubject.append require("views/transcription/marker")
-      annotation : @currentAnnotation
-      
-    @annotations.push @currentAnnotation
-    @currentAnnotation=[]
-
-    @currentEntityNo=0
-
-    @transcriptionBox.animate {top:"+=200"}, 200, =>
-      @setUpEntity() 
   
+    
 module.exports = TranscriptionController

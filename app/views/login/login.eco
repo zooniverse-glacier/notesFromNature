@@ -1,10 +1,10 @@
 <div class="box-general" style='height:400px'>   
-  <iframe id="login-frame" src="<%=@host%>" style="display: none;"></iframe>
-  
-  <form id="login" action="/login" method="post" accept-charset="utf-8" style="display: none;">
-    <input type="text" name="username" value="" id="username" placeholder="Username">
-    <input type="password" name="password" value="" id="password" placeholder="Password">
-    <input type="submit" value="Submit &rarr;">
+
+  <form>
+
+  <p>Username : <input type='text' class='username' name="username" placeholder='username' /></p>
+
+  <p>Password : <input type='password' class='password' name="password" placeholder='password' /> </p>
+  <input type ='submit' / >
   </form>
 </div>
-

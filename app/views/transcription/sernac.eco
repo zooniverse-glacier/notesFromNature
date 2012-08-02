@@ -1,0 +1,5 @@
+<div class="transcribing sernac">
+   <div class="scrollpane">
+      <img style="margin-left:auto; margin-right:auto;display:block" src="<%=@subject.location.standard%>" alt="" title="" />
+  </div>
+</div>

@@ -4,65 +4,52 @@ User  = require('models/User')
 class LoginController extends Spine.Controller
 
   elements:
-    '#login-frame' : 'loginFrame'
-    "#login" : 'form'
+    "form" : 'form'
+    ".username" : 'username'
+    ".password" : 'password'
 
   events:
-    'submit #login' : 'login'
+    'submit form' : 'login'
 
-  className : 'wrapper'
+  className: "LoginController"
 
   constructor: ->
     super
     @host = 'http://zooniverse-login.s3.amazonaws.com/stuartlynn_notes_from_nature_development.html'
-    @setup()
     @render()
+
+    # Not sure when we have to delay this but it looks like we have to.
+    @delay =>
+      zooApi.checkCurrent {project : "notes_from_nature"} , (reply)=>
+        if reply.success
+          Spine.trigger("userLoggedIn")
+          @setUser(reply)
+    ,300
 
   active:->
     super 
+    if User.first()
+      Spine.Route.navigate '/profile'
 
   render:->
     @append require('views/login/login')
-      host : @host
-    @loginFrame.load @frameLoaded
 
 
   login:(e) =>
     e.preventDefault()
-    data =
-      type: 'login'
-      message: @form.serialize()
-    
-    @frame.postMessage data, @host
-    false
-
-  frameLoaded:=>
-    @frame = @loginFrame[0].contentWindow
-    @frame.postMessage { type: 'current_user' }, @host
-
-  setup:=>
-    $(window).bind 'message', (ev) =>
-      console.log "have message ", ev
-      ev = ev.originalEvent
-      response = ev.data.message
-      switch ev.data.type
-        when 'login'
-          if response.success
-            @setUser response
-            @form.hide()
-          else
-            alert response.message
-        
-        when 'current_user'
-          if response.success
-            @setUser response
-          else
-            @form.show()
-  
+    details = @form.serializeArray()
+    zooApi.logIn {project: 'notes_from_nature', username: details[0].value, password: details[1].value}, (response) =>
+      if response.success
+        @setUser(response)    
+        Spine.Route.navigate '/'    
+   
   setUser: (response) =>
+    $(".zooniverse-sign-in").remove()
+    $(".zooniverse-signin").html response.name
     User.create
       id: response.zooniverse_id
       name: response.name
       key: response.api_key
+
 
 module.exports = LoginController

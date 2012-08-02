@@ -3,6 +3,7 @@ Institute = require('models/Institute')
 
 class InstituteShowController extends Spine.Controller
   # className: 'wrapper'
+  className: "InstituteShowController"
   
   constructor: ->
     super

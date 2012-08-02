@@ -493,6 +493,8 @@
       }
 
       // Customize added selects
+      console.log($list);
+      console.log($list.find("select"));
       $list.find('select').sSelect();
 
       // Add location autocomplete

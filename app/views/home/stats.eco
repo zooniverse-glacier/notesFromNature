@@ -1,14 +1,14 @@
 <div class="counters"> 
     <div class="box-black-numbers">
-        <span class="numbers">7</span>
+        <span class="numbers"><%=@archiveCount%></span>
         <span class="subtitle">Collections available</span> 
     </div>          
     <div class="box-black-numbers">
-        <span class="numbers">31,921</span>
+        <span class="numbers"><%=@subjects%></span>
         <span class="subtitle">Specimens in total</span>  
     </div>          
     <div class="box-black-numbers">
-        <span class="numbers">34%</span>
+        <span class="numbers"><%=@progress%>%</span>
         <span class="subtitle">Already digitized</span> 
     </div>          
     <div class="box-black-numbers">

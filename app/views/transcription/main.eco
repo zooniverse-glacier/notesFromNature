@@ -1,3 +1,5 @@
-<div class="transcribing" style='margin-top:100px'>
-  <img src="http://cdbetissanisidro.es//transcription.jpg?2" alt="" title="" />
+<div class="transcribing double" style='margin-top:100px'>
+    <div class="scrollpane">
+        <img src="<%=@subject.location.standard%>" alt="" title="" />
+    </div>
 </div>

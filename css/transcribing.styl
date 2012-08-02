@@ -1,28 +1,230 @@
-body.transcribingScreen
-  div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed,
-  figure, figcaption, footer, header, hgroup,
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video 
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+
+
+body.sernac.transcribingScreen .wrapper #content .TranscriptionController .SernacTranscriptionController .box .button
+  padding-bottom: 6px;
+  padding-left: 13px;
+  padding-right: 13px;
+  padding-top: 7px;
+
+
+
+body.transcribingScreen .wrapper .right .button
+  padding: 6px 13px 7px
+ 
+body.transcribingScreen .wrapper .right .button
+  padding: 6px 13px 7px
+
+
+width = 520px
+height= 52px
+pTop =11px
+pRight= 11px
+pBottom= 11px
+pLeft= 10px
+ 
+div.SernacTranscriptionController
+  width: 100%
+  height: 100%
+  position: relative
+
+body.sernac 
+  margin:0px
+  padding:0px
+
+body.sernac.transcribingScreen div.SernacTranscriptionController div.transcribing.sernac 
+  img 
+    @include box-shadow( 0 0 15px 13px rgba(0,0,0,0.7));
+    margin-top: 80px;
+    margin: 80px auto 0 auto;
+
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* this will work for QtWebKit in future */
+    -webkit-user-drag: none;
+  
+
+  li p 
+    background:none;
+  
+
+  .hint ul.explanations 
+    top: 14px
+    left: 0px
+    position:relative
+    li 
+      font-size:11px
+ 
+  .hint ul.titles 
+    top: -7px
+    left: -7px
+    opacity:.8
+    position:relative
+    
+
+    li 
+      font-size:11px
+      background:none
+      border:none
+
+  .box 
+    position:absolute;
+    width: width;
+    height: height;
+    bottom: 0;
+    left:50%;
+    margin-left: -260px;
+    z-index:100000;
+
+    opacity:0;
+
+    background:url('../img/bg-button.png');
+    background: rgba(0, 0, 0, 0.7);
+
+    text-align:left;
+    border:1px solid black;
+    padding: pTop pRight pBottom pLeft;
+    height: height - pTop - pBottom;
+
+
+
+    border-radius(8px)
+    box-shadow( 0 0 5px 3px rgba(0,0,0,0.4))
+
+    ul 
+      & > li 
+        position:absolute; top:0; left:0; display:none
+        color: #fff
+        font: 13px "Open Sans"
+        &:first-child {display:block}
+    
+    a.steps 
+      float: right;
+      color: white;
+      top: 10px;
+      position: relative;
+      margin-right: 10px;
+      font: 12px "Helvetica",Arial;
+      line-height:13px;
+      color:white;
+      text-decoration:none;
+      text-transform:uppercase;
+    
+
+    span 
+      color:#fff;
+      font: 13px "Open Sans";
+      line-height:30px;
+    
+
+    .button 
+      float:right;
+      position:relative;
+      cursor:pointer;
+
+      span 
+        font: 11px "Open Sans";
+        font-weight:500;
+      
+
+#selection {
+  cursor: nwse-resize;
+  position:absolute;
+  visibility:hidden;
+  background:rgba(255,103,1, .15);
+  border:1px solid #FF6701;
+}
+
+body.sernac
+  margin:0px
+  padding:0px
+
+body.sernac div.transcribing 
+  img 
+    @box-shadow( 0 0 15px 13px rgba(0,0,0,0.7))
+    margin: 80px auto 0 auto
+
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    -khtml-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+    /* this will work for QtWebKit in future */
+    -webkit-user-drag: none
+  li p 
+    background:none;
+  
+
+  .hint ul.explanations 
+    top: 14px
+    left: 0px
+    li 
+      font-size:11px
+
+  .hint ul.titles 
+    top: -7px
+    left: -7px
+    opacity:.8
+
+    li 
+      font-size:11px
+      background:none
+      border:none
+
+
 
 
 body.transcribingScreen  {
   line-height: 1;
+  width: 100%
+  height:100%
 }
+
+body.transcribingScreen.button
+  padding: 6px 13px 7px
+  &.orange 
+    background-color : #F60
+  &.green
+    background-color: #639
+
+body.transcribingScreen
+  padding: 6px 13px 7px; 
+
+body.transcribingScreen .wrapper  
+  width: 100%
+  height: 100%
+  position :relative
+  max-width: none
+
+body.transcribingScreen .TranscriptionController
+  width:100%
+  height:100%
+  position:relative 
+
+body.transcribingScreen .TranscriptionController .DoubleTranscriptionController
+  width:100%
+  height:100%
+  position:relative
+
+body.transcribingScreen #content 
+  width: 100%
+  height: 100%
+  position :relative
+
+body.transcribingScreen.double  
+  background: url("../images/bg.jpg") repeat-x #333333
+  overflow: hidden
+
+
+body.transcribingScreen.sernac  
+  background: url("../images/bg-light.png")
+  margin:0px
+  padding:0px
 
 ol, ul {
   list-style: none;
@@ -221,13 +423,10 @@ input.black:active {
   color: white;
 }
 
-body.transcribingScreen  {
-  background: url("../images/bg.jpg") repeat-x #333333;
-  overflow: hidden;
-}
+
 body.transcribingScreen  header {
   position: fixed;
-  top: 0;
+  top: 0px;
   left: 0;
   width: 100%;
   min-width: 1024px;
@@ -239,6 +438,8 @@ body.transcribingScreen  header {
   box-shadow: rgba(0, 0, 0, 0.6) 0 0 20px 5px;
   background: url("../images/bg.jpg") repeat-x #333333;
   border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  padding-top:50px;
+
 }
 body.transcribingScreen  header div.wrapper {
   width: 100%;
@@ -338,14 +539,18 @@ body.transcribingScreen  footer p a:hover {
 div.transcribing {
   position: relative;
   display: block;
-  width: auto;
+  width: 100%
+  height: 100%
   padding: 0;
   margin: 90px auto;
 }
+
+
+
+
 div.transcribing div#transcriber {
   position: absolute;
   display: none;
-  
   opacity: 0;
   top: 0;
   left: 0;
@@ -364,7 +569,8 @@ div.transcribing div#transcriber {
   -o-box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px;
   box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px;
 }
-div.transcribing div#transcriber div.top {
+
+div.transcribing  div.top {
   position: absolute;
   top: 4px;
   left: 3px;
@@ -384,20 +590,20 @@ div.transcribing div#transcriber div.top {
   border: 1px solid black;
   z-index: 0;
 }
-div.transcribing div#transcriber div.top span.tail {
+div.transcribing  div.top span.tail {
   position: absolute;
   bottom: -1px;
   height: 5px;
   width: 3px;
   background: #444444;
 }
-div.transcribing div#transcriber div.top span.tail.left {
+div.transcribing  div.top span.tail.left {
   left: -4px;
 }
-div.transcribing div#transcriber div.top span.tail.right {
+div.transcribing  div.top span.tail.right {
   right: -4px;
 }
-div.transcribing div#transcriber div.bottom {
+div.transcribing  div.bottom {
   position: absolute;
   padding: 12px 13px 12px;
   bottom: 0;
@@ -419,15 +625,16 @@ div.transcribing div#transcriber div.bottom {
   -khtml-border-bottom-right-radius: 6px;
   border-bottom-right-radius: 6px;
 }
-div.transcribing div#transcriber div.bottom div.right {
+
+div.transcribing  div.bottom div.right {
   position: relative;
   float: right;
   width: 210px;
 }
-div.transcribing div#transcriber div.bottom div.right a.checkRecord {
+div.transcribing  div.bottom div.right a.checkRecord {
   float: right;
 }
-div.transcribing div#transcriber div.bottom div.right a.choose_step {
+div.transcribing  div.bottom div.right a.choose_step {
   float: right;
   display: inline-block;
   vertical-align: top;
@@ -447,19 +654,19 @@ div.transcribing div#transcriber div.bottom div.right a.choose_step {
   -khtml-border-radius: 3px;
   border-radius: 3px;
 }
-div.transcribing div#transcriber div.bottom div.right a.choose_step:hover {
+div.transcribing  div.bottom div.right a.choose_step:hover {
   text-decoration: underline;
 }
-div.transcribing div#transcriber div.bottom div.right a.choose_step:active {
+div.transcribing  div.bottom div.right a.choose_step:active {
   padding: 11px 10px 9px 10px;
 }
-div.transcribing div#transcriber div.bottom div.right div.step_viewer {
+div.transcribing  div.bottom div.right div.step_viewer {
   display: none;
 }
-div.transcribing div#transcriber div.bottom div.right div.step_viewer ul {
+div.transcribing  div.bottom div.right div.step_viewer ul {
   display: none;
 }
-div.transcribing div#transcriber .ui-resizable-handle {
+div.transcribing  .ui-resizable-handle {
   position: absolute;
   bottom: 2px;
   right: 2px;
@@ -469,17 +676,17 @@ div.transcribing div#transcriber .ui-resizable-handle {
   cursor: s-resize;
   display: none;
 }
-div.transcribing div#transcriber ul {
+div.transcribing  ul {
   position: relative;
 }
-div.transcribing div#transcriber ul form {
+div.transcribing  ul form {
   position: relative;
   display: inline-block;
   vertical-align: top;
   height: 33px;
   margin: 0 5px 0 0;
 }
-div.transcribing div#transcriber ul form input[type="text"] {
+div.transcribing  ul form input[type="text"] {
   height: 13px;
   margin: 0 5px 0 0;
   padding: 9px 8px 9px;
@@ -496,65 +703,76 @@ div.transcribing div#transcriber ul form input[type="text"] {
   -khtml-border-radius: 3px;
   border-radius: 3px;
 }
-div.transcribing div#transcriber ul form input[type="text"].long {
+div.transcribing  ul form input[type="text"].long {
   width: 208px;
 }
-div.transcribing div#transcriber ul form input[type="text"].medium {
+div.transcribing  ul form input[type="text"].medium {
   width: 118px;
 }
-div.transcribing div#transcriber ul form input[type="text"].short {
+div.transcribing  ul form input[type="text"].short {
   width: 78px;
 }
-div.transcribing div#transcriber ul form input[type="text"]:focus {
+div.transcribing  ul form input[type="text"]:focus {
   outline: none;
   color: #666666;
 }
-div.transcribing div#transcriber ul form.in input[type="text"] {
+div.transcribing  ul form.in input[type="text"] {
   padding-right: 36px;
 }
-div.transcribing div#transcriber ul form.in input[type="text"].long {
+div.transcribing  ul form.in input[type="text"].long {
   width: 180px;
 }
-div.transcribing div#transcriber ul form.in input[type="text"].medium {
+div.transcribing  ul form.in input[type="text"].medium {
   width: 90px;
 }
-div.transcribing div#transcriber ul form.in input[type="text"].short {
+div.transcribing  ul form.in input[type="text"].short {
   width: 50px;
 }
-div.transcribing div#transcriber ul form input[type="submit"] {
+div.transcribing  ul form input[type="submit"] {
   margin: 0;
 }
-div.transcribing div#transcriber ul form input[type="submit"]:hover {
+div.transcribing  ul form input[type="submit"]:hover {
   cursor: pointer;
 }
-div.transcribing div#transcriber ul form.in input[type="submit"] {
+div.transcribing  ul form.in input[type="submit"] {
   position: absolute;
   top: 3px;
-  right: 8px;
+  right: 10px;
   height: 27px;
   width: 27px;
   padding: 4px 4px 5px!important;
   border: none;
 }
-div.transcribing div#transcriber ul form.out input[type="submit"] {
+
+body.sernac.transcribingScreen div.transcribing  ul form.in input[type="submit"] {
+  position: absolute;
+  top: 3px;
+  right: 35px;
+  height: 27px;
+  width: 27px;
+  padding: 4px 4px 5px!important;
+  border: none;
+}
+
+div.transcribing  ul form.out input[type="submit"] {
   position: relative;
   height: 33px;
   padding: 6px 7px 7px;
   line-height: normal;
   margin: 0 5px 0 0;
 }
-div.transcribing div#transcriber ul form span.wrapper {
+div.transcribing  ul form span.wrapper {
   position: relative;
   display: inline-block;
   margin: 0 5px 0 0;
 }
-div.transcribing div#transcriber ul form span.wrapper.short {
+div.transcribing  ul form span.wrapper.short {
   width: 88px!important;
 }
-div.transcribing div#transcriber ul form span.wrapper.medium {
+div.transcribing  ul form span.wrapper.medium {
   width: 138px!important;
 }
-div.transcribing div#transcriber ul p {
+div.transcribing  ul p {
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -572,16 +790,16 @@ div.transcribing div#transcriber ul p {
   -khtml-border-radius: 3px;
   border-radius: 3px;
 }
-div.transcribing div#transcriber ul p a {
+div.transcribing  ul p a {
   text-decoration: none;
   border-bottom: 1px solid white;
   color: white;
 }
-div.transcribing div#transcriber ul p a:hover {
+div.transcribing  ul p a:hover {
   text-decoration: none;
   border-bottom: 1px dashed white;
 }
-div.transcribing div#transcriber ul p span.tail {
+div.transcribing  ul p span.tail {
   position: absolute;
   left: -5px;
   top: 12px;
@@ -591,20 +809,20 @@ div.transcribing div#transcriber ul p span.tail {
   border-bottom: 5px solid transparent;
   border-right: 5px solid black;
 }
-div.transcribing div#transcriber ul.explanations > li, div.transcribing div#transcriber ul.titles > li {
+div.transcribing  ul.explanations > li, div.transcribing  ul.titles > li {
   position: absolute;
   top: 0;
   left: 0;
   display: none;
 }
-div.transcribing div#transcriber ul.explanations > li:first-child, div.transcribing div#transcriber ul.titles > li:first-child {
+div.transcribing  ul.explanations > li:first-child, div.transcribing  ul.titles > li:first-child {
   display: block;
 }
-div.transcribing div#transcriber ul.titles {
+div.transcribing  ul.titles {
   top: -1px;
   left: -1px;
 }
-div.transcribing div#transcriber ul.titles li {
+div.transcribing  ul.titles li {
   padding: 5px 8px;
   font: bold 11px "Helvetica",Arial;
   color: white;
@@ -619,7 +837,7 @@ div.transcribing div#transcriber ul.titles li {
   -khtml-border-bottom-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-div.transcribing div#transcriber ul.steps {
+div.transcribing  ul.steps {
   position: absolute;
   bottom: 45px;
   left: -88px;
@@ -637,7 +855,7 @@ div.transcribing div#transcriber ul.steps {
   -o-box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
   box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
 }
-div.transcribing div#transcriber ul.steps li {
+div.transcribing  ul.steps li {
   display: block;
   margin: 0;
   border-bottom: 1px solid #CCCCCC;
@@ -648,10 +866,10 @@ div.transcribing div#transcriber ul.steps li {
   -khtml-border-radius: 2px;
   border-radius: 2px;
 }
-div.transcribing div#transcriber ul.steps li:last-child {
+div.transcribing  ul.steps li:last-child {
   border: none;
 }
-div.transcribing div#transcriber ul.steps li a {
+div.transcribing  ul.steps li a {
   display: block;
   padding: 6px 8px;
   font: normal 11px "Helvetica",Arial;
@@ -660,7 +878,7 @@ div.transcribing div#transcriber ul.steps li a {
   
   opacity: 0.5;
 }
-div.transcribing div#transcriber ul.steps li span.circle {
+div.transcribing  ul.steps li span.circle {
   display: inline-block;
   vertical-align: middle;
   width: 4px;
@@ -674,40 +892,40 @@ div.transcribing div#transcriber ul.steps li span.circle {
   -khtml-border-radius: 6px;
   border-radius: 6px;
 }
-div.transcribing div#transcriber ul.steps li:hover a {
+div.transcribing  ul.steps li:hover a {
   
   opacity: 1;
 }
-div.transcribing div#transcriber ul.steps li.completed a {
+div.transcribing  ul.steps li.completed a {
   color: #669933;
 }
-div.transcribing div#transcriber ul.steps li.completed span.circle {
+div.transcribing  ul.steps li.completed span.circle {
   border-color: #669933;
   background: #669933;
 }
-div.transcribing div#transcriber ul.steps li.selected a {
+div.transcribing  ul.steps li.selected a {
   
   opacity: 1;
   color: #666666;
 }
-div.transcribing div#transcriber ul.steps li.selected a:hover {
+div.transcribing  ul.steps li.selected a:hover {
   cursor: default;
 }
-div.transcribing div#transcriber ul.steps li.selected span.circle {
+div.transcribing  ul.steps li.selected span.circle {
   border-color: #666666;
   background: none;
 }
-div.transcribing div#transcriber ul.steps li.selected.completed a {
+div.transcribing  ul.steps li.selected.completed a {
   color: #666666;
 }
-div.transcribing div#transcriber ul.steps li.selected.completed a:hover {
+div.transcribing  ul.steps li.selected.completed a:hover {
   cursor: default;
 }
-div.transcribing div#transcriber ul.steps li.selected.completed span.circle {
+div.transcribing  ul.steps li.selected.completed span.circle {
   background: #666666;
   border-color: #666666;
 }
-div.transcribing div#transcriber ul.steps span.tail {
+div.transcribing  ul.steps span.tail {
   position: absolute;
   bottom: -10px;
   right: 11px;
@@ -749,9 +967,12 @@ div.transcribing div#transcriber.free div.bottom:hover div, div.transcribing div
   cursor: default;
 }
 
+
+
 div.tooltip {
   position: absolute!important;
   display: none;
+  position: relative;
   bottom: 43px;
   right: 0;
   width: 175px!important;
@@ -764,7 +985,7 @@ div.tooltip {
   -ms-border-radius: 2px;
   -khtml-border-radius: 2px;
   border-radius: 2px;
-  z-index: 100;
+  z-index: 1000000;
   -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
   -o-box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
@@ -814,6 +1035,15 @@ div.tooltip.center {
   bottom: 56px;
   margin: 0 0 0 -89px;
 }
+
+body.sernac.transcribingScreen div.tooltip.center {
+  bottom: 0px
+  margin: 0px
+  top:0px
+  vertical-align:none
+  display: relative
+}
+
 div.tooltip.center span.tail {
   right: 50%;
   margin: 0 -8px 0 0;
@@ -1128,3 +1358,114 @@ div.tooltip.example a {
   background: #000;
   
 }
+
+
+.lt-ie7,
+.lt-ie8,
+.lt-ie9,
+.lt-ie10 {
+  #selector img { zoom: 2; }
+
+
+}
+
+.lt-ie9 
+  #selection 
+    background:rgb(255,103,1);
+
+    &:hover 
+      background:rgb(255,103,1)
+
+  #selector.hollow 
+    background:none
+
+#selector 
+  position:absolute
+  display:none
+  z-index: 10010
+  background:url('../img/bg-transcriber.png')
+  overflow:hidden
+  box-shadow(0 0 5px 3px rgba(0,0,0,0.4))
+
+  &.hollow 
+    background:rgba(255,103,1, .15)
+
+    border:1px solid #FF6701
+    cursor: pointer
+
+    box-shadow(none);
+
+    &:hover 
+      background:rgba(255,103,1, .30)
+    
+  
+
+  img 
+    position:absolute
+    transform: scale(2)
+    transform-origin: 0 0
+
+    -webkit-transform: scale(2)
+    -webkit-transform-origin: 0 0
+
+    -o-transform: scale(2)
+    -o-transform-origin: 0 0
+
+    -moz-transform: scale(2)
+    -moz-transform-origin: 0 0
+  
+
+
+
+
+jspContainer { overflow: hidden; position: relative; }
+.jspPane { position: absolute; }
+.jspVerticalBar { position: absolute; top: 80px; right: 10px; width: 10px; height: 100%; }
+.jspHorizontalBar { position: absolute; bottom: 10px; left: 0; width: 100%; height: 10px; }
+.jspVerticalBar *,
+.jspHorizontalBar * { margin: 0; padding: 0; }
+.jspCap { display: none; }
+.jspHorizontalBar .jspCap { float: left; }
+.jspTrack { position: relative; }
+.jspDrag 
+  background: rgba(0,0,0, 0.4)
+  border: 1px solid rgba(255,255,255, 0.4)
+  position: relative 
+  top: 0
+  left: 0
+  cursor: pointer
+  border-radius(8px)
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag { float: left; height: 100%; }
+.jspArrow { text-indent: -20000px; display: block; cursor: pointer; }
+.jspArrow.jspDisabled { cursor: default; }
+.jspVerticalBar .jspArrow { height: 10px; }
+.jspHorizontalBar .jspArrow { width: 10px; float: left; height: 100%; }
+.jspVerticalBar .jspArrow:focus { outline: none; }
+.jspCorner { float: left; height: 100%; }
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner { margin: 0 -3px 0 0; }
+
+
+body.transcribingScreen
+  div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video 
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+

@@ -1,33 +1,46 @@
 Spine = require('spine')
+Subject= require('models/Subject')
 
 class Archive extends Spine.Model
-  @configure 'Archive', 'name', 'metadata', 'complete'
+  @configure 'Archive', 'name', 'metadata', 'complete', 'stats', 'categories'
   @belongsTo 'institute', 'models/Institute'
+  @hasMany   'subjects', Subject
 
-  @fetch:=>
-    $.getJSON "#{OuroborusBase}/groups/categories/archive", (data)=>
-      for archive in data
-        Archive.create(archive)
+  # @fetch:=>
+  #   $.getJSON "#{OuroborusBase}/groups/categories/archive", (data)=>
+  #     for archive in data
+  #       Archive.create(archive)
 
-  @find_by_slug:(slug)=>
+  @findBySlug: (slug)=>
     result = @select (archive)=>
       archive.slug() is slug
     result[0]
+
+
   @filter:(params)=>
     if params? and params.type?
       @select (archive)=>
-        archive.metadata.taxonomy.indexOf(params.type) != -1 or archive.metadata.taxonomy.indexOf(_.str.capitalize(params.type)) != -1
+        archive.categories.indexOf(params.type) != -1 or archive.categories.indexOf(_.str.capitalize(params.type)) != -1
     else 
       @all()
 
-  
+  nextSubject:(callback=null)=>
+    zooApi.fetchSubjects {project:'notes_from_nature', group:@ , limit:1}, (subject)=>
+      if subject.length > 0
+        s = @subjects().create subject[0]
+        callback(s) if callback?
+      else
+        callback(null) if callback
+
   transcriptionUrl:=>
-    "/#/archives/#{@slug()}/transcribe"
+    "#/archives/#{@slug()}/transcribe"
 
   slug:->
     @name.replace /\s/g, "_"
 
   complete:=>
-    @metadata.progress==100
+    @progress()==100
   
+  progress:=>
+    if @stats?.total >0 then (100.0*@stats?.complete)/@stats?.total else 0
 module.exports = Archive

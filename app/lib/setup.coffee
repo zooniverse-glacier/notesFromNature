@@ -7,9 +7,9 @@ require('spine/lib/local')
 require('spine/lib/ajax')
 require('spine/lib/manager')
 require('spine/lib/route')
-require('spine/lib/tmpl')
-require('spine/lib/relation')
 
+require('spine/lib/relation')
+require('lib/zooniverseBar/ZooniverseBar')
 
 
 User = require('models/User')
@@ -28,3 +28,6 @@ $.ajaxSetup beforeSend: (xhr) ->
  if user
    auth = btoa "#{user.name}:#{user.key}"
    xhr.setRequestHeader 'Authorization', "Basic #{ auth }"
+
+
+window.zooApi = require('lib/zooniverse/API')

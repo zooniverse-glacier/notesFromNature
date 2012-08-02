@@ -1,14 +1,16 @@
 Spine = require('spine')
 Archive = require('models/Archive')
+
 class ArchivesShowController extends Spine.Controller
   # className : "wrapper"
+  className: "ArchivesShowController"
 
   constructor: ->
     super
 
   active:(params)=>
     super 
-    archive = Archive.find_by_slug(params.id)
+    archive = Archive.findBySlug(params.id)
     @render(archive)
 
   render:(archive=undefined)=>

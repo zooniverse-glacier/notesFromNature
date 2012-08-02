@@ -1,6 +1,9 @@
 Spine = require('spine')
 
 class AboutController extends Spine.Controller
+
+  className: "AboutController"
+
   elements:
     ".about_content" : "content"
     ".list-links li a" : "navLinks"

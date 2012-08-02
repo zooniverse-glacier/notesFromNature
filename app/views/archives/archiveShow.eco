@@ -9,7 +9,7 @@
             <div>
                 <a class="button left" href="<%=@archive.transcriptionUrl()%>">START TRANSCRIBING</a>
                 <div class="percentage">
-                    <span class="title"><%=@archive.metadata.progress%>%</span>
+                    <span class="title"><%=@archive.progress()%>%</span>
                     <span class="subtitle done">DONE</span>
                 </div>
             </div>  
@@ -22,7 +22,7 @@
         <div class="col2">
             <div>
                 <p>
-                  <%=@archive.description%>
+                  <%=@archive.metadata.description%>
                 </p>
             </div>
 
@@ -31,14 +31,14 @@
         <div class="col1">
             <div class="box-right">
                 <ul class="status-list">
-                    <li><span class="text">TEMPORAL RANGE</span><%=@archive.metadata.startDate%> / <%=@archive.endDate%></li>
-                    <li><span class="text">GEOGRAPHIC CONTEXT</span> <%=@archive.metadata.regions?.join(" | ")%></li>
-                    <li><span class="text">TAXONOMICAL CONTENT</span><%=@archive.metadata.taxonomy?.join(" | ")%></li>
+                    <li><span class="text">TEMPORAL RANGE</span><%=@archive.metadata.start_date%> / <%=@archive.metadata.end_date%></li>
+                    <li><span class="text">GEOGRAPHIC CONTEXT</span> <%=@archive.metadata.regions.join(" | ")%></li>
+                    <li><span class="text">TAXONOMICAL CONTENT</span><%=@archive.categories.join(" | ")%></li>
                     <li><span class="text">PROGRESS</span>
 
                     <div class="progress-bar">
-                        <div class="bar" style="width:<%=@archive.progress%>%"></div>
-                        <span class="progress"><%=@archive.metadata.progress%>%</span>
+                        <div class="bar" style="width:<%=@archive.progress()%>%"></div>
+                        <span class="progress"><%=@archive.progress()%>%</span>
                     </div>
                     </li>
                     <li><span class="text">USERS PARTICIPATING</span><%=@archive.metadata.userCount%></li>

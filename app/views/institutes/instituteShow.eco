@@ -4,8 +4,9 @@
     <div class="col3">
       <h2 class="title">
         <%=@institute.name%>
-        <span class="subtitle"><%=@institute.metadata.location%></span>
-        <img class="logo" src="/images/logoMuseum.png" alt="Natural History Museum" />
+        <%console.log "institute is ", @institute%>
+        <span class="subtitle"><%=@institute.metadata.regions.join(",") %></span>
+        <img class="logo" src="images/logoMuseum.png" alt="Natural History Museum" />
       </h2>
     </div>
   </div>          

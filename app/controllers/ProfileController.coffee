@@ -2,6 +2,8 @@ Spine = require('spine')
 User  = require('models/User')
 
 class ProfileController extends Spine.Controller
+  className: "ProfileController"
+
   constructor: ->
     super
 

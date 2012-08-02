@@ -1,5 +1,5 @@
 <div class="link-navigation bg left alpha col1">
-  <a href="/#/collections" class="alpha">COLLECTIONS</a>
+  <a href="#/collections" class="alpha">COLLECTIONS</a>
   <a href="">BLOG</a>
 </div>
 
@@ -13,8 +13,8 @@
 <div class="link-navigation bg right omega">
     <a href="">FORUM</a>
     <%if @user? : %>
-        <a class='signin_nav_link' href="/#/profile"><%=@user.name%></a>
+        <a class='signin_nav_link' href="#/profile"><%=@user.name%></a>
     <%else : %>
-        <a class='signin_nav_link' href="/#/login">SIGNIN / SIGNUP</a>
+        <a class='signin_nav_link' href="#/login">SIGNIN / SIGNUP</a>
     <%end%>
 </div>

@@ -1,7 +1,9 @@
 Spine = require('spine')
+Archive = require('models/Archive')
 
 class Subject extends Spine.Model
-  @configure 'Subject'
+  @configure 'Subject', 'location', 'metadata','workflow_ids'
+  @belongsTo 'archive', Archive
 
   @next_subject:=>
     @purge()
@@ -20,5 +22,8 @@ class Subject extends Spine.Model
   @purge:=>
     for subject in Subject.all()
       subject.destroy()
+
+  @random:=>
+    @all()[Math.floor(Math.random()*@count())]
 
 module.exports = Subject

@@ -58,11 +58,19 @@ class App extends Spine.Stack
   constructor: ->
     super
     
-    Archive.trigger('refresh')
-    Institute.fetch()
+
     Spine.Route.setup()
+    
+    $("body").prepend( (new ZooniverseBar()).el); 
+
     Spine.Route.bind "change", =>
       if Spine.Route.path.indexOf("transcribe") == -1
-        $("body").removeClass('transcribingScreen')
+        $("body").removeClass()
+
+    setTimeout ->
+        Institute.fetch()
+    ,300
+        
+     
 module.exports = App
     
