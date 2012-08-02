@@ -13,7 +13,6 @@ unless config.proxyPath
 
 class Proxy extends Spine.Module
   @extend Spine.Events
-  alert("<iframe src='#{config.apiHost}#{config.proxyPath}'></iframe>")
   @iframe = $("<iframe src='#{config.apiHost}#{config.proxyPath}'></iframe>")
   @iframe.css display: 'none'
   @iframe.appendTo 'body'
