@@ -10,11 +10,11 @@ config.set = (options) ->
 # Determine if we're running on a development server.
 
 config.set
-  dev:  +location.port > 1023 or !!~location.hostname.indexOf '.dev'
+  dev:  false #+location.port > 1023 or !!~location.hostname.indexOf '.dev'
 
 # Default host and API proxy path
 config.apiHost = 'https://api.zooniverse.org'
-config.proxyPath = '/proxy/index.html'
+config.proxyPath = '/proxy.html'
 
 # TODO: What if dev Ouroboros isn't on 3000?
 if config.dev
