@@ -1,0 +1,5 @@
+<div class="transcribing double" style='margin-top:100px'>
+    <div class="scrollpane">
+        <img src="<%=@subject.location.standard%>" alt="" title="" />
+    </div>
+</div>

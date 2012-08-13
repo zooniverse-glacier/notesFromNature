@@ -1,0 +1,30 @@
+   
+<div class="box-black">
+    <div class="col2">
+        <h3 class="title black">
+            <span>Notes from</span>
+            <span class="black">Nature</span>
+        </h3>
+        <p>Here would go a short description of the project, the partners involved and the main objective. 
+        Also we should invite users and institutions from here to participate on the project. This is gonna be
+        a beautiful project that is something we all think, and for sure is gonna be a real thing.</p>
+        <p>The Earth is the only world known so far to harbor life. There is nowhere else, at least in the near
+        future, to which our species could migrate. Visit, yes. Settle, not yet. Like it or not, for 
+        the moment the Earth is where we make our stand.</p>
+    </div>
+
+    <div class="col1">
+        <div class="link-footer">
+            <span>DO YOU WANT TO KNOW MORE?</span><br />
+            <a href="">Support</a>
+            / <a href="">FAQ</a>
+            / <a href="about.html">About the project</a>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="box-black">
+    <div class="col3">
+        <span class="legal">Notes from Nature 2012. <a href="#" class="legal">Legal terms</a></span>
+    </div>          
+</div>

@@ -1,0 +1,22 @@
+<form class="in">
+  <% for field in @fields : %>
+    <%if field.type == 'text' : %>
+      <input type="text" value="" placeholder="<%=@name%>" name="collector" class="long <%=@name.split(" ")[0]%>" />
+    <%else if field.type == 'select' : %>
+      <select name='field.name'>
+        <option value=0  selected disabled> <%=@name%> </option>
+        <% for option in field.options : %>
+          <option ><%=option%></option>
+        <%end%>
+      </select>
+    <%end%>
+  <%end%>
+
+  <input type="submit" value="ok" class="button green small"  style='<%= "right:-24px" if @fields.length is 0 %>' />
+</form>
+
+<p style='<%= "right:-30px" if @fields.length is 0 %>'>
+  <%=@instructions%>
+  <a href="#" class='example'>See Example</a> | <a href="#" class='skip'>Skip This Field</a>
+  <span class='tail'></span>
+</p>

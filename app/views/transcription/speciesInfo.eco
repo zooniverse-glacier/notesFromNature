@@ -1,0 +1,13 @@
+<% console.log "in template", @%>
+
+<div class='speciesInfo' style='position:absolute; left:10px; top:20px; width: 500px; height: 500px; z-index:10000; background-color:yellow'>
+  <ul>
+    <li> Species Name : <%=@species.content%></li>
+    <li> Images</li>
+    <li>
+      <% for image in  @media.media.StillImage : %>
+        <img src= <%=image.eolThumbnailURL%> style='width:100px; display:inline-block; vertical-align:middle'>
+      <%end%>
+    </li>
+  </ul>
+</div>

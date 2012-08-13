@@ -1,0 +1,10 @@
+<div class="box-general" style='height:400px'>   
+
+  <form>
+
+  <p>Username : <input type='text' class='username' name="username" placeholder='username' /></p>
+
+  <p>Password : <input type='password' class='password' name="password" placeholder='password' /> </p>
+  <input type ='submit' / >
+  </form>
+</div>
