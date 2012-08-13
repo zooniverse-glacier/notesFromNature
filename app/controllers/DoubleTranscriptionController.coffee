@@ -28,11 +28,8 @@ class DoubleTranscriptionController extends Spine.Controller
     super
     # @resetClassification()
     # @currentEntityNo=0
-<<<<<<< HEAD
     # @eol = new EOL()
-=======
     @eol = new EOL()
->>>>>>> 4ceb365b537b502954f43136ed9793080e9b2c48
 
  
   startWorkflow:(subject)=>

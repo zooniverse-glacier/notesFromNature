@@ -17,10 +17,5 @@ config.apiHost = 'https://api.zooniverse.org'
 config.proxyPath = '/proxy.html'
 
 # TODO: What if dev Ouroboros isn't on 3000?
-if config.dev
-  config.set 
-    apiHost: "http://#{location.hostname}:3000" 
-
-console.log "config before final line honnest gov ", config
 
 module.exports = config
