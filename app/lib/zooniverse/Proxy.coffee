@@ -3,8 +3,14 @@ Spine = require 'spine'
 config = require 'lib/zooniverse/config'
 {remove} = require 'lib/zooniverse/util'
 
-throw new Error 'zooniverse/Proxy needs config.apiHost' unless config.apiHost
-throw new Error 'zooniverse/Proxy needs config.proxyPath' unless config.proxyPath
+
+unless config.apiHost
+  console.log config 
+  throw new Error 'zooniverse/Proxy needs config.apiHost' unless config.apiHost
+  
+unless config.proxyPath  
+  console.log config
+  throw new Error 'zooniverse/Proxy needs config.proxyPath' 
 
 class Proxy extends Spine.Module
   @extend Spine.Events
@@ -25,7 +31,7 @@ class Proxy extends Spine.Module
       deferred.always =>
         Proxy.ready = true
         # Kick off the daisy chain when the "ready" message comes.
-        
+
         Proxy.readyDaisyChain[0].resolve()
         remove Proxy.readyDaisyChain[0], from: Proxy.readyDaisyChain
 
