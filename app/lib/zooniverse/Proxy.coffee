@@ -3,16 +3,12 @@ Spine = require 'spine'
 config = require 'lib/zooniverse/config'
 {remove} = require 'lib/zooniverse/util'
 
-unless config.apiHost
-  console.log config 
-  throw new Error 'zooniverse/Proxy needs config.apiHost' unless config.apiHost
-  
-unless config.proxyPath  
-  console.log config
-  throw new Error 'zooniverse/Proxy needs config.proxyPath' 
+throw new Error 'zooniverse/Proxy needs config.apiHost' unless config.apiHost
+throw new Error 'zooniverse/Proxy needs config.proxyPath' unless config.proxyPath
 
 class Proxy extends Spine.Module
   @extend Spine.Events
+
   @iframe = $("<iframe src='#{config.apiHost}#{config.proxyPath}'></iframe>")
   @iframe.css display: 'none'
   @iframe.appendTo 'body'
@@ -23,12 +19,13 @@ class Proxy extends Spine.Module
 
   # Requests added here and posted sequentially when the iframe is ready.
   @readyDaisyChain: [new $.Deferred]
-  
+
   @requests:
     READY: new $.Deferred (deferred) =>
       deferred.always =>
         Proxy.ready = true
         # Kick off the daisy chain when the "ready" message comes.
+        
         Proxy.readyDaisyChain[0].resolve()
         remove Proxy.readyDaisyChain[0], from: Proxy.readyDaisyChain
 
@@ -36,7 +33,6 @@ class Proxy extends Spine.Module
   @headers: {}
 
   @postMessage: (message) =>
-    console.log message
     @external.postMessage JSON.stringify(message), config.apiHost
 
   @request: (type, url, data, done, fail) =>
@@ -45,19 +41,17 @@ class Proxy extends Spine.Module
       done = data
       data = null
 
-    id = Math.floor(Math.random() * 999999)
+    id = Math.floor Math.random() * 99999999
     deferred = new $.Deferred -> @then done, fail
 
     message = {id, type, url, data, @headers}
-    console.log message
-    if true
-      console.log 'ready'
-      @postMessage message
+
+    if @ready
+      Proxy.postMessage message
     else
-      console.log 'notready'
       # Post this message after the last deferred in the chain has completed.
       Proxy.readyDaisyChain.slice(-1)[0].always =>
-        @postMessage message
+        Proxy.postMessage message
         remove deferred, from: Proxy.readyDaisyChain
 
       # Add this deferred to the end of the chain.
