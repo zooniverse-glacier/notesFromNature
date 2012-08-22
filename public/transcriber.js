@@ -109,28 +109,29 @@
           },
           {
             label: 'A date in the third line.',
-            inputs: [
-              {
-                type: 'select',
-                placeholder: 'MONTH',
-                size: 'medium',
-                name: 'collection_month',
-                source: months
-              },
-              {
-                type: 'select',
-                placeholder: 'DAY',
-                size: 'short',
-                name: 'collection_day',
-                source: days
-              },
-              {
-                type: 'text',
-                placeholder: 'YEAR',
-                size: 'short',
-                name: 'collection_year'
-              }
-            ],
+            // inputs: [
+            //   {
+            //     type: 'select',
+            //     placeholder: 'MONTH',
+            //     size: 'medium',
+            //     name: 'collection_month',
+            //     source: months
+            //   },
+            //   {
+            //     type: 'select',
+            //     placeholder: 'DAY',
+            //     size: 'short',
+            //     name: 'collection_day',
+            //     source: days
+            //   },
+            //   {
+            //     type: 'text',
+            //     placeholder: 'YEAR',
+            //     size: 'short',
+            //     name: 'collection_year'
+            //   }
+            // ],
+            inputs: [ { type: 'text', placeholder: '08/09/1982 OR Aug 1982', size: 'long', name: 'collection_date' } ],
             step: 'Collection date',
             ok: 'out'
           },
@@ -162,28 +163,29 @@
           },
           {
             label: 'A date under the transferrer.',
-            inputs: [
-              {
-                type: 'select',
-                placeholder: 'MONTH',
-                size: 'medium',
-                name: 'transfer_month',
-                source: months
-              },
-              {
-                type: 'select',
-                placeholder: 'DAY',
-                size: 'short',
-                name: 'transfer_day',
-                source: days
-              },
-              {
-                type: 'text',
-                placeholder: 'YEAR',
-                size: 'short',
-                name: 'transfer_year'
-              }
-            ],
+            // inputs: [
+            //   {
+            //     type: 'select',
+            //     placeholder: 'MONTH',
+            //     size: 'medium',
+            //     name: 'transfer_month',
+            //     source: months
+            //   },
+            //   {
+            //     type: 'select',
+            //     placeholder: 'DAY',
+            //     size: 'short',
+            //     name: 'transfer_day',
+            //     source: days
+            //   },
+            //   {
+            //     type: 'text',
+            //     placeholder: 'YEAR',
+            //     size: 'short',
+            //     name: 'transfer_year'
+            //   }
+            // ],
+            inputs: [ { type: 'text', placeholder: '11/14/2002 OR Nov 2002', size: 'long', name: 'transfer_date' } ],
             step: 'Transfer date',
             ok: 'out'
           },
