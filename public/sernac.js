@@ -19,8 +19,8 @@
   // Plugin parts
   Core, API, Helper,
   // default options
-  // days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
-  // months = ["January","February","March","April","May","June","July","August","September","October","November","December"],
+  days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+  months = ["January","February","March","April","May","June","July","August","September","October","November","December"],
   speciesURL = '',
   defaultOptions = {
     globalEvents : [],
@@ -89,13 +89,13 @@
       ok: 'in'
     }, {
       label: 'A date under the transferrer.',
-      inputs: [
+      // inputs: [
         // { type: 'select', placeholder: 'MONTH', size: 'medium', name: 'transfer_month', source: months },
         // { type: 'select', placeholder: 'DAY', size: 'short', name: 'transfer_day', source: days },
         // { type: 'text', placeholder: 'YEAR', size: 'short', name: 'transfer_year' } ],
-        inputs: [ { type: 'text', placeholder: '11/14/2002 OR Nov 2002', size: 'long', name: 'transfer_date' } ],
-        step: 'Transfer date',
-        ok: 'out'
+      inputs: [ { type: 'text', placeholder: '11/14/2002 OR Nov 2002', size: 'long', name: 'transfer_date' } ],
+      step: 'Transfer date',
+      ok: 'out'
     }, {
       label: 'Can you detect this information?.',
       inputs: [
