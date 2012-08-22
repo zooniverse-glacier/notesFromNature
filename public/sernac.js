@@ -69,11 +69,12 @@
       ok: 'in'
     }, {
       label: 'A date in the third line.',
-      inputs: [
-        { type: 'select', placeholder: 'MONTH', size: 'medium', name: 'collection_month', source: months },
-        { type: 'select', placeholder: 'DAY', size: 'short', name: 'collection_day', source: days },
-        { type: 'text', placeholder: 'YEAR', size: 'short', name: 'collection_year' }
-      ],
+      // inputs: [
+      //   { type: 'select', placeholder: 'MONTH', size: 'medium', name: 'collection_month', source: months },
+      //   { type: 'select', placeholder: 'DAY', size: 'short', name: 'collection_day', source: days },
+      //   { type: 'text', placeholder: 'YEAR', size: 'short', name: 'collection_year' }
+      // ],
+      inputs: [ { type: 'text', placeholder: 'COLLECTION DATE. ex. Aug 1982', size: 'long', name: 'collection_date' } ],
       step: 'Collection date',
       ok: 'out'
     }, {
@@ -88,16 +89,18 @@
       ok: 'in'
     }, {
       label: 'A date under the transferrer.',
-      inputs: [
-        { type: 'select', placeholder: 'MONTH', size: 'medium', name: 'transfer_month', source: months },
-        { type: 'select', placeholder: 'DAY', size: 'short', name: 'transfer_day', source: days },
-        { type: 'text', placeholder: 'YEAR', size: 'short', name: 'transfer_year' } ],
-        step: 'Transfer date',
-        ok: 'out'
+      // inputs: [
+        // { type: 'select', placeholder: 'MONTH', size: 'medium', name: 'transfer_month', source: months },
+        // { type: 'select', placeholder: 'DAY', size: 'short', name: 'transfer_day', source: days },
+        // { type: 'text', placeholder: 'YEAR', size: 'short', name: 'transfer_year' } ],
+      inputs: [ { type: 'text', placeholder: 'TRANSFER DATE. ex. Nov 2002', size: 'long', name: 'transfer_date' } ],
+      step: 'Transfer date',
+      ok: 'out'
     }, {
       label: 'Can you detect this information?.',
       inputs: [
-        { type: 'select', placeholder: 'GENDER', size: 'short', name: 'gender', source: ['male','female'] },
+        // { type: 'select', placeholder: 'GENDER', size: 'short', name: 'gender', source: ['male','female'] },
+        { type: 'text', placeholder: 'GENDER', size: 'short', name: 'gender' },
         { type: 'text', placeholder: 'AGE', size: 'short', name: 'age' },
         { type: 'text', placeholder: 'REGISTER', size: 'short', name: 'register' }
       ],
