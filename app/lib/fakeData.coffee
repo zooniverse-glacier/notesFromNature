@@ -2,8 +2,8 @@ Institute = require('models/Institute')
 Archive = require('models/Archive')
 Subject = require('models/Subject')
 
-months = ["January", "February", "March", "April", "May","June", "July","August", "September", "October", "November", "December"]
-days   = [1..31]
+# months = ["January", "February", "March", "April", "May","June", "July","August", "September", "October", "November", "December"]
+# days   = [1..31]
 
 
 
@@ -96,16 +96,8 @@ window.entities=[
       instructions: "A date in the third line."
       draggable: false
       fields: [
-        type: "select"
-        name: "month"
-        options: months
-      ,
-        type: "select"
-        name: "day"
-        options: days
-      ,
-        type: "select"
-        name: "year"
-        size: 'small'
+        type: "text"
+        name: "collection_date"
+        size: 'long'
       ]
   ]
