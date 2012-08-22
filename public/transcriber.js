@@ -131,7 +131,7 @@
             //     name: 'collection_year'
             //   }
             // ],
-            inputs: [ { type: 'text', placeholder: 'EX. 08/09/1982 OR Aug 1982', size: 'long', name: 'collection_date' } ],
+            inputs: [ { type: 'text', placeholder: 'COLLECTION DATE. ex. Aug 1982', size: 'long', name: 'collection_date' } ],
             step: 'Collection date',
             ok: 'out'
           },
@@ -185,20 +185,21 @@
             //     name: 'transfer_year'
             //   }
             // ],
-            inputs: [ { type: 'text', placeholder: 'EX. 11/14/2002 OR Nov 2002', size: 'long', name: 'transfer_date' } ],
+            inputs: [ { type: 'text', placeholder: 'TRANSFER DATE. ex. Nov 2002', size: 'long', name: 'transfer_date' } ],
             step: 'Transfer date',
             ok: 'out'
           },
           {
             label: 'Can you detect this information?.',
             inputs: [
-              {
-                type: 'text',
-                placeholder: 'GENDER',
-                size: 'short',
-                name: 'gender',
-                source: ['male','female']
-              },
+              // {
+              //   type: 'text',
+              //   placeholder: 'GENDER',
+              //   size: 'short',
+              //   name: 'gender',
+              //   source: ['male','female']
+              // },
+              { type: 'text', placeholder: 'GENDER', size: 'short', name: 'gender' },
               {
                 type: 'text',
                 placeholder: 'AGE',
