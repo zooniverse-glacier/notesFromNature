@@ -430,7 +430,7 @@ body.transcribingScreen  header {
   left: 0;
   width: 100%;
   min-width: 1024px;
-  height: 80px;
+  height: 52px;
   z-index: 10;
   -moz-box-shadow: rgba(0, 0, 0, 0.6) 0 0 20px 5px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0 0 20px 5px;
@@ -438,9 +438,8 @@ body.transcribingScreen  header {
   box-shadow: rgba(0, 0, 0, 0.6) 0 0 20px 5px;
   background: url("../images/bg.jpg") repeat-x #333333;
   border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-  padding-top:50px;
-
 }
+
 body.transcribingScreen  header div.wrapper {
   width: 100%;
   height: 80px;
@@ -482,11 +481,13 @@ body.transcribingScreen  header div.right::after {
   border-left: 1px solid black;
 }
 body.transcribingScreen  header h1 {
+  margin: 0;
   font: bold 17px "Open Sans";
   color: white;
   font-weight: 800;
 }
 body.transcribingScreen  header h2 {
+  margin: 0;
   font: normal 13px "Open Sans";
   color: #999999;
 }
@@ -1445,7 +1446,6 @@ jspContainer { overflow: hidden; position: relative; }
 .jspVerticalBar .jspArrow:focus { outline: none; }
 .jspCorner { float: left; height: 100%; }
 /* Yuk! CSS Hack for IE6 3 pixel bug :( */
+
 * html .jspCorner { margin: 0 -3px 0 0; }
-
-
 .noOfRecordsDone { margin: 0; }
