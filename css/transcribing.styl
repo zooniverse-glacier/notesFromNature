@@ -1,6 +1,6 @@
 body.sernac 
 
-  background:url('../img/bg-transcriber.png');
+  background:url('../images/bg-transcriber.png');
 
   .jspContainer img { display:block; margin:auto; cursor: crosshair; }
   .jspContainer.drag img { cursor: nwse-resize!important; }
@@ -88,7 +88,7 @@ body.sernac.transcribingScreen div.SernacTranscriptionController div.transcribin
 
     opacity:0;
 
-    background:url('../img/bg-button.png');
+    background:url('../images/bg-button.png');
     background: rgba(0, 0, 0, 0.7);
 
     text-align:left;
@@ -146,8 +146,44 @@ body.sernac.transcribingScreen div.SernacTranscriptionController div.transcribin
 }
 
 body.sernac
-  margin: 0px
+  margin:0px
   padding:0px
+
+body.sernac div.transcribing 
+  img 
+    @box-shadow( 0 0 15px 13px rgba(0,0,0,0.7))
+    margin: 80px auto 0 auto
+
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    -khtml-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+    /* this will work for QtWebKit in future */
+    -webkit-user-drag: none
+  li p 
+    background:none;
+  
+
+  .hint ul.explanations 
+    top: 14px
+    left: 0px
+    li 
+      font-size:11px
+
+  .hint ul.titles 
+    top: -7px
+    left: -7px
+    opacity:.8
+
+    li 
+      font-size:11px
+      background:none
+      border:none
+
+
+
 
 body.transcribingScreen  {
   line-height: 1;
@@ -1354,7 +1390,7 @@ div.tooltip.example a {
   position:absolute
   display:none
   z-index: 10010
-  background:url('../img/bg-transcriber.png')
+  background:url('../images/bg-transcriber.png')
   overflow:hidden
   box-shadow(0 0 5px 3px rgba(0,0,0,0.4))
 
