@@ -38,14 +38,14 @@ class DoubleTranscriptionController extends Spine.Controller
 
   render:=>
     @html("")
-    
+
     @append require("views/transcription/main")
       subject: @currentSubject
 
     @delay =>
-      @transcriptionSubject.transcriber() 
-      $("input[name='species']").on "keyup", @autofillSpecies
-
+      if $("#transcriber").length ==0
+        @transcriptionSubject.transcriber() 
+        $("input[name='species']").on "keyup", @autofillSpecies
     ,200
     # # @transcriptionSubject.prepend require("views/transcription/transcriptionBox")
     # #   entityTemplate       : require('views/transcription/entity')
