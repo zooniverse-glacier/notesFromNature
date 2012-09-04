@@ -1,19 +1,12 @@
-body.sernac 
+body.sernac {
+  overflow:hidden;
 
   background:url('../images/bg-transcriber.png');
 
-  .jspContainer img { display:block; margin:auto; cursor: crosshair; }
+  .jspContainer img      { display:block; margin:auto; cursor: crosshair; }
   .jspContainer.drag img { cursor: nwse-resize!important; }
-  .jspContainer.drag { cursor: nwse-resize!important; }
-
-
-
-body.sernac.transcribingScreen .wrapper #content .TranscriptionController .SernacTranscriptionController .box .button
-  padding-bottom: 6px;
-  padding-left: 13px;
-  padding-right: 13px;
-  padding-top: 7px;
-
+  .jspContainer.drag     { cursor: nwse-resize!important; }
+}
 
 body.transcribingScreen .wrapper .right .button
   padding: 6px 13px 7px
@@ -21,13 +14,114 @@ body.transcribingScreen .wrapper .right .button
 body.transcribingScreen .wrapper .right .button
   padding: 6px 13px 7px
 
+body.transcribingScreen  header {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  min-width: 1024px;
+  height: 52px;
+  z-index: 10;
+  -moz-box-shadow: rgba(0, 0, 0, 0.6) 0 0 20px 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0 0 20px 5px;
+  -o-box-shadow: rgba(0, 0, 0, 0.6) 0 0 20px 5px;
+  box-shadow: rgba(0, 0, 0, 0.6) 0 0 20px 5px;
+  background: url("../images/bg.jpg") repeat-x #333333;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
 
-width = 520px
-height= 52px
-pTop =11px
-pRight= 11px
-pBottom= 11px
-pLeft= 10px
+body.transcribingScreen  header div.wrapper {
+  width: 100%;
+  height: 80px;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0)), color-stop(70%, rgba(0, 0, 0, 0.3)), color-stop(100%, rgba(0, 0, 0, 0.5)));
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.5));
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.5));
+  background-image: -o-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.5));
+  background-image: -ms-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.5));
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.5));
+}
+body.transcribingScreen  header div.left {
+  float: left;
+  height: 60px;
+  margin: 0;
+  padding: 20px 0 0 24px;
+}
+body.transcribingScreen  header div.right {
+  position: relative;
+  float: right;
+  height: 55px;
+  padding: 25px 24px 0 24px;
+}
+body.transcribingScreen  header div.right::before {
+  position: absolute;
+  top: 0;
+  left: 1px;
+  height: 80px;
+  width: 1px;
+  content: '';
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+body.transcribingScreen  header div.right::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 1px;
+  content: '';
+  border-left: 1px solid black;
+}
+body.transcribingScreen  header h1 {
+  margin: 0;
+  font: bold 17px "Open Sans";
+  color: white;
+  font-weight: 800;
+}
+body.transcribingScreen  header h2 {
+  margin: 0;
+  font: normal 13px "Open Sans";
+  color: #999999;
+}
+body.transcribingScreen  header h5 {
+  display: inline-block;
+  vertical-align: top;
+  font: bold 37px "Open Sans";
+  color: white;
+  font-weight: 800;
+  line-height: 28px;
+}
+body.transcribingScreen  header label {
+  display: inline-block;
+  vertical-align: top;
+  width: 74px;
+  padding: 2px 0 0 5px;
+  font: bold 13px "Open Sans";
+  color: white;
+  line-height: 14px;
+}
+body.transcribingScreen  header span {
+  display: inline-block;
+  width: auto;
+}
+
+
+body.transcribingScreen .wrapper  
+  width: 100%
+  height: 100%
+  position :relative
+  max-width: none
+
+
+
+body.sernac.transcribingScreen .wrapper { margin: 0; }
+body.sernac .zooniverse-bar { position: fixed; top: 0; z-index: 100;}
+
+
+width   = 520px
+height  = 52px
+pTop    = 11px
+pRight  = 11px
+pBottom = 11px
+pLeft   = 10px
  
 div.SernacTranscriptionController
   width: 100%
@@ -41,8 +135,7 @@ body.sernac
 body.sernac.transcribingScreen div.SernacTranscriptionController div.transcribing.sernac 
   img 
     @include box-shadow( 0 0 15px 13px rgba(0,0,0,0.7));
-    margin: 80px auto 0 auto;
-
+    margin: 0 auto 0 auto;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -50,13 +143,10 @@ body.sernac.transcribingScreen div.SernacTranscriptionController div.transcribin
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    /* this will work for QtWebKit in future */
     -webkit-user-drag: none;
   
-
   li p 
     background:none;
-  
 
   .hint ul.explanations 
     top: 14px
@@ -81,7 +171,7 @@ body.sernac.transcribingScreen div.SernacTranscriptionController div.transcribin
     position:absolute;
     width: width;
     height: height;
-    bottom: 0;
+    bottom: 90px;
     left:50%;
     margin-left: -260px;
     z-index:100000;
@@ -152,7 +242,7 @@ body.sernac
 body.sernac div.transcribing 
   img 
     @box-shadow( 0 0 15px 13px rgba(0,0,0,0.7))
-    margin: 80px auto 0 auto
+    margin: 0 auto 0 auto
 
     -webkit-touch-callout: none
     -webkit-user-select: none
@@ -200,12 +290,6 @@ body.transcribingScreen.button
 
 body.transcribingScreen
   padding: 6px 13px 7px; 
-
-body.transcribingScreen .wrapper  
-  width: 100%
-  height: 100%
-  position :relative
-  max-width: none
 
 body.transcribingScreen .TranscriptionController
   width:100%
@@ -430,94 +514,6 @@ input.black:active {
 }
 
 
-body.transcribingScreen  header {
-  position: fixed;
-  top: 0px;
-  left: 0;
-  width: 100%;
-  min-width: 1024px;
-  height: 52px;
-  z-index: 10;
-  -moz-box-shadow: rgba(0, 0, 0, 0.6) 0 0 20px 5px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0 0 20px 5px;
-  -o-box-shadow: rgba(0, 0, 0, 0.6) 0 0 20px 5px;
-  box-shadow: rgba(0, 0, 0, 0.6) 0 0 20px 5px;
-  background: url("../images/bg.jpg") repeat-x #333333;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-}
-
-body.transcribingScreen  header div.wrapper {
-  width: 100%;
-  height: 80px;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0)), color-stop(70%, rgba(0, 0, 0, 0.3)), color-stop(100%, rgba(0, 0, 0, 0.5)));
-  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.5));
-  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.5));
-  background-image: -o-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.5));
-  background-image: -ms-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.5));
-  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.5));
-}
-body.transcribingScreen  header div.left {
-  float: left;
-  height: 60px;
-  margin: 0;
-  padding: 20px 0 0 24px;
-}
-body.transcribingScreen  header div.right {
-  position: relative;
-  float: right;
-  height: 55px;
-  padding: 25px 24px 0 24px;
-}
-body.transcribingScreen  header div.right::before {
-  position: absolute;
-  top: 0;
-  left: 1px;
-  height: 80px;
-  width: 1px;
-  content: '';
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-}
-body.transcribingScreen  header div.right::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 80px;
-  width: 1px;
-  content: '';
-  border-left: 1px solid black;
-}
-body.transcribingScreen  header h1 {
-  margin: 0;
-  font: bold 17px "Open Sans";
-  color: white;
-  font-weight: 800;
-}
-body.transcribingScreen  header h2 {
-  margin: 0;
-  font: normal 13px "Open Sans";
-  color: #999999;
-}
-body.transcribingScreen  header h5 {
-  display: inline-block;
-  vertical-align: top;
-  font: bold 37px "Open Sans";
-  color: white;
-  font-weight: 800;
-  line-height: 28px;
-}
-body.transcribingScreen  header label {
-  display: inline-block;
-  vertical-align: top;
-  width: 74px;
-  padding: 2px 0 0 5px;
-  font: bold 13px "Open Sans";
-  color: white;
-  line-height: 14px;
-}
-body.transcribingScreen  header span {
-  display: inline-block;
-  width: auto;
-}
 body.transcribingScreen  footer {
   display: none;
   width: 600px;
@@ -549,7 +545,8 @@ div.transcribing {
   width: 100%
   height: 100%
   padding: 0;
-  margin: 90px auto;
+  //margin: 90px auto;
+  margin: 0;
 }
 
 
@@ -1391,8 +1388,16 @@ div.tooltip.example a {
   display:none
   z-index: 10010
   background:url('../images/bg-transcriber.png')
-  overflow:hidden
   box-shadow(0 0 5px 3px rgba(0,0,0,0.4))
+
+  .close {
+    width: 20px; height: 20px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    z-index: 100;
+    background:url(../images/close.png) no-repeat;
+  }
 
   &.hollow 
     background:rgba(255,103,1, .15)
@@ -1455,3 +1460,4 @@ jspContainer { overflow: hidden; position: relative; }
 
 * html .jspCorner { margin: 0 -3px 0 0; }
 .noOfRecordsDone { margin: 0; }
+
