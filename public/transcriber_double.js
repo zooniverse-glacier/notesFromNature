@@ -628,8 +628,8 @@
 
         // Disable drag and resize
         $transcriber
-        .resizable({ disabled: true })
-        .draggable({ disabled: true });
+        .resizable({ disabled: false })
+        .draggable({ disabled: false });
 
         $transcriber.removeClass('free');
 
