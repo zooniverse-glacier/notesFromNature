@@ -147,6 +147,7 @@
       Core.scrollpane = $el.find(".scrollpane").jScrollPane({ showArrows: true });
 
       // Enable transcription
+      $el.find('div#transcriber').css({ maxWidth: $(window).width() - 40 });
       $el.find('div#transcriber').show().animate({ opacity:1, marginTop: '20px' }, 500);
     },
 
@@ -1046,6 +1047,8 @@
      * Reset the transcriber to start from the beginning
      */
     _resetTranscriber: function($el) {
+
+      console.log('resets transcriber');
       // Reset step and drag&resize
       var previous = $el.data('step');
 
