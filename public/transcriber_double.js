@@ -504,7 +504,8 @@
       var $link = $el.find('ul.explanations li:eq(' + $el.data('step') + ')').find('a.example');
 
       if ($link.length > 0) {
-        var left   = $link.offset().left - tooltipWidth/2 + $link.width() / 2;
+
+        var left   = $link.position().left + tooltipWidth/2 + $link.outerWidth(true) ;
 
         $example.css({ left: left + 'px' });
 
@@ -1087,7 +1088,7 @@
       // Send them to the server
       console.log("values are ", values);
       $("body").trigger({
-        type : 'doneClassification',  
+        type : 'doneClassification',
         values: values });
     }
   };
