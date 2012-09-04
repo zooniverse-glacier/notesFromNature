@@ -128,7 +128,8 @@
 
         $(".transcribing").css({ height: $(document).height() });
 
-        // Core._createLoader($el);
+        Core._createLoader($el);
+        Core.scrollEnabled = true;
 
         Core.$el.append(Core._createSkipTooltip());
 
@@ -151,16 +152,8 @@
       $(document).on('click', 'a.checkRecord', Core._showSelector);
       $(document).on('click', 'a.finish', Core._nextRecord);
 
-      /*$(window).resize(function(){
-        if (Core._resizePID) {
-          clearTimeout(Core._resizePID);
-        }
-        Core._resizePID = setTimeout(function(){ Core._resize(); }, 100);
-      });*/
-
       // Skip the field
       $(document).on('click', 'a.skip', Core._showSkipTooltip);
-
 
       var selection;
 
@@ -184,7 +177,9 @@
 
       var $transcribing = $(document).find(".transcribing");
 
-      $transcribing.bind('dragstart', function(event) { event.preventDefault(); });
+      $transcribing.bind('dragstart', function(e) {
+        e.preventDefault();
+      });
 
       $transcribing.on("click", function(e){
         e.preventDefault();
@@ -228,7 +223,7 @@
           if (cursorypos > initialypos) { // bottom
             style = { bottom: "auto", top: initialypos, height: (cursorypos - initialypos) };
           } else { // top
-            style = { top: "auto", height: initialypos - cursorypos , bottom: dh - initialypos};
+            style = { top: cursorypos, height: initialypos - cursorypos , bottom: dh + initialypos};
           }
           s = $.extend(s, style);
           s = $.extend({ visibility: "visible" }, s);
@@ -267,6 +262,8 @@
       // Add loader to the stage
       $el.append(loader);
 
+      console.log($el, loader);
+
       // Bind load image
       $el.find('img').imagesLoaded();
     },
@@ -282,6 +279,19 @@
         $(this).remove();
       });
     },
+
+    _disableScroll: function() {
+      var api = Core.scrollpane.data('jsp');
+      api.destroy();
+    },
+
+    _enableScroll: function() {
+      var
+        $img = $("div.transcribing.sernac"),
+        $el = $img.closest('div.transcribing');
+      Core.scrollpane = $el.find(".scrollpane").jScrollPane({showArrows: true});
+    },
+
 
     _addControls: function(x, y, w, h) {
       var $controls = $('<div>').attr('class', 'controls box');
@@ -343,7 +353,10 @@
       $legend.find(".button.next").on("click", Core._showSelector);
 
       $(".transcribing").append($legend);
-      $legend.animate({opacity: 1, bottom: 90}, 150);
+
+      var top = $(window).height() - 90;
+      $legend.animate({opacity: 1, top: top }, 150);
+
     },
 
     /**
@@ -351,11 +364,7 @@
      */
     _addSelector: function(x, y, w, h) {
 
-      if (Core.$selector) {
-        Core.$selector.fadeOut(250, function() {
-          $(this).remove();
-        });
-      }
+      Core._hideSelector();
 
       var $selector = $('<div>').attr('id', 'selector');
 
@@ -373,10 +382,7 @@
 
         $(this).remove();
 
-        Core.$selector.fadeOut(250, function() {
-          $(this).remove();
-          Core.$selector = null;
-        });
+      Core._hideSelector();
 
         $(".backdrop").fadeOut(250, function() {
           $(this).remove();
@@ -404,6 +410,25 @@
       Core.$selector.addClass("hollow");
       Core.$selector.fadeIn(250);
       Core.$selector.on("click", Core._showSelector);
+
+      Core.$selector.append('<div class="close" />');
+      Core.$selector.find(".close").on("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        Core._hideSelector();
+        Core._enableScroll();
+      });
+
+      Core._disableScroll();
+    },
+
+    _hideSelector: function() {
+      if (Core.$selector) {
+        Core.$selector.fadeOut(250, function() {
+          $(this).remove();
+          //Core.$selector = null;
+        });
+      }
     },
 
     _showSelector: function(ev) {
@@ -428,8 +453,6 @@
 
       Core.$selector.css({width: width, height: height});
 
-      console.log(Core.$selector, $(window));
-
       var top = Math.max(0, (($(window).height() - Core.$selector.outerHeight()) / 2) + $(window).scrollTop());
       var left= Math.max(0, (($(window).width()  - Core.$selector.outerWidth()) / 2) + $(window).scrollLeft());
 
@@ -439,6 +462,7 @@
       $("#selector img").each(function(i, e) {
         $(e).remove();
       });
+
 
       var $img = $(".transcribing img").clone();
 
@@ -452,6 +476,8 @@
 
       Core.$selector.append($img);
       Core.$selector.hide();
+      Core.$selector.css("overflow", "hidden");
+      Core.$selector.find(".close").remove();
       Core.$selector.off("click");
 
       Core.$selector.fadeIn(250, function() {
@@ -1226,6 +1252,7 @@
 
     _loadNextImg: function() {
       var $el = Core.$el;
+      Core._enableScroll();
       Core.$el.find("img").attr("src", "http://assets.javierarce.com/biotrans/transcriber_sernac_02.png");
       Core._createLoader($el);
     },
@@ -1278,3 +1305,4 @@
     }
   };
 })( jQuery, window );
+
