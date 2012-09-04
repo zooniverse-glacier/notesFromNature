@@ -631,7 +631,7 @@
         .resizable({ disabled: false })
         .draggable({ disabled: false });
 
-        $transcriber.removeClass('free');
+        //$transcriber.removeClass('free');
 
         // Start $el values
         $el.data('values',Core._resetValues($el));
