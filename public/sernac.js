@@ -768,8 +768,6 @@
       left         = $link.offset().left + $link.width() / 2 - tooltipWidth / 2 - 10,
       top          = $(".controls").offset().top - $(".controls").height() - $tooltip.height() + 15;
 
-      console.log("skip", top, $(".controls").offset().top, $(".controls").height(), $tooltip.height() );
-
       $tooltip.css({ top: top, left: left });
 
       // Local binding for clicking out of the tooltip
