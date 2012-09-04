@@ -414,11 +414,12 @@
       Core._preventDefault(ev);
 
       var
-      $el      = $(ev.target).closest('div.transcribing'),
-      $tooltip = $el.find('div.bottom > div.tooltip.skip'),
+      $el          = $(ev.target).closest('div.transcribing'),
+      $tooltip     = $el.find('div.bottom > div.tooltip.skip'),
       tooltipWidth = $tooltip.width(),
-      $link    = $el.find('ul.explanations li:eq(' + $el.data('step') + ') a.skip'),
-      left     = $link.offset().left + $link.width() / 2 - tooltipWidth / 2 - 10;
+      $link        = $el.find('ul.explanations li:eq(' + $el.data('step') + ') a.skip'),
+      left         = $link.position().left + tooltipWidth/2 + $link.outerWidth(true) ;
+
 
       $tooltip.css({ left: left + 'px' });
 

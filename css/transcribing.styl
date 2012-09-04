@@ -1064,7 +1064,18 @@ div.tooltip.center {
   bottom: 56px;
   margin: 0 0 0 -89px;
 
-  &.example a.black.button { border:none; }
+ a.black.button { border:none; }
+
+ h5 { margin: 0; }
+
+ a.button {
+   text-shadow:none;
+
+   -moz-box-shadow: none;
+   -webkit-box-shadow: none;
+   -o-box-shadow: none;
+   box-shadow: none;
+ }
 }
 
 body.sernac.transcribingScreen .tooltip.center {
@@ -1072,19 +1083,7 @@ body.sernac.transcribingScreen .tooltip.center {
   bottom: auto;
   top: auto;
   margin: 0;
-
-  h5 { margin: 0; }
-  a.button {
-    text-shadow:none;
-
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    -o-box-shadow: none;
-    box-shadow: none;
-  }
-
 }
-
 
 div.tooltip.center span.tail {
   right: 50%;
