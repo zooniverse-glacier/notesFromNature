@@ -226,7 +226,6 @@ body.sernac.transcribingScreen div.SernacTranscriptionController div.transcribin
         font: 11px "Open Sans";
         font-weight:500;
       
-
 #selection {
   cursor: nwse-resize;
   position:absolute;
@@ -235,9 +234,10 @@ body.sernac.transcribingScreen div.SernacTranscriptionController div.transcribin
   border:1px solid #FF6701;
 }
 
-body.sernac
+body.sernac {
   margin:0px
   padding:0px
+}
 
 body.sernac div.transcribing 
   img 
@@ -271,9 +271,6 @@ body.sernac div.transcribing
       font-size:11px
       background:none
       border:none
-
-
-
 
 body.transcribingScreen  {
   line-height: 1;
@@ -402,6 +399,7 @@ input.orange {
   text-transform: uppercase;
   font-weight: 700;
 }
+
 a.orange:hover, a.orange:active,
 button.orange:hover,
 button.orange:active,
@@ -410,12 +408,14 @@ input.orange:active {
   outline: none;
   background: #FF7C09;
 }
+
 a.orange:active,
 button.orange:active,
 input.orange:active {
   padding: 7px 13px 6px;
   background: #FF7C09;
 }
+
 a.orange.small,
 button.orange.small,
 input.orange.small {
@@ -457,6 +457,7 @@ input.white:active {
   background: white;
   color: #333;
 }
+
 a.white:active,
 button.white:active,
 input.white:active {
@@ -464,6 +465,7 @@ input.white:active {
   background: white;
   color: #333;
 }
+
 a.white.small,
 button.white.small,
 input.white.small {
@@ -471,6 +473,7 @@ input.white.small {
   padding: 3px 0 4px;
   text-align: center;
 }
+
 a.white.small:active,
 button.white.small:active,
 input.white.small:active {
@@ -496,6 +499,7 @@ input.black {
   text-transform: uppercase;
   font-weight: 700;
 }
+
 a.black:hover, a.black:active,
 button.black:hover,
 button.black:active,
@@ -505,6 +509,7 @@ input.black:active {
   background: black;
   color: white;
 }
+
 a.black:active,
 button.black:active,
 input.black:active {
@@ -513,13 +518,13 @@ input.black:active {
   color: white;
 }
 
-
 body.transcribingScreen  footer {
   display: none;
   width: 600px;
   margin: 150px auto 150px;
   text-align: center;
 }
+
 body.transcribingScreen  footer h3 {
   display: block;
   font: bold 23px "Open Sans";
@@ -527,14 +532,17 @@ body.transcribingScreen  footer h3 {
   color: #212121;
   text-shadow: 0 1px #414141;
 }
+
 body.transcribingScreen  footer p {
   margin: 10px 0 0 0;
   font: normal 15px "Helvetica Neue","Helvetica",Arial;
   color: white;
 }
+
 body.transcribingScreen  footer p a {
   color: #0099CC;
 }
+
 body.transcribingScreen  footer p a:hover {
   color: #0066CC;
 }
@@ -545,12 +553,8 @@ div.transcribing {
   width: 100%
   height: 100%
   padding: 0;
-  //margin: 90px auto;
   margin: 0;
 }
-
-
-
 
 div.transcribing div#transcriber {
   position: absolute;
@@ -594,6 +598,7 @@ div.transcribing  div.top {
   border: 1px solid black;
   z-index: 0;
 }
+
 div.transcribing  div.top span.tail {
   position: absolute;
   bottom: -1px;
@@ -601,12 +606,15 @@ div.transcribing  div.top span.tail {
   width: 3px;
   background: #444444;
 }
+
 div.transcribing  div.top span.tail.left {
   left: -4px;
 }
+
 div.transcribing  div.top span.tail.right {
   right: -4px;
 }
+
 div.transcribing  div.bottom {
   position: absolute;
   padding: 12px 13px 12px;
@@ -635,9 +643,11 @@ div.transcribing  div.bottom div.right {
   float: right;
   width: 210px;
 }
+
 div.transcribing  div.bottom div.right a.checkRecord {
   float: right;
 }
+
 div.transcribing  div.bottom div.right a.choose_step {
   float: right;
   display: inline-block;
@@ -658,18 +668,23 @@ div.transcribing  div.bottom div.right a.choose_step {
   -khtml-border-radius: 3px;
   border-radius: 3px;
 }
+
 div.transcribing  div.bottom div.right a.choose_step:hover {
   text-decoration: underline;
 }
+
 div.transcribing  div.bottom div.right a.choose_step:active {
   padding: 11px 10px 9px 10px;
 }
+
 div.transcribing  div.bottom div.right div.step_viewer {
   display: none;
 }
+
 div.transcribing  div.bottom div.right div.step_viewer ul {
   display: none;
 }
+
 div.transcribing  .ui-resizable-handle {
   position: absolute;
   bottom: 2px;
@@ -680,9 +695,11 @@ div.transcribing  .ui-resizable-handle {
   cursor: s-resize;
   display: none;
 }
+
 div.transcribing  ul {
   position: relative;
 }
+
 div.transcribing  ul form {
   position: relative;
   display: inline-block;
@@ -690,6 +707,7 @@ div.transcribing  ul form {
   height: 33px;
   margin: 0 5px 0 0;
 }
+
 div.transcribing  ul form input[type="text"] {
   height: 13px;
   margin: 0 5px 0 0;
@@ -710,6 +728,7 @@ div.transcribing  ul form input[type="text"] {
 div.transcribing  ul form input[type="text"].long {
   width: 208px;
 }
+
 div.transcribing  ul form input[type="text"].medium {
   width: 118px;
 }
@@ -972,7 +991,6 @@ div.transcribing div#transcriber.free div.bottom:hover div, div.transcribing div
 }
 
 
-
 div.tooltip {
   position: absolute!important;
   display: none;
@@ -983,19 +1001,24 @@ div.tooltip {
   padding: 12px!important; 
   text-align : left;
   background: white;
+
+  letter-spacing: -4px;
+
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   -o-border-radius: 2px;
   -ms-border-radius: 2px;
   -khtml-border-radius: 2px;
   border-radius: 2px;
-  z-index: 1000000;
+
   -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
   -o-box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
   box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
-  letter-spacing: -4px;
+
+  z-index: 1000000;
 }
+
 div.tooltip h5 {
   font: bold 11px "Open Sans"!important;
   color: #191919;
@@ -1024,6 +1047,7 @@ div.tooltip a.button {
 div.tooltip a.button.white {
   margin-right: 0;
 }
+
 div.tooltip span.tail {
   position: absolute;
   bottom: -12px;
@@ -1035,39 +1059,45 @@ div.tooltip span.tail {
   border-bottom: 8px solid transparent;
   border-right: 8px solid transparent;
 }
+
 div.tooltip.center {
   bottom: 56px;
   margin: 0 0 0 -89px;
 }
 
-body.sernac.transcribingScreen div.tooltip.center {
-  bottom: 0px
-  margin: 0px
-  top:0px
-  vertical-align:none
-  display: relative
+body.sernac.transcribingScreen .tooltip.center {
+  position: relative;
+  bottom: auto;
+  top: auto;
+  margin: 0;
+
+  h5 { margin: 0; }
 }
 
 div.tooltip.center span.tail {
   right: 50%;
   margin: 0 -8px 0 0;
 }
+
 div.tooltip.example {
-  min-width: 50px;
-  min-height: 50px;
-  max-width: 200px;
-  width: auto!important;
-  padding: 1px;
+ min-width: 50px;
+ min-height: 50px;
+ max-width: 200px;
+ width: auto!important;
+ padding: 1px;
+
+ & > div {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ margin: 30px 0 0 0;
+ width: 30px;
+ height: 30px;
+ z-index: 100;
+ }
 }
-div.tooltip.example > div {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: 30px 0 0 0;
-  width: 30px;
-  height: 30px;
-  z-index: 100;
-}
+
+
 div.tooltip.example img {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -1076,13 +1106,7 @@ div.tooltip.example img {
   -khtml-border-radius: 2px;
   border-radius: 2px;
 }
-div.tooltip.example a {
-  position: absolute;
-  display: none;
-  bottom: 5px;
-  right: 5px;
-  margin: 0;
-}
+
 
 .ui-autocomplete {
   width: 226px;

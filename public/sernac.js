@@ -630,10 +630,12 @@
 
         // Add the label
         li += '<p>';
+
         // Add help buttons
         if (obj.inputs) {
           li += ' <a href="#skip" class="skip">Skip this field</a> ';
         }
+
         li += '</p>';
 
         // End of li
@@ -762,8 +764,11 @@
       tooltipWidth = $tooltip.width(),
       $link        = $el.find('ul.fields li:eq(' + ($el.data('step') - 1) + ') a.skip');
 
-      var left         = $link.offset().left + $link.width() / 2 - tooltipWidth / 2 - 10,
+      var
+      left         = $link.offset().left + $link.width() / 2 - tooltipWidth / 2 - 10,
       top          = $(".controls").offset().top - $(".controls").height() - $tooltip.height() + 15;
+
+      console.log("skip", top, $(".controls").offset().top, $(".controls").height(), $tooltip.height() );
 
       $tooltip.css({ top: top, left: left });
 
@@ -778,6 +783,7 @@
 
         $('body').keydown(function(ev){
           var keycode = ev.which;
+
           if (keycode == 27) {
             Core._hideRecordTooltip($tooltip);
           }
