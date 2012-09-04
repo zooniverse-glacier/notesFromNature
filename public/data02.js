@@ -40,7 +40,7 @@ var transcriberData = {
     step: 'Code',
     ok: 'in',
     x: 0,
-    y: 20
+    y: 0
   },
   {
     label: '2 or 3 latin words in the first line, next to the margin.',

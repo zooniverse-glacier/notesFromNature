@@ -33,8 +33,6 @@
   speciesURL = '';
 
 
-
-
   /***************************************************************************
    * Private methods
    **************************************************************************/
@@ -149,7 +147,7 @@
       Core.scrollpane = $el.find(".scrollpane").jScrollPane({ showArrows: true });
 
       // Enable transcription
-      $el.find('div#transcriber').show().animate({ opacity:1, marginTop: '-=35px' }, 500);
+      $el.find('div#transcriber').show().animate({ opacity:1, marginTop: '20px' }, 500);
     },
 
     /**
@@ -405,6 +403,25 @@
       return $tooltip;
     },
 
+    _disableScroll: function() {
+      if (Core.disabledScroll) return;
+
+      Core.disabledScroll = true;
+      var api = Core.scrollpane.data('jsp');
+      api.destroy();
+    },
+
+    _enableScroll: function() {
+      if (!Core.disabledScroll) return;
+
+      Core.disabledScroll = false;
+
+      $img = $("div.transcribing.double img"),
+      $el  = $img.closest('div.transcribing');
+      $el.find(".scrollpane").css({width:$(window).width()*0.7, height: $(window).height() });
+      Core.scrollpane = $el.find(".scrollpane").jScrollPane({ showArrows: true });
+    },
+
 
     /**
      * Show the record tooltip
@@ -593,9 +610,11 @@
 
 
     /**
-     * Check record, if starts or finish, and check values
+     * Start/finish record + check values
      */
     _checkRecord: function(ev) {
+
+      //Core._disableScroll();
 
       Core._preventDefault(ev);
 
@@ -876,13 +895,18 @@
       if (x == 0) { x = -1; }
       if (y == 0) { y = -1; }
 
+      //Core._enableScroll();
+      console.log(x, y);
+
       if (x != undefined && y != undefined) {
         Core.scrollpane.data('jsp').scrollTo(x, y, true);
       } else if (x != undefined) {
         Core.scrollpane.data('jsp').scrollToX(x, true);
       } else if (y != undefined) {
         Core.scrollpane.data('jsp').scrollToY(y, true);
-        }
+      }
+
+      //Core._disableScroll();
 
       Core._saveRegister($el,previous);
 
@@ -1051,17 +1075,18 @@
      */
     _nextRecord: function($el) {
 
-      var trans_h = $el.find('div#transcriber').position().top
-      , trans_y = $el.find('div#transcriber > div.top').height();
+      var
+      trans_h = $el.find('div#transcriber').position().top,
+      trans_y = $el.find('div#transcriber > div.top').height();
 
       // Save values in the server
       Core._saveRecord($el);
 
-      // Add new record saved to the header count
-      var $counter = $('.header div.right h5')
-      , count = $counter.text();
-      $counter.text(parseInt(count) + 1);
+      var // add new record saved to the header count
+      $counter = $('.header div.right h5'),
+      count    = $counter.text();
 
+      $counter.text(parseInt(count) + 1);
 
       // Reset values and enable drag and resize again
       Core._resetTranscriber($el);
