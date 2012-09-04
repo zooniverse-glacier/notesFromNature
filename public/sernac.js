@@ -262,8 +262,6 @@
       // Add loader to the stage
       $el.append(loader);
 
-      console.log($el, loader);
-
       // Bind load image
       $el.find('img').imagesLoaded();
     },
@@ -426,7 +424,7 @@
       if (Core.$selector) {
         Core.$selector.fadeOut(250, function() {
           $(this).remove();
-          //Core.$selector = null;
+          Core.$selector = null;
         });
       }
     },
