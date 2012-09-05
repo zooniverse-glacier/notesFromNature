@@ -386,8 +386,6 @@
           $(this).remove();
         });
       });
-
-
     },
 
     _showSelection: function(x, y, w, h) {
@@ -398,7 +396,7 @@
       Core.$legend.find(".disabled").removeClass("disabled");
 
       Core.selection_x = x - Core.$el.find("img").offset().left;
-      Core.selection_y = y - Core.$el.find("img").offset().top+40;
+      Core.selection_y = y - Core.$el.find("img").offset().top;
       Core.selection_w = w;
       Core.selection_h = h;
 
@@ -451,8 +449,8 @@
 
       Core.$selector.css({width: width, height: height});
 
-      var top = Math.max(0, (($(window).height() - Core.$selector.outerHeight()) / 2) + $(window).scrollTop());
-      var left= Math.max(0, (($(window).width()  - Core.$selector.outerWidth()) / 2) + $(window).scrollLeft());
+      var top  = Math.max(0, (($(window).height() - Core.$selector.outerHeight()) / 2) + $(window).scrollTop());
+      var left = Math.max(0, (($(window).width()  - Core.$selector.outerWidth()) / 2)  + $(window).scrollLeft());
 
       Core.$selector.css({ left: left, top: top });
       Core.$selector.removeClass("hollow");
@@ -460,7 +458,6 @@
       $("#selector img").each(function(i, e) {
         $(e).remove();
       });
-
 
       var $img = $(".transcribing img").clone();
 
