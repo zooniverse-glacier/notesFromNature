@@ -435,8 +435,8 @@
       $el          = $(ev.target).closest('div.transcribing'),
       $tooltip     = $el.find('div.bottom > div.tooltip.skip'),
       tooltipWidth = $tooltip.width(),
-      $link        = $el.find('ul.explanations li:eq(' + $el.data('step') + ') a.skip'),
-      left         = $link.position().left + tooltipWidth/2 + $link.outerWidth(true) ;
+      $p           = $el.find('ul.explanations li:eq(' + $el.data('step') + ')').find('p'),
+      left         = $p.position().left + $p.width() - 115;
 
 
       $tooltip.css({ left: left + 'px' });
@@ -514,19 +514,18 @@
 
       Core._preventDefault(ev);
 
+
       var
-      $el = $(ev.target).closest('div.transcribing'),
-      $example = $el.find('div.bottom > div.tooltip.example'),
-      tooltipWidth = 200;
+      $el      = $(ev.target).closest('div.transcribing'),
+      $example = $el.find('div.bottom > div.tooltip.example');
 
-      // Offset
-      var $link = $el.find('ul.explanations li:eq(' + $el.data('step') + ')').find('a.example');
+      var $p = $el.find('ul.explanations li:eq(' + $el.data('step') + ')').find('p');
 
-      if ($link.length > 0) {
+      if ($p.length > 0) {
 
-        var left   = $link.position().left + tooltipWidth/2 + $link.outerWidth(true) ;
+        var left   = $p.position().left + $p.width() - 150;
 
-        $example.css({ left: left + 'px' });
+        $example.css({ right: "auto", left: left + 'px' });
 
         // Local binding for clicking out of the tooltip
         $example.show(1, function(){
