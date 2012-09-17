@@ -437,37 +437,41 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
       if (w > 600) w = 600;
       if (h > 500) h = 500;
 
-      this.highlight.hide();
+      var that = this;
 
-      this.magnifier.create({ x: $(document).width()/2 - w/2, y: $(document).height()/2 - h/2, w: w, h: h });
-      this.magnifier.$el.empty();
-      this.magnifier.$el.append($img2x);
+      this.launcher.hide(function() {
 
-      this.removeSelection();
+        that.highlight.hide();
 
-      this.launcher.hide();
+        that.magnifier.create({ x: $(document).width()/2 - w/2, y: $(document).height()/2 - h/2, w: w, h: h });
+        that.magnifier.$el.empty();
+        that.magnifier.$el.append($img2x);
 
-      this.backdrop.show();
+        that.removeSelection();
 
-      var magnifierWidth = this.magnifier.width();
+        that.backdrop.show();
 
-      var // add the helper widget
-      helperX = this.magnifier.left(),
-      helperY = this.magnifier.top() - this.helper.height() - 35;
+        var magnifierWidth = that.magnifier.width();
 
-      this.helper.setWidth(magnifierWidth).setPosition(helperX, helperY).show();
+        var // add the helper widget
+        helperX = that.magnifier.left(),
+        helperY = that.magnifier.top() - that.helper.height() - 35;
 
-      var // add the transcriber widget
-      twX = this.magnifier.left(),
-      twY = this.magnifier.top() + this.magnifier.height() + 10;
+        that.helper.setWidth(magnifierWidth).setPosition(helperX, helperY).show();
 
-      this.transcriberWidget.setWidth(magnifierWidth).setPosition(twX, twY).show();
+        var // add the transcriber widget
+        twX = that.magnifier.left(),
+        twY = that.magnifier.top() + that.magnifier.height() + 10;
 
-      if ($.browser.msie && $.browser.version == 8) {
-        $img2x.css({ top: -1*selection_y, left: -1*selection_x });
-      } else {
-        $img2x.css({ top: -2*y, left: -2*x });
-      }
+        that.transcriberWidget.setWidth(magnifierWidth).setPosition(twX, twY).show();
+
+        if ($.browser.msie && $.browser.version == 8) {
+          $img2x.css({ top: -1*selection_y, left: -1*selection_x });
+        } else {
+          $img2x.css({ top: -2*y, left: -2*x });
+        }
+      });
+
 
     }
   },

@@ -228,14 +228,18 @@ nfn.ui.view.Widget = nfn.core.View.extend({
 
   },
 
-  show: function() {
+  show: function(callback) {
     this.model.set("hidden", false);
+
+    callback && callback();
 
     return this;
   },
 
-  hide: function() {
+  hide: function(callback) {
     this.model.set("hidden", true);
+
+    callback && callback();
 
     return this;
   }
