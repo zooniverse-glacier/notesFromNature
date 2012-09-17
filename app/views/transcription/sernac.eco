@@ -23,6 +23,7 @@
 
 <script type="text/template" id="launcher-template">
   <span>Drag a square around the specimen label</span> 
+  <a href="#" class="example">See example</a>
   <a href="#" class="button start disabled">Start this record</a>
 </script>
 
@@ -30,6 +31,11 @@
   <div class="date_field"><input type="text" name="month" class="month" placeholder="month" /></div> 
   <div class="date_field"><input type="text" name="day" class="day" placeholder="day" /></div> 
   <div class="date_field"><input type="text" name="year" class="year" placeholder="year" /></div>
+</script>
+
+<script type="text/template" id="tooltip-example-template">
+  <a href="#" class="button main">{{ main }}</a> 
+  <div class="tip"></div>
 </script>
 
 <script type="text/template" id="tooltip-template">

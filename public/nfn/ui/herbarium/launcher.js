@@ -10,7 +10,8 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
   events: {
 
-    "click .button.start" : "start"
+    "click .button.start" : "start",
+    "click .example"      : "showExample"
 
   },
 
@@ -18,7 +19,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
   initialize: function() {
 
-    _.bindAll( this, "start", "toggle", "toggleButton" );
+    _.bindAll( this, "start", "toggle", "toggleButton", "showExample", "closeTooltip" );
 
     this.template = new nfn.core.Template({
       template: this.options.template,
@@ -56,7 +57,6 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
     } else {
 
-
       this.$el.css({ opacity: 0 }, 250 );
 
       this.$el.show();
@@ -77,10 +77,63 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
   start: function(e) {
 
-    e.preventDefault();
-    e.stopImmediatePropagation();
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
 
     if (!this.model.get("disabled")) this.parent.addMagnifier();
+
+  },
+
+  showExample: function(e) {
+
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+    if (!this.tooltip) this.createTooltip(e);
+
+  },
+
+  createTooltip: function(e) {
+
+    var main = "Close";
+
+    this.tooltip = new nfn.ui.view.Tooltip({
+
+      className: "tooltip example",
+
+      model: new nfn.ui.model.Tooltip({
+        main: main,
+        template: $("#tooltip-example-template").html()
+      })
+
+    });
+
+    this.addView(this.tooltip);
+
+    var that = this;
+
+    this.tooltip.bind("onMainClick", this.closeTooltip);
+
+    this.$el.append(this.tooltip.render());
+    this.tooltip.show();
+
+    var
+    skipWidth   = $(e.target).width()/2,
+    marginRight = parseInt($(e.target).css("margin-left").replace("px", ""), 10),
+    x           = Math.abs(this.$el.offset().left - this.$exampleLink.offset().left) - this.tooltip.width() / 2 + skipWidth - marginRight,
+    y           = Math.abs(this.$el.offset().top  - this.$exampleLink.offset().top)  - this.tooltip.height() - 40
+
+    this.tooltip.setPosition(x, y);
+
+  },
+
+  closeTooltip: function(callback) {
+
+    this.tooltip.hide();
+    this.tooltip.clean();
+    delete this.tooltip;
+
+    callback && callback();
 
   },
 
@@ -92,9 +145,9 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
     this.$startButton = $el.find(".button.start");
     this.$message     = $el.find("span");
+    this.$exampleLink = $el.find(".example");
 
     return $el;
   }
 
 });
-

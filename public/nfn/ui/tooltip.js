@@ -25,8 +25,10 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
 
     this.add_related_model(this.model);
 
+    var template = this.model.get("template") || $("#tooltip-template").html();
+
     this.template = new nfn.core.Template({
-      template: $("#tooltip-template").html(),
+      template: template,
       type: 'mustache'
     });
 
@@ -81,3 +83,4 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
   }
 
 });
+
