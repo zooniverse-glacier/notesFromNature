@@ -113,6 +113,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
     var that = this;
 
     this.tooltip.bind("onMainClick", this.closeTooltip);
+    this.tooltip.bind("onEscKey", this.closeTooltip);
 
     this.$el.append(this.tooltip.render());
     this.tooltip.show();
@@ -151,3 +152,5 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
   }
 
 });
+
+

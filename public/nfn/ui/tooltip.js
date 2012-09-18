@@ -21,7 +21,7 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
 
   initialize: function() {
 
-    _.bindAll( this, "toggle", "updateTemplate" );
+    _.bindAll( this, "toggle", "updateTemplate", "onKeyUp" );
 
     this.add_related_model(this.model);
 
@@ -35,14 +35,35 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
     this.model.bind("change:hidden", this.toggle);
     this.model.bind("change:template", this.updateTemplate);
 
+
+    $(document).on("keyup", this.onKeyUp);
+
+
     this.parent = this.options.parent;
+
+  },
+
+  onKeyUp: function(e) {
+
+    console.log(e, e.which);
+
+    if (e.which == 27) this.onEscKey();
+
+  },
+
+  onEscKey: function(e) {
+
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+    this.trigger("onEscKey");
 
   },
 
   onMainClick: function(e) {
 
-    e.preventDefault();
-    e.stopImmediatePropagation();
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
 
     this.trigger("onMainClick");
 
@@ -50,8 +71,8 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
 
   onSecondaryClick: function(e) {
 
-    e.preventDefault();
-    e.stopImmediatePropagation();
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
 
     this.trigger("onSecondaryClick");
 

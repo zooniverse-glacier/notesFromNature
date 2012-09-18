@@ -349,6 +349,8 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
 
     //console.log(this.selection.model.toJSON(), this.transcriptions.toJSON()[0]);
 
+    this.launcher.disable();
+
     this.backdrop.hide();
     this.magnifier.hide();
     this.helper.hide();
@@ -408,7 +410,7 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
     this.highlight.show();
     this.highlight.create(dimensions);
     this.$el.find(".photos").removeClass("selectable");
-    this.launcher.$startButton.removeClass("disabled");
+    this.launcher.enable();
 
   },
 
@@ -471,7 +473,6 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
           $img2x.css({ top: -2*y, left: -2*x });
         }
       });
-
 
     }
   },
@@ -627,3 +628,4 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
     return this.$el;
   }
 });
+

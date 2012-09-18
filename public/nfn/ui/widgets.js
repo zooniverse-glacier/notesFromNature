@@ -81,10 +81,12 @@ nfn.ui.view.SernacWidget = nfn.ui.view.Widget.extend({
 
     var that = this;
 
+    this.tooltip.bind("onEscKey",         this.closeTooltip);
     this.tooltip.bind("onSecondaryClick", this.closeTooltip);
     this.tooltip.bind("onMainClick",      function() {
+
       that.closeTooltip(function() {
-      that.ok();
+        that.ok();
       })
 
     });
@@ -234,5 +236,6 @@ nfn.ui.model.Transcription = Backbone.Model.extend({ });
 nfn.ui.collection.Transcriptions = Backbone.Collection.extend({
   model: nfn.ui.model.Transcription,
 });
+
 
 
