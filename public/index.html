@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset=utf-8>
-  <title>Notes Form Nature</title>
+  <head>
+    <meta charset=utf-8>
+    <title>Notes Form Nature</title>
 
-   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&v=3.7"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="nfn/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="nfn/vendor/jquery-ui-1.8.23.custom.min.js"></script>
+    <script type="text/javascript" src="nfn/vendor/jquery.imagesloaded.min.js"></script>
+    <script type="text/javascript" src="nfn/vendor/jquery.jscrollpane.min.js"></script>
+    <script type="text/javascript" src="nfn/vendor/underscore-min.js"></script>
+    <script type="text/javascript" src="nfn/vendor/backbone-min.js"></script>
+    <script type="text/javascript" src="nfn/vendor/mustache.js"></script>
+    <script type="text/javascript" src="nfn/vendor/spin.min.js"></script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&v=3.7"></script>
     <script type="text/javascript" src="jquery.mousewheel.js"></script>
     <script type="text/javascript" src="jquery.jscrollpane.min.js"></script>
     <script type="text/javascript" src="jquery.imagesloaded.js"></script>
     <script type="text/javascript" src="jquery.ui.js"></script>
     <script type="text/javascript" src="jquery.stylish.js"></script>
     <script type="text/javascript" src="jquery.addresspicker.js"></script>
-    <script type="text/javascript" src="spin.js"></script>
     <script type="text/javascript" src="data02.js"></script>
 
     <script type="text/javascript" src="transcriber_double.js"></script>
     <script type="text/javascript" src="sernac.js"></script>
-    
 
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800", type="text/css"charset="utf-8"></script>
+    <script src="nfn/nfn.js"></script>
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800", type="text/css"charset="utf-8"></script>
 
   <link rel="stylesheet" href="application.css" type="text/css" charset="utf-8">
   <script src="base64.min.js" type="text/javascript" charset="utf-8"></script>
@@ -27,16 +35,16 @@
 
   <script type="text/javascript" charset="utf-8">
     // var jQuery  = require("jqueryify");
-    var exports = this;
-    jQuery(function(){
-      var App = require("index");
-      var Header = require("controllers/HeaderController");
-      new Header ({el:$("header")});
+  var exports = this;
+  jQuery(function(){
+    var App = require("index");
+    var Header = require("controllers/HeaderController");
+    new Header ({el:$("header")});
 
-      $("footer").append( require('views/footer')())
-      exports.app = new App({el: $("#content")});     
-    });
-  </script>
+    $("footer").append( require('views/footer')())
+    exports.app = new App({el: $("#content")});     
+  });
+</script>
 
 </head>
 <body>
@@ -45,7 +53,7 @@
     <header>
     </header>
     <div id='content'> </div>
-  
+
     <footer class='relative'></footer>
 
   </div>  
