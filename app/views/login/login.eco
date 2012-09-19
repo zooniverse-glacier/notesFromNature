@@ -1,10 +1,16 @@
 <div class="box-general" style='height:400px'>   
 
-  <form>
-
-  <p>Username : <input type='text' class='username' name="username" placeholder='username' /></p>
-
-  <p>Password : <input type='password' class='password' name="password" placeholder='password' /> </p>
-  <input type ='submit' / >
+  <form class='login'>
+      <input name='username' placeholder='Username'></input>
+      <input name='password' placeholder='Password' type='password'></input>
+      
+      <input type='submit' value='Sign In' name='signin'></input>
+  </form>
+  <form class= 'signup'>
+        <input name='username' placeholder='Username'></input>
+        <input name='password' placeholder='Password' type='password'></input>
+        <input name='password_confirmation' placeholder='Confirm Password' type='password'></input>
+        <input name='email' placeholder='Email'></input>
+        <input type='submit' name='Register' value="Register"></input>
   </form>
 </div>

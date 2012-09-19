@@ -1,7 +1,22 @@
 @import './normalize'
 @import './mixin'
+@import '../node_modules/nib/lib/nib/'
+
 @import './main'
 @import './buttons'
 @import './transcribing'
 @import './titillium'
-@import './zooniverse-bar'
+
+$tb-background = #f1f1f1
+$tb-text-color = #080612
+$tb-border-color-1 = #ECECEC
+$tb-border-color-2 = #ECECEC
+$tb-button-bg = #F1F1EF
+$tb-box-shadow = #000
+$tb-box-shadow-inset = #CECEC4
+$tb-button-text-shadow = #003a54
+$tb-bottom-border = #F1F1EF
+$tb-input-bg = white 
+
+@import '../node_modules/zooniverse/css/top_bar'
+@import '../node_modules/zooniverse/css/login_forms'

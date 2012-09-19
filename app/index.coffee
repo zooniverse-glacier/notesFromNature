@@ -11,6 +11,10 @@ LoginController= require('controllers/LoginController')
 ProfileController= require('controllers/ProfileController')
 AboutController= require('controllers/AboutController')
 
+Api = require('zooniverse/lib/api')
+Config = require('lib/config')
+
+ZooniverseBar = require('zooniverse/lib/controllers/top_bar')
 
 
 Archive = require('models/Archive')
@@ -58,10 +62,16 @@ class App extends Spine.Stack
   constructor: ->
     super
     
+    Api.init host: Config.apiHost
+    
+    topBar = new ZooniverseBar
+      el: '.zooniverseTopBar'
+      languages:
+        en: 'English'
+      app: 'notes_from_nature'
+      appName:'Notes From Nature'
 
     Spine.Route.setup()
-    
-    $("body").prepend( (new ZooniverseBar()).el); 
 
     Spine.Route.bind "change", =>
       if Spine.Route.path.indexOf("transcribe") == -1

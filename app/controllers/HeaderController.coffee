@@ -1,5 +1,5 @@
 Spine = require('spine')
-User  = require('models/User')
+User  = require('zooniverse/lib/models/user')
 
 class HeaderController extends Spine.Controller
   events:
@@ -14,7 +14,7 @@ class HeaderController extends Spine.Controller
     @render()
 
 
-    User.bind "create", =>
+    User.bind "sign-in", =>
       @render()
 
     Spine.Route.bind "change", =>
@@ -41,10 +41,10 @@ class HeaderController extends Spine.Controller
 
     else if Spine.Route.path is "/"
       @html require('views/home/header')
-        user : User.first()
+        user : User.current
     else
       @html require('views/header')
-        user : User.first()
+        user : User.current
 
 
 module.exports = HeaderController

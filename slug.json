@@ -7,11 +7,14 @@
     "spine/lib/ajax",
     "spine/lib/route",
     "spine/lib/manager",
-    "spine/lib/relation"
-  ],
-  "libs": [
-           "lib/underscore.js",
-           "lib/underscore.string.js"
+    "spine/lib/relation",
+    "underscore",
+    "zooniverse/lib/controllers/top_bar",
+    "zooniverse"
 
-           ]
+  ],
+
+  "libs": [
+    "node_modules/Zooniverse/vendor/base64.js"
+  ]
 }

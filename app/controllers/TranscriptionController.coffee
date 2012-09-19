@@ -47,7 +47,6 @@ class TranscriptionController extends Spine.Controller
       @html require('views/transcription/outOfSubjects')
 
   nextSubject:=>
-    
     if @currnetSubject?
       console.log @currnetSubject      
       archive = Archive.find(@currnetSubject.archive_id)
@@ -58,22 +57,26 @@ class TranscriptionController extends Spine.Controller
 
   active:(params)=>
     super
-    
+
     if Archive.count() ==0 
       Archive.bind 'refresh', =>
         @active params
     if params.id
       @currnetSubject = Subject.find(params.id)
+      console.log " from id"
       @render()
     else if params.archiveID
       @archive = Archive.findBySlug(params.archiveID)
+      console.log " from archive id"
       if @archive
-        @archive.nextSubject (subject)=>
-          @currnetSubject=subject
-          @render()
+        unless @currnetSubject?
+          @archive.nextSubject (subject)=>
+            @currnetSubject=subject
+            @render()
 
     else if !@currnetSubject?
       @currnetSubject = Subject.random()
+      console.log " from random subject"
       @render()
 
   
