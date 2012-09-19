@@ -22,6 +22,14 @@ Institute = require('models/Institute')
 
 require('lib/fakeData')
 
+class customTopBar extends ZooniverseBar
+  constructor:->
+    super 
+    $(".buttons button[name=signup]").click =>
+      Spine.Route.navigate('/login')
+
+
+
 class App extends Spine.Stack
 
   controllers:
@@ -64,7 +72,7 @@ class App extends Spine.Stack
     
     Api.init host: Config.apiHost
     
-    topBar = new ZooniverseBar
+    topBar = new customTopBar
       el: '.zooniverseTopBar'
       languages:
         en: 'English'
