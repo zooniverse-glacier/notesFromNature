@@ -196,42 +196,42 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
     this.guide = [
       {
         title: 'Record code' ,
-        description: 'It\'s a 4 digit number located at the top right of the page.',
+        description: 'It\'s a 4 digit number located at the top right of the page. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Code',
         type: "text"
       }, {
         title: 'Genus & species',
-        description: '2 or 3 latin words in the first line, next to the margin.',
+        description: '2 or 3 latin words in the first line, next to the margin. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Species',
         type: "text"
       }, {
         title: 'Collection location',
-        description: 'A place name, in the second line.',
+        description: 'A place name, in the second line. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Location',
         type: "text"
       }, {
         title: 'Collection date ',
-        description: 'A date in the third line.',
+        description: 'A date in the third line. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: ['day', 'month', 'year'],
         type: "date"
       }, {
         title: 'Collector',
-        description: 'A person name in the same line than the date.',
+        description: 'A person name in the same line than the date. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Collector',
         type: "text"
       }, {
         title: 'Transferrer',
-        description: 'A person name at the top right of the record.',
+        description: 'A person name at the top right of the record. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Transferer',
         type: "text"
       }, {
         title: 'Transfer date',
-        description: 'A date under the transferrer.',
+        description: 'A date under the transferrer. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Transfer date',
         type: "text"
       }, {
         title: 'Additional information',
-        description: 'Can you detect this information?.',
+        description: 'Can you detect this information?. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Other',
         type: "text"
       }
@@ -628,4 +628,5 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
     return this.$el;
   }
 });
+
 

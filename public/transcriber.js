@@ -16,7 +16,7 @@
       - Check tabs navigation | flow
       --------------------------------------------------------------------------------
       - Decide what to do when finish a record, leave some inputs as they were or what
-      - Decide what to do when finish a record, let user go back 
+      - Decide what to do when finish a record, let user go back
       - Species autocomplete url
       - Examples images controller
       - Save controller
@@ -67,7 +67,7 @@
         explanations: [
           {
             label: 'Drag & resize the viewer to the record you want to transcribe.'
-          },        
+          },
           {
             label: 'It’s a 4 digit number located at the top right of the page.',
             inputs: [
@@ -232,7 +232,7 @@
       Core.options = $.extend( true, defaultOptions, options );
       return this.each( function () {
         var $el = $(this);
-        
+
         // Create loader
         Core._createLoader($el);
 
@@ -243,7 +243,7 @@
         Core._bind($el);
       });
     },
- 
+
 
     _bind: function($el) {
       // Start or finish record
@@ -428,7 +428,7 @@
 
 
 
-    
+
     /**
      * CREATE, MANAGE AND RESET EXPLANATION BOTTOM LIST
      */
@@ -452,7 +452,7 @@
           for (var j = 0, __length = obj.inputs.length; j < _length; j++) {
 
             var input = obj.inputs[j];
-            
+
             if (input != undefined) {
               if (input.type == "text") {
                 // If type == text
@@ -487,7 +487,7 @@
           li += ' <a href="#example" class="example">See example</a> | <a href="#skip" class="skip">Skip this field</a><span class="tail"></span>';
         }
         li += '</p>';
-        
+
         // End of li
         li += '</li>';
 
@@ -737,7 +737,7 @@
         $el.find('div.bottom div.step_viewer').fadeOut(100);
       } else {
         // Manage the button
-        $el.find('div.bottom div.record a.checkRecord').text('FINISH THE RECORD').attr('href','#finish'); // Decide if will be orange or green the step viewer        
+        $el.find('div.bottom div.record a.checkRecord').text('FINISH THE RECORD').attr('href','#finish'); // Decide if will be orange or green the step viewer
 
         // Manage the step viewer
         $el.find('div.bottom div.record a.choose_step').text(step + '/' + (Core.options.explanations.length - 1));
@@ -765,7 +765,7 @@
         , step = $el.data('step')
         , $transcriber = $el.find('div#transcriber');
 
-      
+
       if (step==0) {
 
         // Disable drag and resize
@@ -785,7 +785,7 @@
         Core._nextRegister($el);
 
       } else {
-        
+
         var pending = Core._pendingRegisters($el);
         if (pending==0) {
           // If has finished just save and go for the next
@@ -884,7 +884,7 @@
      */
     _createStepViewer: function() {
       var $stepviewer = $('<div>').addClass('step_viewer');
-      
+
       // Select option
       $stepviewer.append('<a class="choose_step" href="#choose_step">1/' + (Core.options.explanations.length - 1) + '</a>');
 
@@ -896,14 +896,14 @@
 
         if (obj.step) {
           list += '<li ' + (i==1 ? 'class="selected"' : '') + '><a href="#goto_' + i + '"><span class="circle"></span>' + obj.step + '</a></li>';
-        }         
+        }
       }
 
       list += '<span class="tail"></span></ul>';
       $stepviewer.append(list);
 
       // LOCAL BINDINGS
-      
+
       // Manage bind of the option
       $stepviewer.find('a.choose_step').click(
         function(ev) {

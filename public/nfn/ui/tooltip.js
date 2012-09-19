@@ -35,6 +35,14 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
     this.model.bind("change:hidden", this.toggle);
     this.model.bind("change:template", this.updateTemplate);
 
+      // Loads the spinner
+      this.spinner = new nfn.ui.view.Spinner({
+        model: new nfn.ui.model.Spinner(),
+        parent: this
+      });
+
+      this.addView(this.spinner);
+
 
     $(document).on("keyup", this.onKeyUp);
 
@@ -55,6 +63,7 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
 
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
+
 
     this.trigger("onEscKey");
 
@@ -99,9 +108,30 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
     this.$title           = this.$el.find(".title");
     this.$description     = this.$el.find(".description");
 
+    if (this.model.get("url")) {
+
+      this.$el.append(this.spinner.render());
+      this.spinner.show().spin();
+
+      var that = this;
+
+      var $img = $("<img width='180px' height='100px' />");
+      this.$el.prepend($img);
+
+      $img.attr("src", this.model.get("url"));
+
+      this.$el.imagesLoaded(function() {
+        $img.show();
+        that.spinner.hide();
+      });
+
+
+    }
+
     return this.$el;
 
   }
 
 });
+
 

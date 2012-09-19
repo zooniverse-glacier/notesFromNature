@@ -1343,7 +1343,9 @@ body.sernac .transcriber.sernac {
     width: 100%;
     min-width: 1024px;
     height: 80px;
-    z-index: 1001;
+
+    z-index: 101;
+    
     -webkit-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
     -moz-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
@@ -1513,6 +1515,55 @@ body.sernac .transcriber.sernac {
     box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
     z-index: 10010;
 
+    &.with-spinner {
+      width: 200px;
+      height: 160px;
+
+      box-sizing:border-box;
+      -moz-box-sizing:border-box;
+      -webkit-box-sizing:border-box;
+
+      img {
+        position:absolute;
+        top: 10px;
+        width: 180px;
+        height: 100px;
+        margin-left: -90px;
+        left:50%;
+      }
+
+      .button {
+        position:absolute;
+        bottom: 10px;
+        left: 50%;
+        width:80px;
+        margin-left: -40px;
+
+      }
+
+      .loader {
+
+        top: 30px;
+        margin-top: 0;
+
+      }
+
+    }
+
+
+
+    .loader {
+      position:absolute;
+      top: 50%;
+      left:50%;
+      margin-top: -30px;
+      margin-left: -30px;
+      border:none;
+      @include box-shadow(none);
+    }
+      
+
+
     .tip {
       position: absolute;
       bottom: -6px;
@@ -1593,15 +1644,45 @@ body.sernac .transcriber.sernac {
     cursor: nwse-resize;
     z-index: 1000;
   }
+
   .helper {
+
     z-index: 1001;
+
     font: 11px "Open Sans";
     color: #fff;
+
     .title {
       text-transform: uppercase;
       opacity: .8;
+      margin: 0 0 2px 0;
+    }
+
+    .description {
+
+        font: 12px "Helvetica";
+        color: white;
+
+      .example {
+        position:relative;
+
+        border-bottom: 1px solid #ccc;
+        text-decoration:none;
+
+        font: 12px "Helvetica";
+        color: white;
+
+        &:hover {
+          border-bottom: 1px dashed #fff;
+        }
+
+      }
+
     }
   }
+
+
+
   .launcher {
 
     z-index: 1001;
@@ -1617,8 +1698,6 @@ body.sernac .transcriber.sernac {
         width: 80px;
         margin-left: -40px;
       }
-
-
     }
 
     & > a.example {

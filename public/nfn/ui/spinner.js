@@ -32,30 +32,6 @@ nfn.ui.view.Spinner = nfn.ui.view.Widget.extend({
 
   },
 
-  toggle: function() {
-    var that = this;
-
-    if (this.model.get("hidden")) {
-
-      this.$el.animate({ top: this.top() - 50, opacity: 0 }, this.defaults.speed, function() {
-        that.setTop(that.top() - 50);
-        $(this).hide();
-      });
-
-    } else {
-
-      this.setTop($(document).height()/2 - this.height()/2 + 50 );
-
-      this.$el.css({ opacity: 0 }, 250 );
-
-      this.$el.show();
-      this.$el.animate({ top: this.top() - 50, opacity: 1 }, this.defaults.speed, function() {
-      that.setTop(that.top() - 50);
-        $(this).show();
-      });
-    }
-  },
-
   spin: function() {
     this.model.set("animate", true);
 
@@ -72,4 +48,5 @@ nfn.ui.view.Spinner = nfn.ui.view.Widget.extend({
   }
 
 });
+
 

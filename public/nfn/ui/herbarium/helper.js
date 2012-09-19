@@ -7,9 +7,15 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 
   className: 'helper bar',
 
+  events: {
+
+    "click .example"      : "showExample"
+
+  },
+
   initialize: function() {
 
-    _.bindAll( this, "toggle", "updateTitle", "updateDescription" );
+    _.bindAll( this, "toggle", "updateTitle", "updateDescription", "showExample", "closeTooltip" );
 
     this.template = new nfn.core.Template({
       template: this.options.template,
@@ -42,9 +48,65 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
     var that = this;
 
     this.$description.fadeOut(200, function() {
-      that.$description.text(that.model.get("description"));
+      that.$description.html(that.model.get("description"));
       that.$description.fadeIn(200);
+      that.$exampleLink = that.$description.find(".example");
     });
+
+  },
+
+  showExample: function(e) {
+
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+    if (!this.tooltip) this.createTooltip(e);
+
+  },
+
+  createTooltip: function(e) {
+
+    var main = "Close";
+    var url = this.$el.find(".example").attr("data-src")
+
+    this.tooltip = new nfn.ui.view.Tooltip({
+
+      className: "tooltip with-spinner",
+
+      model: new nfn.ui.model.Tooltip({
+        main: main,
+        url: url,
+        template: $("#tooltip-example-template").html()
+      })
+
+    });
+
+    this.addView(this.tooltip);
+
+    var that = this;
+
+    this.tooltip.bind("onMainClick", this.closeTooltip);
+    this.tooltip.bind("onEscKey", this.closeTooltip);
+
+    this.$el.append(this.tooltip.render());
+    this.tooltip.show();
+
+    var
+    linkWidth   = $(e.target).width()/2,
+    x           = Math.abs(this.$el.offset().left - this.$exampleLink.offset().left) - this.tooltip.width() / 2 + linkWidth - 10,
+    y           = Math.abs(this.$el.offset().top  - this.$exampleLink.offset().top)  - this.tooltip.height() - 40
+
+    this.tooltip.setPosition(x, y);
+
+  },
+
+  closeTooltip: function(callback) {
+
+    this.tooltip.hide();
+    this.tooltip.clean();
+    delete this.tooltip;
+
+    callback && callback();
 
   },
 
@@ -54,10 +116,12 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 
     this.$title       = this.$el.find(".title");
     this.$description = this.$el.find(".description");
+    this.$exampleLink = this.$el.find(".example");
 
     return this.$el;
 
   }
 
 });
+
 
