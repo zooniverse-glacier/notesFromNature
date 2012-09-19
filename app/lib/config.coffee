@@ -6,4 +6,4 @@ Config =
     apiHost: 'https://api.zooniverse.org'
   
 
-module.exports = Config['production']
+module.exports = Config['development']

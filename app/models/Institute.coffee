@@ -1,24 +1,32 @@
 Spine = require('spine')
 Archive = require ("models/Archive")
+API = require('zooniverse/lib/api')
+
 
 class Institute extends Spine.Model
   @configure 'Institute', 'name', 'metadata'
   @hasMany "archives", 'models/Archive'
 
-  @fetch: =>
-   zooApi.fetchGroup {project: 'notes_from_nature', type:"institution"}, (data)=>
-      for institute in data
-        inst = Institute.create institute
-        inst.fetchArchives()
-      Institute.trigger("refresh")
 
-  fetchArchives:=>
-    zooApi.fetchSubGroup {project: 'notes_from_nature', parentGroupID: @id }, (data)=>
-      console.log "archive data is ", data
-      for archive in data
-        console.log @archives().create(archive) , @
-        
-      Archive.trigger("refresh") 
+  @fetch: =>
+    API.get '/projects/notes_from_nature/groups/', (data)=>
+      window.inst = data
+
+      institutes =  (group for group in data  when group.type == 'institution')
+      archives   =  (group for group in data  when group.type == 'archive')
+      
+      for institute in institutes
+        inst = Institute.create institute
+        instArchives = (archive for archive in archives when archive.group_id == inst.id)
+        inst.setupArchives instArchives
+
+    Institute.trigger("refresh")
+    Archive.trigger("refresh")
+
+  setupArchives:(archives)=>
+    console.log "setting up archives ", archives
+    for archive in archives
+      @archives().create(archive) 
 
   @findBySlug:(slug)=>
     @select (institute)=>
