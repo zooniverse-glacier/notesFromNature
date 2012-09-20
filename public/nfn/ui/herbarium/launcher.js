@@ -10,7 +10,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
   events: {
 
-    "click .button.start" : "start",
+    "click .btn.start" : "start",
     "click .example"      : "showExample"
 
   },
@@ -144,7 +144,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
     $el.append(this.template.render());
 
-    this.$startButton = $el.find(".button.start");
+    this.$startButton = $el.find(".btn.start");
     this.$message     = $el.find("span");
     this.$exampleLink = $el.find(".example");
 

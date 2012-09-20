@@ -144,6 +144,28 @@ describe("common.ui.view.Tooltip", function() {
 
   });
 
+  it("should load an image", function() {
+
+    var widget2 = new nfn.ui.view.Tooltip({
+
+      model: new nfn.ui.model.Tooltip({
+        url: "http://placehold.it/100x100"
+      }),
+
+      template: $("#tooltip-example-template").html()
+
+    });
+
+    widget2.render();
+
+    waits(250);
+
+    runs(function () {
+      expect(widget2.$el.find("img").length).toEqual(1);
+    });
+
+  });
+
   it("should allow to change the template", function() {
 
     widget.render();
@@ -210,6 +232,19 @@ describe("common.ui.view.Tooltip", function() {
 
     widget.delegateEvents();
     widget.$secondaryButton.click();
+
+    expect(spy).toHaveBeenCalled();
+
+  });
+
+  it("should fire a close event when the user press the esc key", function() {
+
+    widget.render();
+
+    var spy = spyOn(widget, 'onEscKey');
+
+    widget.delegateEvents();
+    $(document).trigger({ type: 'keyup', which: "27" });
 
     expect(spy).toHaveBeenCalled();
 
@@ -306,6 +341,28 @@ describe("common.ui.view.Highlight", function() {
     expect(spy).toHaveBeenCalled();
   });
 
+  it("shouldn't be defined if the dimensions aren't set", function() {
+    widget.render();
+    widget.setPosition(100, 100);
+    expect(widget.isDefined()).toEqual(false);
+  });
+
+  it("should be defined if the dimensions are set", function() {
+    widget.render();
+    widget.setSize(100, 100);
+    widget.setPosition(100, 100);
+    expect(widget.isDefined()).toEqual(true);
+  });
+
+  it("should have a clear method", function() {
+    widget.render();
+    widget.setPosition(300, 200);
+    widget.setSize(300, 200);
+    widget.$el.css("position", "absolute");
+    widget.clear();
+    expect(widget.isDefined()).toEqual(false);
+  });
+
   it("should hide the highlight when the close button is clicked", function() {
     widget.render();
     widget.$closeButton.click();
@@ -347,9 +404,7 @@ describe("common.ui.view.SernacTranscriber", function() {
   });
 
   afterEach(function() {
-
     sernacTranscriber.clean();
-
   });
 
   it("should have a transcriber widget", function() {
@@ -406,6 +461,12 @@ describe("common.ui.view.SernacTranscriber", function() {
 
   it("should have a magnifier", function() {
     expect(sernacTranscriber.magnifier).toBeDefined();
+  });
+
+  it("should have an onResize method", function() {
+
+    expect(sernacTranscriber.onResize).toBeDefined();
+
   });
 
   // TODO: move
@@ -719,10 +780,17 @@ describe("common.ui.view.SernacTranscriber", function() {
     expect(sernacTranscriber.model.get("currentStep")).toEqual(5);
   });
 
-  it("should update the class of the widget when the step changes ", function() {
+  it("should return the width of the input field", function() {
+
+    sernacTranscriber.model.set("currentStep", 0);
+
+    expect(sernacTranscriber.transcriberWidget.model.get("inputWidth")).toEqual(540);
+  });
+
+  it("should update the class of the widget when the step changes", function() {
 
     sernacTranscriber.model.set("currentStep", 2);
-    expect(sernacTranscriber.transcriberWidget.$el.find(".input_field").hasClass("text")).toEqual(true);
+    expect(sernacTranscriber.transcriberWidget.$el.find(".input_field").hasClass("location")).toEqual(true);
     expect(sernacTranscriber.transcriberWidget.$el.find(".input_field").hasClass("date")).not.toEqual(true);
 
     sernacTranscriber.nextStep();
@@ -734,7 +802,7 @@ describe("common.ui.view.SernacTranscriber", function() {
   it("should update the type of input field when the step changes", function() {
 
     sernacTranscriber.model.set("currentStep", 2);
-    expect(sernacTranscriber.transcriberWidget.model.get("type")).toEqual("text");
+    expect(sernacTranscriber.transcriberWidget.model.get("type")).toEqual("location");
 
     sernacTranscriber.nextStep();
     expect(sernacTranscriber.transcriberWidget.model.get("type")).toEqual("date");
@@ -749,6 +817,20 @@ describe("common.ui.view.SernacTranscriber", function() {
     expect(sernacTranscriber.transcriberWidget.$input.attr("placeholder")).toEqual("Species");
   });
 
+  it("should have a link to see an example", function() {
+
+    sernacTranscriber.model.set("currentStep", 0);
+
+    waits(450);
+
+    runs(function() {
+      expect(sernacTranscriber.helper.$exampleLink.text()).toEqual("See example");
+      expect(sernacTranscriber.helper.$el.find('.example').length).toEqual(1);
+    });
+
+
+  });
+
   it("should change the title in the helper when the step changes", function() {
 
     sernacTranscriber.model.set("currentStep", 0);
@@ -759,7 +841,7 @@ describe("common.ui.view.SernacTranscriber", function() {
 
     runs(function() {
       expect(sernacTranscriber.helper.$el.find(".title").text()).toEqual("Genus & species");
-      expect(sernacTranscriber.helper.$el.find(".description").text()).toEqual("2 or 3 latin words in the first line, next to the margin.");
+      expect(sernacTranscriber.helper.$el.find(".description").text()).toEqual("2 or 3 latin words in the first line, next to the margin. See example");
 
       sernacTranscriber.previousStep();
 
@@ -767,7 +849,7 @@ describe("common.ui.view.SernacTranscriber", function() {
 
       runs(function() {
         expect(sernacTranscriber.helper.$el.find(".title").text()).toEqual("Record code");
-        expect(sernacTranscriber.helper.$el.find(".description").text()).toEqual("It's a 4 digit number located at the top right of the page.");
+        expect(sernacTranscriber.helper.$el.find(".description").text()).toEqual("It's a 4 digit number located at the top right of the page. See example");
       });
     });
 
@@ -925,8 +1007,8 @@ describe("common.ui.view.Transcriber", function() {
 
   it("should append a photo to .photos", function() {
 
-    sernacTranscriber.addPhoto("http://assets.javierarce.com/biotrans/transcriber_sernac_01.png");
-    sernacTranscriber.addPhoto("http://assets.javierarce.com/biotrans/transcriber_sernac_02.png");
+    sernacTranscriber.addPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_01.png");
+    sernacTranscriber.addPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_02.png");
 
     sernacTranscriber.showPhoto(0);
 
@@ -940,7 +1022,7 @@ describe("common.ui.view.Transcriber", function() {
 
   it("should add and show a photo", function() {
 
-    var url  = "http://assets.javierarce.com/biotrans/transcriber_sernac_01.png";
+    var url  = "http://nfn.s3.amazonaws.com/transcriber_sernac_01.png";
 
     sernacTranscriber.loadPhoto(url);
 
@@ -955,8 +1037,8 @@ describe("common.ui.view.Transcriber", function() {
 
   it("should append another photo", function() {
 
-    var url  = "http://assets.javierarce.com/biotrans/transcriber_sernac_01.png";
-    var url2 = "http://assets.javierarce.com/biotrans/transcriber_sernac_02.png";
+    var url  = "http://nfn.s3.amazonaws.com/transcriber_sernac_01.png";
+    var url2 = "http://nfn.s3.amazonaws.com/transcriber_sernac_02.png";
 
     sernacTranscriber.addPhoto(url);
     sernacTranscriber.addPhoto(url2);
@@ -1017,6 +1099,24 @@ describe("common.ui.view.Transcriber", function() {
     sernacTranscriber.transcriberWidget.$finishButton.click();
 
     expect(sernacTranscriber.model.get("currentRecord")).toEqual(1);
+
+  });
+
+  it("should close the tooltip when the user press the esc key", function() {
+
+    sernacTranscriber.$el.find(".photos").append("<img />");
+
+    sernacTranscriber.addSelection();
+    sernacTranscriber.updateSelection(10, 10, 100, 100);
+    sernacTranscriber.selection.$el.css("position", "absolute");
+    sernacTranscriber.addMagnifier();
+
+    sernacTranscriber.transcriberWidget.$skip.click();
+
+    $(document).trigger({ type: 'keyup', which: "27" });
+
+    expect(sernacTranscriber.transcriberWidget.$el.find(".tooltip").length).toEqual(0);
+    expect(sernacTranscriber.transcriberWidget.tooltip).not.toBeDefined();
 
   });
 
@@ -1109,6 +1209,15 @@ describe("common.ui.view.Selector", function() {
     widget.clean();
   });
 
+  it("should have a clear method", function() {
+    widget.render();
+    widget.setPosition(300, 200);
+    widget.setSize(300, 200);
+    widget.$el.css("position", "absolute");
+    widget.clear();
+    expect(widget.isDefined()).toEqual(false);
+  });
+
   it("shouldn't be defined if the dimensions aren't set", function() {
     widget.render();
     widget.setPosition(100, 100);
@@ -1167,12 +1276,86 @@ describe("common.ui.view.Helper", function() {
 
   it("should allow to change the description", function() {
     widget.render();
-    widget.model.set("description", "This is a test description");
-    expect(widget.$description.text()).toEqual("This is a test description");
+    widget.model.set("description", 'This is a test description <a href="#" data-src="#">See example.</a>');
+    expect(widget.$description.html()).toEqual('This is a test description <a href="#" data-src="#">See example.</a>');
   });
 
 
+  it("should fire a showExample event when the user clicks in the example link", function() {
+
+    widget.render();
+    widget.model.set('description', '<a href="#" data-src="http://placehold.it/100x100" class="example">See example</a>');
+
+    var spy = spyOn(widget, 'showExample');
+
+    widget.delegateEvents();
+
+    widget.$exampleLink.click();
+
+    expect(spy).toHaveBeenCalled();
+
+  });
+
+  it("should close the tooltip when the user press the esc key", function() {
+
+    widget.render();
+    widget.model.set('description', '<a href="#" data-src="http://placehold.it/100x100" class="example">See example</a>');
+    widget.$exampleLink.click();
+
+    $(document).trigger({ type: 'keyup', which: "27" });
+
+    expect(widget.$el.find(".tooltip").length).toEqual(0);
+    expect(widget.tooltip).not.toBeDefined();
+
+  });
+
+  it("should create a tooltip when the user cliks in the example link", function() {
+
+    widget.render();
+    widget.model.set('description', '<a href="#" data-src="http://placehold.it/100x100" class="example">See example</a>');
+    widget.$exampleLink.click();
+
+    expect(widget.$el.find(".tooltip").length).toEqual(1);
+    expect(widget.tooltip.model.get("hidden")).toEqual(false);
+
+  });
+
+  it("shouldn't create another tooltip when the user cliks in the example link several times", function() {
+
+    widget.render();
+    widget.model.set('description', '<a href="#" data-src="http://placehold.it/100x100" class="example">See example</a>');
+    widget.$exampleLink.click();
+
+    expect(widget.$el.find(".tooltip").length).toEqual(1);
+
+  });
+
+  it("should close the tooltip when the user clicks in the close button (secondary)", function() {
+
+    widget.render();
+    widget.model.set('description', '<a href="#" data-src="http://placehold.it/100x100" class="example">See example</a>');
+    widget.$exampleLink.click();
+    widget.$exampleLink.click();
+
+    expect(widget.$el.find(".tooltip").length).toEqual(1);
+
+  });
+
+  it("should load an image inside the tooltip", function() {
+
+    widget.render();
+    widget.model.set('description', '<a href="#" data-src="http://placehold.it/100x100" class="example">See example</a>');
+    widget.$exampleLink.click();
+
+    expect(widget.$el.find(".tooltip").length).toEqual(1);
+    console.log(widget.$el.find(".tooltip img"));
+    expect(widget.$el.find(".tooltip img").length).toEqual(1);
+    expect(widget.$el.find(".tooltip img").attr("src")).toEqual("http://placehold.it/100x100");
+
+  });
+
 });
+
 /*
  * common.ui.view.SernacWidget
  *
@@ -1334,11 +1517,17 @@ describe("common.ui.view.Launcher", function() {
     expect(widget.$message.text()).toEqual("Drag a square around the specimen label");
   });
 
+  it("should have a link to see an example", function() {
+    widget.render();
+    expect(widget.$exampleLink).toEqual(widget.$el.find(".example"));
+    expect(widget.$exampleLink.text()).toEqual("See example");
+    expect(widget.$el.find('.example').length).toEqual(1);
+  });
+
   it("should allow to enable the button", function() {
     widget.render();
     widget.enable();
     expect(widget.$startButton.hasClass("disabled")).toEqual(false);
-
   });
 
   it("should allow to disable the button", function() {
@@ -1351,16 +1540,76 @@ describe("common.ui.view.Launcher", function() {
 
   it("should fire a start event when the user clicks in the start button", function() {
 
-  widget.render();
-    var startSpy = spyOn(widget, 'start');
+    widget.render();
+
+    var spy = spyOn(widget, 'start');
 
     widget.delegateEvents();
 
     widget.$startButton.click();
 
-    expect(startSpy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
 
   });
 
+  it("should fire a showExample event when the user clicks in the example link", function() {
+
+    widget.render();
+
+    var spy = spyOn(widget, 'showExample');
+
+    widget.delegateEvents();
+
+    widget.$exampleLink.click();
+
+    expect(spy).toHaveBeenCalled();
+
+  });
+
+  it("should close the tooltip when the user press the esc key", function() {
+
+    widget.render();
+    widget.$exampleLink.click();
+
+    $(document).trigger({ type: 'keyup', which: "27" });
+
+    expect(widget.$el.find(".tooltip").length).toEqual(0);
+    expect(widget.tooltip).not.toBeDefined();
+
+  });
+
+  it("should create a tooltip when the user cliks in the example link", function() {
+
+    widget.render();
+    widget.$exampleLink.click();
+
+    expect(widget.$el.find(".tooltip").length).toEqual(1);
+    expect(widget.tooltip.model.get("hidden")).toEqual(false);
+
+  });
+
+  it("shouldn't create another tooltip when the user cliks in the example link several times", function() {
+
+    widget.render();
+    widget.$exampleLink.click();
+    widget.$exampleLink.click();
+
+    expect(widget.$el.find(".tooltip").length).toEqual(1);
+
+  });
+
+  it("should close the tooltip when the user clicks in the close button (main)", function() {
+
+    widget.render();
+    widget.$exampleLink.click();
+    widget.tooltip.$mainButton.click();
+
+    expect(widget.$el.find(".tooltip").length).toEqual(0);
+    expect(widget.tooltip).not.toBeDefined();
+
+  });
+
+
 });
+
 

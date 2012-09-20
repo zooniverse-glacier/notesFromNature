@@ -49,10 +49,11 @@ nfn.ui.view.Photo = nfn.core.View.extend({
 
       // Removes the previous image
       that.parent.$el.find(".photos img").remove();
-
-      that.parent.$el.find(".photos").append(that.$el);
+      that.parent.addScroll();
+      that.parent.$el.find(".photos .mCSB_container").append(that.$el);
 
       that.show();
+      that.parent.$el.find(".photos").mCustomScrollbar("enableMouseWheel");
 
       that.parent.startTranscribing();
       that.parent.spinner.hide();
@@ -65,3 +66,4 @@ nfn.ui.view.Photo = nfn.core.View.extend({
 nfn.ui.collection.Photos = Backbone.Collection.extend({
   model: nfn.ui.model.Photo
 });
+

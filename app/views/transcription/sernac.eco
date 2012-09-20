@@ -2,13 +2,13 @@
   <div class="left">
     <div class="input_field">
       <input type="text" placeholder="" />
-      <a href="#" class="button ok">ok</a>
+      <a href="#" class="btn ok">ok</a>
     </div>
   </div>
   <div class="right">
     <a href="#" class="skip">Skip this field</a>
     <div class="step"></div>
-    <a href="#" class="button finish">Finish this record</a>
+    <a href="#" class="btn finish">Finish this record</a>
   </div>
 </script>
 
@@ -24,7 +24,7 @@
 <script type="text/template" id="launcher-template">
   <span>Drag a square around the specimen label</span> 
   <a href="#" class="example">See example</a>
-  <a href="#" class="button start disabled">Start this record</a>
+  <a href="#" class="btn start disabled">Start this record</a>
 </script>
 
 <script type="text/template" id="date-input-template">
@@ -34,7 +34,7 @@
 </script>
 
 <script type="text/template" id="tooltip-example-template">
-  <a href="#" class="button main">{{ main }}</a> 
+  <a href="#" class="btn main">{{ main }}</a> 
   <div class="tip"></div>
 </script>
 
@@ -42,8 +42,8 @@
   <strong class="title">{{title}}</strong>
   <div class="description">{{{description}}}</div>
 
-  <a href="#" class="button main">{{main}}</a> 
-  <a href="#" class="button secondary">{{secondary}}</a>
+  <a href="#" class="btn main">{{main}}</a> 
+  <a href="#" class="btn secondary">{{secondary}}</a>
   <div class="tip"></div>
 </script>
 

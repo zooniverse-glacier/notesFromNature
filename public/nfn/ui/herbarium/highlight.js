@@ -30,6 +30,19 @@ nfn.ui.view.Highlight = nfn.ui.view.Widget.extend({
 
   },
 
+  clear: function() {
+
+    this.model.clear();
+
+  },
+
+  isDefined: function() {
+
+    if (this.model.get("top") && this.model.get("left") && this.model.get("height") && this.model.get("width")) return true;
+    else return false;
+
+  },
+
   create: function(dimensions) {
 
     if (this.parent.$el.find("." + this.className).length <= 0) {
@@ -55,11 +68,16 @@ nfn.ui.view.Highlight = nfn.ui.view.Widget.extend({
     e.stopImmediatePropagation();
 
     if (this.parent) {
-      this.parent.launcher.$startButton.addClass("disabled");
+
+      this.parent.launcher.disable();
       this.parent.startTranscribing();
+      this.parent.enableMouseWheel();
+
     }
 
     this.hide();
+
+
   },
 
   render: function() {
@@ -73,4 +91,5 @@ nfn.ui.view.Highlight = nfn.ui.view.Widget.extend({
   }
 
 });
+
 

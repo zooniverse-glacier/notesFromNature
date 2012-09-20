@@ -8,8 +8,8 @@ nfn.ui.view.SernacWidget = nfn.ui.view.Widget.extend({
 
   events: {
 
-    "click .button.ok" :     "ok",
-    "click .button.finish" : "finish",
+    "click .btn.ok" :     "ok",
+    "click .btn.finish" : "finish",
     "click .skip" :          "showSkipPane"
 
   },
@@ -26,6 +26,11 @@ nfn.ui.view.SernacWidget = nfn.ui.view.Widget.extend({
 
     this.templates["text"] = new nfn.core.Template({
       template: '<input type="text" placeholder="" />',
+      type: 'mustache'
+    });
+
+    this.templates["location"] = new nfn.core.Template({
+      template: '<input type="text" id="autocomplete" placeholder="" />',
       type: 'mustache'
     });
 
@@ -131,23 +136,18 @@ nfn.ui.view.SernacWidget = nfn.ui.view.Widget.extend({
 
   resize: function() {
 
-    var type = this.model.get("type");
+    var type  = this.model.get("type");
+    var width = this.model.get("inputWidth");
 
-    if (type == 'text') {
-      var p = { width: 540, left: $(document).width()/2 - 540/2 };
-      this.animate(p, true);
-    } else if ( type == 'date' ) {
-      var p = { width: 680, left: $(document).width()/2 - 680/2 };
-      this.animate(p, true);
-    }
-
+    // Centers the widget horizontally
+    this.animate({ width: width, marginLeft: -1*width/2, left: "50%" }, true);
 
   },
 
   getValue: function() {
     var type = this.model.get("type");
 
-    if (type == 'text') {
+    if ( type == 'text' || type == 'location' ) {
 
       return this.$input.val();
 
@@ -170,11 +170,11 @@ nfn.ui.view.SernacWidget = nfn.ui.view.Widget.extend({
   updatePlaceholder: function() {
     var type = this.model.get("type");
 
-    if (type == 'text') {
+    if ( type == 'text' || type == 'location' ) {
 
       this.$input.attr("placeholder", this.model.get("placeholder"));
 
-    } else {
+    } else if ( type == 'date' ) {
 
       var placeholders = this.model.get("placeholder");
 
@@ -190,9 +190,10 @@ nfn.ui.view.SernacWidget = nfn.ui.view.Widget.extend({
 
     this.$el.find(".input_field").removeClass("text");
     this.$el.find(".input_field").removeClass("date");
+    this.$el.find(".input_field").removeClass("location");
     this.$el.find(".input_field").addClass(type);
 
-    if (type == 'text') {
+    if ( type == 'text' ) {
 
       this.$el.find(".input_field input").remove();
       this.$el.find(".input_field .date_field").remove();
@@ -200,7 +201,17 @@ nfn.ui.view.SernacWidget = nfn.ui.view.Widget.extend({
       this.$el.find(".input_field").append( this.templates[type].render() );
       this.$input = this.$el.find('.input_field input');
 
-    } else {
+    } else if ( type == 'location' ) {
+
+      this.$el.find(".input_field input").remove();
+      this.$el.find(".input_field .date_field").remove();
+
+      this.$el.find(".input_field").append( this.templates[type].render() );
+      this.$input = this.$el.find('.input_field input');
+
+      this.$input.addresspicker();
+
+    } else if ( type == 'date' ) {
 
       this.$el.find(".input_field input").remove();
       this.$el.find(".input_field").append( this.templates[type].render() );
@@ -216,9 +227,9 @@ nfn.ui.view.SernacWidget = nfn.ui.view.Widget.extend({
 
     this.$el.append(this.template.render());
 
-    this.$okButton     = this.$el.find(".button.ok");
+    this.$okButton     = this.$el.find(".btn.ok");
     this.$skip         = this.$el.find(".skip");
-    this.$finishButton = this.$el.find(".button.finish");
+    this.$finishButton = this.$el.find(".btn.finish");
     this.$step         = this.$el.find(".step");
     this.$input        = this.$el.find('.input_field input[type="text"]');
 

@@ -185,7 +185,7 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
 
     var that = this;
 
-    _.bindAll(this, "updateInputField", "updatePlaceholder", "updateHelper", "updateStepCounter", "addMagnifier", "onMouseDown", "onMouseUp");
+    _.bindAll( this, "addScroll", "updateInputField", "updatePlaceholder", "updateHelper", "updateStepCounter", "addMagnifier", "onMouseDown", "onMouseUp", "onResize" );
 
     if (this.options.model === undefined) {
       throw new TypeError("you should specify a model");
@@ -198,42 +198,50 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
         title: 'Record code' ,
         description: 'It\'s a 4 digit number located at the top right of the page. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Code',
-        type: "text"
+        type: "text",
+        inputWidth: 540
       }, {
         title: 'Genus & species',
         description: '2 or 3 latin words in the first line, next to the margin. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Species',
-        type: "text"
+        type: "text",
+        inputWidth: 540
       }, {
         title: 'Collection location',
         description: 'A place name, in the second line. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Location',
-        type: "text"
+        type: "location",
+        inputWidth: 580
       }, {
         title: 'Collection date ',
         description: 'A date in the third line. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: ['day', 'month', 'year'],
-        type: "date"
+        type: "date",
+        inputWidth: 700
       }, {
         title: 'Collector',
         description: 'A person name in the same line than the date. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Collector',
-        type: "text"
+        type: "text",
+        inputWidth: 540
       }, {
         title: 'Transferrer',
         description: 'A person name at the top right of the record. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Transferer',
-        type: "text"
+        type: "text",
+        inputWidth: 540
       }, {
         title: 'Transfer date',
         description: 'A date under the transferrer. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Transfer date',
-        type: "text"
+        type: "text",
+        inputWidth: 540
       }, {
         title: 'Additional information',
         description: 'Can you detect this information?. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Other',
-        type: "text"
+        type: "text",
+        inputWidth: 540
       }
     ];
 
@@ -359,7 +367,7 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
     this.nextRecord();
 
     // TODO: request next photo and the URL here
-    this.loadPhoto("http://assets.javierarce.com/biotrans/transcriber_sernac_02.png");
+    this.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_02.png");
 
   },
 
@@ -411,6 +419,28 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
     this.highlight.create(dimensions);
     this.$el.find(".photos").removeClass("selectable");
     this.launcher.enable();
+    this.disableMouseWheel();
+
+  },
+
+  addScroll: function() {
+
+    if (!this.model.get("scrollbar")) {
+      this.model.set("scrollbar", true);
+      this.$el.find(".photos").mCustomScrollbar();
+    }
+
+  },
+
+  enableMouseWheel: function() {
+
+    this.$el.find(".photos").mCustomScrollbar("enableMouseWheel");
+
+  },
+
+  disableMouseWheel: function() {
+
+    this.$el.find(".photos").mCustomScrollbar("disableMouseWheel");
 
   },
 
@@ -433,11 +463,8 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
 
       this.updateSelection(x, y, x+w, y+h);
 
-      if (w < 480) w = 540;
-      if (h < 350) h = 350;
-
-      if (w > 600) w = 600;
-      if (h > 500) h = 500;
+      w = 540;
+      h = 350;
 
       var that = this;
 
@@ -446,6 +473,7 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
         that.highlight.hide();
 
         that.magnifier.create({ x: $(document).width()/2 - w/2, y: $(document).height()/2 - h/2, w: w, h: h });
+        that.magnifier.$el.css({ left: "50%", marginLeft: -1*w/2 });
         that.magnifier.$el.empty();
         that.magnifier.$el.append($img2x);
 
@@ -459,10 +487,12 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
         helperX = that.magnifier.left(),
         helperY = that.magnifier.top() - that.helper.height() - 35;
 
-        that.helper.setWidth(magnifierWidth).setPosition(helperX, helperY).show();
+        that.helper.setWidth(magnifierWidth).setPosition(helperX, helperY)
+        that.helper.$el.css({ left: "50%", marginLeft: -1*magnifierWidth/2 });
+        that.helper.show();
 
         var // add the transcriber widget
-        twX = that.magnifier.left(),
+        twX = "50%",
         twY = that.magnifier.top() + that.magnifier.height() + 10;
 
         that.transcriberWidget.setWidth(magnifierWidth).setPosition(twX, twY).show();
@@ -488,7 +518,9 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
   startTranscribing: function() {
 
     if (this.launcher.model.get("hidden")) {
-      this.launcher.setPosition($(document).width()/2 - this.launcher.width()/2, $(document).height() - this.launcher.height() - 100 );
+      //this.launcher.setPosition($(document).width()/2 - this.launcher.width()/2, $(document).height() - this.launcher.height() - 100 );
+      //this.launcher.setPosition($(document).width()/2 - this.launcher.width()/2, "auto");
+      this.launcher.$el.css({ left: "50%", marginLeft: -1*this.launcher.width()/2 });
       this.launcher.show();
     }
 
@@ -533,8 +565,10 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
   },
 
   updateStepCounter: function() {
+
     var currentStep = this.model.get("currentStep") + 1;
     this.transcriberWidget.$step.text( currentStep + "/" + this.model.get("stepsCount"));
+
   },
 
   updateInputField: function() {
@@ -543,7 +577,7 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
     currentStep = this.model.get("currentStep"),
     stepGuide   = this.guide[currentStep];
 
-    this.transcriberWidget.model.set("type", stepGuide.type);
+    this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth });
 
   },
 
@@ -605,6 +639,12 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
     this.model.previousStep();
   },
 
+  onResize: function() {
+
+    console.log(this.launcher.$el);
+
+  },
+
   render: function() {
 
     this.$el.addClass(this.model.get("type"));
@@ -623,10 +663,21 @@ nfn.ui.view.SernacTranscriber = nfn.ui.view.Transcriber.extend({
       return false;
     });
 
+    var that = this;
+
+    $(window).on("resize", this.onResize);
+
+    $(document).on("mouseover", ".mCSB_scrollTools", function() {
+      that.stopTranscribing();
+    });
+
+    $(document).on("mouseleave", ".mCSB_scrollTools", function() {
+      that.startTranscribing();
+    });
+
     $("body").append(this.$el);
 
     return this.$el;
   }
 });
-
 
