@@ -19,9 +19,12 @@ class Institute extends Spine.Model
         inst = Institute.create institute
         instArchives = (archive for archive in archives when archive.group_id == inst.id)
         inst.setupArchives instArchives
+        
+    setTimeout =>
+      Archive.trigger("refresh")
+      Institute.trigger("refresh")
+    ,200
 
-    Institute.trigger("refresh")
-    Archive.trigger("refresh")
 
   setupArchives:(archives)=>
     console.log "setting up archives ", archives
