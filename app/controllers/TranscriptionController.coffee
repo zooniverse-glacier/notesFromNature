@@ -3,6 +3,9 @@ Subject= require('models/Subject')
 Archive= require('models/Archive')
 EOL = require('models/EOL')
 
+Classification = require('models/Classification')
+
+
 SernacTranscriptionController = require('controllers/SernacTranscriptionController')
 DoubleTranscriptionController = require('controllers/DoubleTranscriptionController')
 
