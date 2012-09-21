@@ -9,6 +9,7 @@
     "jqueryify": "~0.0.1",
     "underscore": "latest",
     "nib": "latest",
+    "underscore": "latest",
     "zooniverse": "git+ssh://git@github.com:zooniverse/Zooniverse.git",
     "spine": "~1.0.5"
   }

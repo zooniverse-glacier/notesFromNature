@@ -1,6 +1,7 @@
 Spine = require('spine')
 Archive = require('models/Archive')
 Institute = require('models/Institute')
+
 class HomeController extends Spine.Controller
   # className: 'wrapper'
   className: "HomeController"
@@ -8,10 +9,12 @@ class HomeController extends Spine.Controller
   constructor: ->
     super
     @render()
-    Archive.bind 'refresh',  =>
+    Institute.bind 'refresh',  =>
       @render()
 
   render:=>
+    
+
     totalStats = Institute.allStats()
     @html   require('views/home/splash')()
     @append require('views/home/stats')
