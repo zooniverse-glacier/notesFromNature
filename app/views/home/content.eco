@@ -5,8 +5,8 @@
         <div class="col1 omega">
             <div class="center">
                 <img src="images/badge-x.png" alt="avian best friend">
-                <h3 class="badge">Museums have lots of interesting specimens</h3>
-                <p class="badge"> Without having all the information that the collections have on the specimens, scienfics cannot get all the value behind them.<p> 
+                <h3 class="badge">Museums contain a historical record of biodiversity.</h3>
+                <p class="badge">The information that museum specimens represent is needed by scientists and reserachers to better understand our world.<p> 
             </div>
         </div>
         <div class="col1 omega">  
@@ -20,7 +20,7 @@
             <div class="center">
                 <img src="images/badge-x.png" alt="avian best friend">
                 <h3 class="badge">You are contributing to the science. Thank you!</h3>
-                <p class="badge">Without having all the information that the collections have on the specimens, scienfics cannot get all the value behind them.<p>
+                <p class="badge">The new data we are creating is going into research related to species extinction, ecosystem change, evironmental health, and even human health.<p>
             </div>    
         </div>
 
@@ -29,7 +29,7 @@
     <div class="box-general laptop laptop-home">        
         <div class="col2">
             <h3 class="title">3,123 Users already participating</h3>
-            <p> We have thousands of pages from bioligists and researches that contain information about where and when the species was in the past. All we need in this case is to transcibe all this hand-written text. With that information being transcribed, we will be able to know more about the past of our birds which sounds really interesting by the way. With that information being transcribed, we will be able to know more about the past of our birds!  </p>
+            <p>We have thousands or records about where organisms have been found across the world, now we need you to help us transcribe that data and make it available to scientists and researchers. With the data transcribed we will be able to know more about how biodiversity is changing. We can uncover knowledge about the history of some of these organisms and possibly even find ones that have never been recorded anyplace else!</p>
         </div>
         <div class="col3">  
             <ul class="status-list inline">
