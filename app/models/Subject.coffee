@@ -4,12 +4,12 @@ API = require('zooniverse/lib/api')
 BaseSubject = require('zooniverse/lib/models/subject')
 
 class Subject extends BaseSubject
+  @configure 'Subject'
+  @belongsTo 'archive', Archive
   
   @next_subject:=>
     @purge()
-
     API.get "/subjects", (data)=>
-      console.log data
       Subject.create(data)
       Subject.trigger("gotNext")
 
@@ -18,7 +18,7 @@ class Subject extends BaseSubject
 
   @getNextForCollection:(collection_id, number=2)=>
     _(number).times =>
-      $.getJSON "#{OuroborusGroupBase}/#{collection_id}/next_subject", (data)=> 
+      API.get "/projects/notes_from_nature/groups/#{collection_id}/subjects", (data)=> 
         Subject.create(data)
 
   @purge:=>

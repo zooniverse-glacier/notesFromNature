@@ -1,5 +1,6 @@
 Spine = require('spine')
 Subject= require('models/Subject')
+API = require('zooniverse/lib/api')
 
 class Archive extends Spine.Model
   @configure 'Archive', 'name', 'metadata', 'complete', 'stats', 'categories'
@@ -25,12 +26,14 @@ class Archive extends Spine.Model
       @all()
 
   nextSubject:(callback=null)=>
-    zooApi.fetchSubjects {project:'notes_from_nature', group:@ , limit:1}, (subject)=>
-      if subject.length > 0
-        s = @subjects().create subject[0]
-        callback(s) if callback?
-      else
-        callback(null) if callback
+    if @subjects().first()
+      callback @subjects().first() if callback?
+    else
+      API.get "/projects/notes_from_nature/groups/#{@id}/subjects?limit=#{10}", (subjects)=>
+        for subject in subjects
+          @subjects().create subject 
+        callback @subjects().first() if callback?
+
 
   transcriptionUrl:=>
     "#/archives/#{@slug()}/transcribe"

@@ -70,8 +70,8 @@ class TranscriptionController extends Spine.Controller
       @render()
     else if params.archiveID
       @archive = Archive.findBySlug(params.archiveID)
-      console.log " from archive id"
-      if @archive
+      console.log " from archive id", @archive, params.archiveID
+      if @archive?
         unless @currnetSubject?
           @archive.nextSubject (subject)=>
             @currnetSubject=subject
