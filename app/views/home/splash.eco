@@ -8,8 +8,7 @@
         </div>
     </div>
     <div class="species-selector center"> 
-        <a href="#/collections/type/birds"><img src="images/box-birds.png" alt="" /></a>
-        <a href="#/collections/type/plants"><img src="images/box-plants.png" alt="" /></a>
+
         <a href="#/collections"><img src="images/box-view.png" alt="" /></a>
     </div>
 </div>                  
