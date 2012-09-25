@@ -1,7 +1,7 @@
  <div class="box-general">
         <div class="col3">
             <div class="box-user">
-                <img src="<%=@user.avatar || "images/coque-design.png"%>" />
+                <img src="<%= @user?.avatar || "images/coque-design.png"%>" />
             </div>
 
             <h2 class="title user">
