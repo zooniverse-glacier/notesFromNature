@@ -18,6 +18,7 @@ class TranscriptionController extends Spine.Controller
 
   constructor:->
     super
+
     $("body").bind "doneClassification", (data)=>
       @saveAnnotation data.values
 
@@ -27,17 +28,13 @@ class TranscriptionController extends Spine.Controller
     Spine.bind("nextSubject", @nextSubject)
 
   saveAnnotation:(values)=>
-    @annotations||=[]
-    @annotations.push values
+    for key,value of values
+      @classification.annotate(key,value)
+    @classification.save()
 
   saveTranscription:(data)=>
-    zooApi.saveClassification
-      project : "notes_from_nature"
-      subjects: [@currnetSubject.id]
-      workflow: @currnetSubject.workflow_ids[0]
-      annotations: @annotations
-    ,(result)=>
-      console.log "save result"
+    @classification.send()
+    @nextSubject()
 
   render:=>
     if @currnetSubject
@@ -51,9 +48,14 @@ class TranscriptionController extends Spine.Controller
 
   nextSubject:=>
     if @currnetSubject?
-      console.log @currnetSubject      
+      
       archive = Archive.find(@currnetSubject.archive_id)
+      
       @archive.nextSubject (subject)=>
+        @classification =  Classification.create 
+          subject_id : subject.id
+          workflow_id: subject.workflow_id
+
         $("div.transcribing.sernac img").attr("src", subject.location.standard)
           
 
