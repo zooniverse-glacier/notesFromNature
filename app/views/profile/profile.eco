@@ -6,7 +6,6 @@
 
             <h2 class="title user">
                 <%=@user.name%>
-                <span class="subtitle"><a class="object" href="">Edit your account</a></span>
             </h2>
         </div>
     </div>          
@@ -201,7 +200,7 @@
 
                 <ul class="user-list inline">
                     <li>
-                    <h3 class="title">32,277<span class="subtitle">Entries transcribed</span></h3>
+                    <h3 class="title"><%=@user.project.count%><span class="subtitle">Entries transcribed</span></h3>
                     </li>
                     <li>
                     <h3 class="title">3<span class="subtitle">Collections</span></h3>
