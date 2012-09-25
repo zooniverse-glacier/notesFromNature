@@ -1,5 +1,5 @@
 Spine = require('spine')
-User  = require('models/User')
+User  = require('zooniverse/lib/models/user')
 
 class ProfileController extends Spine.Controller
   className: "ProfileController"
@@ -9,13 +9,13 @@ class ProfileController extends Spine.Controller
 
   active:->
     super 
-    if User.count()==0
+    if not User.current? 
       Spine.Route.navigate('/') 
     else
       @render()
 
   render:=>
     @html require('views/profile/profile')
-      user : User.first()
+      user : User.current
     
 module.exports = ProfileController
