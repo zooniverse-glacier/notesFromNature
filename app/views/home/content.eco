@@ -37,9 +37,9 @@
                 <span class="text">MUSEUMS INVOLVED</span>
 
                 <ul class="logos">
-                    <li><a href="#"><img alt="Natural History Museum" src="images/natural_history_museum.png" /></a></li>
-                    <li><a href="#"><img alt="Sernec" src="images/sernec.png" /></a></li>
-                    <li><a href="#"><img alt="National Science Foundation" src="images/national_science_foundation.png" /></a></li>
+                    <li><a href="http://www.nhm.ac.uk/tring/research-and-curation/index.html"><img alt="Natural History Museum" src="images/natural_history_museum.png" /></a></li>
+                    <li><a href="http://www.sernec.org/"><img alt="SERNEC" src="images/sernec.png" /></a></li>
+                    <li><a href="http://calbug.berkeley.edu/"><img alt="Calbug" src="images/calbug.png" /></a></li>
                 </ul>
 
                 <p>Interested in publishing your collection? <a href="" class="object">Contact us</a></p>
