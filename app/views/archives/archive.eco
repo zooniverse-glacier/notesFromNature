@@ -1,5 +1,5 @@
 
-<li class="mine <%='completed' if @archive? and @archive.complete()%>">
+<li class="mine <%='completed' if @archive? and @archive.complete()%> <%='emptyArchive' unless @archive?%>">
   <% if @archive? : %>
     <img src="<%=@archive.metadata.location.image%>"/> 
     <div class="translucent-box">
