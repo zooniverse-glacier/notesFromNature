@@ -14,7 +14,7 @@
 
         <div class="col2">
 
-            <h3 class="title">A transcriber's life <span class="subtitle">See Coque Designs' activity</span></h3>
+            <h3 class="title">A transcriber's life <span class="subtitle">See <%=@user.name%> activity</span></h3>
 
             <div class="time-box">
                 <ul class="time-life">
@@ -200,10 +200,10 @@
 
                 <ul class="user-list inline">
                     <li>
-                    <h3 class="title"><%=@user.project.count%><span class="subtitle">Entries transcribed</span></h3>
+                    <h3 class="title"><%=@user.classification_count%><span class="subtitle">Entries transcribed</span></h3>
                     </li>
                     <li>
-                    <h3 class="title">3<span class="subtitle">Collections</span></h3>
+                    <h3 class="title"><%=@user.groups?.length || 0 %><span class="subtitle">Collections</span></h3>
                     </li>
                 </ul>
 
