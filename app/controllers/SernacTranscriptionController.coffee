@@ -18,7 +18,7 @@ class SernacTranscriptionController extends Spine.Controller
           model: transcriberModel
         })
 
-        transcriber.loadPhoto("http://assets.javierarce.com/biotrans/transcriber_sernac_01.png")
+        transcriber.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_01.png")
 
         window.transcriber = transcriber
 

@@ -1252,7 +1252,7 @@
     _loadNextImg: function() {
       var $el = Core.$el;
       Core._enableScroll();
-      Core.$el.find("img").attr("src", "http://assets.javierarce.com/biotrans/transcriber_sernac_02.png");
+      Core.$el.find("img").attr("src", "http://nfn.s3.amazonaws.com/transcriber_sernac_02.png");
       Core._createLoader($el);
     },
 
