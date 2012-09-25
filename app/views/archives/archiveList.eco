@@ -1,8 +1,9 @@
 <div>
   <ul class="archive-list">                  
-    <% for archive in @archives : %>
-      <%-@archiveTemplate(archive) %>
-    <%end%>
+    <% for i in [0...Math.max(@archives.length, 6)] : %>
+
+      <%-@archiveTemplate( {archive : @archives[i] } ) %>
+    <%end%>  
   </ul>
 </div>
 
