@@ -17,14 +17,20 @@
   window.JST = window.JST || {};
 
   nfn.files = [
-    //"vendor/jquery.min.js",
-    //"vendor/jquery-ui-1.8.23.custom.min.js",
-    //"vendor/jquery.jscrollpane.min.js",
-    //"vendor/jquery.imagesloaded.min.js",
-    //"vendor/spin.min.js",
+    "vendor/jquery.min.js",
+    "vendor/jquery-1.8.1.js",
+    "vendor/jquery-ui-1.8.23.custom.min.js",
+    "vendor/jquery.easing.min.js",
+    //"vendor/jquery.mousewheel.min.js",
+    "vendor/jquery.imagesloaded.min.js",
+    "vendor/jquery.mCustomScrollbar.js",
+    //"vendor/jquery.ui.addresspicker.js",
+    "vendor/jquery.stylishSelect.js",
+    "vendor/spin.min.js",
+    //"vendor/jquery.jscrollpane.js",
     //"vendor/underscore-min.js",
     //"vendor/backbone-min.js",
-    //"vendor/mustache.js",
+    "vendor/mustache.js",
 
     // Core
     'core/config.js',
@@ -38,17 +44,27 @@
     'ui/spinner.js',
     'ui/backdrop.js',
     'ui/tooltip.js',
-    'ui/widgets.js',
     'ui/statusbar.js',
-    'ui/herbarium/photos.js',
+    'ui/transcriptions.js',
+    'ui/transcriber.js',
+    'ui/photos.js',
+
+    // Birds
+    'ui/birds/photos.js',
+    'ui/birds/transcriber.js',
+    'ui/birds/widget.js',
+
+    // Herbarium
+    'ui/herbarium/transcriber.js',
+    'ui/herbarium/widget.js',
     'ui/herbarium/launcher.js',
     'ui/herbarium/magnifier.js',
     'ui/herbarium/selection.js',
     'ui/herbarium/highlight.js',
-    'ui/herbarium/helper.js',
-    'ui/transcriber.js'
+    'ui/herbarium/helper.js'
 
   ];
+
 
   nfn.init = function(ready) {
     // define a simple class

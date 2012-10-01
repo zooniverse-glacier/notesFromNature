@@ -203,3 +203,4 @@ describe("common.ui.view.Widget", function() {
   });
 
 });
+

@@ -96,6 +96,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
   createTooltip: function(e) {
 
     var main = "Close";
+    var url = this.$el.find(".example").attr("data-src")
 
     this.tooltip = new nfn.ui.view.Tooltip({
 
@@ -103,6 +104,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
       model: new nfn.ui.model.Tooltip({
         main: main,
+        url: url,
         template: $("#tooltip-example-template").html()
       })
 
@@ -152,5 +154,4 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
   }
 
 });
-
 

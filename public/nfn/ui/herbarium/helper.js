@@ -102,6 +102,8 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 
   closeTooltip: function(callback) {
 
+    if (!this.tooltip) return;
+
     this.tooltip.hide();
     this.tooltip.clean();
     delete this.tooltip;
@@ -123,5 +125,4 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
   }
 
 });
-
 

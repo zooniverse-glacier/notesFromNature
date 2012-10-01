@@ -8,30 +8,28 @@
 
     <script type="text/javascript" src="nfn/vendor/jquery.min.js"></script>
     <script type="text/javascript" src="nfn/vendor/jquery-ui-1.8.23.custom.min.js"></script>
-    <script type="text/javascript" src="nfn/vendor/jquery.imagesloaded.min.js"></script>
-
-    <script type="text/javascript" src="nfn/vendor/jquery.easing.min.js"></script>
-    <script type="text/javascript" src="nfn/vendor/jquery.mCustomScrollbar.js"></script>
-    <script type="text/javascript" src="nfn/vendor/jquery.mousewheel.min.js"></script>
-    <script type="text/javascript" src="nfn/vendor/jquery.ui.addresspicker.js"></script>
-
-    <script type="text/javascript" src="nfn/vendor/jquery.jscrollpane.min.js"></script>
     <script type="text/javascript" src="nfn/vendor/underscore-min.js"></script>
     <script type="text/javascript" src="nfn/vendor/backbone-min.js"></script>
-    <script type="text/javascript" src="nfn/vendor/mustache.js"></script>
-    <script type="text/javascript" src="nfn/vendor/spin.min.js"></script>
+    <script type="text/javascript" src="nfn/vendor/jquery.jscrollpane.js"></script>
+    <script type="text/javascript" src="nfn/vendor/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript" src="nfn/vendor/jquery.imagesloaded.min.js"></script>
+    <script type="text/javascript" src="nfn/vendor/jquery.ui.addresspicker.js"></script>
+    <script type="text/javascript" src="nfn/vendor/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="nfn/vendor/jquery.mCustomScrollbar.js"></script>
 
-    
-    <script type="text/javascript" src="jquery.mousewheel.js"></script>
-    <script type="text/javascript" src="jquery.jscrollpane.min.js"></script>
-    <script type="text/javascript" src="jquery.imagesloaded.js"></script>
+<!--
+    <script type="text/javascript" src="nfn/vendor/jquery.jscrollpane.min.js"></script>
+    <script type="text/javascript" src="nfn/vendor/mustache.js"></script>
+    <script type="text/javascript" src="nfn/vendor/spin.min.js"></script>-->
+    <!--<script type="text/javascript" src="jquery.imagesloaded.js"></script>-->
     <script type="text/javascript" src="jquery.ui.js"></script>
     <script type="text/javascript" src="jquery.stylish.js"></script>
-    <script type="text/javascript" src="jquery.addresspicker.js"></script>
-    <script type="text/javascript" src="data02.js"></script>
 
-    <script type="text/javascript" src="transcriber_double.js"></script>
-    <script type="text/javascript" src="sernac.js"></script>
+    <!--<script type="text/javascript" src="jquery.addresspicker.js"></script>-->
+    <!--<script type="text/javascript" src="data02.js"></script>-->
+
+    <!--<script type="text/javascript" src="transcriber_double.js"></script>-->
+    <!--<script type="text/javascript" src="sernac.js"></script>-->
 
     <script src="nfn/nfn.js"></script>
 
@@ -45,8 +43,9 @@
     // var jQuery  = require("jqueryify");
   var exports = this;
   jQuery(function(){
-    var App = require("index");
+    var App    = require("index");
     var Header = require("controllers/HeaderController");
+
     new Header ({el:$("header")});
 
     $("footer").append( require('views/footer')())

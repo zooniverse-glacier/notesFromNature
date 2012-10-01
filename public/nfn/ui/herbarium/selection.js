@@ -11,6 +11,12 @@ nfn.ui.view.Selection  = nfn.ui.view.Widget.extend({
     this.parent = this.options.parent;
   },
 
+  clear: function() {
+
+    this.model.clear();
+
+  },
+
   isDefined: function() {
 
     if (this.model.get("top") && this.model.get("left") && this.model.get("height") && this.model.get("width")) return true;

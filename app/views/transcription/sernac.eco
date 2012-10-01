@@ -1,15 +1,18 @@
-<script type="text/template" id="transcriber-widget-template">
+<script type="text/template" id="transcriber-herbarium-widget-template">
+
   <div class="left">
     <div class="input_field">
       <input type="text" placeholder="" />
       <a href="#" class="btn ok">ok</a>
     </div>
   </div>
+
   <div class="right">
     <a href="#" class="skip">Skip this field</a>
     <div class="step"></div>
     <a href="#" class="btn finish">Finish this record</a>
   </div>
+
 </script>
 
 <script type="text/template" id="highlight-template">
@@ -23,7 +26,7 @@
 
 <script type="text/template" id="launcher-template">
   <span>Drag a square around the specimen label</span> 
-  <a href="#" class="example">See example</a>
+  <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>
   <a href="#" class="btn start disabled">Start this record</a>
 </script>
 
@@ -33,24 +36,27 @@
   <div class="date_field"><input type="text" name="year" class="year" placeholder="year" /></div>
 </script>
 
-<script type="text/template" id="tooltip-example-template">
-  <a href="#" class="btn main">{{ main }}</a> 
+<script type="text/template" id="tooltip-template">
+  <strong class="title">{{ title }}</strong>
+  <div class="description">{{{ description }}}</div>
+
+  <div class="buttons">
+    <a href="#" class="btn main">{{ main }}</a> 
+    <a href="#" class="btn secondary">{{ secondary }}</a>
+  </div>
+
   <div class="tip"></div>
 </script>
 
-<script type="text/template" id="tooltip-template">
-  <strong class="title">{{title}}</strong>
-  <div class="description">{{{description}}}</div>
-
-  <a href="#" class="btn main">{{main}}</a> 
-  <a href="#" class="btn secondary">{{secondary}}</a>
+<script type="text/template" id="tooltip-example-template">
+  <div class="buttons"><a href="#" class="btn main">{{ main }}</a></div> 
   <div class="tip"></div>
 </script>
 
 <script type="text/template" id="statusbar-template">
   <div class="left">
-    <h1 class="title">{{title}}</h1>
-    <h3 class="description">{{description}}</h3>
+    <h1 class="title">{{ title }}</h1>
+    <h3 class="description">{{ description }}</h3>
   </div>
   <div class="right">
     <div class="counter">0</div>

@@ -92,4 +92,3 @@ nfn.ui.view.Highlight = nfn.ui.view.Widget.extend({
 
 });
 
-

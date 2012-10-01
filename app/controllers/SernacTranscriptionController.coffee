@@ -12,15 +12,21 @@ class SernacTranscriptionController extends Spine.Controller
     @delay =>
 
       nfn.load "nfn/", ->
-        transcriberModel = new nfn.ui.model.Sernac()
 
-        transcriber = new nfn.ui.view.SernacTranscriber({
+        transcriberModel = new nfn.ui.model.Herbarium()
+
+        transcriber = new nfn.ui.view.HerbariumTranscriber({
           model: transcriberModel
         })
 
-        transcriber.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_01.png")
+        callback = -> 
+          transcriber.spinner.hide()
+          transcriber.startTranscribing()
+
+        transcriber.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_01.png", callback)
 
         window.transcriber = transcriber
+        
 
     , 500
 

@@ -66,11 +66,11 @@
         open: function(event, ui){
 
           var // positioning
-          top  = $(".ui-autocomplete").offset().top + 5,
-          left = $("#autocomplete").parent().offset().left + $("#autocomplete").parent().outerWidth(true) -  $(".ui-autocomplete").outerWidth(true) - 5;
-          console.log(left);
+          top  = $("#autocomplete").parent().offset().top + 40,
+          left = $("#autocomplete").parent().offset().left + $("#autocomplete").parent().outerWidth(true) - $("#autocomplete").parent().css("marginRight").replace("px", "") -  $(".ui-autocomplete").outerWidth(true) - 5;
 
           $(".ui-autocomplete").css({ top: top, left: left });
+
         }
       });
 
@@ -79,10 +79,12 @@
       this.locality = $(this.options.elements.locality);
       this.country  = $(this.options.elements.country);
       this.type     = $(this.options.elements.type);
+
       if (this.options.elements.map) {
         this.mapElement = $(this.options.elements.map);
         this._initMap();
       }
+
     },
 
     _initMap: function() {

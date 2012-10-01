@@ -43,10 +43,31 @@ class DoubleTranscriptionController extends Spine.Controller
       subject: @currentSubject
 
     @delay =>
-      if $("#transcriber").length ==0
-        @transcriptionSubject.transcriber() 
-        $("input[name='species']").on "keyup", @autofillSpecies
+      #if $("#transcriber").length ==0
+        #@transcriptionSubject.transcriber() 
+        #$("input[name='species']").on "keyup", @autofillSpecies
+      
+      nfn.load "nfn/", ->
+
+        transcriberModel = new nfn.ui.model.DoublePage()
+
+        transcriber = new nfn.ui.view.DoublePage({
+          model: transcriberModel
+        })
+
+        callback = ->
+
+          transcriber.spinner.hide -> 
+            transcriber.transcriberWidget.show()
+            transcriber.transcriberWidget.setDraggable(true)
+            transcriber.transcriberWidget.setResizable(true)
+
+        transcriber.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_birds_01.JPG", callback)
+
+        window.transcriber = transcriber
+
     ,200
+
     # # @transcriptionSubject.prepend require("views/transcription/transcriptionBox")
     # #   entityTemplate       : require('views/transcription/entity')
     # #   currentEntityNo      : @currentEntityNo

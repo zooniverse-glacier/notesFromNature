@@ -8,6 +8,16 @@ nfn.ui.view.Widget = nfn.core.View.extend({
     speed: 300
   },
 
+  initialize: function() {
+
+    _.bindAll( this, "toggle", "toggleDraggable", "toggleResizable", "onStopDragging", "onStopResizing" );
+
+    this.model.bind("change:hidden",    this.toggle);
+    this.model.bind("change:draggable", this.toggleDraggable);
+    this.model.bind("change:resizable", this.toggleResizable);
+
+  },
+
   setLeft: function(x, animated) {
 
     var y = this.model.get("top");
@@ -242,9 +252,74 @@ nfn.ui.view.Widget = nfn.core.View.extend({
     callback && callback();
 
     return this;
-  }
+  },
+
+  setResizable: function(resizable) {
+
+    this.model.set("resizable", resizable);
+
+  },
+
+  toggleResizable: function() {
+
+    var that = this;
+
+    if (this.model.get("resizable")) {
+
+      this.$el.resizable({ disabled: false, stop: this.onStopResizing })
+
+    } else {
+
+      this.$el.resizable({ disabled: true });
+      this.$el.find(".ui-resizable-handle").remove(); // remove the handlers
+
+    }
+
+  },
+
+  setDraggable: function(draggable) {
+
+    this.model.set("draggable", draggable);
+
+  },
+
+  toggleDraggable: function() {
+
+    var that = this;
+
+    if (this.model.get("draggable")) {
+
+      if (this.model.get('containment')) {
+
+        this.$el.draggable({ containment: this.model.get("containment"), disabled: false, stop: this.onStopDragging })
+
+      } else {
+
+        this.$el.draggable({ disabled: false, stop: this.onStopDragging })
+
+      }
+
+    } else {
+
+      this.$el.draggable({ disabled: true });
+
+    }
+
+  },
+
+  onStopDragging: function(e, el) {
+
+    this.setPosition(el.position.left, el.position.top);
+
+  },
+
+  onStopResizing: function(e, el) {
+
+    this.setSize(el.size.width, el.size.height);
+
+  },
+
 
 });
-
 
 
