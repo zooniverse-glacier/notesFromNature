@@ -9,7 +9,7 @@
     </div>          
     <div class="box-black-numbers">
         <span class="numbers"><%=@progress%>%</span>
-        <span class="subtitle">Already digitized</span> 
+        <span class="subtitle">Already transcribed</span> 
     </div>          
     <div class="box-black-numbers">
         <span class="numbers">1,312</span>
