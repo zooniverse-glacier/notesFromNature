@@ -1739,6 +1739,27 @@ describe("common.ui.view.DoublePageTranscriber", function() {
 
   });
 
+  it("should hide the step description when the user click the finish button", function() {
+
+
+    transcriber.transcriberWidget.$startButton.click();
+    transcriber.transcriberWidget.$finishButton.click();
+    transcriber.model.set("currentStep", 4);
+
+    waits(350);
+
+    runs(function() {
+      transcriber.transcriberWidget.finishTooltip.$mainButton.click();
+
+      waits(350);
+
+      runs(function() {
+        expect(transcriber.transcriberWidget.$description.text()).toEqual("Drag & resize the viewer to the record you want to transcribe.");
+      });
+
+    });
+
+  });
   it("should reset the step counter when the user click the finish button", function() {
 
 

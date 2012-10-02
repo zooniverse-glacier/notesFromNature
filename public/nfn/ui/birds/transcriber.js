@@ -261,6 +261,8 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
     this.enableMouseWheel();
     this.model.set("currentStep", 0);
     this.nextRecord();
+    this.transcriberWidget.model.set("description", "Drag & resize the viewer to the record you want to transcribe.");
+    this.transcriberWidget.updateDescription();
 
   },
 
