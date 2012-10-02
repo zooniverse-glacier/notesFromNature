@@ -5,11 +5,11 @@
     </div>          
     <div class="box-black-numbers">
         <span class="numbers"><%=@subjects%></span>
-        <span class="subtitle">Specimens in total</span>  
+        <span class="subtitle">Total pecimens</span>  
     </div>          
     <div class="box-black-numbers">
         <span class="numbers"><%=@progress%>%</span>
-        <span class="subtitle">Already digitized</span> 
+        <span class="subtitle">Already transcribed</span> 
     </div>          
     <div class="box-black-numbers">
         <span class="numbers">1,312</span>
