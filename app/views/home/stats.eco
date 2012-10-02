@@ -5,7 +5,7 @@
     </div>          
     <div class="box-black-numbers">
         <span class="numbers"><%=@subjects%></span>
-        <span class="subtitle">Specimens in total</span>  
+        <span class="subtitle">Total pecimens</span>  
     </div>          
     <div class="box-black-numbers">
         <span class="numbers"><%=@progress%>%</span>
