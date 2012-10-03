@@ -761,6 +761,10 @@
 .transcriber.sernac .sernac-widget .left .input_field.date input.year {
   width: 90px;
 }
+
+.transcriber.sernac .sernac-widget .left .input_field input[type="text"]::-webkit-input-placeholder { text-transform: uppercase; }
+.transcriber.sernac .sernac-widget .left .input_field input[type="text"]:-moz-input-placeholder     { text-transform: uppercase; }
+
 .transcriber.sernac .sernac-widget .left .input_field input[type="text"] {
   border: none;
   outline: none;
@@ -768,7 +772,7 @@
   vertical-align: top;
   font: bold 11px "Helvetica",Arial;
   line-height: 13px!important;
-  text-transform: uppercase;
+  text-transform: none;
   height: 13px;
   margin: 0 5px 0 0;
   padding: 9px 8px 9px;
