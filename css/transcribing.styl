@@ -914,9 +914,7 @@ a.btn, .btn {
     }
 
   }
-
 }
-
 
 /* Scroll bars */
 .jspContainer { overflow: hidden; position: relative; }
@@ -928,7 +926,19 @@ a.btn, .btn {
 .jspCap { display: none; }
 .jspHorizontalBar .jspCap { float: left; }
 .jspTrack { position: relative; }
-.jspDrag { background: rgba(0,0,0, 0.4); border: 1px solid rgba(255,255,255, 0.4); position: relative; top: 0; left: 0; cursor: pointer; @include border-radius(8px); }
+.jspDrag { 
+  background: rgba(0,0,0, 0.4);
+  border: 1px solid rgba(255,255,255, 0.4);
+  position: relative;
+  top: 0;
+  left: 0;
+  cursor: pointer; 
+
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+}
 .jspHorizontalBar .jspTrack,
 .jspHorizontalBar .jspDrag { float: left; height: 100%; }
 .jspArrow { text-indent: -20000px; display: block; cursor: pointer; }
@@ -938,9 +948,8 @@ a.btn, .btn {
 .jspVerticalBar .jspArrow:focus { outline: none; }
 .jspCorner { float: left; height: 100%; }
 /* Yuk! CSS Hack for IE6 3 pixel bug :( */
+
 * html .jspCorner { margin: 0 -3px 0 0; }
-
-
 
 /* basic scrollbar styling */
 /* vertical scrollbar */
