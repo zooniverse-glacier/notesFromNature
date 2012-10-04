@@ -482,7 +482,14 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     sernacTranscriber.transcriberWidget.$input.val("Hi!");
     sernacTranscriber.transcriberWidget.$finishButton.click();
 
-    expect(sernacTranscriber.transcriberWidget.$input.val()).toEqual("");
+    waits(350);
+    runs(function() {
+
+      sernacTranscriber.transcriberWidget.finishTooltip.$mainButton.click();
+
+      expect(sernacTranscriber.transcriberWidget.$input.val()).toEqual("");
+    });
+
   });
 
   it("should have a transcriber widget", function() {
@@ -995,6 +1002,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     sernacTranscriber.launcher.$startButton.removeClass("disabled");
     sernacTranscriber.launcher.$startButton.click();
 
+    sernacTranscriber.transcriberWidget.$input.val("Hi!");
     sernacTranscriber.transcriberWidget.$okButton.click();
 
     expect(sernacTranscriber.model.get("currentStep")).toEqual(1);
@@ -1136,7 +1144,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
   });
 
-  it("should hide the magnifier, helper, transcriber and backdrop when the user cliks in the finish button", function() {
+  it("should hide the magnifier, helper, transcriber and backdrop when the user cliks in the finish button of the finish tooltip", function() {
 
     sernacTranscriber.$el.find(".photos").append("<img />");
 
@@ -1147,6 +1155,12 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
     sernacTranscriber.transcriberWidget.$finishButton.click();
 
+    waits(350);
+
+    runs(function() {
+
+    sernacTranscriber.transcriberWidget.finishTooltip.$mainButton.click();
+
     waits(500);
 
     runs(function() {
@@ -1154,6 +1168,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
       expect(sernacTranscriber.helper.model.get("hidden")).toEqual(true);
       expect(sernacTranscriber.magnifier.model.get("hidden")).toEqual(true);
       expect(sernacTranscriber.transcriberWidget.model.get("hidden")).toEqual(true);
+    });
     });
 
   });
@@ -1169,7 +1184,13 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
     sernacTranscriber.transcriberWidget.$finishButton.click();
 
-    expect(sernacTranscriber.model.get("currentRecord")).toEqual(1);
+    waits(350);
+
+    runs(function() {
+      sernacTranscriber.transcriberWidget.finishTooltip.$mainButton.click();
+
+      expect(sernacTranscriber.model.get("currentRecord")).toEqual(1);
+    });
 
   });
 
@@ -2056,7 +2077,7 @@ describe("common.ui.view.BirdsWidget", function() {
 
   it("should fire an event when the user clicks in the finish button", function() {
 
-    var spy = spyOn(widget, 'showFinishTooltip');
+   var spy = spyOn(widget, 'showFinishTooltip');
 
     widget.delegateEvents();
     widget.$finishButton.click();
@@ -2513,10 +2534,33 @@ describe("common.ui.view.HerbariumWidget", function() {
       template: $("#transcriber-herbarium-widget-template").html()
     });
 
+    var Mock = function () {};
+
+    Mock.finish = function() { return true; };
+
+    widget.parent = Mock;
+
   });
 
   afterEach(function() {
     widget.clean();
+  });
+
+  it("should create a finish tooltip when the user cliks in the finish button", function() {
+
+    widget.render();
+
+    waits(250);
+
+    runs(function() {
+      widget.$finishButton.click();
+
+      expect(widget.finishTooltip).toBeDefined();
+      expect(widget.finishTooltip.model.get("hidden")).toEqual(false);
+      expect(widget.finishTooltip.$el.length).toEqual(1);
+
+    });
+
   });
 
   it("should allow to disable the ok button", function() {
@@ -2636,16 +2680,17 @@ describe("common.ui.view.HerbariumWidget", function() {
     expect(spy).toHaveBeenCalled();
   });
 
-  it("should fire an event when the user clicks in the finish button", function() {
+  it("should fire a showFinishTooltip event when the user clicks in the finish button", function() {
 
     widget.render();
 
-    var spy = spyOn(widget, 'finish');
+    var spy = spyOn(widget, 'showFinishTooltip');
 
     widget.delegateEvents();
     widget.$finishButton.click();
 
     expect(spy).toHaveBeenCalled();
+
   });
 
 });

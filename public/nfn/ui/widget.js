@@ -268,6 +268,8 @@ nfn.ui.view.Widget = nfn.core.View.extend({
 
     var that = this;
 
+    console.log(this.model.get("resizable"));
+
     if (this.model.get("resizable")) {
 
       this.$el.resizable({ disabled: false, stop: this.onStopResizing })

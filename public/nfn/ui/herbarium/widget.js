@@ -9,14 +9,14 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
   events: {
 
     "click .btn.ok" :     "ok",
-    "click .btn.finish" : "finish",
+    "click .btn.finish" : "showFinishTooltip",
     "click .skip" :       "showSkipPane"
 
   },
 
   initialize: function() {
 
-    _.bindAll( this, "toggle", "toggleOk", "updatePlaceholder", "updateType", "closeTooltip" );
+    _.bindAll( this, "toggle", "toggleOk", "updatePlaceholder", "updateType", "closeTooltip", "closeFinishTooltip" );
 
     this.template = new nfn.core.Template({
       template: this.options.template
@@ -47,6 +47,19 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     this.model.bind("change:ok_enabled",  this.toggleOk);
 
     this.parent = this.options.parent;
+
+  },
+
+  skip: function(e) {
+
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+    this.closeTooltip();               // TODO: add test
+    this.parent.helper.closeTooltip(); // TODO: add test
+
+    this.clearInput();
+    this.parent.nextStep();
 
   },
 
@@ -128,7 +141,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     this.tooltip.bind("onMainClick",      function() {
 
       that.closeTooltip(function() {
-        that.ok();
+        that.skip();
       })
 
     });
@@ -158,10 +171,87 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
   },
 
+  showFinishTooltip: function(e) {
+
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+    this.closeTooltips();
+
+    if (!this.finishTooltip) this.createFinishTooltip(e);
+
+  },
+
+  closeTooltips: function() {
+
+    //if (this.exampleTooltip) this.closeExampleTooltip();
+    //if (this.skipTooltip)    this.closeSkipTooltip();
+    if (this.finishTooltip)  this.closeFinishTooltip();
+
+  },
+
+  createFinishTooltip: function(e) {
+
+    var
+    title       = "Are you sure?",
+    //description = "There are still <u> " + this.parent.getPendingFieldCount() + " empty fields</u> for this record that should be completed before finishing.",
+    description = "There are still <u> empty fields</u> for this record that should be completed before finishing.",
+    main        = "Finish",
+    secondary   = "Cancel";
+
+    this.finishTooltip = new nfn.ui.view.Tooltip({
+      model: new nfn.ui.model.Tooltip({
+        title: title,
+        description: description,
+        main: main,
+        secondary: secondary
+      })
+
+    });
+
+    this.addView(this.finishTooltip);
+
+    var that = this;
+
+    this.finishTooltip.bind("onEscKey",         this.closeFinishTooltip);
+    this.finishTooltip.bind("onSecondaryClick", this.closeFinishTooltip);
+    this.finishTooltip.bind("onMainClick",      function() {
+
+      that.closeFinishTooltip(function() {
+        that.finish();
+      })
+
+    });
+
+    this.$el.append(this.finishTooltip.render());
+    this.finishTooltip.show();
+
+    var
+    targetWidth   = $(e.target).width()/2,
+    marginRight = parseInt($(e.target).css("margin-right").replace("px", ""), 10),
+    x           = Math.abs(this.$el.offset().left - $(e.target).offset().left) - this.finishTooltip.width() / 2 + targetWidth - marginRight,
+    y           = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.finishTooltip.height() - 40
+
+    this.finishTooltip.setPosition(x, y);
+
+  },
+
+  closeFinishTooltip: function(callback) {
+
+    if (!this.finishTooltip) return;
+
+    this.finishTooltip.hide();
+    this.finishTooltip.clean();
+    delete this.finishTooltip;
+
+    callback && callback();
+
+  },
+
   finish: function(e) {
 
-    e.preventDefault();
-    e.stopImmediatePropagation();
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
 
     this.clearInput();
     this.parent.finish();

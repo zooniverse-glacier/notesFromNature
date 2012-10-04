@@ -117,6 +117,7 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
     this.hideInput();
     this.hideSteps();
     this.model.set("description", "Drag & resize the viewer to the record you want to transcribe.");
+
     this.setResizable(true);
     this.setDraggable(true);
 
@@ -131,7 +132,7 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
 
     this.closeTooltips();
 
-    if (!this.finishTooltip) this.createTooltip(e);
+    if (!this.finishTooltip) this.createFinishTooltip(e);
 
   },
 
@@ -249,7 +250,7 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
 
   },
 
-  createTooltip: function(e) {
+  createFinishTooltip: function(e) {
 
     var
     title       = "Are you sure?",
@@ -457,8 +458,8 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
 
     if (this.parent) this.parent.startTranscribing();
 
-    this.setDraggable(false);
-    this.setResizable(false);
+    //this.setDraggable(false);
+    //this.setResizable(true);
 
     this.hideStartButton();
     this.showSteps();
