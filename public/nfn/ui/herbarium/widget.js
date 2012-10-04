@@ -194,8 +194,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     var
     title       = "Are you sure?",
-    //description = "There are still <u> " + this.parent.getPendingFieldCount() + " empty fields</u> for this record that should be completed before finishing.",
-    description = "There are still <u> empty fields</u> for this record that should be completed before finishing.",
+    description = "There are still <u> " + this.parent.getPendingFieldCount() + " empty fields</u> for this record that should be completed before finishing.",
     main        = "Finish",
     secondary   = "Cancel";
 

@@ -456,6 +456,20 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     sernacTranscriber.clean();
   });
 
+  it("should return the number of fields left to transcribe", function() {
+
+    sernacTranscriber.model.set("currentStep", 0);
+
+    sernacTranscriber.transcriberWidget.$input.val("Hi!");
+    sernacTranscriber.transcriberWidget.$okButton.click();
+
+    sernacTranscriber.transcriberWidget.$input.val("Bye!");
+    sernacTranscriber.transcriberWidget.$okButton.click();
+
+    expect(sernacTranscriber.getPendingFieldCount()).toEqual(6);
+
+  });
+
   it("shouldn't allow to go to the next field when ok is clicked if the input is empty", function() {
 
     sernacTranscriber.model.set("currentStep", 0);

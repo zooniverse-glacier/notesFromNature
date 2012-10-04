@@ -415,6 +415,12 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     });
   },
 
+  getPendingFieldCount: function() {
+
+    return (this.guide.length - this.transcriptions.length);
+
+  },
+
   updateStepCounter: function() {
 
     var currentStep = this.model.get("currentStep") + 1;
