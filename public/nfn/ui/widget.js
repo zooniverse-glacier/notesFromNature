@@ -217,9 +217,13 @@ nfn.ui.view.Widget = nfn.core.View.extend({
     this.model.set("top", y);
 
     if (animated) {
+
       this.$el.animate({ left: x, top: y }, this.defaults.speed );
+
     } else {
+
       this.$el.css({ left: x, top: y });
+
     }
 
   },

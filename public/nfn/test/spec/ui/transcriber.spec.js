@@ -456,6 +456,20 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     sernacTranscriber.clean();
   });
 
+  it("shouldn't allow to go to the next field when ok is clicked if the input is empty", function() {
+
+    sernacTranscriber.model.set("currentStep", 0);
+    sernacTranscriber.$el.find(".photos").append("<img />");
+
+    sernacTranscriber.launcher.$startButton.removeClass("disabled");
+
+    sernacTranscriber.transcriberWidget.$okButton.click();
+
+    expect(sernacTranscriber.transcriptions.length).toEqual(0);
+    expect(sernacTranscriber.model.get("currentStep")).toEqual(0);
+
+  });
+
   it("should clean the input field when the finish button is clicked", function() {
 
     sernacTranscriber.$el.find(".photos").append("<img />");
@@ -2503,6 +2517,28 @@ describe("common.ui.view.HerbariumWidget", function() {
 
   afterEach(function() {
     widget.clean();
+  });
+
+  it("should allow to disable the ok button", function() {
+
+    widget.render();
+
+    widget.disableOk();
+
+    expect(widget.$okButton.hasClass("disabled")).toEqual(true);
+
+  });
+
+  it("should allow to enable the ok button", function() {
+
+    widget.render();
+
+    widget.$okButton.addClass("disabled");
+
+    widget.enableOk();
+
+    expect(widget.$okButton.hasClass("disabled")).toEqual(false);
+
   });
 
   it("should have an ok button", function() {

@@ -922,7 +922,15 @@ a.btn, .btn {
 
   @include box-shadow(0 0 2px 1px rgba(0,0,0, 0.2));
 
-  @include border-radius(3px);
+  -webkit-box-shadow: 0 0 2px 1px rgba(0,0,0, 0.2);
+  -o-box-shadow:      0 0 2px 1px rgba(0,0,0, 0.2);
+  -moz-box-shadow:    0 0 2px 1px rgba(0,0,0, 0.2);
+  box-shadow:         0 0 2px 1px rgba(0,0,0, 0.2);
+
+  -webkit-border-radius: 3px;
+  -moz-border-radius:    3px;
+  -o-border-radius:      3px;
+  border-radius:         3px;
 
   li {
 
@@ -932,7 +940,11 @@ a.btn, .btn {
       padding: 7px;
       outline: none;
       cursor: pointer;
-      @include border-radius(3px);
+
+      -webkit-border-radius: 3px;
+      -moz-border-radius:    3px;
+      -o-border-radius:      3px;
+      border-radius:         3px;
 
       &:hover { background: #f1f1f1; }
     }

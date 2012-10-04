@@ -10,13 +10,13 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     "click .btn.ok" :     "ok",
     "click .btn.finish" : "finish",
-    "click .skip" :          "showSkipPane"
+    "click .skip" :       "showSkipPane"
 
   },
 
   initialize: function() {
 
-    _.bindAll( this, "toggle", "updatePlaceholder", "updateType", "closeTooltip" );
+    _.bindAll( this, "toggle", "toggleOk", "updatePlaceholder", "updateType", "closeTooltip" );
 
     this.template = new nfn.core.Template({
       template: this.options.template
@@ -44,6 +44,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     this.model.bind("change:hidden",      this.toggle);
     this.model.bind("change:placeholder", this.updatePlaceholder);
     this.model.bind("change:type",        this.updateType);
+    this.model.bind("change:ok_enabled",  this.toggleOk);
 
     this.parent = this.options.parent;
 
@@ -54,14 +55,47 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
-    this.parent.saveCurrentStep();
+    if (this.$input.val()) { // don't store or advance when the input field is empty
 
-    this.closeTooltip();               // TODO: add test
-    this.parent.helper.closeTooltip(); // TODO: add test
+      this.parent.saveCurrentStep();
 
-    this.clearInput();
-    this.parent.nextStep();
+      this.closeTooltip();               // TODO: add test
+      this.parent.helper.closeTooltip(); // TODO: add test
 
+      this.clearInput();
+      this.parent.nextStep();
+    }
+
+  },
+
+  toggleOk: function() {
+
+    if (this.model.get("ok_enabled")) {
+
+      this.$okButton.removeClass("disabled");
+
+    } else {
+
+      this.$okButton.addClass("disabled");
+
+    }
+
+  },
+
+  enableOk: function(callback) {
+    this.model.set("ok_enabled", true);
+
+    callback && callback();
+
+    return this;
+  },
+
+  disableOk: function(callback) {
+    this.model.set("ok_enabled", false);
+
+    callback && callback();
+
+    return this;
   },
 
   showSkipPane: function(e) {
