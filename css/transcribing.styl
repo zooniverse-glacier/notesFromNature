@@ -163,20 +163,25 @@
 }
 .transcriber.birds .statusbar,
 .transcriber.sernac .statusbar {
+
+  h1, h3 { margin: 0; }
+
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   min-width: 1024px;
   height: 80px;
-  z-index: 101;
+
   -webkit-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
   -moz-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
+  -o-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
-  background: #222222 url("../images/transcribers/bg.jpg");
+
+  background: #222222 url("../images/transcribers/bg-header.png");
   border-bottom: 1px solid rgba(255, 255, 255, 0.02);
 
-  h1, h3 { margin: 0; }
+  z-index: 101;
 }
 
 .transcriber.birds .statusbar .left,
@@ -887,7 +892,6 @@ a.btn, .btn {
 
 
 .ui-resizable-handle { position: absolute; display: block; }
-
 .ui-resizable-disabled .ui-resizable-handle,
 .ui-resizable-autohide .ui-resizable-handle { display: none; }
 
