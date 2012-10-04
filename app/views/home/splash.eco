@@ -1,14 +1,17 @@
 <div class="box-general home">
-    <div class="col3">
-        <div class="center">          
-            <hgroup>
-            <h3>Transcribe museum records to unlock</h3>
-            <h2> TAKE NOTES FROM<br>NATURE </h2>
-            </hgroup>
-        </div>
-    </div>
-    <div class="species-selector center"> 
 
-        <a href="#/collections"><img src="images/box-view.png" alt="" /></a>
+  <div class="col3">
+    <div class="center">          
+      <hgroup>
+      <h3>Transcribe museum records to unlock</h3>
+      <h2>TAKE NOTES FROM<br>NATURE </h2>
+      </hgroup>
     </div>
-</div>                  
+  </div>
+
+  <a href="#/collections" class="transcribing-launcher"> 
+    START TRANSCRIBING
+  </a>
+
+  <!--<a href="#/collections"><img src="images/box-view.png" alt="" /></a>-->
+</div>
