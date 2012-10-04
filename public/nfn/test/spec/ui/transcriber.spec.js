@@ -456,6 +456,21 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     sernacTranscriber.clean();
   });
 
+  it("should clean the input field when the finish button is clicked", function() {
+
+    sernacTranscriber.$el.find(".photos").append("<img />");
+
+    sernacTranscriber.addSelection();
+    sernacTranscriber.updateSelection(10, 10, 100, 100);
+    sernacTranscriber.selection.$el.css("position", "absolute");
+    sernacTranscriber.launcher.$startButton.removeClass("disabled");
+
+    sernacTranscriber.transcriberWidget.$input.val("Hi!");
+    sernacTranscriber.transcriberWidget.$finishButton.click();
+
+    expect(sernacTranscriber.transcriberWidget.$input.val()).toEqual("");
+  });
+
   it("should have a transcriber widget", function() {
     expect(sernacTranscriber.transcriberWidget).toBeDefined();
   });
@@ -939,6 +954,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     expect(sernacTranscriber.transcriptions.at(0).get("value")).toEqual("Hello");
 
   });
+
 
   it("should clean the input field when the $okButton is clicked", function() {
 
@@ -2010,7 +2026,7 @@ describe("common.ui.view.BirdsWidget", function() {
   });
 
 
-  it("should clear the value of the text input field", function() {
+  it("should allow clearing the value of the text input field", function() {
 
     widget.model.set("type", "text");
     widget.$input.val('hola');
@@ -2018,6 +2034,7 @@ describe("common.ui.view.BirdsWidget", function() {
     expect(widget.getValue()).toEqual("hola");
 
     widget.clearInput();
+
     expect(widget.getValue()).toEqual("");
 
   });

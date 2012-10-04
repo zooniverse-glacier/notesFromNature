@@ -129,6 +129,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     e.preventDefault();
     e.stopImmediatePropagation();
 
+    this.clearInput();
     this.parent.finish();
 
   },

@@ -60,7 +60,7 @@
                 <h3 class="badge">Avian Best Friend Badge</h3>
                 <p class="badge">Get this badge digitalizing more than 500 occ. on any birds collection. Get one level upeach time you do 500 <br/>more! <p> 
                 <img src="images/line-gray.png"> <br/>
-                <span class="badge">6 users have this</span> 
+                <!--<span class="badge">6 users have this</span> -->
             </div>
         </div>
         <div class="col1 omega">  
@@ -69,7 +69,7 @@
                 <h3 class="badge">Globe trotter</h3>
                 <p class="badge">Did you found species in more than 60 countries? You deserve this. Get the “Pro level” once you get all the countries around the world.<p>
                 <img src="images/line-gray.png"> <br/>
-                <span class="badge">6 users have this</span> 
+                <!--<span class="badge">6 users have this</span> -->
             </div>
         </div>
         <div class="col1">  
@@ -78,7 +78,7 @@
                 <h3 class="badge">Forum champion</h3>
                 <p class="badge">Are you a personality on forums about this collection? You deserve this. Gain a level each time you get a different collection.<p>
                 <img src="images/line-gray.png"> <br/>
-                <span class="badge">you and 6 users more have this</span> 
+                <!--<span class="badge">you and 6 users more have this</span> -->
             </div>    
         </div>
 
