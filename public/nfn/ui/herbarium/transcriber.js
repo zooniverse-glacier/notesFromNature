@@ -40,7 +40,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
         description: 'A place name, in the second line. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
         placeholder: 'Location',
         type: "location",
-        inputWidth: 580
+        inputWidth: 540
       }, {
         title: 'Collection date ',
         description: 'A date in the third line. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
