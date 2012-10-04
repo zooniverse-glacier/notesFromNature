@@ -1,9 +1,7 @@
 .transcriber.birds,
 .transcriber.sernac {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
+  top: 0; bottom: 0; right: 0;
   left: 0;
   overflow: hidden;
   background: url("../images/transcribers/bg-transcriber.png");
@@ -781,21 +779,25 @@
   width: 90px;
 }
 
-.transcriber.sernac .sernac-widget .left .input_field input[type="text"]::-webkit-input-placeholder { text-transform: uppercase; }
-.transcriber.sernac .sernac-widget .left .input_field input[type="text"]:-moz-input-placeholder     { text-transform: uppercase; }
+.transcriber.sernac .sernac-widget .left .input_field input[type="text"]::-webkit-input-placeholder { line-height: 15px; text-transform: uppercase; }
+.transcriber.sernac .sernac-widget .left .input_field input[type="text"]:-moz-input-placeholder     { line-height: 15px; text-transform: uppercase; }
 
 .transcriber.sernac .sernac-widget .left .input_field input[type="text"] {
-  border: none;
-  outline: none;
-  color: #666;
-  vertical-align: top;
-  font: bold 11px "Helvetica",Arial;
-  line-height: 13px!important;
-  text-transform: none;
   height: 13px;
   margin: 0 5px 0 0;
   padding: 9px 8px 9px;
+
+  font: 13px "Helvetica", Arial;
+  font-weight:bold;
+  line-height: 13px!important;
+  text-transform: none;
+  vertical-align: top;
+
   background: none;
+  color: #666;
+
+  border: none;
+  outline: none;
 }
 .transcriber.sernac .sernac-widget .left .input_field .btn.ok {
   position: absolute;
