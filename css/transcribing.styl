@@ -260,8 +260,25 @@
 .transcriber.sernac .photos.selectable img {
   cursor: crosshair;
 }
-.transcriber.birds .photos img,
+
+
 .transcriber.sernac .photos img {
+  display: none;
+  margin: 120px auto 20px auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-box-shadow: 1px 1px 9px rgba(0,0,0,.7);
+  -moz-box-shadow:    1px 1px 9px rgba(0,0,0,.7);
+  -o-box-shadow:      1px 1px 9px rgba(0,0,0,.7);
+  box-shadow:         1px 1px 9px rgba(0,0,0,.7);
+}
+
+.transcriber.birds .photos img {
   display: none;
   margin: 120px auto 20px auto;
   -webkit-touch-callout: none;
@@ -275,6 +292,7 @@
   -moz-box-shadow: 0 0 15px 13px rgba(0, 0, 0, 0.7);
   box-shadow: 0 0 15px 13px rgba(0, 0, 0, 0.7);
 }
+
 .transcriber.birds .bar,
 .transcriber.sernac .bar {
   display: none;
@@ -658,7 +676,6 @@
 }
 .transcriber.sernac .launcher > a.example {
   position: relative;
-  top: 7px;
   margin: 0 0 0 10px;
   padding: 0 0 0 0;
   border-bottom: 1px solid #ccc;
@@ -669,9 +686,12 @@
 .transcriber.sernac .launcher > a.example:hover {
   border-bottom: 1px dashed #fff;
 }
+
+.transcriber.sernac .launcher > a.example, 
+.transcriber.sernac .launcher span { top: 4px; }
+
 .transcriber.sernac .launcher span {
   position: relative;
-  top: 7px;
   font: 13px "Helvetica";
   color: white;
 }
@@ -863,9 +883,9 @@ a.btn, .btn {
   background: #6EB422;
 }
 .btn.disabled, .btn.disabled:active {
-  opacity: 0.5;
+  opacity: 0.6;
   padding: 6px 13px 7px;
-  background: #669933;
+  background: #537c2a;
 }
 .btn.disabled:hover, .btn.disabled:active:hover {
   background: #669933;
