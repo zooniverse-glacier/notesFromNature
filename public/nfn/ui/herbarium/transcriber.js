@@ -152,7 +152,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
       model: new nfn.ui.model.StatusBar({
         title: "Herbarium Collection",
-        description: "from The Natural History Museum of London"
+        description: "from SERNEC"
       }),
 
       template: $("#statusbar-template").html(),
