@@ -176,98 +176,126 @@
 .transcriber.sernac .tooltip .btn.secondary:hover {
   background: #fff;
 }
-.transcriber.birds .statusbar,
-.transcriber.sernac .statusbar {
 
-  h1, h3 { margin: 0; }
+/* STATUSBAR */
+.transcriber.birds, .transcriber.sernac { 
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-width: 1024px;
-  height: 80px;
+  .statusbar {
 
-  -webkit-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
-  -o-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 1024px;
+    height: 80px;
+    -webkit-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
+    -o-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
+    background: #222222 url("../images/transcribers/bg-header.png");
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    z-index: 101;
 
-  background: #222222 url("../images/transcribers/bg-header.png");
-  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    .left {
+      float: left;
+      height: 60px;
+      margin: 0;
+      padding: 20px 0 0 24px;
+    }
 
-  z-index: 101;
+    .right {
+
+      position:absolute;
+      right: 0;
+      top: 0;
+
+      clear:both;
+      overflow:hidden;
+
+      .separator {
+        position:relative;
+        height:80px;
+        width:1px;
+        &::before { position:absolute; top:0; left:1px; height:80px; width:1px; content: ''; border-left: 1px solid rgba(255,255,255,0.1); }
+        &::after  { position:absolute; top:0; left:0; height:80px; width:1px; content: ''; border-left: 1px solid black; }
+      }
+
+      .separator, .off, .count {
+        float:left;
+        margin: 0 5px 0 0;
+      }
+
+      .off {
+        width: 50px;
+        text-align: center;
+
+        a {
+        
+        margin: 30px auto;
+        display:block;
+        background: url(../images/btn-off.png) no-repeat;
+        border:none;
+        width: 21px;
+        height: 23px;
+        padding:0;
+        }
+
+      }
+
+      .count {
+
+        padding-right: 10px;
+        margin: 15px 10px 0 10px;
+
+        .counter {
+          float:left;
+          font:bold 38px "Open Sans";
+          color:white;
+          font-weight:800;
+          margin: 0 5px 0 0;
+        }
+
+        strong {
+          float:left;
+          width: 50px;
+          line-height: 15px!Important;
+          margin: 11px 0 0 0;
+
+          font:bold 12px "Open Sans";
+          color:white; font-weight:800;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    h1, h3 { margin: 0; font-family: "Open Sans", sans-serif; }
+    h1 { font-weight:bold; font-size: 17px; color: white; font-weight: 800; text-transform: uppercase; }
+    h3 { font-weight: normal; font-size: 13px; color: #999; } 
+
+    .counter {
+    display:inline-block;
+    margin: 0 7px 0 0;
+      font: bold 38px "Open Sans";
+      color: white;
+      font-weight: 800;
+    }
+
+    strong {
+    display:inline-block;
+      width: 50px;
+      margin: 0 10px 0 0;
+      line-height: 0;
+      line-height: 15px!important;
+      font: bold 12px "Open Sans";
+      color: white;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+  }
 }
 
-.transcriber.birds .statusbar .left,
-.transcriber.sernac .statusbar .left {
-  float: left;
-  height: 60px;
-  margin: 0;
-  padding: 20px 0 0 24px;
-}
-.transcriber.birds .statusbar .right,
-.transcriber.sernac .statusbar .right {
-  position: relative;
-  float: right;
-  height: 55px;
-  width: 90px;
-  padding: 25px 24px 0 24px;
-}
-.transcriber.birds .statusbar .right::before,
-.transcriber.sernac .statusbar .right::before {
-  position: absolute;
-  top: 0;
-  left: 1px;
-  height: 80px;
-  width: 1px;
-  content: '';
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-}
-.transcriber.birds .statusbar .right::after,
-.transcriber.sernac .statusbar .right::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 80px;
-  width: 1px;
-  content: '';
-  border-left: 1px solid black;
-}
-.transcriber.birds .statusbar h1,
-.transcriber.sernac .statusbar h1 {
-  font: bold 17px "Open Sans";
-  color: white;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-.transcriber.birds .statusbar h3,
-.transcriber.sernac .statusbar h3 {
-  font: normal 13px "Open Sans";
-  color: #999;
-}
-.transcriber.birds .statusbar .counter,
-.transcriber.sernac .statusbar .counter {
-  position: absolute;
-  top: 10px;
-  font: bold 38px "Open Sans";
-  color: white;
-  font-weight: 800;
-}
-.transcriber.birds .statusbar strong,
-.transcriber.sernac .statusbar strong {
-  float: left;
-  width: 50px;
-  line-height: 0;
-  position: absolute;
-  top: 23px;
-  left: 55px;
-  line-height: 15px!important;
-  font: bold 12px "Open Sans";
-  color: white;
-  font-weight: 800;
-  text-transform: uppercase;
-}
+
+
 .transcriber.birds .photos,
 .transcriber.sernac .photos {
   margin: auto;

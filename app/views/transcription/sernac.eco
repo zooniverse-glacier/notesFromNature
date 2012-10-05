@@ -59,7 +59,20 @@
     <h3 class="description">{{ description }}</h3>
   </div>
   <div class="right">
-    <div class="counter">0</div>
-    <strong>Records done</strong>
+
+    <div class="separator"></div>
+
+    <div class="count">
+      <div class="counter">0</div>
+      <strong>Records done</strong>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="off">
+      <a href="#" class="btn close"></a>
+    </div>
+
+
   </div>
 </script>
