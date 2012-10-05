@@ -31,12 +31,18 @@
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
   -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
   box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
-  z-index: 10010;
+
+  z-index: 1001;
 }
 .transcriber.birds .tooltip img,
 .transcriber.sernac .tooltip img {
   margin: 0 0 3px 0;
   display: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+
 }
 .transcriber.birds .tooltip.tooltip.example,
 .transcriber.sernac .tooltip.tooltip.example {
@@ -56,8 +62,8 @@
 }
 .transcriber.birds .tooltip.with-spinner,
 .transcriber.sernac .tooltip.with-spinner {
-  width: 200px;
-  height: 160px;
+  width: 369px;
+  height: 203px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -65,24 +71,24 @@
 .transcriber.birds .tooltip.with-spinner img,
 .transcriber.sernac .tooltip.with-spinner img {
   position: absolute;
-  top: 10px;
-  width: 180px;
-  height: 100px;
-  margin-left: -90px;
-  left: 50%;
+  width: auto;
+  height: auto;
+  left: 5px;
+  top: 5px;
+
+  border: 1px solid #838383;
 }
 .transcriber.birds .tooltip.with-spinner .btn,
 .transcriber.sernac .tooltip.with-spinner .btn {
   position: absolute;
-  bottom: 10px;
-  left: 50%;
+  bottom: 15px;
+  right: 15px;
   width: 80px;
-  margin-left: -40px;
 }
 .transcriber.birds .tooltip.with-spinner .loader,
 .transcriber.sernac .tooltip.with-spinner .loader {
-  top: 30px;
-  margin-top: 0;
+  top: 50%;
+  margin-top: -34px;
 }
 .transcriber.birds .tooltip .loader,
 .transcriber.sernac .tooltip .loader {
@@ -96,6 +102,17 @@
   -moz-box-shadow: none;
   box-shadow: none;
 }
+.transcriber.birds .tooltip.upsidedown .tip,
+.transcriber.sernac .tooltip.upsidedown .tip {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  margin-left: -6px;
+  width: 13px;
+  height: 6px;
+  background: url(../images/transcribers/tooltip-tip-top.png) no-repeat;
+}
+
 .transcriber.birds .tooltip .tip,
 .transcriber.sernac .tooltip .tip {
   position: absolute;
@@ -330,12 +347,11 @@
   bottom: 0;
   opacity: .5;
   //filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
-  z-index: 1000;
+  z-index: 999;
 }
 .transcriber.birds .loader,
 .transcriber.sernac .loader {
   position: absolute;
-  z-index: 2000;
   display: none;
   top: 50%;
   left: 50%;
@@ -354,7 +370,9 @@
   -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
+  z-index: 2000;
 }
+
 .transcriber.birds .loader .spinner,
 .transcriber.sernac .loader .spinner {
   top: 20px;
@@ -832,7 +850,7 @@
   -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
-  z-index: 1001;
+  z-index: 1000;
 }
 .transcriber.sernac .magnifier.hollow {
   background: rgba(255, 103, 1, 0.15);

@@ -33,51 +33,51 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
     this.guide = [
       {
         title: 'Code' ,
-        description: 'It\'s a 4 digit number located at the top right of the page. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a> | <a href="#" class="skip">Skip field</a>',
+        description: 'It\'s a 4 digit number located at the top right of the page. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a> | <a href="#" class="skip">Skip field</a>',
         placeholder: 'Code',
         type: "text",
         inputWidth: 180
       }, {
         title: 'Species',
-        description: '2 or 3 latin words in the first line, next to the margin. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a> | <a href="#" class="skip">Skip field</a>',
+        description: '2 or 3 latin words in the first line, next to the margin. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a> | <a href="#" class="skip">Skip field</a>',
         placeholder: 'Species',
         type: "text",
         inputWidth: 180
       }, {
         title: 'Location',
-        description: 'A place name, in the second line. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a> | <a href="#" class="skip">Skip field</a>',
+        description: 'A place name, in the second line. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a> | <a href="#" class="skip">Skip field</a>',
         placeholder: 'Location',
         type: "location",
         inputWidth: 240,
         position: {  x: 1000 }
       }, {
         title: 'Collection date ',
-        description: 'A date in the third line. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a> | <a href="#" class="skip">Skip field</a>',
+        description: 'A date in the third line. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a> | <a href="#" class="skip">Skip field</a>',
         placeholder: 'COLLECTION DATE. ex. Aug 1982',
         type: "text",
         inputWidth: 270,
         position: { x: 0 }
       }, {
         title: 'Collector',
-        description: 'A person name in the same line than the date. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a> | <a href="#" class="skip">Skip field</a>',
+        description: 'A person name in the same line than the date. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a> | <a href="#" class="skip">Skip field</a>',
         placeholder: 'Collector',
         type: "text",
         inputWidth: 140
       }, {
         title: 'Transferrer',
-        description: 'A person name at the top right of the record. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a> | <a href="#" class="skip">Skip field</a>',
+        description: 'A person name at the top right of the record. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a> | <a href="#" class="skip">Skip field</a>',
         placeholder: 'Transferrer',
         type: "text",
         inputWidth: 180
       }, {
         title: 'Transfer date',
-        description: 'A date under the transferrer. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a> | <a href="#" class="skip">Skip field</a>',
+        description: 'A date under the transferrer. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a> | <a href="#" class="skip">Skip field</a>',
         placeholder: 'TRANSFER DATE. ex. Nov 2002',
         type: "text",
         inputWidth: 240
       }, {
         title: 'Additional information',
-        description: 'Can you detect this information?. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a> | <a href="#" class="skip">Skip field</a>',
+        description: 'Can you detect this information?. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a> | <a href="#" class="skip">Skip field</a>',
         placeholder: ['gender', 'age', 'register'],
         type: "extra",
         inputWidth: 390

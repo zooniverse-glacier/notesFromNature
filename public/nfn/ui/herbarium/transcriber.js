@@ -25,49 +25,49 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     this.guide = [
       {
         title: 'Record code' ,
-        description: 'It\'s a 4 digit number located at the top right of the page. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
+        description: 'It\'s a 4 digit number located at the top right of the page. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a>',
         placeholder: 'Code',
         type: "text",
         inputWidth: 540
       }, {
         title: 'Genus & species',
-        description: '2 or 3 latin words in the first line, next to the margin. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
+        description: '2 or 3 latin words in the first line, next to the margin. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a>',
         placeholder: 'Species',
         type: "text",
         inputWidth: 540
       }, {
         title: 'Collection location',
-        description: 'A place name, in the second line. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
+        description: 'A place name, in the second line. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a>',
         placeholder: 'Location',
         type: "location",
         inputWidth: 540
       }, {
         title: 'Collection date ',
-        description: 'A date in the third line. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
+        description: 'A date in the third line. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a>',
         placeholder: ['day', 'month', 'year'],
         type: "date",
         inputWidth: 700
       }, {
         title: 'Collector',
-        description: 'A person name in the same line than the date. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
+        description: 'A person name in the same line than the date. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a>',
         placeholder: 'Collector',
         type: "text",
         inputWidth: 540
       }, {
         title: 'Transferrer',
-        description: 'A person name at the top right of the record. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
+        description: 'A person name at the top right of the record. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a>',
         placeholder: 'Transferer',
         type: "text",
         inputWidth: 540
       }, {
         title: 'Transfer date',
-        description: 'A date under the transferrer. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
+        description: 'A date under the transferrer. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a>',
         placeholder: 'Transfer date',
         type: "text",
         inputWidth: 540
       }, {
         title: 'Additional information',
-        description: 'Can you detect this information?. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
+        description: 'Can you detect this information?. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a>',
         placeholder: 'Other',
         type: "text",
         inputWidth: 540

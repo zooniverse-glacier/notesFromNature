@@ -1,206 +1,170 @@
 /*
-* common.ui.view.DoubleTranscriber
+* common.ui.view.Widget
 *
 */
-describe("common.ui.view.DoubleTranscriber", function() {
-
-  var transcriber;
-
-  beforeEach(function() {
-
-    transcriber = new nfn.ui.view.DoublePage({
-      model: new nfn.ui.model.DoublePage(),
-      widgetTemplate: '<a href="#" class="button save">Save</a>'
-    });
-
-  });
-
-  afterEach(function() {
-
-    transcriber.clean();
-
-  });
-
-  it("should have a widget", function() {
-    expect(transcriber.widget).toBeTruthy();
-  });
-
-  it("should create a widget on start", function() {
-
-    var $widget = $(transcriber.widget.$el);
-    expect($widget.length).toEqual(1);
-
-  });
-
-
-});
-
-/*
- * common.ui.view.Widget
- *
- */
 describe("common.ui.view.Widget", function() {
 
-  var transcriber;
+  var widget;
 
   beforeEach(function() {
 
-    transcriber = new nfn.ui.view.DoublePage({
-      model: new nfn.ui.model.DoublePage(),
-      widgetTemplate: '<a href="#" class="button save">Save</a>'
+    widget = new nfn.ui.view.Widget({
+      model: new nfn.ui.model.Widget()
     });
 
   });
 
   afterEach(function() {
 
-    transcriber.clean();
+    widget.clean();
 
-  });
-
-  it("should have a reference to the transcriber", function() {
-    expect(transcriber.widget.parent).toEqual(transcriber);
   });
 
   it("should allow to show the widget", function() {
 
-    var $widget = $(transcriber.widget.$el);
-    transcriber.widget.show();
-    expect(transcriber.widget.model.get("hidden")).toEqual(false);
+    widget.show();
+    expect(widget.model.get("hidden")).toEqual(false);
 
   });
 
   it("should allow to hide the widget", function() {
 
-    var $widget = $(transcriber.widget.$el);
-    transcriber.widget.hide();
-    expect(transcriber.widget.model.get("hidden")).toEqual(true);
+    widget.hide();
+    expect(widget.model.get("hidden")).toEqual(true);
+
+  });
+
+  it("should allow to set the position of the magnifier", function() {
+
+    widget.setPosition(300, 200);
+    widget.$el.css("position", "absolute");
+
+    expect(widget.$el.css("left")).toEqual("300px");
+    expect(widget.$el.css("top")).toEqual("200px");
+
+  });
+
+  it("should return the width of the widget", function() {
+
+    widget.$el.css("width", 50);
+    expect(widget.width()).toEqual(50);
+
+    widget.setSize(200, 100);
+    expect(widget.width()).toEqual(200);
+
+  });
+
+  it("should return the height of the widget", function() {
+
+    widget.$el.css("height", 50);
+    expect(widget.height()).toEqual(50);
+
+    widget.setSize(100, 500);
+    expect(widget.height()).toEqual(500);
+
+  });
+
+  it("should allow to set the top position of the widget", function() {
+
+    widget.setPosition(100, 200);
+    widget.setTop(500);
+
+    expect(widget.$el.css("top")).toEqual("500px");
+    expect(widget.$el.css("left")).toEqual("100px");
+    expect(widget.getPosition()).toEqual({ y: 500, x: 100 });
+
+  });
+
+  it("should allow to set the left position of the widget", function() {
+
+    widget.setPosition(100, 200);
+    widget.setLeft(500);
+
+    expect(widget.$el.css("top")).toEqual("200px");
+    expect(widget.$el.css("left")).toEqual("500px");
+    expect(widget.getPosition()).toEqual({ x: 500, y: 200 });
+
+  });
+
+  it("should allow to set the height of the widget", function() {
+
+    widget.setSize(100, 200);
+    widget.setHeight(500);
+
+    expect(widget.$el.css("width")).toEqual("100px");
+    expect(widget.$el.css("height")).toEqual("500px");
+    expect(widget.getSize()).toEqual({ w: 100, h: 500 });
+
+  });
+
+  it("should allow to set the width of the widget", function() {
+
+    widget.setSize(100, 200);
+    widget.setWidth(300);
+
+    expect(widget.$el.css("width")).toEqual("300px");
+    expect(widget.$el.css("height")).toEqual("200px");
+    expect(widget.getSize()).toEqual({ w: 300, h: 200 });
 
   });
 
   it("should allow to resize the widget", function() {
 
-    var $widget = $(transcriber.widget.$el);
-    transcriber.widget.setSize(100, 200);
+    widget.setSize(100, 200);
 
-    expect(transcriber.widget.$el.css("width")).toEqual("100px");
-    expect(transcriber.widget.$el.css("height")).toEqual("200px");
-    expect(transcriber.widget.getSize()).toEqual({ w: 100, h: 200 });
+    expect(widget.$el.css("width")).toEqual("100px");
+    expect(widget.$el.css("height")).toEqual("200px");
+    expect(widget.getSize()).toEqual({ w: 100, h: 200 });
+
+  });
+
+  it("should allow to resize the widget", function() {
+
+    widget.setSize(100, 200);
+
+    expect(widget.$el.css("width")).toEqual("100px");
+    expect(widget.$el.css("height")).toEqual("200px");
+    expect(widget.getSize()).toEqual({ w: 100, h: 200 });
 
   });
 
   it("should allow to enable/disable the resizable status of the widget", function() {
 
-    transcriber.widget.setResizable(true);
-    expect(transcriber.widget.model.get("resizable")).toEqual(true);
-    expect(transcriber.widget.$el.hasClass("ui-resizable")).toEqual(true);
-    expect(transcriber.widget.$el.hasClass("ui-resizable-disabled")).toEqual(false);
+    widget.setResizable(true);
 
-    transcriber.widget.setResizable(false);
-    expect(transcriber.widget.model.get("resizable")).toEqual(false);
-    expect(transcriber.widget.$el.hasClass("ui-resizable")).toEqual(true);
-    expect(transcriber.widget.$el.hasClass("ui-resizable-disabled")).toEqual(true);
+    expect(widget.model.get("resizable")).toEqual(true);
+    expect(widget.$el.hasClass("ui-resizable")).toEqual(true);
+    expect(widget.$el.hasClass("ui-resizable-disabled")).toEqual(false);
+
+    widget.setResizable(false);
+    expect(widget.model.get("resizable")).toEqual(false);
+    expect(widget.$el.hasClass("ui-resizable")).toEqual(true);
+    expect(widget.$el.hasClass("ui-resizable-disabled")).toEqual(true);
 
   });
 
   it("should remove the handler when the widget is not resizable", function() {
 
-    transcriber.widget.setResizable(true);
-    transcriber.widget.setResizable(false);
-    expect(transcriber.widget.$el.find(".ui-resizable-handle").length).toEqual(0);
+    widget.setResizable(true);
+    widget.setResizable(false);
+    expect(widget.$el.find(".ui-resizable-handle").length).toEqual(0);
 
   });
 
   it("should allow to enable/disable the dragging of the widget", function() {
 
-    transcriber.widget.setDraggable(true);
-    expect(transcriber.widget.model.get("draggable")).toEqual(true);
-    expect(transcriber.widget.$el.hasClass("ui-draggable")).toEqual(true);
-    expect(transcriber.widget.$el.hasClass("ui-draggable-disabled")).toEqual(false);
+    widget.setDraggable(true);
 
-    transcriber.widget.setDraggable(false);
-    expect(transcriber.widget.model.get("draggable")).toEqual(false);
-    expect(transcriber.widget.$el.hasClass("ui-draggable")).toEqual(true);
-    expect(transcriber.widget.$el.hasClass("ui-draggable-disabled")).toEqual(true);
+    expect(widget.model.get("draggable")).toEqual(true);
+    expect(widget.$el.hasClass("ui-draggable")).toEqual(true);
+    expect(widget.$el.hasClass("ui-draggable-disabled")).toEqual(false);
 
-  });
+    widget.setDraggable(false);
 
-  it("should allow to set the position of the widget", function() {
-
-    transcriber.widget.setPosition(300, 200);
-    transcriber.widget.$el.css("position", "absolute");
-
-    expect(transcriber.widget.$el.css("left")).toEqual("300px");
-    expect(transcriber.widget.$el.css("top")).toEqual("200px");
-
-  });
-
-  it("should return the position of the widget", function() {
-
-    transcriber.widget.setPosition(100, 50);
-    transcriber.widget.$el.css("position", "absolute");
-
-    expect(transcriber.widget.getPosition()).toEqual({ x: 100, y: 50 });
-
-  });
-
-  it("should return the dimensions and the position of the widget", function() {
-
-    transcriber.widget.setPosition(100, 50);
-    transcriber.widget.setSize(100, 200);
-    transcriber.widget.$el.css("position", "absolute");
-
-    expect(transcriber.widget.getCurrentStatus()).toEqual({ x: 100, y: 50, w: 100, h: 200 });
-
-  });
-
-  it("should have a button to save a transcription", function() {
-
-    var $button = transcriber.widget.$el.find(".button.save");
-
-    expect($button.length).toEqual(1);
-
-  });
-
-  it("should have a widget.$saveButton", function() {
-
-    expect(transcriber.widget.$saveButton).toEqual(transcriber.widget.$el.find(".button.save"));
-
-  });
-
-  it("should fire a save event when the user clicks the save button", function() {
-
-    var saveSpy = spyOn(transcriber.widget, 'save');
-
-    transcriber.widget.delegateEvents();
-
-    transcriber.widget.$saveButton.click();
-
-    expect(saveSpy).toHaveBeenCalled();
-
-  });
-
-  it("should create a new transcription when the user clicks the save button", function() {
-
-    transcriber.widget.$saveButton.click();
-    transcriber.widget.$saveButton.click();
-    transcriber.widget.$saveButton.click();
-
-    expect(transcriber.transcriptions.length).toEqual(3);
-
-  });
-
-  it("[a transcription] should contains the transcription status", function() {
-
-    transcriber.widget.$el.css("position", "absolute");
-
-    transcriber.widget.setPosition(200, 100);
-    transcriber.widget.setSize(300, 500);
-    transcriber.widget.$saveButton.click();
-
-    expect(transcriber.transcriptions.at(0).toJSON()).toEqual({ x: 200, y: 100, w: 300, h: 500 });
+    expect(widget.model.get("draggable")).toEqual(false);
+    expect(widget.$el.hasClass("ui-draggable")).toEqual(true);
+    expect(widget.$el.hasClass("ui-draggable-disabled")).toEqual(true);
 
   });
 
 });
-

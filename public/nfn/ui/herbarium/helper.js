@@ -66,12 +66,14 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 
   createTooltip: function(e) {
 
-    var main = "Close";
-    var url = this.$el.find(".example").attr("data-src")
+    var
+    that = this,
+    main = "Close",
+    url  = this.$el.find(".example").attr("data-src");
 
     this.tooltip = new nfn.ui.view.Tooltip({
 
-      className: "tooltip with-spinner",
+      className: "tooltip with-spinner upsidedown",
 
       model: new nfn.ui.model.Tooltip({
         main: main,
@@ -83,18 +85,17 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 
     this.addView(this.tooltip);
 
-    var that = this;
-
     this.tooltip.bind("onMainClick", this.closeTooltip);
     this.tooltip.bind("onEscKey", this.closeTooltip);
 
     this.$el.append(this.tooltip.render());
+
     this.tooltip.show();
 
     var
     linkWidth   = $(e.target).width()/2,
     x           = Math.abs(this.$el.offset().left - this.$exampleLink.offset().left) - this.tooltip.width() / 2 + linkWidth - 10,
-    y           = Math.abs(this.$el.offset().top  - this.$exampleLink.offset().top)  - this.tooltip.height() - 40
+    y           = Math.abs(this.$el.offset().top  - this.$exampleLink.offset().top) + 30;
 
     this.tooltip.setPosition(x, y);
 

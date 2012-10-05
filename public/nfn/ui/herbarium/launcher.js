@@ -11,7 +11,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
   events: {
 
     "click .btn.start" : "start",
-    "click .example"      : "showExample"
+    "click .example"   : "showExample"
 
   },
 
@@ -100,7 +100,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
     this.tooltip = new nfn.ui.view.Tooltip({
 
-      className: "tooltip example",
+      className: "tooltip with-spinner",
 
       model: new nfn.ui.model.Tooltip({
         main: main,

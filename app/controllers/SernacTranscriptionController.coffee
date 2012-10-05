@@ -13,6 +13,12 @@ class SernacTranscriptionController extends Spine.Controller
 
       nfn.load "nfn/", ->
 
+        GOD = new nfn.ui.view.GOD({
+          model: new nfn.ui.model.GOD()
+        })
+
+        window.GOD = GOD
+
         transcriberModel = new nfn.ui.model.Herbarium()
 
         transcriber = new nfn.ui.view.HerbariumTranscriber({

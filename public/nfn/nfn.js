@@ -39,6 +39,8 @@
     'core/template.js',
     'core/view.js',
 
+    'core/god.js',
+
     // UI
     'ui/widget.js',
     'ui/spinner.js',
