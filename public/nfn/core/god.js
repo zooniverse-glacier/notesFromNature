@@ -19,14 +19,22 @@ nfn.ui.view.GOD = nfn.core.View.extend({
 
   },*/
 
-  s: function() {
+  triggerCallbacks: function() {
 
-    this.items.each(function(item) {
+    for (var i = 0; i<= this.items.length - 1; i++) {
 
-      item.callback && item.callback();
-      delete item;
+      var item = this.items[i];
 
-    });
+      try {
+
+        item.callback && item.callback();
+
+      } catch (e) { }
+
+    }
+
+    this.items = [];
+
   },
 
   add: function(item, callback) {
@@ -36,6 +44,14 @@ nfn.ui.view.GOD = nfn.core.View.extend({
   },
 
   initialize: function() {
+
+    var that = this;
+
+    $(document).on("click", function(e) {
+
+      that.triggerCallbacks();
+
+    });
 
     this.items = [];
 

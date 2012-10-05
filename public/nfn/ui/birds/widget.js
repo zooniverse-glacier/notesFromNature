@@ -210,6 +210,8 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
 
     this.skipTooltip.setPosition(x, y);
 
+    GOD.add(this.skipTooltip, this.closeSkipTooltip);
+
   },
 
   createExampleTooltip: function(e) {
@@ -247,6 +249,8 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
     y           = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.exampleTooltip.height() - 40
 
     this.exampleTooltip.setPosition(x, y);
+
+    GOD.add(this.exampleTooltip, this.closeExampleTooltip);
 
   },
 
@@ -292,6 +296,8 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
     y           = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.finishTooltip.height() - 40
 
     this.finishTooltip.setPosition(x, y);
+
+    GOD.add(this.finishTooltip, this.closeFinishTooltip);
 
   },
 

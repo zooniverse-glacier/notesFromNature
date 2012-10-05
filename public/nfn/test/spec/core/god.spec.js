@@ -39,7 +39,7 @@ describe("common.ui.view.GOD", function() {
 
   });
 
-  it("should allow to add a new tooltip to the collection", function() {
+  it("should allow to add a new view to the collection", function() {
 
     var tooltip2 = new nfn.ui.view.Tooltip({
       model: new nfn.ui.model.Tooltip(),
@@ -52,6 +52,24 @@ describe("common.ui.view.GOD", function() {
     GOD.add(tooltip2, callback);
 
     expect(GOD.items.length).toEqual(2);
+
+  });
+
+  it("should allow to trigger the callbacks", function() {
+
+    var tooltip2 = new nfn.ui.view.Tooltip({
+      model: new nfn.ui.model.Tooltip(),
+      template: $("#tooltip-template").html()
+    });
+
+    var callback = function() { return true; };
+
+    GOD.add(tooltip, callback);
+    GOD.add(tooltip2, callback);
+
+    GOD.triggerCallbacks();
+
+    expect(GOD.items.length).toEqual(0);
 
   });
 

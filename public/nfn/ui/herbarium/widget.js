@@ -156,6 +156,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     y           = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.tooltip.height() - 40
 
     this.tooltip.setPosition(x, y);
+    GOD.add(this.tooltip, this.closeTooltip);
 
   },
 
@@ -232,6 +233,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     y           = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.finishTooltip.height() - 40
 
     this.finishTooltip.setPosition(x, y);
+    GOD.add(this.finishTooltip, this.closeFinishTooltip);
 
   },
 

@@ -99,6 +99,8 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 
     this.tooltip.setPosition(x, y);
 
+    GOD.add(this.tooltip, this.closeTooltip);
+
   },
 
   closeTooltip: function(callback) {
