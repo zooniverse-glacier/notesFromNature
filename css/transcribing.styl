@@ -15,7 +15,6 @@
 }
 
 /* TOOLTIPS */
-
 .transcriber.birds, .transcriber.sernac { 
   .tooltip {
     display: none;
@@ -237,15 +236,15 @@
     h3 { font-weight: normal; font-size: 13px; color: #999; } 
 
     .counter {
-    display:inline-block;
-    margin: 0 7px 0 0;
+      display:inline-block;
+      margin: 0 7px 0 0;
       font: bold 38px "Open Sans";
       color: white;
       font-weight: 800;
     }
 
     strong {
-    display:inline-block;
+      display:inline-block;
       width: 50px;
       margin: 0 10px 0 0;
       line-height: 0;
@@ -413,10 +412,26 @@
   float: right;
   font-weight: 800;
 }
+
 .transcriber.birds .birds-widget .btn.finish {
-  background: #FF7C09;
   display: none;
+  background: #FF7C09;
+  padding: 9px;
+  font-weight: normal;
+  font: normal 11px Helvetica;
+
+ -webkit-transition-property: background-color;
+ -moz-transition-property: background-color;
+ -o-transition-property: background-color;
+ transition-property: background-color;
+ -webkit-transition-duration: 300ms;
+ -moz-transition-duration: 300ms;
+ -o-transition-duration: 300ms;
+ transition-duration: 300ms;
+
+  &:hover { background: #FF7C09; }
 }
+
 .transcriber.birds .birds-widget .top, .transcriber.birds .birds-widget .bottom {
   position: absolute;
   display: block;
@@ -584,7 +599,10 @@
   height: 19px;
   padding: 4px;
   border: none;
-  font-weight: 700;
+
+  font-weight: normal;
+  text-align:center;
+  font-size:11px;
 }
 .transcriber.birds .birds-widget .bottom .left .description {
   float: left;
@@ -758,9 +776,24 @@
   position: relative;
   float: left;
   margin: 0 0 0 10px;
+
   background: #FF7C09;
-  font-size: 11px;
+  padding: 9px;
+  font-weight: normal;
+  font: normal 11px Helvetica;
+
+ -webkit-transition-property: background-color;
+ -moz-transition-property: background-color;
+ -o-transition-property: background-color;
+ transition-property: background-color;
+ -webkit-transition-duration: 300ms;
+ -moz-transition-duration: 300ms;
+ -o-transition-duration: 300ms;
+ transition-duration: 300ms;
+
+ &:hover { background: #FF7C09; }
 }
+
 .transcriber.sernac .sernac-widget .left {
   position: absolute;
   left: 10px;
@@ -832,8 +865,11 @@
   width: 20px;
   height: 19px;
   padding: 4px;
+
   border: none;
-  font-weight: 700;
+  font-weight: normal;
+  text-align:center;
+  font-size:11px;
 }
 .transcriber.sernac .magnifier {
   position: absolute;
