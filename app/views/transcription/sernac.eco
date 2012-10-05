@@ -70,9 +70,8 @@
     <div class="separator"></div>
 
     <div class="off">
-      <a href="#" class="btn close"></a>
+      <a href="/" class="btn close"></a>
     </div>
-
 
   </div>
 </script>

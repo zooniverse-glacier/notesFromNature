@@ -6,7 +6,7 @@ nfn.ui.view.StatusBar = nfn.ui.view.Widget.extend({
 
   events: {
 
-    "click .btn.close" : "close"
+    //"click .btn.close" : "close"
 
   },
 
