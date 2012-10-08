@@ -118,8 +118,8 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
     this.hideSteps();
     this.model.set("description", "Drag & resize the viewer to the record you want to transcribe.");
 
-    this.setResizable(true);
     this.setDraggable(true);
+    this.setResizable(true);
 
     this.parent.finishTranscribing();
 

@@ -274,7 +274,7 @@ nfn.ui.view.Widget = nfn.core.View.extend({
 
     } else {
 
-      this.$el.resizable({ disabled: true });
+      this.$el.resizable('destroy');
       this.$el.find(".ui-resizable-handle").remove(); // remove the handlers
 
     }
