@@ -464,8 +464,8 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
 
     if (this.parent) this.parent.startTranscribing();
 
-    //this.setDraggable(false);
-    //this.setResizable(true);
+    this.setDraggable(false);
+    this.setResizable(false);
 
     this.hideStartButton();
     this.showSteps();

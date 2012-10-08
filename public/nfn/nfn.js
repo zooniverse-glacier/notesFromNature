@@ -19,7 +19,7 @@
   nfn.files = [
     "vendor/jquery.min.js",
     "vendor/jquery-1.8.1.js",
-    "vendor/jquery-ui-1.8.24.custom.min.js",
+    "vendor/jquery-ui-1.8.23.custom.min.js",
     "vendor/jquery.easing.min.js",
     //"vendor/jquery.mousewheel.min.js",
     "vendor/jquery.imagesloaded.min.js",
