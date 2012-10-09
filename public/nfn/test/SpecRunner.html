@@ -189,6 +189,15 @@
       <input type="text" name="year" class="year"   placeholder="year" />
     </script>
 
+    <script type="text/template" id="tooltip-step-template">
+      <ul>
+        {{#links}}
+        <li><a href="#">{{title}}</a></li>
+        {{/links}}
+      </ul>
+      <div class="tip"></div>
+    </script>
+
     <script type="text/template" id="tooltip-template">
       <strong class="title">Title</strong>
       <div class="description">Description</div>

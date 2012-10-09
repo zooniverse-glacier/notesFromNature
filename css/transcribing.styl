@@ -53,6 +53,45 @@
 
     }
 
+    &.step {
+
+      padding: 0;
+      width:165px;
+
+      .tip {
+        left: auto;
+        right: 10px;
+        margin-left: 0;
+        }
+
+        ul {
+          li {
+            padding: 8px 10px;
+            margin: 0 0 0 7px;
+            border-bottom: 1px solid #EDEDED;
+              &:last-child {
+                border:none;
+                background:url(../images/bullet-orange-hollow.png) no-repeat center left;
+                a { color: #FF6600; }
+              }
+
+              background:url(../images/bullet-green.png) no-repeat center left;
+
+              &:hover a { text-decoration: underline; }
+
+            &.selected {
+              background:url(../images/bullet-gray.png) no-repeat center left;
+              a { color: #666666; }
+            }
+
+            a {
+            font-size: 13px;
+            color: #669933;
+          }
+         }
+       }
+     }
+
     &.with-spinner {
     width: 369px;
     height: 203px;
@@ -654,6 +693,9 @@
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
+
+  &:hover { background: #ccc; color: #333; }
+
 }
 
 .transcriber.sernac .highlight {
@@ -768,12 +810,33 @@
 .transcriber.sernac .sernac-widget .right .step {
   position: relative;
   float: left;
-  top: 10px;
+  top: 6px;
   color: white;
   font: 12px "Helvetica", Arial;
   line-height: 13px;
   text-transform: uppercase;
+  background:#333;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  height:12px; width: 20px;
+  padding: 5px 4px;
+  text-align: center;
+
+  -webkit-transition-property: background-color;
+  -moz-transition-property: background-color;
+  -o-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-duration: 300ms;
+  -moz-transition-duration: 300ms;
+  -o-transition-duration: 300ms;
+  transition-duration: 300ms;
+ 
+  &:hover { text-decoration: underline; background: #666; }
 }
+
 .transcriber.sernac .sernac-widget .right .btn.finish {
   position: relative;
   float: left;

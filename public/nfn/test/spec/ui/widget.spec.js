@@ -138,8 +138,8 @@ describe("common.ui.view.Widget", function() {
 
     widget.setResizable(false);
     expect(widget.model.get("resizable")).toEqual(false);
-    expect(widget.$el.hasClass("ui-resizable")).toEqual(true);
-    expect(widget.$el.hasClass("ui-resizable-disabled")).toEqual(true);
+    expect(widget.$el.hasClass("ui-resizable")).toEqual(false);
+    expect(widget.$el.hasClass("ui-resizable-disabled")).toEqual(false);
 
   });
 

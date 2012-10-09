@@ -941,6 +941,125 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
   });
 
+  it("should fire an event when the user clicks in the step counter", function() {
+
+    var spy = spyOn(transcriber.transcriberWidget, 'showStepTooltip');
+
+    transcriber.transcriberWidget.delegateEvents();
+    transcriber.transcriberWidget.$step.click();
+
+    expect(spy).toHaveBeenCalled();
+
+  });
+
+  it("should create a tooltip when the user cliks in the counter", function() {
+
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.addSelection();
+    transcriber.updateSelection(10, 10, 100, 100);
+    transcriber.selection.$el.css("position", "absolute");
+    transcriber.addMagnifier();
+
+    transcriber.transcriberWidget.$step.click();
+
+    expect(transcriber.transcriberWidget.$el.find(".tooltip").length).toEqual(1);
+    expect(transcriber.transcriberWidget.stepTooltip.model.get("hidden")).toEqual(false);
+    expect(transcriber.transcriberWidget.stepTooltip.$el.hasClass("step")).toEqual(true);
+
+  });
+
+  it("the stepTooltip should contain a list of links", function() {
+
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.addSelection();
+    transcriber.updateSelection(10, 10, 100, 100);
+    transcriber.selection.$el.css("position", "absolute");
+    transcriber.addMagnifier();
+
+    transcriber.transcriberWidget.$step.click();
+
+    expect(transcriber.transcriberWidget.stepTooltip.$el.find("li").length).toEqual(transcriber.guide.length);
+    expect(transcriber.transcriberWidget.stepTooltip.$el.find("li:first-child").text()).toEqual(transcriber.guide[0].title);
+
+  });
+
+  it("clicking a link in the step tooltip should trigger a gotoStep event", function() {
+
+    var spy = spyOn(transcriber.transcriberWidget, 'gotoStep');
+
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.addSelection();
+    transcriber.updateSelection(10, 10, 100, 100);
+    transcriber.selection.$el.css("position", "absolute");
+    transcriber.addMagnifier();
+
+    transcriber.transcriberWidget.$step.click();
+
+    transcriber.transcriberWidget.delegateEvents();
+    transcriber.transcriberWidget.stepTooltip.$el.find("li:first-child a").click();
+
+    expect(spy).toHaveBeenCalled();
+
+  });
+
+  it("clicking a link in the step tooltip should change the currentStep", function() {
+
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.addSelection();
+    transcriber.updateSelection(10, 10, 100, 100);
+    transcriber.selection.$el.css("position", "absolute");
+    transcriber.addMagnifier();
+
+    transcriber.transcriberWidget.$step.click();
+
+    transcriber.transcriberWidget.stepTooltip.$el.find("li:first-child a").click();
+    expect(transcriber.model.get("currentStep")).toEqual(0);
+
+    transcriber.transcriberWidget.$step.click();
+
+    transcriber.transcriberWidget.stepTooltip.$el.find("li:nth-child(4) a").click();
+    expect(transcriber.model.get("currentStep")).toEqual(3);
+
+  });
+
+  it("the currentStep should be shown in the stepTooltip", function() {
+
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.addSelection();
+    transcriber.updateSelection(10, 10, 100, 100);
+    transcriber.selection.$el.css("position", "absolute");
+    transcriber.addMagnifier();
+
+    transcriber.model.set("currentStep", 4);
+    transcriber.transcriberWidget.$step.click();
+
+    console.log(transcriber.transcriberWidget.stepTooltip.$el);
+    expect(transcriber.transcriberWidget.stepTooltip.$el.find("li.selected").text()).toEqual(transcriber.guide[4].title);
+
+  });
+
+  it("clicking a link in the step tooltip should close the tooltip", function() {
+
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.addSelection();
+    transcriber.updateSelection(10, 10, 100, 100);
+    transcriber.selection.$el.css("position", "absolute");
+    transcriber.addMagnifier();
+
+    transcriber.transcriberWidget.$step.click();
+    transcriber.transcriberWidget.stepTooltip.$el.find("li:first-child a").click();
+
+    expect(transcriber.transcriberWidget.$el.find(".tooltip.step").length).toEqual(0);
+    expect(transcriber.transcriberWidget.stepTooltip).not.toBeDefined();
+
+  });
+
   it("should create a tooltip when the user cliks in the skip button", function() {
 
     transcriber.$el.find(".photos").append("<img />");
