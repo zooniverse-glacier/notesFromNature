@@ -63,12 +63,15 @@ class TranscriptionController extends Spine.Controller
   active:(params)=>
     super
 
+    $("body .transcriber").show()
+    
     if Archive.count() ==0 
       Archive.bind 'refresh', =>
         @active params
     if params.id
       @currnetSubject = Subject.find(params.id)
       console.log " from id"
+      $("body .transcriber").remove()
       @render()
     else if params.archiveID
       @archive = Archive.findBySlug(params.archiveID)
@@ -77,6 +80,7 @@ class TranscriptionController extends Spine.Controller
         unless @currnetSubject?
           @archive.nextSubject (subject)=>
             @currnetSubject=subject
+            $("body .transcriber").remove()
             @render()
 
     else if !@currnetSubject?

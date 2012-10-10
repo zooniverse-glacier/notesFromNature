@@ -84,6 +84,7 @@ class App extends Spine.Stack
     Spine.Route.bind "change", =>
       if Spine.Route.path.indexOf("transcribe") == -1
         $("body").removeClass()
+        $("body .transcriber").hide()
 
     setTimeout ->
         Institute.fetch()
