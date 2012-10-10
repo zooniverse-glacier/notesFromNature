@@ -23,6 +23,7 @@ class ArchiveIndexController extends Spine.Controller
 
   active:(params)=>
     super 
+    document.title = "Notes From Nature - collections "
     @render(params)
 
   showArchiveDetails:(e)=>

@@ -9,6 +9,8 @@ class ProfileController extends Spine.Controller
 
   active:->
     super 
+    document.title = "Notes From Nature - profile"
+
     if not User.current? 
       Spine.Route.navigate('/') 
     else

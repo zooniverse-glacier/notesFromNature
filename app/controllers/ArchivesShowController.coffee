@@ -11,6 +11,7 @@ class ArchivesShowController extends Spine.Controller
   active:(params)=>
     super 
     archive = Archive.findBySlug(params.id)
+    document.title = "Notes From Nature - #{archive.institute().name} - #{archive.name}"
     @render(archive)
 
   render:(archive=undefined)=>

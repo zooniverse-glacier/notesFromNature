@@ -88,6 +88,9 @@ class TranscriptionController extends Spine.Controller
       console.log " from random subject"
       @render()
 
+    document.title = "Notes From Nature - #{@archive.institute().name} - #{@archive.name} - transcribe"
+
+
   
     
 module.exports = TranscriptionController

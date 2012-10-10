@@ -11,6 +11,8 @@ class InstituteShowController extends Spine.Controller
   active:(params)=>
     super
     institute = Institute.findBySlug(params.id)[0]
+    document.title = "Notes From Nature - #{institute().name}"
+
     @render(institute)
 
   render:(institute=undefined)=>

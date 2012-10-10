@@ -21,6 +21,8 @@ class AboutController extends Spine.Controller
 
   active:(params)=>
     super
+    document.title = "Notes From Nature - about"
+
     @renderSeciton params.section
     @selectNav params.section
 
