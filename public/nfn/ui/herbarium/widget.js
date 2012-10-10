@@ -227,14 +227,13 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     var
     targetWidth   = $(e.target).width()/2,
     marginRight = parseInt($(e.target).css("margin-right").replace("px", ""), 10),
-    x           = Math.abs(this.$el.offset().left - $(e.target).offset().left) - this.stepTooltip.width() + 24,
-    y           = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.stepTooltip.height() - 20
+    x           = Math.abs(this.$el.offset().left - $(e.target).offset().left) - this.stepTooltip.width() + 30,
+    y           = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.stepTooltip.height() - 17
 
     this.stepTooltip.setPosition(x, y);
 
     var currentStep = this.parent.model.get("currentStep");
 
-    console.log(currentStep);
     this.stepTooltip.$el.find("li:nth-child(" + (currentStep + 1) + ")").addClass("selected");
 
     this.stepTooltip.$el.find("a").on("click", function(e) {
