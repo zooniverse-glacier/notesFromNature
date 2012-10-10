@@ -20,7 +20,7 @@
         </li>
 
       </ul>
-      <a href="">Contribute to this collection</a>
+      <a href="#/archives/<%=@slug()%>">Contribute to this collection</a>
     </div>
   </div>
 </div>
