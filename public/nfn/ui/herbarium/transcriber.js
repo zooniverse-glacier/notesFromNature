@@ -22,57 +22,65 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
     this.add_related_model(this.model);
 
+
     this.guide = [
       {
-        title: 'Record code' ,
-        description: 'It\'s a 4 digit number located at the top right of the page. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
-        placeholder: 'Code',
+        title: 'State' ,
+        description: 'It is the full state name or it’s abbreviation (e.g. FL for Florida). <a href="#" class="example" data-src="/nfn/ui/herbarium/examples/ex_state.png">See example</a>',
+        placeholder: 'State',
         type: "text",
         inputWidth: 540
       }, {
-        title: 'Genus & species',
-        description: '2 or 3 latin words in the first line, next to the margin. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
-        placeholder: 'Species',
+        title: 'County' ,
+        description: 'This is the county name found on the record. <a href="#" class="example" data-src="/nfn/ui/herbarium/examples/ex_county.png">See example</a>',
+        placeholder: 'County',
         type: "text",
         inputWidth: 540
       }, {
-        title: 'Collection location',
-        description: 'A place name, in the second line. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
+        title: 'Scientific name',
+        description: 'This is the species name string, usually including at least genus and species. <a href="#" class="example" data-src="/nfn/ui/herbarium/examples/ex_scientific_name.png">See example</a>',
+        placeholder: 'Scientific name',
+        type: "text",
+        inputWidth: 540
+      }, {
+        title: 'Scientific author',
+        description: 'This a full or sir name found with the species name, it tells us who named it. <a href="#" class="example" data-src="/nfn/ui/herbarium/examples/ex_scientific_name_details.png">See example</a>',
+        placeholder: 'Scientific author',
+        type: "text",
+        inputWidth: 540
+      }, {
+        title: 'Location',
+        description: 'A place name or geographic description of where the specimen was found. <a href="#" class="example" data-src="/nfn/ui/herbarium/examples/ex_location_description.png">See example</a>',
         placeholder: 'Location',
-        type: "location",
-        inputWidth: 580
+        type: "text",
+        inputWidth: 700
+      }, {
+        title: 'Habitat and description',
+        description: 'A short description of the specimen and its habitat. <a href="#" class="example" data-src="/nfn/ui/herbarium/examples/ex_habitat.png">See example</a>',
+        placeholder: 'Habitat & Description',
+        type: "text",
+        inputWidth: 700
+      }, {
+        title: 'Collected by',
+        description: 'The name the person that collected this specimen. <a href="#" class="example" data-src="/nfn/ui/herbarium/examples/ex_recorded_by.png">See example</a>',
+        placeholder: 'Collected by',
+        type: "text",
+        inputWidth: 540
+      }, {
+        title: 'No',
+        description: 'A short number assigned only to this recrod. <a href="#" class="example" data-src="/nfn/ui/herbarium/examples/ex_record_number.png">See example</a>',
+        placeholder: 'No',
+        type: "text",
+        inputWidth: 540
       }, {
         title: 'Collection date ',
-        description: 'A date in the third line. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
+        description: 'A date in the third line. <a href="#" class="example" data-src="/nfn/ui/herbarium/examples/ex_recorded_date.png">See example</a>',
         placeholder: ['day', 'month', 'year'],
         type: "date",
         inputWidth: 700
-      }, {
-        title: 'Collector',
-        description: 'A person name in the same line than the date. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
-        placeholder: 'Collector',
-        type: "text",
-        inputWidth: 540
-      }, {
-        title: 'Transferrer',
-        description: 'A person name at the top right of the record. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
-        placeholder: 'Transferer',
-        type: "text",
-        inputWidth: 540
-      }, {
-        title: 'Transfer date',
-        description: 'A date under the transferrer. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
-        placeholder: 'Transfer date',
-        type: "text",
-        inputWidth: 540
-      }, {
-        title: 'Additional information',
-        description: 'Can you detect this information?. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>',
-        placeholder: 'Other',
-        type: "text",
-        inputWidth: 540
       }
     ];
+
 
     this.model.set("currentRecord", 0);
 
@@ -152,7 +160,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
       model: new nfn.ui.model.StatusBar({
         title: "Herbarium Collection",
-        description: "from The Natural History Museum of London"
+        description: "from SERNEC"
       }),
 
       template: $("#statusbar-template").html(),
@@ -413,6 +421,12 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     this.$el.mousemove(function(e){
       that.updateSelection(initialxpos, initialypos, e.pageX, e.pageY);
     });
+  },
+
+  getPendingFieldCount: function() {
+
+    return (this.guide.length - this.transcriptions.length);
+
   },
 
   updateStepCounter: function() {

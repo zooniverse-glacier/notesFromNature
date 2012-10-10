@@ -19,12 +19,12 @@
   nfn.files = [
     "vendor/jquery.min.js",
     "vendor/jquery-1.8.1.js",
-    "vendor/jquery-ui-1.8.23.custom.min.js",
+    "vendor/jquery-ui-1.8.24.custom.min.js",
     "vendor/jquery.easing.min.js",
     //"vendor/jquery.mousewheel.min.js",
     "vendor/jquery.imagesloaded.min.js",
     "vendor/jquery.mCustomScrollbar.js",
-    //"vendor/jquery.ui.addresspicker.js",
+    "vendor/jquery.ui.addresspicker.js",
     "vendor/jquery.stylishSelect.js",
     "vendor/spin.min.js",
     //"vendor/jquery.jscrollpane.js",
@@ -38,6 +38,8 @@
     'core/profiler.js',
     'core/template.js',
     'core/view.js',
+
+    'core/god.js',
 
     // UI
     'ui/widget.js',

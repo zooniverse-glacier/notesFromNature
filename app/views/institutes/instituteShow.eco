@@ -23,7 +23,7 @@
       <div class="links-left">            
         <span class="text">MORE INFORMATION</span>
         <a href="<%=@institute.metadata.url%>" class="object noline"><%=@institute.metadata.url%></a>
-        <span class="text">MORE INFORMATION</span>
+        <span class="text">COLLECTIONS</span>
         <ul>
           <% for archive in @institute.archives().all(): %>
             <li class="bullet"><a href="" class="object noline"><%=archive.name%></a></li>

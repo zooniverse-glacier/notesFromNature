@@ -11,6 +11,8 @@ div.zooniverse-top-bar
 
 
 
+.dialog-underlay { display: none; }
+
 .stack > *:not(.active) {
   display: none;
 }
@@ -31,10 +33,9 @@ aside:after, div:after, form:after, header:after, nav:after, section:after, ul:a
   visibility: hidden;
 }
 
-/* Layout*/
 .wrapper {
   max-width: 960px;
-  margin: -124px auto 90px auto;
+  margin: 0 auto;
 }
 
 .col1 {
@@ -292,6 +293,7 @@ span.user a {
   margin-left: 30px;
   padding: 5px;
   border-radius: 2px;
+  text-transform: uppercase;
 }
 .link-navigation a.green {
   color: #669933;
@@ -1283,6 +1285,8 @@ a.button.next span.active {
 }
 
 div.switch {
+  display:none;
+
   border: 1px solid #E5E5E5;
   border-radius: 5px;
   margin-top: 20px;

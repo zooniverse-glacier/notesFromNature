@@ -4,11 +4,17 @@ nfn.ui.model.StatusBar = Backbone.Model.extend({ });
 
 nfn.ui.view.StatusBar = nfn.ui.view.Widget.extend({
 
+  events: {
+
+    //"click .btn.close" : "close"
+
+  },
+
   className: 'statusbar',
 
   initialize: function() {
 
-    _.bindAll( this, "toggle" );
+    _.bindAll( this, "toggle", "close" );
 
     this.template = new nfn.core.Template({
       template: this.options.template,
@@ -23,6 +29,13 @@ nfn.ui.view.StatusBar = nfn.ui.view.Widget.extend({
 
   },
 
+  close: function(e) {
+
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+  },
+
   render: function() {
 
     this.$el.append(this.template.render(this.model.toJSON()));
@@ -30,6 +43,7 @@ nfn.ui.view.StatusBar = nfn.ui.view.Widget.extend({
     this.$title       = this.$el.find(".title");
     this.$description = this.$el.find(".description");
     this.$counter     = this.$el.find(".counter");
+    this.$closeButton = this.$el.find(".btn.close");
 
     return this.$el;
 

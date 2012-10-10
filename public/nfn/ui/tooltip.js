@@ -60,7 +60,6 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
-
     this.trigger("onEscKey");
 
   },
@@ -94,6 +93,14 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
 
   },
 
+  onClick: function(e) {
+
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+    e && e.stopPropagation();
+
+  },
+
   render: function() {
 
     this.$el.append(this.template.render( this.model.toJSON() ));
@@ -123,6 +130,8 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
       });
 
     }
+
+    this.$el.on("click", this.onClick);
 
     return this.$el;
 

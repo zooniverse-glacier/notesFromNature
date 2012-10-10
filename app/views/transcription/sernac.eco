@@ -9,7 +9,7 @@
 
   <div class="right">
     <a href="#" class="skip">Skip this field</a>
-    <div class="step"></div>
+    <a href="#" class="step"></a>
     <a href="#" class="btn finish">Finish this record</a>
   </div>
 
@@ -26,7 +26,7 @@
 
 <script type="text/template" id="launcher-template">
   <span>Drag a square around the specimen label</span> 
-  <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a>
+  <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a>
   <a href="#" class="btn start disabled">Start this record</a>
 </script>
 
@@ -34,6 +34,15 @@
   <div class="date_field"><input type="text" name="month" class="month" placeholder="month" /></div> 
   <div class="date_field"><input type="text" name="day" class="day" placeholder="day" /></div> 
   <div class="date_field"><input type="text" name="year" class="year" placeholder="year" /></div>
+</script>
+
+<script type="text/template" id="tooltip-step-template">
+      <ul>
+        {{#links}}
+        <li><a href="#">{{title}}</a></li>
+        {{/links}}
+      </ul>
+  <div class="tip"></div>
 </script>
 
 <script type="text/template" id="tooltip-template">
@@ -59,7 +68,19 @@
     <h3 class="description">{{ description }}</h3>
   </div>
   <div class="right">
-    <div class="counter">0</div>
-    <strong>Records done</strong>
+
+    <div class="separator"></div>
+
+    <div class="count">
+      <div class="counter">0</div>
+      <strong>Records done</strong>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="off">
+      <a href="/" class="btn close"></a>
+    </div>
+
   </div>
 </script>

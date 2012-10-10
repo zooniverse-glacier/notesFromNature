@@ -15,7 +15,7 @@
     
     <h3 class="title"><a href="#/archives/<%=@archive.slug()%>"><%=@archive.name%></a> <span class="subtitle"><a  class='institute' href="#/institutes/<%=@archive.institute().slug()%>"><%=@archive.institute().name%></a></span></h3>
   <%else : %>
-    <h3> Comming Soon </h3>
+    <h3>Coming Soon</h3>
   <%end%>
 </li>
 
