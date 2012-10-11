@@ -104,7 +104,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
       model: new nfn.ui.model.Tooltip({
         main: main,
-        url: url,
+        urls: [url],
         template: $("#tooltip-example-template").html()
       })
 

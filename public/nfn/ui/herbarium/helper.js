@@ -1,7 +1,8 @@
 
 // Helper ---------------------------------------
 
-nfn.ui.model.Helper = Backbone.Model.extend({ });
+nfn.ui.model.Helper = Backbone.Model.extend({
+});
 
 nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 
@@ -15,7 +16,7 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 
   initialize: function() {
 
-    _.bindAll( this, "toggle", "updateTitle", "updateDescription", "showExample", "closeTooltip" );
+    _.bindAll( this, "toggle", "updateTitle", "updateDescription", "showExample", "closeTooltip", "nextPhoto" );
 
     this.template = new nfn.core.Template({
       template: this.options.template,
@@ -71,21 +72,39 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
     main = "Close",
     url  = this.$el.find(".example").attr("data-src");
 
-    this.tooltip = new nfn.ui.view.Tooltip({
+    if (url) {
 
-      className: "tooltip with-spinner upsidedown",
+      this.tooltip = new nfn.ui.view.Tooltip({
 
-      model: new nfn.ui.model.Tooltip({
-        main: main,
-        url: url,
-        template: $("#tooltip-example-template").html()
-      })
+        className: "tooltip with-spinner upsidedown",
 
-    });
+        model: new nfn.ui.model.Tooltip({
+          main: main,
+          urls: [url],
+          template: $("#tooltip-example-template").html()
+        })
+
+      });
+
+    } else if (this.model.get("urls")) {
+
+      this.tooltip = new nfn.ui.view.Tooltip({
+
+        className: "tooltip with-spinner upsidedown",
+
+        model: new nfn.ui.model.Tooltip({
+          main: main,
+          urls: that.model.get("urls"),
+          template: $("#tooltip-example-template").html()
+        })
+
+      });
+
+    }
 
     this.addView(this.tooltip);
 
-    this.tooltip.bind("onMainClick", this.closeTooltip);
+    this.tooltip.bind("onMainClick", this.nextPhoto);
     this.tooltip.bind("onEscKey", this.closeTooltip);
 
     this.$el.append(this.tooltip.render());
@@ -100,6 +119,12 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
     this.tooltip.setPosition(x, y);
 
     GOD.add(this.tooltip, this.closeTooltip);
+
+  },
+
+  nextPhoto: function(callback) {
+
+    this.tooltip.nextPhoto();
 
   },
 

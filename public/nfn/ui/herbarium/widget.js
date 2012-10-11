@@ -69,15 +69,16 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
+    GOD.triggerCallbacks(); // this close the tooltips (TODO: add test)
+
     if (this.$input.val()) { // don't store or advance when the input field is empty
 
       this.parent.saveCurrentStep();
 
-      this.closeTooltip();               // TODO: add test
-      this.parent.helper.closeTooltip(); // TODO: add test
-
       this.clearInput();
+
       this.parent.nextStep();
+
     }
 
   },
