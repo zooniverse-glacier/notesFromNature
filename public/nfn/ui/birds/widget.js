@@ -87,12 +87,19 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
-    this.parent.saveCurrentStep();
+    if (this.parent.validateCurrentStep()) {
 
-    this.closeTooltips();
+      this.parent.saveCurrentStep();
+      this.parent.nextStep();
+
+    } else {
+
+      console.log("the code doesn't validate");
+
+    }
 
     //this.clearInput();
-    this.parent.nextStep();
+    this.closeTooltips();
 
   },
 

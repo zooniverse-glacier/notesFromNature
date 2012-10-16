@@ -175,7 +175,6 @@ describe("common.ui.view.HerbariumWidget", function() {
 
 });
 
-
 /*
 * common.ui.view.HerbariumTranscriber
 *
@@ -455,7 +454,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     waits(250);
 
     runs(function () {
-      expect(transcriber.helper.$title.text()).toEqual("Record code");
+      expect(transcriber.helper.$title.text()).toEqual(transcriber.guide[0].title);
     });
 
   });
