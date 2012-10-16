@@ -21,6 +21,7 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
   events: {
 
     "click .btn.ok"     : "ok",
+    "click .step" :       "showStepTooltip",
     "click .btn.finish" : "showFinishTooltip",
     "click .btn.start"  : "start",
     "click .skip"       : "showSkipTooltip",
@@ -30,7 +31,7 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
 
   initialize: function() {
 
-    _.bindAll( this, "toggle", "start", "skip", "closeFinishTooltip", "closeExampleTooltip", "closeSkipTooltip", "toggleInput", "toggleStartButton", "toggleDraggable", "toggleSteps", "updatePlaceholder", "updateTitle", "updateDescription", "updateType", "resizeInput", "onStopDragging", "toggleResizable", "onStopResizing", "showExample", "showSkipTooltip" );
+    _.bindAll( this, "toggle", "start", "skip", "closeFinishTooltip", "closeExampleTooltip", "closeSkipTooltip", "closeStepTooltip", "toggleInput", "toggleStartButton", "toggleDraggable", "toggleSteps", "updatePlaceholder", "updateTitle", "updateDescription", "updateType", "resizeInput", "onStopDragging", "toggleResizable", "onStopResizing", "showExample", "showSkipTooltip", "gotoStep" );
 
     this.template = new nfn.core.Template({
       template: this.options.template
@@ -158,11 +159,92 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
 
   },
 
+  gotoStep: function(e, i) {
+
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+    this.closeStepTooltip();
+    this.parent.model.set("currentStep", i);
+
+  },
+
+  showStepTooltip: function(e) {
+
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+    this.closeTooltips();
+
+    if (!this.stepTooltip) this.createStepTooltip(e);
+
+  },
+
+  createStepTooltip: function(e) {
+
+    var
+    title       = "Are you sure?",
+    description = "There are still <u> " + this.parent.getPendingFieldCount() + " empty fields</u> for this record that should be completed before finishing.",
+    main        = "Finish",
+    secondary   = "Cancel";
+
+    this.stepTooltip = new nfn.ui.view.Tooltip({
+
+      className: "tooltip step",
+
+      model: new nfn.ui.model.Tooltip({
+        template: $("#tooltip-step-template").html(),
+        links: this.parent.guide
+      })
+
+    });
+
+    this.addView(this.stepTooltip);
+
+    var that = this;
+
+    this.stepTooltip.bind("onEscKey", this.closeStepTooltip);
+
+    this.$el.append(this.stepTooltip.render());
+    this.stepTooltip.show();
+
+    var
+    targetWidth   = $(e.target).width()/2,
+    marginRight = parseInt($(e.target).css("margin-right").replace("px", ""), 10),
+    x           = Math.abs(this.$el.offset().left - $(e.target).offset().left) - this.stepTooltip.width() + 30,
+    y           = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.stepTooltip.height() - 17
+
+    this.stepTooltip.setPosition(x, y);
+
+    var currentStep = this.parent.model.get("currentStep");
+
+    this.stepTooltip.$el.find("li:nth-child(" + (currentStep + 1) + ")").addClass("selected");
+
+    this.stepTooltip.$el.find("a").on("click", function(e) {
+      var i = $(this).parent().index();
+      that.gotoStep(e, i);
+    });
+
+
+    GOD.add(this.stepTooltip, this.closeStepTooltip);
+
+  },
+
+  closeStepTooltip: function(callback) {
+
+    if (!this.stepTooltip) return;
+
+    this.stepTooltip.hide();
+    this.stepTooltip.clean();
+    delete this.stepTooltip;
+
+    callback && callback();
+
+  },
+
   closeTooltips: function() {
 
-    if (this.exampleTooltip) this.closeExampleTooltip();
-    if (this.skipTooltip)    this.closeSkipTooltip();
-    if (this.finishTooltip)  this.closeFinishTooltip();
+    GOD.triggerCallbacks();
 
   },
 

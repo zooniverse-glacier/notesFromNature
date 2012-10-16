@@ -50,8 +50,8 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
     if (this.model.get("hidden")) {
 
-      this.$el.animate({ top: this.top() + 50, opacity: 0 }, this.defaults.speed, function() {
-        that.setTop(that.top() + 50);
+      this.$el.animate({ bottom: this.bottom() , opacity: 0 }, this.defaults.speed, function() {
+        that.setBottom(that.bottom() );
         $(this).hide();
       });
 
@@ -60,8 +60,8 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
       this.$el.css({ opacity: 0 }, 250 );
 
       this.$el.show();
-      this.$el.animate({ top: this.top() - 50, opacity: 1 }, this.defaults.speed, function() {
-      that.setTop(that.top() - 50);
+      this.$el.animate({ bottom: this.bottom() , opacity: 1 }, this.defaults.speed, function() {
+      that.setBottom(that.bottom() );
         $(this).show();
       });
     }

@@ -118,7 +118,7 @@ describe("common.ui.view.BirdsWidget", function() {
 
     widget.$startButton.click();
 
-    waits(300);
+    waits(400);
 
     runs(function() {
       expect(widget.$startButton).toBeHidden();
@@ -667,6 +667,112 @@ describe("common.ui.view.BirdsTranscriber", function() {
 
   });
 
+  it("should fire an event when the user clicks in the step counter", function() {
+
+    var spy = spyOn(transcriber.transcriberWidget, 'showStepTooltip');
+
+    transcriber.transcriberWidget.delegateEvents();
+    transcriber.transcriberWidget.$step.click();
+
+    expect(spy).toHaveBeenCalled();
+
+  });
+
+  it("should create a tooltip when the user cliks in the counter", function() {
+
+    transcriber.transcriberWidget.$startButton.click();
+
+    waits(350);
+
+    runs(function() {
+
+      transcriber.transcriberWidget.$step.click();
+
+      expect(transcriber.transcriberWidget.$el.find(".tooltip").length).toEqual(1);
+      expect(transcriber.transcriberWidget.stepTooltip.model.get("hidden")).toEqual(false);
+      expect(transcriber.transcriberWidget.stepTooltip.$el.hasClass("step")).toEqual(true);
+
+    });
+
+  });
+
+  it("the stepTooltip should contain a list of links", function() {
+
+    transcriber.transcriberWidget.$startButton.click();
+
+    waits(350);
+
+    runs(function() {
+
+      transcriber.transcriberWidget.$step.click();
+
+      expect(transcriber.transcriberWidget.stepTooltip.$el.find("li").length).toEqual(transcriber.guide.length);
+      expect(transcriber.transcriberWidget.stepTooltip.$el.find("li:first-child").text()).toEqual(transcriber.guide[0].title);
+
+    });
+
+  });
+
+  it("clicking a link in the step tooltip should trigger a gotoStep event", function() {
+
+    var spy = spyOn(transcriber.transcriberWidget, 'gotoStep');
+
+    transcriber.transcriberWidget.$startButton.click();
+
+    waits(350);
+
+    runs(function() {
+
+      transcriber.transcriberWidget.$step.click();
+
+      transcriber.transcriberWidget.delegateEvents();
+      transcriber.transcriberWidget.stepTooltip.$el.find("li:first-child a").click();
+
+      expect(spy).toHaveBeenCalled();
+
+    });
+
+  });
+
+  it("clicking a link in the step tooltip should change the currentStep", function() {
+
+    transcriber.transcriberWidget.$startButton.click();
+
+    waits(350);
+
+    runs(function() {
+
+      transcriber.transcriberWidget.$step.click();
+
+      transcriber.transcriberWidget.stepTooltip.$el.find("li:first-child a").click();
+      expect(transcriber.model.get("currentStep")).toEqual(0);
+
+      transcriber.transcriberWidget.$step.click();
+
+      transcriber.transcriberWidget.stepTooltip.$el.find("li:nth-child(4) a").click();
+      expect(transcriber.model.get("currentStep")).toEqual(3);
+
+    });
+
+  });
+
+  it("the currentStep should be shown in the stepTooltip", function() {
+
+    transcriber.transcriberWidget.$startButton.click();
+    transcriber.model.set("currentStep", 4);
+
+    waits(350);
+
+    runs(function() {
+
+      transcriber.transcriberWidget.$step.click();
+
+      expect(transcriber.transcriberWidget.stepTooltip.$el.find("li.selected").text()).toEqual(transcriber.guide[4].title);
+
+    });
+
+  });
+
   it("should set currentStep to 0 after the transcriber has started", function() {
 
     transcriber.startTranscribing();
@@ -785,7 +891,7 @@ describe("common.ui.view.BirdsTranscriber", function() {
     waits(350);
 
     runs(function () {
-      expect(transcriber.transcriberWidget.$description.html()).toEqual('It\'s a 4 digit number located at the top right of the page. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a> | <a href="#" class="skip">Skip field</a>');
+      expect(transcriber.transcriberWidget.$description.html()).toEqual(transcriber.guide[0].description);
     });
 
   });

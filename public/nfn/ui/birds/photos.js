@@ -27,8 +27,6 @@ nfn.ui.view.BirdPhoto = nfn.ui.view.Photo.extend({
 
     this.$el.attr("src", this.model.get("url"));
 
-    console.log("loading photo", this.$el);
-
     this.$el.imagesLoaded(function() {
 
       // Removes the previous image

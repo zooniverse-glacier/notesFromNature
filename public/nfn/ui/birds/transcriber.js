@@ -303,7 +303,6 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
 
     }
 
-    //console.log("STATUS", this.transcriptions.toJSON());
   },
 
   onResize: function() {
@@ -338,14 +337,10 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
 
     if (this.model.get("mousewheel_enabled")) {
 
-      console.log(this.api);
-
       this.api.enableMouseWheel();
       $(".jspHorizontalBar, .jspVerticalBar").fadeIn(250);
 
     } else {
-
-      console.log(this, this.api);
 
       this.api.disableMouseWheel();
       $(".jspHorizontalBar, .jspVerticalBar").fadeOut(250);

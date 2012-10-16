@@ -203,8 +203,6 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     main        = "Finish",
     secondary   = "Cancel";
 
-    console.log(this.parent.guide);
-
     this.stepTooltip = new nfn.ui.view.Tooltip({
 
       className: "tooltip step",
@@ -249,7 +247,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
   closeStepTooltip: function(callback) {
 
-    if (!this.closeStepTooltip) return;
+    if (!this.stepTooltip) return;
 
     this.stepTooltip.hide();
     this.stepTooltip.clean();

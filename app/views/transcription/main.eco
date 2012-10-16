@@ -25,6 +25,15 @@
 
 </script>
 
+<script type="text/template" id="tooltip-step-template">
+  <ul>
+    {{#links}}
+    <li><a href="#">{{title}}</a></li>
+    {{/links}}
+  </ul>
+  <div class="tip"></div>
+</script>
+
 <script type="text/template" id="tooltip-template">
   <strong class="title">{{ title }}</strong>
   <div class="description">{{{ description }}}</div>
