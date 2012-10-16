@@ -209,10 +209,19 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
     this.stepTooltip.show();
 
     var
-    targetWidth   = $(e.target).width()/2,
-    marginRight = parseInt($(e.target).css("margin-right").replace("px", ""), 10),
-    x           = Math.abs(this.$el.offset().left - $(e.target).offset().left) - this.stepTooltip.width() + 30,
-    y           = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.stepTooltip.height() - 17
+    targetWidth  = $(e.target).width()/2,
+    marginRight  = parseInt($(e.target).css("margin-right").replace("px", ""), 10),
+    x            = Math.abs(this.$el.offset().left - $(e.target).offset().left) - this.stepTooltip.width()  + 30,
+    y            = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.stepTooltip.height() - 17;
+
+    var top = this.$el.offset().top - this.stepTooltip.$el.height() + 130;
+
+    if (top < 0) {
+      y = Math.abs(this.$el.offset().top  - $(e.target).offset().top) + 45;
+      this.stepTooltip.$el.addClass("ne");
+    } else {
+      this.stepTooltip.$el.removeClass("ne");
+    }
 
     this.stepTooltip.setPosition(x, y);
 

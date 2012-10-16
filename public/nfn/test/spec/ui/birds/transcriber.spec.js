@@ -758,8 +758,8 @@ describe("common.ui.view.BirdsTranscriber", function() {
 
   it("the currentStep should be shown in the stepTooltip", function() {
 
-    transcriber.transcriberWidget.$startButton.click();
     transcriber.model.set("currentStep", 4);
+    transcriber.transcriberWidget.$startButton.click();
 
     waits(350);
 
