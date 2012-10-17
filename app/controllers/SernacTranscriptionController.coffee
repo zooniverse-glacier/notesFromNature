@@ -1,5 +1,7 @@
 Spine   = require('spine')
 Subject = require('models/Subject')
+Archive = require('models/Archive')
+
 EOL     = require('models/EOL')
 
 class SernacTranscriptionController extends Spine.Controller
@@ -8,6 +10,8 @@ class SernacTranscriptionController extends Spine.Controller
 
   startWorkflow:(subject)=>
     @currentSubject= subject
+
+    archive = Archive.find(@currentSubject.archive_id)
     @render()
     @delay =>
 
@@ -25,6 +29,8 @@ class SernacTranscriptionController extends Spine.Controller
           model: transcriberModel
         })
 
+        $(".btn.close").attr("href", "#/archives/#{archive.slug()}")
+        
         callback = -> 
           transcriber.spinner.hide()
           transcriber.startTranscribing()
