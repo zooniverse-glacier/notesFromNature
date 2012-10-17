@@ -118,7 +118,7 @@ describe("common.ui.view.BirdsWidget", function() {
 
     widget.$startButton.click();
 
-    waits(300);
+    waits(400);
 
     runs(function() {
       expect(widget.$startButton).toBeHidden();
@@ -667,6 +667,112 @@ describe("common.ui.view.BirdsTranscriber", function() {
 
   });
 
+  it("should fire an event when the user clicks in the step counter", function() {
+
+    var spy = spyOn(transcriber.transcriberWidget, 'showStepTooltip');
+
+    transcriber.transcriberWidget.delegateEvents();
+    transcriber.transcriberWidget.$step.click();
+
+    expect(spy).toHaveBeenCalled();
+
+  });
+
+  it("should create a tooltip when the user cliks in the counter", function() {
+
+    transcriber.transcriberWidget.$startButton.click();
+
+    waits(350);
+
+    runs(function() {
+
+      transcriber.transcriberWidget.$step.click();
+
+      expect(transcriber.transcriberWidget.$el.find(".tooltip").length).toEqual(1);
+      expect(transcriber.transcriberWidget.stepTooltip.model.get("hidden")).toEqual(false);
+      expect(transcriber.transcriberWidget.stepTooltip.$el.hasClass("step")).toEqual(true);
+
+    });
+
+  });
+
+  it("the stepTooltip should contain a list of links", function() {
+
+    transcriber.transcriberWidget.$startButton.click();
+
+    waits(350);
+
+    runs(function() {
+
+      transcriber.transcriberWidget.$step.click();
+
+      expect(transcriber.transcriberWidget.stepTooltip.$el.find("li").length).toEqual(transcriber.guide.length);
+      expect(transcriber.transcriberWidget.stepTooltip.$el.find("li:first-child").text()).toEqual(transcriber.guide[0].title);
+
+    });
+
+  });
+
+  it("clicking a link in the step tooltip should trigger a gotoStep event", function() {
+
+    var spy = spyOn(transcriber.transcriberWidget, 'gotoStep');
+
+    transcriber.transcriberWidget.$startButton.click();
+
+    waits(350);
+
+    runs(function() {
+
+      transcriber.transcriberWidget.$step.click();
+
+      transcriber.transcriberWidget.delegateEvents();
+      transcriber.transcriberWidget.stepTooltip.$el.find("li:first-child a").click();
+
+      expect(spy).toHaveBeenCalled();
+
+    });
+
+  });
+
+  it("clicking a link in the step tooltip should change the currentStep", function() {
+
+    transcriber.transcriberWidget.$startButton.click();
+
+    waits(350);
+
+    runs(function() {
+
+      transcriber.transcriberWidget.$step.click();
+
+      transcriber.transcriberWidget.stepTooltip.$el.find("li:first-child a").click();
+      expect(transcriber.model.get("currentStep")).toEqual(0);
+
+      transcriber.transcriberWidget.$step.click();
+
+      transcriber.transcriberWidget.stepTooltip.$el.find("li:nth-child(4) a").click();
+      expect(transcriber.model.get("currentStep")).toEqual(3);
+
+    });
+
+  });
+
+  it("the currentStep should be shown in the stepTooltip", function() {
+
+    transcriber.transcriberWidget.$startButton.click();
+    transcriber.model.set("currentStep", 4);
+
+    waits(350);
+
+    runs(function() {
+
+      transcriber.transcriberWidget.$step.click();
+
+      expect(transcriber.transcriberWidget.stepTooltip.$el.find("li.selected").text()).toEqual(transcriber.guide[4].title);
+
+    });
+
+  });
+
   it("should set currentStep to 0 after the transcriber has started", function() {
 
     transcriber.startTranscribing();
@@ -684,27 +790,11 @@ describe("common.ui.view.BirdsTranscriber", function() {
 
   });
 
-  it("should save a transcription when the $okButton is clicked", function() {
-
-    transcriber.model.set("currentStep", 0);
-
-    transcriber.transcriberWidget.$input.val("Hi!");
-    transcriber.transcriberWidget.$okButton.click();
-
-    transcriber.transcriberWidget.$input.val("Bye!");
-    transcriber.transcriberWidget.$okButton.click();
-
-    expect(transcriber.transcriptions.length).toEqual(2);
-    expect(transcriber.transcriptions.at(0).get("value")).toEqual("Hi!");
-    expect(transcriber.transcriptions.at(1).get("value")).toEqual("Bye!");
-
-  });
-
   it("should return the number of fields left to transcribe", function() {
 
     transcriber.model.set("currentStep", 0);
 
-    transcriber.transcriberWidget.$input.val("Hi!");
+    transcriber.transcriberWidget.$input.val("1234");
     transcriber.transcriberWidget.$okButton.click();
 
     transcriber.transcriberWidget.$input.val("Bye!");
@@ -773,7 +863,7 @@ describe("common.ui.view.BirdsTranscriber", function() {
     waits(250);
 
     runs(function () {
-      expect(transcriber.transcriberWidget.$title.text()).toEqual("Code");
+      expect(transcriber.transcriberWidget.$title.text()).toEqual(transcriber.guide[0].title);
     });
 
   });
@@ -785,7 +875,7 @@ describe("common.ui.view.BirdsTranscriber", function() {
     waits(350);
 
     runs(function () {
-      expect(transcriber.transcriberWidget.$description.html()).toEqual('It\'s a 4 digit number located at the top right of the page. <a href="#" class="example" data-src="http://placehold.it/180x100">See example</a> | <a href="#" class="skip">Skip field</a>');
+      expect(transcriber.transcriberWidget.$description.html()).toEqual(transcriber.guide[0].description);
     });
 
   });
@@ -833,6 +923,28 @@ describe("common.ui.view.BirdsTranscriber", function() {
   });
 
   it("should move to the next step when $okButton is clicked", function() {
+
+    transcriber.guide = [{
+      title: 'Code' ,
+      description: 'Code',
+      placeholder: 'Code',
+      type: "text",
+      inputWidth: 180
+      }, {
+      title: 'Code 2' ,
+      description: 'Code',
+      placeholder: 'Code',
+      type: "text",
+      inputWidth: 180
+      }, {
+      title: 'Code 2' ,
+      description: 'Code',
+      placeholder: 'Code',
+      type: "text",
+      inputWidth: 180
+    }];
+
+    transcriber.model.set("currentStep", 0);
 
     transcriber.$el.find(".photos").append("<img />");
 
@@ -1069,6 +1181,153 @@ describe("common.ui.view.BirdsTranscriber", function() {
 
     });
 
+  it("should save a transcription when the $okButton is clicked", function() {
+
+    transcriber.guide = [{
+      title: 'Code' ,
+      description: 'Code',
+      placeholder: 'Code',
+      type: "text",
+      inputWidth: 180
+      }, {
+      title: 'Code 2' ,
+      description: 'Code',
+      placeholder: 'Code',
+      type: "text",
+      inputWidth: 180
+      }, {
+      title: 'Code 2' ,
+      description: 'Code',
+      placeholder: 'Code',
+      type: "text",
+      inputWidth: 180
+    }];
+
+    transcriber.model.set("currentStep", 0);
+
+    transcriber.transcriberWidget.$input.val("1234");
+    transcriber.transcriberWidget.$okButton.click();
+
+    transcriber.transcriberWidget.$input.val("Bye!");
+    transcriber.transcriberWidget.$okButton.click();
+
+    expect(transcriber.transcriptions.length).toEqual(2);
+    expect(transcriber.transcriptions.at(0).get("value")).toEqual("1234");
+    expect(transcriber.transcriptions.at(1).get("value")).toEqual("Bye!");
+
+});
+
 });
 
 
+/*
+* common.ui.view.BirdsWidget
+*
+*/
+describe("common.ui.view.BirdsTranscriber.Validations", function() {
+
+  var widget;
+
+  var transcriber;
+
+  beforeEach(function() {
+
+    transcriber = new nfn.ui.view.DoublePage({
+      model: new nfn.ui.model.DoublePage(),
+      widgetTemplate: "<strong>hola</strong>"
+    });
+
+    var stub = jasmine.createSpy('stub');
+
+    stub.disableMouseWheel = function() { };
+    stub.enableMouseWheel  = function() { };
+    stub.scrollToX         = function() { };
+    stub.scrollToY         = function() { };
+    stub.scrollTo          = function() { };
+
+    transcriber.api = stub;
+
+  });
+
+  afterEach(function() {
+
+    transcriber.clean();
+
+  });
+
+  it("should validate the input", function() {
+
+    transcriber.model.set("currentStep", 0);
+
+    transcriber.delegateEvents();
+
+    spyOn(transcriber, 'validateCurrentStep');
+
+    transcriber.guide = [{
+      title: 'Code' ,
+      description: 'Code',
+      placeholder: 'Code',
+      type: "text",
+      dataType: "number",
+      validate: true,
+      inputWidth: 180
+      }, {
+      title: 'Code 2' ,
+      description: 'Code',
+      placeholder: 'Code',
+      type: "text",
+      inputWidth: 180
+    }];
+
+    transcriber.transcriberWidget.$input.val("Hi!");
+    transcriber.transcriberWidget.$okButton.click();
+
+    expect(transcriber.validateCurrentStep).toHaveBeenCalled();
+
+  });
+
+
+  it("should validate codes", function() {
+
+    transcriber.model.set("currentStep", 0);
+
+    transcriber.guide = [{
+      title: 'Code' ,
+      description: 'Code',
+      placeholder: 'Code',
+      type: "text",
+      dataType: "code",
+      validate: true,
+      inputWidth: 180
+      }, {
+      title: 'Code 2' ,
+      description: 'Code',
+      placeholder: 'Code',
+      type: "text",
+      inputWidth: 180
+    }];
+
+    transcriber.transcriberWidget.$input.val("123a");
+    expect(transcriber.validateCurrentStep()).toEqual(false);
+
+    transcriber.transcriberWidget.$input.val("HI");
+    expect(transcriber.validateCurrentStep()).toEqual(false);
+
+    transcriber.transcriberWidget.$input.val("132222");
+    expect(transcriber.validateCurrentStep()).toEqual(false);
+
+    transcriber.transcriberWidget.$input.val("0132222");
+    expect(transcriber.validateCurrentStep()).toEqual(false);
+
+    transcriber.transcriberWidget.$input.val("012");
+    expect(transcriber.validateCurrentStep()).toEqual(false);
+
+    transcriber.transcriberWidget.$input.val("0012");
+    expect(transcriber.validateCurrentStep()).toEqual(true);
+
+    transcriber.transcriberWidget.$input.val("8241");
+    expect(transcriber.validateCurrentStep()).toEqual(true);
+
+  });
+
+});

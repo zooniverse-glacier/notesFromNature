@@ -69,15 +69,16 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
+    GOD.triggerCallbacks(); // this close the tooltips (TODO: add test)
+
     if (this.$input.val()) { // don't store or advance when the input field is empty
 
       this.parent.saveCurrentStep();
 
-      this.closeTooltip();               // TODO: add test
-      this.parent.helper.closeTooltip(); // TODO: add test
-
       this.clearInput();
+
       this.parent.nextStep();
+
     }
 
   },
@@ -202,8 +203,6 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     main        = "Finish",
     secondary   = "Cancel";
 
-    console.log(this.parent.guide);
-
     this.stepTooltip = new nfn.ui.view.Tooltip({
 
       className: "tooltip step",
@@ -248,7 +247,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
   closeStepTooltip: function(callback) {
 
-    if (!this.closeStepTooltip) return;
+    if (!this.stepTooltip) return;
 
     this.stepTooltip.hide();
     this.stepTooltip.clean();

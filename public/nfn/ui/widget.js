@@ -36,6 +36,15 @@ nfn.ui.view.Widget = nfn.core.View.extend({
 
   },
 
+  setBottom: function(y, animated) {
+
+    var x = this.model.get("left");
+    this.setPosition(x, y, animated);
+
+    return this;
+
+  },
+
   setWidth: function(w, animated) {
 
     this.model.set("width", w);
@@ -125,6 +134,14 @@ nfn.ui.view.Widget = nfn.core.View.extend({
 
   },
 
+  bottom: function() {
+
+    if ( this.model.get("bottom") == undefined )
+      this.model.set("bottom", this.$el.position().bottom);
+
+    return this.model.get("bottom");
+
+  },
 
   getSize: function() {
 

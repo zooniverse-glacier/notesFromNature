@@ -494,30 +494,31 @@ a.badge {
   display: inline-block;
   text-align: center;
   position:relative;
+  border: 1px solid #395312
 
   color: #fff;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
-  background: #669933 url(../images/button-green-bg.png) repeat-x left top;
+  background: #669933 url(../images/button-green-bg.png) repeat-x left 40px;
   border-radius: 3px;
 
   font-size: 21px;
-  font-weight: normal;
+  font-weight: 300;
 
-  box-shadow:         0px 0px 5px #000;
-  -moz-box-shadow:    0px 0px 5px #000;
-  -webkit-box-shadow: 0px 0px 5px #000;
+  box-shadow:         0px 0px 5px rgba(#000, .5);
+  -moz-box-shadow:    0px 0px 5px rgba(#000, .5);
+  -webkit-box-shadow: 0px 0px 5px rgba(#000, .5);
 
   padding: 23px 0;
 
   margin: auto;
   width: 280px;
 
-  &:hover  { background: #669933 url(../images/button-green-bg.png) repeat-x left -20px; }
+  &:hover   { background: #669933 url(../images/button-green-bg.png) repeat-x left -20px; }
   &:active  { background: #669933 url(../images/button-green-bg.png) repeat-x left bottom; }
 
     i { 
     display: block; 
-    right: 10px;
+    right: 13px;
     position:absolute;
     top: 50%;
     margin-top: -5px;
@@ -586,6 +587,7 @@ hr.absolute {
   color: #FFF;
   font-family: helvetica;
   margin-bottom: 20px;
+  font-weight: 100;
 }
 .status-list li.logos span.text {
   margin-bottom: 13px;
@@ -1163,6 +1165,7 @@ span.ico-comments {
 .archive-list .translucent-box p {
   padding: 0 40px;
   line-height: 16px;
+  font-weight: 100;
 }
 .archive-list .translucent-box a {
   color: #83C046;
@@ -1238,7 +1241,7 @@ a.button:active {
 a.button.nocolor {
   background: #FFF;
   color: #557F2C;
-  padding: 10px 50px;
+  padding: 14px 50px;
   text-shadow: 0px 0px;
 }
 a.button.nocolor:hover {

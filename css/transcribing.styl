@@ -117,15 +117,24 @@
     box-shadow: none;
   }
 
+    &.ne .tip { // north east
+      position: absolute;
+      top: -6px;
+      right: 7px;
+      width: 13px;
+      height: 6px;
+      background: url(../images/transcribers/tooltip-tip-top.png) no-repeat;
+      }
+
     &.upsidedown .tip {
-    position: absolute;
-    top: -6px;
-    left: 50%;
-    margin-left: -6px;
-    width: 13px;
-    height: 6px;
-    background: url(../images/transcribers/tooltip-tip-top.png) no-repeat;
-  }
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      margin-left: -6px;
+      width: 13px;
+      height: 6px;
+      background: url(../images/transcribers/tooltip-tip-top.png) no-repeat;
+      }
 
   .tip {
     position: absolute;
@@ -618,14 +627,18 @@
 .transcriber.birds .birds-widget .bottom .left .input_field.date input.year {
   width: 90px;
 }
+
+.transcriber.birds .birds-widget .bottom .left .input_field input[type="text"]::-webkit-input-placeholder { line-height: 15px; text-transform: uppercase; }
+.transcriber.birds .birds-widget .bottom .left .input_field input[type="text"]:-moz-input-placeholder     { line-height: 15px; text-transform: uppercase; }
+
 .transcriber.birds .birds-widget .bottom .left .input_field input[type="text"] {
   border: none;
   outline: none;
   color: #666;
   vertical-align: top;
-  font: bold 11px "Helvetica",Arial;
+  font: bold 13px "Helvetica", Arial;
   line-height: 13px!important;
-  text-transform: uppercase;
+  text-transform: none;
   height: 13px;
   margin: 0 5px 0 0;
   padding: 9px 8px 9px;

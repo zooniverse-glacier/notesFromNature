@@ -36,6 +36,8 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
         description: 'It\'s a 4 digit number located at the top right of the page. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a> | <a href="#" class="skip">Skip field</a>',
         placeholder: 'Code',
         type: "text",
+        dataType: "code",
+        validate: true,
         inputWidth: 180
       }, {
         title: 'Species',
@@ -285,6 +287,29 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
 
   },
 
+  validateCurrentStep: function() {
+
+    var currentStep = this.guide[this.model.get("currentStep")];
+
+    if (currentStep.validate == false || !"validate" in currentStep) {
+      return true;
+    } else {
+
+      if (currentStep.dataType == "code") return this.validateCode(this.transcriberWidget.getValue());
+      else return true;
+    }
+
+  },
+
+  // true if val only contains numbers (even padding zeroes)
+  validateCode: function(val) {
+
+    if (val.length != 4) return false;
+
+    return /^\d+$/.test(val);
+
+  },
+
   saveCurrentStep: function() {
 
     if (this.transcriptions.at(this.model.get("currentStep"))) {
@@ -303,7 +328,6 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
 
     }
 
-    //console.log("STATUS", this.transcriptions.toJSON());
   },
 
   onResize: function() {
@@ -338,14 +362,10 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
 
     if (this.model.get("mousewheel_enabled")) {
 
-      console.log(this.api);
-
       this.api.enableMouseWheel();
       $(".jspHorizontalBar, .jspVerticalBar").fadeIn(250);
 
     } else {
-
-      console.log(this, this.api);
 
       this.api.disableMouseWheel();
       $(".jspHorizontalBar, .jspVerticalBar").fadeOut(250);

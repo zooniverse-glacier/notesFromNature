@@ -175,7 +175,6 @@ describe("common.ui.view.HerbariumWidget", function() {
 
 });
 
-
 /*
 * common.ui.view.HerbariumTranscriber
 *
@@ -200,7 +199,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
   it("should return the number of fields left to transcribe", function() {
 
-    transcriber.model.set("currentStep", 0);
+    transcriber.model.set({ currentStep: 0 }, { silent: true });
 
     transcriber.transcriberWidget.$input.val("Hi!");
     transcriber.transcriberWidget.$okButton.click();
@@ -208,7 +207,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     transcriber.transcriberWidget.$input.val("Bye!");
     transcriber.transcriberWidget.$okButton.click();
 
-    expect(transcriber.getPendingFieldCount()).toEqual(6);
+    expect(transcriber.getPendingFieldCount()).toEqual(transcriber.guide.length - 2);
 
   });
 
@@ -455,7 +454,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     waits(250);
 
     runs(function () {
-      expect(transcriber.helper.$title.text()).toEqual("Record code");
+      expect(transcriber.helper.$title.text()).toEqual(transcriber.guide[0].title);
     });
 
   });
