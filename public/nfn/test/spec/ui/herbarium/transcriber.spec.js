@@ -569,6 +569,25 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     expect(transcriber.$el.find(".backdrop").length).toEqual(1);
   });
 
+  it("clicking in the $skipButton of the launcher should call the skip method", function() {
+
+    var spy = spyOn(transcriber, 'skip');
+
+    transcriber.model.set("currentRecord", 0);
+
+    transcriber.launcher.$skipButton.click();
+
+    waits(500);
+
+    runs(function() {
+
+      expect(transcriber.model.get("currentRecord")).toEqual(0);
+      expect(spy).toHaveBeenCalled();
+
+    });
+
+  });
+
   it("should show the $startButton in the launcher after the highlight is added", function() {
 
     transcriber.$el.find(".photos").append("<img />");

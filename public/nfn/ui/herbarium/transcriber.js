@@ -223,6 +223,32 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
   },
 
+  skip: function() {
+
+    //console.log(this.selection.model.toJSON(), this.transcriptions.toJSON()[0]);
+
+    this.launcher.disable();
+
+    this.backdrop.hide();
+    this.magnifier.hide();
+    this.helper.hide();
+    this.transcriberWidget.hide();
+
+    var that = this;
+
+    var callback = function () {
+      that.startTranscribing();
+      that.spinner.hide();
+    };
+
+    // TODO: request next photo and the URL here
+    this.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_02.png", callback);
+
+    this.helper.closeTooltip();             // TODO: add test
+    this.transcriberWidget.closeTooltip();  // TODO: add test
+
+  },
+
   finish: function() {
 
     //console.log(this.selection.model.toJSON(), this.transcriptions.toJSON()[0]);

@@ -161,7 +161,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
-    //this.parent.finish();
+    this.parent.skip();
 
   },
 
