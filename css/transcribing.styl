@@ -767,38 +767,56 @@
   font: 12px "Helvetica";
   color: white;
 }
+
 .transcriber.sernac .helper .description .example:hover {
   border-bottom: 1px dashed #fff;
 }
+
 .transcriber.sernac .launcher {
-  z-index: 1001;
+
   bottom: 50px;
-}
-.transcriber.sernac .launcher .btn {
-  float: right;
-  font-size: 11px;
-}
-.transcriber.sernac .launcher > a.example {
-  position: relative;
-  margin: 0 0 0 10px;
-  padding: 0 0 0 0;
-  border-bottom: 1px solid #ccc;
-  text-decoration: none;
-  font: 13px "Helvetica";
-  color: white;
-}
-.transcriber.sernac .launcher > a.example:hover {
-  border-bottom: 1px dashed #fff;
+  padding: 10px 15px;
+
+  z-index: 1001;
+
+  .start.btn {
+    float: right;
+
+    font-size: 11px;
+
+    &.hidden { display: none; }
+  }
+
+  a.skip {
+    top: 8px;
+    float:right;
+
+    &.hidden { display: none; }
+  }
+
+  & > a.skip,
+  & > a.example {
+    position: relative;
+    margin: 0 0 0 10px;
+    padding: 0 0 0 0;
+    border-bottom: 1px solid #ccc;
+    text-decoration: none;
+    font: 13px "Helvetica";
+    color: white;
+    &:hover { border-bottom: 1px dashed #fff; }
+ }
+
+ & > a.example, 
+ span { top: 4px; }
+
+ span {
+   position: relative;
+   font: 13px "Helvetica";
+   color: white;
+ }
+
 }
 
-.transcriber.sernac .launcher > a.example, 
-.transcriber.sernac .launcher span { top: 4px; }
-
-.transcriber.sernac .launcher span {
-  position: relative;
-  font: 13px "Helvetica";
-  color: white;
-}
 .transcriber.sernac .sernac-widget {
   z-index: 10001;
 }

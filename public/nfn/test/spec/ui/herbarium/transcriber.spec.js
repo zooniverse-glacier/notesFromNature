@@ -190,6 +190,60 @@ describe("common.ui.view.HerbariumTranscriber", function() {
       widgetTemplate: "<strong>hola</strong>"
     });
 
+    transcriber.guide = [{
+      title: "Location",
+      type: "location",
+      description: 'It is the full state name or its abbreviation (e.g. FL for Florida). <a href="#" class="example">See example</a>',
+      inputWidth: 540
+    }, {
+      title: "Date",
+      type: "date",
+      description: 'It is the full state name or its abbreviation (e.g. FL for Florida). <a href="#" class="example">See example</a>',
+      inputWidth: 240
+    }, {
+      title: "Code",
+      type: "code",
+      description: "description",
+      inputWidth: 240
+    }, {
+      title: "Whatever",
+      type: "whatever",
+      description: "description",
+      inputWidth: 240
+    }, {
+      title: "Code 2",
+      type: "code",
+      description: "description"
+    }, {
+      title: "Whatever 3",
+      type: "whatever",
+      description: "description"
+    }, {
+      title: "Code 3",
+      type: "code",
+      description: "description"
+    }, {
+      title: "Whatever 4",
+      type: "whatever",
+      description: "description"
+    }, {
+      title: "Code 4",
+      type: "code",
+      description: "description"
+    }, {
+      title: "Whatever 5",
+      type: "whatever",
+      description: "description"
+    }, {
+      title: "Code 5",
+      type: "code",
+      description: "description"
+    }, {
+      title: "Whatever 6",
+      type: "whatever",
+      description: "description"
+    }];
+
 
   });
 
@@ -275,8 +329,8 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     expect(transcriber.launcher).toBeDefined();
   });
 
-  it("the launcher's start button should be initially disabled", function() {
-    expect(transcriber.launcher.$startButton.hasClass('disabled')).toEqual(true);
+  it("the launcher's start button should be initially hidden", function() {
+    expect(transcriber.launcher.$startButton.hasClass('hidden')).toEqual(true);
   });
 
   it("should have a spinner", function() {
@@ -397,12 +451,12 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     expect(transcriber.launcher.$el.find(".start").hasClass("disabled")).toEqual(false);
   });
 
-  it("should disable the start button after a highlight is closed", function() {
+  it("should hide the start button of the launcher after a highlight is closed", function() {
 
     transcriber.addHighlight({ x: 1, y: 1, w: 100, h: 100 });
     transcriber.highlight.$closeButton.click();
 
-    expect(transcriber.launcher.$el.find(".start").hasClass("disabled")).toEqual(true);
+    expect(transcriber.launcher.$el.find(".start").hasClass("hidden")).toEqual(true);
   });
 
   it("should create a highlight", function() {
@@ -442,7 +496,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     expect(transcriber.$el.find(".magnifier").length).toEqual(0);
   });
 
-  it("should update the helper title the launcher after the magnifier is added", function() {
+  it("should update the helper title of the launcher after the magnifier is added", function() {
 
     transcriber.$el.find(".photos").append("<img />");
 
@@ -451,7 +505,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     transcriber.selection.$el.css("position", "absolute");
     transcriber.addMagnifier();
 
-    waits(250);
+    waits(700);
 
     runs(function () {
       expect(transcriber.helper.$title.text()).toEqual(transcriber.guide[0].title);
@@ -513,6 +567,45 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     transcriber.addMagnifier();
 
     expect(transcriber.$el.find(".backdrop").length).toEqual(1);
+  });
+
+  it("should show the $startButton in the launcher after the highlight is added", function() {
+
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.addSelection();
+    transcriber.updateSelection(10, 10, 100, 100);
+    transcriber.selection.$el.css("position", "absolute");
+    transcriber.addHighlight(transcriber.selection.getDimensions());
+
+    waits(500);
+    runs(function() {
+      expect(transcriber.launcher.$startButton.hasClass("hidden")).toEqual(false);
+    });
+
+  });
+
+  it("should hide the $startButton when the selection is removed", function() {
+
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.addSelection();
+    transcriber.updateSelection(10, 10, 100, 100);
+    transcriber.selection.$el.css("position", "absolute");
+
+    waits(500);
+
+    runs(function() {
+
+      transcriber.removeSelection();
+
+      waits(500);
+      runs(function() {
+        expect(transcriber.launcher.$startButton.hasClass("hidden")).toEqual(true);
+      });
+
+    });
+
   });
 
   it("should show the helper after the magnifier is added", function() {
@@ -627,29 +720,31 @@ describe("common.ui.view.HerbariumTranscriber", function() {
   it("should return the width of the input field", function() {
 
     transcriber.model.set("currentStep", 0);
-
     expect(transcriber.transcriberWidget.model.get("inputWidth")).toEqual(540);
+
   });
 
   it("should update the class of the widget when the step changes", function() {
 
-    transcriber.model.set("currentStep", 2);
+    transcriber.model.set("currentStep", 0);
+
     expect(transcriber.transcriberWidget.$el.find(".input_field").hasClass("location")).toEqual(true);
-    expect(transcriber.transcriberWidget.$el.find(".input_field").hasClass("date")).not.toEqual(true);
 
     transcriber.nextStep();
     expect(transcriber.transcriberWidget.$el.find(".input_field").hasClass("date")).toEqual(true);
-    expect(transcriber.transcriberWidget.$el.find(".input_field").hasClass("text")).not.toEqual(true);
+
+    transcriber.nextStep();
+    expect(transcriber.transcriberWidget.$el.find(".input_field").hasClass("code")).toEqual(true);
 
   });
 
   it("should update the type of input field when the step changes", function() {
 
     transcriber.model.set("currentStep", 2);
-    expect(transcriber.transcriberWidget.model.get("type")).toEqual("location");
+    expect(transcriber.transcriberWidget.model.get("type")).toEqual("code");
 
     transcriber.nextStep();
-    expect(transcriber.transcriberWidget.model.get("type")).toEqual("date");
+    expect(transcriber.transcriberWidget.model.get("type")).toEqual("whatever");
 
   });
 
@@ -658,7 +753,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     transcriber.model.set("currentStep", 0);
     transcriber.nextStep();
 
-    expect(transcriber.transcriberWidget.$input.attr("placeholder")).toEqual("Species");
+    expect(transcriber.transcriberWidget.$input.attr("placeholder")).toEqual("day");
   });
 
   it("should have a link to see an example", function() {
@@ -672,7 +767,6 @@ describe("common.ui.view.HerbariumTranscriber", function() {
       expect(transcriber.helper.$el.find('.example').length).toEqual(1);
     });
 
-
   });
 
   it("should change the title in the helper when the step changes", function() {
@@ -684,16 +778,16 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     waits(450);
 
     runs(function() {
-      expect(transcriber.helper.$el.find(".title").text()).toEqual("Genus & species");
-      expect(transcriber.helper.$el.find(".description").text()).toEqual("2 or 3 latin words in the first line, next to the margin. See example");
+      expect(transcriber.helper.$el.find(".title").text()).toEqual(transcriber.guide[1].title);
+      expect(transcriber.helper.$el.find(".description").html()).toEqual(transcriber.guide[1].description);
 
       transcriber.previousStep();
 
       waits(450);
 
       runs(function() {
-        expect(transcriber.helper.$el.find(".title").text()).toEqual("Record code");
-        expect(transcriber.helper.$el.find(".description").text()).toEqual("It's a 4 digit number located at the top right of the page. See example");
+        expect(transcriber.helper.$el.find(".title").text()).toEqual(transcriber.guide[0].title);
+        expect(transcriber.helper.$el.find(".description").html()).toEqual(transcriber.guide[0].description);
       });
     });
 

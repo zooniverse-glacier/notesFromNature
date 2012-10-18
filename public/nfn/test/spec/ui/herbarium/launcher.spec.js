@@ -12,6 +12,9 @@ describe("common.ui.view.Launcher", function() {
       model: new nfn.ui.model.Launcher(),
       template: $("#launcher-template").html()
     });
+
+    $("body").append(widget.render());
+
   });
 
   afterEach(function() {
@@ -19,41 +22,82 @@ describe("common.ui.view.Launcher", function() {
   });
 
   it("should have a $startButton", function() {
-    widget.render();
     expect(widget.$el.find(".btn.start").length).toEqual(1);
     expect(widget.$startButton).toEqual(widget.$el.find(".btn.start"));
   });
 
+  it("the $startButton should be initially hidden", function() {
+    expect(widget.$startButton.hasClass("hidden")).toEqual(true);
+  });
+
+  it("should have a $skipButton", function() {
+    expect(widget.$el.find(".skip").length).toEqual(1);
+    expect(widget.$skipButton).toEqual(widget.$el.find(".skip"));
+  });
+
+  it("the $skipButton should be initially visible", function() {
+    expect(widget.$skipButton).toBeVisible();
+  });
+
   it("should have a message", function() {
-    widget.render();
     expect(widget.$message).toEqual(widget.$el.find("span"));
     expect(widget.$message.text()).toEqual("Drag a square around the specimen label");
   });
 
   it("should have a link to see an example", function() {
-    widget.render();
     expect(widget.$exampleLink).toEqual(widget.$el.find(".example"));
     expect(widget.$exampleLink.text()).toEqual("See example");
     expect(widget.$el.find('.example').length).toEqual(1);
   });
 
-  it("should allow to enable the button", function() {
-    widget.render();
+  it("should allow to hide the $skipButton and show the $startButton", function() {
+
     widget.enable();
-    expect(widget.$startButton.hasClass("disabled")).toEqual(false);
+
+    waits(700);
+
+    runs(function() {
+      expect(widget.$startButton.hasClass("hidden")).toEqual(false);
+      expect(widget.$skipButton.hasClass("hidden")).toEqual(true);
+    });
+
   });
 
-  it("should allow to disable the button", function() {
-    widget.render();
+  it("should allow to hide the $startButton and show the $skipButton", function() {
 
     widget.disable();
-    expect(widget.$startButton.hasClass("disabled")).toEqual(true);
+
+    waits(700);
+
+    runs(function() {
+      expect(widget.$startButton.hasClass("hidden")).toEqual(true);
+      expect(widget.$skipButton.hasClass("hidden")).toEqual(false);
+    });
+
+  });
+
+  it("should change the message when the widget is enabled", function() {
+
+    widget.enable();
+
+    waits(700);
+
+    runs(function() {
+      expect(widget.$message.text()).toEqual("Specimen label selected");
+
+      widget.disable();
+
+      waits(700);
+
+      runs(function() {
+        expect(widget.$message.text()).toEqual("Drag a square around the specimen label");
+      });
+    });
 
   });
 
   it("should fire a start event when the user clicks in the start button", function() {
 
-    widget.render();
 
     var spy = spyOn(widget, 'start');
 
@@ -65,9 +109,21 @@ describe("common.ui.view.Launcher", function() {
 
   });
 
+
+  it("should fire a skip event when the user clicks in the start button", function() {
+
+    var spy = spyOn(widget, 'skip');
+
+    widget.delegateEvents();
+
+    widget.$skipButton.click();
+
+    expect(spy).toHaveBeenCalled();
+
+  });
+
   it("should fire a showExample event when the user clicks in the example link", function() {
 
-    widget.render();
 
     var spy = spyOn(widget, 'showExample');
 
@@ -81,7 +137,6 @@ describe("common.ui.view.Launcher", function() {
 
   it("should close the tooltip when the user press the esc key", function() {
 
-    widget.render();
     widget.$exampleLink.click();
 
     $(document).trigger({ type: 'keyup', which: "27" });
@@ -93,7 +148,6 @@ describe("common.ui.view.Launcher", function() {
 
   it("should create a tooltip when the user cliks in the example link", function() {
 
-    widget.render();
     widget.$exampleLink.click();
 
     expect(widget.$el.find(".tooltip").length).toEqual(1);
@@ -103,7 +157,6 @@ describe("common.ui.view.Launcher", function() {
 
   it("shouldn't create another tooltip when the user cliks in the example link several times", function() {
 
-    widget.render();
     widget.$exampleLink.click();
     widget.$exampleLink.click();
 
@@ -113,7 +166,6 @@ describe("common.ui.view.Launcher", function() {
 
   it("should close the tooltip when the user clicks in the close button (main)", function() {
 
-    widget.render();
     widget.$exampleLink.click();
     widget.tooltip.$mainButton.click();
 

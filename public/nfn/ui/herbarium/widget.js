@@ -11,7 +11,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     "click .btn.ok" :     "ok",
     "click .step" :       "showStepTooltip",
     "click .btn.finish" : "showFinishTooltip",
-    "click .skip" :       "showSkipPane"
+    "click .skip" :       "showSkipTooltip"
 
   },
 
@@ -123,10 +123,12 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
   },
 
-  showSkipPane: function(e) {
+  showSkipTooltip: function(e) {
 
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
+
+    this.closeTooltips();
 
     if (!this.tooltip) this.createTooltip(e);
 
