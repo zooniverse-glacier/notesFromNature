@@ -18,6 +18,7 @@ describe("common.ui.view.BirdsWidget", function() {
     Mock.saveCurrentStep      = function() { return true; };
     Mock.getPendingFieldCount = function() { return true; };
     Mock.finishTranscribing   = function() { return true; };
+    Mock.validateCurrentStep  = function() { return true; };
     Mock.startTranscribing    = function() { return true; };
     Mock.nextStep             = function() { return true; };
 

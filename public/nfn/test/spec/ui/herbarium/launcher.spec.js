@@ -13,6 +13,16 @@ describe("common.ui.view.Launcher", function() {
       template: $("#launcher-template").html()
     });
 
+    var Mock = function () {};
+
+    Mock.saveCurrentStep      = function() { return true; };
+    Mock.getPendingFieldCount = function() { return true; };
+    Mock.finishTranscribing   = function() { return true; };
+    Mock.startTranscribing    = function() { return true; };
+    Mock.nextStep             = function() { return true; };
+
+    widget.parent = Mock;
+
     $("body").append(widget.render());
 
   });
