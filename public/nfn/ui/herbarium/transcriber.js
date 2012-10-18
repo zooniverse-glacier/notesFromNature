@@ -1,4 +1,5 @@
 // HERBARIUM TRANSCRIBER ------------------------------------------
+Spine= require('spine')
 
 nfn.ui.model.Herbarium = nfn.ui.model.Transcriber.extend({
 
@@ -11,7 +12,6 @@ nfn.ui.model.Herbarium = nfn.ui.model.Transcriber.extend({
 nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
   initialize: function() {
-
     var that = this;
 
     _.bindAll( this, "addScroll", "updateInputField", "updatePlaceholder", "updateHelper", "updateStepCounter", "addMagnifier", "onMouseDown", "onMouseUp", "onResize" );
@@ -223,6 +223,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
   },
 
+
   skip: function() {
 
     //console.log(this.selection.model.toJSON(), this.transcriptions.toJSON()[0]);
@@ -277,15 +278,17 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     };
 
     var that = this;
+    Spine.trigger("finishedSernacTranscription", this.transcriptions)
 
-    $(".photos img").animate({ marginLeft: -2*$(document).width() }, 500, function() {
-      that.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_02.png", callback); // TODO: request next photo and the URL here
-    });
+    // $(".photos img").animate({ marginLeft: -2*$(document).width() }, 500, function() {
+    //   that.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_02.png", callback); // TODO: request next photo and the URL here
+    // });
 
     this.helper.closeTooltip();             // TODO: add test
     this.transcriberWidget.closeTooltip();  // TODO: add test
 
   },
+
 
   showPhoto: function(i) {
     var that = this;
@@ -581,7 +584,6 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
   },
 
   render: function() {
-
     this.$el.addClass(this.model.get("type"));
 
     this.$el.append(this.backdrop.render());

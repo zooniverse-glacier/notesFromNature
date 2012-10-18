@@ -59,7 +59,7 @@
 </script>
 
 <script type="text/template" id="tooltip-example-template">
-  <div class="buttons"><a href="#" class="btn main">{{ main }}</a></div> 
+  <div class="buttons"><a href="#/archives/Herbarium" class="btn main">{{ main }}</a></div> 
   <div class="tip"></div>
 </script>
 

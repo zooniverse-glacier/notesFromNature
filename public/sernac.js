@@ -1,3 +1,5 @@
+Spine = require('models/Spine');
+
 
 /**************************************************************************
  * TRANSCRIBING SERNAC PLUGIN
@@ -489,7 +491,7 @@
      * Start the transcription after the image is loaded
      */
     _startTranscription: function(ev) {
-
+      alert("here");
       var
         $img = $("div.transcribing.sernac"),
         $el = $img.closest('div.transcribing');

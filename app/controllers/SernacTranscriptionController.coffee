@@ -1,21 +1,25 @@
 Spine   = require('spine')
 Subject = require('models/Subject')
 Archive = require('models/Archive')
+Classification = require('models/Classification')
+
 
 EOL     = require('models/EOL')
 
 class SernacTranscriptionController extends Spine.Controller
   className: "SernacTranscriptionController"
 
+  constructor:->
+    super 
+    Spine.bind("finishedSernacTranscription", @saveClassification)
 
   startWorkflow:(subject)=>
     @currentSubject= subject
-
     archive = Archive.find(@currentSubject.archive_id)
     @render()
     @delay =>
 
-      nfn.load "nfn/", ->
+      nfn.load "nfn/", =>
 
         GOD = new nfn.ui.view.GOD({
           model: new nfn.ui.model.GOD()
@@ -25,24 +29,33 @@ class SernacTranscriptionController extends Spine.Controller
 
         transcriberModel = new nfn.ui.model.Herbarium()
 
-        transcriber = new nfn.ui.view.HerbariumTranscriber({
+        @transcriber = new nfn.ui.view.HerbariumTranscriber({
           model: transcriberModel
         })
 
         $(".btn.close").attr("href", "#/archives/#{archive.slug()}")
         
-        callback = -> 
-
-          $(".photos img").animate({ marginLeft: "0" }, 500)
-          transcriber.spinner.hide()
-          transcriber.startTranscribing()
-
-        transcriber.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_01.png", callback)
-
-        window.transcriber = transcriber
+        @nextSubject()
+        window.transcriber = @transcriber
         
 
     , 500
+
+  saveClassification:(data)=>
+    classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0] } )
+    for annotation in data.toJSON()
+      classification.annotate annotation.step, annotation.value
+      classification.save()
+      classification.send()
+      @nextSubject()
+
+  nextSubject:=>
+    callback = -> 
+      $(".photos img").animate({ marginLeft: "0" }, 500)
+      @transcriber.spinner.hide()
+      @transcriber.startTranscribing()
+    @currentSubject= Subject.random()
+    @transcriber.loadPhoto(@currentSubject.location.standard, callback)
 
   render:=>
     @html require('views/transcription/sernac')

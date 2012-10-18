@@ -88,6 +88,7 @@ class TranscriptionController extends Spine.Controller
       console.log " from random subject"
       @render()
 
+    $(".transcriber .left .title").html("#{@archive?.name} Collection!!!")
     document.title = "Notes From Nature - #{@archive.institute().name} - #{@archive.name} - transcribe"
 
 

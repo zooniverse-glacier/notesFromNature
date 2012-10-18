@@ -4,7 +4,7 @@ API = require('zooniverse/lib/api')
 BaseSubject = require('zooniverse/lib/models/subject')
 
 class Subject extends BaseSubject
-  @configure 'Subject'
+  @configure 'Subject','location', 'metadata', 'active', 'workflow_ids'
   @belongsTo 'archive', Archive
   
   @next_subject:=>
