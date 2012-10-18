@@ -1,6 +1,8 @@
 Spine = require('spine')
 Subject= require('models/Subject')
 Archive= require('models/Archive')
+Institute= require('models/Institute')
+
 EOL = require('models/EOL')
 
 Classification = require('models/Classification')
@@ -37,7 +39,8 @@ class TranscriptionController extends Spine.Controller
     @nextSubject()
 
   render:=>
-    if @currnetSubject
+
+    if @currnetSubject?
       transcriptionType = @currnetSubject.metadata.workflow_type
       @transcriptionControllers[transcriptionType].startWorkflow(@currnetSubject)
       @html @transcriptionControllers[transcriptionType].el
@@ -65,8 +68,8 @@ class TranscriptionController extends Spine.Controller
 
     $("body .transcriber").show()
     
-    if Archive.count() ==0 
-      Archive.bind 'refresh', =>
+    if Institute.count() ==0 
+      Institute.bind 'refresh', =>
         @active params
     if params.id
       @currnetSubject = Subject.find(params.id)
@@ -87,9 +90,10 @@ class TranscriptionController extends Spine.Controller
       @currnetSubject = Subject.random()
       console.log " from random subject"
       @render()
-
-    $(".transcriber .left .title").html("#{@archive?.name} Collection!!!")
-    document.title = "Notes From Nature - #{@archive.institute().name} - #{@archive.name} - transcribe"
+    
+    if @archive?
+      $(".transcriber .left .title").html("#{@archive?.name} Collection!!!")
+      document.title = "Notes From Nature - #{@archive.institute().name} - #{@archive.name} - transcribe"
 
 
   
