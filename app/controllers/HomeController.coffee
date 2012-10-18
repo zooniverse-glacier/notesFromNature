@@ -20,7 +20,7 @@ class HomeController extends Spine.Controller
     @append require('views/home/stats')
       archiveCount : Archive.count()
       subjects     : totalStats.total
-      progress     : totalStats.complete/totalStats.total 
+      progress     : ((totalStats.complete/totalStats.total)+"")[0..4]
     @append require('views/home/content')()
 
 
