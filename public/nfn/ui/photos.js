@@ -4,6 +4,12 @@ nfn.ui.model.Photo = Backbone.Model.extend({ });
 
 nfn.ui.view.Photo = nfn.core.View.extend({
 
+  options: {
+
+    delay: 0
+
+  },
+
   initialize: function() {
 
     _.bindAll( this, "toggle", "appendPhoto" );

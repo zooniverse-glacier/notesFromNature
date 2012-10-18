@@ -292,6 +292,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
     this.$el.append(this.spinner.render());
     this.spinner.show().spin();
+
     this.$backgroundMessage.fadeIn(250);
 
     var photo = this.photos.at(i);
