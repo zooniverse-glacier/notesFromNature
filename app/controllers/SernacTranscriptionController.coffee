@@ -14,7 +14,9 @@ class SernacTranscriptionController extends Spine.Controller
     Spine.bind("finishedSernacTranscription", @saveClassification)
 
   startWorkflow:(subject)=>
+
     @currentSubject= subject
+    
     archive = Archive.find(@currentSubject.archive_id)
     @render()
     @delay =>
@@ -42,19 +44,25 @@ class SernacTranscriptionController extends Spine.Controller
     , 500
 
   saveClassification:(data)=>
+   
     classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0] } )
     for annotation in data.toJSON()
       classification.annotate annotation.step, annotation.value
-      classification.save()
-      classification.send()
-      @nextSubject()
+
+    classification.save()
+    @currentSubject.active=false 
+    @currentSubject.save()
+    classification.send()
+    @nextSubject()
 
   nextSubject:=>
-    callback = -> 
+    callback = => 
       $(".photos img").animate({ marginLeft: "0" }, 500)
       @transcriber.spinner.hide()
       @transcriber.startTranscribing()
+
     @currentSubject= Subject.random()
+    
     @transcriber.loadPhoto(@currentSubject.location.standard, callback)
 
   render:=>
