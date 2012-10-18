@@ -200,6 +200,9 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
     this.$title           = this.$el.find(".title");
     this.$description     = this.$el.find(".description");
 
+    this.$title.html(this.model.get("title"));
+    this.$description.html(this.model.get("description"));
+
     if (this.model.get("urls")) {
 
       var

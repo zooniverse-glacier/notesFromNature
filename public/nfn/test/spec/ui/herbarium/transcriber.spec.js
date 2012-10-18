@@ -569,6 +569,22 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     expect(transcriber.$el.find(".backdrop").length).toEqual(1);
   });
 
+  it("the skipTooltip should inform about the steps", function() {
+
+    transcriber.launcher.$skipButton.click();
+
+    waits(500);
+
+    runs(function() {
+
+      expect(transcriber.launcher.skipTooltip.$title.text()).toEqual("Are you sure?");
+      expect(transcriber.launcher.skipTooltip.$description.text()).toEqual("There are still " + transcriber.guide.length + " empty fields for this record that should be completed before finishing.");
+
+
+    });
+
+  });
+
   it("clicking in the $skipButton of the launcher should call the skip method", function() {
 
     var spy = spyOn(transcriber, 'skip');
@@ -581,6 +597,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
     runs(function() {
 
+      transcriber.launcher.skipTooltip.$mainButton.click();
       expect(transcriber.model.get("currentRecord")).toEqual(0);
       expect(spy).toHaveBeenCalled();
 
@@ -1150,7 +1167,6 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     transcriber.model.set("currentStep", 4);
     transcriber.transcriberWidget.$step.click();
 
-    console.log(transcriber.transcriberWidget.stepTooltip.$el);
     expect(transcriber.transcriberWidget.stepTooltip.$el.find("li.selected").text()).toEqual(transcriber.guide[4].title);
 
   });

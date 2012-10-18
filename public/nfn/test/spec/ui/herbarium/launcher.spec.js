@@ -112,7 +112,7 @@ describe("common.ui.view.Launcher", function() {
 
   it("should fire a skip event when the user clicks in the start button", function() {
 
-    var spy = spyOn(widget, 'skip');
+    var spy = spyOn(widget, 'showSkipTooltip');
 
     widget.delegateEvents();
 
@@ -152,6 +152,35 @@ describe("common.ui.view.Launcher", function() {
 
     expect(widget.$el.find(".tooltip").length).toEqual(1);
     expect(widget.tooltip.model.get("hidden")).toEqual(false);
+
+  });
+
+  it("should create a tooltip when the user cliks in the skip link", function() {
+
+    widget.$skipButton.click();
+
+    waits(500);
+
+    runs(function() {
+      expect(widget.skipTooltip.$el).toBeVisible();
+      expect(widget.skipTooltip).toBeDefined();
+    });
+
+  });
+
+  it("should trigger an skip event when the user clicks in the main button of the skipTooltip", function() {
+
+    widget.$skipButton.click();
+    var spy = spyOn(widget, 'skip');
+
+    waits(500);
+
+    runs(function() {
+
+      widget.skipTooltip.$mainButton.click();
+
+      expect(spy).toHaveBeenCalled();
+    });
 
   });
 

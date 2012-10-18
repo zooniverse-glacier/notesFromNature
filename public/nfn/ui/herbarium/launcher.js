@@ -11,7 +11,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
   events: {
 
     "click .btn.start": "start",
-    "click .skip":      "skip",
+    "click .skip":      "showSkipTooltip",
     "click .example":   "showExample"
 
   },
@@ -20,7 +20,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
   initialize: function() {
 
-    _.bindAll( this, "start", "skip", "toggle", "updateMessage", "toggleButton", "showExample", "closeTooltip", "_showStart", "_hideStart", "_showSkip", "_hideSkip" );
+    _.bindAll( this, "start", "skip", "showSkipTooltip", "closeSkipTooltip", "toggle", "updateMessage", "toggleButton", "showExample", "closeTooltip", "_showStart", "_hideStart", "_showSkip", "_hideSkip" );
 
     this.template = new nfn.core.Template({
       template: this.options.template,
@@ -153,6 +153,87 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
     e && e.stopImmediatePropagation();
 
     if (!this.model.get("disabled")) this.parent.addMagnifier();
+
+  },
+
+  showSkipTooltip: function(e) {
+
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+    this.closeTooltips();
+
+    if (!this.skipTooltip) this.createSkipTooltip(e);
+
+  },
+
+  createSkipTooltip: function(e) {
+
+    var
+    title       = "Are you sure?",
+    description = "There are still <u>" + this.parent.getPendingFieldCount() + " empty fields</u> for this record that should be completed before finishing.",
+    main        = "Skip field",
+    secondary   = "Cancel";
+
+    this.skipTooltip = new nfn.ui.view.Tooltip({
+
+      template: $("#tooltip-step-template").html(),
+
+      model: new nfn.ui.model.Tooltip({
+        title: title,
+        description: description,
+        main: main,
+        secondary: secondary
+      })
+
+    });
+
+    this.addView(this.skipTooltip);
+
+    var that = this;
+
+    this.skipTooltip.bind("onEscKey",         this.closeSkipTooltip);
+    this.skipTooltip.bind("onSecondaryClick", this.closeSkipTooltip);
+
+    this.skipTooltip.bind("onMainClick",      function() {
+
+      that.closeSkipTooltip(function() {
+        that.skip();
+      })
+
+    });
+
+    this.$el.append(this.skipTooltip.render());
+
+    this.skipTooltip.show();
+
+    var
+    linkWidth   = $(e.target).width()/2,
+    x           = Math.abs(this.$el.offset().left - $(e.target).offset().left) - this.skipTooltip.width() / 2 + linkWidth - 10,
+    y           = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.skipTooltip.height() - 40
+
+    this.skipTooltip.setPosition(x, y);
+
+    GOD.add(this.skipTooltip, this.closeSkipTooltip);
+
+  },
+
+  closeSkipTooltip: function(callback) {
+
+    if (!this.skipTooltip) return;
+
+    this.skipTooltip.hide();
+    this.skipTooltip.clean();
+
+    delete this.skipTooltip;
+
+    callback && callback();
+
+  },
+
+  closeTooltips: function() {
+
+    GOD.triggerCallbacks();
 
   },
 
