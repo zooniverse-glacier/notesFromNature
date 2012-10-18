@@ -32,6 +32,8 @@ class SernacTranscriptionController extends Spine.Controller
         $(".btn.close").attr("href", "#/archives/#{archive.slug()}")
         
         callback = -> 
+
+          $(".photos img").animate({ marginLeft: "0" }, 500)
           transcriber.spinner.hide()
           transcriber.startTranscribing()
 

@@ -362,9 +362,11 @@ describe("common.ui.view.HerbariumTranscriber", function() {
   });
 
   it("should have an onResize method", function() {
-
     expect(transcriber.onResize).toBeDefined();
+  });
 
+  it("should have a $backgroundMessage", function() {
+    expect(transcriber.$backgroundMessage).toBeDefined();
   });
 
   // TODO: move

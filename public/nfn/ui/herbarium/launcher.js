@@ -172,7 +172,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
     var
     title       = "Are you sure?",
     description = "There are still <u>" + this.parent.getPendingFieldCount() + " empty fields</u> for this record that should be completed before finishing.",
-    main        = "Skip field",
+    main        = "Skip record",
     secondary   = "Cancel";
 
     this.skipTooltip = new nfn.ui.view.Tooltip({

@@ -147,9 +147,9 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
     this.addView(this.highlight);
 
-    // Loads the spinner
-    this.spinner = new nfn.ui.view.Spinner({
+    this.spinner = new nfn.ui.view.Spinner({ // Loads the spinner
       model: new nfn.ui.model.Spinner(),
+      settings: { lines: 10, length: 3, width: 4, radius: 8, color: '#333333' },
       parent: this
     });
 
@@ -239,10 +239,17 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     var callback = function () {
       that.startTranscribing();
       that.spinner.hide();
+
+      $(".photos img").animate({ marginLeft: "0" }, 500);
+      that.$backgroundMessage.fadeOut(250);
+
     };
 
-    // TODO: request next photo and the URL here
-    this.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_02.png", callback);
+    var that = this;
+
+    $(".photos img").animate({ marginLeft: -2*$(document).width() }, 500, function() {
+      that.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_02.png", callback); // TODO: request next photo and the URL here
+    });
 
     this.helper.closeTooltip();             // TODO: add test
     this.transcriberWidget.closeTooltip();  // TODO: add test
@@ -250,8 +257,6 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
   },
 
   finish: function() {
-
-    //console.log(this.selection.model.toJSON(), this.transcriptions.toJSON()[0]);
 
     this.launcher.disable();
 
@@ -267,13 +272,34 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     var callback = function () {
       that.startTranscribing();
       that.spinner.hide();
+      $(".photos img").animate({ marginLeft: "0" }, 500);
+      that.$backgroundMessage.fadeOut(250);
     };
 
-    // TODO: request next photo and the URL here
-    this.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_02.png", callback);
+    var that = this;
+
+    $(".photos img").animate({ marginLeft: -2*$(document).width() }, 500, function() {
+      that.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_02.png", callback); // TODO: request next photo and the URL here
+    });
 
     this.helper.closeTooltip();             // TODO: add test
     this.transcriberWidget.closeTooltip();  // TODO: add test
+
+  },
+
+  showPhoto: function(i) {
+    var that = this;
+
+    this.$el.append(this.spinner.render());
+    this.spinner.show().spin();
+    this.$backgroundMessage.fadeIn(250);
+
+    var photo = this.photos.at(i);
+
+    if (photo) {
+      photo.get("view").render();
+      photo.get("view").$el.css("margin-left", 1500);
+    }
 
   },
 
@@ -528,7 +554,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
   onResize: function() {
 
-    console.log(this.launcher.$el);
+    //console.log(this.launcher.$el);
 
   },
 
@@ -562,6 +588,11 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     this.$el.append(this.helper.render());
     this.$el.append(this.statusBar.render());
     this.$el.append(this.transcriberWidget.render());
+
+    // Adds the message placeholder
+    this.$el.append('<div class="message" />');
+    this.$backgroundMessage = this.$el.find(".message");
+    this.$backgroundMessage.html("<h1>Thanks!</h1><p>You really did a great job transcribing that page.</p><p class='loading'>Loading next one...</p>");
 
     // Adds the photo placeholder
     this.$el.append('<div class="photos" />');

@@ -119,7 +119,6 @@ nfn.ui.view.Transcriber = nfn.core.View.extend({
     var photo = new nfn.ui.view.Photo({
       model: new nfn.ui.model.Photo({ url: url }),
       parent: this
-
     });
 
     photo.model.set("view", photo);

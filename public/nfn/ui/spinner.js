@@ -1,14 +1,23 @@
 // Spinner ---------------------------------------
 
-nfn.ui.model.Spinner = Backbone.Model.extend({ });
+nfn.ui.model.Spinner = Backbone.Model.extend({
+});
 
 nfn.ui.view.Spinner = nfn.ui.view.Widget.extend({
 
   className: 'loader',
 
+  defaults: {
+    settings: { lines: 10, length: 3, width: 4, radius: 8, color: '#fff' }
+  },
+
   initialize: function() {
 
     _.bindAll( this, "toggle", "toggleSpin" );
+
+    this.settings = this.defaults.settings;
+
+    if (this.options.settings) this.settings = this.options.settings;
 
     this.add_related_model(this.model);
 
@@ -23,7 +32,7 @@ nfn.ui.view.Spinner = nfn.ui.view.Widget.extend({
 
     if (this.model.get("animate")) {
 
-      this.spinner =  new Spinner({ lines: 10, length: 3, width: 4, radius: 8, color: '#fff' }).spin();
+      this.spinner =  new Spinner(this.settings).spin();
       this.$el.append( this.spinner.el );
 
     } else {
