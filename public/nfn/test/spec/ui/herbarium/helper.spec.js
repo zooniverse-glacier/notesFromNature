@@ -89,7 +89,7 @@ describe("common.ui.view.Helper", function() {
   it("should create a tooltip with one image from the urls array", function() {
 
     widget.model.set('description', '<a href="#" class="example">See example</a>');
-    widget.model.set('urls', ["/nfn/ui/herbarium/examples/ex_state.png"]);
+    widget.model.set('urls', ["nfn/ui/herbarium/examples/ex_state.png"]);
 
     waits(300);
 
@@ -106,7 +106,7 @@ describe("common.ui.view.Helper", function() {
   it("if there's several images in the array, there should be a button labeled more", function() {
 
     widget.model.set('description', '<a href="#" class="example">See example</a>');
-    widget.model.set('urls', [ "/nfn/ui/herbarium/examples/ex_state.png", "/nfn/ui/herbarium/examples/ex_state.png" ]);
+    widget.model.set('urls', [ "nfn/ui/herbarium/examples/ex_state.png", "nfn/ui/herbarium/examples/ex_state.png" ]);
 
     waits(350);
 
@@ -128,7 +128,7 @@ describe("common.ui.view.Helper", function() {
   it("clicking in the example link should open a tooltip", function() {
 
     widget.model.set('description', '<a href="#" class="example">See example</a>');
-    widget.model.set('urls', ["/nfn/ui/herbarium/examples/ex_state.png"]);
+    widget.model.set('urls', ["nfn/ui/herbarium/examples/ex_state.png"]);
 
     waits(400);
 
@@ -143,7 +143,7 @@ describe("common.ui.view.Helper", function() {
   it("if there's only one image in the array, it shouldn't show a button", function() {
 
     widget.model.set('description', '<a href="#" class="example">See example</a>');
-    widget.model.set('urls', [ "/nfn/ui/herbarium/examples/ex_state.png" ]);
+    widget.model.set('urls', [ "nfn/ui/herbarium/examples/ex_state.png" ]);
 
     waits(400);
 
@@ -193,7 +193,7 @@ describe("common.ui.view.Helper", function() {
 
   it("should show more examples in the tooltip when the user clicks in the secondary button", function() {
 
-    var urls = ["/nfn/ui/herbarium/examples/ex_state.png", "/nfn/ui/herbarium/examples/ex_county.png", "/nfn/ui/herbarium/examples/ex_scientific_name.png"];
+    var urls = ["nfn/ui/herbarium/examples/ex_state.png", "nfn/ui/herbarium/examples/ex_county.png", "nfn/ui/herbarium/examples/ex_scientific_name.png"];
 
     widget.model.set('description', '<a href="#" class="example">See example</a>');
     widget.model.set('urls', urls);

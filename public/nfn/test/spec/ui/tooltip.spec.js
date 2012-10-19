@@ -34,7 +34,7 @@ describe("common.ui.view.Tooltip", function() {
   });
 
   it("should allow to increase the photo counter", function() {
-    var urls = ["/nfn/ui/herbarium/examples/ex_state.png", "/nfn/ui/herbarium/examples/ex_county.png", "/nfn/ui/herbarium/examples/ex_scientific_name.png"];
+    var urls = ["nfn/ui/herbarium/examples/ex_state.png", "nfn/ui/herbarium/examples/ex_county.png", "nfn/ui/herbarium/examples/ex_scientific_name.png"];
 
     widget.model.set({ urls: urls, photoCount: 10, currentPhoto: 5 }, { silent: true });
 
@@ -44,7 +44,7 @@ describe("common.ui.view.Tooltip", function() {
   });
 
   it("should allow to decrease the photo counter", function() {
-    var urls = ["/nfn/ui/herbarium/examples/ex_state.png", "/nfn/ui/herbarium/examples/ex_county.png", "/nfn/ui/herbarium/examples/ex_scientific_name.png"];
+    var urls = ["nfn/ui/herbarium/examples/ex_state.png", "nfn/ui/herbarium/examples/ex_county.png", "nfn/ui/herbarium/examples/ex_scientific_name.png"];
 
     widget.model.set({ urls: urls, photoCount: 10, currentPhoto: 5 }, { silent: true });
 
@@ -55,7 +55,7 @@ describe("common.ui.view.Tooltip", function() {
 
   it("nextPhoto should show the next photo", function() {
 
-    var urls = ["/nfn/ui/herbarium/examples/ex_state.png", "/nfn/ui/herbarium/examples/ex_county.png", "/nfn/ui/herbarium/examples/ex_scientific_name.png"];
+    var urls = ["nfn/ui/herbarium/examples/ex_state.png", "nfn/ui/herbarium/examples/ex_county.png", "nfn/ui/herbarium/examples/ex_scientific_name.png"];
 
     widget.model.set("urls", urls);
     widget.nextPhoto();
@@ -70,7 +70,7 @@ describe("common.ui.view.Tooltip", function() {
 
   it("should return back to the last photo from the first one", function() {
 
-    var urls = ["/nfn/ui/herbarium/examples/ex_state.png", "/nfn/ui/herbarium/examples/ex_county.png", "/nfn/ui/herbarium/examples/ex_scientific_name.png"];
+    var urls = ["nfn/ui/herbarium/examples/ex_state.png", "nfn/ui/herbarium/examples/ex_county.png", "nfn/ui/herbarium/examples/ex_scientific_name.png"];
 
     widget.model.set({ urls: urls, photoCount: 10, currentPhoto: 0 }, { silent: true });
 
@@ -82,7 +82,7 @@ describe("common.ui.view.Tooltip", function() {
 
   it("should return back to zero after the next photo", function() {
 
-    var urls = ["/nfn/ui/herbarium/examples/ex_state.png", "/nfn/ui/herbarium/examples/ex_county.png", "/nfn/ui/herbarium/examples/ex_scientific_name.png"];
+    var urls = ["nfn/ui/herbarium/examples/ex_state.png", "nfn/ui/herbarium/examples/ex_county.png", "nfn/ui/herbarium/examples/ex_scientific_name.png"];
 
     widget.model.set({ urls: urls, photoCount: 10, currentPhoto: 10 }, { silent: true });
 
@@ -128,7 +128,7 @@ describe("common.ui.view.Tooltip", function() {
     var widget2 = new nfn.ui.view.Tooltip({
 
       model: new nfn.ui.model.Tooltip({
-        urls: ["/nfn/ui/herbarium/examples/ex_county.png"]
+        urls: ["nfn/ui/herbarium/examples/ex_county.png"]
       }),
 
       template: $("#tooltip-example-template").html()
@@ -148,7 +148,7 @@ describe("common.ui.view.Tooltip", function() {
 
   it("should allow to load a photo", function() {
 
-    var src = ["/nfn/ui/herbarium/examples/ex_county.png"];
+    var src = ["nfn/ui/herbarium/examples/ex_county.png"];
 
     widget.model.set("urls", src);
 

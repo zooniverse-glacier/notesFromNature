@@ -12,7 +12,7 @@ class Institute extends Spine.Model
     API.get '/projects/notes_from_nature/groups/', (data)=>
       window.inst = data
 
-      institutes =  (group for group in data  when group.type == 'institution')
+      institutes =  (group for group in data  when group.type == 'institution' and group.name != 'The Natural History Museum')
       archives   =  (group for group in data  when group.type == 'archive')
       
       for institute in institutes
