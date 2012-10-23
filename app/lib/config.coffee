@@ -13,4 +13,4 @@ else if window.location.port > 1024
 else
   'production'
 
-module.exports = Config['development']
+module.exports = Config['production']
