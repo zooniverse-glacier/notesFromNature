@@ -259,6 +259,8 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
   finish: function() {
 
+    this.$backgroundMessage.html("<h1>Thanks!</h1><p>You really did a great job transcribing that page.</p><p class='loading'>Loading next one...</p>");
+
     this.launcher.disable();
 
     this.backdrop.hide();
@@ -592,7 +594,6 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     // Adds the message placeholder
     this.$el.append('<div class="message" />');
     this.$backgroundMessage = this.$el.find(".message");
-    this.$backgroundMessage.html("<h1>Thanks!</h1><p>You really did a great job transcribing that page.</p><p class='loading'>Loading next one...</p>");
 
     // Adds the photo placeholder
     this.$el.append('<div class="photos" />');
