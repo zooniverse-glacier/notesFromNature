@@ -276,7 +276,11 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
       that.startTranscribing();
       that.spinner.hide();
       $(".photos img").animate({ marginLeft: "0" }, 500);
-      that.$backgroundMessage.fadeOut(250);
+
+      that.$backgroundMessage.fadeOut(250, function() {
+        that.$backgroundMessage.html("");
+      });
+
     };
 
     var that = this;
