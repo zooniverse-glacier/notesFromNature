@@ -244,8 +244,6 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     var currentStep = this.parent.model.get("currentStep");
 
-    // this.stepTooltip.$el.find("li:nth-child(" + (currentStep + 1) + ")").addClass("selected");
-
     this.stepTooltip.$el.find("a").on("click", function(e) {
       var i = $(this).parent().index();
       that.gotoStep(e, i);

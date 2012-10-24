@@ -73,10 +73,10 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
         type: "text",
         inputWidth: 540
       }, {
-        title: 'No',
+        title: 'Number',
         description: 'A short number assigned only to this record. <a href="#" class="example">See example</a>',
         examples: ["nfn/ui/herbarium/examples/ex_record_number.png"],
-        placeholder: 'No',
+        placeholder: 'Number',
         type: "text",
         inputWidth: 540
       }, {
