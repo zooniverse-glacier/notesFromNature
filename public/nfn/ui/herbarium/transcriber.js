@@ -22,7 +22,6 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
     this.add_related_model(this.model);
 
-
     this.guide = [
       {
         title: 'State' ,
@@ -507,10 +506,21 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
   updateInputField: function() {
 
     var
+    that = this,
     currentStep = this.model.get("currentStep"),
     stepGuide   = this.guide[currentStep];
 
-    this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth });
+    var transcription = transcriber.transcriptions.find(function(t) {
+      return t.get("step") === that.model.get("currentStep");
+    });
+
+    var value = "";
+
+    if (transcription) { // gets stored value
+      value = transcription.get("value");
+    }
+
+    this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth, data: value });
 
   },
 
@@ -530,8 +540,6 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     currentStep = this.model.get("currentStep"),
     stepGuide   = this.guide[currentStep];
 
-    console.log(stepGuide);
-
     this.helper.model.set("title",       stepGuide.title);
     this.helper.model.set("description", stepGuide.description);
     this.helper.model.set("urls",        stepGuide.examples);
@@ -540,14 +548,19 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
   saveCurrentStep: function() {
 
-    if (this.transcriptions.at(this.model.get("currentStep"))) {
+    var that = this;
 
-      var transcription = this.transcriptions.at(this.model.get("currentStep"));
+    var transcription = transcriber.transcriptions.find(function(t) {
+      return t.get("step") === that.model.get("currentStep");
+    });
+
+    if (transcription) {
+
       transcription.set("value", this.transcriberWidget.getValue());
 
     } else {
 
-      var transcription = new nfn.ui.model.Transcription({
+      transcription = new nfn.ui.model.Transcription({
         step:  this.model.get("currentStep"),
         value: this.transcriberWidget.getValue()
       });

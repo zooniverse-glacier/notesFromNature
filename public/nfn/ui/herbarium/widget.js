@@ -17,7 +17,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
   initialize: function() {
 
-    _.bindAll( this, "toggle", "toggleOk", "updatePlaceholder", "updateType", "closeTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep" );
+    _.bindAll( this, "toggle", "toggleOk", "updatePlaceholder", "updateData", "updateType", "closeTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep" );
 
     this.template = new nfn.core.Template({
       template: this.options.template
@@ -45,6 +45,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     this.model.bind("change:hidden",      this.toggle);
     this.model.bind("change:placeholder", this.updatePlaceholder);
     this.model.bind("change:type",        this.updateType);
+    this.model.bind("change:data",        this.updateData);
     this.model.bind("change:ok_enabled",  this.toggleOk);
 
     this.parent = this.options.parent;
@@ -399,6 +400,34 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
       this.$input.find(".month").attr("placeholder", placeholders[1]);
       this.$input.find(".year").attr("placeholder", placeholders[2]);
     }
+  },
+
+  updateData: function() {
+
+    this.$input.val("");
+
+    var
+    value = this.model.get("data"),
+    type  = this.model.get("type");
+
+    if ( type == 'text' || type == 'location' ) {
+
+      this.$input.val(value);
+
+    } else if ( type == 'date' ) {
+
+      var date = value.split("/");
+
+      var month = date[0];
+      var day   = date[1];
+      var year  = date[2];
+
+      var month = this.$el.find(".month").val(month);
+      var day   = this.$el.find(".day").val(day);
+      var year  = this.$el.find(".year").val(year);
+
+    }
+
   },
 
   updateType: function() {
