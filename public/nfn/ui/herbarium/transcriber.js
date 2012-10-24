@@ -74,7 +74,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
         inputWidth: 540
       }, {
         title: 'No',
-        description: 'A short number assigned only to this recrod. <a href="#" class="example">See example</a>',
+        description: 'A short number assigned only to this record. <a href="#" class="example">See example</a>',
         examples: ["nfn/ui/herbarium/examples/ex_record_number.png"],
         placeholder: 'No',
         type: "text",
@@ -506,21 +506,17 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
   updateInputField: function() {
 
     var
-    that = this,
+    value       = "",
     currentStep = this.model.get("currentStep"),
     stepGuide   = this.guide[currentStep];
 
-    var transcription = transcriber.transcriptions.find(function(t) {
-      return t.get("step") === that.model.get("currentStep");
-    });
-
-    var value = "";
+    var transcription = this.getStepData(this.model.get("currentStep"));
 
     if (transcription) { // gets stored value
       value = transcription.get("value");
     }
 
-    this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth, data: value });
+    this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth, value: value });
 
   },
 
@@ -546,13 +542,17 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
   },
 
+  getStepData: function(step) {
+
+    return transcriber.transcriptions.find(function(transcription) {
+      return transcription.get("step") === step;
+    });
+
+  },
+
   saveCurrentStep: function() {
 
-    var that = this;
-
-    var transcription = transcriber.transcriptions.find(function(t) {
-      return t.get("step") === that.model.get("currentStep");
-    });
+    var transcription = this.getStepData(this.model.get("currentStep"));
 
     if (transcription) {
 

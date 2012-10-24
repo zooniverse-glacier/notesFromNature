@@ -69,13 +69,14 @@
             padding: 8px 10px;
             margin: 0 0 0 7px;
             border-bottom: 1px solid #EDEDED;
-              &:last-child {
-                border:none;
-                background:url(images/bullet-orange-hollow.png) no-repeat center left;
-                a { color: #FF6600; }
-              }
 
-              background:url(images/bullet-green.png) no-repeat center left;
+              &.completed {
+                border:none;
+                background:url(images/bullet-green.png) no-repeat center left;
+                a { color: #693; }
+                }
+
+                background:url(images/bullet-orange-hollow.png) no-repeat center left;
 
               &:hover a { text-decoration: underline; }
 
@@ -86,7 +87,7 @@
 
             a {
             font-size: 13px;
-            color: #669933;
+            color: #F60;
           }
          }
        }

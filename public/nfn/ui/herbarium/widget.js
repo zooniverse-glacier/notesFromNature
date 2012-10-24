@@ -17,7 +17,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
   initialize: function() {
 
-    _.bindAll( this, "toggle", "toggleOk", "updatePlaceholder", "updateData", "updateType", "closeTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep" );
+    _.bindAll( this, "toggle", "toggleOk", "updatePlaceholder", "updateValue", "updateType", "closeTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep" );
 
     this.template = new nfn.core.Template({
       template: this.options.template
@@ -45,7 +45,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     this.model.bind("change:hidden",      this.toggle);
     this.model.bind("change:placeholder", this.updatePlaceholder);
     this.model.bind("change:type",        this.updateType);
-    this.model.bind("change:data",        this.updateData);
+    this.model.bind("change:value",       this.updateValue);
     this.model.bind("change:ok_enabled",  this.toggleOk);
 
     this.parent = this.options.parent;
@@ -234,9 +234,17 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     this.stepTooltip.setPosition(x, y);
 
+    this.parent.transcriptions.each(function(transcription) {
+
+      if (transcription.get("value")) {
+        that.stepTooltip.$el.find("li:nth-child(" + (transcription.get("step") + 1) + ")").addClass("completed");
+      }
+
+    });
+
     var currentStep = this.parent.model.get("currentStep");
 
-    this.stepTooltip.$el.find("li:nth-child(" + (currentStep + 1) + ")").addClass("selected");
+    // this.stepTooltip.$el.find("li:nth-child(" + (currentStep + 1) + ")").addClass("selected");
 
     this.stepTooltip.$el.find("a").on("click", function(e) {
       var i = $(this).parent().index();
@@ -402,12 +410,12 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     }
   },
 
-  updateData: function() {
+  updateValue: function() {
 
     this.$input.val("");
 
     var
-    value = this.model.get("data"),
+    value = this.model.get("value"),
     type  = this.model.get("type");
 
     if ( type == 'text' || type == 'location' ) {
