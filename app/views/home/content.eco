@@ -1,52 +1,52 @@
 <div class="box-general">       
-        <div class="col3">
-            <h3 class="title">Why this is important?</h3>
-        </div>
-        <div class="col1 omega">
-            <div class="center">
-                <img src="images/home_icon_bird.png" alt="avian best friend">
-                <h3 class="badge">Museum records contain historical biodiversity data.</h3>
-                <p class="badge">Scientists and researchers can use museum collections to better understand our world.<p> 
-            </div>
-        </div>
-        <div class="col1 omega">  
-            <div class="center">
-                <img src="images/home_icon_troffee.png" alt="avian best friend">
-                <h3 class="badge">Transcribe with pride!</h3>
-                <p class="badge">COMING SOON! Transcribe records in any collection and earn badges along the way!<p>
-            </div>
-        </div>
-        <div class="col1">  
-            <div class="center">
-                <img src="images/home_icon_lab.png" alt="avian best friend">
-                <h3 class="badge">You are contributing to real science. Thank you!</h3>
-                <p class="badge">The digitized data you are creating will help advance research related to species extinction, ecosystem changes, environmental health and even human health.<p>
-            </div>    
-        </div>
-
+  <div class="col3">
+    <h3 class="title">Why this is important?</h3>
+  </div>
+  <div class="col1 omega">
+    <div class="center">
+      <img src="images/home_icon_bird.png" alt="avian best friend">
+      <h3 class="badge">Museum records contain historical biodiversity data.</h3>
+      <p class="badge">Scientists and researchers can use museum collections to better understand our world.<p> 
     </div>
-
-    <div class="box-general laptop laptop-home">        
-        <div class="col2">
-            <h3 class="title">3,123 Users already participating</h3>
-            <p>We have thousands of records documenting where species have been observed across the world. We need you to help us transcribe that data and make it available to scientists and researchers. With the data digitized, we will be able to learn more about how biodiversity is changing. We can uncover the history of some of these species and possibly find species that have never been observed any where else!</p>
-        </div>
-        <div class="col3">  
-            <ul class="status-list inline">
-                <li class="logos">
-                <span class="text">PARTICIPATING MUSEUMS</span>
-
-                <ul class="logos">
-                    <li><a href="http://www.nhm.ac.uk/tring/research-and-curation/index.html"><img alt="Natural History Museum" src="images/natural_history_museum.png" /></a></li>
-                    <li><a href="http://www.sernec.org/"><img alt="SERNEC" src="images/sernec.png" /></a></li>
-                    <li><a href="http://calbug.berkeley.edu/"><img alt="Calbug" src="images/calbug.png" /></a></li>
-                </ul>
-
-                <p>Interested in publishing your collection? <a href="mailto:andrew@vizzuality.com?Subject=We%20want%20to%20be%20involved%20with%20Notes%20from%20Nature!" class="object">Contact us</a></p>
-                </li>
-                <li class="mar-button">
-                    <a href="#/archives/Herbarium/transcribe" class="button next"><span>TRY WITH ONE PAGE</span> </a>
-                </li>
-            </ul>
-        </div>
+  </div>
+  <div class="col1 omega">  
+    <div class="center">
+      <img src="images/home_icon_troffee.png" alt="avian best friend">
+      <h3 class="badge">Transcribe with pride!</h3>
+      <p class="badge">COMING SOON! Transcribe records in any collection and earn badges along the way!<p>
     </div>
+  </div>
+  <div class="col1">  
+    <div class="center">
+      <img src="images/home_icon_lab.png" alt="avian best friend">
+      <h3 class="badge">You are contributing to real science. Thank you!</h3>
+      <p class="badge">The digitized data you are creating will help advance research related to species extinction, ecosystem changes, environmental health and even human health.<p>
+    </div>    
+  </div>
+
+</div>
+
+<div class="box-general laptop laptop-home">        
+  <div class="col2">
+    <h3 class="title">3,123 Users already participating</h3>
+    <p>We have thousands of records documenting where species have been observed across the world. We need you to help us transcribe that data and make it available to scientists and researchers. With the data digitized, we will be able to learn more about how biodiversity is changing. We can uncover the history of some of these species and possibly find species that have never been observed any where else!</p>
+  </div>
+  <div class="col3">  
+    <ul class="status-list inline">
+      <li class="logos">
+      <span class="text">PARTICIPATING MUSEUMS</span>
+
+      <ul class="logos">
+        <li><a href="http://www.nhm.ac.uk/tring/research-and-curation/index.html"><img alt="Natural History Museum" src="images/natural_history_museum.png" /></a></li>
+        <li><a href="http://www.sernec.org/"><img alt="SERNEC" src="images/sernec.png" /></a></li>
+        <li><a href="http://calbug.berkeley.edu/"><img alt="Calbug" src="images/calbug.png" /></a></li>
+      </ul>
+
+      <p>Interested in publishing your collection? <a href="mailto:andrew@vizzuality.com?Subject=We%20want%20to%20be%20involved%20with%20Notes%20from%20Nature!" class="object">Contact us</a></p>
+      </li>
+      <li class="mar-button">
+      <a href="#/archives/Herbarium/transcribe" class="button next"><span>TRY WITH ONE PAGE</span> </a>
+      </li>
+    </ul>
+  </div>
+</div>

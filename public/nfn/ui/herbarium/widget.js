@@ -18,7 +18,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
   initialize: function() {
 
-    _.bindAll( this, "toggle", "toggleOk", "onEnter", "updatePlaceholder", "updateValue", "updateType", "closeTooltip", "closeErrorTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep" );
+    _.bindAll( this, "toggle", "toggleOk", "onEnter", "updatePlaceholder", "updateValue", "updateType", "createStepTooltip", "closeTooltip", "closeErrorTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep" );
 
     this.template = new nfn.core.Template({
       template: this.options.template
@@ -316,10 +316,11 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     this.stepTooltip.show();
 
     var
-    targetWidth   = $(e.target).width()/2,
-    marginRight = parseInt($(e.target).css("margin-right").replace("px", ""), 10),
-    x           = Math.abs(this.$el.offset().left - $(e.target).offset().left) - this.stepTooltip.width() + 30,
-    y           = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.stepTooltip.height() - 17
+    $target     = this.$step,
+    targetWidth = $target.width()/2,
+    marginRight = parseInt($target.css("margin-right").replace("px", ""), 10),
+    x           = Math.abs(this.$el.offset().left - $target.offset().left) - this.stepTooltip.width() + 30,
+    y           = Math.abs(this.$el.offset().top  - $target.offset().top)  - this.stepTooltip.height() - 17
 
     this.stepTooltip.setPosition(x, y);
 
@@ -378,7 +379,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     var
     title       = "Are you sure?",
-    description = "There are still <u> " + this.parent.getPendingFieldCount() + " empty fields</u> for this record that should be completed before finishing.",
+    description = "There are still <a href='#'> " + this.parent.getPendingFieldCount() + " empty fields</a> for this record that should be completed before finishing.",
     main        = "Finish",
     secondary   = "Cancel";
 
@@ -409,11 +410,20 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     this.$el.append(this.finishTooltip.render());
     this.finishTooltip.show();
 
+    this.finishTooltip.$el.find(".description > a").on("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      that.showStepTooltip();
+
+    });
+
     var
-    targetWidth   = $(e.target).width()/2,
-    marginRight = parseInt($(e.target).css("margin-right").replace("px", ""), 10),
-    x           = Math.abs(this.$el.offset().left - $(e.target).offset().left) - this.finishTooltip.width() / 2 + targetWidth - marginRight,
-    y           = Math.abs(this.$el.offset().top  - $(e.target).offset().top)  - this.finishTooltip.height() - 40
+    $target     = this.$finishButton,
+    targetWidth = $target.width()/2,
+    marginRight = parseInt($target.css("margin-right").replace("px", ""), 10),
+    x           = Math.abs(this.$el.offset().left - $target.offset().left) - this.finishTooltip.width() / 2 + targetWidth - marginRight,
+    y           = Math.abs(this.$el.offset().top  - $target.offset().top)  - this.finishTooltip.height() - 40
 
     this.finishTooltip.setPosition(x, y);
     GOD.add(this.finishTooltip, this.closeFinishTooltip);

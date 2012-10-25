@@ -101,6 +101,25 @@ describe("common.ui.view.HerbariumWidget", function() {
 
   });
 
+  it("the finish tooltip should contain a link to open the step tooltip", function() {
+
+    waits(250);
+
+    runs(function() {
+      widget.$finishButton.click();
+
+      var spy = spyOn(widget, 'showStepTooltip');
+
+      widget.finishTooltip.delegateEvents();
+      widget.finishTooltip.$el.find(".description > a").click();
+
+      expect(widget.finishTooltip.$el.find(".description > a")).toBeVisible();
+      expect(spy).toHaveBeenCalled();
+
+    });
+
+  });
+
   it("should allow to disable the ok button", function() {
 
 
