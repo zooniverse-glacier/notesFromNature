@@ -9,6 +9,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
   events: {
 
     "click .btn.ok" :     "ok",
+    'keypress input[type=text]': 'onEnter',
     "click .step" :       "showStepTooltip",
     "click .btn.finish" : "showFinishTooltip",
     "click .skip" :       "showSkipTooltip"
@@ -17,7 +18,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
   initialize: function() {
 
-    _.bindAll( this, "toggle", "toggleOk", "updatePlaceholder", "updateValue", "updateType", "closeTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep" );
+    _.bindAll( this, "toggle", "toggleOk", "onEnter", "updatePlaceholder", "updateValue", "updateType", "closeTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep" );
 
     this.template = new nfn.core.Template({
       template: this.options.template
@@ -63,6 +64,12 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     this.clearInput();
     this.parent.nextStep();
 
+  },
+
+  onEnter: function(e) {
+    if (e.keyCode != 13) return;
+
+    this.ok();
   },
 
   ok: function(e) {
@@ -405,7 +412,10 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
       this.$input.find(".day").attr("placeholder", placeholders[0]);
       this.$input.find(".month").attr("placeholder", placeholders[1]);
       this.$input.find(".year").attr("placeholder", placeholders[2]);
+
     }
+
+    this.$input.focus();
   },
 
   updateValue: function() {
