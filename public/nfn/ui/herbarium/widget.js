@@ -18,7 +18,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
   initialize: function() {
 
-    _.bindAll( this, "toggle", "toggleOk", "onEnter", "updatePlaceholder", "updateValue", "updateType", "closeTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep" );
+    _.bindAll( this, "toggle", "toggleOk", "onEnter", "updatePlaceholder", "updateValue", "updateType", "closeTooltip", "closeErrorTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep" );
 
     this.template = new nfn.core.Template({
       template: this.options.template
@@ -87,6 +87,10 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
       this.parent.nextStep();
 
+    } else {
+
+      this.showErrorTooltip("Empty field", "Description");
+
     }
 
   },
@@ -128,6 +132,84 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     this.closeStepTooltip();
     this.parent.model.set("currentStep", i);
+
+  },
+
+  showErrorTooltip: function(title, description) {
+
+    this.closeTooltips();
+
+    if (!this.errorTooltip) this.createErrorTooltip(title, description);
+
+  },
+
+  closeErrorTooltip: function(callback) {
+
+    var that = this;
+
+    if (!this.errorTooltip) return;
+
+    this.errorTooltip.hide();
+    this.errorTooltip.clean();
+    delete this.errorTooltip;
+
+    this.$errorIndicator.fadeOut(100, function() {
+      that.$okButton.fadeIn(100);
+    });
+
+    callback && callback();
+
+  },
+
+  createErrorTooltip: function(title, description) {
+
+    var
+    main        = "Finish",
+    secondary   = "Cancel";
+
+    this.errorTooltip = new nfn.ui.view.Tooltip({
+
+      className: "tooltip error",
+
+      model: new nfn.ui.model.Tooltip({
+        template: $("#tooltip-error-template").html(),
+        title: title,
+        description: description
+      })
+
+    });
+
+    this.addView(this.errorTooltip);
+
+    var that = this;
+
+    this.errorTooltip.bind("onEscKey",         this.closeErrorTooltip);
+    this.errorTooltip.bind("onSecondaryClick", this.closeErrorTooltip);
+    this.errorTooltip.bind("onMainClick",      function() {
+
+      that.closeErrorTooltip(function() {
+        //that.finish();
+      })
+
+    });
+
+    this.$okButton.fadeOut(100, function() {
+      that.$errorIndicator.fadeIn(100);
+    });
+
+    this.$el.append(this.errorTooltip.render());
+
+    this.errorTooltip.show();
+
+    var
+    $element    = this.$okButton,
+    targetWidth = $element.width()/2,
+    marginRight = 8,
+    x           = Math.abs(this.$el.offset().left - $element.offset().left) - this.errorTooltip.width() / 2 + targetWidth - marginRight,
+    y           = Math.abs(this.$el.offset().top  - $element.offset().top)  - this.errorTooltip.height() - 40
+
+    this.errorTooltip.setPosition(x, y);
+    GOD.add(this.errorTooltip, this.closeErrorTooltip);
 
   },
 
@@ -269,10 +351,11 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     this.stepTooltip.clean();
     delete this.stepTooltip;
 
+    this.focus();
+
     callback && callback();
 
   },
-
 
   showFinishTooltip: function(e) {
 
@@ -399,6 +482,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
   },
 
   updatePlaceholder: function() {
+
     var type = this.model.get("type");
 
     if ( type == 'text' || type == 'location' ) {
@@ -415,7 +499,23 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     }
 
-    this.$input.focus();
+    this.focus();
+  },
+
+  focus: function() {
+
+    var type = this.model.get("type");
+
+    if ( type == 'text' || type == 'location' ) {
+
+      this.$input.focus();
+
+    } else if ( type == 'date' ) {
+
+      this.$input[0].focus();
+
+    }
+
   },
 
   updateValue: function() {
@@ -489,11 +589,12 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     this.$el.append(this.template.render());
 
-    this.$okButton     = this.$el.find(".btn.ok");
-    this.$skip         = this.$el.find(".skip");
-    this.$finishButton = this.$el.find(".btn.finish");
-    this.$step         = this.$el.find(".step");
-    this.$input        = this.$el.find('.input_field input[type="text"]');
+    this.$errorIndicator  = this.$el.find(".error");
+    this.$okButton        = this.$el.find(".btn.ok");
+    this.$skip            = this.$el.find(".skip");
+    this.$finishButton    = this.$el.find(".btn.finish");
+    this.$step            = this.$el.find(".step");
+    this.$input           = this.$el.find('.input_field input[type="text"]');
 
     return this.$el;
 

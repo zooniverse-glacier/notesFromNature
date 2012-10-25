@@ -20,15 +20,73 @@ describe("common.ui.view.HerbariumWidget", function() {
 
     widget.parent = Mock;
 
+    $("body").append(widget.render());
+
   });
 
   afterEach(function() {
     widget.clean();
   });
 
-  it("should create a finish tooltip when the user cliks in the finish button", function() {
+  it("should allow to create an error tooltip", function() {
 
-    widget.render();
+      var
+      title       = "Title",
+      description = "Description";
+
+      widget.showErrorTooltip(title, description);
+
+      expect(widget.errorTooltip).toBeDefined();
+      expect(widget.errorTooltip.model.get("hidden")).toEqual(false);
+      expect(widget.errorTooltip.$el.length).toEqual(1);
+
+      expect(widget.errorTooltip.$el.find(".title").html()).toEqual(title);
+      expect(widget.errorTooltip.$el.find(".description").html()).toEqual(description);
+
+  });
+
+  it("showing an error should hide the $okButton and show the $errorIndicator", function() {
+
+      var
+      title       = "Title",
+      description = "Description";
+
+      widget.showErrorTooltip(title, description);
+
+      waits(250);
+
+      runs(function() {
+        expect(widget.$okButton).toBeHidden();
+        expect(widget.$errorIndicator).toBeVisible();
+      });
+
+  });
+
+  it("closing the error tooltip should show the ok button and hide the error button", function() {
+
+    var
+    title       = "Title",
+    description = "Description";
+
+    widget.showErrorTooltip(title, description);
+
+    waits(250);
+
+    runs(function() {
+      widget.closeErrorTooltip();
+
+      waits(250);
+      runs(function() {
+
+        expect(widget.$okButton).toBeVisible();
+        expect(widget.$errorIndicator).toBeHidden();
+      });
+
+    });
+
+  });
+
+  it("should create a finish tooltip when the user cliks in the finish button", function() {
 
     waits(250);
 
@@ -45,7 +103,6 @@ describe("common.ui.view.HerbariumWidget", function() {
 
   it("should allow to disable the ok button", function() {
 
-    widget.render();
 
     widget.disableOk();
 
@@ -55,7 +112,6 @@ describe("common.ui.view.HerbariumWidget", function() {
 
   it("should allow to enable the ok button", function() {
 
-    widget.render();
 
     widget.$okButton.addClass("disabled");
 
@@ -65,26 +121,27 @@ describe("common.ui.view.HerbariumWidget", function() {
 
   });
 
+  it("should have an error indicator", function() {
+    expect(widget.$errorIndicator).toEqual(widget.$el.find(".error"));
+    expect(widget.$el.find('.error').length).toEqual(1);
+  });
+
   it("should have an ok button", function() {
-    widget.render();
     expect(widget.$okButton).toEqual(widget.$el.find(".btn.ok"));
     expect(widget.$el.find('.btn.ok').length).toEqual(1);
   });
 
   it("should have a skip link", function() {
-    widget.render();
     expect(widget.$skip).toEqual(widget.$el.find(".skip"));
     expect(widget.$el.find('.skip').length).toEqual(1);
   });
 
   it("should have an input field", function() {
-    widget.render();
     expect(widget.$input).toEqual(widget.$el.find('.input_field input[type="text"]'));
     expect(widget.$el.find('.input_field input[type="text"]').length).toEqual(1);
   });
 
   it("should clear the value of the text input field", function() {
-    widget.render();
     widget.model.set("type", "text");
     widget.$input.val('hola');
 
@@ -95,7 +152,6 @@ describe("common.ui.view.HerbariumWidget", function() {
   });
 
   it("should clear the value of the date input field", function() {
-    widget.render();
     widget.model.set("type", "date");
     widget.$el.find(".month").val('2');
     widget.$el.find(".day").val('1');
@@ -108,7 +164,6 @@ describe("common.ui.view.HerbariumWidget", function() {
   });
 
   it("should return the value of the text input field", function() {
-    widget.render();
     widget.model.set("type", "text");
     widget.$input.val('hola');
 
@@ -116,7 +171,6 @@ describe("common.ui.view.HerbariumWidget", function() {
   });
 
   it("should return the value of the date input field", function() {
-    widget.render();
     widget.model.set("type", "date");
     widget.$el.find(".month").val('2');
     widget.$el.find(".day").val('1');
@@ -126,19 +180,16 @@ describe("common.ui.view.HerbariumWidget", function() {
   });
 
   it("should have a step counter", function() {
-    widget.render();
     expect(widget.$step).toEqual(widget.$el.find('.step'));
     expect(widget.$el.find(".step").length).toEqual(1);
   });
 
   it("should have a button to finish the record", function() {
-    widget.render();
     expect(widget.$finishButton).toEqual(widget.$el.find('.btn.finish'));
     expect(widget.$el.find(".btn.finish").length).toEqual(1);
   });
 
   it("should fire an event when the user clicks in the ok button", function() {
-    widget.render();
 
     var spy = spyOn(widget, 'ok');
 
@@ -150,9 +201,7 @@ describe("common.ui.view.HerbariumWidget", function() {
 
   it("should fire an event when the user clicks in the skip button", function() {
 
-    widget.render();
-
-    var spy = spyOn(widget, 'showSkipPane');
+    var spy = spyOn(widget, 'showSkipTooltip');
 
     widget.delegateEvents();
     widget.$skip.click();
@@ -161,8 +210,6 @@ describe("common.ui.view.HerbariumWidget", function() {
   });
 
   it("should fire a showFinishTooltip event when the user clicks in the finish button", function() {
-
-    widget.render();
 
     var spy = spyOn(widget, 'showFinishTooltip');
 
@@ -262,6 +309,24 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     transcriber.transcriberWidget.$okButton.click();
 
     expect(transcriber.getPendingFieldCount()).toEqual(transcriber.guide.length - 2);
+
+  });
+
+  it("should show a error tooltip when ok is clicked if the input is empty", function() {
+
+    transcriber.model.set("currentStep", 0);
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.launcher.$startButton.removeClass("disabled");
+
+    transcriber.transcriberWidget.$okButton.click();
+
+    waits(350);
+
+    runs(function() {
+      expect(transcriber.transcriberWidget.errorTooltip).toBeDefined();
+      expect(transcriber.transcriberWidget.errorTooltip.$el).toBeVisible();
+    });
 
   });
 
@@ -786,6 +851,21 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
   });
 
+  it("should call the focus event when placeholder is updated", function() {
+
+    transcriber.model.set("currentStep", 0);
+
+    var spy = spyOn(transcriber.transcriberWidget, 'focus');
+
+    transcriber.transcriberWidget.delegateEvents();
+
+    transcriber.nextStep();
+    transcriber.transcriberWidget.model.set("placeholder", "whatever");
+
+    expect(spy).toHaveBeenCalled();
+
+  });
+
   it("should update the placeholder in the widget when the step changes", function() {
 
     transcriber.model.set("currentStep", 0);
@@ -1157,20 +1237,8 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
   });
 
-  it("the currentStep should be shown in the stepTooltip", function() {
-
-    transcriber.$el.find(".photos").append("<img />");
-
-    transcriber.addSelection();
-    transcriber.updateSelection(10, 10, 100, 100);
-    transcriber.selection.$el.css("position", "absolute");
-    transcriber.addMagnifier();
-
-    transcriber.model.set("currentStep", 4);
-    transcriber.transcriberWidget.$step.click();
-
-    expect(transcriber.transcriberWidget.stepTooltip.$el.find("li.selected").text()).toEqual(transcriber.guide[4].title);
-
+  it("the completed steps should be shown in the stepTooltip", function() {
+    // pending
   });
 
   it("clicking a link in the step tooltip should close the tooltip", function() {
