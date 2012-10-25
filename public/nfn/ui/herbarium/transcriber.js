@@ -291,6 +291,9 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     this.helper.closeTooltip();             // TODO: add test
     this.transcriberWidget.closeTooltip();  // TODO: add test
 
+    delete this.transcriptions;
+    this.transcriptions = new nfn.ui.collection.Transcriptions();
+
   },
 
 
@@ -572,6 +575,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     }
 
     //console.log("STATUS", this.transcriptions.toJSON());
+
   },
 
   onResize: function() {

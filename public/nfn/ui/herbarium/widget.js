@@ -85,11 +85,20 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
       this.clearInput();
 
-      this.parent.nextStep();
+      // Shall we go to the next record ord the next step?
+      if (this.parent.getPendingFieldCount() == 0) {
+
+        this.parent.finish();
+
+      } else {
+
+        this.parent.nextStep();
+
+      }
 
     } else {
 
-      this.showErrorTooltip("Empty field", "Description");
+      this.showErrorTooltip("Empty field", "Please, write ");
 
     }
 

@@ -945,6 +945,27 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
   });
 
+  it("should go to the next record when all the fields are completed and the user press the ok button", function() {
+
+    var spy = spyOn(transcriber, 'nextRecord');
+
+    transcriber.delegateEvents();
+
+    transcriber.getPendingFieldCount = function() { return 0; };
+
+    transcriber.model.set("currentStep", 0);
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.launcher.$startButton.removeClass("disabled");
+
+    transcriber.transcriberWidget.$input.val("Hi!");
+    transcriber.transcriberWidget.$okButton.click();
+
+    expect(spy).toHaveBeenCalled();
+
+  });
+
+
   it("should override a transcription", function() {
 
     transcriber.$el.find(".photos").append("<img />");
@@ -1128,6 +1149,30 @@ describe("common.ui.view.HerbariumTranscriber", function() {
       expect(transcriber.magnifier.model.get("hidden")).toEqual(true);
       expect(transcriber.transcriberWidget.model.get("hidden")).toEqual(true);
     });
+    });
+
+  });
+
+  it("should reset the transcriber after the finish method is called", function() {
+
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.addSelection();
+    transcriber.updateSelection(10, 10, 100, 100);
+    transcriber.selection.$el.css("position", "absolute");
+    transcriber.addMagnifier();
+
+    transcriber.transcriptions.push(new nfn.ui.model.Transcription({ step:  1, value: "value 1" }));
+    transcriber.transcriptions.push(new nfn.ui.model.Transcription({ step:  2, value: "value 2" }));
+    transcriber.transcriptions.push(new nfn.ui.model.Transcription({ step:  3, value: "value 3" }));
+    transcriber.transcriptions.push(new nfn.ui.model.Transcription({ step:  4, value: "value 4" }));
+
+    transcriber.transcriberWidget.finish();
+
+    waits(350);
+
+    runs(function() {
+      expect(transcriber.transcriptions.length).toEqual(0);
     });
 
   });
