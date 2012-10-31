@@ -142,6 +142,9 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     this.closeStepTooltip();
     this.parent.model.set("currentStep", i);
 
+    this.clearInput();
+    this.focus();
+
   },
 
   showErrorTooltip: function(title, description) {
