@@ -45,6 +45,8 @@
     -o-border-radius: 2px;
   }
 
+    .description a { text-decoration: underline; }
+
     &.example { 
     height: 150px;
 
@@ -53,29 +55,32 @@
 
     }
 
+    &.error {
+
+      strong { color: red; }
+
+      }
+
     &.step {
 
       padding: 0;
       width:165px;
 
-      .tip {
-        left: auto;
-        right: 10px;
-        margin-left: 0;
-        }
+      .tip { left: auto; right: 10px; margin-left: 0; } 
 
         ul {
           li {
             padding: 8px 10px;
             margin: 0 0 0 7px;
             border-bottom: 1px solid #EDEDED;
-              &:last-child {
-                border:none;
-                background:url(images/bullet-orange-hollow.png) no-repeat center left;
-                a { color: #FF6600; }
+
+              &.completed {
+                border-bottom: 1px solid #EDEDED;
+                background:url(images/bullet-green.png) no-repeat center left;
+                a { color: #693;  }
               }
 
-              background:url(images/bullet-green.png) no-repeat center left;
+              background:url(images/bullet-orange-hollow.png) no-repeat center left;
 
               &:hover a { text-decoration: underline; }
 
@@ -86,7 +91,7 @@
 
             a {
             font-size: 13px;
-            color: #669933;
+            color: #F60;
           }
          }
        }
@@ -321,7 +326,7 @@
 
 .transcriber.sernac .photos img {
   display: none;
-  margin: 120px auto 20px auto;
+  margin: 120px auto 170px auto;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -389,7 +394,7 @@
 }
 
 .transcriber.sernac .message {
-  //display:none;
+  display:none;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -986,6 +991,8 @@
   border: none;
   outline: none;
 }
+
+.transcriber.sernac .sernac-widget .left .input_field .error,
 .transcriber.sernac .sernac-widget .left .input_field .btn.ok {
   position: absolute;
   top: 2px;
@@ -999,6 +1006,13 @@
   text-align:center;
   font-size:11px;
 }
+
+.transcriber.sernac .sernac-widget .left .input_field .error {
+  display:none;
+  background:red;
+
+}
+
 .transcriber.sernac .magnifier {
   position: absolute;
   background: url("images/transcribers/bg-transcriber.png");

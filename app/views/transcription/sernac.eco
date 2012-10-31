@@ -4,6 +4,7 @@
     <div class="input_field">
       <input type="text" placeholder="" />
       <a href="#" class="btn ok">ok</a>
+      <a href="#" class="btn error">!</a>
     </div>
   </div>
 
@@ -37,12 +38,18 @@
   <div class="date_field"><input type="text" name="year" class="year" placeholder="year" /></div>
 </script>
 
+<script type="text/template" id="tooltip-error-template">
+  <strong class="title">{{title}}</strong>
+  <div class="description">{{description}}</div>
+  <div class="tip"></div>
+</script>
+
 <script type="text/template" id="tooltip-step-template">
-      <ul>
-        {{#links}}
-        <li><a href="#">{{title}}</a></li>
-        {{/links}}
-      </ul>
+  <ul>
+    {{#links}}
+    <li><a href="#">{{title}}</a></li>
+    {{/links}}
+  </ul>
   <div class="tip"></div>
 </script>
 

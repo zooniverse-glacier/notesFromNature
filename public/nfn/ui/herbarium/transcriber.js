@@ -1,5 +1,5 @@
 // HERBARIUM TRANSCRIBER ------------------------------------------
-Spine= require('spine')
+Spine = require('spine')
 
 nfn.ui.model.Herbarium = nfn.ui.model.Transcriber.extend({
 
@@ -14,14 +14,13 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
   initialize: function() {
     var that = this;
 
-    _.bindAll( this, "addScroll", "updateInputField", "updatePlaceholder", "updateHelper", "updateStepCounter", "addMagnifier", "onMouseDown", "onMouseUp", "onResize" );
+    _.bindAll( this, "addScroll", "updateInputField", "updatePlaceholder", "updateHelper", "getStepData", "updateStepCounter", "addMagnifier", "onMouseDown", "onMouseUp", "onResize" );
 
     if (this.options.model === undefined) {
       throw new TypeError("you should specify a model");
     }
 
     this.add_related_model(this.model);
-
 
     this.guide = [
       {
@@ -74,10 +73,10 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
         type: "text",
         inputWidth: 540
       }, {
-        title: 'No',
-        description: 'A short number assigned only to this recrod. <a href="#" class="example">See example</a>',
+        title: 'Number',
+        description: 'A short number assigned only to this record. <a href="#" class="example">See example</a>',
         examples: ["nfn/ui/herbarium/examples/ex_record_number.png"],
-        placeholder: 'No',
+        placeholder: 'Number',
         type: "text",
         inputWidth: 540
       }, {
@@ -259,6 +258,8 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
   finish: function() {
 
+    this.$backgroundMessage.html("<h1>Thanks!</h1><p>You really did a great job transcribing that page.</p><p class='loading'>Loading next one...</p>");
+
     this.launcher.disable();
 
     this.backdrop.hide();
@@ -274,15 +275,24 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
       that.startTranscribing();
       that.spinner.hide();
       $(".photos img").animate({ marginLeft: "0" }, 500);
-      that.$backgroundMessage.fadeOut(250);
+
+      that.$backgroundMessage.fadeOut(250, function() {
+        that.$backgroundMessage.html("");
+      });
+
     };
 
     var that = this;
+
     Spine.trigger("finishedSernacTranscription", this.transcriptions)
+
     $(".photos img").animate({ marginLeft: -2*$(document).width() }, 500);
 
     this.helper.closeTooltip();             // TODO: add test
     this.transcriberWidget.closeTooltip();  // TODO: add test
+
+    delete this.transcriptions;
+    this.transcriptions = new nfn.ui.collection.Transcriptions();
 
   },
 
@@ -501,10 +511,17 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
   updateInputField: function() {
 
     var
+    value       = "",
     currentStep = this.model.get("currentStep"),
     stepGuide   = this.guide[currentStep];
 
-    this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth });
+    var transcription = this.getStepData(this.model.get("currentStep"));
+
+    if (transcription) { // gets stored value
+      value = transcription.get("value");
+    }
+
+    this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth, value: value });
 
   },
 
@@ -524,24 +541,31 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     currentStep = this.model.get("currentStep"),
     stepGuide   = this.guide[currentStep];
 
-    console.log(stepGuide);
-
     this.helper.model.set("title",       stepGuide.title);
     this.helper.model.set("description", stepGuide.description);
     this.helper.model.set("urls",        stepGuide.examples);
 
   },
 
+  getStepData: function(step) {
+
+    return this.transcriptions.find(function(transcription) {
+      return transcription.get("step") === step;
+    });
+
+  },
+
   saveCurrentStep: function() {
 
-    if (this.transcriptions.at(this.model.get("currentStep"))) {
+    var transcription = this.getStepData(this.model.get("currentStep"));
 
-      var transcription = this.transcriptions.at(this.model.get("currentStep"));
+    if (transcription) {
+
       transcription.set("value", this.transcriberWidget.getValue());
 
     } else {
 
-      var transcription = new nfn.ui.model.Transcription({
+      transcription = new nfn.ui.model.Transcription({
         step:  this.model.get("currentStep"),
         value: this.transcriberWidget.getValue()
       });
@@ -551,6 +575,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     }
 
     //console.log("STATUS", this.transcriptions.toJSON());
+
   },
 
   onResize: function() {
@@ -592,7 +617,6 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     // Adds the message placeholder
     this.$el.append('<div class="message" />');
     this.$backgroundMessage = this.$el.find(".message");
-    this.$backgroundMessage.html("<h1>Thanks!</h1><p>You really did a great job transcribing that page.</p><p class='loading'>Loading next one...</p>");
 
     // Adds the photo placeholder
     this.$el.append('<div class="photos" />');
