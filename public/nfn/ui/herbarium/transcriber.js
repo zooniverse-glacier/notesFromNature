@@ -74,7 +74,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
         inputWidth: 540
       }, {
         title: 'Number',
-        description: 'A short number assigned only to this record. <a href="#" class="example">See example</a>',
+        description: 'A number (or code) assigned to the collection, usually appears after Collectors name. <a href="#" class="example">See example</a>',
         examples: ["nfn/ui/herbarium/examples/ex_record_number.png"],
         placeholder: 'Number',
         type: "text",
