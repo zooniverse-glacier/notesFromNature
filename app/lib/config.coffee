@@ -3,7 +3,7 @@ Config =
     apiHost: 'http://localhost:3000'
   
   production:
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'https://dev.zooniverse.org'
   
   
 env = if window.jasmine
