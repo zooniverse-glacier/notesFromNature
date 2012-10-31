@@ -46,5 +46,5 @@ class Archive extends Spine.Model
     @progress()==100
   
   progress:=>
-    if @stats?.total >0 then (((100.0*@stats?.complete)/@stats?.total)+"")[0..4] else 0
+    if @stats?.total >0 then (parseInt((100.0*@stats?.complete)/@stats?.total)+"") else 0
 module.exports = Archive
