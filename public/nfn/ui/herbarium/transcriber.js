@@ -81,7 +81,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
         inputWidth: 540
       }, {
         title: 'Collection date ',
-        description: 'A date in the third line. <a href="#" class="example">See example</a>',
+        description: 'Please collect the collection date as you see it. <a href="#" class="example">See example</a>',
         examples: ["nfn/ui/herbarium/examples/ex_recorded_date.png"],
         placeholder: ['day', 'month', 'year'],
         type: "date",
