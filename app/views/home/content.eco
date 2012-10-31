@@ -1,12 +1,12 @@
 <div class="box-general">       
   <div class="col3">
-    <h3 class="title">Why this is important?</h3>
+    <h3 class="title">Why you should get involved?</h3>
   </div>
   <div class="col1 omega">
     <div class="center">
       <img src="images/home_icon_bird.png" alt="avian best friend">
-      <h3 class="badge">Museum records contain historical biodiversity data.</h3>
-      <p class="badge">Scientists and researchers can use museum collections to better understand our world.<p> 
+      <h3 class="badge">To improve our world.</h3>
+      <p class="badge">Museum records contain historical biodiversity data. Scientists and researchers can use the data to conduct new research and make better conservation decisions.<p> 
     </div>
   </div>
   <div class="col1 omega">  
@@ -29,7 +29,8 @@
 <div class="box-general laptop laptop-home">        
   <div class="col2">
     <h3 class="title">3,123 Users already participating</h3>
-    <p>We have thousands of records documenting where species have been observed across the world. We need you to help us transcribe that data and make it available to scientists and researchers. With the data digitized, we will be able to learn more about how biodiversity is changing. We can uncover the history of some of these species and possibly find species that have never been observed any where else!</p>
+    <p>We have thousands of pages from biologists and researchers that contain information about where and when a species occurred in the past. We need you to help us transcribe that data and make it available to scientists and researchers. We can uncover the history of some of these species and possibly find species that have never been observed any where else!
+    </p>
   </div>
   <div class="col3">  
     <ul class="status-list inline">

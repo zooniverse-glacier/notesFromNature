@@ -2,7 +2,7 @@
     <div class="col2">
         <h2 class="title">
             <%=@archives.length%> <%=@options?.type%> collections available  <br/>
-            <span>Browse through them and select your favourite</span>                      
+            <span>Browse through them and select your favorite</span>                      
         </h2>
     </div>
 
