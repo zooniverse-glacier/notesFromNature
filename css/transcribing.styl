@@ -247,14 +247,18 @@
 
         a {
         display:block;
-        width: 21px;
-        height: 23px;
+        width: 33px;
+        height: 33px;
 
-        margin: 30px auto;
+        margin: 26px auto;
         padding:0;
-
-        background: url(images/btn-off.png) no-repeat;
         border:none;
+
+        background: url(images/btn-off.png) no-repeat 0 0;
+
+        &:hover  { background-position: 0 -32px; }
+        &:active  { background-position: 0 -66px; }
+
         }
       }
 
