@@ -16,6 +16,7 @@ class ArchivesShowController extends Spine.Controller
 
   render:(archive=undefined)=>
     console.log('archive is ', archive)
+
     if archive?
       @html require('/views/archives/archiveShow')
         archive: archive
