@@ -1,5 +1,5 @@
 // HERBARIUM TRANSCRIBER ------------------------------------------
-//Spine = require('spine')
+Spine = require('spine')
 
 nfn.ui.model.Herbarium = nfn.ui.model.Transcriber.extend({
 
