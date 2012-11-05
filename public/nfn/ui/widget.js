@@ -195,7 +195,7 @@ nfn.ui.view.Widget = nfn.core.View.extend({
 
   },
 
-  animate: function(properties, animated) {
+  animate: function(properties, animated, callback) {
 
     var that = this;
 
@@ -204,9 +204,14 @@ nfn.ui.view.Widget = nfn.core.View.extend({
     });
 
     if (animated) {
-      this.$el.animate(properties, this.defaults.speed );
+
+      this.$el.animate( properties, this.defaults.speed, function() {
+        callback && callback();
+      });
+
     } else {
       this.$el.css(properties);
+      callback && callback();
     }
 
   },

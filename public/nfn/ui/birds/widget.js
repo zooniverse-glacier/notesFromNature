@@ -533,6 +533,10 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
 
     }
 
+    console.log('a');
+    this.clearInput();
+    this.focus();
+
   },
 
   resizeInput: function() {

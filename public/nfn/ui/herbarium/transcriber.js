@@ -57,7 +57,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
         examples: ["nfn/ui/herbarium/examples/ex_location_description.png"],
         placeholder: 'Location',
         type: "text",
-        inputWidth: 700
+        inputWidth: 800
       }, {
         title: 'Habitat and description',
         description: 'A short description of the specimen and its habitat. <a href="#" class="example">See example</a>',

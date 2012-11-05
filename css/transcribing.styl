@@ -959,6 +959,8 @@
   float: right;
 }
 .transcriber.sernac .sernac-widget .left .input_field.date .date_field {
+  position:absolute;
+
   background: #fff;
   height: 31px;
   -webkit-border-radius: 3px;
@@ -968,15 +970,16 @@
   border-radius: 3px;
   float: left;
   margin: 0 7px 0 0;
+
+  &.month { left: 0px; }
+  &.day   { left: 150px; }
+  &.year  { left: 260px; }
 }
-.transcriber.sernac .sernac-widget .left .input_field.date input.day {
-  width: 80px;
-}
-.transcriber.sernac .sernac-widget .left .input_field.date .month {
-  width: 120px;
-}
-.transcriber.sernac .sernac-widget .left .input_field.date input.year {
-  width: 90px;
+
+.transcriber.sernac .sernac-widget .left .input_field.date  {
+  input.month { width: 120px; }
+  input.day   { width: 80px; }
+  input.year  { width: 90px; }
 }
 
 .transcriber.sernac .sernac-widget .left .input_field input[type="text"]::-webkit-input-placeholder { line-height: 15px; text-transform: uppercase; }

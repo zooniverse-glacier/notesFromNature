@@ -47,6 +47,9 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     this.model.bind("change:placeholder", this.updatePlaceholder);
     this.model.bind("change:type",        this.updateType);
     this.model.bind("change:value",       this.updateValue);
+
+    this.model.bind("change:draggable",     this.toggleDraggable);
+    this.model.bind("change:resizable",     this.toggleResizable);
     this.model.bind("change:ok_enabled",  this.toggleOk);
 
     this.parent = this.options.parent;

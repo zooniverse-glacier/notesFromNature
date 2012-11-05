@@ -33,9 +33,9 @@
 </script>
 
 <script type="text/template" id="date-input-template">
-  <div class="date_field"><input type="text" name="month" class="month" placeholder="month" /></div> 
-  <div class="date_field"><input type="text" name="day" class="day" placeholder="day" /></div> 
-  <div class="date_field"><input type="text" name="year" class="year" placeholder="year" /></div>
+  <div class="date_field month"><input type="text" name="month" class="month" placeholder="month" /></div> 
+  <div class="date_field day"><input type="text" name="day" class="day" placeholder="day" /></div> 
+  <div class="date_field year"><input type="text" name="year" class="year" placeholder="year" /></div>
 </script>
 
 <script type="text/template" id="tooltip-error-template">
