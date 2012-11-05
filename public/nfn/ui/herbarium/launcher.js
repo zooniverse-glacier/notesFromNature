@@ -20,7 +20,7 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
 
   initialize: function() {
 
-    _.bindAll( this, "start", "skip", "showSkipTooltip", "closeSkipTooltip", "toggle", "updateMessage", "toggleButton", "showExample", "closeTooltip", "_showStart", "_hideStart", "_showSkip", "_hideSkip" );
+    _.bindAll( this, "start", "skip", "showSkipTooltip", "closeSkipTooltip", "toggle", "toggleDraggable", "toggleResizable", "onStopDragging", "onStopResizing", "updateMessage", "toggleButton", "showExample", "closeTooltip", "_showStart", "_hideStart", "_showSkip", "_hideSkip" );
 
     this.template = new nfn.core.Template({
       template: this.options.template,
@@ -33,8 +33,10 @@ nfn.ui.view.Launcher = nfn.ui.view.Widget.extend({
     this.model.bind("change:disabled",   this.toggleButton);
     this.model.bind("change:message",    this.updateMessage);
 
-    this.parent = this.options.parent;
+    this.model.bind("change:draggable",     this.toggleDraggable);
+    this.model.bind("change:resizable",     this.toggleResizable);
 
+    this.parent = this.options.parent;
   },
 
   updateMessage: function() {

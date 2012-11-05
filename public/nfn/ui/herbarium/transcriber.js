@@ -1,5 +1,5 @@
 // HERBARIUM TRANSCRIBER ------------------------------------------
-Spine = require('spine')
+//Spine = require('spine')
 
 nfn.ui.model.Herbarium = nfn.ui.model.Transcriber.extend({
 
@@ -639,6 +639,8 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     });
 
     $("body").append(this.$el);
+
+    this.launcher.setDraggable(true);
 
     return this.$el;
   }
