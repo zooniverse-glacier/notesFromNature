@@ -8,11 +8,11 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
   events: {
 
-    "click .btn.ok" :     "ok",
-    'keypress input[type=text]': 'onEnter',
-    "click .step" :       "showStepTooltip",
-    "click .btn.finish" : "showFinishTooltip",
-    "click .skip" :       "showSkipTooltip"
+    "click .btn.ok" :            "ok",
+    'keypress input[type=text]': "onEnter",
+    "click .step" :              "showStepTooltip",
+    "click .btn.finish" :        "showFinishTooltip",
+    "click .skip" :              "showSkipTooltip"
 
   },
 
@@ -475,11 +475,46 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
   resize: function() {
 
+    var that = this;
+
     var type  = this.model.get("type");
     var width = this.model.get("inputWidth");
 
-    // Centers the widget horizontally
-    this.animate({ width: width, marginLeft: -1*width/2, left: "50%" }, true);
+    // Centers the widget horizontally and resizes the input field
+    if ( type == 'text' || type == 'location' ) {
+
+      if (this.$input.parent().width() > width - 300) {
+
+        this.$input.parent().animate({ width: width - 300  }, 200, function() {
+          that.$input.width(width - 300 - 40);
+          that.animate({ width: width, marginLeft: -1*width/2, left: "50%" }, true);
+        });
+
+      } else {
+
+        this.animate({ width: width, marginLeft: -1*width/2, left: "50%" }, true);
+        this.$input.parent().delay(50).animate({ width: width - 300  }, 200);
+        this.$input.width(width - 300 - 40);
+
+      }
+    } else if ( type == 'date' ) {
+
+      if ($(".input_field.date").width() > width - 290) {
+
+        this.animate({ width: width, marginLeft: -1*width/2, left: "50%" }, true, function() {
+          $(".input_field.date").delay(50).animate({ width: width - 290  }, 150);
+        });
+
+      } else {
+
+        console.log('b');
+        this.animate({ width: width, marginLeft: -1*width/2, left: "50%" }, true);
+        $(".input_field.date").delay(50).animate({ width: width - 290  }, 150);
+
+
+      }
+
+    }
 
   },
 
@@ -524,7 +559,9 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     }
 
+    this.resize();
     this.focus();
+
   },
 
   focus: function() {
@@ -605,8 +642,6 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
       this.$input = this.$el.find('.input_field input');
 
     }
-
-    this.resize();
 
   },
 
