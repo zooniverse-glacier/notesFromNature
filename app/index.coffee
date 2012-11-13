@@ -68,6 +68,8 @@ class App extends Spine.Stack
     '/about/:section'             : 'about'
     '/faq'                        : 'faq'
     '/faq/:section'               : 'faq'
+    '/FAQ'                        : 'faq'
+    '/FAQ/:section'               : 'faq'
     
 
   default : 'home'
