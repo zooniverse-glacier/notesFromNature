@@ -23,9 +23,9 @@ class HomeController extends Spine.Controller
     totalStats = Institute.allStats()
     @html   require('views/home/splash')()
     @append require('views/home/stats')
-      archiveCount : Archive.count()
-      subjects     : totalStats.total
-      progress     : if totalStats.total > 0  then ((totalStats.complete/totalStats.total)+"")[0..4] else 0
+      archiveCount : if Archive.count() > 0 then Archive.count() else 'loading'
+      subjects     : if Archive.count() > 0 then totalStats.total else 'loading'
+      progress     : if totalStats.total > 0  then ((totalStats.complete/totalStats.total)+"")[0..4] else "loading"
       users        : @project?.user_count || 0
     @append require('views/home/content')()
 
