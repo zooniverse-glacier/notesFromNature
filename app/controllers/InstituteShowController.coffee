@@ -17,7 +17,6 @@ class InstituteShowController extends Spine.Controller
 
   loadInstitute:(name=null)=>
     @instituteName = name if name? 
-    console.log "institute name is ", @instituteName, Institute.all()
     @currentInstitute = Institute.findBySlug(@instituteName)
     
 
@@ -34,7 +33,6 @@ class InstituteShowController extends Spine.Controller
     super
 
     @instituteName = params.id
-    console.log "institute name is ", @instituteName
     if @institutesLoadad 
       @loadInstitute()
       @setTitle()
