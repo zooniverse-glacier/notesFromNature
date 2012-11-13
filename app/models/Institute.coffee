@@ -24,15 +24,15 @@ class Institute extends Spine.Model
       Institute.trigger("refresh")
 
 
-
   setupArchives:(archives)=>
     console.log "setting up archives ", archives
     for archive in archives
       @archives().create(archive) 
 
   @findBySlug:(slug)=>
-    @select (institute)=>
+    result =@select (institute)=>
       institute.slug() is slug
+    result[0]
 
   slug:->
     @name.replace /\s/g, "_"
