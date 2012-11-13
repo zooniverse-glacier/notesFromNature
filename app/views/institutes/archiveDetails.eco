@@ -9,15 +9,15 @@
 
   <div class="col1 marker">
     <div class="box-right">
-      <h3 class="title"><%=@metadata.progress%>% done.</h3>
+      <h3 class="title"><%=@progress()%>% done.</h3>
 
       <ul class="status-list">
         <li><span class="text">USERS PARTICIPATING</span><%=@metadata.userCount%></li>
         <li class="progress">
         <span class="text">PROGRESS</span>
         <div class="progress-bar">
-          <div class="bar" style="width:<%=@metadata.progress%>%"></div>
-          <span class="progress"><%=@metadata.progress%>%</span>
+          <div class="bar" style="width:<%=@progress()%>%"></div>
+          <span class="progress"><%=@progress()%>%</span>
         </div>
         </li>
       </ul>
