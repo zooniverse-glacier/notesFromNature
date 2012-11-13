@@ -12,7 +12,7 @@
         <span class="subtitle">Transcription progress</span> 
     </div>          
     <div class="box-black-numbers">
-        <span class="numbers">1,312</span>
+        <span class="numbers"><%=@users%></span>
         <span class="subtitle">Users contributing</span>  
     </div>          
 </div>

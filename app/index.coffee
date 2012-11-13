@@ -10,6 +10,7 @@ InstituteShowController= require("controllers/InstituteShowController")
 LoginController= require('controllers/LoginController')
 ProfileController= require('controllers/ProfileController')
 AboutController= require('controllers/AboutController')
+FAQController  = require('controllers/FAQController')
 
 Api = require('zooniverse/lib/api')
 Config = require('lib/config')
@@ -41,7 +42,8 @@ class App extends Spine.Stack
     login                     : LoginController
     profile                   : ProfileController
     about                     : AboutController
-
+    faq                       : FAQController
+    
   routes:
     '/'                                  : 'home'
     '/archives'                          : 'archivesIndex'
@@ -64,6 +66,9 @@ class App extends Spine.Stack
     '/profile'                    : 'profile'
     '/about'                      : 'about'
     '/about/:section'             : 'about'
+    '/faq'                        : 'faq'
+    '/faq/:section'               : 'faq'
+    
 
   default : 'home'
 
