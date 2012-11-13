@@ -49,14 +49,14 @@
         </h3>
         <ul class="list-graphics">
           <li>
-                        <div class="count"><strong>13,931</strong>
+                        <div class="count"><strong ><%=@institute.stats().complete%></strong>
                             <span>Pages transcribed</span>
                         </div>
                         <img class="chart" src="http://chart.apis.google.com/chart?chf=bg,s,F5F8F8&chs=145x115&cht=lc&chco=FFFFFF&chd=s:Xhiugtqi&chg=-1,-1,0,0&chls=2,4,0&chm=B,C5D4B5BB,0,0,0&cht=lc:nda" />
                         </li>
 
           <li>
-                        <div class="count"><strong>13,931</strong>
+                        <div class="count"><strong><%=@institute.stats().active%></strong>
                             <span>Pages pending</span>
                         </div>
                         <img class="chart" src="http://chart.apis.google.com/chart?chf=bg,s,F5F8F8&chs=145x115&cht=lc&chco=FFFFFF&chd=s:Xhiugtqi&chg=-1,-1,0,0&chls=2,4,0&chm=B,C5D4B5BB,0,0,0&cht=lc:nda" />
