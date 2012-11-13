@@ -27,7 +27,8 @@ class HomeController extends Spine.Controller
       subjects     : if Archive.count() > 0 then totalStats.total else 'loading'
       progress     : if totalStats.total > 0  then ((totalStats.complete/totalStats.total)+"")[0..4] else "loading"
       users        : @project?.user_count || 0
-    @append require('views/home/content')()
+    @append require('views/home/content')
+      users        : @project?.user_count || 0
 
 
 module.exports = HomeController
