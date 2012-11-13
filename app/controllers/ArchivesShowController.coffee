@@ -7,19 +7,44 @@ class ArchivesShowController extends Spine.Controller
 
   constructor: ->
     super
+    @archivesLoadad = false
+
+    Archive.bind 'refresh', =>
+      @archivesLoadad = true
+      @loadArchive()
+      @setTitle()
+      @render()
+
+  loadArchive:(name=null)=>
+    @archiveName = name if name? 
+    @currentArchive = Archive.findBySlug(@archiveName)
+  
+  setTitle:=>
+    if @archivesLoadad
+      if @currentArchive?
+        document.title = "Notes From Nature - #{@currentArchive.institute().name} - #{@currentArchive.name}"     
+      else
+        document.title = "Notes From Nature - Could not find archive"
+    else
+      document.title = "Notes From Nature - Loading"
 
   active:(params)=>
     super 
-    archive = Archive.findBySlug(params.id)
-    document.title = "Notes From Nature - #{archive.institute().name} - #{archive.name}"
-    @render(archive)
+    @archiveName = params.id 
 
-  render:(archive=undefined)=>
-    console.log('archive is ', archive)
+    if @archivesLoadad
+      @loadArchive()
+      @setTitle()
+      @render()
+    else
+      document.title = "Notes From Nature - Loading"
 
-    if archive?
+    
+  render:=>
+
+    if @currentArchive?
       @html require('/views/archives/archiveShow')
-        archive: archive
+        archive: @currentArchive
     else
       @html require('/views/archives/archiveNotFound')()
 

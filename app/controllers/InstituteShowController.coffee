@@ -7,18 +7,46 @@ class InstituteShowController extends Spine.Controller
   
   constructor: ->
     super
+    @institutesLoadad = false
+
+    Institute.bind 'refresh', =>
+      @institutesLoadad = true
+      @loadInstitute()
+      @setTitle()
+      @render()
+
+  loadInstitute:(name=null)=>
+    @instituteName = name if name? 
+    console.log "institute name is ", @instituteName, Institute.all()
+    @currentInstitute = Institute.findBySlug(@instituteName)
+    
+
+  setTitle:=>
+    if @institutesLoadad 
+      if @currentArchive?
+        document.title = "Notes From Nature - #{@currentInstitute.name} "     
+      else
+        document.title = "Notes From Nature - Could not find institute"
+    else
+      document.title = "Notes From Nature - Loading"
 
   active:(params)=>
     super
-    institute = Institute.findBySlug(params.id)[0]
-    document.title = "Notes From Nature - #{institute().name}"
 
-    @render(institute)
+    @instituteName = params.id
+    console.log "institute name is ", @instituteName
+    if @institutesLoadad 
+      @loadInstitute()
+      @setTitle()
+      @render()
+    else
+      document.title = "Notes From Nature - Loading"
 
-  render:(institute=undefined)=>
-    if institute?
+  render:()=>
+
+    if @currentInstitute?
       @html require("views/institutes/instituteShow")
-        institute: institute
+        institute: @currentInstitute
         archiveTemplate : require('views/institutes/archiveDetails')
     else
       @html require("views/institutes/instituteNotFound")()
