@@ -2,6 +2,7 @@ Spine = require 'spine'
 Api = require 'zooniverse/lib/api'
 Subject = require 'models/Subject'
 User = require 'zooniverse/lib/models/user'
+Badges = require 'models/Badge'
 
 class Classification extends Spine.Model
   @configure 'Classification', 'subject_id', 'annotations', 'workflow_id'
@@ -36,6 +37,8 @@ class Classification extends Spine.Model
     User.current?.save()
     User.current?.trigger("updateProfile")
     Classification.trigger 'classified'
+    for badge in Badges.all()
+      badge.checkAward()
     Api.post @url(), @toJSON()
 
 module.exports = Classification
