@@ -6,11 +6,10 @@
 </div>      
 
 <div class="link-navigation bg right omega">
-  <!--<%if @user? : %>-->
-  <!--<a class='signin_nav_link' href="#/profile"><%=@user.name%></a>-->
-  <!--<%else : %>-->
-  <!--<a class='signin_nav_link' href="#/login">Signin / Signup</a>-->
-  <!--<%end%>-->
+  <%if @user? : %>
+    <a class='signin_nav_link' href="#/profile"><%=@user.name%></a>
+  <%end%>
+
 </div>        
 
 <div class="link-navigation bg right">

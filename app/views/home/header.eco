@@ -12,9 +12,7 @@
 
 <div class="link-navigation bg right omega">
   <a href="">Forum</a>
-  <!--<%if @user? : %>-->
-  <!--<a class='signin_nav_link' href="#/profile"><%=@user.name%></a>-->
-  <!--<%else : %>-->
-  <!--<a class='signin_nav_link' href="#/login">SIGNIN / SIGNUP</a>-->
-  <!--<%end%>-->
+  <%if @user? : %>
+    <a class='signin_nav_link' href="#/profile"><%=@user.name%></a>
+  <%end%>
 </div>
