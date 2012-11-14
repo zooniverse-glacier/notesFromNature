@@ -1,0 +1,20 @@
+<div class="box-general nomargin">
+  <div class="col3">
+    <div class="box-badge">
+      <img src="images/<%=@badge.url%>" alt=""/>
+      <h3 class="title"><%=@badge.name%></h3>
+      <span class="subtitle"><%=@badge.description%> </span>
+    </div>
+  </div>
+</div>
+<hr />
+<div class="box-general highlighted nomargin">
+  <div class="col3">
+    <div class="box-badge-footer">
+      <span>Get it at:
+        <a class="object line-r" href="#/institutes/<%=@archive?.institute().slug()%>">NFN - insititue : <%=@archive?.institute().name%></a>
+        <a class="object" href="#/archives/<%=@archive?.slug()%>">NFN - collection : <%=@archive?.name%></a>
+      </span>
+    </div>
+  </div>
+</div>

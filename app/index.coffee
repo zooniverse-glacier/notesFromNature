@@ -11,6 +11,7 @@ LoginController= require('controllers/LoginController')
 ProfileController= require('controllers/ProfileController')
 AboutController= require('controllers/AboutController')
 FAQController  = require('controllers/FAQController')
+BadgesController = require('controllers/BadgesController')
 
 Api = require('zooniverse/lib/api')
 Config = require('lib/config')
@@ -20,6 +21,8 @@ ZooniverseBar = require('zooniverse/lib/controllers/top_bar')
 
 Archive = require('models/Archive')
 Institute = require('models/Institute')
+Badge = require('models/Badge')
+User  = require('zooniverse/lib/models/user')
 
 require('lib/fakeData')
 
@@ -43,7 +46,8 @@ class App extends Spine.Stack
     profile                   : ProfileController
     about                     : AboutController
     faq                       : FAQController
-    
+    badges                    : BadgesController
+
   routes:
     '/'                                  : 'home'
     '/archives'                          : 'archivesIndex'
@@ -70,7 +74,7 @@ class App extends Spine.Stack
     '/faq/:section'               : 'faq'
     '/FAQ'                        : 'faq'
     '/FAQ/:section'               : 'faq'
-    
+    '/badges/:id'                 : 'badges'
 
   default : 'home'
 
@@ -87,6 +91,12 @@ class App extends Spine.Stack
       appName:'Notes From Nature'
 
     Spine.Route.setup()
+
+    Badge.loadDefinitions()
+    User.bind 'sign-in', =>
+      if User.current?
+        console.log "current"
+        Badge.getUserBadges()
 
     Spine.Route.bind "change", =>
       if Spine.Route.path.indexOf("transcribe") == -1
