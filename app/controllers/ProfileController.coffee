@@ -1,23 +1,25 @@
 Spine = require('spine')
 User  = require('zooniverse/lib/models/user')
-
+Badge = require('models/Badge')
 class ProfileController extends Spine.Controller
   className: "ProfileController"
 
   constructor: ->
     super
+    Badge.bind "badgesLoaded", @render
 
   active:->
     super 
     document.title = "Notes From Nature - profile"
-
-    if not User.current? 
-      Spine.Route.navigate('/') 
-    else
+    @render()
+    User.bind 'sign-in', =>
       @render()
 
   render:=>
-    @html require('views/profile/profile')
-      user : User.current
+    if User.current?
+      @html require('views/profile/profile')
+        user : User.current
+    else
+      @html require('views/profile/notLoggedIn')
     
 module.exports = ProfileController

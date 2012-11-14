@@ -1,7 +1,7 @@
  <div class="box-general">
-        <div class="col3">
-            <div class="box-user">
-                <img src="<%= @user?.avatar || "images/coque-design.png"%>" />
+        <div class="col3" >
+            <div class="box-user" style="height: 50px;width: 0px">
+                
             </div>
 
             <h2 class="title user">
@@ -18,77 +18,32 @@
 
             <div class="time-box">
                 <ul class="time-life">
-                    <li>
-                    <div>
-                        <span class="text">IN MARCH 2012</span>
-                        <span class="value">Transcribed 2,362 entries.</span>
-                    </div>
-                    </li>
-                    <li>
-                    <div>
-                        <span class="text">TWO WEEKS AGO</span>
-                        <span class="value">Started collaborating in </span>
-                        <a class="object" href="">Birds collection</a>
-                    </div>
-                    </li>
-                    <li>
-                    <div>
-                        <span class="text">IN FEBRUARY 2012</span>
-                        <span class="value">Transcribed 2,362 entries.</span>
-                    </div>
-                    </li>
-                    <li>
-                    <div>
-                        <span class="text">IN JANUARY 2012</span>
-                        <span class="value">Transcribed 2,362 entries.</span>
-                    </div>
-                    </li>
-                    <li>
-                    <div>
-                        <span class="text">2012 NOV 3RD</span>
-                        <span class="value">Won the</span>
-                        <a class="object" href="">Avian Best Friend Badge</a>
-                    </div>
-                    </li>
-                    <li>
-                    <div>
-                        <span class="text">IN MARCH 2012</span>
-                        <span class="value">Transcribed 2,362 entries.</span>
-                    </div>
-                    </li>
+                    <% if @user.badges?: %>
+                        <% for badge in @user.badges :%>
+                            <% console.log "name *##{badge.name}*" %>
+                            <% if badge.name != 'weekly_report' : %>
 
-                    <li>
-                    <div>
-                        <span class="text">2011 MAY 2ND</span>
-                        <span class="value">Reached Top 10 colaborators of</span>
-                        <a class="object" href="">Birds Collection</a>
-                    </div>
-                    </li>
-
-                    <li class="previous page0">
-                    <div>
-                        <a class="object" href="">Previous activity</a>
-                    </div>
-                    </li>
-
-                    <li class="hidden page1">
-                    <div>
-                        <span class="text">2011 MAY 2NDx</span>
-                        <span class="value">Test</span>
-                        <a class="object" href="">Birds Collection</a>
-                    </div>
-                    </li>
-
-                    <li class="hidden page1">
-                    <div>
-                        <span class="text">IN FEBRUARY 2012</span>
-                        <span class="value">Transcribed 2,362 entries.</span>
-                    </div>
-                    </li>
+                              <li>
+                                  <div>
+                                      <span class="text"><%=moment(badge.created_at).from(moment())%></span>
+                                      <span class="value">Won the</span>
+                                      <a class="object" href="#/badges/<%=badge.slug()%>"><%=badge.name%> Badge</a>
+                                  </div>
+                              </li>
+                            <%else : %>
+                              <li>
+                                  <div>
+                                      <span class="text"><%=moment(badge.created_at).from(moment())%></span>
+                                      <span class="object" >You transcribed <%=badge.number%> items</span>
+                                  </div>
+                              </li>
+                            <%end%>
+                        <%end%>
+                    <%end%>
+                    
 
 
-
-                    <li class="hidden previous page1">
+                   <!--  <li class="hidden previous page1">
                     <div>
                         <a class="object" href="">Previous activity</a>
                     </div>
@@ -108,88 +63,21 @@
                         <span class="value">Transcribed 2,362 entries.</span>
                     </div>
                     </li>
-
+ -->
 
 
                 </ul>
 
                 <ul class="time-life-graf">
-                    <li>
-                    <div>
-                        <img src="images/ico-write.png" />
-                    </div>
-                    </li>
-                    <li>
-                    <div>
-                        <img src="images/circle-old-woman.png"  />
-                    </div>
-                    </li>
-                    <li>
-                    <div class="small">
-                        <img src="images/ico-write.png" />
-                    </div>
-                    </li>
-                    <li>
-                    <div class="small">
-                        <img src="images/ico-write.png" />
-                    </div>
-                    </li>
-                    <li>
-                    <div>
-                        <img src="images/circle-chicken.png" />
-                    </div>
-                    </li>
-                    <li>
-                    <div class="small">
-                        <img src="images/ico-write.png" />
-                    </div>
-                    </li>
-                    <li>
-                    <div>
-                        <img src="images/circle-cup.png"  />
-                    </div>
-                    </li>
-
-                    <li class="previous page0">
-                    <div>
-                        <img src="images/circle-plus.png" />
-                    </div>
-                    </li>
-
-                    <li class="hidden page1">
-                    <div class="small">
-                        <img src="images/ico-write.png" />
-                    </div>
-                    </li>
-
-                    <li class="hidden page1">
-                    <div class="small">
-                        <img src="images/ico-write.png" />
-                    </div>
-                    </li>
-
-
-                    <li class="previous hidden page1">
-                    <div>
-                        <img src="images/circle-plus.png" />
-                    </div>
-                    </li>
-
-                    <li class="hidden page2">
-                    <div class="small">
-                        <img src="images/ico-write.png" />
-                    </div>
-                    </li>
-
-                    <li class="hidden page2">
-                    <div class="small">
-                        <img src="images/ico-write.png" />
-                    </div>
-                    </li>
-
-
-
-
+                    <% if @user.badges?: %>
+                        <% for badge in @user.badges : %>
+                            <li>
+                                <div>
+                                    <img <%- unless badge.url? then 'style="width:39px"'%> src="images/<%=badge.url || 'ico-write.png' %>" />
+                                </div>
+                            </li>
+                        <%end%>
+                    <%end%>
                 </ul>
             </div>
         </div>
@@ -200,32 +88,31 @@
 
                 <ul class="user-list inline">
                     <li>
-                    <h3 class="title"><%=@user.classification_count%><span class="subtitle">Entries transcribed</span></h3>
+                    <h3 class="title"><%=@user.project.classification_count%><span class="subtitle">Entries transcribed</span></h3>
                     </li>
                     <li>
-                    <h3 class="title"><%=@user.groups?.length || 0 %><span class="subtitle">Collections</span></h3>
+                    <h3 class="title"><%= if @user.project.groups? then _.size(@user.project.groups) else 0 %><span class="subtitle">Collections</span></h3>
                     </li>
                 </ul>
 
                 <hr>
 
-                <h3 class="title">His badges <span class="subtitle">Won 5 badges up to row</span></h3>
+                <h3 class="title"><%=@user.name%>'s badges <span class="subtitle">
+                    <%if @user.badges? and @user.badges >0 : %>
+                        Won 5 badges up to row
+                    <%else : %>
+                        Transcribe to earn badges
+                    <%end%>
+                </span></h3>
                 <ul class="badges-list">
-                    <li>
-                    <img src="images/badge1.png" />
-                    </li>
-                    <li>
-                    <img src="images/badge2.png" />
-                    </li>
-                    <li>
-                    <img src="images/badge3.png" />
-                    </li>
-                    <li>
-                    <img src="images/badge1.png" />
-                    </li>
-                    <li>
-                    <img src="images/badge2.png" />
-                    </li>
+                    <%if @user.badges? : %>
+                        <%for badge in @user.badges : %>
+                            <% if badge.name !='weekly_report' : %>
+                                <li>
+                                    <a href="#/badges/<%=badge.slug()%>"><img src="images/<%=badge.url%>"></img> </a>
+                                </li>    
+                        <%end%>
+                    <%end%>
                 </ul>
             </div>
         </div>
