@@ -3,7 +3,7 @@
   <div class="col2">
     <div>
       <h3 class="title"><%=@name%></h3>
-      <p><%=@metadata.description%> <a class="object" href="">...</a> </p>
+      <p><%=@metadata.description%> <a class="object" href="/#/archives/<%=@slug()%>">...</a> </p>
     </div>
   </div>
 
