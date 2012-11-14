@@ -15,6 +15,7 @@
   ],
 
   "libs": [
-    "node_modules/Zooniverse/vendor/base64.js"
+    "node_modules/Zooniverse/vendor/base64.js",
+    "./lib/moment.min.js"
   ]
 }
