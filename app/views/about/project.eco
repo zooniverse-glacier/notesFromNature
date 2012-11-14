@@ -1,6 +1,6 @@
 <div>
     <h3 class="title first">The project</h3>
-    <p>After the nephew died without heirs in 1835, President Andrew Jackson informed Congress of the bequest, which amounted to 104,960 gold sovereigns, or US$500,000 ($10,100,997 in 2008 U.S. dollars after inflation). Given the age of the institution, many of the collections have great historical as well as scientific value, such as specimens collected by Darwin.  The museum is a world-renowned centre of research, specialising in taxonomy.The money was invested in shaky state bonds, which quickly defaulted gold sovereigns</p>
+    <p>The Notes from Nature transcription project is a citizen science platform built to help digitize the world's biological collections. Biological collections represent irreplaceable information necessary for uncovering past and modern changes in species distributions and even ecosystem composition, as they document where species and populations existed decades and centuries before now.</p>
     <figure>
     <img src="images/img-blackboard.png" alt=""/>
     <figcaption>A guy with glasses in front of a blackboard.</figcaption>
@@ -8,10 +8,23 @@
 </div>
 
 <div>
-    <h3 class="badge">An introduction to the botanical archivism</h3>
-    <p>After the nephew died without heirs in 1835, President Andrew Jackson informed Congress of the bequest, which amounted to 104,960 gold sovereigns, or US$500,000 ($10,100,997 in 2008 U.S. dollars after inflation). Given the age of the institution, many of the collections have great historical as well as scientific value, such as specimens collected by Darwin.  The museum is a world-renowned centre of research, specialising in taxonomy.The money was invested in shaky state bonds, which quickly defaulted gold sovereigns</p>
+    <h3 class="badge">Billions of records</h3>
+    <p>It is estimated that the number of specimens in Natural History Collections is between 1.23 and 1.97 billion records. The information contained in ledgers and labels associated with each of those records is not fully known, but represent an irreplaceable archive of data. These data are all the more valuable because they were collected over a time period of accelerating human impacts, providing an important baseline of past biotic conditions.</p>
     <figure>
     <img src="images/img-blackboard.png" alt=""/>
     <figcaption>The same guy but in video</figcaption>
     </figure>
+</div>
+
+<div>
+  <h3 class="badge">The partners</h3>
+  <p>Three projects, representing over 200 institutions, are currently involved in Notes from Nature</p>
+  <p>
+    <ul>
+      <li>Natural History Museum London Birds (NHM) brings a one of the worlds most rich collections of historical bird specimens. Here you will help us transcribe over one-hundred years of collectors records from around the world.</li>
+      <li>Southeast Regional Network of Expertise and Collections (SERNEC) is a collaboration to bring herbaria across the Southeast United States all contributing herbaria sheet images, where you can see the original plant mounted on the same paper as the label where the data is contained.</li>
+      <li>Calbug is a collaborative project among multiple California institutions and led by the University of California Berkeley Essig Entomology Museum to digitize insects. Here you will see insects from pinned collections in images with their label data.</li>
+    </ul>
+  </p>
+  
 </div>

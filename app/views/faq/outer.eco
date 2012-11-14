@@ -4,8 +4,7 @@
       <div class="box-general about">
         <div class="col3">
           <h2 class="title">
-            Notes From Nature
-            <span class="subtitle">Contribute to the science. Become a transcriber.</span>
+            Frequently Asked Questions
           </h2>
         </div>
       </div>
@@ -15,26 +14,14 @@
         <div class="col2">
           <div class='about_content'></div>
 
-          <div class="box-logos">
-            <span class="text">MUSEUMS INVOLVED</span>
-            <ul class="logos">
-              <li><a href="#"><img alt="National Science Foundation" src="images/national_science_foundation.png" /></a></li>
-              <li><a href="#"><img alt="Natural History Museum" src="images/natural_history_museum.png" /></a></li>
-              <li><a href="#"><img alt="Sernec" src="images/sernec.png" /></a></li>
-            </ul>
-            <p>Interested in publishing your collection? <a href="" class="object">Contact us</a></p>
-          </div>
         </div>
+        
         <div class="col1">
           <ul class="list-links">
-            <li><a href="/#/about/project" class='project'>The project</a></li>
-            <li><a href="/#/about/research" class="research selected">Research</a></li>
-            <li><a href="/#/about/legal_issues" class='legal_issues' >Legal issues</a></li>
-            <li><a href="/#/about/partners" class='partners'>Partners</a></li>
-            <li><a href="/#/about/story" class='story'>The story</a></li>
+            <li><a href="/#/faq/general" class='general'>General questions</a></li>
+            <li><a href="/#/faq/research" class='research'>Research questions</a></li>
           </ul>
         </div>
-
       </div>
 
       <!-- Footer-->

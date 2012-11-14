@@ -14,19 +14,19 @@ class FAQController extends Spine.Controller
 
   render:=>
     @html require('views/faq/outer')
-    @renderSeciton("project")
+    @renderSection("general")
 
-  renderSeciton: (section="project")=>
+  renderSection: (section="general")=>
     @content.html require("views/faq/#{section}")
 
   active:(params)=>
     super
-    document.title = "Notes From Nature - about"
+    document.title = "Notes From Nature - Frequenty Asked Questions"
 
-    @renderSeciton params.section
+    @renderSection params.section
     @selectNav params.section
 
-  selectNav:(section="project")=>
+  selectNav:(section="general")=>
     @navLinks.removeClass('selected')
     console.log "selecting .#{section}"
     $(".#{section}").addClass('selected')
