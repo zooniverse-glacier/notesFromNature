@@ -13,6 +13,7 @@ AboutController= require('controllers/AboutController')
 FAQController  = require('controllers/FAQController')
 BadgesController = require('controllers/BadgesController')
 
+NotificationController = require('controllers/NotificationController')
 Api = require('zooniverse/lib/api')
 Config = require('lib/config')
 
@@ -93,6 +94,8 @@ class App extends Spine.Stack
     Spine.Route.setup()
 
     Badge.loadDefinitions()
+
+    @append new NotificationController()
     User.bind 'sign-in', =>
       if User.current?
         console.log "current"

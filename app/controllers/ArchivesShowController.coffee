@@ -1,5 +1,6 @@
 Spine = require('spine')
 Archive = require('models/Archive')
+Badges = require('models/Badge')
 
 class ArchivesShowController extends Spine.Controller
   # className : "wrapper"
@@ -41,10 +42,11 @@ class ArchivesShowController extends Spine.Controller
 
     
   render:=>
-
+     
     if @currentArchive?
       @html require('/views/archives/archiveShow')
         archive: @currentArchive
+        badges:  Badges.badgesForProject(@currentArchive.slug())
     else
       @html require('/views/archives/archiveNotFound')()
 

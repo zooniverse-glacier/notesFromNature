@@ -1,4 +1,7 @@
 
+
+
+
 div.zooniverse-top-bar
   #zooniverse-top-bar-button
     a.top-bar-button
@@ -13,9 +16,11 @@ div.zooniverse-top-bar
 
 .dialog-underlay { display: none; }
 
-.stack > *:not(.active) {
-  display: none;
-}
+.stack > *:not(.active)
+  display: none
+
+.stack .NotificationController
+  display:block
 
 .ArchivesIndexController
   margin-bottom: 40px
@@ -1451,3 +1456,31 @@ h1.notlogged
     margin-left: -6px
 .BadgeController 
   margin-bottom: 39px
+
+
+.NotificationController
+  width: 300px
+  height: 40px
+  position:absolute
+  right:0px
+  top:0px 
+  text-align:center
+  z-index: 1000000
+  li
+    border: 1px solid black
+    background-color: white
+    width: 100%
+    height: 100% 
+    padding: 10px 0px
+    opacity: 1
+    transition: all 1s ease-in-out
+    -moz-transition: all 1s ease-in-out /* Firefox 4 */
+    -webkit-transition: all 1s ease-in-out /* Safari and Chrome */
+    -o-transition: all 1s ease-in-out /* Opera */
+    transiton: all 1s ease-in-out
+    img,p
+      display:inline-block
+      vertical-align: middle 
+    img 
+      width: 40px
+      height: 40px

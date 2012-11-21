@@ -51,7 +51,6 @@ class TranscriptionController extends Spine.Controller
 
   nextSubject:=>
     if @currnetSubject?
-      
       archive = Archive.find(@currnetSubject.archive_id)
       
       @archive.nextSubject (subject)=>
@@ -60,8 +59,7 @@ class TranscriptionController extends Spine.Controller
           workflow_id: subject.workflow_id
 
         $("div.transcribing.sernac img").attr("src", subject.location.standard)
-          
-
+        
 
   active:(params)=>
     super

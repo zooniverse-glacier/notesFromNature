@@ -59,35 +59,19 @@
 <div class="box-general">
 
   <div class="col3">
-    <h3 class="title">Badges coming soon!</h3>
+    <h3 class="title">Transcribe to earn!</h3>
   </div>
-  <div class="col1 omega">
-    <div class="center">
-      <img src="images/badge1.png" alt="avian best friend">
-      <h3 class="badge">Avian Best Friend Badge</h3>
-      <p class="badge">Badges will be given for being particularly good at specific types of tasks, say, transcribing bird records. These will be fun ways to show your specialty!<p> 
-      <img src="images/line-gray.png"> <br/>
-      <!--<span class="badge">6 users have this</span> -->
+  <% for badge in @badges[0..2] : %>
+
+    <div class="col1 omega">
+        <div class="center">
+          <img src="images/<%=badge.url%>" alt="<%=badge.name%>" </img> 
+          <h3 class="badge"><%=badge.name%></h3>
+          <p class="badge"><%=badge.description%><p> 
+        </div>
     </div>
-  </div>
-  <div class="col1 omega">  
-    <div class="center">
-      <img src="images/badge2.png" alt="avian best friend">
-      <h3 class="badge">Globe trotter</h3>
-      <p class="badge">Other badges will be earned by linking transcribing records that make interesting and difficult to achieve sets. For example, records from every continent!<p>
-      <img src="images/line-gray.png"> <br/>
-      <!--<span class="badge">6 users have this</span> -->
-    </div>
-  </div>
-  <div class="col1">  
-    <div class="center">
-      <img src="images/badge3.png" alt="avian best friend">
-      <h3 class="badge">Forum champion</h3>
-      <p class="badge">Or maybe your specialty is helping others or adding valuable conversations to the forum. We'll notice you for these valuable contributions too!<p>
-      <img src="images/line-gray.png"> <br/>
-      <!--<span class="badge">you and 6 users more have this</span> -->
-    </div>    
-  </div>
+  <%end%>
+
 
 </div>
 
@@ -102,7 +86,7 @@
   </div>
   <div class="col3">  
     <ul class="status-list inline">
-      <li><span class="text">USERS PARTICIPATING</span><%=@archive.metadata.userCount%></li>
+      <li><span class="text">USERS PARTICIPATING</span><%=window.project.user_count%></li>
       <li><span class="text">AVG. TIME PER PAGE</span>3 min.</li>
       <li><span class="text">AVG. DIFFICULTY</span><%=@archive.metadata.difficulty%></li>
       <li class="mar-button"><a href="<%=@archive.transcriptionUrl()%>" class="button next">

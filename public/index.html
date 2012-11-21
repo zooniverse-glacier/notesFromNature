@@ -31,7 +31,8 @@
   jQuery(function(){
     var App    = require("index");
     var Header = require("controllers/HeaderController");
-
+    var notificationController =   require("controllers/NotificationController") 
+    new notificationController({el:$(".NotificationController")})
     new Header ({el:$("header")});
 
     $("footer").append( require('views/footer')())
@@ -42,6 +43,7 @@
 </head>
 <body>
   <div class='zooniverseTopBar'></div>
+  <div class='NotificationController'></div>
   <div class='wrapper'>
     <header>
     </header>

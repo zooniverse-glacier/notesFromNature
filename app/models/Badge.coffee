@@ -3,7 +3,7 @@ badgeDefinitions=  require('lib/BadgeDefinitions')
 Api= require('zooniverse/lib/api')
 
 class Badge extends Spine.Model
-  @configure 'Badge', 'name', 'url', 'description','collection'
+  @configure 'Badge', 'name', 'url', 'description','collection', 'awardText'
   
   constructor: ->
     super
@@ -17,7 +17,7 @@ class Badge extends Spine.Model
   @getUserBadges:->
     if  User.current?
       Api.get("/users/#{User.current.id}/badges").onSuccess (badges)=>
-        
+        console.log "badge reply ", badges 
         badges = ([name,created_at]  for name,created_at of badges.badges)
         badges =  _(badges).sortBy (el)-> moment().diff(moment(el[1]))
         User.current.badges =[]
@@ -33,8 +33,9 @@ class Badge extends Spine.Model
       @process_weekly_report(name, created_at)
     else
       b = @findByName(name)
-      b.created_at = created_at
-      User.current.badges.push b
+      if b? 
+        b.created_at = created_at
+        User.current.badges.push b
 
   @process_weekly_report:(name,created_at)->
     number = parseInt(name.replace('weekly_report_',''))
@@ -51,7 +52,7 @@ class Badge extends Spine.Model
       
   @post_weekly_report:=>
     if User.current?
-      Api.post("/users/#{User.current.id}/badges", {badge: {name: "weekly_report_#{User.current.project.classification_count}"} }).onSuccess (data)=>
+      Api.post("/users/#{User.current.id}/badges", {badge: {name: "weekly_report_#{moment().format('%d-%MM-YYYY')}"} }).onSuccess (data)=>
         console.log "here"
         Badge.getUserBadges()
 
@@ -60,6 +61,11 @@ class Badge extends Spine.Model
     result = @select (b)->
       b.slug() == slug 
     result[0]
+
+  @badgesForProject:(projectSlug)=>
+    @select (b)=>
+      console.log b.collection, projectSlug
+      b.collection == projectSlug
 
   slug :=>
     @name.replace /\s/g, "_"
@@ -77,6 +83,7 @@ class Badge extends Spine.Model
 
   award:=>
     if User.current?
+      Badge.trigger("badgeAwarded", @)
       Api.post("/users/#{User.current.id}/badges", { badge:{name: @name} }).onSuccess (data)=>
         Badge.getUserBadges()
     else 

@@ -3,7 +3,7 @@
     <div class="box-badge">
       <img src="images/<%=@badge.url%>" alt=""/>
       <h3 class="title"><%=@badge.name%></h3>
-      <span class="subtitle"><%=@badge.description%> </span>
+      <span class="subtitle"><%=@badge.awardText%> </span>
     </div>
   </div>
 </div>

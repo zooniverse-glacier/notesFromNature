@@ -1,0 +1,1 @@
+<li> <img src='images/<%=@badge.url%>'></img>  <p> You just earned the  <a href="badges/<%=@badge.slug%>"><%=@badge.name%></a> badge</p></li>
