@@ -5,7 +5,7 @@
   });
 
 </script>
-<div class="box-general detail">
+<div class="box-general detail" style='background-image:url("<%=@archive.metadata.location.headerImage%>")'>
   <div class="col3">
     <h2>
       <%= @archive.institute().name%> <br/>
