@@ -19,12 +19,10 @@
 <div>
   <h3 class="badge">The partners</h3>
   <p>Three projects, representing over 200 institutions, are currently involved in Notes from Nature</p>
-  <p>
-    <ul>
-      <li>Natural History Museum London Birds (NHM) brings a one of the worlds most rich collections of historical bird specimens. Here you will help us transcribe over one-hundred years of collectors records from around the world.</li>
-      <li>Southeast Regional Network of Expertise and Collections (SERNEC) is a collaboration to bring herbaria across the Southeast United States all contributing herbaria sheet images, where you can see the original plant mounted on the same paper as the label where the data is contained.</li>
-      <li>Calbug is a collaborative project among multiple California institutions and led by the University of California Berkeley Essig Entomology Museum to digitize insects. Here you will see insects from pinned collections in images with their label data.</li>
-    </ul>
-  </p>
+  <ul>
+    <li>Natural History Museum London Birds (NHM) brings a one of the worlds most rich collections of historical bird specimens. Here you will help us transcribe over one-hundred years of collectors records from around the world.</li>
+    <li>Southeast Regional Network of Expertise and Collections (SERNEC) is a collaboration to bring herbaria across the Southeast United States all contributing herbaria sheet images, where you can see the original plant mounted on the same paper as the label where the data is contained.</li>
+    <li>Calbug is a collaborative project among multiple California institutions and led by the University of California Berkeley Essig Entomology Museum to digitize insects. Here you will see insects from pinned collections in images with their label data.</li>
+  </ul>
   
 </div>
