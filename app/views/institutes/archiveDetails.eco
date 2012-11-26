@@ -2,8 +2,8 @@
 
   <div class="col2">
     <div>
-      <h3 class="title"><%=@name%></h3>
-      <p><%=@metadata.description%> <a class="object" href="/#/archives/<%=@slug()%>">...</a> </p>
+      <h3 class="title"><a href="#/archives/<%=@slug()%>"> <%=@name%></a></h3>
+      <p><%=@metadata.description%> <a class="object" href="#/archives/<%=@slug()%>">...</a> </p>
     </div>
   </div>
 
