@@ -257,14 +257,30 @@ div.zooniverse-top-bar #zooniverse-top-bar-button a.top-bar-button img {
 div.zooniverse-top-bar div#zooniverse-top-bar-container div#zooniverse-top-bar-info {
   width: 368px;
 }
+.about_content div ul {
+  list-style: disc;
+  width: 85%;
+  margin: 10px 0px 10px 40px;
+}
+.about_content div ul li {
+  font-size: 15px;
+  font-family: Helvetica;
+}
 .dialog-underlay {
   display: none;
 }
 .stack > *:not(.active) {
   display: none;
 }
+.stack .NotificationController {
+  display: block;
+}
 .ArchivesIndexController {
   margin-bottom: 40px;
+}
+.AboutController,
+.FAQController {
+  margin-bottom: 0px;
 }
 *[lang='de'],
 *[lang='pl'] {
@@ -354,6 +370,7 @@ ul {
 }
 header {
   padding: 27px 0;
+  margin-top: -100px;
 }
 h1 {
   position: relative;
@@ -753,7 +770,6 @@ a.badge {
   height: 10px;
 }
 footer.relative {
-  top: -40px;
   position: relative;
 }
 hr.absolute {
@@ -1140,6 +1156,7 @@ ul.logos li {
   text-align: center;
   position: absolute;
   z-index: 100;
+  width: 100%;
 }
 .list-graphics li .count strong {
   font-family: 'Open Sans';
@@ -1217,6 +1234,9 @@ li.img-graphic2 {
   text-align: center;
   position: relative;
   top: -5px;
+}
+.time-life-graf li div img {
+  width: 56px;
 }
 .time-life-graf li div.small {
   top: 6px;
@@ -1607,9 +1627,64 @@ span.switch.selected {
 .translucent-box .progress-bar.completed span.progress {
   color: #09c;
 }
+h1.notlogged {
+  background-color: #fff;
+  height: 103px;
+  padding-top: 86px;
+  text-align: center;
+}
 .LoginController form {
   text-align: center;
   margin-top: 100px;
+}
+.ProfileController {
+  margin-bottom: 39px;
+}
+.ProfileController .title.user {
+  margin-left: -6px;
+}
+.BadgeController {
+  margin-bottom: 39px;
+}
+.NotificationController {
+  width: 300px;
+  height: 40px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  text-align: center;
+  z-index: 1000000;
+}
+.NotificationController li {
+  border: 1px solid #000;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  padding: 10px 0px;
+  opacity: 1 ;
+  -ms-filter: none;
+  filter: none;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+/* Firefox 4 */
+  -webkit-transition: all 1s ease-in-out;
+/* Safari and Chrome */
+  -o-transition: all 1s ease-in-out;
+/* Opera */
+  transiton: all 1s ease-in-out;
+}
+.NotificationController li img,
+.NotificationController li p {
+  display: inline-block;
+  vertical-align: middle;
+}
+.NotificationController li img {
+  width: 40px;
+  height: 40px;
 }
 a.green,
 button.green,
@@ -3628,23 +3703,20 @@ a.btn,
   src: url("lib/TitilliumText/TitilliumText22L002-webfont.eot?#iefix") format("embedded-opentype"), url("lib/TitilliumText/TitilliumText22L002-webfont.woff") format("woff"), url("../lib/TitilliumText/TitilliumText22L002-webfont.ttf") format("truetype"), url("lib/TitilliumText/TitilliumText22L002-webfont.svg#TitilliumText22LLight") format("svg");
 }
 body.show-top-bar .zooniverse-top-bar {
-  top: 0px;
-  margin-bottom: 100px;
+  height: 100px;
 }
 .zooniverse-top-bar {
-  margin: 0;
-  position: relative;
+  -webkit-transition: height 0.5s ease-in-out;
+  -moz-transition: height 0.5s ease-in-out;
+  -o-transition: height 0.5s ease-in-out;
+  -ms-transition: height 0.5s ease-in-out;
+  transition: height 0.5s ease-in-out;
+  bottom: 100%;
+  height: 5px;
   left: 0;
-  -webkit-box-shadow: 10px;
-  box-shadow: 10px;
-  width: 100%;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
   position: relative;
-  top: -100px;
+  width: 100%;
+  z-index: 999;
 }
 .zooniverse-top-bar label {
   display: block;
@@ -3672,9 +3744,9 @@ body.show-top-bar .zooniverse-top-bar {
   margin-right: 5px;
   padding-left: 5px;
   background: #fff;
-  -webkit-box-shadow: 0px 1px 0px #fff;
-  box-shadow: 0px 1px 0px #fff;
-  border: 1px solid #e8e8e8;
+  -webkit-box-shadow: inset 0px 1px 2px rgba(0,0,0,0.40);
+  box-shadow: inset 0px 1px 2px rgba(0,0,0,0.40);
+  border: 1px solid #000;
   color: #080612;
 }
 .zooniverse-top-bar button {
@@ -3682,23 +3754,25 @@ body.show-top-bar .zooniverse-top-bar {
   margin-right: $gutter-size;
   padding-bottom: 2px;
   margin-right: 10px;
-  color: #4e4e4e;
-  background-color: #ebebeb;
-  -webkit-box-shadow: inset 0px 1px 0px #fff, 0px 1px 2px rgba(0,0,0,0.20);
-  box-shadow: inset 0px 1px 0px #fff, 0px 1px 2px rgba(0,0,0,0.20);
-  text-shadow: 0px 1px 1px #fff;
+  text-shadow: 0px 1px 1px #003a54;
 }
 .zooniverse-top-bar button[name="signout"] {
   margin-left: 5px;
 }
 #zooniverse-top-bar-container {
-  padding: 30px;
-  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   background: #f1f1f1;
-  color: #080612;
-  font-family: "Open Sans";
-  height: 45px;
   border-bottom: 1px #f1f1ef solid;
+  bottom: 0;
+  color: #080612;
+  height: 100px;
+  font-family: "Open Sans";
+  left: 0;
+  padding: 30px;
+  position: absolute;
+  width: 100%;
 }
 #zooniverse-top-bar-container h3 {
   font-size: 18px;
@@ -3707,8 +3781,10 @@ body.show-top-bar .zooniverse-top-bar {
   margin-top: 0;
   margin-bottom: 0;
 }
-#zooniverse-top-bar-container h3 strong {
+#zooniverse-top-bar-container h3 a {
   font-weight: 700;
+  text-decoration: none;
+  color: #080612;
 }
 #zooniverse-top-bar-container p {
   font-size: 10px;
@@ -3748,11 +3824,16 @@ body.show-top-bar .zooniverse-top-bar {
 #zooniverse-top-bar-container #zooniverse-top-bar-login .progress {
   display: none;
 }
-#zooniverse-top-bar-container .inputs {
+#zooniverse-top-bar-container #zooniverse-top-bar-login .inputs {
+  display: inline-block;
+}
+#zooniverse-top-bar-container #zooniverse-top-bar-login .inputs p {
   display: inline;
 }
-#zooniverse-top-bar-container .buttons {
-  display: inline;
+#zooniverse-top-bar-container #zooniverse-top-bar-login .buttons {
+  display: inline-block;
+  position: relative;
+  top: -28px;
 }
 #zooniverse-top-bar-container #zooniverse-top-bar-languages {
   float: right;
@@ -3771,19 +3852,23 @@ body.show-top-bar .zooniverse-top-bar {
   margin-right: -5px;
 }
 #zooniverse-top-bar-button {
-  width: 50px;
-  height: 50px;
-  top: -1px;
-  left: 105px;
-  position: relative;
   background: #f1f1f1;
   -webkit-border-radius: 0px 0px 5px 5px;
   border-radius: 0px 0px 5px 5px;
-  border-bottom: 1px #f1f1ef solid;
-  border-right: 1px #f1f1ef solid;
-  border-left: 1px #f1f1ef solid;
+  border: 0 #f1f1ef solid;
+  border-width: 0 1px 1px;
+  height: 50px;
+  left: 50%;
+  margin-left: -25px;
+  position: absolute;
+  top: 100%;
+  width: 50px;
+}
+#zooniverse-top-bar-button a {
+  display: block;
 }
 #zooniverse-top-bar-button img {
+  border: 0;
   margin-left: 8px;
   margin-top: 6px;
 }
@@ -3831,7 +3916,7 @@ body.show-top-bar .zooniverse-top-bar {
 }
 @media (max-width: 1385px) {
   #zooniverse-top-bar-container #zooniverse-top-bar-info {
-    width: 300px;
+    width: auto;
   }
   #zooniverse-top-bar-container #zooniverse-top-bar-info h3 {
     margin-top: 17px;
@@ -3892,4 +3977,11 @@ body.show-top-bar .zooniverse-top-bar {
 .zooniverse-login-form > div {
   margin: 20px;
   text-align: center;
+}
+.zooniverseTopBar {
+  -webkit-transition: top margin-top 1s ease-in-out;
+  -moz-transition: top margin-top 1s ease-in-out;
+  -o-transition: top margin-top 1s ease-in-out;
+  -ms-transition: top margin-top 1s ease-in-out;
+  transition: top margin-top 1s ease-in-out;
 }
