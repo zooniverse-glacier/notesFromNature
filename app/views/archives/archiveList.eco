@@ -1,9 +1,12 @@
 <div>
   <ul class="archive-list">                  
-    <% for i in [0...Math.max(@archives.length, 3)] : %>
-
-      <%-@archiveTemplate( {archive : @archives[i] } ) %>
+    <% for archive in @archives: %>
+      <%-@archiveTemplate( {archive : archive} ) %>
     <%end%>  
+
+    <%for placeholder in @placeholderArchives : %>
+      <%-require("views/archives/placeholderArchive")( {archive : placeholder } ) %>
+    <%end%>
   </ul>
 </div>
 

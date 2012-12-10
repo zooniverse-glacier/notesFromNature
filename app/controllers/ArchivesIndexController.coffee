@@ -42,6 +42,7 @@ class ArchiveIndexController extends Spine.Controller
 
     @append require('views/archives/archiveList')
       archives : archives
+      placeholderArchives: require('lib/PlaceHolderArchives')
       archiveTemplate: require("views/archives/archive")
 
 
