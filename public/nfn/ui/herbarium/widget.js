@@ -101,7 +101,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     } else {
 
-      this.showErrorTooltip("Empty field", "Please, write ");
+      this.showErrorTooltip("Empty field", "Please, write a value or use the skip field option below");
 
     }
 

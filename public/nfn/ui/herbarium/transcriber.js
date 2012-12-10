@@ -393,8 +393,9 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
       this.updateSelection(x, y, x+w, y+h);
 
-      w = 540;
-      h = 350;
+      // Size of the magnifier
+      w = 640;
+      h = 480;
 
       var that = this;
 
@@ -406,6 +407,24 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
         that.magnifier.$el.css({ left: "50%", marginLeft: -1*w/2 });
         that.magnifier.$el.empty();
         that.magnifier.$el.append($img2x);
+
+        $img2x.attr("src", that.model.get("big-url"));
+
+        var spinner = new nfn.ui.view.Spinner({ // Loads the spinner
+          model: new nfn.ui.model.Spinner(),
+          settings: { lines: 10, length: 3, width: 4, radius: 8, color: '#333333' },
+          parent: this
+        });
+
+        window.spinner = spinner;
+
+        that.magnifier.$el.append(spinner.render());
+
+        spinner.show().spin();
+
+        $img2x.imagesLoaded(function() {
+          spinner.hide().stop();
+        });
 
         that.removeSelection();
 

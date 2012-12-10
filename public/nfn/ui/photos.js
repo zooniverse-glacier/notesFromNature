@@ -54,7 +54,7 @@ nfn.ui.view.Photo = nfn.core.View.extend({
     var $img = this.$el = $("<img />");
 
     this.$el.attr("src", this.model.get("url"));
-
+    
     this.$el.imagesLoaded(function() {
 
       // Removes the previous image
