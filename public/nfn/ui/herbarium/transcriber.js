@@ -247,9 +247,9 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
     var that = this;
 
-    $(".photos img").animate({ marginLeft: -2*$(document).width() }, 500, function() {
-      that.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_sernac_02.png", callback); // TODO: request next photo and the URL here
-    });
+    Spine.trigger("finishedSernacTranscription", this.transcriptions)
+
+    $(".photos img").animate({ marginLeft: -2*$(document).width() }, 500);
 
     this.helper.closeTooltip();             // TODO: add test
     this.transcriberWidget.closeTooltip();  // TODO: add test
