@@ -62,8 +62,9 @@ class SernacTranscriptionController extends Spine.Controller
       @transcriber.startTranscribing()
 
     @currentSubject= Subject.random()
-    
+
     @transcriber.loadPhoto(@currentSubject.location.standard, callback)
+    @transcriber.loadLargePhoto(@currentSubject.location.large)
 
   render:=>
     @html require('views/transcription/sernac')
