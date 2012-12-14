@@ -18,6 +18,7 @@ Api = require('zooniverse/lib/api')
 Config = require('lib/config')
 
 ZooniverseBar = require('zooniverse/lib/controllers/top_bar')
+googleAnalytics = require('zooniverse/lib/google_analytics')
 
 
 Archive = require('models/Archive')
@@ -90,6 +91,8 @@ class App extends Spine.Stack
         en: 'English'
       app: 'notes_from_nature'
       appName:'Notes From Nature'
+
+    googleAnalytics.init account: 'UA-1224199-39', domain: 'www.notesfromnature.org'
 
     Spine.Route.setup()
 
