@@ -1,6 +1,6 @@
 
       
-  <div class="box-general museum" style='background-image:url("<%=@institute.metadata.location.headerImage%>")'>
+  <div class="box-general museum" style='background-image:url("<%=@institute.metadata.location.headerImage%>  ")'>
     <div class="col3">
       <h2 class="title">
         <%=@institute.name%>

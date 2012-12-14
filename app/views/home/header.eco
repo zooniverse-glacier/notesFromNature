@@ -12,6 +12,7 @@
 
 <div class="link-navigation bg right omega">
   <a href="">Forum</a>
+  <a href='https://docs.google.com/a/zooniverse.org/spreadsheet/viewform?formkey=dGQ1TGZvdFdraGlXbFpTREd6d0gwdnc6MA#gid=0'>feedback</a>
   <%if @user? : %>
     <a class='signin_nav_link' href="#/profile"><%=@user.name%></a>
   <%end%>

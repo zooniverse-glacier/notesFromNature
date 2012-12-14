@@ -1,4 +1,3 @@
-<%console.log @archive%>
 <li class="mine soon">
   <img src="<%=@archive.image%>"/> 
     <div class="translucent-box">
