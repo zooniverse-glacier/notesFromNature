@@ -71,12 +71,12 @@ class TranscriptionController extends Spine.Controller
         @active params
     if params.id
       @currnetSubject = Subject.find(params.id)
-      console.log " from id"
+
       $("body .transcriber").remove()
       @render()
     else if params.archiveID
       @archive = Archive.findBySlug(params.archiveID)
-      console.log " from archive id", @archive, params.archiveID
+
       if @archive?
         unless @currnetSubject?
           @archive.nextSubject (subject)=>
@@ -86,7 +86,7 @@ class TranscriptionController extends Spine.Controller
 
     else if !@currnetSubject?
       @currnetSubject = Subject.random()
-      console.log " from random subject"
+
       @render()
     
     if @archive?

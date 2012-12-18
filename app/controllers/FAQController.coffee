@@ -28,7 +28,6 @@ class FAQController extends Spine.Controller
 
   selectNav:(section="general")=>
     @navLinks.removeClass('selected')
-    console.log "selecting .#{section}"
     $(".#{section}").addClass('selected')
 
 module.exports = FAQController

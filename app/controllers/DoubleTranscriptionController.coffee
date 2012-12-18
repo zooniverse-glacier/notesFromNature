@@ -103,9 +103,7 @@ class DoubleTranscriptionController extends Spine.Controller
   #   @nextEntity()
 
   fetchSpeciesInfo:(species)=>
-    console.log "searching for ", species
     @eol.search species, (result)=>
-      console.log result
       @eol.getMediaForSpecies result[0], ['text','videos','images','sound'], (media)=>
         alert(@transcriptionBox)
         @transcriptionBox.append require('views/transcription/speciesInfo')
@@ -148,7 +146,7 @@ class DoubleTranscriptionController extends Spine.Controller
   autofillSpecies:(e)=>
     searchText = $(e.currentTarget).val();
     @eol.search searchText, (result)=>
-      console.log result
+      result
 
   nextEntity:=>
     @currentEntityNo += 1

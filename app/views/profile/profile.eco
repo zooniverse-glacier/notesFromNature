@@ -20,7 +20,6 @@
                 <ul class="time-life">
                     <% if @user.badges?: %>
                         <% for badge in @user.badges :%>
-                            <% console.log "name *##{badge.name}*" %>
                             <% if badge.name != 'weekly_report' : %>
 
                               <li>

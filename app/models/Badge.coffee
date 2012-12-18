@@ -17,7 +17,6 @@ class Badge extends Spine.Model
   @getUserBadges:->
     if  User.current?
       Api.get("/users/#{User.current.id}/badges").onSuccess (badges)=>
-        console.log "badge reply ", badges 
         badges = ([name,created_at]  for name,created_at of badges.badges)
         badges =  _(badges).sortBy (el)-> moment().diff(moment(el[1]))
         User.current.badges =[]
@@ -43,7 +42,7 @@ class Badge extends Spine.Model
 
   @update_weekly_report:->
     reports =  ( moment(badge.created_at).diff(moment(),'weeks') for badge in User.current.badges when badge.name == 'weekly_report')
-    console.log reports, reports.length, reports.indexOf(0)
+
     if reports.length==0
       @post_weekly_report()
     else 
@@ -53,7 +52,6 @@ class Badge extends Spine.Model
   @post_weekly_report:=>
     if User.current?
       Api.post("/users/#{User.current.id}/badges", {badge: {name: "weekly_report_#{moment().format('%d-%MM-YYYY')}"} }).onSuccess (data)=>
-        console.log "here"
         Badge.getUserBadges()
 
 
@@ -64,7 +62,7 @@ class Badge extends Spine.Model
 
   @badgesForProject:(projectSlug)=>
     @select (b)=>
-      console.log b.collection, projectSlug
+
       b.collection == projectSlug
 
   slug :=>

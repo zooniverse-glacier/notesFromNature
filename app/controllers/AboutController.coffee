@@ -28,7 +28,6 @@ class AboutController extends Spine.Controller
 
   selectNav:(section="project")=>
     @navLinks.removeClass('selected')
-    console.log "selecting .#{section}"
     $(".#{section}").addClass('selected')
 
 module.exports = AboutController

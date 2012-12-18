@@ -1,5 +1,3 @@
-<% console.log "in template", @%>
-
 <div class='speciesInfo' style='position:absolute; left:10px; top:20px; width: 500px; height: 500px; z-index:10000; background-color:yellow'>
   <ul>
     <li> Species Name : <%=@species.content%></li>

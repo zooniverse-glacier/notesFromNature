@@ -25,7 +25,7 @@ class Institute extends Spine.Model
 
 
   setupArchives:(archives)=>
-    console.log "setting up archives ", archives
+
     for archive in archives
       @archives().create(archive) 
 

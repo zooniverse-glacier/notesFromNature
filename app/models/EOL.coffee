@@ -17,7 +17,7 @@ class EOL extends Spine.Model
 
 
   getMediaForSpecies: (species, mediaTypes,callback)=>
-    console.log "media types are ",mediaTypes
+
     mediaTypes.push("")
     mt = mediaTypes.join("=10&")
     mt += "iucn=1&details=1"

@@ -15,7 +15,6 @@ class HomeController extends Spine.Controller
     Api.get('/projects/notes_from_nature').onSuccess (data)=>
       @project = data
       window.project = @project
-      console.log "project is", @project
       @render()
 
   render:=>
