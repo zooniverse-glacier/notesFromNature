@@ -27,7 +27,7 @@
 
 <script type="text/template" id="launcher-template">
   <span>Drag a square around the specimen label</span> 
-  <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a>
+  <a href="#" class="example" data-src="images/sernac.png">See example</a>
   <a href="#" class="btn start hidden">Start this record</a>
   <a href="#" class="skip">Skip this record</a>
 </script>
