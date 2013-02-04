@@ -1,12 +1,8 @@
 <div>
   <ul class="archive-list">                  
     <% for archive in @archives: %>
-      <%-@archiveTemplate( {archive : archive} ) %>
-    <%end%>  
-
-    <%for placeholder in @placeholderArchives : %>
-      <%-require("views/archives/placeholderArchive")( {archive : placeholder } ) %>
-    <%end%>
+      <%- @archiveTemplate({archive: archive}) %>
+    <% end %>
   </ul>
 </div>
 

@@ -19,8 +19,6 @@ Config = require('lib/config')
 
 ZooniverseBar = require('zooniverse/lib/controllers/top_bar')
 
-
-
 Archive = require('models/Archive')
 Institute = require('models/Institute')
 Badge = require('models/Badge')
@@ -33,8 +31,6 @@ class customTopBar extends ZooniverseBar
     super 
     $(".buttons button[name=signup]").click =>
       Spine.Route.navigate('/login')
-
-
 
 class App extends Spine.Stack
 
@@ -91,7 +87,6 @@ class App extends Spine.Stack
         en: 'English'
       app: 'notes_from_nature'
       appName:'Notes From Nature'
-
 
     Spine.Route.setup()
 

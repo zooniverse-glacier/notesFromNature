@@ -15,9 +15,10 @@ class Classification extends Spine.Model
     Subject.find @subject_id 
   
   annotate: (questionId, answerId) ->
-    annotation = { }
-    annotation[questionId] = answerId
-    @annotations.push annotation
+    # annotation = { }
+    # annotation[questionId] = answerId
+    # @annotations.push annotation
+    @annotations[questionId] = answerId
     @save()
 
   url: ->
@@ -33,12 +34,15 @@ class Classification extends Spine.Model
     json
   
   send: ->
-    User.current?.project.classification_count+=1
-    User.current?.save()
-    User.current?.trigger("updateProfile")
+    if User.current?
+      User.current.project.classification_count+=1
+      User.current.save()
+      User.current.trigger("updateProfile")
+
+      for badge in Badges.all()
+        badge.checkAward()
+
     Classification.trigger 'classified'
-    for badge in Badges.all()
-      badge.checkAward()
     Api.post @url(), @toJSON()
 
 module.exports = Classification

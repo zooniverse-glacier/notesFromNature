@@ -48,7 +48,7 @@ class DoubleTranscriptionController extends Spine.Controller
         #$("input[name='species']").on "keyup", @autofillSpecies
       
       nfn.load "nfn/", ->
-
+        console.log 'BIRDS EVERYWHERE'
         GOD = new nfn.ui.view.GOD({
           model: new nfn.ui.model.GOD()
         })

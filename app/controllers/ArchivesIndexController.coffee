@@ -1,8 +1,7 @@
 Spine = require('spine')
-
 Archive = require('models/Archive')
+
 class ArchiveIndexController extends Spine.Controller
-  # className: "wrapper"
   className: "ArchivesIndexController"
 
   events:
@@ -21,18 +20,18 @@ class ArchiveIndexController extends Spine.Controller
     Archive.bind "refresh", @render
     @showCompleted = true
 
-  active:(params)=>
+  active: (params) =>
     super 
     document.title = "Notes From Nature - collections "
     @render(params)
 
-  showArchiveDetails:(e)=>
+  showArchiveDetails: (e) =>
     $(e.currentTarget).find(".translucent-box").stop().animate {top:0}, { duration: 200 }
 
-  hideListDetails:(e)=>
+  hideListDetails: (e) =>
     $(e.currentTarget).find(".translucent-box").stop().animate {top:"160px"}, { duration: 200 }
 
-  render:(options=undefined)=>
+  render: (options = undefined) =>
     archives = Archive.filter(options)
 
     @html ""
@@ -42,11 +41,11 @@ class ArchiveIndexController extends Spine.Controller
 
     @append require('views/archives/archiveList')
       archives : archives
-      placeholderArchives: require('lib/PlaceHolderArchives')
+      # placeholderArchives: require('lib/PlaceHolderArchives')
       archiveTemplate: require("views/archives/archive")
 
 
-  toggleUserArchives:(e)=>
+  toggleUserArchives: (e) =>
     e.preventDefault()
 
     slider = $(e.currentTarget)
@@ -65,7 +64,7 @@ class ArchiveIndexController extends Spine.Controller
         else
           $(".collection-list li:not(.mine)").animate {opacity: 0.2}, {duration: 100}
 
-  toggleComplete:(e)=>
+  toggleComplete: (e) =>
     e.preventDefault();
     slider = $(e.currentTarget)
     if  slider.hasClass("selected")
@@ -77,8 +76,6 @@ class ArchiveIndexController extends Spine.Controller
       slider.html slider.attr('data-show')
       $(".archive-list li.completed").animate({opacity:.2}, { duration: 300})
 
-      
-      
     slider.toggleClass("selected")
 
 module.exports = ArchiveIndexController

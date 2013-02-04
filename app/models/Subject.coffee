@@ -7,47 +7,46 @@ class Subject extends BaseSubject
   @configure 'Subject','location', 'metadata', 'active', 'workflow_ids', 'collection_id'
   @belongsTo 'archive', Archive
   
-  constructor:->
+  constructor: ->
     super
-    @active= true
+    @active = true
 
-
-
-  @next_subject:=>
+  # Class methods
+  @next_subject: =>
     @purge()
-    API.get "/subjects", (data)=>
+    API.get '/subjects', (data) =>
       Subject.create(data)
-      Subject.trigger("gotNext")
+      Subject.trigger 'gotNext'
 
-  @active:=>
-    @select (s)=>
+  @active: =>
+    @select (s) =>
       s.active
       
-  @activeCount:=>
+  @activeCount: =>
     @active().length
 
-  @current:=>
+  @current: =>
     Subject.first()
 
-  @getNextForCollection:(collection_id, number=2)=>
+  @getNextForCollection: (collection_id, number = 2) =>
     _(number).times =>
       API.get "/projects/notes_from_nature/groups/#{@archive_id}/subjects?limit=#{number}", (data)=> 
         Subject.create(data)
 
-  retire:=>
-    @active=false 
-    @save()
-    if Subject.activeCount() < 3
-      Subject.getNextForCollection(self.collection_id, 10)
-
-  @purge:=>
+  @purge: =>
     for subject in Subject.all()
       subject.destroy()
 
-  @random:=>
+  @random: =>
     randomNo = Math.floor(Math.random()*(@activeCount()))
     @active()[randomNo]
 
+  # Instance methods
+  retire: =>
+    @active = false 
+    @save()
+    if Subject.activeCount() < 3
+      Subject.getNextForCollection(self.collection_id, 10)
 
 
 module.exports = Subject

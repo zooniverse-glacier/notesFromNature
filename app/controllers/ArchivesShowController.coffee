@@ -16,7 +16,7 @@ class ArchivesShowController extends Spine.Controller
       @setTitle()
       @render()
 
-  loadArchive:(name=null)=>
+  loadArchive: (name = null) =>
     @archiveName = name if name? 
     @currentArchive = Archive.findBySlug(@archiveName)
   
@@ -29,7 +29,7 @@ class ArchivesShowController extends Spine.Controller
     else
       document.title = "Notes From Nature - Loading"
 
-  active:(params)=>
+  active: (params) =>
     super 
     @archiveName = params.id 
 
@@ -41,8 +41,7 @@ class ArchivesShowController extends Spine.Controller
       document.title = "Notes From Nature - Loading"
 
     
-  render:=>
-     
+  render: =>
     if @currentArchive?
       @html require('/views/archives/archiveShow')
         archive: @currentArchive

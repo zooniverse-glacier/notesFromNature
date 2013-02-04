@@ -1,15 +1,14 @@
 Spine = require('spine')
-Subject= require('models/Subject')
+
 Archive= require('models/Archive')
+Classification = require('models/Classification')
+EOL = require('models/EOL')
+Subject= require('models/Subject')
 Institute= require('models/Institute')
 
-EOL = require('models/EOL')
-
-Classification = require('models/Classification')
-
-
-SernacTranscriptionController = require('controllers/SernacTranscriptionController')
+BugsTranscriptionController = require('controllers/BugsTranscriptionController')
 DoubleTranscriptionController = require('controllers/DoubleTranscriptionController')
+SernacTranscriptionController = require('controllers/SernacTranscriptionController')
 
 class TranscriptionController extends Spine.Controller
   className: "TranscriptionController"
@@ -17,60 +16,58 @@ class TranscriptionController extends Spine.Controller
   transcriptionControllers: 
     'double' : new DoubleTranscriptionController()
     'sernac' : new SernacTranscriptionController()
+    'bugs' : new BugsTranscriptionController()
 
-  constructor:->
+  constructor: ->
     super
-
-    $("body").bind "doneClassification", (data)=>
+    $("body").bind "doneClassification", (data) =>
       @saveAnnotation data.values
 
-    $("body.transcribingScreen .wrapper .right .button").on 'click', =>
-      alert("HERE")
+    # $("body.transcribingScreen .wrapper .right .button").on 'click', =>
+    #   alert("HERE")
 
-    Spine.bind("nextSubject", @nextSubject)
+    Spine.bind 'nextSubject', @nextSubject
 
-  saveAnnotation:(values)=>
+  saveAnnotation: (values) =>
     for key,value of values
       @classification.annotate(key,value)
     @classification.save()
 
-  saveTranscription:(data)=>
+  saveTranscription: (data) =>
     @classification.send()
     @nextSubject()
 
-  render:=>
-
-    if @currnetSubject?
-      transcriptionType = @currnetSubject.metadata.workflow_type
-      @transcriptionControllers[transcriptionType].startWorkflow(@currnetSubject)
+  render: =>
+    if @currentSubject?
+      transcriptionType = @currentSubject.metadata.workflow_type
+      @transcriptionControllers[transcriptionType].startWorkflow(@currentSubject)
       @html @transcriptionControllers[transcriptionType].el
       $("body").addClass(transcriptionType)
       $("body").addClass("transcribingScreen")
     else 
       @html require('views/transcription/outOfSubjects')
 
-  nextSubject:=>
-    if @currnetSubject?
-      archive = Archive.find(@currnetSubject.archive_id)
+  nextSubject: =>
+    console.log 'nextSubject'
+    if @currentSubject?
+      archive = Archive.find(@currentSubject.archive_id)
       
-      @archive.nextSubject (subject)=>
-        @classification =  Classification.create 
+      @archive.nextSubject (subject) =>
+        @classification = Classification.create 
           subject_id : subject.id
           workflow_id: subject.workflow_id
 
         $("div.transcribing.sernac img").attr("src", subject.location.standard)
-        
 
-  active:(params)=>
+  active: (params) =>
     super
-
     $("body .transcriber").show()
     
-    if Institute.count() ==0 
+    if Institute.count() == 0 
       Institute.bind 'refresh', =>
         @active params
     if params.id
-      @currnetSubject = Subject.find(params.id)
+      @currentSubject = Subject.find(params.id)
 
       $("body .transcriber").remove()
       @render()
@@ -78,14 +75,14 @@ class TranscriptionController extends Spine.Controller
       @archive = Archive.findBySlug(params.archiveID)
 
       if @archive?
-        unless @currnetSubject?
+        unless @currentSubject?
           @archive.nextSubject (subject)=>
-            @currnetSubject=subject
+            @currentSubject = subject
             $("body .transcriber").remove()
             @render()
 
-    else if !@currnetSubject?
-      @currnetSubject = Subject.random()
+    else if !@currentSubject?
+      @currentSubject = Subject.random()
 
       @render()
     
@@ -93,7 +90,5 @@ class TranscriptionController extends Spine.Controller
       $(".transcriber .left .title").html("#{@archive?.name} Collection!!!")
       document.title = "Notes From Nature - #{@archive.institute().name} - #{@archive.name} - transcribe"
 
-
-  
     
 module.exports = TranscriptionController

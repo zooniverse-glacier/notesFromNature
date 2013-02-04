@@ -1,23 +1,19 @@
-// HerbariumWidget --------------------------------------
+// BugsWidget --------------------------------------
 
-nfn.ui.model.HerbariumWidget = Backbone.Model.extend({ });
+nfn.ui.model.BugsWidget = Backbone.Model.extend({ });
 
-nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
-
-  className: 'sernac-widget bar',
+nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
+  className: 'bugs-widget bar',
 
   events: {
-
     "click .btn.ok" :            "ok",
     'keypress input[type=text]': "onEnter",
     "click .step" :              "showStepTooltip",
     "click .btn.finish" :        "showFinishTooltip",
     "click .skip" :              "showSkipTooltip"
-
   },
 
   initialize: function() {
-
     _.bindAll( this, "toggle", "toggleOk", "onEnter", "updatePlaceholder", "updateValue", "updateType", "createStepTooltip", "closeTooltip", "closeErrorTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep" );
 
     this.template = new nfn.core.Template({
@@ -53,7 +49,6 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     this.model.bind("change:ok_enabled",  this.toggleOk);
 
     this.parent = this.options.parent;
-
   },
 
   skip: function(e) {

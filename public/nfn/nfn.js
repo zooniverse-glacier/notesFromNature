@@ -1,6 +1,5 @@
 // entry point
 (function() {
-
   var nfn = window.nfn = {};
 
   window.nfn.config          = {};
@@ -38,7 +37,6 @@
     'core/profiler.js',
     'core/template.js',
     'core/view.js',
-
     'core/god.js',
 
     // UI
@@ -63,10 +61,17 @@
     'ui/herbarium/magnifier.js',
     'ui/herbarium/selection.js',
     'ui/herbarium/highlight.js',
-    'ui/herbarium/helper.js'
+    'ui/herbarium/helper.js',
 
+    // Bugs
+    'ui/bugs/transcriber.js',
+    'ui/bugs/widget.js',
+    'ui/bugs/launcher.js',
+    'ui/bugs/magnifier.js',
+    'ui/bugs/selection.js',
+    'ui/bugs/highlight.js',
+    'ui/bugs/helper.js'
   ];
-
 
   nfn.init = function(ready) {
     // define a simple class
@@ -100,6 +105,5 @@
     };
 
     next();
-
   };
 })();
