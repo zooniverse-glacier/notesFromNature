@@ -39,7 +39,6 @@ class ArchivesShowController extends Spine.Controller
       @render()
     else
       document.title = "Notes From Nature - Loading"
-
     
   render: =>
     if @currentArchive?

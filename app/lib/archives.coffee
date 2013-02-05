@@ -15,7 +15,7 @@ data =
     "start_date":"1337"
     "end_date":"present"
     "location":
-      "image":"images/img-collections2.png"
+      "image":"images/img-collections5.png"
       "logo":"images/logoMuseum.png"
   "name":"Bugs and Such"
   "project_id":"5008739e516bcbd236000001"

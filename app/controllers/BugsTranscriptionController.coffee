@@ -1,9 +1,8 @@
 Spine   = require 'spine'
-Subject = require 'models/Subject'
+
 Archive = require 'models/Archive'
 Classification = require 'models/Classification'
-
-EOL = require 'models/EOL'
+Subject = require 'models/Subject'
 
 class BugsTranscriptionController extends Spine.Controller
   className: 'BugsTranscriptionController'
@@ -12,31 +11,31 @@ class BugsTranscriptionController extends Spine.Controller
     super 
     Spine.bind 'finishedBugsTranscription', @saveClassification
 
+  render: =>
+    @html require('views/transcription/bugs')
+      subject: @currentSubject
+
   startWorkflow: (subject) =>
     @currentSubject = subject
-    
-    archive = Archive.find(@currentSubject.archive_id)
     @render()
-    @delay =>
-      nfn.load 'nfn/', =>
-        GOD = new nfn.ui.view.GOD({
-          model: new nfn.ui.model.GOD()
-        })
+    @delay @go, 500
 
-        window.GOD = GOD
+  go: =>
+    archive = Archive.find(@currentSubject.archive_id)
 
-        transcriberModel = new nfn.ui.model.Bugs()
+    window.GOD = new nfn.ui.view.GOD({
+      model: new nfn.ui.model.GOD()
+    })
 
-        @transcriber = new nfn.ui.view.BugsTranscriber({
-          model: transcriberModel
-        })
+    transcriberModel = new nfn.ui.model.Bugs()
+    @transcriber = new nfn.ui.view.BugsTranscriber({
+      model: transcriberModel
+    })
 
-        $('.btn.close').attr('href', "#/archives/#{archive.slug()}")
-        
-        @nextSubject()
-        window.transcriber = @transcriber
-        
-    , 500
+    $('.btn.close').attr('href', "#/archives/#{archive.slug()}")
+    
+    @nextSubject()
+    window.transcriber = @transcriber
 
   saveClassification: (data) =>
     classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0] } )
@@ -59,8 +58,5 @@ class BugsTranscriptionController extends Spine.Controller
     @transcriber.loadPhoto(@currentSubject.location.standard, callback)
     @transcriber.loadLargePhoto(@currentSubject.location.large)
 
-  render: =>
-    @html require('views/transcription/bugs')
-      subject: @currentSubject
 
 module.exports = BugsTranscriptionController

@@ -71,7 +71,7 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 
       this.tooltip = new nfn.ui.view.Tooltip({
 
-        className: "tooltip with-spinner upsidedown",
+        className: "tooltip with-spinner",
 
         model: new nfn.ui.model.Tooltip({
           main: main,
@@ -85,7 +85,7 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 
       this.tooltip = new nfn.ui.view.Tooltip({
 
-        className: "tooltip with-spinner upsidedown",
+        className: "tooltip with-spinner",
 
         model: new nfn.ui.model.Tooltip({
           main: main,

@@ -28,11 +28,18 @@ class Archive extends Spine.Model
     if @subjects().first()
       callback @subjects().first() if callback?
     else
-      API.get "/projects/notes_from_nature/groups/#{@id}/subjects?limit=10", (subjects) =>
-        for subject in subjects
-          if subject?
-            @subjects().create subject 
+      if @id is '5008eb88ba40af06f10000016'
+        # Archive is bugs. Fake it for now.
+        BugsSubjects = require 'lib/BugsSubjects'
+        for subject in BugsSubjects
+          @subjects().create subject
         callback @subjects().first() if callback?
+      else
+        API.get "/projects/notes_from_nature/groups/#{@id}/subjects?limit=10", (subjects) =>
+          for subject in subjects
+            if subject?
+              @subjects().create subject 
+          callback @subjects().first() if callback?
 
   transcriptionUrl: =>
     "#/archives/#{@slug()}/transcribe"

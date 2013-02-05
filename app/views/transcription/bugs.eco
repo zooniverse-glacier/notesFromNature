@@ -1,0 +1,94 @@
+<script type="text/template" id="transcriber-herbarium-widget-template">
+
+  <div class="left">
+    <div class="input_field">
+      <input type="text" placeholder="" />
+      <a href="#" class="btn ok">ok</a>
+      <a href="#" class="btn error">!</a>
+    </div>
+  </div>
+
+  <div class="right">
+    <a href="#" class="skip">Skip this field</a>
+    <a href="#" class="step"></a>
+    <a href="#" class="btn finish">Finish this record</a>
+  </div>
+
+</script>
+
+<script type="text/template" id="highlight-template">
+  <a href="#" class="close"></a>
+</script>
+
+<script type="text/template" id="helper-template">
+  <div class="title"></div>
+  <div class="description"></div>
+</script>
+
+<script type="text/template" id="launcher-template">
+  <span>Drag a square around the specimen label</span> 
+  <a href="#" class="example" data-src="images/sernac.png">See example</a>
+  <a href="#" class="btn start hidden">Start this record</a>
+  <a href="#" class="skip">Skip this record</a>
+</script>
+
+<script type="text/template" id="date-input-template">
+  <div class="date_field month"><input type="text" name="month" class="month" placeholder="month" /></div> 
+  <div class="date_field day"><input type="text" name="day" class="day" placeholder="day" /></div> 
+  <div class="date_field year"><input type="text" name="year" class="year" placeholder="year" /></div>
+</script>
+
+<script type="text/template" id="tooltip-error-template">
+  <strong class="title">{{title}}</strong>
+  <div class="description">{{description}}</div>
+  <div class="tip"></div>
+</script>
+
+<script type="text/template" id="tooltip-step-template">
+  <ul>
+    {{#links}}
+    <li><a href="#">{{title}}</a></li>
+    {{/links}}
+  </ul>
+  <div class="tip"></div>
+</script>
+
+<script type="text/template" id="tooltip-template">
+  <strong class="title">{{ title }}</strong>
+  <div class="description">{{{ description }}}</div>
+
+  <div class="buttons">
+    <a href="#" class="btn main">{{ main }}</a> 
+    <a href="#" class="btn secondary">{{ secondary }}</a>
+  </div>
+
+  <div class="tip"></div>
+</script>
+
+<script type="text/template" id="tooltip-example-template">
+  <div class="buttons"><a href="#/archives/Herbarium" class="btn main">{{ main }}</a></div> 
+  <div class="tip"></div>
+</script>
+
+<script type="text/template" id="statusbar-template">
+  <div class="left">
+    <h1 class="title">{{ title }}</h1>
+    <h3 class="description">{{ description }}</h3>
+  </div>
+  <div class="right">
+
+    <div class="separator"></div>
+
+    <div class="count">
+      <div class="counter">0</div>
+      <strong>Records done</strong>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="off">
+      <a href="/" class="btn close"></a>
+    </div>
+
+  </div>
+</script>

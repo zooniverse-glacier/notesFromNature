@@ -465,10 +465,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
   },
 
   startTranscribing: function() {
-
     if (this.launcher.model.get("hidden")) {
-      //this.launcher.setPosition($(document).width()/2 - this.launcher.width()/2, $(document).height() - this.launcher.height() - 100 );
-      //this.launcher.setPosition($(document).width()/2 - this.launcher.width()/2, "auto");
       this.launcher.$el.css({ left: "50%", marginLeft: -1*this.launcher.width()/2 });
       this.launcher.show();
     }
@@ -476,8 +473,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     this.$el.find(".photos").addClass("selectable");
     this.$el.find(".photos").on("mousedown", this.onMouseDown);
 
-    this.$el.on("mouseup",   this.onMouseUp);
-
+    this.$el.on("mouseup", this.onMouseUp);
   },
 
   onMouseUp: function() {

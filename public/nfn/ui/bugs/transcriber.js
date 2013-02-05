@@ -4,7 +4,7 @@ Spine = require('spine')
 nfn.ui.model.Bugs = nfn.ui.model.Transcriber.extend({
 
   defaults: {
-    type: 'sernac'
+    type: 'sernac bugs'
   }
 
 });
@@ -24,10 +24,10 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
 
     this.guide = [
       {
-        title: 'State' ,
-        description: 'It is the full state name or it’s abbreviation (e.g. FL for Florida). <a href="#" class="example">See example</a>',
+        title: 'Locality' ,
+        description: 'Locality Description. <a href="#" class="example">See example</a>',
         examples: [ "nfn/ui/herbarium/examples/ex_state.png" ],
-        placeholder: 'State',
+        placeholder: 'Locality',
         type: "text",
         inputWidth: 540
       }, {
@@ -38,33 +38,19 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
         type: "text",
         inputWidth: 540
       }, {
-        title: 'Scientific name',
-        description: 'This is the species name string, usually including at least genus and species. <a href="#" class="example">See example</a>',
-        examples: ["nfn/ui/herbarium/examples/ex_scientific_name.png"],
-        placeholder: 'Scientific name',
+        title: 'State' ,
+        description: 'This is the state name found on the record. <a href="#" class="example">See example</a>',
+        examples: ["nfn/ui/herbarium/examples/ex_state.png"],
+        placeholder: 'State',
         type: "text",
         inputWidth: 540
       }, {
-        title: 'Scientific author',
-        description: 'This a full or sir name found with the species name, it tells us who named it. <a href="#" class="example">See example</a>',
-        examples: ["nfn/ui/herbarium/examples/ex_scientific_name_details.png"],
-        placeholder: 'Scientific author',
-        type: "text",
-        inputWidth: 540
-      }, {
-        title: 'Location',
-        description: 'A place name or geographic description of where the specimen was found. <a href="#" class="example">See example</a>',
-        examples: ["nfn/ui/herbarium/examples/ex_location_description.png"],
-        placeholder: 'Location',
-        type: "text",
-        inputWidth: 650
-      }, {
-        title: 'Habitat and description',
-        description: 'A short description of the specimen and its habitat. <a href="#" class="example">See example</a>',
-        examples: ["nfn/ui/herbarium/examples/ex_habitat.png"],
-        placeholder: 'Habitat & Description',
-        type: "text",
-        inputWidth: 600
+        title: 'Date collection',
+        description: 'Date specimen collected. Likely below the location. <a href="#" class="example">See example</a>',
+        examples: ["nfn/ui/herbarium/examples/ex_recorded_date.png"],
+        placeholder: ['day', 'month', 'year'],
+        type: "date",
+        inputWidth: 700
       }, {
         title: 'Collected by',
         description: 'The name the person that collected this specimen. <a href="#" class="example">See example</a>',
@@ -73,19 +59,33 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
         type: "text",
         inputWidth: 540
       }, {
-        title: 'Number',
-        description: 'A number (or code) assigned to the collection, usually appears after Collectors name. <a href="#" class="example">See example</a>',
-        examples: ["nfn/ui/herbarium/examples/ex_record_number.png"],
-        placeholder: 'Number',
-        type: "text",
+        title: 'Host',
+        description: 'The scientific name of the plant or animal that the specimen was found on. <a href="#" class="example">See example</a>',
+        examples: ['nfn/ui/herbarium/examples/ex_county.png'],
+        placeholder: 'Host',
+        type: 'text',
         inputWidth: 540
       }, {
-        title: 'Collection date ',
-        description: 'Please collect the collection date as you see it. <a href="#" class="example">See example</a>',
-        examples: ["nfn/ui/herbarium/examples/ex_recorded_date.png"],
-        placeholder: ['day', 'month', 'year'],
-        type: "date",
-        inputWidth: 700
+        title: 'Elevation',
+        description: 'The elevation where the specimen was found. <a href="#" class="example">See example</a>',
+        examples: ['nfn/ui/herbarium/examples/ex_county.png'],
+        placeholder: 'Elevation',
+        type: 'text',
+        inputWidth: 540
+      }, {
+        title: 'Latitude',
+        description: 'The latitude where the specimen was found. <a href="#" class="example">See example</a>',
+        examples: ['nfn/ui/herbarium/examples/ex_county.png'],
+        placeholder: 'Latitude',
+        type: 'text',
+        inputWidth: 540
+      }, {
+        title: 'Longitude' ,
+        description: 'The longitude where the specimen was found. <a href="#" class="example">See example</a>',
+        examples: ['nfn/ui/herbarium/examples/ex_county.png'],
+        placeholder: 'Longitude',
+        type: 'text',
+        inputWidth: 540
       }
     ];
 
@@ -164,8 +164,8 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
     this.statusBar = new nfn.ui.view.StatusBar({
 
       model: new nfn.ui.model.StatusBar({
-        title: "Herbarium Collection",
-        description: "from SERNEC"
+        title: "Bugs and Such",
+        description: "from CalBug"
       }),
 
       template: $("#statusbar-template").html(),
@@ -237,7 +237,7 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
 
     var that = this;
 
-    Spine.trigger("finishedSernacTranscription", this.transcriptions)
+    Spine.trigger("finishedBugsTranscription", this.transcriptions)
 
     $(".photos img").animate({ marginLeft: -2*$(document).width() }, 500);
 
@@ -274,7 +274,7 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
 
     var that = this;
 
-    Spine.trigger("finishedSernacTranscription", this.transcriptions)
+    Spine.trigger("finishedBugsTranscription", this.transcriptions)
 
     $(".photos img").animate({ marginLeft: -2*$(document).width() }, 500);
 
@@ -455,19 +455,22 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
   },
 
   startTranscribing: function() {
+    this.model.set("currentStep", 0);
 
-    if (this.launcher.model.get("hidden")) {
-      //this.launcher.setPosition($(document).width()/2 - this.launcher.width()/2, $(document).height() - this.launcher.height() - 100 );
-      //this.launcher.setPosition($(document).width()/2 - this.launcher.width()/2, "auto");
-      this.launcher.$el.css({ left: "50%", marginLeft: -1*this.launcher.width()/2 });
-      this.launcher.show();
-    }
+     // add the helper widget
+    var helperY = $(document).height() - this.helper.height() - 110;
 
-    this.$el.find(".photos").addClass("selectable");
-    this.$el.find(".photos").on("mousedown", this.onMouseDown);
+    this.helper.setPosition(0, helperY)
+    this.helper.$el.css({ left: "50%", marginLeft: -1*this.helper.width()/2 });
+    this.helper.show();
 
-    this.$el.on("mouseup",   this.onMouseUp);
+    // add the transcriber widget
+    var twX = "50%"
+      , twY = this.helper.top() + this.helper.height() + 35;
 
+    this.transcriberWidget.$el.css({ left: "50%", marginLeft: -1*this.transcriberWidget.width()/2 });
+    this.transcriberWidget.setPosition(twX, twY);
+    this.transcriberWidget.show();
   },
 
   onMouseUp: function() {
@@ -531,7 +534,7 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
     }
 
     this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth, value: value });
-
+    this.helper.setWidth(this.transcriberWidget.width());
   },
 
   updatePlaceholder: function() {
@@ -618,7 +621,7 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
     this.$el.addClass(this.model.get("type"));
 
     this.$el.append(this.backdrop.render());
-    this.$el.append(this.launcher.render());
+    // this.$el.append(this.launcher.render());
     this.$el.append(this.helper.render());
     this.$el.append(this.statusBar.render());
     this.$el.append(this.transcriberWidget.render());
@@ -639,13 +642,13 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
 
     $(window).on("resize", this.onResize);
 
-    $(document).on("mouseover", ".mCSB_scrollTools", function() {
-      that.stopTranscribing();
-    });
+    // $(document).on("mouseover", ".mCSB_scrollTools", function() {
+    //   that.stopTranscribing();
+    // });
 
-    $(document).on("mouseleave", ".mCSB_scrollTools", function() {
-      that.startTranscribing();
-    });
+    // $(document).on("mouseleave", ".mCSB_scrollTools", function() {
+    //   that.startTranscribing();
+    // });
 
     $("body").append(this.$el);
 
