@@ -533,9 +533,24 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
 
     }
 
-    console.log('a');
     this.clearInput();
     this.focus();
+
+  },
+
+  focus: function() {
+
+    var type = this.model.get("type");
+
+    if ( type == 'text' || type == 'location' ) {
+
+      this.$input.focus();
+
+    } else if ( type == 'date' ) {
+
+      this.$input[0].focus();
+
+    }
 
   },
 
