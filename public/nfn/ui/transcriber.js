@@ -61,7 +61,40 @@ nfn.ui.view.Transcriber = nfn.core.View.extend({
     this.photos         = new nfn.ui.collection.Photos();
     this.transcriptions = new nfn.ui.collection.Transcriptions();
 
+    this.model.bind("change:backspace", this.onToggleBackspace);
+
     this.render();
+
+  },
+
+  onToggleBackspace: function() {
+
+    if (this.model.get("backspace")) {
+      this.enableBackspace();
+    } else {
+      this.disableBackspace();
+    }
+  },
+
+  enableBackspace: function() {
+
+    $(document).unbind("keydown.backspace");
+
+  },
+
+  disableBackspace: function() {
+
+    $(document).bind("keydown.backspace", function(e) {
+      var nodeName = e.target.nodeName.toLowerCase();
+
+      if (e.which === 8) {
+        if ((nodeName === 'input' && e.target.type === 'text') || nodeName === 'textarea') {
+          // do nothing
+        } else {
+          e.preventDefault();
+        }
+      }
+    });
 
   },
 
