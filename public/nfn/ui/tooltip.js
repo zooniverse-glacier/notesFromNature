@@ -24,7 +24,8 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
   events: {
 
     "click .main"      : "onMainClick",
-    "click .secondary" : "onSecondaryClick"
+    "click .secondary" : "onSecondaryClick",
+    "click .action"    : "onActionClick"
 
   },
 
@@ -90,6 +91,15 @@ nfn.ui.view.Tooltip = nfn.ui.view.Widget.extend({
     e && e.stopImmediatePropagation();
 
     this.trigger("onSecondaryClick");
+
+  },
+
+  onActionClick: function(e) {
+
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+    this.trigger("onActionClick");
 
   },
 

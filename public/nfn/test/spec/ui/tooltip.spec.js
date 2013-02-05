@@ -10,7 +10,9 @@ describe("common.ui.view.Tooltip", function() {
   beforeEach(function() {
 
     widget = new nfn.ui.view.Tooltip({
-      model: new nfn.ui.model.Tooltip(),
+      model: new nfn.ui.model.Tooltip({
+        description: "If you can’t find the value, you can see <a href='#' class='action' data-action='show-example'>examples</a> that surely will help you",
+      }),
       template: $("#tooltip-template").html()
     });
 
@@ -171,7 +173,6 @@ describe("common.ui.view.Tooltip", function() {
 
   it("should have a description", function() {
 
-
     expect(widget.$description).toEqual(widget.$el.find(".description"));
     expect(widget.$el.find(".description").length).toBeTruthy();
 
@@ -192,6 +193,17 @@ describe("common.ui.view.Tooltip", function() {
 
     widget.delegateEvents();
     widget.$mainButton.click();
+
+    expect(spy).toHaveBeenCalled();
+
+  });
+
+  it("should fire an event when the user clicks in an action link", function() {
+
+    var spy = spyOn(widget, 'onActionClick');
+
+    widget.delegateEvents();
+    widget.$description.find(".action").click();
 
     expect(spy).toHaveBeenCalled();
 
