@@ -18,7 +18,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
   initialize: function() {
 
-    _.bindAll( this, "toggle", "toggleOk", "onEnter", "updatePlaceholder", "updateValue", "updateType", "createStepTooltip", "closeTooltip", "closeErrorTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep" );
+    _.bindAll( this, "toggle", "toggleOk", "onEnter", "updatePlaceholder", "updateValue", "updateType", "createStepTooltip", "closeTooltip", "closeErrorTooltip", "closeFinishTooltip", "closeStepTooltip", "gotoStep", "showExample" );
 
     this.template = new nfn.core.Template({
       template: this.options.template
@@ -243,7 +243,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     var
     title       = "Are you sure?",
-    description = "If you can’t find the value, you can see <a href='#'>examples</a> that surely will help you",
+    description = "If you can’t find the value, you can see <a href='#' class='action' data-action='show-example'>examples</a> that surely will help you",
     main        = "Skip field",
     secondary   = "Cancel";
 
@@ -257,6 +257,8 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     this.tooltip.bind("onEscKey",         this.closeTooltip);
     this.tooltip.bind("onSecondaryClick", this.closeTooltip);
+    this.tooltip.bind("onActionClick",    this.showExample);
+
     this.tooltip.bind("onMainClick",      function() {
 
       that.closeTooltip(function() {
@@ -276,6 +278,15 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     this.tooltip.setPosition(x, y);
     GOD.add(this.tooltip, this.closeTooltip);
+
+  },
+
+  showExample: function(e) {
+
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+    this.parent.helper.showExample();
 
   },
 
