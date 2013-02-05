@@ -111,8 +111,12 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 
     this.tooltip.show();
 
+    var $target = this.$el.find(".example");
+
+    if (e) $target = $(e.target);
+
     var
-    linkWidth   = $(e.target).width()/2,
+    linkWidth   = $target.width()/2,
     x           = Math.abs(this.$el.offset().left - this.$exampleLink.offset().left) - this.tooltip.width() / 2 + linkWidth - 10,
     y           = Math.abs(this.$el.offset().top  - this.$exampleLink.offset().top) + 30;
 
