@@ -29,18 +29,15 @@ nfn.ui.view.BugsHelper = nfn.ui.view.Widget.extend({
   },
 
   updateTitle: function() {
-
     var that = this;
 
     this.$title.fadeOut(200, function() {
       that.$title.text(that.model.get("title"));
       that.$title.fadeIn(200);
     });
-
   },
 
   updateDescription: function() {
-
     var that = this;
 
     this.$description.fadeOut(200, function() {
@@ -48,53 +45,39 @@ nfn.ui.view.BugsHelper = nfn.ui.view.Widget.extend({
       that.$description.fadeIn(200);
       that.$exampleLink = that.$description.find(".example");
     });
-
   },
 
   showExample: function(e) {
-
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
     if (!this.tooltip) this.createTooltip(e);
-
   },
 
   createTooltip: function(e) {
-
     var
     that = this,
     main = "Close",
     url  = this.$el.find(".example").attr("data-src");
 
     if (url) {
-
       this.tooltip = new nfn.ui.view.Tooltip({
-
         className: "tooltip with-spinner",
-
         model: new nfn.ui.model.Tooltip({
           main: main,
           urls: [url],
           template: $("#tooltip-example-template").html()
         })
-
       });
-
     } else if (this.model.get("urls")) {
-
       this.tooltip = new nfn.ui.view.Tooltip({
-
         className: "tooltip with-spinner",
-
         model: new nfn.ui.model.Tooltip({
           main: main,
           urls: that.model.get("urls"),
           template: $("#tooltip-example-template").html()
         })
-
       });
-
     }
 
     this.addView(this.tooltip);
@@ -109,22 +92,34 @@ nfn.ui.view.BugsHelper = nfn.ui.view.Widget.extend({
     var
     linkWidth   = $(e.target).width()/2,
     x           = Math.abs(this.$el.offset().left - this.$exampleLink.offset().left) - this.tooltip.width() / 2 + linkWidth - 10,
-    y           = Math.abs(this.$el.offset().top  - this.$exampleLink.offset().top) + 30;
+    y           = Math.abs(this.$el.offset().top  - this.$exampleLink.offset().top) - this.tooltip.height() - 30;
 
     this.tooltip.setPosition(x, y);
 
     GOD.add(this.tooltip, this.closeTooltip);
 
+    // Loads the Closer
+    closer = new nfn.ui.view.Closer({
+      model: new nfn.ui.model.Closer(),
+      template: $("#closer-template").html(),
+      onClose: function () {
+        that.closeTooltip();
+      }
+    });
+
+    // Add the close button
+    var closerX = this.tooltip.left() + this.tooltip.width() + 12
+      , closerY = this.tooltip.top();
+    closer.$el.css({left: closerX, top: closerY});
+    this.$el.append(closer.render());
+    closer.show();
   },
 
   nextPhoto: function(callback) {
-
     this.tooltip.nextPhoto();
-
   },
 
   closeTooltip: function(callback) {
-
     if (!this.tooltip) return;
 
     this.tooltip.hide();
@@ -132,11 +127,9 @@ nfn.ui.view.BugsHelper = nfn.ui.view.Widget.extend({
     delete this.tooltip;
 
     callback && callback();
-
   },
 
   render: function() {
-
     this.$el.append(this.template.render());
 
     this.$title       = this.$el.find(".title");
@@ -144,8 +137,6 @@ nfn.ui.view.BugsHelper = nfn.ui.view.Widget.extend({
     this.$exampleLink = this.$el.find(".example");
 
     return this.$el;
-
   }
-
 });
 
