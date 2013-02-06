@@ -1,9 +1,12 @@
-Spine = require('spine')
-Subject= require('models/Subject')
-EOL = require('models/EOL')
+Spine = require 'spine'
+
+Archive = require 'models/Archive'
+Classification = require 'models/Classification'
+Subject = require 'models/Subject'
+EOL = require 'models/EOL'
 
 class DoubleTranscriptionController extends Spine.Controller
-  className: "DoubleTranscriptionController"
+  className: 'DoubleTranscriptionController'
   elements:
     "div.transcribing"   : "transcriptionSubject"
     "#transcriber"       : "transcriptionBox"
@@ -11,7 +14,6 @@ class DoubleTranscriptionController extends Spine.Controller
     "div.tooltip.skip"   : "skipConfirmation"
     "div.tooltip.right"  : "finishRecordCheck"
     ".transcribing img"  : "transcriptionImage"
-
 
   # events:
     # "submit #transcriber form"              : "record"
@@ -26,53 +28,56 @@ class DoubleTranscriptionController extends Spine.Controller
 
   constructor: ->
     super
-    # @resetClassification()
-    # @currentEntityNo=0
-    # @eol = new EOL()
     @eol = new EOL()
+    Spine.bind("finishedBirdsTranscription", @saveClassification)
 
- 
-  startWorkflow:(subject)=>
-    @currentSubject=subject
+  render: =>
+    @html require("views/transcription/main")
+
+  startWorkflow: (@archive) =>
     @render()
 
-  render:=>
-    @html("")
+    go = =>
+      window.GOD = new nfn.ui.view.GOD({
+        model: new nfn.ui.model.GOD()
+      })
 
-    @append require("views/transcription/main")
-      subject: @currentSubject
+      transcriberModel = new nfn.ui.model.DoublePage()
+      @transcriber = new nfn.ui.view.DoublePage({
+        model: transcriberModel
+        Spine: Spine
+      })
 
-    @delay =>
-      #if $("#transcriber").length ==0
-        #@transcriptionSubject.transcriber() 
-        #$("input[name='species']").on "keyup", @autofillSpecies
-      
-      nfn.load "nfn/", ->
+      $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
 
-        GOD = new nfn.ui.view.GOD({
-          model: new nfn.ui.model.GOD()
-        })
+      @nextSubject()
+      window.transcriber = @transcriber
 
-        window.GOD = GOD
+    @delay go, 200
 
-        transcriberModel = new nfn.ui.model.DoublePage()
+  nextSubject: =>
+    @archive.nextSubject (@currentSubject) =>
+      callback = =>
+        @transcriber.spinner.hide => 
+          $(".photos img").animate({ marginLeft: "0" }, 500)
+          @transcriber.transcriberWidget.show()
+          @transcriber.transcriberWidget.setDraggable(true)
+          @transcriber.transcriberWidget.setResizable(true)
+          @transcriber.startTranscribing()
 
-        transcriber = new nfn.ui.view.DoublePage({
-          model: transcriberModel
-        })
+      @transcriber.loadPhoto(@currentSubject.location.standard, callback)
+      @transcriber.loadLargePhoto(@currentSubject.location.large)
 
-        callback = ->
+  saveClassification: (data) =>
+    classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0] } )
+    for annotation in data.toJSON()
+      classification.annotate annotation.step, annotation.value
 
-          transcriber.spinner.hide -> 
-            transcriber.transcriberWidget.show()
-            transcriber.transcriberWidget.setDraggable(true)
-            transcriber.transcriberWidget.setResizable(true)
+    classification.save()
+    @currentSubject.retire()
+    classification.send()
+    @nextSubject()
 
-        transcriber.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_birds_01.JPG", callback)
-
-        window.transcriber = transcriber
-
-    ,200
 
     # # @transcriptionSubject.prepend require("views/transcription/transcriptionBox")
     # #   entityTemplate       : require('views/transcription/entity')
@@ -101,6 +106,13 @@ class DoubleTranscriptionController extends Spine.Controller
   #     @fetchSpeciesInfo(data.collector)
     
   #   @nextEntity()
+
+
+
+
+
+
+
 
   fetchSpeciesInfo:(species)=>
     @eol.search species, (result)=>

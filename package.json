@@ -3,16 +3,14 @@
   "version": "0.0.1",
   "dependencies": { 
     "serveup": "~0.0.2",
-    "hem": "~0.1.6",
+    "hem": "git://github.com/spine/hem.git",
     "es5-shimify": "~0.0.1",
     "json2ify": "~0.0.1",
     "jqueryify": "~0.0.1",
     "underscore": "latest",
     "nib": "latest",
-    "underscore": "latest",
-    "zooniverse": "git+ssh://git@github.com:zooniverse/Zooniverse.git",
+    "Zooniverse": "https://github.com/kycan/Zooniverse.git",
     "spine": "~1.0.5",
     "clean-css" : "latest"
-
   }
 }

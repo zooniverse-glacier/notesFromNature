@@ -19,8 +19,6 @@ Config = require('lib/config')
 
 ZooniverseBar = require('zooniverse/lib/controllers/top_bar')
 
-
-
 Archive = require('models/Archive')
 Institute = require('models/Institute')
 Badge = require('models/Badge')
@@ -29,15 +27,12 @@ User  = require('zooniverse/lib/models/user')
 require('lib/fakeData')
 
 class customTopBar extends ZooniverseBar
-  constructor:->
+  constructor: ->
     super 
     $(".buttons button[name=signup]").click =>
       Spine.Route.navigate('/login')
 
-
-
 class App extends Spine.Stack
-
   controllers:
     home                      : HomeController
     archivesIndex             : ArchivesIndexController
@@ -78,13 +73,12 @@ class App extends Spine.Stack
     '/FAQ/:section'               : 'faq'
     '/badges/:id'                 : 'badges'
 
-  default : 'home'
+  default: 'home'
 
   constructor: ->
     super
-    
     Api.init host: Config.apiHost
-    
+
     topBar = new customTopBar
       el: '.zooniverseTopBar'
       languages:
@@ -92,11 +86,11 @@ class App extends Spine.Stack
       app: 'notes_from_nature'
       appName:'Notes From Nature'
 
-
     Spine.Route.setup()
 
     Badge.loadDefinitions()
 
+    console.log 'loading scripts'
     @append new NotificationController()
     User.bind 'sign-in', =>
       if User.current?
@@ -107,10 +101,12 @@ class App extends Spine.Stack
         $("body").removeClass()
         $("body .transcriber").hide()
 
-    setTimeout ->
-        Institute.fetch()
-    ,300
-        
-     
+    setTimeout (-> Institute.fetch()), 300
+
+    console.log 'loading scripts'
+    nfn.load 'nfn/', =>
+      console.log 'scripts loaded'
+
+
 module.exports = App
     

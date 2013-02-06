@@ -79,7 +79,6 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
     this.model.bind("change:inputWidth",    this.resizeInput);
 
     this.parent = this.options.parent;
-
   },
 
   ok: function(e) {
@@ -534,8 +533,7 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
     }
 
     this.clearInput();
-    this.focus();
-
+    // this.focus();
   },
 
   focus: function() {

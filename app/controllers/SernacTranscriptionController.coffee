@@ -1,47 +1,50 @@
-Spine   = require('spine')
-Subject = require('models/Subject')
-Archive = require('models/Archive')
-Classification = require('models/Classification')
+Spine   = require 'spine'
 
-
-EOL     = require('models/EOL')
+Archive = require 'models/Archive'
+Classification = require 'models/Classification'
+Subject = require 'models/Subject'
 
 class SernacTranscriptionController extends Spine.Controller
   className: "SernacTranscriptionController"
 
-  constructor:->
+  constructor: ->
     super 
     Spine.bind("finishedSernacTranscription", @saveClassification)
 
-  startWorkflow:(subject)=>
-    @currentSubject= subject
-    
-    archive = Archive.find(@currentSubject.archive_id)
+  render: =>
+    @html require('views/transcription/sernac')
+
+  startWorkflow: (@archive) =>
     @render()
-    @delay =>
 
-      nfn.load "nfn/", =>
+    go = =>
+      window.GOD = new nfn.ui.view.GOD({
+        model: new nfn.ui.model.GOD()
+      })
 
-        GOD = new nfn.ui.view.GOD({
-          model: new nfn.ui.model.GOD()
-        })
+      transcriberModel = new nfn.ui.model.Herbarium()
+      @transcriber = new nfn.ui.view.HerbariumTranscriber({
+        model: transcriberModel
+      })
 
-        window.GOD = GOD
+      $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
+      
+      @nextSubject()
+      window.transcriber = @transcriber
 
-        transcriberModel = new nfn.ui.model.Herbarium()
+    @delay go, 200
 
-        @transcriber = new nfn.ui.view.HerbariumTranscriber({
-          model: transcriberModel
-        })
+  nextSubject: =>
+    @archive.nextSubject (@currentSubject) =>
+      callback = => 
+        $(".photos img").animate({ marginLeft: "0" }, 500)
+        @transcriber.spinner.hide()
+        @transcriber.startTranscribing()
 
-        $(".btn.close").attr("href", "#/archives/#{archive.slug()}")
-        
-        @nextSubject()
-        window.transcriber = @transcriber
-        
-    , 500
+      @transcriber.loadPhoto(@currentSubject.location.standard, callback)
+      @transcriber.loadLargePhoto(@currentSubject.location.large)
 
-  saveClassification:(data)=>
+  saveClassification: (data) =>
     classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0] } )
     for annotation in data.toJSON()
       classification.annotate annotation.step, annotation.value
@@ -50,22 +53,6 @@ class SernacTranscriptionController extends Spine.Controller
     @currentSubject.retire()
     classification.send()
     @nextSubject()
-
-  nextSubject:=>
-    callback = => 
-      $(".photos img").animate({ marginLeft: "0" }, 500)
-      @transcriber.spinner.hide()
-      @transcriber.startTranscribing()
-
-
-    @currentSubject= Subject.random()
-
-    @transcriber.loadPhoto(@currentSubject.location.standard, callback)
-    @transcriber.loadLargePhoto(@currentSubject.location.large)
-
-  render:=>
-    @html require('views/transcription/sernac')
-      subject: @currentSubject
 
 
 module.exports = SernacTranscriptionController

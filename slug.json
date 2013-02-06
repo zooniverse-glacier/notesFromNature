@@ -11,9 +11,7 @@
     "underscore",
     "zooniverse/lib/controllers/top_bar",
     "zooniverse"
-
   ],
-
   "libs": [
     "node_modules/Zooniverse/vendor/base64.js",
     "./lib/moment.min.js"

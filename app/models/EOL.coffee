@@ -8,21 +8,19 @@ class EOL extends Spine.Model
   apiKey     : 'ba4d577231b1f8ed74014f3ea8d179f2fffd1e2e'
   version    : "1.0"
 
-  configure:=>
+  configure: =>
     super 
 
-  search:(term,callback)=>
-    @runRequest 'search',term, (data)=>
+  search: (term, callback) =>
+    @runRequest 'search', term, (data) =>
       callback data.results
 
-
-  getMediaForSpecies: (species, mediaTypes,callback)=>
-
+  getMediaForSpecies: (species, mediaTypes,callback) =>
     mediaTypes.push("")
     mt = mediaTypes.join("=10&")
     mt += "iucn=1&details=1"
 
-    @runRequest 'pages',species.id, mt, (results)=>
+    @runRequest 'pages', species.id, mt, (results) =>
       media  = {}
       for entry in results.dataObjects
         mediaType = _.last(entry.dataType.split("/"))
@@ -31,12 +29,10 @@ class EOL extends Spine.Model
       results.media = media
       callback results
 
-  runRequest:(method,term, options...)=>
+  runRequest: (method,term, options...) =>
     callback = options[options.length-1]
     opts = options[0...options.length-1].join("&")
     window.EOLSamp = @
     $.getJSON "#{@EOLBaseURL}/#{method}/#{@version}/#{term}.#{@format}?#{opts}&callback=?", callback
   
-
-
 module.exports = EOL

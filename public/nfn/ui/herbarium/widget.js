@@ -57,7 +57,6 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
   },
 
   skip: function(e) {
-
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
@@ -66,7 +65,6 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     this.clearInput();
     this.parent.nextStep();
-
   },
 
   onEnter: function(e) {
@@ -76,49 +74,32 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
   },
 
   ok: function(e) {
-
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
     GOD.triggerCallbacks(); // this close the tooltips (TODO: add test)
 
     if (this.$input.val()) { // don't store or advance when the input field is empty
-
       this.parent.saveCurrentStep();
-
       this.clearInput();
 
-      // Shall we go to the next record ord the next step?
+      // Shall we go to the next record or the next step?
       if (this.parent.getPendingFieldCount() == 0) {
-
         this.parent.finish();
-
       } else {
-
         this.parent.nextStep();
-
       }
-
     } else {
-
       this.showErrorTooltip("Empty field", "Please, write a value or use the skip field option below");
-
     }
-
   },
 
   toggleOk: function() {
-
     if (this.model.get("ok_enabled")) {
-
       this.$okButton.removeClass("disabled");
-
     } else {
-
       this.$okButton.addClass("disabled");
-
     }
-
   },
 
   enableOk: function(callback) {
@@ -385,29 +366,36 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
   },
 
   showFinishTooltip: function(e) {
-
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
     this.closeTooltips();
 
     if (!this.finishTooltip) this.createFinishTooltip(e);
-
   },
 
   closeTooltips: function() {
-
     GOD.triggerCallbacks();
-
   },
 
   createFinishTooltip: function(e) {
+    if (this.parent.getPendingFieldCount() == 0) {
+      var title = 'Thank you!',
+        description = 'Onto the next record.',
+        main = 'Next',
+        secondary = 'Cancel';
+    } else {
+      var title = 'Are you sure?',
+        description = '',
+        main = 'Finish',
+        secondary = 'Cancel';
 
-    var
-    title       = "Are you sure?",
-    description = "There are still <a href='#'> " + this.parent.getPendingFieldCount() + " empty fields</a> for this record that should be completed before finishing.",
-    main        = "Finish",
-    secondary   = "Cancel";
+      if (this.parent.getPendingFieldCount() == 1) {
+        description = "There is still <a href='#'>1 empty field</a> for this record that should be completed before finishing.";
+      } else {
+        description = "There are still <a href='#'> " + this.parent.getPendingFieldCount() + " empty fields</a> for this record that should be completed before finishing.";
+      }
+    }
 
     this.finishTooltip = new nfn.ui.view.Tooltip({
       model: new nfn.ui.model.Tooltip({
@@ -416,7 +404,6 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
         main: main,
         secondary: secondary
       })
-
     });
 
     this.addView(this.finishTooltip);
@@ -430,7 +417,6 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
       that.closeFinishTooltip(function() {
         that.finish();
       })
-
     });
 
     this.$el.append(this.finishTooltip.render());
@@ -441,7 +427,6 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
       e.stopPropagation();
 
       that.showStepTooltip();
-
     });
 
     var
@@ -453,11 +438,9 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     this.finishTooltip.setPosition(x, y);
     GOD.add(this.finishTooltip, this.closeFinishTooltip);
-
   },
 
   closeFinishTooltip: function(callback) {
-
     if (!this.finishTooltip) return;
 
     this.finishTooltip.hide();
@@ -465,23 +448,18 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     delete this.finishTooltip;
 
     callback && callback();
-
   },
 
   finish: function(e) {
-
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
     this.clearInput();
     this.parent.finish();
-
   },
 
   clearInput: function() {
-
     this.$input.val("");
-
   },
 
   resize: function() {
