@@ -1,5 +1,9 @@
 // DOUBLE PAGE TRANSCRIBER --------------------------------
-Spine = require('spine')
+//Spine = require('spine')
+
+Spine = {
+  trigger: function() {}
+};
 
 nfn.ui.model.DoublePage = nfn.ui.model.Transcriber.extend({
 
@@ -112,50 +116,50 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
 
   showPhoto: function(i) {
     var that = this;
- 
+
     this.$el.append(this.spinner.render());
     this.spinner.show().spin();
- 
+
     var photo = this.photos.at(i);
- 
+
     if (photo) {
       photo.get("view").render();
     }
- 
+
   },
- 
+
   loadPhoto: function(url, callback) {
- 
+
     var photo = new nfn.ui.view.BirdPhoto({
       model: new nfn.ui.model.Photo({ url: url }),
       parent: this
     });
- 
+
     photo.model.set("view", photo);
- 
+
     callback && photo.model.set("callback", callback);
- 
+
     this.photos.push(photo.model);
- 
+
     this.showPhoto(this.photos.length - 1);
- 
+
   },
- 
+
   addPhoto: function(url, callback) {
- 
+
     var that = this;
- 
+
     var photo = new nfn.ui.view.BirdPhoto({
       model: new nfn.ui.model.Photo({ url: url }),
       parent: this
     });
- 
+
     photo.model.set("view", photo);
- 
+
     callback && photo.model.set("callback", callback);
- 
+
     this.photos.push(photo.model);
- 
+
   },
 
   getPendingFieldCount: function() {
