@@ -407,7 +407,6 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     transcriber.launcher.$startButton.removeClass("disabled");
 
     $(transcriber.transcriberWidget.$input[0]).val('13');
-    $(transcriber.transcriberWidget.$input[1]).val('23');
     $(transcriber.transcriberWidget.$input[2]).val('2013');
 
     transcriber.transcriberWidget.$okButton.click();
