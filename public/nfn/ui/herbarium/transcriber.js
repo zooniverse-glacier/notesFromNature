@@ -283,6 +283,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     this.launcher.disable();
 
     this.backdrop.hide();
+    this.closer.clean();
     this.magnifier.hide();
     this.helper.hide();
     this.transcriberWidget.hide();
@@ -455,7 +456,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
         that.backdrop.show();
 
         // Loads the Closer
-        closer = new nfn.ui.view.Closer({
+        that.closer = new nfn.ui.view.Closer({
           model: new nfn.ui.model.Closer(),
           template: $("#closer-template").html(),
           onClose: function () {
@@ -479,9 +480,9 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
         // Add the close button
         var closerX = that.magnifier.left() + that.magnifier.width() + 10
           , closerY = that.magnifier.top();
-        closer.$el.css({left: closerX, top: closerY});
-        that.$el.append(closer.render());
-        closer.show();
+        that.closer.$el.css({left: closerX, top: closerY});
+        that.$el.append(that.closer.render());
+        that.closer.show();
 
         var // add the helper widget
         helperX = that.magnifier.left(),
