@@ -86,7 +86,6 @@ class App extends Spine.Stack
       app: 'notes_from_nature'
       appName:'Notes From Nature'
 
-
     Badge.loadDefinitions()
 
     @append new NotificationController()
@@ -94,15 +93,9 @@ class App extends Spine.Stack
       if User.current?
         Badge.getUserBadges()
 
-    Spine.Route.bind "change", =>
-      if Spine.Route.path.indexOf("transcribe") == -1
-        $("body").removeClass()
-        $("body .transcriber").hide()
-
     setTimeout (-> Institute.fetch()), 300
 
     nfn.load 'nfn/', =>
         Spine.Route.setup()
-
 
 module.exports = App

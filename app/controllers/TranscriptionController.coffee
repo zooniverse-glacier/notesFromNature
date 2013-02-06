@@ -51,14 +51,17 @@ class TranscriptionController extends Spine.Controller
           return
 
         # Adjust page attributes for archive.
-        $('body').addClass(@archive.slug())
-        $('body').addClass('transcribingScreen')
+        $('body').addClass("transcribingScreen #{@archive.slug()}")
         document.title = "Notes From Nature - #{@archive.institute().name} - #{@archive.name} - Transcribe"
 
         # Set the appropriate transcription controller and start it up.
-        console.log 'as', @archive.slug()
         @transcriptionController = @transcriptionControllers[@archive.slug()]
         @transcriptionController.startWorkflow(@archive)
         @render()
+
+  deactivate: =>
+    super
+    if @archive? then $('body').removeClass("transcribingScreen #{@archive.slug()}")
+    $('.transcriber').remove()
 
 module.exports = TranscriptionController
