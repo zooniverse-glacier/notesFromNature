@@ -305,9 +305,10 @@ describe("common.ui.view.HerbariumTranscriber", function() {
       type: "code",
       description: "description"
     }, {
-      title: "Whatever 6",
-      type: "whatever",
-      description: "description"
+      title: "Date",
+      placeholder: ['day', 'month', 'year'],
+      type: "date",
+      description: "date"
     }];
 
 
@@ -341,7 +342,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
   it("should return the number of fields left to transcribe", function() {
 
-    transcriber.model.set({ currentStep: 0 }, { silent: true });
+    transcriber.model.set({ currentStep: 0 });
 
     transcriber.transcriberWidget.$input.val("Hi!");
     transcriber.transcriberWidget.$okButton.click();
@@ -381,6 +382,37 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     transcriber.transcriberWidget.$okButton.click();
 
     expect(transcriber.transcriptions.length).toEqual(0);
+    expect(transcriber.model.get("currentStep")).toEqual(0);
+
+  });
+
+  it("shouldn't allow to go to the next field when ok is clicked when annotating a date and the three inputs are empty", function() {
+
+    transcriber.model.set("currentStep", 11);
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.launcher.$startButton.removeClass("disabled");
+
+    transcriber.transcriberWidget.$okButton.click();
+
+    expect(transcriber.transcriptions.length).toEqual(0);
+    expect(transcriber.model.get("currentStep")).toEqual(11);
+
+  });
+
+  it("should allow to go to the next field when ok is clicked when annotating a date and some of the inputs are empty", function() {
+
+    transcriber.model.set("currentStep", 11);
+
+    transcriber.launcher.$startButton.removeClass("disabled");
+
+    $(transcriber.transcriberWidget.$input[0]).val('13');
+    $(transcriber.transcriberWidget.$input[1]).val('23');
+    $(transcriber.transcriberWidget.$input[2]).val('2013');
+
+    transcriber.transcriberWidget.$okButton.click();
+
+    expect(transcriber.transcriptions.length).toEqual(1);
     expect(transcriber.model.get("currentStep")).toEqual(0);
 
   });
@@ -964,6 +996,24 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
     expect(transcriber.transcriptions.length).toEqual(1);
     expect(transcriber.transcriptions.at(0).get("value")).toEqual("Hi!");
+
+  });
+
+  it("should save a date transcription when the $okButton is clicked", function() {
+
+    transcriber.model.set("currentStep", 11);
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.launcher.$startButton.removeClass("disabled");
+
+    $(transcriber.transcriberWidget.$input[0]).val('01');   // month
+    $(transcriber.transcriberWidget.$input[1]).val('02');   // day
+    $(transcriber.transcriberWidget.$input[2]).val('2013'); // year
+
+    transcriber.transcriberWidget.$okButton.click();
+
+    expect(transcriber.transcriptions.length).toEqual(1);
+    expect(transcriber.transcriptions.at(0).get("value")).toEqual('01/02/2013');
 
   });
 

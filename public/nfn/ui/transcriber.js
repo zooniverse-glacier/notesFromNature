@@ -61,19 +61,8 @@ nfn.ui.view.Transcriber = nfn.core.View.extend({
     this.photos         = new nfn.ui.collection.Photos();
     this.transcriptions = new nfn.ui.collection.Transcriptions();
 
-    this.model.bind("change:backspace", this.onToggleBackspace);
-
     this.render();
 
-  },
-
-  onToggleBackspace: function() {
-
-    if (this.model.get("backspace")) {
-      this.enableBackspace();
-    } else {
-      this.disableBackspace();
-    }
   },
 
   enableBackspace: function() {

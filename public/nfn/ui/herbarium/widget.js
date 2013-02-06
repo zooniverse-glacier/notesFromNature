@@ -77,9 +77,18 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
-    GOD.triggerCallbacks(); // this close the tooltips (TODO: add test)
+    GOD.triggerCallbacks(); // this closes the tooltips (TODO: add test)
 
-    if (this.$input.val()) { // don't store or advance when the input field is empty
+    var type  = this.model.get("type");
+
+    var isEmpty = true;
+
+    if ( ( type == undefined || type == 'text' || type == 'location' ) && this.$input.val() ) isEmpty = false;
+    else if (type == 'date') {
+      isEmpty = !$(this.$input[0]).val() && !$(this.$input[1]).val() && !$(this.$input[2]).val()
+    }
+
+    if (!isEmpty) {
       this.parent.saveCurrentStep();
       this.clearInput();
 
@@ -89,7 +98,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
       } else {
         this.parent.nextStep();
       }
-    } else {
+    } else { // don't store or advance when the input field is empty
       this.showErrorTooltip("Empty field", "Please, write a value or use the skip field option below");
     }
   },
@@ -331,7 +340,9 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
     this.stepTooltip.setPosition(x, y);
 
+
     this.parent.transcriptions.each(function(transcription) {
+
 
       if (transcription.get("value")) {
         that.stepTooltip.$el.find("li:nth-child(" + (transcription.get("step") + 1) + ")").addClass("completed");
@@ -496,7 +507,6 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
 
       } else {
 
-        console.log('b');
         this.animate({ width: width, marginLeft: -1*width/2, left: "50%" }, true);
         $(".input_field.date").delay(50).animate({ width: width - 290  }, 150);
 
@@ -510,21 +520,19 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
   getValue: function() {
     var type = this.model.get("type");
 
+    debugger;
+
     if ( type == 'text' || type == 'location' ) {
 
       return this.$input.val();
 
     } else if ( type == 'date') {
 
-      var month = this.$el.find(".month").val();
-      var day   = this.$el.find(".day").val();
-      var year  = this.$el.find(".year").val();
+      var month = $(this.$input[0]).val();
+      var day   = $(this.$input[1]).val();
+      var year  = $(this.$input[2]).val();
 
-      if (month && day && year) {
-        return month + "/" + day + "/" + year;
-      } else {
-        return "";
-      }
+      return month + "/" + day + "/" + year;
 
     }
 
