@@ -999,7 +999,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
   });
 
-  it("should save a date transcription when the $okButton is clicked", function() {
+  it("should save a full date transcription when the $okButton is clicked", function() {
 
     transcriber.model.set("currentStep", 11);
     transcriber.$el.find(".photos").append("<img />");
@@ -1014,6 +1014,23 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
     expect(transcriber.transcriptions.length).toEqual(1);
     expect(transcriber.transcriptions.at(0).get("value")).toEqual('01/02/2013');
+
+  });
+
+  it("should save an incomplete date transcription when the $okButton is clicked", function() {
+
+    transcriber.model.set("currentStep", 11);
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.launcher.$startButton.removeClass("disabled");
+
+    $(transcriber.transcriberWidget.$input[0]).val('01');   // month
+    $(transcriber.transcriberWidget.$input[2]).val('2013'); // year
+
+    transcriber.transcriberWidget.$okButton.click();
+
+    expect(transcriber.transcriptions.length).toEqual(1);
+    expect(transcriber.transcriptions.at(0).get("value")).toEqual('01/2013');
 
   });
 

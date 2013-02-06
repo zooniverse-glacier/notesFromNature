@@ -520,8 +520,6 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
   getValue: function() {
     var type = this.model.get("type");
 
-    debugger;
-
     if ( type == 'text' || type == 'location' ) {
 
       return this.$input.val();
@@ -532,7 +530,7 @@ nfn.ui.view.HerbariumWidget = nfn.ui.view.Widget.extend({
       var day   = $(this.$input[1]).val();
       var year  = $(this.$input[2]).val();
 
-      return month + "/" + day + "/" + year;
+      return _.compact([month, day, year]).join("/");
 
     }
 
