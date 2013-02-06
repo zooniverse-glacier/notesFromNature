@@ -1,10 +1,15 @@
 // HERBARIUM TRANSCRIBER ------------------------------------------
 Spine = require('spine')
 
+//Spine = {
+  //trigger: function() {}
+//};
+
 nfn.ui.model.Herbarium = nfn.ui.model.Transcriber.extend({
 
   defaults: {
-    type: 'sernac'
+    type: 'sernac',
+    visible: true
   }
 
 });
@@ -89,6 +94,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
       }
     ];
 
+    this.disableBackspace();
 
     this.model.set("currentRecord", 0);
 
@@ -115,6 +121,23 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     this.addViews();
 
     this.render();
+
+  },
+
+  close: function() {
+
+    this.launcher.disable();
+    this.launcher.hide();
+
+    this.backdrop.hide();
+    this.magnifier.hide();
+    this.helper.hide();
+    this.transcriberWidget.hide();
+
+    this.startTranscribing();
+
+    delete this.transcriptions;
+    this.transcriptions = new nfn.ui.collection.Transcriptions();
 
   },
 
@@ -222,7 +245,6 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
   },
 
-
   skip: function() {
 
     //console.log(this.selection.model.toJSON(), this.transcriptions.toJSON()[0]);
@@ -237,6 +259,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     var that = this;
 
     var callback = function () {
+
       that.startTranscribing();
       that.spinner.hide();
 
@@ -444,7 +467,9 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
         twX = "50%",
         twY = that.magnifier.top() + that.magnifier.height() + 10;
 
-        that.transcriberWidget.setWidth(magnifierWidth).setPosition(twX, twY).show();
+        that.transcriberWidget.setWidth(magnifierWidth).setPosition(twX, twY);
+        that.transcriberWidget.resize();
+        that.transcriberWidget.show();
 
         if ($.browser.msie && $.browser.version == 8) {
           $img2x.css({ top: -1*selection_y, left: -1*selection_x });
@@ -467,8 +492,6 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
   startTranscribing: function() {
 
     if (this.launcher.model.get("hidden")) {
-      //this.launcher.setPosition($(document).width()/2 - this.launcher.width()/2, $(document).height() - this.launcher.height() - 100 );
-      //this.launcher.setPosition($(document).width()/2 - this.launcher.width()/2, "auto");
       this.launcher.$el.css({ left: "50%", marginLeft: -1*this.launcher.width()/2 });
       this.launcher.show();
     }

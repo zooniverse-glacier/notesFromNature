@@ -317,6 +317,28 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     transcriber.clean();
   });
 
+  it("should allow to close it", function() {
+
+    transcriber.$el.find(".photos").append("<img />");
+
+    transcriber.addSelection();
+    transcriber.updateSelection(10, 10, 100, 100);
+    transcriber.selection.$el.css("position", "absolute");
+    transcriber.launcher.$startButton.removeClass("disabled");
+    transcriber.launcher.$startButton.click();
+
+    transcriber.close();
+
+    expect(transcriber.backdrop.model.get("hidden")).toEqual(true);
+    expect(transcriber.helper.model.get("hidden")).toEqual(true);
+    expect(transcriber.magnifier.model.get("hidden")).toEqual(true);
+    expect(transcriber.launcher.model.get("hidden")).toEqual(false);
+    expect(transcriber.transcriberWidget.model.get("hidden")).toEqual(true);
+
+    expect(transcriber.launcher.$startButton.hasClass('disabled')).toEqual(true);
+
+  });
+
   it("should return the number of fields left to transcribe", function() {
 
     transcriber.model.set({ currentStep: 0 }, { silent: true });
