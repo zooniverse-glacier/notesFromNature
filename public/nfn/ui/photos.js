@@ -44,7 +44,7 @@ nfn.ui.view.Photo = nfn.core.View.extend({
   },
 
   appendPhoto: function($img) {
-    console.log(this.parent.$el.find(".photos .mCSB_container"));
+    //console.log(this.parent.$el.find(".photos .mCSB_container"));
     this.parent.$el.find(".photos .mCSB_container").append($img);
   },
 
@@ -55,10 +55,10 @@ nfn.ui.view.Photo = nfn.core.View.extend({
     var $img = this.$el = $("<img />");
 
     this.$el.attr("src", this.model.get("url"));
-    
-    console.log(this.$el);
+
+    //console.log(this.$el);
     this.$el.imagesLoaded(function() {
-      console.log('photos loaded');
+      //console.log('photos loaded');
       // Removes the previous image
       that.parent.$el.find(".photos img").remove();
       that.parent.addScroll();

@@ -347,7 +347,8 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     transcriber.transcriberWidget.$input.val("Hi!");
     transcriber.transcriberWidget.$okButton.click();
 
-    transcriber.transcriberWidget.$input.val("Bye!");
+    $(transcriber.transcriberWidget.$input[0]).val('13');
+    $(transcriber.transcriberWidget.$input[2]).val('2013');
     transcriber.transcriberWidget.$okButton.click();
 
     expect(transcriber.getPendingFieldCount()).toEqual(transcriber.guide.length - 2);
@@ -1012,7 +1013,9 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     transcriber.transcriberWidget.$okButton.click();
 
     expect(transcriber.transcriptions.length).toEqual(1);
-    expect(transcriber.transcriptions.at(0).get("value")).toEqual('01/02/2013');
+    expect(transcriber.transcriptions.at(0).get("month")).toEqual('01');
+    expect(transcriber.transcriptions.at(0).get("day")).toEqual('02');
+    expect(transcriber.transcriptions.at(0).get("year")).toEqual('2013');
 
   });
 
@@ -1029,7 +1032,8 @@ describe("common.ui.view.HerbariumTranscriber", function() {
     transcriber.transcriberWidget.$okButton.click();
 
     expect(transcriber.transcriptions.length).toEqual(1);
-    expect(transcriber.transcriptions.at(0).get("value")).toEqual('01/2013');
+    expect(transcriber.transcriptions.at(0).get("month")).toEqual('01');
+    expect(transcriber.transcriptions.at(0).get("year")).toEqual('2013');
 
   });
 
@@ -1078,6 +1082,7 @@ describe("common.ui.view.HerbariumTranscriber", function() {
 
   it("should clean the input field when the $okButton is clicked", function() {
 
+    transcriber.model.set("currentStep", 0);
     transcriber.$el.find(".photos").append("<img />");
 
     transcriber.addSelection();

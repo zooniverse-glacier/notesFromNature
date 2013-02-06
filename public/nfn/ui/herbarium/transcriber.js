@@ -2,7 +2,7 @@
 Spine = require('spine')
 
 // Replace the previous line with this one when running the tests
-// Spine = { trigger: function() {} };
+ //Spine = { trigger: function() {} };
 
 nfn.ui.model.Herbarium = nfn.ui.model.Transcriber.extend({
 
@@ -558,9 +558,21 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
     if (transcription) { // gets stored value
       value = transcription.get("value");
-    }
 
-    this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth, value: value });
+      if (transcription.get("type") == 'date') {
+
+        var month = transcription.get("month");
+        var day   = transcription.get("day");
+        var year  = transcription.get("year");
+
+        this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth, month: month, day: day, year: year });
+      } else {
+        this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth, value: value });
+      }
+    } else {
+
+      this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth, value: value });
+    }
 
   },
 
@@ -598,16 +610,40 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
     var transcription = this.getStepData(this.model.get("currentStep"));
 
-    if (transcription) {
+    if (transcription) { // if there's a transcription already
 
-      transcription.set("value", this.transcriberWidget.getValue());
+      var value = this.transcriberWidget.getValue();
 
-    } else {
+      if (_.isString(value)) {
+        transcription.set("value", value);
+      } else {
+        transcription.set({ month: value["month"], day:   value["day"], year:  value["year"] });
+      }
 
-      transcription = new nfn.ui.model.Transcription({
-        step:  this.model.get("currentStep"),
-        value: this.transcriberWidget.getValue()
-      });
+    } else { // if not, we create a new transcription
+
+      var value = this.transcriberWidget.getValue();
+
+      if (_.isString(value)) {
+
+        transcription = new nfn.ui.model.Transcription({
+          step:  this.model.get("currentStep"),
+          type:  "text",
+          value: value
+        });
+
+
+      } else {
+
+        transcription = new nfn.ui.model.Transcription({
+          step:  this.model.get("currentStep"),
+          type:  "date",
+          month: value["month"],
+          day:   value["day"],
+          year:  value["year"]
+        });
+
+      }
 
       this.transcriptions.push(transcription);
 
