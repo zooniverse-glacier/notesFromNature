@@ -14,9 +14,9 @@ class HeaderController extends Spine.Controller
     if Spine.Route.path?
       if Spine.Route.path is "/"
         @html require('views/home/header')
-          user : User.current
+          user: User.current
       else
         @html require('views/header')
-          user : User.current
+          user: User.current
 
 module.exports = HeaderController
