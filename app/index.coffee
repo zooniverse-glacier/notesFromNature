@@ -86,11 +86,9 @@ class App extends Spine.Stack
       app: 'notes_from_nature'
       appName:'Notes From Nature'
 
-    Spine.Route.setup()
 
     Badge.loadDefinitions()
 
-    console.log 'loading scripts'
     @append new NotificationController()
     User.bind 'sign-in', =>
       if User.current?
@@ -103,10 +101,8 @@ class App extends Spine.Stack
 
     setTimeout (-> Institute.fetch()), 300
 
-    console.log 'loading scripts'
     nfn.load 'nfn/', =>
-      console.log 'scripts loaded'
+        Spine.Route.setup()
 
 
 module.exports = App
-    

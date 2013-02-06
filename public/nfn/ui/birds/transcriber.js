@@ -1,9 +1,8 @@
 // DOUBLE PAGE TRANSCRIBER --------------------------------
-Spine = require('spine')
+Spine = require('spine');
 
-//Spine = {
-  //trigger: function() {}
-//};
+// Replace the previous line with this one when running the tests
+// Spine = { trigger: function() {} };
 
 nfn.ui.model.DoublePage = nfn.ui.model.Transcriber.extend({
 

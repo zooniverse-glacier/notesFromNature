@@ -48,6 +48,7 @@
     'ui/transcriptions.js',
     'ui/transcriber.js',
     'ui/photos.js',
+    'ui/closer.js',
 
     // Birds
     'ui/birds/photos.js',

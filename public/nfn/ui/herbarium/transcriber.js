@@ -202,7 +202,8 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     // Loads the magnifier
     this.magnifier = new nfn.ui.view.Magnifier({
       model: new nfn.ui.model.Magnifier(),
-      parent: this
+      parent: this,
+      template: $("#magnifier-template").html()
     });
 
     this.addView(this.magnifier);
@@ -224,6 +225,13 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
     this.addView(this.launcher);
 
+    // Loads the Closer
+    this.closer = new nfn.ui.view.Closer({
+      model: new nfn.ui.model.Closer(),
+      template: $("#closer-template").html(),
+      parent: this
+    });
+    this.addView(this.closer);
   },
 
   addPhoto: function(url, callback) {
@@ -245,8 +253,6 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
   },
 
   skip: function() {
-
-    //console.log(this.selection.model.toJSON(), this.transcriptions.toJSON()[0]);
 
     this.launcher.disable();
 
@@ -425,6 +431,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
 
         that.highlight.hide();
 
+        // Setting up the magnifier
         that.magnifier.create({ x: $(document).width()/2 - w/2, y: $(document).height()/2 - h/2, w: w, h: h });
         that.magnifier.$el.css({ left: "50%", marginLeft: -1*w/2 });
         that.magnifier.$el.empty();
@@ -448,11 +455,18 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
           spinner.hide().stop();
         });
 
-        that.removeSelection();
+        var magnifierWidth = that.magnifier.width();
+        that.magnifier.render();
 
+        // Setting up the transcription view
+        that.removeSelection();
         that.backdrop.show();
 
-        var magnifierWidth = that.magnifier.width();
+        // Add the close button
+        var closerX = that.magnifier.left() + that.magnifier.width() + 10
+          , closerY = that.magnifier.top();
+        that.closer.$el.css({left: closerX, top: closerY});
+        that.closer.show();
 
         var // add the helper widget
         helperX = that.magnifier.left(),
@@ -684,6 +698,7 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     this.$el.addClass(this.model.get("type"));
 
     this.$el.append(this.backdrop.render());
+    this.$el.append(this.closer.render());
     this.$el.append(this.launcher.render());
     this.$el.append(this.helper.render());
     this.$el.append(this.statusBar.render());

@@ -3,20 +3,15 @@
 nfn.ui.model.Magnifier = Backbone.Model.extend({ });
 
 nfn.ui.view.Magnifier  = nfn.ui.view.Widget.extend({
-
   className: 'magnifier',
 
   initialize: function() {
-
-    _.bindAll( this, "toggle" );
+    _.bindAll(this, "toggle");
 
     this.add_related_model(this.model);
-
     this.model.bind("change:hidden", this.toggle);
 
     this.parent = this.options.parent;
-
-
   },
 
   create: function(dimensions) {
@@ -29,10 +24,7 @@ nfn.ui.view.Magnifier  = nfn.ui.view.Widget.extend({
   },
 
   render: function() {
-
     return this.$el;
-
   }
-
 });
 
