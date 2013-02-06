@@ -511,11 +511,9 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
   },
 
   stopTranscribing: function() {
-
     this.model.set("isDown", false);
     this.$el.find(".photos").off("mousedown");
     this.$el.off("mouseup");
-
   },
 
   startTranscribing: function() {

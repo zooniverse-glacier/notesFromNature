@@ -111,17 +111,13 @@ nfn.ui.view.Transcriber = nfn.core.View.extend({
 
     var photo = this.photos.at(i);
 
-    console.log('showing photo', photo);
     if (photo) {
       photo.get("view").render();
     }
-
   },
 
   loadLargePhoto: function(url, callback) {
-
     this.model.set("big-url", url);
-
   },
 
   loadPhoto: function(url, callback) {
