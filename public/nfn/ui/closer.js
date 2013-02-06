@@ -26,13 +26,6 @@ nfn.ui.view.Closer = nfn.ui.view.Widget.extend({
     this.parent = this.options.parent;
   },
 
-  create: function(dimensions) {
-    if (this.parent.$el.find('.' + this.className).length <= 0) {
-      this.parent.$el.append(this.render());
-    }
-    this.setDimensions(dimensions);
-  },
-
   close: function(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
