@@ -1,4 +1,4 @@
-// HERBARIUM TRANSCRIBER ------------------------------------------
+// BUGS TRANSCRIBER ------------------------------------------
 Spine = require('spine')
 
 nfn.ui.model.Bugs = nfn.ui.model.Transcriber.extend({
@@ -152,8 +152,8 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
     this.addView(this.spinner);
 
     // Loads the helper
-    this.helper = new nfn.ui.view.Helper({
-      model: new nfn.ui.model.Helper(),
+    this.helper = new nfn.ui.view.BugsHelper({
+      model: new nfn.ui.model.BugsHelper(),
       template: $("#helper-template").html(),
       parent: this
     });

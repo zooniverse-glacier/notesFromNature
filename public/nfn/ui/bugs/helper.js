@@ -1,10 +1,10 @@
 
 // Helper ---------------------------------------
 
-nfn.ui.model.Helper = Backbone.Model.extend({
+nfn.ui.model.BugsHelper = Backbone.Model.extend({
 });
 
-nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
+nfn.ui.view.BugsHelper = nfn.ui.view.Widget.extend({
   className: 'helper bar',
 
   events: {
