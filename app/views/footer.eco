@@ -1,26 +1,22 @@
-   
-<div class="box-black">
-    <div class="col2">
-        <h3 class="title black">
-            <span>Notes from</span>
-            <span class="black">Nature</span>
-        </h3>
-        <p>In order for natural history collections to be utilized to their full potential, there must be widespread access to the data they contain. However, many natural history collections still struggle to mobilize data resulting in insufficient access to this resource. </p>
-        <p>To help solve that problem, a team of scientists, developers, and educators has built Notes from Nature. Through this website, we are asking you to help us transcribe data that will lead to new knowledge about our biodiversity. This is your opportunity to directly interact with and enable better science for conservation and understanding our natural world. Join us!</p>
-    </div>
-
-    <div class="col1">
-        <div class="link-footer">
-            <span>DO YOU WANT TO KNOW MORE?</span><br />
-            <a href="mailto:team@notesfromnature.org">Support</a>
-            / <a href="#/faq">FAQ</a>
-            / <a href="#/about">About the project</a>
-        </div>
-    </div>
+<div class="col2">
+  <h2>Notes from Nature</h2>
+  <p>
+    In order for natural history collections to be utilized to their full potential, there must be widespread access to the data they contain. However, many natural history collections still struggle to mobilize data resulting in insufficient access to this resource.
+  </p>
+  <p>
+    To help solve that problem, a team of scientists, developers, and educators has built Notes from Nature. Through this website, we are asking you to help us transcribe data that will lead to new knowledge about our biodiversity. This is your opportunity to directly interact with and enable better science for conservation and understanding our natural world. Join us!
+  </p>
 </div>
+
+<div class="col1">
+  <h3>Do you want to know more?</h3>
+  <a href="mailto:team@notesfromnature.org">Support</a> /
+  <a href="#/faq">FAQ</a> /
+  <a href="#/about">About the project</a>
+</div>
+
 <hr />
-<div class="box-black">
-    <div class="col3">
-        <span class="legal">Notes from Nature 2012. <a href="https://www.zooniverse.org/privacy" class="legal">Privacy</a></span>
-    </div>          
+
+<div class="col3 legal">
+  Notes from Nature 2013. <a href="https://www.zooniverse.org/privacy">Privacy</a>
 </div>
