@@ -124,6 +124,21 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 
     GOD.add(this.tooltip, this.closeTooltip);
 
+    // Loads the Closer
+    closer = new nfn.ui.view.Closer({
+      model: new nfn.ui.model.Closer(),
+      template: $("#closer-template").html(),
+      onClose: function () {
+        that.closeTooltip();
+      }
+    });
+
+    // Add the close button
+    var closerX = this.tooltip.left() + this.tooltip.width() + 12
+      , closerY = this.tooltip.top();
+    closer.$el.css({left: closerX, top: closerY});
+    this.$el.append(closer.render());
+    closer.show();
   },
 
   nextPhoto: function(callback) {

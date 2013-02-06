@@ -224,14 +224,6 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     });
 
     this.addView(this.launcher);
-
-    // Loads the Closer
-    this.closer = new nfn.ui.view.Closer({
-      model: new nfn.ui.model.Closer(),
-      template: $("#closer-template").html(),
-      parent: this
-    });
-    this.addView(this.closer);
   },
 
   addPhoto: function(url, callback) {
@@ -462,11 +454,34 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
         that.removeSelection();
         that.backdrop.show();
 
+        // Loads the Closer
+        closer = new nfn.ui.view.Closer({
+          model: new nfn.ui.model.Closer(),
+          template: $("#closer-template").html(),
+          onClose: function () {
+            // A silly amount of calls to reset the UI.
+            that.highlight.clear();
+            that.launcher.disable();
+
+            that.backdrop.hide();
+            that.helper.hide();
+            that.highlight.hide();
+            that.launcher.show();
+            that.magnifier.hide();
+            that.selection.hide();
+            that.transcriberWidget.hide();
+
+            that.startTranscribing();
+            that.enableMouseWheel();
+          }
+        });
+
         // Add the close button
         var closerX = that.magnifier.left() + that.magnifier.width() + 10
           , closerY = that.magnifier.top();
-        that.closer.$el.css({left: closerX, top: closerY});
-        that.closer.show();
+        closer.$el.css({left: closerX, top: closerY});
+        that.$el.append(closer.render());
+        closer.show();
 
         var // add the helper widget
         helperX = that.magnifier.left(),
@@ -698,7 +713,6 @@ nfn.ui.view.HerbariumTranscriber = nfn.ui.view.Transcriber.extend({
     this.$el.addClass(this.model.get("type"));
 
     this.$el.append(this.backdrop.render());
-    this.$el.append(this.closer.render());
     this.$el.append(this.launcher.render());
     this.$el.append(this.helper.render());
     this.$el.append(this.statusBar.render());
