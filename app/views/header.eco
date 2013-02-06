@@ -1,20 +1,16 @@
-<div class="col1 alpha">
-  <h1 class="title">
-    <span>Notes from</span>
-    <span class="green">Nature</span>
-  </h1>
+<div class="col1">
+  <h1 class="title"><a href="#/">Notes from <span class="green">Nature</span></a></h1>
 </div>      
 
-<div class="link-navigation bg right omega">
-  <%if @user? : %>
-    <a class='signin_nav_link' href="#/profile"><%=@user.name%></a>
-  <%end%>
+<%if @user?: %>
+  <div class="link-navigation right">
+      <a class="signin_nav_link" href="#/profile"><%= @user.name %></a>
+  </div>        
+<% end %>
 
-</div>        
-
-<div class="link-navigation bg right">
+<div class="link-navigation right">
   <a href="#/archives">Collections</a>
   <a href="http://blog.notesfromnature.org">Blog</a>
   <a >Forum</a>
-  <a href='https://docs.google.com/a/zooniverse.org/spreadsheet/viewform?formkey=dGQ1TGZvdFdraGlXbFpTREd6d0gwdnc6MA#gid=0'>feedback</a>
+  <a href="https://docs.google.com/a/zooniverse.org/spreadsheet/viewform?formkey=dGQ1TGZvdFdraGlXbFpTREd6d0gwdnc6MA#gid=0">feedback</a>
 </div>
