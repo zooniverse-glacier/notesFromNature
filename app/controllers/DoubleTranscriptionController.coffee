@@ -6,7 +6,7 @@ Subject = require 'models/Subject'
 EOL = require 'models/EOL'
 
 class DoubleTranscriptionController extends Spine.Controller
-  className: "DoubleTranscriptionController"
+  className: 'DoubleTranscriptionController'
   elements:
     "div.transcribing"   : "transcriptionSubject"
     "#transcriber"       : "transcriptionBox"
@@ -28,50 +28,45 @@ class DoubleTranscriptionController extends Spine.Controller
 
   constructor: ->
     super
-    # @resetClassification()
-    # @currentEntityNo=0
     @eol = new EOL()
     Spine.bind("finishedBirdsTranscription", @saveClassification)
 
   render: =>
-    console.log 'rendering birds'
     @html require("views/transcription/main")
-      subject: @currentSubject
 
-  startWorkflow: (subject) =>
-    @currentSubject = subject
+  startWorkflow: (@archive) =>
     @render()
-    @delay @go, 500
 
-  go: =>
-    console.log 'BIRDS EVERYWHERE'
-    archive = Archive.find(@currentSubject.archive_id)
+    go = =>
+      window.GOD = new nfn.ui.view.GOD({
+        model: new nfn.ui.model.GOD()
+      })
 
-    window.GOD = new nfn.ui.view.GOD({
-      model: new nfn.ui.model.GOD()
-    })
+      transcriberModel = new nfn.ui.model.DoublePage()
+      @transcriber = new nfn.ui.view.DoublePage({
+        model: transcriberModel
+        Spine: Spine
+      })
 
-    transcriberModel = new nfn.ui.model.DoublePage()
-    @transcriber = new nfn.ui.view.DoublePage({
-      model: transcriberModel
-      Spine: Spine
-    })
+      $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
 
-    # callback = =>
-    #   console.log 'CALLBACK'
-    #   @transcriber.spinner.hide => 
-    #     $(".photos img").animate({ marginLeft: "0" }, 500)
-    #     @transcriber.transcriberWidget.show()
-    #     @transcriber.transcriberWidget.setDraggable(true)
-    #     @transcriber.transcriberWidget.setResizable(true)
-    #     @transcriber.startTranscribing()
+      @nextSubject()
+      window.transcriber = @transcriber
 
-    # @transcriber.loadPhoto("http://nfn.s3.amazonaws.com/transcriber_birds_01.JPG", callback)
+    @delay go, 200
 
-    $(".btn.close").attr("href", "#/archives/#{archive.slug()}")
+  nextSubject: =>
+    @archive.nextSubject (@currentSubject) =>
+      callback = =>
+        @transcriber.spinner.hide => 
+          $(".photos img").animate({ marginLeft: "0" }, 500)
+          @transcriber.transcriberWidget.show()
+          @transcriber.transcriberWidget.setDraggable(true)
+          @transcriber.transcriberWidget.setResizable(true)
+          @transcriber.startTranscribing()
 
-    @nextSubject()
-    window.transcriber = @transcriber
+      @transcriber.loadPhoto(@currentSubject.location.standard, callback)
+      @transcriber.loadLargePhoto(@currentSubject.location.large)
 
   saveClassification: (data) =>
     classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0] } )
@@ -82,25 +77,6 @@ class DoubleTranscriptionController extends Spine.Controller
     @currentSubject.retire()
     classification.send()
     @nextSubject()
-
-  nextSubject: =>
-    callback = => 
-      console.log 'loaded photo for birds'
-      @transcriber.spinner.hide => 
-        $(".photos img").animate({ marginLeft: "0" }, 500)
-        @transcriber.transcriberWidget.show()
-        @transcriber.transcriberWidget.setDraggable(true)
-        @transcriber.transcriberWidget.setResizable(true)
-        @transcriber.startTranscribing()
-
-    @currentSubject = Subject.random()
-
-    @transcriber.loadPhoto(@currentSubject.location.standard, callback)
-    @transcriber.loadLargePhoto(@currentSubject.location.large)
-
-
-
-
 
 
     # # @transcriptionSubject.prepend require("views/transcription/transcriptionBox")

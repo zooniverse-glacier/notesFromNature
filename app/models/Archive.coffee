@@ -25,27 +25,27 @@ class Archive extends Spine.Model
       @all()
 
   nextSubject: (callback = null) =>
-    if @subjects().first()
-      callback @subjects().first() if callback?
+    if @subjects().findByAttribute('active', true)
+      callback @subjects().findByAttribute('active', true) if callback?
     else
       if @id is '5008eb88ba40af06f10000016'
         # Archive is bugs. Fake it for now.
         BugsSubjects = require 'lib/BugsSubjects'
         for subject in BugsSubjects
           @subjects().create subject
-        callback @subjects().first() if callback?
+        callback @subjects().findByAttribute('active', true) if callback?
       else
         API.get "/projects/notes_from_nature/groups/#{@id}/subjects?limit=10", (subjects) =>
           for subject in subjects
             if subject?
               @subjects().create subject 
-          callback @subjects().first() if callback?
+          callback @subjects().findByAttribute('active', true) if callback?
 
   transcriptionUrl: =>
     "#/archives/#{@slug()}/transcribe"
 
   slug: ->
-    @name.replace /\s/g, "_"
+    (@name.replace /\s/g, "_").toLowerCase()
 
   complete: =>
     @progress() is 100

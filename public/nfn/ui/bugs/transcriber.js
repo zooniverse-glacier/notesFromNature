@@ -191,13 +191,13 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
     this.addView(this.selection);
 
     // Loads the launcher
-    this.launcher = new nfn.ui.view.Launcher({
-      model: new nfn.ui.model.Launcher(),
-      template: $("#launcher-template").html(),
-      parent: this
-    });
+    // this.launcher = new nfn.ui.view.Launcher({
+    //   model: new nfn.ui.model.Launcher(),
+    //   template: $("#launcher-template").html(),
+    //   parent: this
+    // });
 
-    this.addView(this.launcher);
+    // this.addView(this.launcher);
   },
 
   addPhoto: function(url, callback) {
@@ -248,12 +248,12 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
 
   finish: function() {
 
-    this.$backgroundMessage.html("<h1>Thanks!</h1><p>You really did a great job transcribing that page.</p><p class='loading'>Loading next one...</p>");
+    this.$backgroundMessage.html("<h1>Thanks!</h1><p class='loading'>Loading next bug...</p>");
 
-    this.launcher.disable();
+    // this.launcher.disable();
 
     this.backdrop.hide();
-    this.magnifier.hide();
+    // this.magnifier.hide();
     this.helper.hide();
     this.transcriberWidget.hide();
 
@@ -652,7 +652,7 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
 
     $("body").append(this.$el);
 
-    this.launcher.setDraggable(true);
+    // this.launcher.setDraggable(true);
 
     return this.$el;
   }
