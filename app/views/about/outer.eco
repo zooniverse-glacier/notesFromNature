@@ -1,43 +1,39 @@
 <div class="wrapper">
 
-   
-      <div class="box-general about">
-        <div class="col3">
-          <h2 class="title">
-            Notes From Nature
-            <span class="subtitle">Transcribe notes from nature, contribute to science.</span>
-          </h2>
-        </div>
-      </div>
-
-      <div class="box-general divided">
-
-        <div class="col2">
-          <div class='about_content'></div>
-
-          <div class="box-logos">
-            <span class="text">MUSEUMS INVOLVED</span>
-            <ul class="logos">
-              <li><a href="http://www.nhm.ac.uk/tring/research-and-curation/index.html"><img alt="Natural History Museum" src="images/icons/natural_history_museum_white.jpg" /></a></li>
-              <li><a href="http://www.sernec.org/"><img alt="SERNEC" src="images/sernec.png" /></a></li>
-              <li><a href="http://calbug.berkeley.edu/"><img alt="Calbug" src="images/icons/calbug_white.jpg" /></a></li>
-            </ul>
-            <p>Interested in publishing your collection? <a href="" class="object">Contact us</a></p>
-          </div>
-        </div>
-        <div class="col1">
-          <ul class="list-links">
-            <li><a href="#/about/project" class='project'>The project</a></li>
-            <li><a href="#/about/research" class="research selected">Research</a></li>
-            <li><a href="#/about/legal_issues" class='legal_issues' >Legal issues</a></li>
-            <li><a href="#/about/partners" class='partners'>Partners</a></li>
-            <li><a href="#/about/story" class='story'>The story</a></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <!-- Footer-->
-
+  <div class="box-general about">
+    <div class="col3">
+      <h2 class="title">
+        Notes From Nature
+        <span class="subtitle">Transcribe notes from nature, contribute to science.</span>
+      </h2>
     </div>
- </div>
+  </div>
+
+  <div class="columns about-content">
+
+    <div class="col2">
+      <div class="about_content"></div>
+
+      <div class="box-logos">
+        <span class="text">MUSEUMS INVOLVED</span>
+        <ul class="logos">
+          <li><a href="http://www.nhm.ac.uk/tring/research-and-curation/index.html"><img alt="Natural History Museum" src="images/icons/natural_history_museum_white.jpg" /></a></li>
+          <li><a href="http://www.sernec.org/"><img alt="SERNEC" src="images/sernec.png" /></a></li>
+          <li><a href="http://calbug.berkeley.edu/"><img alt="Calbug" src="images/icons/calbug_white.jpg" /></a></li>
+        </ul>
+        <p>Interested in publishing your collection? <a href="" class="object">Contact us</a></p>
+      </div>
+    </div>
+    <div class="col1">
+      <ul class="list-links">
+        <li><a href="#/about/project" data-section="project">The project</a></li>
+        <li><a href="#/about/research" data-section="research">Research</a></li>
+        <li><a href="#/about/legal_issues" data-section="legal_issues">Legal issues</a></li>
+        <li><a href="#/about/partners" data-section="partners">Partners</a></li>
+        <li><a href="#/about/story" data-section="story">The story</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>

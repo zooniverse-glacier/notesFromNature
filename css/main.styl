@@ -9,17 +9,6 @@ div.zooniverse-top-bar
       width: 368px 
 
 
-.about_content div ul{
-  list-style: disc;
-  width: 85%;
-  margin: 10px 0px 10px 40px;
-}
-
-.about_content div ul li{
-  font-size: 15px;
-  font-family: Helvetica;
-}
-
 .dialog-underlay { display: none; }
 
 .stack 
@@ -33,9 +22,6 @@ div.zooniverse-top-bar
 
 .ArchivesIndexController
   margin-bottom: 40px
-
-.AboutController, .FAQController
-  margin-bottom: 0px
 
 *[lang='de'], *[lang='pl']
   display : none
@@ -102,7 +88,7 @@ body {
   overflow-x: hidden;
 }
 
-p {
+p, li {
   font-family: Helvetica;
   line-height: 19px;
 }
@@ -110,12 +96,6 @@ p {
 a {
   text-decoration: none;
   color: #333;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 header {
@@ -367,7 +347,17 @@ a.badge {
   margin-top: 25px;
 }
 
+
 /* Boxes */
+.faq-header
+  @extends #page-header
+  background: #fff url(images/aboutPageBanner.png) no-repeat bottom left
+
+.faq-content, .about-content
+  @extends #white-box
+  background: #fff url(images/bg-divided.png) repeat-y
+
+
 .box-general {
   background: #FFF;
   padding: 12px 19px;
@@ -390,11 +380,6 @@ a.badge {
 }
 .box-general.divided-blue .list-contributors li {
   margin-bottom: 18px;
-}
-.box-general.about {
-  background: white url(images/aboutPageBanner.png) no-repeat bottom left;
-  height: 366px;
-  padding: 21px 20px 17px 20px;
 }
 .box-general.museum {
   background: white url(images/bg-museum.jpg) no-repeat bottom left;
@@ -443,8 +428,6 @@ a.badge {
   border-bottom: 1px solid #333;
   background: url(images/bg-green.png) no-repeat bottom;
   box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 .box-general.divided figure {
   margin-top: 40px;
@@ -495,8 +478,6 @@ a.badge {
 
 .species-selector a:hover {
   box-shadow: 0 0 7px 5px rgba(255, 255, 255, 0.4);
-  -moz-box-shadow: 0 0 7px 5px rgba(255, 255, 255, 0.4);
-  -webkit-box-shadow: 0 0 7px 5px rgba(255, 255, 255, 0.4);
   -webkit-transition: all 0.3s linear;
   -moz-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
@@ -518,8 +499,6 @@ a.badge {
   font-weight: 300;
 
   box-shadow:         0px 0px 5px rgba(#000, .5);
-  -moz-box-shadow:    0px 0px 5px rgba(#000, .5);
-  -webkit-box-shadow: 0px 0px 5px rgba(#000, .5);
 
   padding: 23px 0;
 
@@ -591,13 +570,13 @@ hr.absolute {
   border-color: rgba(0, 0, 0, 0.45);
 }
 
-.status-list {
-  margin-bottom: -1px;
-  margin-top: 15px;
+
+.status-list, .logos {
+  @extends #semantic-list
 }
+
 .status-list li {
   color: #FFF;
-  font-family: helvetica;
   margin-bottom: 20px;
   font-weight: 100;
 }
@@ -703,6 +682,10 @@ ul.logos li {
   padding-top: 40px;
   border-top: 1px solid #CCC;
   border-top: 1px solid rgba(204, 204, 204, 0.4);
+
+  ul {
+    @extends #semantic-list
+  }
 }
 .box-logos span.text {
   font-weight: bold;
@@ -1118,14 +1101,17 @@ span.ico-comments {
   margin-right: 29px;
 }
 
-.archive-list li {
-  background: rgba(0, 0, 0, 0.2);
-  position: relative;
-  float: left;
-  height: 320px;
-  width: 320px;
-  overflow: hidden;
-}
+.archive-list
+  @extends #semantic-list
+
+  li
+    background: rgba(0, 0, 0, 0.2)
+    float: left
+    font-family: 'Open Sans', sans-serif
+    height: 320px
+    overflow: hidden
+    position: relative
+    width: 320px
 
 .archive-list h3 span.subtitle {
   font-size: 15px;
@@ -1219,8 +1205,6 @@ a.button {
   background: #669933;
   border-radius: 3px;
   box-shadow: 0px 1px #000;
-  -moz-box-shadow: 0px 1px #000;
-  -webkit-box-shadow: 0px 1px #000;
   color: #FFF;
   font-size: 13px;
   font-weight: 600;
@@ -1274,8 +1258,6 @@ a.button.nocolor:active {
 a.button.next {
   background: url(images/icons.png) no-repeat 2px -20px;
   box-shadow: 0 0;
-  -webkit-box-shadow: 0 0;
-  -moz-box-shadow: 0 0;
   padding: 17px 10px;
 }
 a.button.next span {
@@ -1296,8 +1278,7 @@ a.button.next span.active {
 }
 
 div.switch {
-  display:none;
-
+  display: none;
   border: 1px solid #E5E5E5;
   border-radius: 5px;
   margin-top: 20px;

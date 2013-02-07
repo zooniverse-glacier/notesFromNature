@@ -1,33 +1,24 @@
-Spine = require('spine')
+Spine = require 'spine'
 
 class FAQController extends Spine.Controller
-
-  className: "FAQController"
-
+  className: 'FAQController'
   elements:
-    ".about_content" : "content"
-    ".list-links li a" : "navLinks"
+    '.about_content': 'content'
+    '.list-links li a': 'navLinks'
 
   constructor: ->
     super
-    @render()
 
-  render:=>
+  render: (section = "general") =>
     @html require('views/faq/outer')
-    @renderSection("general")
-
-  renderSection: (section="general")=>
     @content.html require("views/faq/#{section}")
 
-  active:(params)=>
-    super
-    document.title = "Notes From Nature - Frequenty Asked Questions"
-
-    @renderSection params.section
-    @selectNav params.section
-
-  selectNav:(section="general")=>
     @navLinks.removeClass('selected')
-    $(".#{section}").addClass('selected')
+    $('[data-section="' + section + '"]').addClass('selected')
+
+  active: (params) =>
+    super
+    document.title = 'Notes From Nature - Frequenty Asked Questions'
+    @render params.section
 
 module.exports = FAQController
