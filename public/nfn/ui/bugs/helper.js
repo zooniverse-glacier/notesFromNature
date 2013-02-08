@@ -106,6 +106,7 @@ nfn.ui.view.BugsHelper = nfn.ui.view.Widget.extend({
         that.closeTooltip();
       }
     });
+    this.addView(closer);
 
     // Add the close button
     var closerX = this.tooltip.left() + this.tooltip.width() + 12

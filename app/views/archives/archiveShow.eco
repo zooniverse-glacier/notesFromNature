@@ -39,7 +39,10 @@
     <div class="box-right">
       <ul class="status-list">
         <li><span class="text">TEMPORAL RANGE</span><%=@archive.metadata.start_date%> / <%=@archive.metadata.end_date%></li>
-        <li><span class="text">GEOGRAPHIC CONTEXT</span> <%=@archive.metadata.regions.join(" | ")%></li>
+
+        <% if @archive.metadata.regions: %>
+          <li><span class="text">GEOGRAPHIC CONTEXT</span> <%= @archive.metadata.regions.join(" | ") %></li>
+        <% end %>
         <li><span class="text">TAXONOMICAL CONTENT</span><%=@archive.categories.join(" | ")%></li>
         <li><span class="text">PROGRESS</span>
 

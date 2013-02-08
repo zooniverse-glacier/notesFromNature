@@ -82,14 +82,14 @@
         </h3>
         <ul class="list-contributors">
           <li>
-            <img class="contributors" src="img/contributors.png" alt="" />
+            <img class="contributors" src="images/contributors.png" alt="" />
             <div>                 
               <a href="" class="name">Luis Villa </a><br/>
               <span>with 3,291 contributions</span>
             </div>
           </li>
           <li>
-            <img class="contributors" src="img/contributors.png" alt="" />
+            <img class="contributors" src="images/contributors.png" alt="" />
             <div>                 
               <a href="" class="name">Fernado Espinosa </a><br/>
               <span>with 1,932 contributions</span>

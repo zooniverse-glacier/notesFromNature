@@ -1,8 +1,9 @@
-Spine = require('spine')
-Archive = require('models/Archive')
+Spine = require 'spine'
+
+Archive = require 'models/Archive'
 
 class ArchiveIndexController extends Spine.Controller
-  className: "ArchivesIndexController"
+  className: 'ArchivesIndexController'
 
   events:
     "click .switch a" : 'toggleUserArchives'
@@ -17,7 +18,7 @@ class ArchiveIndexController extends Spine.Controller
 
   constructor: ->
     super
-    Archive.bind "refresh", @render
+    Archive.bind 'refresh', @render
     @showCompleted = true
 
   active: (params) =>
@@ -34,15 +35,14 @@ class ArchiveIndexController extends Spine.Controller
   render: (options = undefined) =>
     archives = Archive.filter(options)
 
-    @html ""
+    @html ''
     @append require('views/archives/topBar')
       archives: archives
-      options : options
+      options: options
 
     @append require('views/archives/archiveList')
-      archives : archives
-      # placeholderArchives: require('lib/PlaceHolderArchives')
-      archiveTemplate: require("views/archives/archive")
+      archives: archives
+      archiveTemplate: require('views/archives/archive')
 
 
   toggleUserArchives: (e) =>

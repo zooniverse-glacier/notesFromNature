@@ -10,12 +10,7 @@ data = [
       "standard":"http://s3.amazonaws.com/www.notesfromnature.org/betaData/small/EMEC204555 Antaeotricha demotica.jpg"
     },
     "metadata":{
-      "workflow_type":"bugs",
-      "small_width":770,
-      "small_height":913,
-      "large_width":1540,
-      "large_height":1826,
-      "source_folder_name":"USAM_scaled"
+      "workflow_type":"bugs"
     },
     "project_id":"5008739e516bcbd236000001",
     "random":0.6925219715556447,
@@ -37,12 +32,7 @@ data = [
       "standard":"http://s3.amazonaws.com/www.notesfromnature.org/betaData/small/EMEC204568 Antaeotricha frontalis.jpg"
     },
     "metadata":{
-      "workflow_type":"bugs",
-      "small_width":770,
-      "small_height":948,
-      "large_width":1540,
-      "large_height":1897,
-      "source_folder_name":"MLBS_scaled"
+      "workflow_type":"bugs"
     },
     "project_id":"5008739e516bcbd236000001",
     "random":0.061853613770350924,
@@ -64,12 +54,7 @@ data = [
       "standard":"http://s3.amazonaws.com/www.notesfromnature.org/betaData/small/EMEC205217 Clostera sp.JPG"
     },
     "metadata":{
-      "workflow_type":"bugs",
-      "small_width":770,
-      "small_height":925,
-      "large_width":1540,
-      "large_height":1851,
-      "source_folder_name":"FSU_scaled"
+      "workflow_type":"bugs"
     },
     "project_id":"5008739e516bcbd236000001",
     "random":0.6614330557525098,
@@ -91,12 +76,7 @@ data = [
       "standard":"http://s3.amazonaws.com/www.notesfromnature.org/betaData/small/EMEC205640 Harpalus caliginosus.JPG"
     },
     "metadata":{
-      "workflow_type":"bugs",
-      "small_width":770,
-      "small_height":917,
-      "large_width":1540,
-      "large_height":1835,
-      "source_folder_name":"FSU_scaled"
+      "workflow_type":"bugs"
     },
     "project_id":"5008739e516bcbd236000001",
     "random":0.9917326339303778,
@@ -118,12 +98,7 @@ data = [
       "standard":"http://s3.amazonaws.com/www.notesfromnature.org/betaData/small/EMEC205994 Iphthiminus opacus.jpg"
     },
     "metadata":{
-      "workflow_type":"bugs",
-      "small_width":770,
-      "small_height":925,
-      "large_width":1540,
-      "large_height":1851,
-      "source_folder_name":"FSU_scaled"
+      "workflow_type":"bugs"
     },
     "project_id":"5008739e516bcbd236000001",
     "random":0.7880638533936568,
@@ -145,12 +120,7 @@ data = [
       "standard":"http://s3.amazonaws.com/www.notesfromnature.org/betaData/small/EMEC220021 Scaphinotus angusticollis.jpg"
     },
     "metadata":{
-      "workflow_type":"bugs",
-      "small_width":770,
-      "small_height":957,
-      "large_width":1540,
-      "large_height":1915,
-      "source_folder_name":"MLBS_scaled"
+      "workflow_type":"bugs"
     },
     "project_id":"5008739e516bcbd236000001",
     "random":0.05030798839818351,
@@ -196,12 +166,7 @@ data = [
       "standard":"http://s3.amazonaws.com/www.notesfromnature.org/betaData/small/EMEC220042 Scaphinotus cristatus.jpg"
     },
     "metadata":{
-      "workflow_type":"bugs",
-      "small_width":770,
-      "small_height":924,
-      "large_width":1540,
-      "large_height":1848,
-      "source_folder_name":"MLBS_scaled"
+      "workflow_type":"bugs"
     },
     "project_id":"5008739e516bcbd236000001",
     "random":0.10631814535276762,
@@ -223,12 +188,7 @@ data = [
       "standard":"http://s3.amazonaws.com/www.notesfromnature.org/betaData/small/EMEC222945 Cicindela carthagena colossea.jpg"
     },
     "metadata":{
-      "workflow_type":"bugs",
-      "small_width":770,
-      "small_height":919,
-      "large_width":1540,
-      "large_height":1839,
-      "source_folder_name":"FSU_scaled"
+      "workflow_type":"bugs"
     },
     "project_id":"5008739e516bcbd236000001",
     "random":0.06482181970476486,
@@ -250,12 +210,7 @@ data = [
       "standard":"http://s3.amazonaws.com/www.notesfromnature.org/betaData/small/EMEC335425 Oropsylla montana.jpg"
     },
     "metadata":{
-      "workflow_type":"bugs",
-      "small_width":770,
-      "small_height":917,
-      "large_width":1540,
-      "large_height":1835,
-      "source_folder_name":"FSU_scaled"
+      "workflow_type":"bugs"
     },
     "project_id":"5008739e516bcbd236000001",
     "random":0.18610279838938149,

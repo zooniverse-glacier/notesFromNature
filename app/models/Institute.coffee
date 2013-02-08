@@ -2,9 +2,6 @@ Spine = require 'spine'
 Archive = require 'models/Archive'
 API = require 'zooniverse/lib/api'
 
-InstituteStem = require 'lib/institutes'
-ArchiveStem = require 'lib/archives'
-
 class Institute extends Spine.Model
   @configure 'Institute', 'name', 'metadata'
   @hasMany 'archives', 'models/Archive'
@@ -16,9 +13,6 @@ class Institute extends Spine.Model
 
       institutes =  (group for group in data  when group.type == 'institution')
       archives   =  (group for group in data  when group.type == 'archive')
-      
-      institutes.push InstituteStem
-      archives.push ArchiveStem
 
       for institute in institutes
         inst = Institute.create institute

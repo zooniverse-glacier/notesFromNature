@@ -7,11 +7,6 @@ class Archive extends Spine.Model
   @belongsTo 'institute', 'models/Institute'
   @hasMany   'subjects', Subject
 
-  # @fetch:=>
-  #   $.getJSON "#{OuroborusBase}/groups/categories/archive", (data)=>
-  #     for archive in data
-  #       Archive.create(archive)
-
   @findBySlug: (slug) =>
     result = @select (archive) =>
       archive.slug() is slug
@@ -28,18 +23,11 @@ class Archive extends Spine.Model
     if @subjects().findByAttribute('active', true)
       callback @subjects().findByAttribute('active', true) if callback?
     else
-      if @id is '5008eb88ba40af06f10000016'
-        # Archive is bugs. Fake it for now.
-        BugsSubjects = require 'lib/BugsSubjects'
-        for subject in BugsSubjects
-          @subjects().create subject
+      API.get "/projects/notes_from_nature/groups/#{@id}/subjects?limit=10", (subjects) =>
+        for subject in subjects
+          if subject?
+            @subjects().create subject 
         callback @subjects().findByAttribute('active', true) if callback?
-      else
-        API.get "/projects/notes_from_nature/groups/#{@id}/subjects?limit=10", (subjects) =>
-          for subject in subjects
-            if subject?
-              @subjects().create subject 
-          callback @subjects().findByAttribute('active', true) if callback?
 
   transcriptionUrl: =>
     "#/archives/#{@slug()}/transcribe"

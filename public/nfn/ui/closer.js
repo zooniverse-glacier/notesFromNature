@@ -34,6 +34,6 @@ nfn.ui.view.Closer = nfn.ui.view.Widget.extend({
   render: function() {
     this.$el.append(this.template.render());
     return this.$el;
-  }
+  },
 });
 

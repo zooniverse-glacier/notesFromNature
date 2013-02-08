@@ -17,7 +17,7 @@ class TranscriptionController extends Spine.Controller
   transcriptionControllers: 
     'nhm_birds': new DoubleTranscriptionController()
     'herbarium': new SernacTranscriptionController()
-    'bugs_and_such': new BugsTranscriptionController()
+    'calbug': new BugsTranscriptionController()
 
   constructor: ->
     super
