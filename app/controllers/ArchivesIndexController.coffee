@@ -6,15 +6,15 @@ class ArchiveIndexController extends Spine.Controller
   className: 'ArchivesIndexController'
 
   events:
-    "click .switch a" : 'toggleUserArchives'
     "mouseenter .archive-list li" : 'showArchiveDetails'
     "mouseleave .archive-list li" : 'hideListDetails'
+    "click .switch a" : 'toggleUserArchives'
     "click span.switch" : 'toggleComplete'
 
   elements:
-    ".switch" : "toggleSwitch"
     ".archive-list li.completed:not(.mine)" : "userArchives"
     ".archive-list li.completed.mine" : "nonUserArchives"
+    ".switch" : "toggleSwitch"
 
   constructor: ->
     super
@@ -23,7 +23,7 @@ class ArchiveIndexController extends Spine.Controller
 
   active: (params) =>
     super 
-    document.title = "Notes From Nature - collections "
+    document.title = 'Collections - Notes From Nature'
     @render(params)
 
   showArchiveDetails: (e) =>

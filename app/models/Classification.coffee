@@ -15,10 +15,10 @@ class Classification extends Spine.Model
     Subject.find @subject_id 
   
   annotate: (questionId, answerId) ->
-    # annotation = { }
-    # annotation[questionId] = answerId
-    # @annotations.push annotation
-    @annotations[questionId] = answerId
+    annotation = { }
+    annotation[questionId] = answerId
+    @annotations.push annotation
+    # @annotations[questionId] = answerId
     @save()
 
   url: ->
