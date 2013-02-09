@@ -5,70 +5,53 @@
     <title>Notes From Nature</title>
 
     <script type="text/javascript">
+       var _gaq = _gaq || [];
+       _gaq.push(['_setAccount', 'UA-1224199-39']);
+       _gaq.push(['_setDomainName', 'www.notesfromnature.org']);
+       _gaq.push(['_trackPageview']);
 
-     var _gaq = _gaq || [];
-     _gaq.push(['_setAccount', 'UA-1224199-39']);
-     _gaq.push(['_setDomainName', 'www.notesfromnature.org']);
-     _gaq.push(['_trackPageview']);
-
-     (function() {
-       var ga = document.createElement('script'); ga.type =
-    'text/javascript'; ga.async = true;
-       ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
-    'http://www') + '.google-analytics.com/ga.js';
-       var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(ga, s);
-     })();
-  </script>
+       (function() {
+         var ga = document.createElement('script'); ga.type =
+      'text/javascript'; ga.async = true;
+         ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
+      'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+       })();
+    </script>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&v=3.7"></script>
-    <script type="text/javascript" src="nfn/vendor/modernizr.custom.59967.js"></script>
-    <script type="text/javascript" src="nfn/vendor/jquery.min.js"></script>
-    <script type="text/javascript" src="nfn/vendor/jquery-ui-1.8.24.custom.min.js"></script>
-    <script type="text/javascript" src="nfn/vendor/underscore-min.js"></script>
-    <script type="text/javascript" src="nfn/vendor/backbone-min.js"></script>
-    <script type="text/javascript" src="nfn/vendor/jquery.jscrollpane.js"></script>
-    <script type="text/javascript" src="nfn/vendor/jquery.mousewheel.min.js"></script>
-    <script type="text/javascript" src="nfn/vendor/jquery.imagesloaded.min.js"></script>
-    <script type="text/javascript" src="nfn/vendor/jquery.ui.addresspicker.js"></script>
-    <script type="text/javascript" src="nfn/vendor/jquery.easing.min.js"></script>
-    <script type="text/javascript" src="nfn/vendor/jquery.mCustomScrollbar.js"></script>
-    <script type="text/javascript" src="jquery.stylish.js"></script>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" type="text/css"charset="utf-8">
 
-    <script src="nfn/nfn.js"></script>
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" type="text/css"charset="utf-8"></script>
+    <script src="base64.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="nfn/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 
-  <link rel="stylesheet" href="application.css" type="text/css" charset="utf-8">
-  <script src="base64.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="application.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="application.css" type="text/css" charset="utf-8">
 
-  <script type="text/javascript" charset="utf-8">
-    // var jQuery  = require("jqueryify");
-  var exports = this;
-  jQuery(function(){
-    var App    = require("index");
-    var Header = require("controllers/HeaderController");
-    var notificationController =   require("controllers/NotificationController") 
-    new notificationController({el:$(".NotificationController")})
-    new Header ({el:$("header")});
+    <script src="application.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      jQuery(function(){
+        var App    = require("index");
+        var Header = require("controllers/HeaderController");
+        var notificationController =   require("controllers/NotificationController") 
+        new notificationController({el:$(".NotificationController")})
+        new Header ({el:$("header")});
 
-    $("footer").append( require('views/footer')())
-    exports.app = new App({el: $("#content")});     
-  });
-</script>
+        $("footer").append( require('views/footer')())
+        new App({el: $("#content")});     
+      });
+    </script>
 
-</head>
-<body>
-  <div class='zooniverseTopBar'></div>
-  <div class='NotificationController'></div>
-  <div class='wrapper'>
-    <header>
-    </header>
-    <div id='content'> </div>
+  </head>
 
-    <footer class='relative'></footer>
-
-  </div>  
-
-</body>
+  <body>
+    <div class="zooniverseTopBar"></div>
+    <div class="NotificationController"></div>
+    <div class="wrapper">
+      <header></header>
+      <div id="content"></div>
+      <footer class="relative"></footer>
+    </div>
+    <script src="nfn/build.js" type="text/javascript" charset="utf-8"></script>
+  </body>
 </html>

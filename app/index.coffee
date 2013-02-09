@@ -12,20 +12,19 @@ ProfileController= require('controllers/ProfileController')
 AboutController= require('controllers/AboutController')
 FAQController  = require('controllers/FAQController')
 BadgesController = require('controllers/BadgesController')
-
 NotificationController = require('controllers/NotificationController')
-Api = require('zooniverse/lib/api')
+
 Config = require('lib/config')
 
+Api = require('zooniverse/lib/api')
 ZooniverseBar = require('zooniverse/lib/controllers/top_bar')
+User  = require('zooniverse/lib/models/user')
 
 Archive = require('models/Archive')
 Institute = require('models/Institute')
 Badge = require('models/Badge')
-User  = require('zooniverse/lib/models/user')
 
-require('lib/fakeData')
-
+# require('lib/fakeData')
 class customTopBar extends ZooniverseBar
   constructor: ->
     super 
@@ -86,6 +85,8 @@ class App extends Spine.Stack
       app: 'notes_from_nature'
       appName:'Notes From Nature'
 
+    Spine.Route.setup()
+
     Badge.loadDefinitions()
 
     @append new NotificationController()
@@ -94,8 +95,5 @@ class App extends Spine.Stack
         Badge.getUserBadges()
 
     setTimeout (-> Institute.fetch()), 300
-
-    nfn.load 'nfn/', =>
-        Spine.Route.setup()
 
 module.exports = App

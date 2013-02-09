@@ -9,7 +9,7 @@
     "jqueryify": "~0.0.1",
     "underscore": "latest",
     "nib": "latest",
-    "Zooniverse": "https://github.com/kycan/Zooniverse.git",
+    "Zooniverse": "git@github.com:kycan/Zooniverse.git",
     "spine": "~1.0.5",
     "clean-css" : "latest"
   }

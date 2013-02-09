@@ -12,6 +12,7 @@ cp -RL public build_public
 rm -rf public
 mv build_public public
 echo 'Building...'
+coffee build.coffee
 hem build
 mv public build
 mv pre_build_public public
@@ -25,6 +26,7 @@ echo 'Compressing...'
 timestamp=#{ timestamp }
 
 mv build/application.js "build/application-$timestamp.js"
+mv build/nfn/build.js "build/nfn/build-$timestamp.js"
 ./node_modules/clean-css/bin/cleancss build/application.css -o "build/application-$timestamp.css"
 rm build/application.css
 
@@ -35,6 +37,7 @@ system compress
 
 index = File.read 'build/index.html'
 index.gsub! 'application.js', "application-#{ timestamp }.js"
+index.gsub! 'build.js', "build-#{ timestamp }.js"
 index.gsub! 'application.css', "application-#{ timestamp }.css"
 File.open('build/index.html', 'w'){ |f| f.puts index }
 
