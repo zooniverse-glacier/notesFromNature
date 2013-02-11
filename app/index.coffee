@@ -24,7 +24,6 @@ Archive = require('models/Archive')
 Institute = require('models/Institute')
 Badge = require('models/Badge')
 
-# require('lib/fakeData')
 class customTopBar extends ZooniverseBar
   constructor: ->
     super 
