@@ -31,9 +31,9 @@
     <script src="application.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
       jQuery(function(){
-        var App    = require("index");
+        var App = require("index");
         var Header = require("controllers/HeaderController");
-        var notificationController =   require("controllers/NotificationController") 
+        var notificationController = require("controllers/NotificationController") 
         new notificationController({el:$(".NotificationController")})
         new Header ({el:$("header")});
 
