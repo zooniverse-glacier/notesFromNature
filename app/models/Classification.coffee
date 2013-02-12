@@ -15,7 +15,6 @@ class Classification extends Spine.Model
     Subject.find @subject_id 
 
   annotateLine: (line, number) ->
-    console.log 'line', line
     for annotation in line.transcriptions?.toJSON()
       annotation =
         line: number
@@ -28,7 +27,6 @@ class Classification extends Spine.Model
     annotation = { }
     annotation[questionId] = answerId
     @annotations.push annotation
-    # @annotations[questionId] = answerId
     @save()
 
   url: ->

@@ -68,14 +68,9 @@ class DoubleTranscriptionController extends Spine.Controller
       @transcriber.loadPhoto(@currentSubject.location.standard, callback)
 
   saveClassification: (data) =>
-    console.log 'data', data
-
     classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0]})
     for line, i in data.models
       classification.annotateLine line, i
-
-    # for annotation in data.toJSON()
-    #   classification.annotate annotation.step, annotation.value
 
     classification.save()
     @currentSubject.retire()
