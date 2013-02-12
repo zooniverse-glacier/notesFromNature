@@ -17,6 +17,7 @@ class ProfileController extends Spine.Controller
 
   render:=>
     if User.current?
+      console.log User.current
       @html require('views/profile/profile')
         user : User.current
     else
