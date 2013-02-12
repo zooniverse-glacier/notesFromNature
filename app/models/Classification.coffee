@@ -13,7 +13,17 @@ class Classification extends Spine.Model
 
   subject: ->
     Subject.find @subject_id 
-  
+
+  annotateLine: (line, number) ->
+    console.log 'line', line
+    for annotation in line.transcriptions?.toJSON()
+      annotation =
+        line: number
+        step: annotation.step
+        value: annotation.value
+      @annotations.push annotation
+    @save()
+
   annotate: (questionId, answerId) ->
     annotation = { }
     annotation[questionId] = answerId

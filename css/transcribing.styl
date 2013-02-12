@@ -367,7 +367,6 @@
   max-width: 80%;
 }
 
-.transcriber.birds .bar,
 .transcriber.sernac .bar {
   display: none;
   position: absolute;
@@ -388,6 +387,22 @@
   -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.transcriber.birds .bar {
+  display: none;
+  position: absolute;
+  width: 520px;
+  height: 55px;
+  padding: 11px 11px 11px 10px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  background: #333;
+  background: rgba(0, 0, 0, 0.8);
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
   z-index: 100;
 }
 
@@ -478,7 +493,7 @@
   display: none;
   position: absolute;
   background: none;
-  left: 10px;
+  // left: 10px;
   top: 100px;
   height: 180px;
   width: 705px;
@@ -489,14 +504,8 @@
   padding: 0;
   z-index: 10001;
   //filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  border: 1px solid black;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px;
+  // border: 1px solid black;
+  // border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px;
 }
 .transcriber.birds .birds-widget.ui-draggable {
@@ -509,6 +518,25 @@
   float: right;
   font-weight: normal;
   font-size:11px;
+}
+
+.transcriber.birds .birds-widget .btn.nextLine {
+  display: none;
+  background: #669933;
+  padding: 9px;
+  font-weight: normal;
+  font: normal 11px Helvetica;
+
+ -webkit-transition-property: background-color;
+ -moz-transition-property: background-color;
+ -o-transition-property: background-color;
+ transition-property: background-color;
+ -webkit-transition-duration: 300ms;
+ -moz-transition-duration: 300ms;
+ -o-transition-duration: 300ms;
+ transition-duration: 300ms;
+
+  &:hover { background: darken(#669933, 10); }
 }
 
 .transcriber.birds .birds-widget .btn.finish {
@@ -536,34 +564,15 @@
 }
 .transcriber.birds .birds-widget .top {
   top: 4px;
-  left: 3px;
-  right: 3px;
+  left: 0;
+  right: 0;
   bottom: 57px;
-  -webkit-box-shadow: #444444 0 -1px 0 3px;
-  -moz-box-shadow: #444444 0 -1px 0 3px;
   box-shadow: #444444 0 -1px 0 3px;
 
-  -o-border-top-right-radius:    3px;
-  -o-border-top-left-radius:     3px;
-  -o-border-bottom-left-radius:  0;
-  -o-border-bottom-right-radius: 0;
+  border-radius: 3px 0 0 0;
 
-  -ms-border-top-right-radius:    3px;
-  -ms-border-top-left-radius:     3px;
-  -ms-border-bottom-left-radius:  0;
-  -ms-border-bottom-right-radius: 0;
-
-  -webkit-border-top-right-radius:    3px;
-  -webkit-border-top-left-radius:     3px;
-  -webkit-border-bottom-left-radius:  0;
-  -webkit-border-bottom-right-radius: 0;
-
-  border-top-right-radius:    3px;
-  border-top-left-radius:     3px;
-  border-bottom-left-radius:  0;
-  border-bottom-right-radius: 0;
-
-  border: 1px solid black;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
   z-index: 0;
 }
 .transcriber.birds .birds-widget .top .title {

@@ -7,24 +7,24 @@ EOL = require 'models/EOL'
 
 class DoubleTranscriptionController extends Spine.Controller
   className: 'DoubleTranscriptionController'
-  elements:
-    "div.transcribing"   : "transcriptionSubject"
-    "#transcriber"       : "transcriptionBox"
-    "ul.steps"           : "steps"
-    "div.tooltip.skip"   : "skipConfirmation"
-    "div.tooltip.right"  : "finishRecordCheck"
-    ".transcribing img"  : "transcriptionImage"
+  # elements:
+  #   "div.transcribing"   : "transcriptionSubject"
+  #   "#transcriber"       : "transcriptionBox"
+  #   "ul.steps"           : "steps"
+  #   "div.tooltip.skip"   : "skipConfirmation"
+  #   "div.tooltip.right"  : "finishRecordCheck"
+  #   ".transcribing img"  : "transcriptionImage"
 
   # events:
-    # "submit #transcriber form"              : "record"
-    # "click ul.steps li a"                   : "goToEntity"
-    # "click a.choose_step"                   : "showSteps"
-    # "click a.skip"                          : "showSkipConfimation"
-    # "click div.tooltip.skip .cancel"        : "hideSkipConfimation"
-    # "click div.tooltip.skip .continue"      : "nextEntity"
-    # "click .button.checkRecord"             : "checkDone"
-    # "click .tooltip.right .button.cancel"   : "hideDone" 
-    # "click .tooltip.right .button.continue" : "finishRecord" 
+  #   "submit #transcriber form"              : "record"
+  #   "click ul.steps li a"                   : "goToEntity"
+  #   "click a.choose_step"                   : "showSteps"
+  #   "click a.skip"                          : "showSkipConfimation"
+  #   "click div.tooltip.skip .cancel"        : "hideSkipConfimation"
+  #   "click div.tooltip.skip .continue"      : "nextEntity"
+  #   "click .button.checkRecord"             : "checkDone"
+  #   "click .tooltip.right .button.cancel"   : "hideDone" 
+  #   "click .tooltip.right .button.continue" : "finishRecord" 
 
   constructor: ->
     super
@@ -66,25 +66,28 @@ class DoubleTranscriptionController extends Spine.Controller
           @transcriber.startTranscribing()
 
       @transcriber.loadPhoto(@currentSubject.location.standard, callback)
-      @transcriber.loadLargePhoto(@currentSubject.location.large)
 
   saveClassification: (data) =>
-    classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0] } )
-    for annotation in data.toJSON()
-      classification.annotate annotation.step, annotation.value
+    console.log 'data', data
+
+    classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0]})
+    for line, i in data.models
+      classification.annotateLine line, i
+
+    # for annotation in data.toJSON()
+    #   classification.annotate annotation.step, annotation.value
 
     classification.save()
     @currentSubject.retire()
     classification.send()
     @nextSubject()
 
-
-    # # @transcriptionSubject.prepend require("views/transcription/transcriptionBox")
-    # #   entityTemplate       : require('views/transcription/entity')
-    # #   currentEntityNo      : @currentEntityNo
-    # #   noOfEntities         : entities.length
-    # #   currentEntity        : entities[@currentEntityNo]
-    # #   entities             : entities
+    # @transcriptionSubject.prepend require("views/transcription/transcriptionBox")
+    #   entityTemplate       : require('views/transcription/entity')
+    #   currentEntityNo      : @currentEntityNo
+    #   noOfEntities         : entities.length
+    #   currentEntity        : entities[@currentEntityNo]
+    #   entities             : entities
 
 
     # @refreshElements()
@@ -114,84 +117,84 @@ class DoubleTranscriptionController extends Spine.Controller
 
 
 
-  fetchSpeciesInfo:(species)=>
-    @eol.search species, (result)=>
-      @eol.getMediaForSpecies result[0], ['text','videos','images','sound'], (media)=>
-        alert(@transcriptionBox)
-        @transcriptionBox.append require('views/transcription/speciesInfo')
-          species: result[0]
-          media : media
+  # fetchSpeciesInfo:(species)=>
+  #   @eol.search species, (result)=>
+  #     @eol.getMediaForSpecies result[0], ['text','videos','images','sound'], (media)=>
+  #       alert(@transcriptionBox)
+  #       @transcriptionBox.append require('views/transcription/speciesInfo')
+  #         species: result[0]
+  #         media : media
 
-  grabData:(target)=>
-    result = {}
-    for field in target.serializeArray()
-      result[field.name] = field.value
-    result
+  # grabData:(target)=>
+  #   result = {}
+  #   for field in target.serializeArray()
+  #     result[field.name] = field.value
+  #   result
 
-  checkDone:(e)=>
-    e.preventDefault()
-    @finishRecordCheck.show()
+  # checkDone:(e)=>
+  #   e.preventDefault()
+  #   @finishRecordCheck.show()
 
-  hideDone:(e)=>
-    e.preventDefault()
-    @finishRecordCheck.hide()
+  # hideDone:(e)=>
+  #   e.preventDefault()
+  #   @finishRecordCheck.hide()
 
-  showSkipConfimation:(e)=>
-    e.preventDefault()
-    @skipConfirmation.css {left : '0px'}
-    @skipConfirmation.show()
+  # showSkipConfimation:(e)=>
+  #   e.preventDefault()
+  #   @skipConfirmation.css {left : '0px'}
+  #   @skipConfirmation.show()
 
-  hideSkipConfimation:(e)=>
-    e.preventDefault()
-    @skipConfirmation.hide()
+  # hideSkipConfimation:(e)=>
+  #   e.preventDefault()
+  #   @skipConfirmation.hide()
 
-  showSteps:(e)=>
-    e.preventDefault()
-    @steps.toggle()
+  # showSteps:(e)=>
+  #   e.preventDefault()
+  #   @steps.toggle()
 
-  goToEntity:(e)=>
-    e.preventDefault() if e?
-    @currentEntityNo = $(e.currentTarget).data().stepNo 
-    @setUpEntity()
+  # goToEntity:(e)=>
+  #   e.preventDefault() if e?
+  #   @currentEntityNo = $(e.currentTarget).data().stepNo 
+  #   @setUpEntity()
 
 
-  autofillSpecies:(e)=>
-    searchText = $(e.currentTarget).val();
-    @eol.search searchText, (result)=>
-      result
+  # autofillSpecies:(e)=>
+  #   searchText = $(e.currentTarget).val();
+  #   @eol.search searchText, (result)=>
+  #     result
 
-  nextEntity:=>
-    @currentEntityNo += 1
-    @setUpEntity()
+  # nextEntity:=>
+  #   @currentEntityNo += 1
+  #   @setUpEntity()
 
-  setUpEntity:=>
-    if @currentEntityNo == entities.length
-      @finishRecord() 
-    if entities[@currentEntityNo].draggable
-      @transcriptionBox.draggable( "enable" )
-    else
-      @transcriptionBox.draggable( "disable" )
+  # setUpEntity:=>
+  #   if @currentEntityNo == entities.length
+  #     @finishRecord() 
+  #   if entities[@currentEntityNo].draggable
+  #     @transcriptionBox.draggable( "enable" )
+  #   else
+  #     @transcriptionBox.draggable( "disable" )
 
-    @transcriptionBox.html require("views/transcription/transcriptionBox")
-      entityTemplate       : require('views/transcription/entity')
-      currentEntityNo      : @currentEntityNo
-      noOfEntities         : entities.length
-      currentEntity        : entities[@currentEntityNo]
-      entities             : entities
+  #   @transcriptionBox.html require("views/transcription/transcriptionBox")
+  #     entityTemplate       : require('views/transcription/entity')
+  #     currentEntityNo      : @currentEntityNo
+  #     noOfEntities         : entities.length
+  #     currentEntity        : entities[@currentEntityNo]
+  #     entities             : entities
 
-    @refreshElements()
+  #   @refreshElements()
 
-  finishRecord:(e)=>
-    e.preventDefault() if e?
-    @transcriptionSubject.append require("views/transcription/marker")
-      annotation : @currentAnnotation
+  # finishRecord:(e)=>
+  #   e.preventDefault() if e?
+  #   @transcriptionSubject.append require("views/transcription/marker")
+  #     annotation : @currentAnnotation
       
-    @annotations.push @currentAnnotation
-    @currentAnnotation=[]
+  #   @annotations.push @currentAnnotation
+  #   @currentAnnotation=[]
 
-    @currentEntityNo=0
+  #   @currentEntityNo=0
 
-    @transcriptionBox.animate {top:"+=200"}, 200, =>
-      @setUpEntity() 
+  #   @transcriptionBox.animate {top:"+=200"}, 200, =>
+  #     @setUpEntity() 
   
 module.exports = DoubleTranscriptionController

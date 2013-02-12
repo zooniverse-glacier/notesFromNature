@@ -5142,13 +5142,11 @@ nfn.ui.view.Widget = nfn.core.View.extend({
   },
 
   initialize: function() {
-
     _.bindAll( this, "toggle", "toggleDraggable", "toggleResizable", "onStopDragging", "onStopResizing" );
 
     this.model.bind("change:hidden",    this.toggle);
     this.model.bind("change:draggable", this.toggleDraggable);
     this.model.bind("change:resizable", this.toggleResizable);
-
   },
 
   setLeft: function(x, animated) {
@@ -5437,48 +5435,30 @@ nfn.ui.view.Widget = nfn.core.View.extend({
   },
 
   setDraggable: function(draggable) {
-
     this.model.set("draggable", draggable);
-
   },
 
   toggleDraggable: function() {
-
     var that = this;
 
     if (this.model.get("draggable")) {
-
       if (this.model.get('containment')) {
-
-        this.$el.draggable({ containment: this.model.get("containment"), disabled: false, stop: this.onStopDragging })
-
+        this.$el.draggable({ containment: this.model.get("containment"), axis: 'y', stop: this.onStopDragging})
       } else {
-
-        this.$el.draggable({ disabled: false, stop: this.onStopDragging })
-
+        this.$el.draggable({ disabled: false, axis: 'y', stop: this.onStopDragging })
       }
-
     } else {
-
       this.$el.draggable({ disabled: true });
-
     }
-
   },
 
   onStopDragging: function(e, el) {
-
     this.setPosition(el.position.left, el.position.top);
-
   },
 
   onStopResizing: function(e, el) {
-
     this.setSize(el.size.width, el.size.height);
-
   },
-
-
 });
 
 
@@ -5905,15 +5885,22 @@ nfn.ui.view.StatusBar = nfn.ui.view.Widget.extend({
 });
 
 // Transcriptions -------------------------------------
-
 nfn.ui.model.Transcription = Backbone.Model.extend({ });
 
 nfn.ui.collection.Transcriptions = Backbone.Collection.extend({
   model: nfn.ui.model.Transcription,
 });
 
+// Lines
+nfn.ui.model.Line = Backbone.Model.extend({
+  defaults: function() {
+    this.transcriptions = new nfn.ui.collection.Transcriptions();
+  }
+});
 
-
+nfn.ui.collection.Lines = Backbone.Collection.extend({
+  model: nfn.ui.model.Line,
+});
 // TRANSCRIBER -----------------------------------
 
 nfn.ui.model.Transcriber = Backbone.Model.extend({
@@ -5934,7 +5921,6 @@ nfn.ui.model.Transcriber = Backbone.Model.extend({
   },
 
   nextStep: function() {
-
     var currentStep = this.get("currentStep");
 
     if (currentStep + 1 >= this.get("stepsCount")) {
@@ -5942,11 +5928,9 @@ nfn.ui.model.Transcriber = Backbone.Model.extend({
     } else {
       this.set("currentStep", currentStep + 1);
     }
-
   },
 
   previousStep: function() {
-
     var currentStep = this.get("currentStep");
 
     if (currentStep - 1 < 0) {
@@ -5954,8 +5938,22 @@ nfn.ui.model.Transcriber = Backbone.Model.extend({
     } else {
       this.set("currentStep", currentStep - 1);
     }
-  }
+  },
 
+  previousLine: function() {
+    var currentLine = this.get('currentLine');
+
+    if (currentLine - 1 < 0) {
+      this.set('currentLine', 0);
+    } else {
+      this.set('currentLine', currentLine - 1);
+    }
+  },
+
+  nextLine: function() {
+    var currentLine = this.get('currentLine');
+    this.set('currentLine', currentLine + 1);
+  }
 });
 
 
@@ -6016,6 +6014,14 @@ nfn.ui.view.Transcriber = nfn.core.View.extend({
 
   previousStep: function() {
     this.model.previousStep();
+  },
+
+  previousLine: function() {
+    this.model.previousLine();
+  },
+
+  nextLine: function() {
+    this.model.nextLine();
   },
 
   showPhoto: function(i) {
@@ -6267,18 +6273,14 @@ Spine = require('spine');
 // Spine = { trigger: function() {} };
 
 nfn.ui.model.DoublePage = nfn.ui.model.Transcriber.extend({
-
   defaults: {
     type: 'birds',
     mousewheel_enabled: true
   }
-
 });
 
 nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
-
   initialize: function() {
-
     var that = this;
 
     if (this.options.model === undefined) {
@@ -6286,13 +6288,11 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
     }
 
     _.bindAll( this, "updateInputField", "updatePlaceholder", "updateWidget", "toggleMouseWheel", "onResize" );
-
     this.add_related_model(this.model);
-
     this.model.bind("change:mousewheel_enabled", this.toggleMouseWheel);
 
-    this.photos         = new nfn.ui.collection.Photos();
-    this.transcriptions = new nfn.ui.collection.Transcriptions();
+    this.photos = new nfn.ui.collection.Photos();
+    this.lines = new nfn.ui.collection.Lines();
 
     this.addViews();
 
@@ -6304,7 +6304,8 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
         type: "text",
         dataType: "code",
         validate: true,
-        inputWidth: 180
+        inputWidth: 180,
+        position: {y: 0}
       }, {
         title: 'Species',
         description: '2 or 3 latin words in the first line, next to the margin. <a href="#" class="example" data-src="http://placehold.it/357x191">See example</a> | <a href="#" class="skip">Skip field</a>',
@@ -6353,7 +6354,7 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
     ];
 
     this.model.set("currentRecord", 0);
-
+    this.model.set('currentLine', -1);
     this.model.set("currentStep", -1);
     this.model.set("stepsCount", this.guide.length);
 
@@ -6362,17 +6363,21 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
     });
 
     this.model.bind("change:currentStep", function() {
-
       that.updateStepCounter();
       that.updateWidget();
 
-      //that.updateInputField();
+      that.updateInputField();
       that.updatePlaceholder();
+    });
 
+    this.model.bind('change:currentLine', function() {
+      console.log(that.model);
+      if (that.model.get('currentStep') != 0) {
+        that.model.set("currentStep", 1);
+      }
     });
 
     this.render();
-
   },
 
   showPhoto: function(i) {
@@ -6386,7 +6391,6 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
     if (photo) {
       photo.get("view").render();
     }
-
   },
 
   loadPhoto: function(url, callback) {
@@ -6424,31 +6428,29 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
   },
 
   getPendingFieldCount: function() {
-
-    return (this.guide.length - this.transcriptions.length);
-
+    if (typeof this.lines == 'undefined') {
+      return this.guide.length;
+    } else {
+      console.log(this.lines, this.model.get('currentLine'));
+      return (this.guide.length - this.lines.at(this.model.get('currentLine')).transcriptions.length);
+    }
   },
 
   updateStepCounter: function() {
-
     var currentStep = this.model.get("currentStep") + 1;
     this.transcriberWidget.$step.text( currentStep + "/" + this.model.get("stepsCount"));
-
   },
 
   updateWidget: function() {
-
-    var
-    currentStep = this.model.get("currentStep"),
-    stepGuide   = this.guide[currentStep];
+    var currentStep = this.model.get("currentStep")
+      , currentLine = this.model.get('currentLine')
+      , stepGuide = this.guide[currentStep];
 
     this.transcriberWidget.model.set({
-
       title:       stepGuide.title,
       description: stepGuide.description,
       type:        stepGuide.type,
       inputWidth:  stepGuide.inputWidth
-
     });
 
     // Scrolls the page
@@ -6519,14 +6521,16 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
 
   startTranscribing: function() {
     this.model.set("currentStep", 0);
+    this.model.set("currentLine", 0);
     this.disableMouseWheel();
   },
 
   finishTranscribing: function() {
-    Spine.trigger("finishedBirdsTranscription", this.transcriptions)
+    Spine.trigger("finishedBirdsTranscription", this.lines)
 
     this.enableMouseWheel();
     this.model.set("currentStep", 0);
+    this.model.set("currentLine", 0);
     this.nextRecord();
     this.transcriberWidget.model.set("description", "Drag & resize the viewer to the record you want to transcribe.");
     this.transcriberWidget.updateDescription();
@@ -6576,51 +6580,55 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
   },
 
   saveCurrentStep: function() {
-
-    if (this.transcriptions.at(this.model.get("currentStep"))) {
-
-      var transcription = this.transcriptions.at(this.model.get("currentStep"));
-      transcription.set("value", this.transcriberWidget.getValue());
-
+    if (this.lines.at(this.model.get('currentLine'))) {
+      var line = this.lines.at(this.model.get('currentLine'));
     } else {
-
-      var transcription = new nfn.ui.model.Transcription({
-        step:  this.model.get("currentStep"),
-        value: this.transcriberWidget.getValue()
-      });
-
-      this.transcriptions.push(transcription);
-
+      var line = new nfn.ui.model.Line();
+      this.lines.push(line);
     }
 
+    if (line.transcriptions.at(this.model.get('currentStep'))) {
+      var transcription = line.transcriptions.at(this.model.get('currentStep'));
+      transcription.set('value', this.transcriberWidget.getValue());
+    } else {
+      var transcription = new nfn.ui.model.Transcription({
+        step: this.model.get('currentStep'),
+        value: this.transcriberWidget.getValue()
+      });
+      line.transcriptions.push(transcription);
+    }
+
+    // if (this.transcriptions.at(this.model.get("currentStep"))) {
+    //   var transcription = this.transcriptions.at(this.model.get("currentStep"));
+    //   transcription.set("value", this.transcriberWidget.getValue());
+    // } else {
+    //   var transcription = new nfn.ui.model.Transcription({
+    //     step:  this.model.get("currentStep"),
+    //     value: this.transcriberWidget.getValue()
+    //   });
+
+    //   this.transcriptions.push(transcription);
+    // }
   },
 
   onResize: function() {
-
     if (this.model.get("mousewheel_enabled") == true) {
-
       if (this.api) this.api.reinitialise();
 
       this.resize();
-
     }
-
   },
 
   resize: function() {
-
     this.$el.find(".photos, .jspPane, .jspContainer").css("width", "100%");
-
   },
 
   addScroll: function() {
-
     if (!this.model.get("scrollbar")) {
       this.model.set("scrollbar", true);
       this.$el.find(".photos").jScrollPane();
       this.api = this.$el.find(".photos").data('jsp');
     }
-
   },
 
   toggleMouseWheel: function() {
@@ -6659,7 +6667,7 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
     this.$el.append(this.statusBar.render());
     this.$el.append(this.transcriberWidget.render());
 
-    this.transcriberWidget.setWidth($(document).width() - 50, true);
+    this.transcriberWidget.setWidth($(document).width(), true);
 
     // Adds the photo placeholder
     this.$el.append('<div class="photos" />');
@@ -6673,38 +6681,29 @@ nfn.ui.view.DoublePage = nfn.ui.view.Transcriber.extend({
 
 });
 // BirdsWidget -------------------------------------------
-
 nfn.ui.model.BirdsWidget = Backbone.Model.extend({
-
   defaults: {
-
     speed: 250,
     input_hidden:       true,
     start_hidden:       false,
     steps_hidden:       true,
     finish_hidden:      true,
-
   }
-
 });
 
 nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
-
   className: 'birds-widget bar',
-
   events: {
-
-    "click .btn.ok"     : "ok",
-    "click .step" :       "showStepTooltip",
-    "click .btn.finish" : "showFinishTooltip",
-    "click .btn.start"  : "start",
-    "click .skip"       : "showSkipTooltip",
-    "click .example"    : "showExample"
-
+    'click .btn.ok': 'ok',
+    'click .btn.finish': 'showFinishTooltip',
+    'click .btn.start': 'start',
+    'click .example': 'showExample',
+    'click .btn.nextLine': 'nextLine',
+    'click .skip': 'showSkipTooltip',
+    'click .step': 'showStepTooltip'
   },
 
   initialize: function() {
-
     _.bindAll( this, "toggle", "start", "skip", "closeFinishTooltip", "closeExampleTooltip", "closeSkipTooltip", "closeStepTooltip", "toggleInput", "toggleStartButton", "toggleDraggable", "toggleSteps", "updatePlaceholder", "updateTitle", "updateDescription", "updateType", "resizeInput", "onStopDragging", "toggleResizable", "onStopResizing", "showExample", "showSkipTooltip", "gotoStep" );
 
     this.template = new nfn.core.Template({
@@ -6744,7 +6743,6 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
     this.model.bind("change:resizable",     this.toggleResizable);
 
     this.model.bind("change:steps_hidden",  this.toggleSteps);
-
     this.model.bind("change:input_hidden",  this.toggleInput);
     this.model.bind("change:start_hidden",  this.toggleStartButton);
 
@@ -6790,11 +6788,11 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
   },
 
   finish: function(e) {
-
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
     this.showStartButton();
+
     this.hideInput();
     this.hideSteps();
     this.model.set("description", "Drag & resize the viewer to the record you want to transcribe.");
@@ -6802,14 +6800,29 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
     this.setDraggable(true);
     this.setResizable(true);
 
+    this.parent.saveCurrentStep();
     this.parent.finishTranscribing();
 
+  },
+
+  nextLine: function(e) {
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+    this.clearInput();
+    this.closeTooltips();
+
+    this.parent.api.scrollByY(38, true);
+    this.parent.saveCurrentStep();
+    this.parent.nextLine();
   },
 
   showFinishTooltip: function(e) {
 
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
+
+    this.parent.saveCurrentStep();
 
     this.closeTooltips();
 
@@ -7245,7 +7258,6 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
   },
 
   start: function(e) {
-
     e.preventDefault();
     e.stopImmediatePropagation();
 
@@ -7253,74 +7265,54 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
 
     if (this.parent) this.parent.startTranscribing();
 
-    this.setDraggable(false);
+    // this.setDraggable(false);
     this.setResizable(false);
 
     this.hideStartButton();
     this.showSteps();
-
   },
 
   toggleStartButton: function() {
-
-    var
-    that  = this,
-    speed = this.model.defaults.speed;
+    var that = this
+      , speed = this.model.defaults.speed;
 
     if (this.model.get("start_hidden")) {
-
       this.$startButton.fadeOut(speed, function() {
-        that.$finishButton.fadeIn(speed)
+        that.$nextLineButton.fadeIn(speed);
+        that.$finishButton.fadeIn(speed);
       });
-
     } else {
-
+      this.$nextLineButton.fadeOut(speed);
       this.$finishButton.fadeOut(speed, function() {
         that.$startButton.fadeIn(speed);
       });
-
     }
-
   },
 
   showStartButton: function() {
-
     this.model.set("start_hidden", false);
     this.model.set("finish_hidden", true);
-
   },
 
   hideStartButton: function() {
-
     this.model.set("start_hidden", true);
     this.model.set("finish_hidden", false);
-
   },
 
   showSteps: function() {
-
     this.model.set("steps_hidden", false);
-
   },
 
   hideSteps: function() {
-
     this.model.set("steps_hidden", true);
-
   },
 
   toggleSteps: function() {
-
     if (this.model.get("steps_hidden")) {
-
       this.$step.fadeOut(this.defaults.speed);
-
     } else {
-
       this.$step.fadeIn(this.defaults.speed);
-
     }
-
   },
 
   toggleInput: function() {
@@ -7399,6 +7391,7 @@ nfn.ui.view.BirdsWidget = nfn.ui.view.Widget.extend({
 
     this.$okButton     = this.$el.find(".btn.ok");
     this.$startButton  = this.$el.find(".btn.start");
+    this.$nextLineButton = this.$el.find(".btn.nextLine");
     this.$finishButton = this.$el.find(".btn.finish");
 
     this.$exampleLink  = this.$el.find(".example");
