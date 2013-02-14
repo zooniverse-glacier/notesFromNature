@@ -320,10 +320,12 @@
 
 .transcriber.birds .photos,
 .transcriber.sernac .photos {
-  margin: auto;
-  text-align: center;
-  overflow: auto;
+  box-sizing: border-box;
   height: 100%;
+  margin: auto;
+  overflow: auto;
+  padding: 94px 0 10px 0;
+  text-align: center;
   z-index: 10;
 }
 
@@ -804,30 +806,35 @@
   cursor: nwse-resize;
   z-index: 1000;
 }
-.transcriber.sernac .helper {
-  z-index: 1001;
-  font: 11px "Open Sans";
-  color: #fff;
-}
-.transcriber.sernac .helper .title {
-  text-transform: uppercase;
-  opacity: .8;
-  margin: 0 0 2px 0;
-}
-.transcriber.sernac .helper .description {
-  font: 12px "Helvetica";
-  color: white;
-}
-.transcriber.sernac .helper .description .example {
-  position: relative;
-  border-bottom: 1px solid #ccc;
-  text-decoration: none;
-  font: 12px "Helvetica";
-  color: white;
-}
 
-.transcriber.sernac .helper .description .example:hover {
-  border-bottom: 1px dashed #fff;
+.transcriber.sernac .helper,
+.transcriber.bugs .helper {
+  box-sizing: border-box;
+  color: #fff;
+  font: 11px "Open Sans";
+  z-index: 1001;
+
+  .title {
+    margin: 0 0 2px 0;
+    opacity: .8;
+    text-transform: uppercase;
+  }
+
+  .description {
+    font: 12px "Helvetica";
+
+    .example {
+      border-bottom: 1px solid #ccc;
+      color: #fff;
+      font: 12px "Helvetica";
+      position: relative;
+      text-decoration: none;
+
+      &:hover {
+        border-bottom: 1px dashed #fff;
+      }
+    }
+  }
 }
 
 .transcriber.sernac .launcher {

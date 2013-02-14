@@ -18,29 +18,27 @@ class BadgesController extends Spine.Controller
       @render()
 
   loadBadge: (name=null) =>
-    @badgeName = name if name? 
+    @badgeName = name if name?
     @currentBadge = Badge.findBySlug(@badgeName)
-    @currentArchive = Archive.findBySlug(@currentBadge?.collection) 
+    @currentArchive = Archive.findBySlug(@currentBadge?.collection)
 
   setTitle: =>
     if @badgesLoadad
       if @currentBadge?
-        document.title = "Notes From Nature - Badge - #{@currentBadge.name}"     
+        document.title = "Notes From Nature - Badge - #{@currentBadge.name}"
       else
         document.title = "Notes From Nature - Could not find archive"
     else
       document.title = "Notes From Nature - Loading"
 
   active: (params) =>
-    super 
+    super
     @badgeName = params.id 
     @loadBadge()
     @setTitle()
     @render()
     
   render: =>
-    console.log 'cb', @currentBadge
-    console.log 'ca', @currentArchive
     if @currentBadge?
       @html require('/views/badges/badge')
         badge: @currentBadge
