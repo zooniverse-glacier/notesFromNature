@@ -3,10 +3,10 @@ Spine = require('spine')
 class EOL extends Spine.Model
   @configure 'EOL', 'EOLBaseURL', 'format',  'apiKey', 'version'
 
-  EOLBaseURL : 'http://www.eol.org/api/'
-  format     : 'json'
-  apiKey     : 'ba4d577231b1f8ed74014f3ea8d179f2fffd1e2e'
-  version    : "1.0"
+  EOLBaseURL: 'http://www.eol.org/api/'
+  format: 'json'
+  apiKey: 'ba4d577231b1f8ed74014f3ea8d179f2fffd1e2e'
+  version: "1.0"
 
   configure: =>
     super 
@@ -29,7 +29,7 @@ class EOL extends Spine.Model
       results.media = media
       callback results
 
-  runRequest: (method,term, options...) =>
+  runRequest: (method, term, options...) =>
     callback = options[options.length-1]
     opts = options[0...options.length-1].join("&")
     window.EOLSamp = @

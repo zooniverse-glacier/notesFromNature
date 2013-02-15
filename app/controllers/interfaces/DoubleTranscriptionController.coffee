@@ -6,39 +6,18 @@ Archive = require 'models/Archive'
 Classification = require 'models/Classification'
 Subject = require 'models/Subject'
 
-class DoubleTranscriptionController extends Spine.Controller
+InterfaceController = require 'controllers/InterfaceController'
+
+class DoubleTranscriptionController extends InterfaceController
   className: 'DoubleTranscriptionController'
   elements:
     '#eol-widget': 'eolWidget'
+  template: require 'views/transcription/birds'
+  widgetName: 'DoublePage'
 
   constructor: ->
     super
-    Spine.bind 'finishedBirdsTranscription', @saveClassification
     Spine.bind 'searchEol', @searchEol
-
-  render: =>
-    @html require("views/transcription/birds")
-
-  startWorkflow: (@archive) =>
-    @render()
-
-    go = =>
-      window.GOD = new nfn.ui.view.GOD({
-        model: new nfn.ui.model.GOD()
-      })
-
-      transcriberModel = new nfn.ui.model.DoublePage()
-      @transcriber = new nfn.ui.view.DoublePage({
-        model: transcriberModel
-        Spine: Spine
-      })
-
-      $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
-
-      @nextSubject()
-      window.transcriber = @transcriber
-
-    @delay go, 200
 
   nextSubject: =>
     @archive.nextSubject (@currentSubject) =>

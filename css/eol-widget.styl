@@ -1,0 +1,59 @@
+#eol-widget
+  background: #111
+  bottom: 0
+  color: #fff
+  font-size: 12px
+  height: 450px
+  left: 0
+  overflow: hidden
+  position: fixed
+  width: 250px
+
+  h1
+    font-size: 1.2em
+
+  h2
+    color: #8e8e8e
+    font-size: 0.8em
+    margin: 0
+    text-transform: uppercase
+
+  img
+    border: 1px solid #000
+    box-shadow: 1px 0 0 2px #000
+    box-sizing: border-box
+    height: 63px
+    width: 105px
+
+  section
+    box-sizing: border-box
+    padding: 7px 15px
+    position: relative
+
+    &:before, &:after
+      content: ''
+      height: 1px
+      left: 0
+      position: absolute
+      width: 100%
+
+    &:before
+      background: #000
+      bottom: 1px
+
+    &:after
+      background: #181818
+      bottom: 0
+
+  ul
+    @extends #semantic-list
+
+    li
+      float: left
+      width: 50%
+
+      &:nth-child(even)
+        text-align: right
+
+.active #eol-widget
+  z-index: 1001

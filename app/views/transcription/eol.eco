@@ -1,0 +1,28 @@
+
+<% if @data?: %>
+  <section>
+    <h2>Encyclopedia of Life</h2>
+  </section>
+
+  <section>
+    <h1><%= @data.title %></h1>
+    <h2><%= @data.content %></h2>
+  </section>
+
+  <% if @data.images?: %>
+    <section>
+      <% if @data.images.length > 0: %>
+      <ul>
+        <% for image in @data.images: %>
+          <% source = if image.thumbnail then image.thumbnail else image.standard %>
+          <li><img src="<%= source %>"></li>
+        <% end %>
+      </ul>
+      <% end %>
+    </section>
+  <% end %>
+<% else: %>
+  <section>
+    <h2>No data available</h2>
+  </section>
+<% end %>

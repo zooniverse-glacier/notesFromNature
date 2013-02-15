@@ -1,6 +1,4 @@
-
 <script type="text/template" id="transcriber-birds-widget-template">
-
   <div class="top">
     <div class="title">Welcome</div>
   </div>
@@ -23,7 +21,6 @@
       <a href="#" class="btn nextLine">Next Line</a>
     </div>
   </div>
-
 </script>
 
 <script type="text/template" id="tooltip-step-template">
@@ -101,3 +98,6 @@
   <div class="buttons"><a href="#" class="btn main">{{ main }}</a></div> 
   <div class="tip"></div>
 </script>
+
+<div id="eol-widget"></div>
+
