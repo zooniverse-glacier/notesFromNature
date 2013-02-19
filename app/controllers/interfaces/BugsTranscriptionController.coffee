@@ -1,5 +1,3 @@
-Spine   = require 'spine'
-
 Archive = require 'models/Archive'
 
 InterfaceController = require 'controllers/InterfaceController'
@@ -11,10 +9,10 @@ class BugsTranscriptionController extends InterfaceController
 
   constructor: ->
     super
-    
+
   nextSubject: =>
     @archive.nextSubject (@currentSubject) =>
-      callback = => 
+      callback = =>
         $('.photos img').animate({ marginLeft: '0' }, 500)
         @transcriber.spinner.hide()
         @transcriber.startTranscribing()

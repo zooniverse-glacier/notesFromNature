@@ -1,12 +1,9 @@
 Spine = require 'spine'
 
 Archive = require 'models/Archive'
-Classification = require 'models/Classification'
 Institute = require 'models/Institute'
-Subject = require 'models/Subject'
 
-EOL = require 'models/EOL'
-
+BirdsTranscriptionController = require 'controllers/interfaces/Birds'
 BugsTranscriptionController = require 'controllers/interfaces/BugsTranscriptionController'
 DoubleTranscriptionController = require 'controllers/interfaces/DoubleTranscriptionController'
 SernacTranscriptionController = require 'controllers/interfaces/SernacTranscriptionController'
@@ -50,12 +47,12 @@ class TranscriptionController extends Spine.Controller
       # Set the appropriate transcription controller and start it up.
       switch @archive.slug()
         when 'calbug' then @transcriptionController = new BugsTranscriptionController()
-        when 'nhm_birds' then @transcriptionController = new DoubleTranscriptionController()
+        when 'nhm_birds' then @transcriptionController = new BirdsTranscriptionController()
         when 'herbarium' then @transcriptionController = new SernacTranscriptionController()
         else
           console.log 'No transcription interface for that archive is available.'
+          Spine.Route.navigate '/' # Rather abrupt, but at least a user doesn't sit at a blank page.
 
-      console.log @transcriptionController
       @transcriptionController.startWorkflow(@archive)
       @render()
 

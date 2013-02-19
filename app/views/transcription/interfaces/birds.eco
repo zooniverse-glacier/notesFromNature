@@ -1,0 +1,31 @@
+<div id="photo" class="photo"></div>
+
+<div id="group" class="group">
+  <div id="keeper" class="keeper"></div>
+  <div id="data-entry" class="data">
+    <form>
+      <section class="meta-data">
+        <span><label>Year</label><input type="text" id="year"></input></span>
+        <span><label>Code</label><input type="text" id="code"></input></span>
+        <button id="add-row">Add Row</button>
+      </section>
+      <table border="0" id="table">
+        <thead>
+          <tr>
+            <th>Date Collected</th>
+            <th>ID</th>
+            <th>Species Name</th>
+            <th>Location</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%- @rowTemplate() %>
+        </tbody>
+      </table>
+      <section>
+        <input type="submit" value="Finished" id="submit">
+      </section>
+    </form>
+  </div>
+</div>

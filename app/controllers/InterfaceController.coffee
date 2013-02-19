@@ -7,11 +7,10 @@ Subject = require 'models/Subject'
 class InterfaceController extends Spine.Controller
   constructor: ->
     super
-    console.log 'binding event'
     Spine.bind 'finishedTranscription', @saveClassification
 
-  render: =>
-    @html @template
+  render: (opts = null) =>
+    @html @template(opts)
 
   startWorkflow: (@archive) =>
     @render()
@@ -35,7 +34,6 @@ class InterfaceController extends Spine.Controller
     @delay go, 200
 
   saveClassification: (data) =>
-    console.log 'saveClassification'
     classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0] } )
     for annotation in data.toJSON()
       classification.annotate annotation.step, annotation.value

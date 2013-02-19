@@ -1,5 +1,3 @@
-Spine   = require 'spine'
-
 Archive = require 'models/Archive'
 
 InterfaceController = require 'controllers/InterfaceController'

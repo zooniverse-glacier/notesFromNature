@@ -5,6 +5,7 @@
 @import './layout'
 @import './main'
 @import './buttons'
+@import './interfaces'
 @import './transcribing'
 @import './eol-widget'
 @import './titillium'
@@ -22,6 +23,12 @@ $tb-input-bg = white
 
 @import '../node_modules/zooniverse/css/top_bar'
 @import '../node_modules/zooniverse/css/login_forms'
+
+.no-select
+  user-select: none
+
+.no-transition
+  transition: none !important
 
 .zooniverseTopBar
   transition: top margin-top 1s ease-in-out
