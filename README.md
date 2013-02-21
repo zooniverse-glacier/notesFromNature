@@ -1,13 +1,16 @@
-# Notes form nature
-
+# Notes from Nature
 
 ## Setup
 
-- Install node.js
+- Install node.js and coffeescript
 - Clone this repo
-- Navigate to the repo 
-- Run npm -install .
-- Run npm -install hem@beta 
-- type hem server 
-- navigate to http://0.0.0.0:9294
-- take some notes from nature ! 
+- Navigate to the repo
+- Run the following:
+
+```
+npm install .
+coffee build.coffee
+hem server
+```
+
+- Navigate to http://0.0.0.0:9294
