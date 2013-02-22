@@ -50,7 +50,6 @@ files = [
 
   'nfn/ui/bugs/transcriber.js',
   'nfn/ui/bugs/widget.js',
-  'nfn/ui/bugs/launcher.js',
   'nfn/ui/bugs/magnifier.js',
   'nfn/ui/bugs/selection.js',
   'nfn/ui/bugs/highlight.js',
