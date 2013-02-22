@@ -76,19 +76,10 @@ class BirdsTranscriptionController extends InterfaceController
     $(document).off 'mouseup mousemove'
 
   clickBox: (e) =>
-    console.log 'ccb b', @canCreateBox
     e.stopPropagation()
-
-    @canCreateBox = false
-    @$(e.currentTarget).resizable('enable')
-    console.log 'ccb a', @canCreateBox
-
-  # clickBoxes: (e) =>
-  #   console.log 'ccb', @canCreateBox
-  #   @canCreateBox = true
-
-  dblClickBox: (e) =>
-    console.log 'dblclick box'
-
+    if $(e.currentTarget).hasClass 'resizable'
+      $(e.currentTarget).removeClass 'resizable'
+    else
+      $(e.currentTarget).addClass 'resizable'
 
 module.exports = BirdsTranscriptionController

@@ -5,15 +5,20 @@
   .boxes
     position: relative
 
+    img
+      @extends #no-select
+
   .box
-    background: #006
-    border: #003
-    opacity: 0.25
+    background: rgba(#006, 0.25)
+    border: 1px solid transparent
     position: absolute !important
 
+    &.resizable
+      border-color: #fff
+
     &.red
-      background: #f00
+      background: rgba(#f00, 0.25)
     &.green
-      background: #0f0
+      background: rgba(#0f0, 0.25)
     &.blue
-      background: #00f
+      background: rgba(#00f, 0.25)
