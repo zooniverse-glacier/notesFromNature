@@ -1,178 +1,94 @@
-Classification = require 'models/Classification'
-
 InterfaceController = require 'controllers/InterfaceController'
 
-ROW_HEIGHT = 50
+data = require 'lib/ocr-data'
 
 class BirdsTranscriptionController extends InterfaceController
+  canCreateBox: true
   className: 'birds-interface'
   elements:
-    '#photo': 'photo'
-    '#data-entry': 'dataEntry'
-    '#group': 'group'
-    '#year': 'year'
-    '#code': 'code'
-    '#table': 'table'
-    '#keeper': 'keeper'
+    '.boxes': 'boxes'
   events:
-    'mousedown #keeper': 'onMoveKeeper'
-    'click #add-row': 'addRow'
-    'click #submit': 'onSubmit'
-  rowTemplate: require 'views/transcription/interfaces/birds-row'
+    'mousedown .box': 'clickBox'
+    'mousedown .boxes': 'clickBoxes'
   template: require 'views/transcription/interfaces/birds'
 
   constructor: ->
     super
 
   startWorkflow: (@archive) =>
-    @render({rowTemplate: @rowTemplate})
+    @render()
     @nextSubject()
 
   nextSubject: =>
-    @archive.nextSubject (@currentSubject) =>
-      @render({rowTemplate: @rowTemplate})
-      @photo.append '<img src="' + @currentSubject.location.standard + '">'
+    boxes = []
+    @counter = 1
+    lastMid = 0
+    colors = ['red', 'green', 'blue']
+    c = 0
 
-      @photo.imagesLoaded =>
-        domImage = $('#photo img').first()
-        width = domImage.width()
-        height = domImage.height()
-        domImage.data('scale', 1)
-        # imageX = 0
-        # imageY = 0
+    for datum, i in data when i < 100
+        box = datum.split(',')
+        y = parseInt(box[1])
+        x = parseInt(box[0])
+        width = parseInt(box[2] - box[0])
+        height = parseInt(box[3] - box[1])
+        mid = y + (height / 2)
 
-        # Dragging
-        doDrag = (d) ->
-          $(domImage).addClass 'no-transition'
+        style = "top: #{box[1]}px; left: #{box[0]}px; width: #{width}px; height: #{height}px"
+        # console.log x, y, width, height, mid, colors, c
+        unless width > 600 or height > 100 or box[0] is "0" or box[1] < 50 or width < 3 or height < 3
+          @boxes.append('<div data-id='+@counter+' class="box red" style="' + style + '"></div>')
+          @counter += 1
+          lastMid = mid
+    @$('.box').resizable({
+      handles: 'all'
+      disabled: true
+    })
+    # @$('.box').draggable({
+    #   addClasses: false
+    # })
 
-          d.x = d3.event.x
-          d.y = d3.event.y
+  clickBoxes: (e) =>
+    console.log 'createBox ccb', @canCreateBox
+    if @canCreateBox
+      e.stopPropagation()
+      e.preventDefault()
+      @boxing = true
 
-          d3.select(@)
-            .attr('style', "top: #{d3.event.y}px; left: #{d3.event.x}px")
+      style = "top: #{e.pageY}px; left: #{e.pageX}px"
+      @boxes.append('<div class="box red" data-id="'+@counter+'" style="'+style+'"></div>')
+      box = @boxes.find('[data-id="'+@counter+'"]')
 
-        doDragEnd = (d) ->
-          $(domImage).removeClass 'no-transition'
+      $(document).on 'mouseup', @saveBox
+      $(document).on 'mousemove', (mm) =>
+        console.log 'mm', @boxing
+        if @boxing
+          box.width(mm.pageX - e.pageX)
+          box.height(mm.pageY - e.pageY)
+    else
+      @canCreateBox = true
+      @$('.box').resizable('disable')
 
-        drag = d3.behavior.drag()
-          .origin((d, i) ->
-            {x: @.offsetLeft, y: @.offsetTop}
-            )
-          .on('drag', doDrag)
-          .on('dragend', doDragEnd)
+  saveBox: (e) =>
+    @boxing = false
 
-        # Zooming
-        doZoom = (d) ->
-          if d.z is d3.event.scale then return
-          # mouseX = d3.event.sourceEvent.clientX - @.offsetLeft
-          # mouseY = d3.event.sourceEvent.clientY - @.offsetTop
+    @counter += 1
+    $(document).off 'mouseup mousemove'
 
-          # imageX = imageX + (mouseX / d.z)
-          # imageY = imageY + (mouseY / d.z)
+  clickBox: (e) =>
+    console.log 'ccb b', @canCreateBox
+    e.stopPropagation()
 
-          # console.log 'mouse', mouseX, mouseY, imageX, imageY, d.z
-          # console.log 'do Zoom', d, @, d3.event
+    @canCreateBox = false
+    @$(e.currentTarget).resizable('enable')
+    console.log 'ccb a', @canCreateBox
 
-          # d.z = d3.event.scale
-          # d.x = imageX - mouseX / d.z
-          # d.y = imageY - mouseY / d.z
+  # clickBoxes: (e) =>
+  #   console.log 'ccb', @canCreateBox
+  #   @canCreateBox = true
 
-          # d3.select(@)
-          #   .attr('width', width * d.z)
-          #   .attr('height', height * d.z)
-          #   .attr('style', "top: #{d.y}px; left: #{d.x}px")
+  dblClickBox: (e) =>
+    console.log 'dblclick box'
 
-          # Simple
-          d.z = d3.event.scale
-
-          $(@).data('scale', d.z)
-          d3.select(@)
-            .attr('width', width * d.z)
-            .attr('height', height * d.z)
-
-        zoom = d3.behavior.zoom()
-          .on('zoom', doZoom)
-
-        image = d3.select('#photo img')
-          .datum({x: 0, y: 0, z: 1})
-          .attr('width', (d) ->
-            @.offsetWidth
-            )
-          .attr('height', (d) ->
-            @.offsetHeight
-            )
-          .attr('style', (d) ->
-            "top: #{d.y}px; left: #{d.x}px"
-            )
-          .call(drag)
-          .call(zoom)
-
-  onSubmit: (e) =>
-    e.preventDefault()
-    classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0]})
-
-    data =
-      year: @year.val()
-      code: @code.val()
-      records: []
-
-    fields = []
-    obj = []
-
-    @table.find('th').each ->
-      fields.push $(@).html()
-
-    clean = (field) ->
-      field.replace('_', ' ').toLowerCase()
-
-    clean(field) for field in fields
-
-    @table.find('tr').each (i) ->
-      unless i then return
-      line = {}
-      for field, i in fields
-        line[field] = $(@).children().eq(i).find('input').val()
-      data.records.push line
-
-    classification.saveData data
-    @currentSubject.retire()
-    classification.send()
-    @nextSubject()
-
-  addRow: (e) =>
-    e.preventDefault() if e
-
-    image = @photo.find('img')
-    tBody = @table.find('tbody')
-
-    scaledHeight = image.data('scale') * ROW_HEIGHT
-    image.css
-      top: parseInt(image.css('top').slice(0, image.css('top').length - 2)) - scaledHeight
-    tBody.append(@rowTemplate).scrollTop tBody[0].scrollHeight
-
-  # Keeper
-  onMoveKeeper: (e) =>
-    @movingKeeper = true
-    e.preventDefault()
-    $('body').addClass 'no-select'
-
-    startY = e.pageY
-
-    $(document).on 'mouseup', @stopMoveKeeper
-    $(document).on 'mousemove', (d_e) =>
-      if @movingKeeper
-        unless d_e.pageY + @group.height() > $(document).height()
-          @group.css
-            top: d_e.pageY
-        else
-          @group.css
-            top: $(document).height() - @group.height()
-
-  stopMoveKeeper: (e) =>
-    @movingKeeper = false
-    $('body').removeClass 'no-select'
-    @photo.find('img').removeClass 'no-transition'
-
-    $(document).off 'mousemove mouseup'
 
 module.exports = BirdsTranscriptionController

@@ -1,55 +1,19 @@
 .birds-interface
   @extends #interface
+  position: absolute
 
-  .photo
-    z-index: 1
-
-    img
-      position: fixed
-      transition: top 0.4s cubic-bezier(0.0, 0.0, 0.35, 1.0),
-                  left 0.4s cubic-bezier(0.0, 0.0, 0.35, 1.0)
-
-  .group
-    position: absolute
-    top: 280px
-    width: 100%
-    z-index: 2
-
-  .keeper
-    height: 10px
+  .boxes
     position: relative
-    width: 100%
-    z-index: 3
-    &:before
-      background: #fff
-      box-shadow: 0 0 10px #444
-      content: ''
-      height: 1px
-      position: absolute
-      top: 4px
-      width: 100%
 
-  .data
-    background: rgba(#333, 0.8)
-    color: #fff
-    margin: 0 auto
-    max-width: 1000px
-    position: relative
-    z-index: 4
+  .box
+    background: #006
+    border: #003
+    opacity: 0.25
+    position: absolute !important
 
-    table
-      width: 100%
-
-    thead, tbody
-      display: block
-
-    tbody
-      max-height: 280px
-      overflow-x: hidden
-      overflow-y: auto
-
-    td, th
-      box-sizing: border-box
-      display: inline-block
-      padding: 2px 5px
-      width: 175px
+    &.red
+      background: #f00
+    &.green
+      background: #0f0
+    &.blue
+      background: #00f
