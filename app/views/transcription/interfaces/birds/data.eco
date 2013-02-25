@@ -1,0 +1,16 @@
+<section class="actions">
+  <h2>Actions</h2>
+  <ul>
+    <li data-action="delete">Delete</li>
+    <li data-action="same">Same as Above</li>
+    <li data-action="next">Next</li>
+    <li data-action="prev">Previous</li>
+  </ul>
+</section>
+
+<h3>Box ID#<%- @id %></h3>
+<form>
+  <label>Transcribe</label>
+  <input type="text" id="field" value="<%- @value %>">
+  <button id="done">Done</button>
+</form>

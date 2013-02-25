@@ -1,3 +1,9 @@
+#no-select
+  user-select: none
+
+.no-transition
+  transition: none !important
+
 @import './normalize'
 @import './mixin'
 @import '../node_modules/nib/lib/nib'
@@ -24,17 +30,11 @@ $tb-input-bg = white
 @import '../node_modules/zooniverse/css/top_bar'
 @import '../node_modules/zooniverse/css/login_forms'
 
-#no-select
-  user-select: none
-
-.no-transition
-  transition: none !important
-
 .zooniverseTopBar
   transition: top margin-top 1s ease-in-out
   margin-bottom: 150px
   #zooniverse-top-bar-button
-  	left: 40px
+    left: 40px
 
 #zooniverse-top-bar-container p
   font-family: "Open Sans"

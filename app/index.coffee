@@ -89,7 +89,7 @@ class App extends Spine.Stack
 
     Badge.loadDefinitions()
 
-    @append new NotificationController()
+    # @append new NotificationController()
     User.bind 'sign-in', =>
       if User.current?
         Badge.getUserBadges()

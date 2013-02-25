@@ -7,10 +7,18 @@ class BirdsTranscriptionController extends InterfaceController
   className: 'birds-interface'
   elements:
     '.boxes': 'boxes'
+    '#data-entry': 'dataEntry'
   events:
-    'mousedown .box': 'clickBox'
-    'mousedown .boxes': 'clickBoxes'
-  template: require 'views/transcription/interfaces/birds'
+    'mousedown .box': 'onClickBox'
+    'mousedown .boxes': 'clickImage'
+    'click [data-action="delete"]': 'deleteBox'
+    'click [data-action="same"]': 'sameBox'
+    'click [data-action="next"]': 'clickNextBox'
+    'click [data-action="prev"]': 'clickPreviousBox'
+    'click .data-entry': 'onClickDataEntry'
+    'click #done': 'onDoneBox'
+  dataTemplate: require 'views/transcription/interfaces/birds/data'
+  template: require 'views/transcription/interfaces/birds/main'
 
   constructor: ->
     super
@@ -23,10 +31,8 @@ class BirdsTranscriptionController extends InterfaceController
     boxes = []
     @counter = 1
     lastMid = 0
-    colors = ['red', 'green', 'blue']
-    c = 0
 
-    for datum, i in data when i < 100
+    for datum, i in data
         box = datum.split(',')
         y = parseInt(box[1])
         x = parseInt(box[0])
@@ -35,51 +41,119 @@ class BirdsTranscriptionController extends InterfaceController
         mid = y + (height / 2)
 
         style = "top: #{box[1]}px; left: #{box[0]}px; width: #{width}px; height: #{height}px"
-        # console.log x, y, width, height, mid, colors, c
+
         unless width > 600 or height > 100 or box[0] is "0" or box[1] < 50 or width < 3 or height < 3
-          @boxes.append('<div data-id='+@counter+' class="box red" style="' + style + '"></div>')
+          @boxes.append('<div data-id='+@counter+' class="box" style="' + style + '"></div>')
           @counter += 1
           lastMid = mid
+
     @$('.box').resizable({
       handles: 'all'
       disabled: true
     })
-    # @$('.box').draggable({
-    #   addClasses: false
-    # })
 
-  clickBoxes: (e) =>
-    console.log 'createBox ccb', @canCreateBox
-    if @canCreateBox
-      e.stopPropagation()
-      e.preventDefault()
-      @boxing = true
-
-      style = "top: #{e.pageY}px; left: #{e.pageX}px"
-      @boxes.append('<div class="box red" data-id="'+@counter+'" style="'+style+'"></div>')
-      box = @boxes.find('[data-id="'+@counter+'"]')
-
-      $(document).on 'mouseup', @saveBox
-      $(document).on 'mousemove', (mm) =>
-        console.log 'mm', @boxing
-        if @boxing
-          box.width(mm.pageX - e.pageX)
-          box.height(mm.pageY - e.pageY)
-    else
-      @canCreateBox = true
-      @$('.box').resizable('disable')
-
-  saveBox: (e) =>
-    @boxing = false
-
-    @counter += 1
-    $(document).off 'mouseup mousemove'
-
-  clickBox: (e) =>
+  onClickBox: (e) =>
+    e.preventDefault()
     e.stopPropagation()
-    if $(e.currentTarget).hasClass 'resizable'
-      $(e.currentTarget).removeClass 'resizable'
+
+    @clickBox e.currentTarget
+
+  onClickDataEntry: (e) ->
+    e.stopPropagation()
+
+  clickBox: (el) =>
+    console.log 'clicked a box', $(el)
+    box = $(el)
+
+    unless box.hasClass 'resizable'
+      if $('.box').hasClass 'resizable'
+        @clickImage()
+        @clickBox el
+      else
+        console.log 'do things with box'
+        box.addClass('resizable').resizable('enable').draggable()
+        $('body').scrollTop box.position().top - ($(window).height() / 2) + (box.height() / 2)
+        $('body').scrollLeft box.position().left - ($(window).width() / 2) + (box.width() / 2)
+        @startDataEntry el
+        @resizing = true
+
+  deleteBox: (e) =>
+    boxToDelete = @currentBox
+    if $(boxToDelete).next().length
+      @clickBox $(boxToDelete).next()
     else
-      $(e.currentTarget).addClass 'resizable'
+      @clickBox $('.box').first()
+
+    $(boxToDelete).remove()
+
+  sameBox: (e) =>
+    $(@currentBox).data 'value', 'same'
+    @clickNextBox()
+
+  clickNextBox: =>
+    if $(@currentBox).data('value')?
+      $(@currentBox).addClass 'green'
+
+    if $(@currentBox).next().length
+      @clickBox $(@currentBox).next()
+    else
+      @clickBox $('.box').first()
+
+  clickPreviousBox: =>
+    @clickBox $(@currentBox).prev()
+
+  startDataEntry: (el) =>
+    id = $(el).data('id')
+    value = $(el).data('value') || ''
+
+    @currentBox = el
+
+    @dataEntry.addClass 'active'
+    @dataEntry.html @dataTemplate({id: id, value: value})
+    defer = =>
+      field = @dataEntry.find('#field')
+      field.val(value).focus()
+    setTimeout defer, 0
+
+  clickImage: (e) =>
+    console.log 'clickImage'
+    if $('.box').hasClass 'resizable'
+      $('.box').removeClass('resizable').resizable('disable')
+      delete @currentBox
+      @dataEntry.empty().removeClass('active')
+      @resizing = false
+      console.log 'there was a box selected'
+    else
+      console.log 'there wasnt a box selected'
+
+      box = document.createElement 'div'
+      $(box).addClass('box').data('id', @counter).css({
+        top: e.pageY
+        left: e.pageX
+        })
+      @counter += 1
+      @creating = true
+
+      @boxes.append box
+      $(document).on 'mouseup', {box: box}, @onDoneCreateBox
+      $(document).on 'mousemove', (de) =>
+        if @creating
+          $(box).width de.pageX - e.pageX
+          $(box).height de.pageY - e.pageY
+
+  onDoneCreateBox: (e) =>
+    @creating = false
+
+    $(e.data.box).resizable({
+      handles: 'all'
+      disabled: true
+    })
+
+    $(document).off 'mousemove mouseup'
+
+  onDoneBox: (e) =>
+    e.preventDefault()
+    $(@currentBox).data 'value', @dataEntry.find('#field').val()
+    @clickNextBox()
 
 module.exports = BirdsTranscriptionController

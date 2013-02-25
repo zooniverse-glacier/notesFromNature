@@ -2,6 +2,53 @@
   @extends #interface
   position: absolute
 
+  .menu
+    background: #444
+    box-sizing: border-box
+    color: #fff
+    height: 50px
+    padding: 15px
+    position: fixed
+    top: 0
+    width: 100%
+    z-index: 1001
+
+    a
+      color: #ccc
+      font-weight: 700
+
+    aside
+      float: right
+
+  .data-entry
+    background: rgba(#333, 0.6)
+    bottom: 0
+    box-sizing: border-box
+    color: #d3d3d3
+    height: 200px
+    padding: 25px
+    position: fixed
+    width: 100%
+    z-index: 1000
+
+    .actions
+      border-left: 1px solid #999
+      box-sizing: border-box
+      float: right
+      padding: 15px
+      width: 200px
+
+      ul
+        @extends #semantic-list
+
+        li
+          cursor: pointer
+          text-decoration: underline
+          &:hover
+            color: #fff
+            text-decoration: none
+
+
   .boxes
     position: relative
 
@@ -9,11 +56,12 @@
       @extends #no-select
 
   .box
-    background: rgba(#006, 0.25)
+    background: rgba(#f00, 0.15)
     border: 1px solid transparent
     position: absolute !important
 
     &.resizable
+      background: rgba(#f00, 0.30)
       border-color: #fff
 
     &.red
