@@ -1,14 +1,19 @@
+.transcribingScreen {
+  overflow: hidden;
+}
+
 .transcriber {
   z-index: 1000
 }
 
 .transcriber.birds,
 .transcriber.sernac {
-  position: absolute;
-  top: 0; bottom: 0; right: 0;
+  background: url("images/transcribers/bg-transcriber.png");
+  height: 100%;
   left: 0;
   overflow: hidden;
-  background: url("images/transcribers/bg-transcriber.png");
+  position: absolute;
+  top: 0;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -326,10 +331,10 @@
 
 .transcriber.birds .photos,
 .transcriber.sernac .photos {
-  margin: auto;
-  text-align: center;
-  overflow: auto;
   height: 100%;
+  margin: auto;
+  overflow: auto;
+  text-align: center;
   z-index: 10;
 }
 
