@@ -10031,6 +10031,7 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
       value = transcription.get("value");
     }
 
+    console.log('updateInputField value', value);
     this.transcriberWidget.model.set({type: stepGuide.type, inputWidth: stepGuide.inputWidth, value: value});
   },
 
@@ -10060,26 +10061,18 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
   },
 
   saveCurrentStep: function() {
-
     var transcription = this.getStepData(this.model.get("currentStep"));
 
     if (transcription) {
-
       transcription.set("value", this.transcriberWidget.getValue());
-
     } else {
-
       transcription = new nfn.ui.model.Transcription({
         step:  this.model.get("currentStep"),
         value: this.transcriberWidget.getValue()
       });
 
       this.transcriptions.push(transcription);
-
     }
-
-    //console.log("STATUS", this.transcriptions.toJSON());
-
   },
 
   onResize: function() {
@@ -10628,23 +10621,27 @@ nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
     var type = this.model.get("type");
 
     if ( type == 'text' || type == 'location' ) {
-
+      console.log('text/location value', this.$input.val());
       return this.$input.val();
-
     } else if ( type == 'date') {
-
-      var month = this.$el.find(".month").val();
-      var day   = this.$el.find(".day").val();
-      var year  = this.$el.find(".year").val();
-
+      console.log('el', this.$input);
+      this.$input.each(function(i){
+        switch ($(this).attr('class')) {
+          case 'month':
+            month = $(this).val(); break;
+          case 'day':
+            day = $(this).val(); break;
+          case 'year':
+            year = $(this).val(); break;
+        }
+      });
+      console.log('date value', month, day, year);
       if (month && day && year) {
         return month + "/" + day + "/" + year;
       } else {
         return "";
       }
-
     }
-
   },
 
   updatePlaceholder: function() {
@@ -10687,31 +10684,24 @@ nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
   },
 
   updateValue: function() {
-
     this.$input.val("");
 
-    var
-    value = this.model.get("value"),
-    type  = this.model.get("type");
+    var value = this.model.get("value"),
+        type = this.model.get("type");
 
     if ( type == 'text' || type == 'location' ) {
-
       this.$input.val(value);
-
-    } else if ( type == 'date' ) {
-
+    } else if (type == 'date') {
       var date = value.split("/");
 
       var month = date[0];
       var day   = date[1];
       var year  = date[2];
 
-      var month = this.$el.find(".month").val(month);
-      var day   = this.$el.find(".day").val(day);
-      var year  = this.$el.find(".year").val(year);
-
+      this.$el.find(".month").val(month);
+      this.$el.find(".day").val(day);
+      this.$el.find(".year").val(year);
     }
-
   },
 
   updateType: function() {
@@ -10742,11 +10732,9 @@ nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
       this.$input.addresspicker();
 
     } else if ( type == 'date' ) {
-
       this.$el.find(".input_field input").remove();
       this.$el.find(".input_field").append( this.templates[type].render() );
       this.$input = this.$el.find('.input_field input');
-
     }
 
   },
