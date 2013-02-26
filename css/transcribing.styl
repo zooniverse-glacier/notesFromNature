@@ -67,24 +67,24 @@
 
     &.step {
       padding: 0;
-      width:165px;
+      width: 175px;
 
       .tip { left: auto; right: 10px; margin-left: 0; } 
 
         ul {
           @extends #semantic-list
           li {
-            padding: 8px 10px;
-            margin: 0 0 0 7px;
+            box-sizing: border-box;
+            padding: 5px 10px 5px 10px;
             border-bottom: 1px solid #EDEDED;
 
               &.completed {
                 border-bottom: 1px solid #EDEDED;
-                background:url(images/bullet-green.png) no-repeat center left;
+                // background:url(images/bullet-green.png) no-repeat center left;
                 a { color: #693;  }
               }
 
-              background:url(images/bullet-orange-hollow.png) no-repeat center left;
+              // background:url(images/bullet-orange-hollow.png) no-repeat center left;
 
               &:hover a { text-decoration: underline; }
 
@@ -94,12 +94,18 @@
             }
 
             a {
-            font-size: 13px;
-            color: #F60;
+              font-size: 13px;
+              color: #F60;
+            }
+
+            span {
+              display: block;
+              font-size: 11px;
+              line-height: 15px;
+            }
           }
-         }
-       }
-     }
+        }
+      }
 
     &.with-spinner {
     width: 369px;
