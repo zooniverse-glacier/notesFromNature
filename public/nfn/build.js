@@ -6191,8 +6191,6 @@ nfn.ui.view.Closer = nfn.ui.view.Widget.extend({
     e.stopImmediatePropagation();
 
     this.onClose();
-
-    this.hide();
   },
 
   render: function() {
@@ -11046,21 +11044,21 @@ nfn.ui.view.BugsHelper = nfn.ui.view.Widget.extend({
     GOD.add(this.tooltip, this.closeTooltip);
 
     // Loads the Closer
-    closer = new nfn.ui.view.Closer({
+    this.closer = new nfn.ui.view.Closer({
       model: new nfn.ui.model.Closer(),
       template: $("#closer-template").html(),
       onClose: function () {
         that.closeTooltip();
       }
     });
-    this.addView(closer);
+    this.addView(this.closer);
 
     // Add the close button
     var closerX = this.tooltip.left() + this.tooltip.width() + 12
       , closerY = this.tooltip.top();
-    closer.$el.css({left: closerX, top: closerY});
-    this.$el.append(closer.render());
-    closer.show();
+    this.closer.$el.css({left: closerX, top: closerY});
+    this.$el.append(this.closer.render());
+    this.closer.show();
   },
 
   nextPhoto: function(callback) {
@@ -11069,6 +11067,10 @@ nfn.ui.view.BugsHelper = nfn.ui.view.Widget.extend({
 
   closeTooltip: function(callback) {
     if (!this.tooltip) return;
+
+    if(this.closer) {
+      this.closer.hide();
+    }
 
     this.tooltip.hide();
     this.tooltip.clean();
