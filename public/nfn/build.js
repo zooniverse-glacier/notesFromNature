@@ -9966,7 +9966,6 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
 
     this.transcriberWidget.$el.draggable({
       drag: function(e, ui) {
-        console.log(e, ui);
         helperWidget.$el.css({
           top: ui.position.top - helperWidget.$el.outerHeight() - 11,
           left: ui.position.left
@@ -10272,16 +10271,14 @@ nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
   },
 
   gotoStep: function(e, i) {
-
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
-    this.closeStepTooltip();
-    this.parent.model.set("currentStep", i);
-
     this.clearInput();
-    this.focus();
+    this.closeStepTooltip();
 
+    this.parent.model.set("currentStep", i);
+    this.focus();
   },
 
   showErrorTooltip: function(title, description) {
@@ -10438,21 +10435,18 @@ nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
 
   createStepTooltip: function(e) {
 
-    var
-    title       = "Are you sure?",
-    description = "There are still <u> " + this.parent.getPendingFieldCount() + " empty fields</u> for this record that should be completed before finishing.",
-    main        = "Finish",
-    secondary   = "Cancel";
+    // var
+    // title       = "Are you sure?",
+    // description = "There are still <u> " + this.parent.getPendingFieldCount() + " empty fields</u> for this record that should be completed before finishing.",
+    // main        = "Finish",
+    // secondary   = "Cancel";
 
     this.stepTooltip = new nfn.ui.view.Tooltip({
-
       className: "tooltip step",
-
       model: new nfn.ui.model.Tooltip({
         template: $("#tooltip-step-template").html(),
         links: this.parent.guide
       })
-
     });
 
     this.addView(this.stepTooltip);
@@ -10474,11 +10468,9 @@ nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
     this.stepTooltip.setPosition(x, y);
 
     this.parent.transcriptions.each(function(transcription) {
-
       if (transcription.get("value")) {
         that.stepTooltip.$el.find("li:nth-child(" + (transcription.get("step") + 1) + ")").addClass("completed");
       }
-
     });
 
     var currentStep = this.parent.model.get("currentStep");
@@ -10488,9 +10480,7 @@ nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
       that.gotoStep(e, i);
     });
 
-
     GOD.add(this.stepTooltip, this.closeStepTooltip);
-
   },
 
   closeStepTooltip: function(callback) {
