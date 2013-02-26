@@ -5931,7 +5931,6 @@ nfn.ui.model.Transcriber = Backbone.Model.extend({
   },
 
   nextStep: function() {
-
     var currentStep = this.get("currentStep");
 
     if (currentStep + 1 >= this.get("stepsCount")) {
@@ -5939,15 +5938,13 @@ nfn.ui.model.Transcriber = Backbone.Model.extend({
     } else {
       this.set("currentStep", currentStep + 1);
     }
-
   },
 
   previousStep: function() {
-
     var currentStep = this.get("currentStep");
 
     if (currentStep - 1 < 0) {
-      this.set("currentStep", this.get("stepsCount") );
+      this.set("currentStep", this.get("stepsCount") - 1);
     } else {
       this.set("currentStep", currentStep - 1);
     }
@@ -9498,15 +9495,12 @@ nfn.ui.view.Helper = nfn.ui.view.Widget.extend({
 Spine = require('spine')
 
 nfn.ui.model.Bugs = nfn.ui.model.Transcriber.extend({
-
   defaults: {
     type: 'sernac bugs'
   }
-
 });
 
 nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
-
   initialize: function() {
     var that = this;
 
@@ -9520,74 +9514,79 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
 
     this.guide = [
       {
-        title: 'Locality' ,
-        description: 'Locality Description. <a href="#" class="example">See example</a>',
+        title: 'Country' ,
+        description: 'The country the specimen was found. <a href="#" class="example">See example</a>',
         examples: [ "nfn/ui/herbarium/examples/ex_state.png" ],
-        placeholder: 'Locality',
+        placeholder: 'Country',
         type: "text",
-        inputWidth: 540
+        inputWidth: 580
+      }, {
+        title: 'State/Province' ,
+        description: 'This is the state/province name found on the record. <a href="#" class="example">See example</a>',
+        examples: ["nfn/ui/herbarium/examples/ex_state.png"],
+        placeholder: 'State/Province',
+        type: "text",
+        inputWidth: 580
       }, {
         title: 'County' ,
         description: 'This is the county name found on the record. <a href="#" class="example">See example</a>',
         examples: ["nfn/ui/herbarium/examples/ex_county.png"],
         placeholder: 'County',
         type: "text",
-        inputWidth: 540
+        inputWidth: 580
       }, {
-        title: 'State' ,
-        description: 'This is the state name found on the record. <a href="#" class="example">See example</a>',
-        examples: ["nfn/ui/herbarium/examples/ex_state.png"],
-        placeholder: 'State',
+        title: 'Locality' ,
+        description: 'Locality Description. <a href="#" class="example">See example</a>',
+        examples: [ "nfn/ui/herbarium/examples/ex_state.png" ],
+        placeholder: 'Locality',
         type: "text",
-        inputWidth: 540
+        inputWidth: 580
       }, {
-        title: 'Date collection',
-        description: 'Date specimen collected. Likely below the location. <a href="#" class="example">See example</a>',
+        title: 'Date collected',
+        description: 'Date the specimen was collected. Likely below the location. <a href="#" class="example">See example</a>',
         examples: ["nfn/ui/herbarium/examples/ex_recorded_date.png"],
         placeholder: ['day', 'month', 'year'],
         type: "date",
         inputWidth: 700
       }, {
-        title: 'Collected by',
-        description: 'The name the person that collected this specimen. <a href="#" class="example">See example</a>',
+        title: 'Collector',
+        description: 'The name of the person that collected this specimen. <a href="#" class="example">See example</a>',
         examples: ["nfn/ui/herbarium/examples/ex_recorded_by.png"],
-        placeholder: 'Collected by',
+        placeholder: 'Collector',
         type: "text",
-        inputWidth: 540
+        inputWidth: 580
       }, {
         title: 'Host',
         description: 'The scientific name of the plant or animal that the specimen was found on. <a href="#" class="example">See example</a>',
         examples: ['nfn/ui/herbarium/examples/ex_county.png'],
         placeholder: 'Host',
         type: 'text',
-        inputWidth: 540
+        inputWidth: 580
       }, {
         title: 'Elevation',
         description: 'The elevation where the specimen was found. <a href="#" class="example">See example</a>',
         examples: ['nfn/ui/herbarium/examples/ex_county.png'],
         placeholder: 'Elevation',
         type: 'text',
-        inputWidth: 540
+        inputWidth: 580
       }, {
         title: 'Latitude',
         description: 'The latitude where the specimen was found. <a href="#" class="example">See example</a>',
         examples: ['nfn/ui/herbarium/examples/ex_county.png'],
         placeholder: 'Latitude',
         type: 'text',
-        inputWidth: 540
+        inputWidth: 580
       }, {
-        title: 'Longitude' ,
+        title: 'Longitude',
         description: 'The longitude where the specimen was found. <a href="#" class="example">See example</a>',
         examples: ['nfn/ui/herbarium/examples/ex_county.png'],
         placeholder: 'Longitude',
         type: 'text',
-        inputWidth: 540
+        inputWidth: 580
       }
     ];
 
-
     this.model.set("currentRecord", 0);
-
     this.model.set("currentStep", -1);
     this.model.set("stepsCount", this.guide.length);
 
@@ -10160,11 +10159,12 @@ nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
   className: 'sernac-widget bugs-widget bar',
 
   events: {
-    "click .btn.ok" :            "ok",
+    "click .btn.ok": "ok",
     'keypress input[type=text]': "onEnter",
-    "click .step" :              "showStepTooltip",
-    "click .btn.finish" :        "showFinishTooltip",
-    "click .skip" :              "skip"
+    "click .step": "showStepTooltip",
+    "click .btn.finish": "showFinishTooltip",
+    "click .skip": "skip",
+    'click .back': 'back'
   },
 
   initialize: function() {
@@ -10205,11 +10205,18 @@ nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
     this.parent = this.options.parent;
   },
 
+  back: function(e) {
+    e && e.preventDefault();
+    e && e.stopImmediatePropagation();
+
+    this.clearInput();
+    this.parent.previousStep();
+  },
+
   skip: function(e) {
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
-    console.log('skipping');
     // this.closeTooltip();               // TODO: add test
     // this.parent.helper.closeTooltip(); // TODO: add test
 

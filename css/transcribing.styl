@@ -723,7 +723,8 @@
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-.transcriber.birds .birds-widget .bottom .left .description .skip, .transcriber.birds .birds-widget .bottom .left .description .example {
+.transcriber.birds .birds-widget .bottom .left .description .skip,
+.transcriber.birds .birds-widget .bottom .left .description .example {
   position: relative;
   border-bottom: 1px solid #ccc;
   text-decoration: none;
@@ -848,6 +849,7 @@
   }
 
   & > a.skip,
+  & > a.back,
   & > a.example {
     position: relative;
     margin: 0 0 0 10px;
@@ -872,25 +874,30 @@
 
 .transcriber.sernac .sernac-widget {
   z-index: 10001;
+
+  .right {
+    position: absolute;
+    right: 10px;
+
+    .skip,
+    .back {
+      position: relative;
+      float: left;
+      top: 10px;
+      margin: 0 15px 0 0;
+      color: white;
+      font: 12px "Helvetica", Arial;
+      line-height: 13px;
+      border-bottom: 1px solid #fff;
+      text-decoration: none;
+
+      &:hover {
+        border-bottom: 1px dashed #fff;
+      }
+    }
+  }
 }
-.transcriber.sernac .sernac-widget .right {
-  position: absolute;
-  right: 10px;
-}
-.transcriber.sernac .sernac-widget .right .skip {
-  position: relative;
-  float: left;
-  top: 10px;
-  margin: 0 15px 0 0;
-  color: white;
-  font: 12px "Helvetica", Arial;
-  line-height: 13px;
-  border-bottom: 1px solid #fff;
-  text-decoration: none;
-}
-.transcriber.sernac .sernac-widget .right .skip:hover {
-  border-bottom: 1px dashed #fff;
-}
+
 .transcriber.sernac .sernac-widget .right .step {
   position: relative;
   float: left;
@@ -905,7 +912,8 @@
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
-  height:12px; width: 20px;
+  height:12px;
+  width: 24px;
   padding: 5px 4px;
   text-align: center;
 
