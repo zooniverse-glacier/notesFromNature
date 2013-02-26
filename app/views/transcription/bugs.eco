@@ -1,4 +1,4 @@
-<script type="text/template" id="transcriber-herbarium-widget-template">
+<script type="text/template" id="transcriber-bugs-widget-template">
   <div class="left">
     <div class="input_field">
       <input type="text" placeholder="" />

@@ -9614,11 +9614,10 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
   },
 
   addViews: function() {
-
     // Loads the transcriber widget
-    this.transcriberWidget = new nfn.ui.view.HerbariumWidget({
-      model: new nfn.ui.model.HerbariumWidget(),
-      template: $("#transcriber-herbarium-widget-template").html(),
+    this.transcriberWidget = new nfn.ui.view.BugsWidget({
+      model: new nfn.ui.model.BugsWidget(),
+      template: $("#transcriber-bugs-widget-template").html(),
       parent: this
     });
 
@@ -9687,15 +9686,6 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
     });
 
     this.addView(this.selection);
-
-    // Loads the launcher
-    // this.launcher = new nfn.ui.view.Launcher({
-    //   model: new nfn.ui.model.Launcher(),
-    //   template: $("#launcher-template").html(),
-    //   parent: this
-    // });
-
-    // this.addView(this.launcher);
   },
 
   addPhoto: function(url, callback) {
@@ -10176,14 +10166,14 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
 nfn.ui.model.BugsWidget = Backbone.Model.extend({ });
 
 nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
-  className: 'bugs-widget bar',
+  className: 'sernac-widget bugs-widget bar',
 
   events: {
     "click .btn.ok" :            "ok",
     'keypress input[type=text]': "onEnter",
     "click .step" :              "showStepTooltip",
     "click .btn.finish" :        "showFinishTooltip",
-    "click .skip" :              "showSkipTooltip"
+    "click .skip" :              "skip"
   },
 
   initialize: function() {
@@ -10228,8 +10218,9 @@ nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
     e && e.preventDefault();
     e && e.stopImmediatePropagation();
 
-    this.closeTooltip();               // TODO: add test
-    this.parent.helper.closeTooltip(); // TODO: add test
+    console.log('skipping');
+    // this.closeTooltip();               // TODO: add test
+    // this.parent.helper.closeTooltip(); // TODO: add test
 
     this.clearInput();
     this.parent.nextStep();
