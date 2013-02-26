@@ -9599,10 +9599,10 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
 
     this.model.bind("change:currentStep", function() {
       that.updateStepCounter();
-      that.updateHelper();
 
       that.updateInputField();
       that.updatePlaceholder();
+      that.updateHelper();
     });
 
     this.photos         = new nfn.ui.collection.Photos();
@@ -9949,7 +9949,7 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
     var helperY = $(document).height() - this.helper.height() - 110;
 
     this.helper.setPosition(0, helperY)
-    this.helper.$el.css({ left: "50%", marginLeft: -1*this.helper.width()/2 });
+    this.helper.$el.css({left: "50%", marginLeft: -1 * this.helper.$el.outerWidth() / 2});
     this.helper.show();
 
 
@@ -10018,7 +10018,7 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
   updateStepCounter: function() {
 
     var currentStep = this.model.get("currentStep") + 1;
-    this.transcriberWidget.$step.text( currentStep + "/" + this.model.get("stepsCount"));
+    this.transcriberWidget.$step.text(currentStep + "/" + this.model.get("stepsCount"));
 
   },
 
@@ -10035,30 +10035,24 @@ nfn.ui.view.BugsTranscriber = nfn.ui.view.Transcriber.extend({
       value = transcription.get("value");
     }
 
-    this.transcriberWidget.model.set({ type: stepGuide.type, inputWidth: stepGuide.inputWidth, value: value });
-    this.helper.setWidth(this.transcriberWidget.width());
+    this.transcriberWidget.model.set({type: stepGuide.type, inputWidth: stepGuide.inputWidth, value: value});
   },
 
   updatePlaceholder: function() {
-
-    var
-    currentStep = this.model.get("currentStep"),
-    stepGuide   = this.guide[currentStep];
+    var currentStep = this.model.get("currentStep"),
+        stepGuide = this.guide[currentStep];
 
     this.transcriberWidget.model.set("placeholder", stepGuide.placeholder);
 
   },
 
   updateHelper: function() {
-
-    var
-    currentStep = this.model.get("currentStep"),
-    stepGuide   = this.guide[currentStep];
+    var currentStep = this.model.get("currentStep"),
+        stepGuide = this.guide[currentStep];
 
     this.helper.model.set("title",       stepGuide.title);
     this.helper.model.set("description", stepGuide.description);
     this.helper.model.set("urls",        stepGuide.examples);
-
   },
 
   getStepData: function(step) {
@@ -10611,48 +10605,33 @@ nfn.ui.view.BugsWidget = nfn.ui.view.Widget.extend({
   },
 
   resize: function() {
-
-    var that = this;
-
-    var type  = this.model.get("type");
-    var width = this.model.get("inputWidth");
+    var that = this
+      , type = this.model.get("type")
+      , width = this.model.get("inputWidth");
 
     // Centers the widget horizontally and resizes the input field
-    if ( type == 'text' || type == 'location' ) {
-
+    if (type == 'text' || type == 'location') {
       if (this.$input.parent().width() > width - 300) {
-
         this.$input.parent().animate({ width: width - 300  }, 200, function() {
           that.$input.width(width - 300 - 40);
-          that.animate({ width: width, marginLeft: -1*width/2, left: "50%" }, true);
+          that.animate({width: width}, true);
+          // that.animate({ width: width, marginLeft: -1*width/2, left: "50%" }, true);
         });
-
       } else {
-
-        this.animate({ width: width, marginLeft: -1*width/2, left: "50%" }, true);
+        this.animate({ width: width}, true);
         this.$input.parent().delay(50).animate({ width: width - 300  }, 200);
         this.$input.width(width - 300 - 40);
-
       }
-    } else if ( type == 'date' ) {
-
+    } else if (type == 'date') {
       if ($(".input_field.date").width() > width - 290) {
-
-        this.animate({ width: width, marginLeft: -1*width/2, left: "50%" }, true, function() {
+        this.animate({ width: width}, true, function() {
           $(".input_field.date").delay(50).animate({ width: width - 290  }, 150);
         });
-
       } else {
-
-        console.log('b');
-        this.animate({ width: width, marginLeft: -1*width/2, left: "50%" }, true);
+        this.animate({width: width}, true);
         $(".input_field.date").delay(50).animate({ width: width - 290  }, 150);
-
-
       }
-
     }
-
   },
 
   getValue: function() {
