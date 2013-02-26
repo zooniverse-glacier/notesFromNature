@@ -11,7 +11,7 @@
     <a href="#" class="back">Back</a>
     <a href="#" class="skip">Skip</a>
     <a href="#" class="step"></a>
-    <a href="#" class="btn finish">Finish this record</a>
+    <a href="#" class="btn finish">Next Record</a>
   </div>
 </script>
 
