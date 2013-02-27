@@ -1,3 +1,9 @@
+#no-select
+  user-select: none
+
+.no-transition
+  transition: none !important
+
 @import './normalize'
 @import './mixin'
 @import '../node_modules/nib/lib/nib'
@@ -5,7 +11,9 @@
 @import './layout'
 @import './main'
 @import './buttons'
+@import './interfaces'
 @import './transcribing'
+@import './eol-widget'
 @import './titillium'
 
 $tb-background = #f1f1f1
@@ -26,7 +34,7 @@ $tb-input-bg = white
   transition: top margin-top 1s ease-in-out
   margin-bottom: 150px
   #zooniverse-top-bar-button
-  	left: 40px
+    left: 40px
 
 #zooniverse-top-bar-container p
   font-family: "Open Sans"

@@ -14,15 +14,16 @@ FAQController  = require('controllers/FAQController')
 BadgesController = require('controllers/BadgesController')
 NotificationController = require('controllers/NotificationController')
 
-Config = require('lib/config')
+Config = require 'lib/config'
+Eol = require 'lib/eol'
 
 Api = require('zooniverse/lib/api')
-ZooniverseBar = require('zooniverse/lib/controllers/top_bar')
 User  = require('zooniverse/lib/models/user')
+ZooniverseBar = require('zooniverse/lib/controllers/top_bar')
 
-Archive = require('models/Archive')
-Institute = require('models/Institute')
-Badge = require('models/Badge')
+Archive = require 'models/Archive'
+Badge = require 'models/Badge'
+Institute = require 'models/Institute'
 
 class customTopBar extends ZooniverseBar
   constructor: ->
@@ -88,7 +89,7 @@ class App extends Spine.Stack
 
     Badge.loadDefinitions()
 
-    @append new NotificationController()
+    # @append new NotificationController()
     User.bind 'sign-in', =>
       if User.current?
         Badge.getUserBadges()

@@ -1,23 +1,15 @@
 Spine = require 'spine'
 
 Archive = require 'models/Archive'
-Classification = require 'models/Classification'
 Institute = require 'models/Institute'
-Subject = require 'models/Subject'
 
-EOL = require 'models/EOL'
-
-BugsTranscriptionController = require 'controllers/BugsTranscriptionController'
-DoubleTranscriptionController = require 'controllers/DoubleTranscriptionController'
-SernacTranscriptionController = require 'controllers/SernacTranscriptionController'
+BirdsTranscriptionController = require 'controllers/interfaces/Birds'
+BugsTranscriptionController = require 'controllers/interfaces/BugsTranscriptionController'
+DoubleTranscriptionController = require 'controllers/interfaces/DoubleTranscriptionController'
+SernacTranscriptionController = require 'controllers/interfaces/SernacTranscriptionController'
 
 class TranscriptionController extends Spine.Controller
   className: 'TranscriptionController'
-
-  transcriptionControllers: 
-    'nhm_birds': new DoubleTranscriptionController()
-    'herbarium': new SernacTranscriptionController()
-    'calbug': new BugsTranscriptionController()
 
   constructor: ->
     super
@@ -53,7 +45,14 @@ class TranscriptionController extends Spine.Controller
       document.title = "Notes From Nature - #{@archive.institute().name} - #{@archive.name} - Transcribe"
 
       # Set the appropriate transcription controller and start it up.
-      @transcriptionController = @transcriptionControllers[@archive.slug()]
+      switch @archive.slug()
+        when 'calbug' then @transcriptionController = new BugsTranscriptionController()
+        when 'nhm_birds' then @transcriptionController = new BirdsTranscriptionController()
+        when 'herbarium' then @transcriptionController = new SernacTranscriptionController()
+        else
+          console.log 'No transcription interface for that archive is available.'
+          Spine.Route.navigate '/' # Rather abrupt, but at least a user doesn't sit at a blank page.
+
       @transcriptionController.startWorkflow(@archive)
       @render()
 
@@ -61,5 +60,6 @@ class TranscriptionController extends Spine.Controller
     super
     if @archive? then $('body').removeClass("transcribingScreen #{@archive.slug()}")
     $('.transcriber').remove()
+    Spine.unbind 'finishedTranscription'
 
 module.exports = TranscriptionController

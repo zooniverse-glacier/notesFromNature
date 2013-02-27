@@ -1,22 +1,19 @@
-User = require('zooniverse/lib/models/user')
-badgeDefinitions=  require('lib/BadgeDefinitions')
-Api= require('zooniverse/lib/api')
+User = require 'zooniverse/lib/models/user'
+badgeDefinitions=  require 'lib/BadgeDefinitions'
+Api= require 'zooniverse/lib/api'
 
 class Badge extends Spine.Model
   @configure 'Badge', 'name', 'url', 'description','collection', 'awardText'
   
-  constructor: ->
-    super
-  
-  @loadDefinitions:->
+  @loadDefinitions: ->
     for name, badgeDefinition of badgeDefinitions
-      badgeDefinition.name =name
+      badgeDefinition.name = name
       @create badgeDefinition
     @trigger 'badgesLoaded'
 
-  @getUserBadges:->
+  @getUserBadges: ->
     if  User.current?
-      Api.get("/users/#{User.current.id}/badges").onSuccess (badges)=>
+      Api.get("/users/#{User.current.id}/badges").onSuccess (badges) =>
         badges = ([name,created_at]  for name,created_at of badges.badges)
         badges =  _(badges).sortBy (el)-> moment().diff(moment(el[1]))
         User.current.badges =[]
@@ -49,37 +46,38 @@ class Badge extends Spine.Model
       if reports.indexOf(0) == -1
         @post_weekly_report()
       
-  @post_weekly_report:=>
+  @post_weekly_report: =>
     if User.current?
       Api.post("/users/#{User.current.id}/badges", {badge: {name: "weekly_report_#{moment().format('%d-%MM-YYYY')}"} }).onSuccess (data)=>
         Badge.getUserBadges()
 
-
-  @findBySlug: (slug)=>
-    result = @select (b)->
+  @findBySlug: (slug) =>
+    result = @select (b) ->
       b.slug() == slug 
     result[0]
 
-  @badgesForProject:(projectSlug)=>
-    @select (b)=>
-
+  @badgesForProject:(projectSlug) =>
+    @select (b) =>
       b.collection == projectSlug
-
-  slug :=>
-    @name.replace /\s/g, "_"
 
   @findByName:(name)=>
     result = @select (d)->
       d.name == name
     result[0]
 
-  checkAward:=>
+  constructor: ->
+    super
+
+  slug: =>
+    @name.replace /\s/g, "_"
+
+  checkAward: =>
     result = badgeDefinitions[@name].condition
-      user    : User.current
+      user: User.current
     if result
       @award()
 
-  award:=>
+  award: =>
     if User.current?
       Badge.trigger("badgeAwarded", @)
       Api.post("/users/#{User.current.id}/badges", { badge:{name: @name} }).onSuccess (data)=>

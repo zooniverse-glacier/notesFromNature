@@ -4,15 +4,13 @@ Archive = require 'models/Archive'
 Classification = require 'models/Classification'
 Subject = require 'models/Subject'
 
-class BugsTranscriptionController extends Spine.Controller
-  className: 'BugsTranscriptionController'
-
+class InterfaceController extends Spine.Controller
   constructor: ->
-    super 
-    Spine.bind 'finishedBugsTranscription', @saveClassification
+    super
+    Spine.bind 'finishedTranscription', @saveClassification
 
-  render: =>
-    @html require('views/transcription/bugs')
+  render: (opts = null) =>
+    @html @template(opts)
 
   startWorkflow: (@archive) =>
     @render()
@@ -22,26 +20,18 @@ class BugsTranscriptionController extends Spine.Controller
         model: new nfn.ui.model.GOD()
       })
 
-      transcriberModel = new nfn.ui.model.Bugs()
-      @transcriber = new nfn.ui.view.BugsTranscriber({
+      transcriberModel = new nfn.ui.model[@widgetName]()
+      @transcriber = new nfn.ui.view[@widgetName]({
         model: transcriberModel
+        Spine: Spine
       })
 
-      $('.btn.close').attr('href', "#/archives/#{@archive.slug()}")
-      
+      $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
+
       @nextSubject()
       window.transcriber = @transcriber
 
     @delay go, 200
-
-  nextSubject: =>
-    @archive.nextSubject (@currentSubject) =>
-      callback = => 
-        $('.photos img').animate({ marginLeft: '0' }, 500)
-        @transcriber.spinner.hide()
-        @transcriber.startTranscribing()
-
-      @transcriber.loadPhoto(@currentSubject.location.standard, callback)
 
   saveClassification: (data) =>
     classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0] } )
@@ -53,4 +43,4 @@ class BugsTranscriptionController extends Spine.Controller
     classification.send()
     @nextSubject()
 
-module.exports = BugsTranscriptionController
+module.exports = InterfaceController

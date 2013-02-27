@@ -27,7 +27,7 @@ div.zooniverse-top-bar
   display : none
 
 /* Better than clearfix */
-aside:after, div:after, form:after, header:after, nav:after, section:after, ul:after, li:after, article:after, caption:after, ol:after, footer:after {
+aside:after, div:after, form:after, header:after, nav:after, ul:after, li:after, article:after, caption:after, ol:after, footer:after {
   clear: both;
   content: '';
   display: block;
@@ -85,7 +85,6 @@ html, button, input, select, textarea {
 
 body {
   background: #333333 url("images/bg.jpg") repeat-x;
-  overflow-x: hidden;
 }
 
 p, li {
@@ -1413,6 +1412,9 @@ h1.notlogged
 
 .ProfileController 
   margin-bottom: 39px
+  ul
+    @extends #semantic-list
+    
   .title.user
     margin-left: -6px
 .BadgeController 
@@ -1420,6 +1422,7 @@ h1.notlogged
 
 
 .NotificationController
+  display: none
   width: 300px
   height: 40px
   position:absolute

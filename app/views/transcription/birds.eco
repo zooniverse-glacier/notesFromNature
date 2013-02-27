@@ -1,6 +1,4 @@
-
 <script type="text/template" id="transcriber-birds-widget-template">
-
   <div class="top">
     <div class="title">Welcome</div>
   </div>
@@ -9,7 +7,7 @@
     <div class="left">
 
       <div class="input_field hidden">
-        <input type="text" placeholder="" />
+        <input type="text" placeholder="">
         <a href="#" class="btn ok">ok</a>
       </div>
 
@@ -18,11 +16,11 @@
 
     <div class="right">
       <div class="step">1/2</div>
-      <a href="#" class="btn start">Start this record</a>
-      <a href="#" class="btn finish">Finish this record</a>
+      <a href="#" class="btn start">Start this page</a>
+      <a href="#" class="btn finish">Finish this page</a>
+      <a href="#" class="btn nextLine">Next Line</a>
     </div>
   </div>
-
 </script>
 
 <script type="text/template" id="tooltip-step-template">
@@ -100,3 +98,6 @@
   <div class="buttons"><a href="#" class="btn main">{{ main }}</a></div> 
   <div class="tip"></div>
 </script>
+
+<div id="eol-widget"></div>
+

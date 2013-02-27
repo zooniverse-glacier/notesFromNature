@@ -13,12 +13,22 @@ class Classification extends Spine.Model
 
   subject: ->
     Subject.find @subject_id 
+
+  saveData: (@annotations) -> @save()
   
+  annotateLine: (line, number) ->
+    for annotation in line.transcriptions?.toJSON()
+      annotation =
+        line: number
+        step: annotation.step
+        value: annotation.value
+      @annotations.push annotation
+    @save()
+
   annotate: (questionId, answerId) ->
     annotation = { }
     annotation[questionId] = answerId
     @annotations.push annotation
-    # @annotations[questionId] = answerId
     @save()
 
   url: ->
@@ -35,7 +45,7 @@ class Classification extends Spine.Model
   
   send: ->
     if User.current?
-      User.current.project.classification_count+=1
+      User.current.project.classification_count += 1
       User.current.save()
       User.current.trigger("updateProfile")
 

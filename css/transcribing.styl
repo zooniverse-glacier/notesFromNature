@@ -331,9 +331,11 @@
 
 .transcriber.birds .photos,
 .transcriber.sernac .photos {
+  box-sizing: border-box;
   height: 100%;
   margin: auto;
   overflow: auto;
+  padding: 94px 0 10px 0;
   text-align: center;
   z-index: 10;
 }
@@ -489,7 +491,7 @@
   display: none;
   position: absolute;
   background: none;
-  left: 10px;
+  // left: 10px;
   top: 100px;
   height: 180px;
   width: 705px;
@@ -500,14 +502,8 @@
   padding: 0;
   z-index: 10001;
   //filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  border: 1px solid black;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px;
+  // border: 1px solid black;
+  // border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px;
 }
 .transcriber.birds .birds-widget.ui-draggable {
@@ -547,34 +543,15 @@
 }
 .transcriber.birds .birds-widget .top {
   top: 4px;
-  left: 3px;
-  right: 3px;
+  left: 0;
+  right: 0;
   bottom: 57px;
-  -webkit-box-shadow: #444444 0 -1px 0 3px;
-  -moz-box-shadow: #444444 0 -1px 0 3px;
   box-shadow: #444444 0 -1px 0 3px;
 
-  -o-border-top-right-radius:    3px;
-  -o-border-top-left-radius:     3px;
-  -o-border-bottom-left-radius:  0;
-  -o-border-bottom-right-radius: 0;
+  border-radius: 3px 0 0 0;
 
-  -ms-border-top-right-radius:    3px;
-  -ms-border-top-left-radius:     3px;
-  -ms-border-bottom-left-radius:  0;
-  -ms-border-bottom-right-radius: 0;
-
-  -webkit-border-top-right-radius:    3px;
-  -webkit-border-top-left-radius:     3px;
-  -webkit-border-bottom-left-radius:  0;
-  -webkit-border-bottom-right-radius: 0;
-
-  border-top-right-radius:    3px;
-  border-top-left-radius:     3px;
-  border-bottom-left-radius:  0;
-  border-bottom-right-radius: 0;
-
-  border: 1px solid black;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
   z-index: 0;
 }
 .transcriber.birds .birds-widget .top .title {
@@ -807,30 +784,35 @@
   cursor: nwse-resize;
   z-index: 1000;
 }
-.transcriber.sernac .helper {
-  z-index: 1001;
-  font: 11px "Open Sans";
-  color: #fff;
-}
-.transcriber.sernac .helper .title {
-  text-transform: uppercase;
-  opacity: .8;
-  margin: 0 0 2px 0;
-}
-.transcriber.sernac .helper .description {
-  font: 12px "Helvetica";
-  color: white;
-}
-.transcriber.sernac .helper .description .example {
-  position: relative;
-  border-bottom: 1px solid #ccc;
-  text-decoration: none;
-  font: 12px "Helvetica";
-  color: white;
-}
 
-.transcriber.sernac .helper .description .example:hover {
-  border-bottom: 1px dashed #fff;
+.transcriber.sernac .helper,
+.transcriber.bugs .helper {
+  box-sizing: border-box;
+  color: #fff;
+  font: 11px "Open Sans";
+  z-index: 1001;
+
+  .title {
+    margin: 0 0 2px 0;
+    opacity: .8;
+    text-transform: uppercase;
+  }
+
+  .description {
+    font: 12px "Helvetica";
+
+    .example {
+      border-bottom: 1px solid #ccc;
+      color: #fff;
+      font: 12px "Helvetica";
+      position: relative;
+      text-decoration: none;
+
+      &:hover {
+        border-bottom: 1px dashed #fff;
+      }
+    }
+  }
 }
 
 .transcriber.sernac .launcher {
