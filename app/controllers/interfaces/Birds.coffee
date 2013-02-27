@@ -24,7 +24,8 @@ class BirdsTranscriptionController extends InterfaceController
     super
 
   startWorkflow: (@archive) =>
-    @render()
+    console.log @archive, @archive.institute()
+    @render({archive: @archive})
     @nextSubject()
 
   nextSubject: =>

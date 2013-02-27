@@ -1,5 +1,13 @@
 <section class="menu">
-  <aside><a href="#/archives/nhm_birds">Back</a></aside>
+  <div class="left">
+    <h1><%- @archive.name %></h1>
+    <p>from <%- @archive.institute().name %></p>
+  </div>
+  <div class="right">
+    <div class="block">
+      <a href="#/archives/nhm_birds"><div class="ring"><span></span></div></a>
+    </div>
+  </div>
 </section>
 
 <div class="boxes">
