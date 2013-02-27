@@ -6,3 +6,5 @@ public/application.js
 /public/nfn/build.js
 /test/public/specs.js
 /build/
+
+*.orig
