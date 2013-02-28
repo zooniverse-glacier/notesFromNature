@@ -28,4 +28,7 @@ class BaseTool extends Spine.Controller
   clickImage: (e) ->
     # Ensure this exists. Implemented by tools.
 
+  nextBox: (e) ->
+    # Ensure this exists. Implemented by tools.
+
 module.exports = BaseTool

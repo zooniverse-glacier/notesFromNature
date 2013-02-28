@@ -4,13 +4,16 @@
       <h1><%- @archive.name %></h1>
       <p>from <%- @archive.institute().name %></p>
     </div>
+    <div class="block">
+      <button id="finish">Finish</button>
+    </div>
   </div>
   <div class="right">
     <div class="block settings options" id="settingsBlock">
       <button></button>
       <ul>
         <li>
-          <label><input type="checkbox" id="autoMove" <% if @autoMove: %> checked<% end %>>
+          <label><input type="checkbox" id="autoMove" <% if @preferences.auto_move: %> checked<% end %>>
           Automatically move to next entity</label>
         </li>
       </ul>

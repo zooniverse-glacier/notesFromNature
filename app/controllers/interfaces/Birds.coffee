@@ -1,6 +1,13 @@
+Api = require 'zooniverse/lib/api'
+User  = require 'zooniverse/lib/models/user'
+
 InterfaceController = require 'controllers/InterfaceController'
+Classification = require 'models/Classification'
+Subject = require 'models/Subject'
 
 data = require 'lib/ocr-data'
+
+PROJECT_ID = '5008739e516bcbd236000001' # Cheating
 
 class BirdsTranscriptionController extends InterfaceController
   canCreateBox: true
@@ -14,6 +21,7 @@ class BirdsTranscriptionController extends InterfaceController
     'keypress': 'onKeyPress'
     'mousedown .box': 'onClickBox'
     'mousedown .boxes': 'onClickImage'
+    'click #finish': 'onFinish'
     'click #done': 'onDoneBox'
     'click #autoMove': 'toggleAutoMove'
     'click #tools-list li': 'onSelectTool'
@@ -26,10 +34,16 @@ class BirdsTranscriptionController extends InterfaceController
 
   constructor: ->
     super
-    @autoMove = true
+    # Load previous interface preferences
+    if User.current? and User.current.preferences[PROJECT_ID]
+      for key, value of User.current.preferences[PROJECT_ID]
+        if value in ['true', 'false']
+          @preferences[key] = (value is 'true')
+        else
+          @preferences[key] = value
 
   startWorkflow: (@archive) =>
-    @render({archive: @archive, autoMove: @autoMove})
+    @render({archive: @archive, preferences: @preferences})
     @selectTool 'cursor'
     @nextSubject()
 
@@ -71,11 +85,14 @@ class BirdsTranscriptionController extends InterfaceController
 
   onDoneBox: (e) =>
     e.preventDefault()
-    $(@currentBox).data 'value', @entry.find('#field').val()
-    @clickNextBox() if @autoMove
+    @currentBox.data 'value', @entry.find('#field').val()
+    @tool.nextBox()
 
   onKeyPress: (e) ->
     console.log 'key', e
+
+  onFinish: (e) =>
+    @finish()
 
   onSelectTool: (e) =>
     @selectTool $(e.currentTarget).attr 'id'
@@ -83,21 +100,49 @@ class BirdsTranscriptionController extends InterfaceController
 
   # Settings
   toggleAutoMove: (e) =>
-    @autoMove = e.target.checked
+    @preferences.auto_move = e.target.checked
+    obj =
+      key: 'auto_move'
+      value: @preferences.auto_move
+    Api.put "/projects/notes_from_nature/users/preferences", obj
 
 
   # "API"
+  finish: =>
+    data = []
+    $('.box').each (i) ->
+      obj = {}
+      obj =
+        top: $(@).position().top
+        left: $(@).position().left
+        width: $(@).width()
+        height: $(@).height()
+        value: $(@).data('value')
+      data.push obj
+
+    console.log 'test data', data
+    # testSubject = new Subject({id: 1, workflow_ids: [2]})
+
+    # classification = Classification.create({subject_id: testSubject.id, workflow_id: testSubject.workflow_ids[0] } )
+    
+    # testSubject.retire()
+    # classification.send()
+    # @nextSubject()
+
   selectTool: (tool) =>
+    # Reset selected boxes for new tool. 
+    $('.box').removeClass 'selected'
+
+    # Cleanup old tool.
     if @tool then @tool.clean()
     @toolsList.find('li').removeClass 'selected'
+
     @toolsList.find("##{tool}").addClass 'selected'
     @tool = new @tools[tool]({interface: @})
 
-  startDataEntry: (el) =>
-    id = $(el).data('id')
-    value = $(el).data('value') || ''
-
-    @currentBox = el
+  startDataEntry: (@currentBox) =>
+    id = @currentBox.data('id')
+    value = @currentBox.data('value') || ''
 
     @entry.addClass 'active'
     @entry.html @dataTemplate({id: id, value: value})

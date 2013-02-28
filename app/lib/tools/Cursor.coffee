@@ -21,14 +21,14 @@ class Cursor extends BaseTool
 
   constructor: (opts) ->
     super(opts)
-    
+
   clickBox: (box) =>
-    unless box.hasClass 'resizable'
-      if $('.box').hasClass 'resizable'
+    unless box.hasClass 'selected'
+      if $('.box').hasClass 'selected'
         @clickImage()
         @clickBox box
       else
-        box.addClass('resizable').resizable('enable').draggable()
+        box.addClass('selected').resizable('enable').draggable()
         $('body').scrollTop box.position().top - ($(window).height() / 2) + (box.height() / 2)
         $('body').scrollLeft box.position().left - ($(window).width() / 2) + (box.width() / 2)
         @interface.startDataEntry box
@@ -36,8 +36,8 @@ class Cursor extends BaseTool
         @currentBox = box
 
   clickImage: (e) =>
-    if $('.box').hasClass 'resizable'
-      $('.box').removeClass('resizable').resizable('disable')
+    if $('.box').hasClass 'selected'
+      $('.box').removeClass('selected').resizable('disable')
       delete @currentBox
       @interface.entry.empty().removeClass('active')
       @resizing = false
@@ -69,7 +69,7 @@ class Cursor extends BaseTool
 
   deleteBox: (e) =>
     boxToDelete = @currentBox
-    if @interface.autoMove
+    if @interface.preferences.auto_move
       if boxToDelete.next().length
         @clickBox boxToDelete.next()
       else
@@ -81,10 +81,11 @@ class Cursor extends BaseTool
     if @currentBox.data('value')?
       @currentBox.addClass 'green'
 
-    if @currentBox.next().length
-      @clickBox @currentBox.next()
-    else
-      @clickBox $('.box').first()
+    if @interface.preferences?.auto_move
+      if @currentBox.next().length
+        @clickBox @currentBox.next()
+      else
+        @clickBox $('.box').first()
 
   previousBox: (e) =>
     @clickBox $(@currentBox).prev()
