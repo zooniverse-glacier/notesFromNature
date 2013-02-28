@@ -51,7 +51,7 @@ class BirdsTranscriptionController extends InterfaceController
     @counter = 1
     lastMid = 0
 
-    for datum, i in data
+    for datum, i in data when i < 10
         box = datum.split(',')
         y = parseInt(box[1])
         x = parseInt(box[0])
@@ -89,7 +89,7 @@ class BirdsTranscriptionController extends InterfaceController
     @tool.nextBox()
 
   onKeyPress: (e) ->
-    console.log 'key', e
+    # console.log 'key', e
 
   onFinish: (e) =>
     @finish()
@@ -141,6 +141,7 @@ class BirdsTranscriptionController extends InterfaceController
     @tool = new @tools[tool]({interface: @})
 
   startDataEntry: (@currentBox) =>
+    console.log @currentBox
     id = @currentBox.data('id')
     value = @currentBox.data('value') || ''
 

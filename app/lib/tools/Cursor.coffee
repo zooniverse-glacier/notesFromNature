@@ -43,24 +43,25 @@ class Cursor extends BaseTool
       @resizing = false
     else
       box = document.createElement 'div'
-      $(box).addClass('box').data('id', @counter).css({
+      $(box).addClass('box').data('id', @interface.counter).css({
         top: e.offsetY
         left: e.offsetX
         })
-      @counter += 1
+      @interface.counter += 1
       @creating = true
 
       @interface.boxes.append box
       $(document).on 'mouseup', {box: box}, @onDoneCreateBox
       $(document).on 'mousemove', (de) =>
         if @creating
-          $(box).width de.offsetX - e.offsetX
-          $(box).height de.offsetY - e.offsetY
+          $(box).width de.pageX - e.pageX
+          $(box).height de.pageY - e.pageY
 
   onDoneCreateBox: (e) =>
+    box = $(e.data.box)
     @creating = false
 
-    $(e.data.box).resizable({
+    box.resizable({
       handles: 'all'
       disabled: true
     })
