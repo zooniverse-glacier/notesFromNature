@@ -40,14 +40,11 @@ class Cursor extends BaseTool
       delete @currentBox
       @interface.entry.empty().removeClass('active')
       @resizing = false
-      console.log 'there was a box selected'
     else
-      console.log 'there wasnt a box selected'
-
       box = document.createElement 'div'
       $(box).addClass('box').data('id', @counter).css({
-        top: e.pageY
-        left: e.pageX
+        top: e.offsetY
+        left: e.offsetX
         })
       @counter += 1
       @creating = true
@@ -56,8 +53,8 @@ class Cursor extends BaseTool
       $(document).on 'mouseup', {box: box}, @onDoneCreateBox
       $(document).on 'mousemove', (de) =>
         if @creating
-          $(box).width de.pageX - e.pageX
-          $(box).height de.pageY - e.pageY
+          $(box).width de.offsetX - e.offsetX
+          $(box).height de.offsetY - e.offsetY
 
   onDoneCreateBox: (e) =>
     @creating = false

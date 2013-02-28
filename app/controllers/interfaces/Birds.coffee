@@ -34,7 +34,6 @@ class BirdsTranscriptionController extends InterfaceController
     @nextSubject()
 
   nextSubject: =>
-    boxes = []
     @counter = 1
     lastMid = 0
 
