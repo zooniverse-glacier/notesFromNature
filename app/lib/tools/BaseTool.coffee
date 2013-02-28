@@ -31,4 +31,10 @@ class BaseTool extends Spine.Controller
   nextBox: (e) ->
     # Ensure this exists. Implemented by tools.
 
+  shortcut: (keyCode) =>
+    action = _.find @actions, (action) ->
+      action.shortcut is keyCode
+
+    if action.callback then @[action.callback]()
+
 module.exports = BaseTool

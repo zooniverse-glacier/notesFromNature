@@ -18,7 +18,6 @@ class BirdsTranscriptionController extends InterfaceController
     '#actions': 'actions'
     '#tools-list': 'toolsList'
   events:
-    'keypress': 'onKeyPress'
     'mousedown .box': 'onClickBox'
     'mousedown .boxes': 'onClickImage'
     'click #finish': 'onFinish'
@@ -41,6 +40,8 @@ class BirdsTranscriptionController extends InterfaceController
           @preferences[key] = (value is 'true')
         else
           @preferences[key] = value
+
+    $(document).on 'keypress', @onKeyPress
 
   startWorkflow: (@archive) =>
     @render({archive: @archive, preferences: @preferences})
@@ -88,8 +89,16 @@ class BirdsTranscriptionController extends InterfaceController
     @currentBox.data 'value', @entry.find('#field').val()
     @tool.nextBox()
 
-  onKeyPress: (e) ->
-    # console.log 'key', e
+  onKeyPress: (e) =>
+    if e.ctrlKey
+      switch e.keyCode
+        when 49
+          @selectTool 'cursor'
+        when 50
+          @selectTool 'multi-select'
+
+    if e.altKey then @tool.shortcut e.keyCode
+
 
   onFinish: (e) =>
     @finish()
@@ -121,8 +130,6 @@ class BirdsTranscriptionController extends InterfaceController
       data.push obj
 
     console.log 'test data', data
-    # testSubject = new Subject({id: 1, workflow_ids: [2]})
-
     # classification = Classification.create({subject_id: testSubject.id, workflow_id: testSubject.workflow_ids[0] } )
     
     # testSubject.retire()
@@ -141,7 +148,6 @@ class BirdsTranscriptionController extends InterfaceController
     @tool = new @tools[tool]({interface: @})
 
   startDataEntry: (@currentBox) =>
-    console.log @currentBox
     id = @currentBox.data('id')
     value = @currentBox.data('value') || ''
 

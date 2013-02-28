@@ -5,18 +5,22 @@ class Cursor extends BaseTool
       key: 'delete'
       display: 'Delete'
       callback: 'deleteBox'
+      shortcut: 8706
     ,
       key: 'same'
       display: 'Same as Above'
       callback: 'sameBox'
+      shortcut: 223
     ,
       key: 'next'
       display: 'Next'
       callback: 'nextBox'
+      shortcut: 8776
     ,
       key: 'previous'
       display: 'Previous'
       callback: 'previousBox'
+      shortcut: 937
   ]
 
   constructor: (opts) ->
@@ -59,13 +63,15 @@ class Cursor extends BaseTool
 
   onDoneCreateBox: (e) =>
     box = $(e.data.box)
-    @creating = false
 
     box.resizable({
       handles: 'all'
       disabled: true
     })
 
+    @clickBox box
+
+    @creating = false
     $(document).off 'mousemove mouseup'
 
   deleteBox: (e) =>
@@ -93,6 +99,6 @@ class Cursor extends BaseTool
 
   sameBox: (e) =>
     $(@currentBox).data 'value', 'same'
-    @nextBox() if @interface.autoMove
+    @nextBox() if @interface.preferences.auto_move
 
 module.exports = Cursor
