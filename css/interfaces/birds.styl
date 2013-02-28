@@ -39,12 +39,13 @@
       @extends #no-select
 
   .box
-    background: rgba(#f00, 0.15)
+    background: rgba(#f00, 0.13)
     border: 1px solid transparent
     position: absolute !important
 
-    &.resizable
-      background: rgba(#f00, 0.30)
+    &.resizable,
+    &.selected
+      background: rgba(#f00, 0.35)
       border-color: #fff
 
     &.red

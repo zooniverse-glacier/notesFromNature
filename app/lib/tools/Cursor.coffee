@@ -1,7 +1,6 @@
 BaseTool = require 'lib/tools/BaseTool'
 
 class Cursor extends BaseTool
-
   clickBox: (e) =>
     console.log 'clicked a box', $(e.currentTarget)
     box = $(e.currentTarget)

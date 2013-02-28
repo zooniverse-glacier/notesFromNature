@@ -20,7 +20,6 @@
       <ul id="tools-list">
         <li id="cursor">Cursor</li>
         <li id="multi-select">Multi-Select</li>
-        <li id="deleter">Deleter</li>
       </ul>
     </div>
     <div class="block"><a href="#/archives/nhm_birds"><div class="ring"><span></span></div></a></div>
@@ -31,4 +30,11 @@
   <img src="images/ocr/AV16008.JPG"></img>
 </div>
 
-<div id="data-entry" class="data-entry"></div>
+<div id="data-entry" class="data-entry">
+  <section class="entry" id="entry"></section>
+  <section class="actions">
+    <h2>Actions</h2>
+    <ul id="actions"></ul>
+</section>
+
+</div>

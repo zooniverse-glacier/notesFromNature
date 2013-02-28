@@ -7,24 +7,22 @@ class BirdsTranscriptionController extends InterfaceController
   className: 'birds-interface'
   elements:
     '.boxes': 'boxes'
-    '#data-entry': 'dataEntry'
+    '#entry': 'entry'
+    '#actions': 'actions'
     '#tools-list': 'toolsList'
   events:
     'keypress': 'onKeyPress'
     'mousedown .box': 'onClickBox'
     'mousedown .boxes': 'onClickImage'
-    'click [data-action="delete"]': 'deleteBox'
-    'click [data-action="same"]': 'sameBox'
-    'click [data-action="next"]': 'clickNextBox'
-    'click [data-action="prev"]': 'clickPreviousBox'
     'click #done': 'onDoneBox'
     'click #autoMove': 'toggleAutoMove'
-    'click #tools li': 'onSelectTool'
+    'click #tools-list li': 'onSelectTool'
     'mouseenter .options button': 'keepHover'
   dataTemplate: require 'views/transcription/interfaces/birds/data'
   template: require 'views/transcription/interfaces/birds/main'
   tools:
     'cursor': require 'lib/tools/Cursor'
+    'multi-select': require 'lib/tools/MultiSelect'
 
   constructor: ->
     super
@@ -74,7 +72,7 @@ class BirdsTranscriptionController extends InterfaceController
 
   onDoneBox: (e) =>
     e.preventDefault()
-    $(@currentBox).data 'value', @dataEntry.find('#field').val()
+    $(@currentBox).data 'value', @entry.find('#field').val()
     @clickNextBox() if @autoMove
 
   onKeyPress: (e) ->
@@ -120,8 +118,9 @@ class BirdsTranscriptionController extends InterfaceController
   selectTool: (tool) =>
     console.log 'selecting tool', "##{tool}", @toolsList
 
+    @toolsList.find('li').removeClass 'selected'
     @toolsList.find("##{tool}").addClass 'selected'
-    @tool = new @tools['cursor']({interface: @})
+    @tool = new @tools[tool]({interface: @})
 
   startDataEntry: (el) =>
     id = $(el).data('id')
@@ -129,12 +128,13 @@ class BirdsTranscriptionController extends InterfaceController
 
     @currentBox = el
 
-    @dataEntry.addClass 'active'
-    @dataEntry.html @dataTemplate({id: id, value: value})
+    @entry.addClass 'active'
+    @entry.html @dataTemplate({id: id, value: value})
     defer = =>
-      field = @dataEntry.find('#field')
+      field = @entry.find('#field')
       field.val(value).focus()
     setTimeout defer, 0
+
 
   # Generic UI
   keepHover: (e) ->
