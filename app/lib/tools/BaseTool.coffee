@@ -16,8 +16,11 @@ class BaseTool extends Spine.Controller
       list += @itemTemplate({key: action.key, display: action.display})
       @interface.actions.on 'click', "[data-action=#{action.key}]", @[action.callback]
 
-    console.log list, @actions
     @interface.actions.html list
+
+  clean: =>
+    for action in @actions
+      @interface.actions.off 'click', "[data-action=#{action.key}]"
 
   clickBox: (e) ->
     # Ensure this exists. Implemented by tools.

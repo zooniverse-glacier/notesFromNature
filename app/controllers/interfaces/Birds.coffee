@@ -88,6 +88,7 @@ class BirdsTranscriptionController extends InterfaceController
 
   # "API"
   selectTool: (tool) =>
+    if @tool then @tool.clean()
     @toolsList.find('li').removeClass 'selected'
     @toolsList.find("##{tool}").addClass 'selected'
     @tool = new @tools[tool]({interface: @})

@@ -21,6 +21,7 @@ class Cursor extends BaseTool
 
   constructor: (opts) ->
     super(opts)
+    
   clickBox: (box) =>
     unless box.hasClass 'resizable'
       if $('.box').hasClass 'resizable'

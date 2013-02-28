@@ -10,11 +10,10 @@ class MultiSelect extends BaseTool
   constructor: (opts) ->
     super(opts)
 
-  clickBox: (e) =>
-    $(e.currentTarget).addClass 'selected'
+  clickBox: (box) =>
+    box.addClass 'selected'
 
   deleteBoxes: (e) =>
-    console.log $('.box.selected')
     $('.box.selected').remove()
 
 module.exports = MultiSelect
