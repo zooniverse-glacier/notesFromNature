@@ -1,1 +1,1 @@
-<li data-action="<%- @key %>"><%- @displayName %></li>
+<li data-action="<%- @key %>"><%- @display %></li>

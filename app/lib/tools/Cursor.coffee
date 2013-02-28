@@ -1,27 +1,44 @@
 BaseTool = require 'lib/tools/BaseTool'
 
 class Cursor extends BaseTool
-  clickBox: (e) =>
-    console.log 'clicked a box', $(e.currentTarget)
-    box = $(e.currentTarget)
+  actions: [
+      key: 'delete'
+      display: 'Delete'
+      callback: 'deleteBox'
+    ,
+      key: 'same'
+      display: 'Same as Above'
+      callback: 'sameBox'
+    ,
+      key: 'next'
+      display: 'Next'
+      callback: 'nextBox'
+    ,
+      key: 'previous'
+      display: 'Previous'
+      callback: 'previousBox'
+  ]
 
+  constructor: (opts) ->
+    super(opts)
+  clickBox: (box) =>
     unless box.hasClass 'resizable'
       if $('.box').hasClass 'resizable'
         @clickImage()
-        @clickBox e
+        @clickBox box
       else
-        console.log 'do things with box'
         box.addClass('resizable').resizable('enable').draggable()
         $('body').scrollTop box.position().top - ($(window).height() / 2) + (box.height() / 2)
         $('body').scrollLeft box.position().left - ($(window).width() / 2) + (box.width() / 2)
-        @interface.startDataEntry e.currentTarget
+        @interface.startDataEntry box
         @resizing = true
+        @currentBox = box
 
   clickImage: (e) =>
     if $('.box').hasClass 'resizable'
       $('.box').removeClass('resizable').resizable('disable')
       delete @currentBox
-      @interface.dataEntry.empty().removeClass('active')
+      @interface.entry.empty().removeClass('active')
       @resizing = false
       console.log 'there was a box selected'
     else
@@ -51,5 +68,31 @@ class Cursor extends BaseTool
     })
 
     $(document).off 'mousemove mouseup'
+
+  deleteBox: (e) =>
+    boxToDelete = @currentBox
+    if @interface.autoMove
+      if boxToDelete.next().length
+        @clickBox boxToDelete.next()
+      else
+        @clickBox $('.box').first()
+
+    $(boxToDelete).remove()
+
+  nextBox: =>
+    if @currentBox.data('value')?
+      @currentBox.addClass 'green'
+
+    if @currentBox.next().length
+      @clickBox @currentBox.next()
+    else
+      @clickBox $('.box').first()
+
+  previousBox: (e) =>
+    @clickBox $(@currentBox).prev()
+
+  sameBox: (e) =>
+    $(@currentBox).data 'value', 'same'
+    @nextBox() if @interface.autoMove
 
 module.exports = Cursor

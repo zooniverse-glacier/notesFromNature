@@ -63,7 +63,7 @@ class BirdsTranscriptionController extends InterfaceController
   onClickBox: (e) =>
     e.preventDefault()
     e.stopPropagation()
-    @tool.clickBox e
+    @tool.clickBox $(e.currentTarget)
 
   onClickImage: (e) =>
     e.preventDefault()
@@ -88,36 +88,7 @@ class BirdsTranscriptionController extends InterfaceController
 
 
   # "API"
-  clickNextBox: =>
-    if $(@currentBox).data('value')?
-      $(@currentBox).addClass 'green'
-
-    if $(@currentBox).next().length
-      @clickBox $(@currentBox).next()
-    else
-      @clickBox $('.box').first()
-
-  clickPreviousBox: =>
-    @clickBox $(@currentBox).prev()
-
-  deleteBox: (e) =>
-    boxToDelete = @currentBox
-
-    if @autoMove
-      if $(boxToDelete).next().length
-        @clickBox $(boxToDelete).next()
-      else
-        @clickBox $('.box').first()
-
-    $(boxToDelete).remove()
-
-  sameBox: (e) =>
-    $(@currentBox).data 'value', 'same'
-    @clickNextBox() if @autoMove
-
   selectTool: (tool) =>
-    console.log 'selecting tool', "##{tool}", @toolsList
-
     @toolsList.find('li').removeClass 'selected'
     @toolsList.find("##{tool}").addClass 'selected'
     @tool = new @tools[tool]({interface: @})

@@ -3,7 +3,7 @@ BaseTool = require 'lib/tools/BaseTool'
 class MultiSelect extends BaseTool
   actions: [
     key: 'delete'
-    displayName: 'Delete'
+    display: 'Delete'
     callback: 'deleteBoxes'
   ]
 
@@ -11,9 +11,7 @@ class MultiSelect extends BaseTool
     super(opts)
 
   clickBox: (e) =>
-    box = $(e.currentTarget)
-
-    box.addClass 'selected'
+    $(e.currentTarget).addClass 'selected'
 
   deleteBoxes: (e) =>
     console.log $('.box.selected')
