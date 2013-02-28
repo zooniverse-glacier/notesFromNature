@@ -8,24 +8,31 @@ class BirdsTranscriptionController extends InterfaceController
   elements:
     '.boxes': 'boxes'
     '#data-entry': 'dataEntry'
+    '#tools-list': 'toolsList'
   events:
+    'keypress': 'onKeyPress'
     'mousedown .box': 'onClickBox'
-    'mousedown .boxes': 'clickImage'
+    'mousedown .boxes': 'onClickImage'
     'click [data-action="delete"]': 'deleteBox'
     'click [data-action="same"]': 'sameBox'
     'click [data-action="next"]': 'clickNextBox'
     'click [data-action="prev"]': 'clickPreviousBox'
-    'click .data-entry': 'onClickDataEntry'
     'click #done': 'onDoneBox'
+    'click #autoMove': 'toggleAutoMove'
+    'click #tools li': 'onSelectTool'
+    'mouseenter .options button': 'keepHover'
   dataTemplate: require 'views/transcription/interfaces/birds/data'
   template: require 'views/transcription/interfaces/birds/main'
+  tools:
+    'cursor': require 'lib/tools/Cursor'
 
   constructor: ->
     super
+    @autoMove = true
 
   startWorkflow: (@archive) =>
-    console.log @archive, @archive.institute()
-    @render({archive: @archive})
+    @render({archive: @archive, autoMove: @autoMove})
+    @selectTool 'cursor'
     @nextSubject()
 
   nextSubject: =>
@@ -53,44 +60,36 @@ class BirdsTranscriptionController extends InterfaceController
       disabled: true
     })
 
+
+  # Events
   onClickBox: (e) =>
     e.preventDefault()
     e.stopPropagation()
+    @tool.clickBox e
 
-    @clickBox e.currentTarget
-
-  onClickDataEntry: (e) ->
+  onClickImage: (e) =>
+    e.preventDefault()
     e.stopPropagation()
+    @tool.clickImage e
 
-  clickBox: (el) =>
-    console.log 'clicked a box', $(el)
-    box = $(el)
+  onDoneBox: (e) =>
+    e.preventDefault()
+    $(@currentBox).data 'value', @dataEntry.find('#field').val()
+    @clickNextBox() if @autoMove
 
-    unless box.hasClass 'resizable'
-      if $('.box').hasClass 'resizable'
-        @clickImage()
-        @clickBox el
-      else
-        console.log 'do things with box'
-        box.addClass('resizable').resizable('enable').draggable()
-        $('body').scrollTop box.position().top - ($(window).height() / 2) + (box.height() / 2)
-        $('body').scrollLeft box.position().left - ($(window).width() / 2) + (box.width() / 2)
-        @startDataEntry el
-        @resizing = true
+  onKeyPress: (e) ->
+    console.log 'key', e
 
-  deleteBox: (e) =>
-    boxToDelete = @currentBox
-    if $(boxToDelete).next().length
-      @clickBox $(boxToDelete).next()
-    else
-      @clickBox $('.box').first()
+  onSelectTool: (e) =>
+    @selectTool $(e.currentTarget).attr 'id'
 
-    $(boxToDelete).remove()
 
-  sameBox: (e) =>
-    $(@currentBox).data 'value', 'same'
-    @clickNextBox()
+  # Settings
+  toggleAutoMove: (e) =>
+    @autoMove = e.target.checked
 
+
+  # "API"
   clickNextBox: =>
     if $(@currentBox).data('value')?
       $(@currentBox).addClass 'green'
@@ -102,6 +101,27 @@ class BirdsTranscriptionController extends InterfaceController
 
   clickPreviousBox: =>
     @clickBox $(@currentBox).prev()
+
+  deleteBox: (e) =>
+    boxToDelete = @currentBox
+
+    if @autoMove
+      if $(boxToDelete).next().length
+        @clickBox $(boxToDelete).next()
+      else
+        @clickBox $('.box').first()
+
+    $(boxToDelete).remove()
+
+  sameBox: (e) =>
+    $(@currentBox).data 'value', 'same'
+    @clickNextBox() if @autoMove
+
+  selectTool: (tool) =>
+    console.log 'selecting tool', "##{tool}", @toolsList
+
+    @toolsList.find("##{tool}").addClass 'selected'
+    @tool = new @tools['cursor']({interface: @})
 
   startDataEntry: (el) =>
     id = $(el).data('id')
@@ -116,45 +136,10 @@ class BirdsTranscriptionController extends InterfaceController
       field.val(value).focus()
     setTimeout defer, 0
 
-  clickImage: (e) =>
-    console.log 'clickImage'
-    if $('.box').hasClass 'resizable'
-      $('.box').removeClass('resizable').resizable('disable')
-      delete @currentBox
-      @dataEntry.empty().removeClass('active')
-      @resizing = false
-      console.log 'there was a box selected'
-    else
-      console.log 'there wasnt a box selected'
-
-      box = document.createElement 'div'
-      $(box).addClass('box').data('id', @counter).css({
-        top: e.pageY
-        left: e.pageX
-        })
-      @counter += 1
-      @creating = true
-
-      @boxes.append box
-      $(document).on 'mouseup', {box: box}, @onDoneCreateBox
-      $(document).on 'mousemove', (de) =>
-        if @creating
-          $(box).width de.pageX - e.pageX
-          $(box).height de.pageY - e.pageY
-
-  onDoneCreateBox: (e) =>
-    @creating = false
-
-    $(e.data.box).resizable({
-      handles: 'all'
-      disabled: true
-    })
-
-    $(document).off 'mousemove mouseup'
-
-  onDoneBox: (e) =>
-    e.preventDefault()
-    $(@currentBox).data 'value', @dataEntry.find('#field').val()
-    @clickNextBox()
+  # Generic UI
+  keepHover: (e) ->
+    $(e.currentTarget).addClass 'selected'
+    $(e.currentTarget).parent().mouseleave ->
+      $(e.currentTarget).removeClass 'selected'
 
 module.exports = BirdsTranscriptionController

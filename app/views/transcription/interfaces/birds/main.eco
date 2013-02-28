@@ -1,12 +1,29 @@
 <section class="menu">
   <div class="left">
-    <h1><%- @archive.name %></h1>
-    <p>from <%- @archive.institute().name %></p>
+    <div class="block">
+      <h1><%- @archive.name %></h1>
+      <p>from <%- @archive.institute().name %></p>
+    </div>
   </div>
   <div class="right">
-    <div class="block">
-      <a href="#/archives/nhm_birds"><div class="ring"><span></span></div></a>
+    <div class="block settings options" id="settingsBlock">
+      <button></button>
+      <ul>
+        <li>
+          <label><input type="checkbox" id="autoMove" <% if @autoMove: %> checked<% end %>>
+          Automatically move to next entity</label>
+        </li>
+      </ul>
     </div>
+    <div class="block tools options">
+      <button></button>
+      <ul id="tools-list">
+        <li id="cursor">Cursor</li>
+        <li id="multi-select">Multi-Select</li>
+        <li id="deleter">Deleter</li>
+      </ul>
+    </div>
+    <div class="block"><a href="#/archives/nhm_birds"><div class="ring"><span></span></div></a></div>
   </div>
 </section>
 

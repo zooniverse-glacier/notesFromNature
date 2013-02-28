@@ -1,0 +1,169 @@
+$menu-height = 80px
+
+.menu
+  background: #000 url(images/transcribers/bg-header.png) repeat-x
+  border-bottom: 1px solid rgba(#fff, 0.03)
+  box-shadow: 0 0 5px 5px rgba(#000, 0.6)
+  box-sizing: border-box
+  color: #fff
+  height: $menu-height
+  font-size: 14px
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 1001
+
+  h1, h2, p
+    font-family: "Open Sans",sans-serif
+    margin: 0
+
+  h1
+    font-size: 17px
+    font-weight: 800
+    margin: 0 0 3px 0
+    text-transform: uppercase
+
+  p
+    color: #999
+    font-size: 13px
+    line-height: 16px
+
+  .options
+    label
+      display: block
+
+    > button
+      background: none
+      border: 0
+      height: $menu-height
+      left: 0
+      position: absolute
+      top: 0
+      width: 100%
+      z-index: 2
+
+      &:hover, &.selected
+        background-color: rgba(#dc6700, 0.4)
+
+    > ul
+      @extends #semantic-list
+      background: #333
+      box-shadow: 0 0 10px 2px rgba(#000, 0.4)
+      display: none
+      position: absolute
+      right: 0
+      top: $menu-height
+      width: 150px
+      z-index: 1
+
+      li
+        box-sizing: border-box
+        border-bottom: 1px solid #000
+        cursor: pointer
+        padding: 8px 14px
+        position: relative
+        z-index: 2
+
+        &:first-child
+          &:before
+            background: linear-gradient(rgba(#000, 0.6), rgba(#000, 0))
+            content: ""
+            height: 9px
+            left: 0
+            position: absolute
+            top: 0
+            width: 100%
+            z-index: 1
+
+    &:hover
+      > ul
+        display: block
+
+    &.tools ul li
+      &:hover
+        background: #444
+      &.selected
+        font-weight: 700
+
+
+  .block
+    border-left: 1px solid #000
+    box-sizing: border-box
+    float: left
+    height: $menu-height
+    min-width: 50px
+    padding: 20px 15px 0
+    position: relative
+
+    &:before
+      border-left: 1px solid #333
+      content: ""
+      height: 100%
+      left: -1px
+
+    $power-width = 26px
+    $ring-width = 3px
+
+    .ring
+      border-radius: 50%
+      cursor: pointer
+      height: $power-width
+      margin-top: ($power-width / 6)
+      position: relative
+      transition: all 0.3 linear
+      width: $power-width
+
+      &:before,
+      &:after
+        border-radius: 50%
+        content: ""
+        display: block
+        position: absolute
+
+      &:before
+        background: #000 url(images/transcribers/bg-header.png) repeat-x center
+        box-shadow: inset 0 2px 2px 4px rgba(#000, 0.4)
+        height: ($power-width - ($ring-width * 2))
+        left: $ring-width
+        top: $ring-width
+        width: ($power-width - ($ring-width * 2))
+        z-index: 3
+
+      &:after
+        background: linear-gradient(#fcfcfc, #dcdcdc)
+        box-shadow: 0 2px 2px 4px rgba(#000, 0.4)
+        height: 100%
+        left: 0
+        top: 0
+        width: 100%
+        z-index: 2
+
+      &:hover
+        &:after
+          background: linear-gradient(#fc8c0c, #dc6700)
+
+        span
+          &:before
+            background: linear-gradient(#fc8c0c, #dc6700)
+
+      span
+        background: #000 url(images/transcribers/bg-header.png) repeat-x center
+        display: block
+        height: ($power-width / 2)
+        left: 50%
+        position: absolute
+        top: -($ring-width)
+        width: (($power-width / 2) - $ring-width)
+        z-index: 4
+        margin: 0 0 0 (-(@width / 2))
+
+        &:before
+          background: linear-gradient(#fcfcfc, #dcdcdc)
+          border-radius: 10px
+          box-shadow: 0 3px 5px rgba(0,0,0,0.3)
+          content: ""
+          height: ($power-width / 2)
+          left: 50%
+          margin: 0 0 0 -2px
+          position: absolute
+          width: $ring-width
