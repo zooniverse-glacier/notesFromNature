@@ -13,12 +13,10 @@ class BaseTool extends Spine.Controller
 
     for action in @actions when @actions.length
       list += @itemTemplate({key: action.key, displayName: action.displayName})
-
-    @interface.actions.html list
-
-    for action in @actions when @actions.length
       $('#actions').on 'click', "[data-action=#{action.key}]", @[action.callback]
 
+    @interface.actions.html list
+    
   clickBox: (e) ->
     # Ensure this exists. Implemented by tools.
 
