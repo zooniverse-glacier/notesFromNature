@@ -19,6 +19,7 @@ class BirdsTranscriptionController extends InterfaceController
     '#tool-actions': 'actions'
     '#tools-list': 'toolsList'
     '#selected-tool': 'selectedTool'
+    '#field': 'field'
   events:
     'mousedown .box': 'onClickBox'
     'mousedown .boxes': 'onClickImage'
@@ -52,7 +53,6 @@ class BirdsTranscriptionController extends InterfaceController
     @nextSubject()
 
 
-
   # Events
   onClickBox: (e) =>
     e.preventDefault()
@@ -70,7 +70,6 @@ class BirdsTranscriptionController extends InterfaceController
     @tool.nextBox()
 
   onKeyPress: (e) =>
-
     if e.ctrlKey
       e.preventDefault()
       switch e.keyCode
@@ -100,6 +99,14 @@ class BirdsTranscriptionController extends InterfaceController
 
 
   # "API"
+  disableInput: =>
+    @entry.children('div').addClass('disabled')
+    @field.prop('disabled', true)
+
+  enableInput: =>
+    @entry.children('div').removeClass('disabled')
+    @field.prop('disabled', false)
+
   finish: =>
     data = []
     $('.box').each (i) ->
@@ -159,17 +166,11 @@ class BirdsTranscriptionController extends InterfaceController
     id = @currentBox.data('id')
     value = @currentBox.data('value') || ''
 
-    @entry.children('div').removeClass('disabled')
-
-    field = @entry.find('#field')
-    field.prop('disabled', false)
-    field.val(value).focus()
+    @enableInput()
+    @field.val(value).focus()
 
 
   # Generic UI
-  disableInput: =>
-    @entry.children('div').addClass('disabled').find('#field').prop('disabled', false)
-
   exit: =>
     Spine.Route.navigate window.location.hash.split('/').slice(0,3).join('/')
 
