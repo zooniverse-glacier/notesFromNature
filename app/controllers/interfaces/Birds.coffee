@@ -47,7 +47,7 @@ class BirdsTranscriptionController extends InterfaceController
 
   startWorkflow: (@archive) =>
     @render({archive: @archive, preferences: @preferences})
-    # @widget.draggable()
+    @widget.draggable()
     @selectTool 'cursor'
     @nextSubject()
 
@@ -70,14 +70,18 @@ class BirdsTranscriptionController extends InterfaceController
     @tool.nextBox()
 
   onKeyPress: (e) =>
+
     if e.ctrlKey
+      e.preventDefault()
       switch e.keyCode
         when 49
           @selectTool 'cursor'
         when 50
           @selectTool 'multi-select'
 
-    if e.altKey then @tool.shortcut e.keyCode
+    if e.altKey
+      e.preventDefault()
+      @tool.shortcut e.keyCode
 
   onFinish: (e) =>
     @finish()
@@ -114,7 +118,7 @@ class BirdsTranscriptionController extends InterfaceController
     # testSubject.retire()
     # classification.send()
     # @nextSubject()
-    
+
   nextSubject: =>
     @counter = 1
     lastMid = 0
@@ -163,6 +167,9 @@ class BirdsTranscriptionController extends InterfaceController
 
 
   # Generic UI
+  disableInput: =>
+    @entry.children('div').addClass('disabled').find('#field').prop('disabled', false)
+
   exit: =>
     Spine.Route.navigate window.location.hash.split('/').slice(0,3).join('/')
 
