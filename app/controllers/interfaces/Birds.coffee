@@ -7,11 +7,9 @@ Subject = require 'models/Subject'
 
 data = require 'lib/ocr-data'
 
-PROJECT_ID = '5008739e516bcbd236000001' # Cheating
-
 class BirdsTranscriptionController extends InterfaceController
-  canCreateBox: true
   className: 'birds-interface'
+
   elements:
     '.boxes': 'boxes'
     '#data-entry': 'widget'
@@ -20,6 +18,7 @@ class BirdsTranscriptionController extends InterfaceController
     '#tools-list': 'toolsList'
     '#selected-tool': 'selectedTool'
     '#field': 'field'
+
   events:
     'mousedown .box': 'onClickBox'
     'mousedown .boxes': 'onClickImage'
@@ -28,8 +27,9 @@ class BirdsTranscriptionController extends InterfaceController
     'click #autoMove': 'toggleAutoMove'
     'click #tools-list li': 'onSelectTool'
     'click #power': 'exit'
-  dataTemplate: require 'views/transcription/interfaces/birds/data'
+
   template: require 'views/transcription/interfaces/birds/main'
+
   tools:
     'cursor': require 'lib/tools/Cursor'
     'multi-select': require 'lib/tools/MultiSelect'
@@ -37,8 +37,8 @@ class BirdsTranscriptionController extends InterfaceController
   constructor: ->
     super
     # Load previous interface preferences
-    if User.current? and User.current.preferences[PROJECT_ID]
-      for key, value of User.current.preferences[PROJECT_ID]
+    if User.current? and User.current.preferences[window.project.id]
+      for key, value of User.current.preferences[window.project.id]
         if value in ['true', 'false']
           @preferences[key] = (value is 'true')
         else
