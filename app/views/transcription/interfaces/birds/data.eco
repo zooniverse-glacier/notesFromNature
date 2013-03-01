@@ -1,8 +1,0 @@
-
-
-<h3>Box ID#<%- @id %></h3>
-<form>
-  <label>Transcribe</label>
-  <input type="text" id="field" value="<%- @value %>">
-  <button id="done">Done</button>
-</form>

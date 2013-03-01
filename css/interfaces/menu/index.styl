@@ -29,21 +29,17 @@ $menu-height = 80px
     line-height: 16px
 
   .options
-    label
-      display: block
+    &:hover
+      background-color: rgba(#fff, 0.1)
 
-    > button
-      background: none
-      border: 0
-      height: $menu-height
-      left: 0
-      position: absolute
-      top: 0
-      width: 100%
+    label
+      color: #fff
+      display: block
+      text-shadow: 0 1px 5px #000
       z-index: 2
 
-      &:hover, &.selected
-        background-color: rgba(#dc6700, 0.4)
+      p
+        text-align: center
 
     > ul
       @extends #semantic-list
@@ -101,12 +97,25 @@ $menu-height = 80px
       height: 100%
       left: -1px
 
+    &.tools
+      min-width: 120px
+      text-align: center
+
+    &.power
+      cursor: pointer
+
+    &:hover .ring
+      &:after
+        background: linear-gradient(#fc8c0c, #dc6700)
+
+      span
+        &:before
+          background: linear-gradient(#fc8c0c, #dc6700)
+          
     $power-width = 26px
     $ring-width = 3px
-
     .ring
       border-radius: 50%
-      cursor: pointer
       height: $power-width
       margin-top: ($power-width / 6)
       position: relative
@@ -137,14 +146,6 @@ $menu-height = 80px
         top: 0
         width: 100%
         z-index: 2
-
-      &:hover
-        &:after
-          background: linear-gradient(#fc8c0c, #dc6700)
-
-        span
-          &:before
-            background: linear-gradient(#fc8c0c, #dc6700)
 
       span
         background: #000 url(images/transcribers/bg-header.png) repeat-x center

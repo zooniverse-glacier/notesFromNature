@@ -43,7 +43,8 @@ class Cursor extends BaseTool
     if $('.box').hasClass 'selected'
       $('.box').removeClass('selected').resizable('disable')
       delete @currentBox
-      @interface.entry.empty().removeClass('active')
+      @interface.entry.children('div').addClass('disabled')
+      @interface.entry.find('#field').prop('disabled', true)
       @resizing = false
     else
       box = document.createElement 'div'

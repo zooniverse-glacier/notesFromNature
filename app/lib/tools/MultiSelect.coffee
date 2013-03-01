@@ -5,6 +5,7 @@ class MultiSelect extends BaseTool
     key: 'delete'
     display: 'Delete'
     callback: 'deleteBoxes'
+    shortcut: 8706
   ]
 
   constructor: (opts) ->

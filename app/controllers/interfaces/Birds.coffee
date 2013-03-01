@@ -14,9 +14,11 @@ class BirdsTranscriptionController extends InterfaceController
   className: 'birds-interface'
   elements:
     '.boxes': 'boxes'
+    '#data-entry': 'widget'
     '#entry': 'entry'
-    '#actions': 'actions'
+    '#tool-actions': 'actions'
     '#tools-list': 'toolsList'
+    '#selected-tool': 'selectedTool'
   events:
     'mousedown .box': 'onClickBox'
     'mousedown .boxes': 'onClickImage'
@@ -24,7 +26,7 @@ class BirdsTranscriptionController extends InterfaceController
     'click #done': 'onDoneBox'
     'click #autoMove': 'toggleAutoMove'
     'click #tools-list li': 'onSelectTool'
-    'mouseenter .options button': 'keepHover'
+    'click #power': 'exit'
   dataTemplate: require 'views/transcription/interfaces/birds/data'
   template: require 'views/transcription/interfaces/birds/main'
   tools:
@@ -45,32 +47,10 @@ class BirdsTranscriptionController extends InterfaceController
 
   startWorkflow: (@archive) =>
     @render({archive: @archive, preferences: @preferences})
+    # @widget.draggable()
     @selectTool 'cursor'
     @nextSubject()
 
-  nextSubject: =>
-    @counter = 1
-    lastMid = 0
-
-    for datum, i in data when i < 10
-        box = datum.split(',')
-        y = parseInt(box[1])
-        x = parseInt(box[0])
-        width = parseInt(box[2] - box[0])
-        height = parseInt(box[3] - box[1])
-        mid = y + (height / 2)
-
-        style = "top: #{box[1]}px; left: #{box[0]}px; width: #{width}px; height: #{height}px"
-
-        unless width > 600 or height > 100 or box[0] is "0" or box[1] < 50 or width < 3 or height < 3
-          @boxes.append('<div data-id='+@counter+' class="box" style="' + style + '"></div>')
-          @counter += 1
-          lastMid = mid
-
-    @$('.box').resizable({
-      handles: 'all'
-      disabled: true
-    })
 
 
   # Events
@@ -98,7 +78,6 @@ class BirdsTranscriptionController extends InterfaceController
           @selectTool 'multi-select'
 
     if e.altKey then @tool.shortcut e.keyCode
-
 
   onFinish: (e) =>
     @finish()
@@ -135,6 +114,30 @@ class BirdsTranscriptionController extends InterfaceController
     # testSubject.retire()
     # classification.send()
     # @nextSubject()
+    
+  nextSubject: =>
+    @counter = 1
+    lastMid = 0
+
+    for datum, i in data
+        box = datum.split(',')
+        y = parseInt(box[1])
+        x = parseInt(box[0])
+        width = parseInt(box[2] - box[0])
+        height = parseInt(box[3] - box[1])
+        mid = y + (height / 2)
+
+        style = "top: #{box[1]}px; left: #{box[0]}px; width: #{width}px; height: #{height}px"
+
+        unless width > 600 or height > 100 or box[0] is "0" or box[1] < 50 or width < 3 or height < 3
+          @boxes.append('<div data-id='+@counter+' class="box" style="' + style + '"></div>')
+          @counter += 1
+          lastMid = mid
+
+    @$('.box').resizable({
+      handles: 'all'
+      disabled: true
+    })
 
   selectTool: (tool) =>
     # Reset selected boxes for new tool. 
@@ -145,24 +148,22 @@ class BirdsTranscriptionController extends InterfaceController
     @toolsList.find('li').removeClass 'selected'
 
     @toolsList.find("##{tool}").addClass 'selected'
+    @selectedTool.html tool.charAt(0).toUpperCase() + tool.slice(1, tool.length)
     @tool = new @tools[tool]({interface: @})
 
   startDataEntry: (@currentBox) =>
     id = @currentBox.data('id')
     value = @currentBox.data('value') || ''
 
-    @entry.addClass 'active'
-    @entry.html @dataTemplate({id: id, value: value})
-    defer = =>
-      field = @entry.find('#field')
-      field.val(value).focus()
-    setTimeout defer, 0
+    @entry.children('div').removeClass('disabled')
+
+    field = @entry.find('#field')
+    field.prop('disabled', false)
+    field.val(value).focus()
 
 
   # Generic UI
-  keepHover: (e) ->
-    $(e.currentTarget).addClass 'selected'
-    $(e.currentTarget).parent().mouseleave ->
-      $(e.currentTarget).removeClass 'selected'
+  exit: =>
+    Spine.Route.navigate window.location.hash.split('/').slice(0,3).join('/')
 
 module.exports = BirdsTranscriptionController

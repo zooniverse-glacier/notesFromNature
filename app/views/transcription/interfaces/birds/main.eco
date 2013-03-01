@@ -4,13 +4,10 @@
       <h1><%- @archive.name %></h1>
       <p>from <%- @archive.institute().name %></p>
     </div>
-    <div class="block">
-      <button id="finish">Finish</button>
-    </div>
   </div>
   <div class="right">
     <div class="block settings options" id="settingsBlock">
-      <button></button>
+      <label>Settings</label>
       <ul>
         <li>
           <label><input type="checkbox" id="autoMove" <% if @preferences.auto_move: %> checked<% end %>>
@@ -19,13 +16,13 @@
       </ul>
     </div>
     <div class="block tools options">
-      <button></button>
+      <label>Tools<p id="selected-tool"></p></label>
       <ul id="tools-list">
         <li id="cursor">Cursor</li>
         <li id="multi-select">Multi-Select</li>
       </ul>
     </div>
-    <div class="block"><a href="#/archives/nhm_birds"><div class="ring"><span></span></div></a></div>
+    <div class="block power" id="power"><div class="ring"><span></span></div></div>
   </div>
 </section>
 
@@ -34,10 +31,16 @@
 </div>
 
 <div id="data-entry" class="data-entry">
-  <section class="entry" id="entry"></section>
+  <section class="entry" id="entry">
+    <div class="disabled">
+      <input type="text" id="field" value="<%- @value %>" autocomplete="off" disabled>
+      <button id="done">Ok</button>
+    </div>
+  </section>
   <section class="actions">
-    <h2>Actions</h2>
-    <ul id="actions"></ul>
-</section>
-
+    <ul id="tool-actions"></ul>
+    <ul class="interface-actions" id="interface-actions">
+      <li id="finish">Finish Page</li>
+    </ul>
+  </section>
 </div>

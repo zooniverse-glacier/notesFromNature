@@ -3,40 +3,107 @@
 
   @import "menu"
 
-  .data-entry
-    background: rgba(#333, 0.6)
-    bottom: 0
-    box-sizing: border-box
-    color: #d3d3d3
-    height: 200px
-    padding: 25px
-    position: fixed
-    width: 100%
-    z-index: 1000
-
-    .entry
-      margin-right: 200px
+  a
+    &.full
+      height: 100%
+      left: 0
+      position: absolute
+      top: 0
       width: 100%
 
+  .data-entry
+    background: rgba(#000, 0.8)
+    border-radius: 8px
+    bottom: 30px
+    box-sizing: border-box
+    color: #d3d3d3
+    height: 60px
+    padding: 15px
+    position: fixed
+    width: 700px
+    z-index: 1000
+    left: 50%
+    left: calc(50% \- @width / 2)
+    left: -webkit-calc(50% \- @width / 2)
+
+    > *
+      display: inline-block
+
+    .entry
+      float: left
+
+      div
+        background: #fff
+        border-radius: 3px
+        display: inline-block
+        height: 30px
+
+        &.disabled
+          background: #ccc
+
+          button
+            background: darken(#693, 20%)
+            border: 2px solid #ccc
+
+          input
+            background: #ccc
+
+        > *
+          box-sizing: border-box
+          height: 30px
+          vertical-align: top
+
+        input
+          appearance: none
+          border: 0
+          border-radius: 3px
+          margin: 0
+          outline: none
+          padding: 3px 5px
+
+        button
+          background: #693
+          border: 2px solid #fff
+          border-radius: 3px
+          color: #fff
+          font-family: 'Open Sans', sans-serif
+          font-size: 11px
+          text-transform: uppercase
+
+
     .actions
-      border-left: 1px solid #999
-      box-sizing: border-box
-      padding: 15px
-      position: absolute
-      right: 0
-      top: 0
-      width: 200px
+      float: right
 
       ul
         @extends #semantic-list
+        display: inline-block
+
+        &.interface-actions
+          margin: 0 0 0 20px
+
+          li
+            background: #ff7c09
+
+            &:hover
+              background: lighten(#ff7c09, 10%)
 
         li
+          background: #693
+          border-radius: 2px
+          box-sizing: border-box
+          color: #fff
           cursor: pointer
-          text-decoration: underline
-          &:hover
-            color: #fff
-            text-decoration: none
+          display: inline-block
+          font-family: 'Open Sans', sans-serif
+          font-size: 11px
+          height: 26px
+          margin: 2px 2px 2px 12px
+          padding: 2px 6px 3px
+          text-transform: uppercase
+          vertical-align: top
 
+          &:hover
+            background: lighten(#693, 10%)
 
   .boxes
     position: relative
@@ -46,7 +113,7 @@
 
   .box
     background: rgba(#f00, 0.13)
-    border: 1px solid transparent
+    border: 1px solid rgba(#fff, 0.1)
     position: absolute !important
 
     &.resizable,
