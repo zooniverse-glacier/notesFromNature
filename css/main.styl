@@ -970,6 +970,7 @@ li.img-graphic2 {
   width: 66px;
   height: 100%;
   margin-left: 247px;
+  list-style: none;
 }
 .time-life-graf li {
   height: 91px;
@@ -1014,6 +1015,9 @@ li.img-graphic2 {
 .time-life-graf li.hidden {
   display: none;
 }
+
+.time-life
+  list-style: none;
 
 .time-life li {
   height: 90px;
@@ -1084,23 +1088,28 @@ span.ico-comments {
   padding-left: 25px;
 }
 
-.badges-list {
-  margin-top: 20px;
-}
-.badges-list li {
-  float: left;
-  padding-right: 9px;
-  padding-bottom: 7px;
-}
-.badges-list img {
-  width: 71px;
-}
 
-.user-list.inline li {
-  float: left;
-  margin-bottom: 30px;
-  margin-right: 29px;
-}
+.badges-list
+  @extends #semantic-list
+  margin-top: 20px
+
+  img
+    width: 71px
+
+  li
+    float: left
+    padding-right: 9px
+    padding-bottom: 7px
+
+
+.user-list
+  @extends #semantic-list
+
+  li
+    float: left
+    margin-bottom: 30px
+    margin-right: 29px
+
 
 .archive-list
   @extends #semantic-list
@@ -1411,9 +1420,6 @@ h1.notlogged
 
 .ProfileController 
   margin-bottom: 39px
-  ul
-    @extends #semantic-list
-    
   .title.user
     margin-left: -6px
 .BadgeController 
