@@ -57,7 +57,7 @@
 </script>
 
 <script type="text/template" id="tooltip-template">
-  <strong class="title">{{ title }}</strong>
+  <strong class="title">{{{ title }}}</strong>
   <div class="description">{{{ description }}}</div>
 
   <div class="buttons">
