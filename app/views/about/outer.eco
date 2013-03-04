@@ -25,13 +25,13 @@
       </div>
     </div>
     <div class="col1">
-      <ul class="list-links">
+      <!-- <ul class="list-links">
         <li><a href="#/about/project" data-section="project">The project</a></li>
         <li><a href="#/about/research" data-section="research">Research</a></li>
         <li><a href="#/about/legal_issues" data-section="legal_issues">Legal issues</a></li>
         <li><a href="#/about/partners" data-section="partners">Partners</a></li>
         <li><a href="#/about/story" data-section="story">The story</a></li>
-      </ul>
+      </ul> -->
     </div>
 
   </div>
