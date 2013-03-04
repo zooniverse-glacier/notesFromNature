@@ -3,25 +3,29 @@ module.exports =
     url: 'badges/seed.png'
     description: "You earn this badge for transcribing a SERNEC record"
     awardText: "You earned this badge for transcribing a SERNEC record"
-    number: 1
     condition: (details) -> details.user.project.classification_count == 1 
     collection: 'herbarium'
   sprout:
     url: 'badges/seedling.png'
-    description: "You earn this badge for transcribing 20 SERNEC records"
-    awardText: "You earned this badge for transcribing 20 SERNEC records"
-    number: 10
+    description: "You earn this badge for transcribing 10 SERNEC records"
+    awardText: "You earned this badge for transcribing 10 SERNEC records"
     condition: (details) -> details.user.project.classification_count == 10
     collection: 'herbarium'
   seedling:
     url: 'badges/sapling.png'
-    description: "You earn this badge for transcribing 50 SERNEC records"
-    awardText:  "You earned this badge for transcribing 50 SERNEC records"
-    condition: (details) -> details.user.project.classification_count == 50
+    description: "You earn this badge for transcribing 25 SERNEC records"
+    awardText:  "You earned this badge for transcribing 25 SERNEC records"
+    condition: (details) -> details.user.project.classification_count == 25
     collection: 'herbarium'
   sapling: 
     url: 'badges/tree.png'
-    description: "You earn this badge for transcribing 100 SERNEC records"
-    awardText:  "You earned this badge for transcribing 100 SERNEC records"
-    condition: (details) -> details.user.project.classification_count == 100
+    description: "You earn this badge for transcribing 75 SERNEC records"
+    awardText:  "You earned this badge for transcribing 75 SERNEC records"
+    condition: (details) -> details.user.project.classification_count == 75
+    collection: 'herbarium'
+  oak: 
+    url: 'badges/oak.png'
+    description: "You earn this badge for transcribing 250 SERNEC records"
+    awardText:  "You earned this badge for transcribing 250 SERNEC records"
+    condition: (details) -> details.user.project.classification_count == 250
     collection: 'herbarium'

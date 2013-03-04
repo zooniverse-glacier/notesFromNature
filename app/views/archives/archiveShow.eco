@@ -16,25 +16,17 @@
     <div>
       <a class="button left" href="<%=@archive.transcriptionUrl()%>">START TRANSCRIBING</a>
       <div class="percentage">
-        <span class="title"><%=@archive.progress()%>%</span>
+        <span class="title"><%= @archive.progress() %>%</span>
         <span class="subtitle done">DONE</span>
       </div>
-    </div>  
+    </div>
   </div>
-</div>          
-
+</div>
 
 <div class="box-general divided-green">
-
   <div class="col2">
-    <div>
-      <p>
-      <%=@archive.metadata.description%>
-      </p>
-    </div>
-
+    <p><%= @archive.metadata.description %></p>
   </div>
-
   <div class="col1">
     <div class="box-right">
       <ul class="status-list">
@@ -56,35 +48,28 @@
       <a href="<%=@archive.transcriptionUrl()%>" class="button nocolor">START TRANSCRIBING</a>
     </div>
   </div>
-
 </div>
 
 <div class="box-general">
-
   <div class="col3">
     <h3 class="title">Transcribe to earn!</h3>
   </div>
-  <% for badge in @badges[0..2] : %>
-
+  <% for badge in @badges[0..2]: %>
     <div class="col1 omega">
         <div class="center">
-          <img src="images/<%=badge.url%>" alt="<%=badge.name%>" </img> 
-          <h3 class="badge"><%=badge.name%></h3>
-          <p class="badge"><%=badge.description%><p> 
+          <img src="images/<%= badge.url %>" alt="<%= badge.name %>">
+          <h3 class="badge"><%= badge.name.charAt(0).toUpperCase() + badge.name.slice(1, badge.length) %></h3>
+          <p class="badge"><%= badge.description %><p>
         </div>
     </div>
-  <%end%>
-
-
+  <% end %>
 </div>
 
 <div class="box-general laptop white">
-
   <div class="col2">
     <h3 class="title">What do we need from you?</h3>
-
     <p>
-    We have thousands of pages from biologists and researchers that contain information about where and when a species occurred in the past. We need you to help us transcribe that data and make it available to scientists and researchers. We can uncover the history of some of these species and possibly find species that have never been observed any where else!
+      We have thousands of pages from biologists and researchers that contain information about where and when a species occurred in the past. We need you to help us transcribe that data and make it available to scientists and researchers. We can uncover the history of some of these species and possibly find species that have never been observed any where else!
     </p>
   </div>
   <div class="col3">  
@@ -97,12 +82,5 @@
       </a>
       </li>
     </ul>
-
-
-
   </div>
-
-
 </div>
-
-

@@ -15,7 +15,6 @@ class Badge extends Spine.Model
   @getUserBadges: ->
     if User.current?
       Api.get("/users/#{User.current.id}/badges").onSuccess (badges) =>
-        console.log badges
         badges = ([name,created_at] for name, created_at of badges.badges)
         badges = _(badges).sortBy (badge) -> moment().diff(moment(badge[1]))
         User.current.badges = []
@@ -36,9 +35,7 @@ class Badge extends Spine.Model
         User.current.badges.push badge
 
   @process_weekly_report: (name, created_at) ->
-    console.log 'name', name, 'created_at', created_at
     number = parseInt(name.replace('weekly_report_',''))
-    console.log 'number', number
     User.current.badges.push {name: 'weekly_report', number: number, created_at: created_at}
 
   @update_weekly_report: ->
