@@ -1,9 +1,9 @@
 <div class="box-general nomargin">
   <div class="col3">
     <div class="box-badge">
-      <img src="images/<%=@badge.url%>" alt=""/>
-      <h3 class="title"><%=@badge.name%></h3>
-      <span class="subtitle"><%=@badge.awardText%> </span>
+      <img src="images/<%= @badge.url %>" alt="">
+      <h3 class="title"><%= @badge.name %></h3>
+      <span class="subtitle"><%= @badge.awardText %></span>
     </div>
   </div>
 </div>

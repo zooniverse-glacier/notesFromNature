@@ -1,9 +1,10 @@
+badgeDefinitions = require 'lib/BadgeDefinitions'
+
+Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/lib/models/user'
-badgeDefinitions=  require 'lib/BadgeDefinitions'
-Api= require 'zooniverse/lib/api'
 
 class Badge extends Spine.Model
-  @configure 'Badge', 'name', 'url', 'description','collection', 'awardText'
+  @configure 'Badge', 'name', 'url', 'description', 'collection', 'awardText'
   
   @loadDefinitions: ->
     for name, badgeDefinition of badgeDefinitions
@@ -12,35 +13,38 @@ class Badge extends Spine.Model
     @trigger 'badgesLoaded'
 
   @getUserBadges: ->
-    if  User.current?
+    if User.current?
       Api.get("/users/#{User.current.id}/badges").onSuccess (badges) =>
-        badges = ([name,created_at]  for name,created_at of badges.badges)
-        badges =  _(badges).sortBy (el)-> moment().diff(moment(el[1]))
-        User.current.badges =[]
+        console.log badges
+        badges = ([name,created_at] for name, created_at of badges.badges)
+        badges = _(badges).sortBy (badge) -> moment().diff(moment(badge[1]))
+        User.current.badges = []
         for badge in badges
           @insertIntoUser(badge[0], badge[1])
         Badge.update_weekly_report()
         @trigger 'badgesLoaded'
     else
-      throw "Need user logged in to award badges"
+      throw 'Need user logged in to award badges'
 
-  @insertIntoUser:(name,created_at)->
-    if name.indexOf("weekly_report") >-1
+  @insertIntoUser: (name, created_at) ->
+    if name.indexOf('weekly_report') > -1
       @process_weekly_report(name, created_at)
     else
-      b = @findByName(name)
-      if b? 
-        b.created_at = created_at
-        User.current.badges.push b
+      badge = @findByName(name)
+      if badge? 
+        badge.created_at = created_at
+        User.current.badges.push badge
 
-  @process_weekly_report:(name,created_at)->
+  @process_weekly_report: (name, created_at) ->
+    console.log 'name', name, 'created_at', created_at
     number = parseInt(name.replace('weekly_report_',''))
-    User.current.badges.push {name: 'weekly_report' , number: number, created_at: created_at}
+    console.log 'number', number
+    User.current.badges.push {name: 'weekly_report', number: number, created_at: created_at}
 
-  @update_weekly_report:->
-    reports =  ( moment(badge.created_at).diff(moment(),'weeks') for badge in User.current.badges when badge.name == 'weekly_report')
+  @update_weekly_report: ->
+    reports = (moment(badge.created_at).diff(moment(), 'weeks') for badge in User.current.badges when badge.name == 'weekly_report')
 
-    if reports.length==0
+    if reports.length == 0
       @post_weekly_report()
     else 
       if reports.indexOf(0) == -1
@@ -48,21 +52,21 @@ class Badge extends Spine.Model
       
   @post_weekly_report: =>
     if User.current?
-      Api.post("/users/#{User.current.id}/badges", {badge: {name: "weekly_report_#{moment().format('%d-%MM-YYYY')}"} }).onSuccess (data)=>
+      Api.post("/users/#{User.current.id}/badges", {badge: {name: "weekly_report_#{moment().format('d-MM-YYYY')}"}}).onSuccess (data) =>
         Badge.getUserBadges()
 
   @findBySlug: (slug) =>
     result = @select (b) ->
-      b.slug() == slug 
+      b.slug() is slug 
     result[0]
 
-  @badgesForProject:(projectSlug) =>
+  @badgesForProject: (projectSlug) =>
     @select (b) =>
-      b.collection == projectSlug
+      b.collection is projectSlug
 
-  @findByName:(name)=>
-    result = @select (d)->
-      d.name == name
+  @findByName: (name) =>
+    result = @select (d) ->
+      d.name is name
     result[0]
 
   constructor: ->
@@ -79,12 +83,10 @@ class Badge extends Spine.Model
 
   award: =>
     if User.current?
-      Badge.trigger("badgeAwarded", @)
-      Api.post("/users/#{User.current.id}/badges", { badge:{name: @name} }).onSuccess (data)=>
+      Badge.trigger('badgeAwarded', @)
+      Api.post("/users/#{User.current.id}/badges", { badge:{name: @name} }).onSuccess (data) =>
         Badge.getUserBadges()
-    else 
+    else
       throw 'Need user logged in to award badge'
-  
-
 
 module.exports = Badge

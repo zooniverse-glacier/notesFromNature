@@ -24,4 +24,4 @@ module.exports =
     description: "You earn this badge for transcribing 100 SERNEC records"
     awardText:  "You earned this badge for transcribing 100 SERNEC records"
     condition: (details) -> details.user.project.classification_count == 100
-    collection: 'herbarium'  
+    collection: 'herbarium'
