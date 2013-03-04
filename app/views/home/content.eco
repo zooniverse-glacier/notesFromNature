@@ -23,7 +23,6 @@
       <p class="badge">The digitized data you are creating will help advance research related to species extinction, ecosystem changes, environmental health and even human health.<p>
     </div>    
   </div>
-
 </div>
 
 <div class="box-general laptop laptop-home">        
@@ -35,18 +34,18 @@
   <div class="col3">  
     <ul class="status-list inline">
       <li class="logos">
-      <span class="text">PARTICIPATING INSTITUTIONS</span>
+        <span class="text">PARTICIPATING INSTITUTIONS</span>
 
-      <ul class="logos">
-        <li><a href="http://www.nhm.ac.uk/tring/research-and-curation/index.html"><img alt="Natural History Museum" src="images/natural_history_museum.png" /></a></li>
-        <li><a href="http://www.sernec.org/"><img alt="SERNEC" src="images/sernec.png" /></a></li>
-        <li><a href="http://calbug.berkeley.edu/"><img alt="Calbug" src="images/calbug.png" /></a></li>
-      </ul>
+        <ul class="logos">
+          <li><a href="http://www.nhm.ac.uk/tring/research-and-curation/index.html"><img alt="Natural History Museum" src="images/natural_history_museum.png" /></a></li>
+          <li><a href="http://www.sernec.org/"><img alt="SERNEC" src="images/sernec.png" /></a></li>
+          <li><a href="http://calbug.berkeley.edu/"><img alt="Calbug" src="images/calbug.png" /></a></li>
+        </ul>
 
-      <p>Interested in publishing your collection? <a href="mailto:andrew@vizzuality.com?Subject=We%20want%20to%20be%20involved%20with%20Notes%20from%20Nature!" class="object">Contact us</a></p>
+        <p>Interested in publishing your collection? <a href="mailto:arfon@zooniverse.org?Subject=We%20want%20to%20be%20involved%20with%20Notes%20from%20Nature!" class="object">Contact us</a></p>
       </li>
       <li class="mar-button">
-      <a href="#/archives/herbarium/transcribe" class="button next"><span>TRY WITH ONE PAGE</span> </a>
+        <a href="#/archives" class="button next"><span>TRY WITH ONE PAGE</span></a>
       </li>
     </ul>
   </div>
