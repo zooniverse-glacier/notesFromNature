@@ -1,20 +1,19 @@
 <script type="text/javascript">
-
   $(function() {
     $(".box-general.divided-green").height($(".box-right").height() + 65);
   });
-
 </script>
-<div class="box-general detail" style='background-image:url("<%=@archive.metadata.location.headerImage%>")'>
+
+<div class="box-general detail" style='background-image:url("<%= @archive.metadata.location.headerImage %>")'>
   <div class="col3">
     <h2>
-      <%= @archive.institute().name%> <br/>
-      <span><%=@archive.name%></span>
+      <%= @archive.institute().name %><br>
+      <span><%= @archive.name %></span>
     </h2>
   </div>
   <div class="translucent-box">
     <div>
-      <a class="button left" href="<%=@archive.transcriptionUrl()%>">START TRANSCRIBING</a>
+      <a class="button left" href="<%= @archive.transcriptionUrl() %>">START TRANSCRIBING</a>
       <div class="percentage">
         <span class="title"><%= @archive.progress() %>%</span>
         <span class="subtitle done">DONE</span>
