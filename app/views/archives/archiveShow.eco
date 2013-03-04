@@ -50,20 +50,22 @@
   </div>
 </div>
 
-<div class="box-general">
-  <div class="col3">
-    <h3 class="title">Transcribe to earn!</h3>
-  </div>
-  <% for badge in @badges[0..2]: %>
-    <div class="col1 omega">
+<% if @badges.length: %>
+  <div class="box-general">
+    <div class="col3">
+      <h3 class="title">Transcribe to earn!</h3>
+    </div>
+    <% for badge in @badges[0..2]: %>
+      <div class="col1 omega">
         <div class="center">
           <img src="images/<%= badge.url %>" alt="<%= badge.name %>">
           <h3 class="badge"><%= badge.name.charAt(0).toUpperCase() + badge.name.slice(1, badge.length) %></h3>
           <p class="badge"><%= badge.description %><p>
         </div>
-    </div>
-  <% end %>
-</div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
 <div class="box-general laptop white">
   <div class="col2">
