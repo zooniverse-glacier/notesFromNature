@@ -23,13 +23,12 @@ timestamp = `date -u +%Y-%m-%d_%H-%M-%S`.chomp
 compress = <<-BASH
 echo 'Compressing...'
 
-timestamp=#{ timestamp }
+timestamp=#{timestamp}
 
 mv build/application.js "build/application-$timestamp.js"
 mv build/nfn/build.js "build/nfn/build-$timestamp.js"
 ./node_modules/clean-css/bin/cleancss build/application.css -o "build/application-$timestamp.css"
 rm build/application.css
-
 BASH
 
 system build
@@ -65,7 +64,7 @@ to_upload.each.with_index do |file, index|
   end
   
   puts "#{ '%2d' % (index + 1) } / #{ '%2d' % total }: Uploading #{ file } as #{ content_type }"
-  bucket.objects["ocr/#{file}"].write file: file, acl: :public_read, content_type: content_type
+  bucket.objects["beta/#{file}"].write file: file, acl: :public_read, content_type: content_type
 end
 
 Dir.chdir working_directory

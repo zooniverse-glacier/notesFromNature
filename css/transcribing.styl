@@ -788,6 +788,9 @@
   color: #fff;
   font: 11px "Open Sans";
   z-index: 1001;
+  width: 600px;
+  left: calc(50% \- @width / 2);
+  left: -webkit-calc(50% \- @width / 2);
 
   .title {
     margin: 0 0 2px 0;
@@ -861,6 +864,11 @@
  }
 
 }
+
+.transcriber.bugs .bugs-widget
+  width: 580px
+  left: calc(50% \- @width / 2)
+  left: -webkit-calc(50% \- @width / 2)
 
 .transcriber.sernac .sernac-widget {
   z-index: 10001;
