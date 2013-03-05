@@ -47,7 +47,7 @@ class TranscriptionController extends Spine.Controller
       # Set the appropriate transcription controller and start it up.
       switch @archive.slug()
         when 'calbug' then @transcriptionController = new BugsTranscriptionController()
-        when 'nhm_birds' then @transcriptionController = new BirdsTranscriptionController()
+        when 'ornithological' then @transcriptionController = new BirdsTranscriptionController()
         when 'herbarium' then @transcriptionController = new SernacTranscriptionController()
         else
           console.log 'No transcription interface for that archive is available.'

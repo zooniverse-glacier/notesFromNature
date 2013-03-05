@@ -36,7 +36,6 @@ class Cursor extends BaseTool
         $('body').scrollTop box.position().top - ($(window).height() / 2) + (box.height() / 2)
         $('body').scrollLeft box.position().left - ($(window).width() / 2) + (box.width() / 2)
         @interface.startDataEntry box
-        @resizing = true
         @currentBox = box
 
   clickImage: (e) =>
@@ -44,7 +43,6 @@ class Cursor extends BaseTool
       $('.box').removeClass('selected').resizable('disable')
       delete @currentBox
       @interface.disableInput()
-      @resizing = false
     else
       box = document.createElement 'div'
       $(box).addClass('box').data('id', @interface.counter).css({
@@ -52,27 +50,18 @@ class Cursor extends BaseTool
         left: e.offsetX
         })
       @interface.counter += 1
-      @creating = true
 
       @interface.boxes.append box
-      $(document).on 'mouseup', {box: box}, @onDoneCreateBox
-      $(document).on 'mousemove', (de) =>
-        if @creating
-          $(box).width de.pageX - e.pageX
-          $(box).height de.pageY - e.pageY
+      $(document).on 'mouseup.createBox', {box: box}, @onDoneCreateBox
+      $(document).on 'mousemove.createBox', (de) =>
+        $(box).width de.pageX - e.pageX
+        $(box).height de.pageY - e.pageY
 
   onDoneCreateBox: (e) =>
     box = $(e.data.box)
-
-    box.resizable({
-      handles: 'all'
-      disabled: true
-    })
+    $(document).off 'mousemove.createBox mouseup.createBox'
 
     @clickBox box
-
-    @creating = false
-    $(document).off 'mousemove mouseup'
 
   deleteBox: (e) =>
     boxToDelete = @currentBox
