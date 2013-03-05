@@ -8,3 +8,4 @@ public/application.js
 /build/
 
 *.orig
+/data/

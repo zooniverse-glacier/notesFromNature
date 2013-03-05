@@ -84,9 +84,12 @@ class Cursor extends BaseTool
 
     $(boxToDelete).remove()
 
-  nextBox: =>
-    if @currentBox.data('value')?
-      @currentBox.addClass 'green'
+  nextBox: (opts = {}) =>
+    if $('#field').val()
+      @currentBox.data('value', $('#field').val()).addClass('green')
+
+      if opts.onData
+        opts.onData @currentBox.data('value')
 
     if @interface.preferences?.auto_move
       if @currentBox.next().length
@@ -98,7 +101,8 @@ class Cursor extends BaseTool
     @clickBox $(@currentBox).prev()
 
   sameBox: (e) =>
-    $(@currentBox).data 'value', 'same'
+    @currentBox.data 'value', 'same'
+    $('#field').val 'same'
     @nextBox() if @interface.preferences.auto_move
 
 module.exports = Cursor

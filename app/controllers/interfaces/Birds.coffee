@@ -6,6 +6,8 @@ Classification = require 'models/Classification'
 Subject = require 'models/Subject'
 
 data = require 'lib/ocr-data'
+Eol = require 'lib/eol'
+Modal = require 'lib/modal'
 
 class BirdsTranscriptionController extends InterfaceController
   className: 'birds-interface'
@@ -18,6 +20,7 @@ class BirdsTranscriptionController extends InterfaceController
     '#tools-list': 'toolsList'
     '#selected-tool': 'selectedTool'
     '#field': 'field'
+    '#eol-widget': 'eolWidget'
 
   events:
     'mousedown .box': 'onClickBox'
@@ -25,9 +28,11 @@ class BirdsTranscriptionController extends InterfaceController
     'click #finish': 'onFinish'
     'click #done': 'onDoneBox'
     'click #autoMove': 'toggleAutoMove'
+    'click #showEol': 'toggleShowEol'
     'click #tools-list li': 'onSelectTool'
     'click #power': 'exit'
 
+  eolTemplate: require 'views/widgets/eol'
   template: require 'views/transcription/interfaces/birds/main'
 
   tools:
@@ -37,6 +42,9 @@ class BirdsTranscriptionController extends InterfaceController
   constructor: ->
     super
     # Load previous interface preferences
+    @preferences.show_eol = true
+    @preferences.auto_move = true
+
     if User.current? and User.current.preferences[window.project.id]
       for key, value of User.current.preferences[window.project.id]
         if value in ['true', 'false']
@@ -48,7 +56,12 @@ class BirdsTranscriptionController extends InterfaceController
 
   startWorkflow: (@archive) =>
     @render({archive: @archive, preferences: @preferences})
+    @eolWidget.html @eolTemplate
+
+    if @preferences.show_eol? is false
+      @eolWidget.fadeOut()
     @widget.draggable()
+    @eolWidget.draggable()
     @selectTool 'cursor'
     @nextSubject()
 
@@ -66,8 +79,13 @@ class BirdsTranscriptionController extends InterfaceController
 
   onDoneBox: (e) =>
     e.preventDefault()
-    @currentBox.data 'value', @entry.find('#field').val()
-    @tool.nextBox()
+    @tool.nextBox
+      onData: (data) =>
+        if 200 < @currentBox.position().left < 500
+          Eol.getSpeciesImages data, {images: 10}, (results) =>
+            @eolWidget.html @eolTemplate(data: results)
+            @eolWidget.find('img').on 'click', ->
+              new Modal $(@).data('standard')
 
   onKeyPress: (e) =>
     if e.ctrlKey
@@ -82,6 +100,9 @@ class BirdsTranscriptionController extends InterfaceController
       e.preventDefault()
       @tool.shortcut e.keyCode
 
+    if e.keyCode is 13
+      $('#done').click() # Sucks
+
   onFinish: (e) =>
     @finish()
 
@@ -95,6 +116,16 @@ class BirdsTranscriptionController extends InterfaceController
     obj =
       key: 'auto_move'
       value: @preferences.auto_move
+    Api.put "/projects/notes_from_nature/users/preferences", obj
+
+  toggleShowEol: (e) =>
+    @preferences.show_eol = e.target.checked
+
+    if @preferences.show_eol then @eolWidget.fadeIn() else @eolWidget.fadeOut()
+
+    obj =
+      key: 'show_eol'
+      value: @preferences.show_eol
     Api.put "/projects/notes_from_nature/users/preferences", obj
 
 

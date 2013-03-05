@@ -1,0 +1,6 @@
+<div id="modal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <img id="modal-image" src="<%- @image %>">
+  </div>
+</div>

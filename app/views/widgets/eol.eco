@@ -1,4 +1,3 @@
-
 <% if @data?: %>
   <section>
     <h2>Encyclopedia of Life</h2>
@@ -15,7 +14,7 @@
       <ul>
         <% for image in @data.images: %>
           <% source = if image.thumbnail then image.thumbnail else image.standard %>
-          <li><img src="<%= source %>"></li>
+          <li><img src="<%= source %>" data-standard="<%= image.standard %>"></li>
         <% end %>
       </ul>
       <% end %>
@@ -23,6 +22,10 @@
   <% end %>
 <% else: %>
   <section>
-    <h2>No data available</h2>
+    <h2>Encyclopedia of Life</h2>
+  </section>
+
+  <section>
+    <h2>No Data Available</h2>
   </section>
 <% end %>

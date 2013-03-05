@@ -13,6 +13,10 @@
           <label><input type="checkbox" id="autoMove" <% if @preferences.auto_move: %> checked<% end %>>
           Automatically move to next entity</label>
         </li>
+        <li>
+          <label><input type="checkbox" id="showEol" <% if @preferences.show_eol: %> checked<% end %>>
+          Show Encyclopedia of Life box</label>
+        </li>
       </ul>
     </div>
     <div class="block tools options">
@@ -29,6 +33,8 @@
 <div class="boxes">
   <img src="images/ocr/AV16008.JPG"></img>
 </div>
+
+<div id="eol-widget"></div>
 
 <div id="data-entry" class="data-entry">
   <section class="entry" id="entry">

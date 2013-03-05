@@ -1,10 +1,11 @@
-Spine   = require 'spine'
+Spine = require 'spine'
 
 class BaseTool extends Spine.Controller
   actions: []
   itemTemplate: require 'views/transcription/interfaces/birds/action'
 
   constructor: (opts) ->
+    super(opts)
     @interface = opts.interface
     @addActions()
 
@@ -35,6 +36,6 @@ class BaseTool extends Spine.Controller
     action = _.find @actions, (action) ->
       action.shortcut is keyCode
 
-    if action.callback then @[action.callback]()
+    if action?.callback then @[action.callback]()
 
 module.exports = BaseTool
