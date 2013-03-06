@@ -11,7 +11,7 @@ div.zooniverse-top-bar
 
 .dialog-underlay { display: none; }
 
-.stack 
+.stack
   > div 
     display: none
   > div.active 
@@ -32,11 +32,6 @@ aside:after, div:after, form:after, header:after, nav:after, ul:after, li:after,
   content: '';
   display: block;
   height: 0;
-}
-
-.wrapper {
-  max-width: 960px;
-  margin: 0 auto;
 }
 
 .col1 {
@@ -130,11 +125,13 @@ h1 span.green {
 }
 
 h3 span.black {
-  // background: url(images/icons.png) no-repeat 96px -396px;
   font-weight: 600;
   padding-right: 15px;
   color: #666666;
 }
+
+span.subtitle
+  color: #666
 
 .translucent-box 
   background: rgba(#000, 0.7)
@@ -1408,9 +1405,9 @@ h1.notlogged
   text-align: center
 
 .LoginController
+  @extends #white-box
   form
     text-align: center
-    margin-top: 100px
 
 .ProfileController 
   margin-bottom: 39px

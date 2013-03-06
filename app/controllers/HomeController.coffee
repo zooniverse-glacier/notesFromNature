@@ -1,9 +1,7 @@
-Spine = require 'spine'
+Api  = require 'zooniverse/lib/api'
 
 Archive = require 'models/Archive'
 Institute = require 'models/Institute'
-
-Api  = require 'zooniverse/lib/api'
 
 class HomeController extends Spine.Controller
   className: 'HomeController'

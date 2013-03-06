@@ -1,6 +1,5 @@
-Spine = require 'spine'
-Badge = require 'models/Badge'
 Archive = require 'models/Archive'
+Badge = require 'models/Badge'
 
 class BadgesController extends Spine.Controller
   className: "BadgeController"

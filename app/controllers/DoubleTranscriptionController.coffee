@@ -1,5 +1,3 @@
-Spine = require 'spine'
-
 Eol = require 'lib/eol'
 
 Archive = require 'models/Archive'

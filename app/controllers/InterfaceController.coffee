@@ -1,11 +1,10 @@
-Spine   = require 'spine'
-
 Archive = require 'models/Archive'
 Classification = require 'models/Classification'
 Subject = require 'models/Subject'
 
 class InterfaceController extends Spine.Controller
   preferences: {}
+  
   constructor: ->
     super
     Spine.bind 'finishedTranscription', @saveClassification

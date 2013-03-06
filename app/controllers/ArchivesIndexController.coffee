@@ -1,5 +1,3 @@
-Spine = require 'spine'
-
 Archive = require 'models/Archive'
 
 class ArchiveIndexController extends Spine.Controller
@@ -53,7 +51,7 @@ class ArchiveIndexController extends Spine.Controller
       @toggleSwitch.find("a").removeClass("selected")
       slider.addClass("selected")
 
-      if slider.position().left !=0
+      if slider.position().left != 0
         if @showCompleted
           $(".collection-list li.completed:not(.mine)").animate {opacity: 0.2}, {duration: 100}
         else

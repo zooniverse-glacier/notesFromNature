@@ -1,5 +1,4 @@
-Badge = require('models/Badge')
-
+Badge = require 'models/Badge'
 
 class NotificationController extends Spine.Controller
   className: "NotificationController"

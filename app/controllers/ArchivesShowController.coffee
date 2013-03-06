@@ -1,10 +1,8 @@
-Spine = require('spine')
-Archive = require('models/Archive')
-Badges = require('models/Badge')
+Archive = require 'models/Archive'
+Badges = require 'models/Badge'
 
 class ArchivesShowController extends Spine.Controller
-  # className : "wrapper"
-  className: "ArchivesShowController"
+  className: 'ArchivesShowController'
 
   constructor: ->
     super

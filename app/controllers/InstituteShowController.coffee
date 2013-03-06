@@ -1,9 +1,7 @@
-Spine = require('spine')
-Institute = require('models/Institute')
+Institute = require 'models/Institute'
 
 class InstituteShowController extends Spine.Controller
-  # className: 'wrapper'
-  className: "InstituteShowController"
+  className: 'InstituteShowController'
   
   constructor: ->
     super

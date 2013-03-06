@@ -1,16 +1,14 @@
-require('lib/setup')
+require 'lib/setup'
 
-Spine = require('spine')
-
-HomeController= require("controllers/HomeController")
-ArchivesIndexController= require("controllers/ArchivesIndexController")
-ArchivesShowController= require("controllers/ArchivesShowController")
-TranscriptionController= require("controllers/TranscriptionController")
-InstituteShowController= require("controllers/InstituteShowController")
-LoginController= require('controllers/LoginController')
-ProfileController= require('controllers/ProfileController')
-AboutController= require('controllers/AboutController')
-FAQController  = require('controllers/FAQController')
+HomeController = require("controllers/HomeController")
+ArchivesIndexController = require("controllers/ArchivesIndexController")
+ArchivesShowController = require("controllers/ArchivesShowController")
+TranscriptionController = require("controllers/TranscriptionController")
+InstituteShowController = require("controllers/InstituteShowController")
+LoginController = require('controllers/LoginController')
+ProfileController = require('controllers/ProfileController')
+AboutController = require('controllers/AboutController')
+FAQController = require('controllers/FAQController')
 BadgesController = require('controllers/BadgesController')
 NotificationController = require('controllers/NotificationController')
 
@@ -41,35 +39,25 @@ class App extends Spine.Stack
     login                     : LoginController
     profile                   : ProfileController
     about                     : AboutController
-    faq                       : FAQController
     badges                    : BadgesController
 
   routes:
     '/'                                  : 'home'
     '/archives'                          : 'archivesIndex'
-    '/archives/'                         : 'archivesIndex'
-    '/archives/type/:type'               : 'archivesIndex'
     '/archives/:id'                      : 'archivesShow'
     '/archives/:archiveID/transcribe'    : 'transcribe'
 
     '/collections'                           : 'archivesIndex'
-    '/collections/'                          : 'archivesIndex'
-    '/collections/type/:type'                : 'archivesIndex'
     '/collections/:id'                       : 'archivesShow'
     '/collections/:collectionID/transcribe'  : 'transcribe'
 
-    '/transcribe/:id'             : 'transcribe'
     '/transcribe'                 : 'transcribe'
-    '/transcribe/'                : 'transcribe'
+    '/transcribe/:id'             : 'transcribe'
     '/institutes/:id'             : 'instituteShow'
     '/login'                      : 'login'
     '/profile'                    : 'profile'
     '/about'                      : 'about'
     '/about/:section'             : 'about'
-    '/faq'                        : 'faq'
-    '/faq/:section'               : 'faq'
-    '/FAQ'                        : 'faq'
-    '/FAQ/:section'               : 'faq'
     '/badges/:id'                 : 'badges'
 
   default: 'home'

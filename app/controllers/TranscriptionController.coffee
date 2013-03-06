@@ -1,5 +1,3 @@
-Spine = require 'spine'
-
 Archive = require 'models/Archive'
 Institute = require 'models/Institute'
 
@@ -51,7 +49,7 @@ class TranscriptionController extends Spine.Controller
         when 'herbarium' then @transcriptionController = new SernacTranscriptionController()
         else
           console.log 'No transcription interface for that archive is available.'
-          Spine.Route.navigate '/' # Rather abrupt, but at least a user doesn't sit at a blank page.
+          Spine.Route.navigate '/archives' # Rather abrupt, but at least a user doesn't sit at a blank page.
 
       @transcriptionController.startWorkflow(@archive)
       @render()
