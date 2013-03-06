@@ -90,7 +90,7 @@ class BirdsTranscriptionController extends InterfaceController
   onKeyPress: (e) =>
     if e.ctrlKey
       e.preventDefault()
-      switch e.keyCode
+      switch e.which
         when 49
           @selectTool 'cursor'
         when 50
@@ -98,9 +98,9 @@ class BirdsTranscriptionController extends InterfaceController
 
     if e.altKey
       e.preventDefault()
-      @tool.shortcut e.keyCode
+      @tool.shortcut e.which
 
-    if e.keyCode is 13
+    if e.which is 13
       $('#done').click() # Sucks
 
   onFinish: (e) =>
