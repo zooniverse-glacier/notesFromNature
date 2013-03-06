@@ -38,7 +38,7 @@ class Cursor extends BaseTool
         @interface.startDataEntry box
         @currentBox = box
 
-  clickImage: (e) =>
+  clickImage: (e) ->
     if $('.box').hasClass 'selected'
       $('.box').removeClass('selected').resizable('disable')
       delete @currentBox
@@ -56,7 +56,7 @@ class Cursor extends BaseTool
       $(document).on 'mousemove.createBox', (de) =>
         $(box).width de.pageX - e.pageX
         $(box).height de.pageY - e.pageY
-
+        
   onDoneCreateBox: (e) =>
     box = $(e.data.box)
     $(document).off 'mousemove.createBox mouseup.createBox'

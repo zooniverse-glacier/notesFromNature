@@ -171,7 +171,7 @@ class BirdsTranscriptionController extends InterfaceController
 
         style = "top: #{box[1]}px; left: #{box[0]}px; width: #{width}px; height: #{height}px"
 
-        unless width > 600 or height > 100 or box[0] is "0" or box[1] < 50 or width < 3 or height < 3
+        unless width > 600 or height > 100 or box[0] < 45 or box[1] < 50 or width < 3 or height < 3
           @boxes.append('<div data-id='+@counter+' class="box" style="' + style + '"></div>')
           @counter += 1
           lastMid = mid

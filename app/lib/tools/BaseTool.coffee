@@ -20,6 +20,9 @@ class BaseTool extends Spine.Controller
     @interface.actions.html list
 
   clean: =>
+    $('.box').removeClass('selected').resizable('disable')
+    @interface.disableInput()
+
     for action in @actions
       @interface.actions.off 'click', "[data-action=#{action.key}]"
 
@@ -27,7 +30,9 @@ class BaseTool extends Spine.Controller
     # Ensure this exists. Implemented by tools.
 
   clickImage: (e) ->
-    # Ensure this exists. Implemented by tools.
+    # Overriden by tools.
+    $('.box').removeClass('selected').resizable('disable')
+    @interface.disableInput()
 
   nextBox: (e) ->
     # Ensure this exists. Implemented by tools.
