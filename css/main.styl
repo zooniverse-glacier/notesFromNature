@@ -136,20 +136,87 @@ h3 span.black {
   color: #666666;
 }
 
-.detail h2 {
-  color: #FFF;
-  font-size: 25px;
-  margin-top: 80px;
-  text-shadow: 1px 1px 6px #000;
-  font-weight: 100;
-}
-.detail h2 span {
-  color: #FFF;
-  font-size: 91px;
-  line-height: 80px;
-  font-weight: 800;
-  text-shadow: 1px 1px 6px #000;
-}
+.translucent-box 
+  background: rgba(#000, 0.7)
+  float: left
+
+  img
+    float: left
+
+  span
+    color: #fff
+
+    &.title
+      font-family: "Open Sans", sans-serif
+      font-size: 21px
+      font-weight: 600
+
+    &.subtitle
+      font-family: "Helvetica", sans-serif
+      font-size: 17px
+      font-weight: normal
+      padding-top: 0px
+
+  .percentage
+    margin-top: 10px
+
+  .progress-bar
+    background: #fff
+    margin: 30px 0 32px 40px
+
+    &.completed
+      .bar
+        background: #09c
+      span.progress
+        color: #09c
+
+    .bar
+      background: #83c046
+
+  .commingSoon
+    margin: 20px 0 25px 40px
+
+    span
+      font-size: 20px
+
+
+.detail
+  position: relative
+
+  .header-content
+    bottom: 52px
+    box-sizing: border-box
+    padding: 0 20px
+    position: absolute
+    width: 100%
+
+    .translucent-box
+
+      > div 
+        padding: 20px
+
+        > div 
+          padding-left: 200px
+
+        span.title 
+          font-size: 29px
+          line-height: 9px
+
+  h1
+    color: #fff
+    font-size: 91px
+    font-weight: 800
+    line-height: 100px
+    margin: 0 0 15px 0
+    text-shadow: 1px 1px 12px #000
+
+  h3
+    color: #fff
+    font-size: 25px
+    font-weight: 100
+    margin: 0
+    text-shadow: 1px 1px 8px #000
+
 
 .home hgroup {
   margin: 60px 0 82px 0;
@@ -216,7 +283,6 @@ span.numbers {
   font-weight: 600;
 }
 span.subtitle {
-  color: #666;
   display: block;
   font-family: helvetica;
   font-size: 15px;
@@ -697,68 +763,13 @@ ul.logos li {
   margin-top: 20px;
 }
 
-.translucent-box {
-  background-color: #666;
-  background-color: rgba(0, 0, 0, 0.71);
-  float: left;
-}
-.translucent-box.me > div {
-  padding: 20px;
-  width: 900px;
-}
-.translucent-box.me > div img {
-  border-radius: 3px;
-  margin-right: 10px;
-}
-.translucent-box.me > div .title {
-  margin: 8px 0 2px 0;
-  display: block;
-}
-.translucent-box.me > div .subtitle {
-  font-weight: 100;
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.7);
-}
-.translucent-box img {
-  float: left;
-}
-.translucent-box span {
-  color: #FFF;
-}
-.translucent-box span.title {
-  font-family: open sans;
-  font-size: 21px;
-  font-weight: 600;
-}
-.translucent-box span.subtitle {
-  font-family: helvetica;
-  font-size: 17px;
-  font-weight: normal;
-  padding-top: 0px;
-}
-.translucent-box .percentage {
-  margin-top: 10px;
-}
+
 
 .collection .translucent-box {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-}
-
-.detail .translucent-box {
-  margin-left: 20px;
-}
-.detail .translucent-box > div {
-  padding: 20px;
-}
-.detail .translucent-box > div > div {
-  padding-left: 200px;
-}
-.detail .translucent-box span.title {
-  font-size: 29px;
-  line-height: 9px;
 }
 
 .box-badge {
@@ -1388,24 +1399,6 @@ span.switch.selected {
   left: 215px;
   position: absolute;
   top: -9px;
-}
-
-.translucent-box .progress-bar {
-  margin: 30px 0 32px 40px;
-  background: #fff;
-}
-.translucent-box .commingSoon
-  margin: 20px 0 25px 40px
-  span
-    font-size: 20px
-.translucent-box .progress-bar .bar {
-  background: #83C046;
-}
-.translucent-box .progress-bar.completed .bar {
-  background: #0099CC;
-}
-.translucent-box .progress-bar.completed span.progress {
-  color: #0099CC;
 }
 
 h1.notlogged

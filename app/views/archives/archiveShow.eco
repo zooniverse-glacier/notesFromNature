@@ -5,21 +5,19 @@
 </script>
 
 <div class="box-general detail" style='background-image:url("<%= @archive.metadata.location.headerImage %>")'>
-  <div class="col3">
-    <h2>
-      <%= @archive.institute().name %><br>
-      <span><%= @archive.name %></span>
-    </h2>
-  </div>
-  <div class="translucent-box">
-    <div>
-      <a class="button left" href="<%= @archive.transcriptionUrl() %>">START TRANSCRIBING</a>
-      <div class="percentage">
-        <span class="title"><%= @archive.progress() %>%</span>
-        <span class="subtitle done">DONE</span>
+  <section class="header-content">
+    <h3><%= @archive.institute().name %></h3>
+    <h1><%= @archive.name %></h1>
+    <div class="translucent-box">
+      <div>
+        <a class="button left" href="<%= @archive.transcriptionUrl() %>">START TRANSCRIBING</a>
+        <div class="percentage">
+          <span class="title"><%= @archive.progress() %>%</span>
+          <span class="subtitle done">DONE</span>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </div>
 
 <div class="box-general divided-green">
