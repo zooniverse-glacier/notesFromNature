@@ -58,8 +58,8 @@ class BirdsTranscriptionController extends InterfaceController
     @render({archive: @archive, preferences: @preferences})
     @eolWidget.html @eolTemplate
 
-    if @preferences.show_eol? is false
-      @eolWidget.fadeOut()
+    if @preferences.show_eol is false
+      @eolWidget.hide()
     @widget.draggable()
     @eolWidget.draggable()
     @selectTool 'cursor'
@@ -113,20 +113,20 @@ class BirdsTranscriptionController extends InterfaceController
   # Settings
   toggleAutoMove: (e) =>
     @preferences.auto_move = e.target.checked
-    obj =
-      key: 'auto_move'
-      value: @preferences.auto_move
-    Api.put "/projects/notes_from_nature/users/preferences", obj
+    @updateSetting 'auto_move'
 
   toggleShowEol: (e) =>
     @preferences.show_eol = e.target.checked
+    @updateSetting 'show_eol'
 
     if @preferences.show_eol then @eolWidget.fadeIn() else @eolWidget.fadeOut()
 
-    obj =
-      key: 'show_eol'
-      value: @preferences.show_eol
-    Api.put "/projects/notes_from_nature/users/preferences", obj
+  updateSetting: (key) =>
+    if User.current?
+      obj =
+        key: key
+        value: @preferences[key]
+      Api.put '/projects/notes_from_nature/users/preferences', obj
 
 
   # "API"
