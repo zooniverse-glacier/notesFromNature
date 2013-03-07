@@ -5,37 +5,25 @@ class InstituteShowController extends Spine.Site
   
   constructor: ->
     super
-    @institutesLoadad = false
-
     Institute.bind 'refresh', =>
-      @institutesLoadad = true
       @loadInstitute()
-      @setTitle()
       @render()
 
-  loadInstitute: (name=null) =>
+  loadInstitute: (name = null) =>
     @instituteName = name if name? 
     @currentInstitute = Institute.findBySlug(@instituteName)
-    
-  setTitle: =>
-    if @institutesLoadad 
-      if @currentArchive?
-        @title = "#{@currentInstitute.name}"
-      else
-        @title = "Could not find institute"
-    else
-      @title = "Loading"
 
-  active: (params) =>
+  activate: (params) =>
+    @loadInstitute params.id
+
+    if @currentArchive?
+      @title = "#{@currentInstitute.name}"
+    else
+      delete @title
+
+    @setTitle()
+    @render()
     super
-
-    @instituteName = params.id
-    if @institutesLoadad 
-      @loadInstitute()
-      @setTitle()
-      @render()
-    else
-      document.title = "Notes From Nature - Loading"
 
   render: =>
     if @currentInstitute?
@@ -44,6 +32,5 @@ class InstituteShowController extends Spine.Site
         archiveTemplate: require('views/institutes/archiveDetails')
     else
       @html require("views/institutes/instituteNotFound")()
-
     
 module.exports = InstituteShowController

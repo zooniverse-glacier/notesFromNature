@@ -1,13 +1,11 @@
 Archive = require 'models/Archive'
 Badges = require 'models/Badge'
 
-class ArchivesShowController extends Spine.Site
-  className: 'ArchivesShowController'
+class ArchivesItem extends Spine.Site
+  className: 'ArchivesItem'
 
   constructor: ->
     super
-    @render()
-
     Archive.bind 'refresh', =>
       @loadArchive()
       @render()
@@ -36,4 +34,4 @@ class ArchivesShowController extends Spine.Site
     else
       @html require('/views/archives/archiveNotFound')()
 
-module.exports = ArchivesShowController
+module.exports = ArchivesItem

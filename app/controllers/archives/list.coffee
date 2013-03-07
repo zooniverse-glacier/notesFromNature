@@ -1,18 +1,18 @@
 Archive = require 'models/Archive'
 
-class ArchivesListController extends Spine.Site
-  className: 'ArchivesListController'
+class ArchivesList extends Spine.Site
+  className: 'ArchivesList'
 
   events:
-    "mouseenter .archive-list li" : 'showArchiveDetails'
-    "mouseleave .archive-list li" : 'hideListDetails'
-    "click .switch a" : 'toggleUserArchives'
-    "click span.switch" : 'toggleComplete'
+    'mouseenter .archive-list li': 'showArchiveDetails'
+    'mouseleave .archive-list li': 'hideListDetails'
+    'click .switch a': 'toggleUserArchives'
+    'click span.switch': 'toggleComplete'
 
   elements:
-    ".archive-list li.completed:not(.mine)" : "userArchives"
-    ".archive-list li.completed.mine" : "nonUserArchives"
-    ".switch" : "toggleSwitch"
+    '.archive-list li.completed:not(.mine)': 'userArchives'
+    '.archive-list li.completed.mine': 'nonUserArchives'
+    '.switch': 'toggleSwitch'
 
   title: 'Collections'
 
@@ -20,9 +20,6 @@ class ArchivesListController extends Spine.Site
     super
     Archive.bind 'refresh', @render
     @showCompleted = true
-
-  activate: (params) =>
-    super
 
   showArchiveDetails: (e) =>
     $(e.currentTarget).find(".translucent-box").stop().animate {top:0}, { duration: 200 }
@@ -75,4 +72,4 @@ class ArchivesListController extends Spine.Site
 
     slider.toggleClass("selected")
 
-module.exports = ArchivesListController
+module.exports = ArchivesList

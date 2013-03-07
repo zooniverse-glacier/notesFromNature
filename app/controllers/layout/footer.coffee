@@ -4,7 +4,6 @@ class FooterController extends Spine.Controller
 
   constructor: ->
     super
-    
     @html @template @
 
 module.exports = FooterController

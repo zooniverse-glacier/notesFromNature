@@ -6,6 +6,7 @@ class Site extends Spine.Controller
 
     # Only mess with stack if within a sub-stack
     if @stack.stack?
+      # Activate the parent stack and deactivate the parent stack's siblings.
       for controller of @stack.stack.controllers
         controller = @stack.stack[controller]
         return unless controller?

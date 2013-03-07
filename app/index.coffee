@@ -1,9 +1,7 @@
 require 'lib/setup'
 
 HomeController = require("controllers/HomeController")
-
 Archives = require 'controllers/archives'
-
 InstituteShowController = require("controllers/InstituteShowController")
 LoginController = require('controllers/LoginController')
 ProfileController = require('controllers/ProfileController')
@@ -22,8 +20,8 @@ Archive = require 'models/Archive'
 Badge = require 'models/Badge'
 Institute = require 'models/Institute'
 
-Header = require 'controllers/HeaderController'
-Footer = require 'controllers/FooterController'
+Header = require 'controllers/layout/header'
+Footer = require 'controllers/layout/footer'
 
 class topBar extends ZooniverseBar
   constructor: ->
@@ -57,12 +55,11 @@ app.stack = new Spine.Stack
     '/archives': 'archives'
 
     '/institutes/:id': 'instituteShow'
+    '/badges/:id': 'badges'
 
+    '/about': 'about'
     '/login': 'login'
     '/profile': 'profile'
-    '/about': 'about'
-
-    '/badges/:id': 'badges'
 
   default: 'home'
 
