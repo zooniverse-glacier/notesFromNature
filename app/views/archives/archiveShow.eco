@@ -1,9 +1,3 @@
-<script type="text/javascript">
-  $(function() {
-    $(".box-general.divided-green").height($(".box-right").height() + 65);
-  });
-</script>
-
 <div class="box-general detail" style='background-image:url("<%= @archive.metadata.location.headerImage %>")'>
   <section class="header-content">
     <h3><%= @archive.institute().name %></h3>
