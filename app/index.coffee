@@ -1,20 +1,20 @@
 require 'lib/setup'
 
-HomeController = require("controllers/HomeController")
 Archives = require 'controllers/archives'
-InstituteShowController = require("controllers/InstituteShowController")
-LoginController = require('controllers/LoginController')
-ProfileController = require('controllers/ProfileController')
-AboutController = require('controllers/AboutController')
-FAQController = require('controllers/FAQController')
-BadgesController = require('controllers/BadgesController')
-NotificationController = require('controllers/NotificationController')
+AboutController = require 'controllers/AboutController'
+BadgesController = require 'controllers/BadgesController'
+FAQController = require 'controllers/FAQController'
+HomeController = require 'controllers/HomeController'
+InstituteShowController = require 'controllers/InstituteShowController'
+LoginController = require 'controllers/LoginController'
+NotificationController = require 'controllers/NotificationController'
+ProfileController = require 'controllers/ProfileController'
 
 Config = require 'lib/config'
 
-Api = require('zooniverse/lib/api')
-User = require('zooniverse/lib/models/user')
-ZooniverseBar = require('zooniverse/lib/controllers/top_bar')
+Api = require 'zooniverse/lib/api'
+User = require 'zooniverse/lib/models/user'
+ZooniverseBar = require 'zooniverse/lib/controllers/top_bar'
 
 Archive = require 'models/Archive'
 Badge = require 'models/Badge'

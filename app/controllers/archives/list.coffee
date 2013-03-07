@@ -3,16 +3,16 @@ Archive = require 'models/Archive'
 class ArchivesList extends Spine.Site
   className: 'ArchivesList'
 
+  elements:
+    '.archive-list li.completed:not(.mine)': 'userArchives'
+    '.archive-list li.completed.mine': 'nonUserArchives'
+    '.switch': 'toggleSwitch'
+
   events:
     'mouseenter .archive-list li': 'showArchiveDetails'
     'mouseleave .archive-list li': 'hideListDetails'
     'click .switch a': 'toggleUserArchives'
     'click span.switch': 'toggleComplete'
-
-  elements:
-    '.archive-list li.completed:not(.mine)': 'userArchives'
-    '.archive-list li.completed.mine': 'nonUserArchives'
-    '.switch': 'toggleSwitch'
 
   title: 'Collections'
 
@@ -22,10 +22,10 @@ class ArchivesList extends Spine.Site
     @showCompleted = true
 
   showArchiveDetails: (e) =>
-    $(e.currentTarget).find(".translucent-box").stop().animate {top:0}, { duration: 200 }
+    $(e.currentTarget).find('.translucent-box').stop().animate {top: 0}, {duration: 200}
 
   hideListDetails: (e) =>
-    $(e.currentTarget).find(".translucent-box").stop().animate {top:"160px"}, { duration: 200 }
+    $(e.currentTarget).find('.translucent-box').stop().animate {top: '160px'}, {duration: 200}
 
   render: (options = undefined) =>
     archives = Archive.filter(options)
@@ -43,9 +43,9 @@ class ArchivesList extends Spine.Site
     e.preventDefault()
 
     slider = $(e.currentTarget)
-    $(".bkg").animate {left: slider.position().left}, 100, =>
-      @toggleSwitch.find("a").removeClass("selected")
-      slider.addClass("selected")
+    $('.bkg').animate {left: slider.position().left}, 100, =>
+      @toggleSwitch.find('a').removeClass('selected')
+      slider.addClass('selected')
 
       if slider.position().left != 0
         if @showCompleted
@@ -59,14 +59,15 @@ class ArchivesList extends Spine.Site
           $(".collection-list li:not(.mine)").animate {opacity: 0.2}, {duration: 100}
 
   toggleComplete: (e) =>
-    e.preventDefault();
+    e.preventDefault()
+
     slider = $(e.currentTarget)
     if  slider.hasClass("selected")
       slider.html slider.attr('data-selected')
       $(".archive-list li.completed").animate({opacity:1}, { duration: 300})
-      @showCompleted = true;
+      @showCompleted = true
     else 
-      @showCompleted = false;
+      @showCompleted = false
       slider.html slider.attr('data-show')
       $(".archive-list li.completed").animate({opacity:.2}, { duration: 300})
 

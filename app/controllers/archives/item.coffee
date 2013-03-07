@@ -30,7 +30,7 @@ class ArchivesItem extends Spine.Site
     if @currentArchive?
       @html require('/views/archives/archiveShow')
         archive: @currentArchive
-        badges:  Badges.badgesForProject(@currentArchive.slug())
+        badges: Badges.badgesForProject(@currentArchive.slug())
     else
       @html require('/views/archives/archiveNotFound')()
 
