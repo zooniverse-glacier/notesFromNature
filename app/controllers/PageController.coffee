@@ -1,4 +1,4 @@
-class Page extends Spine.Controller
+class SubPage extends Spine.Site
   content: ''
   template: require 'views/layout/outer'
 
@@ -6,16 +6,4 @@ class Page extends Spine.Controller
     super
     @html @template({content: @content()})
 
-  activate: ->
-    super
-    # Activate the parent stack and deactivate the parent stack's siblings.
-    for controller of @stack.stack.controllers
-      controller = @stack.stack[controller]
-      return unless controller?
-
-      if controller is @stack
-        controller.activate()
-      else
-        controller.deactivate()
-
-module.exports = Page
+module.exports = SubPage

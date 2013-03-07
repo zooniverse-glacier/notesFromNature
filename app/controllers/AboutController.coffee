@@ -1,13 +1,13 @@
-Page = require 'controllers/PageController'
+SubPage = require 'controllers/PageController'
 
 class AboutController extends Spine.Stack
   className: 'page-stack about-content'
 
   controllers:
-    index: class extends Page
+    index: class extends SubPage
       content: require 'views/about/index'
       title: 'About'
-    project: class extends Page then content: require 'views/about/project'
+    project: class extends SubPage then content: require 'views/about/project'
 
   routes:
     '/about': 'index'
