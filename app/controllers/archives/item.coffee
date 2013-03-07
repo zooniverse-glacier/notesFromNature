@@ -16,13 +16,16 @@ class ArchivesShowController extends Spine.Site
     @archiveName = name if name? 
     @currentArchive = Archive.findBySlug(@archiveName)
 
-    if @currentArchive?
-      @title = "#{@currentArchive.institute().name} - #{@currentArchive.name}"
-
-    @setTitle()
-
   activate: (params) =>
     @loadArchive params.id
+
+    if @currentArchive?
+      @title = "#{@currentArchive.institute().name} - #{@currentArchive.name}"
+    else
+      delete @title
+
+    @setTitle()
+    @render()
     super
     
   render: =>
