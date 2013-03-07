@@ -3,7 +3,6 @@ Institute = require 'models/Institute'
 
 BirdsTranscriptionController = require 'controllers/interfaces/Birds'
 BugsTranscriptionController = require 'controllers/interfaces/BugsTranscriptionController'
-DoubleTranscriptionController = require 'controllers/interfaces/DoubleTranscriptionController'
 SernacTranscriptionController = require 'controllers/interfaces/SernacTranscriptionController'
 
 class TranscriptionController extends Spine.Controller
