@@ -1,5 +1,3 @@
-Spine = require 'spine'
-
 class BaseTool extends Spine.Controller
   actions: []
   itemTemplate: require 'views/transcription/interfaces/birds/action'
