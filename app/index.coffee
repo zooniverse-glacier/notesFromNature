@@ -1,9 +1,9 @@
 require 'lib/setup'
 
 HomeController = require("controllers/HomeController")
-ArchivesIndexController = require("controllers/ArchivesIndexController")
-ArchivesShowController = require("controllers/ArchivesShowController")
-TranscriptionController = require("controllers/TranscriptionController")
+
+Archives = require 'controllers/archives'
+
 InstituteShowController = require("controllers/InstituteShowController")
 LoginController = require('controllers/LoginController')
 ProfileController = require('controllers/ProfileController')
@@ -13,75 +13,78 @@ BadgesController = require('controllers/BadgesController')
 NotificationController = require('controllers/NotificationController')
 
 Config = require 'lib/config'
-Eol = require 'lib/eol'
 
 Api = require('zooniverse/lib/api')
-User  = require('zooniverse/lib/models/user')
+User = require('zooniverse/lib/models/user')
 ZooniverseBar = require('zooniverse/lib/controllers/top_bar')
 
 Archive = require 'models/Archive'
 Badge = require 'models/Badge'
 Institute = require 'models/Institute'
 
-class customTopBar extends ZooniverseBar
+Header = require 'controllers/HeaderController'
+Footer = require 'controllers/FooterController'
+
+class topBar extends ZooniverseBar
   constructor: ->
     super 
     $(".buttons button[name=signup]").click =>
       Spine.Route.navigate('/login')
 
-class App extends Spine.Stack
+    # var notificationController = require("controllers/NotificationController") 
+    # new notificationController({el:$(".NotificationController")})
+
+Api.init host: Config.apiHost
+
+app = {}
+app.container = '#app'
+
+app.header = new Header
+app.header.el.prependTo app.container
+
+app.stack = new Spine.Stack
   controllers:
-    home                      : HomeController
-    archivesIndex             : ArchivesIndexController
-    archivesShow              : ArchivesShowController
-    transcribe                : TranscriptionController
-    instituteShow             : InstituteShowController
-    login                     : LoginController
-    profile                   : ProfileController
-    about                     : AboutController
-    badges                    : BadgesController
+    home: HomeController
+    archives: Archives
+    instituteShow: InstituteShowController
+    login: LoginController
+    profile: ProfileController
+    about: AboutController
+    badges: BadgesController
 
   routes:
-    '/'                                  : 'home'
-    '/archives'                          : 'archivesIndex'
-    '/archives/:id'                      : 'archivesShow'
-    '/archives/:archiveID/transcribe'    : 'transcribe'
+    '/': 'home'
+    '/archives': 'archives'
 
-    '/collections'                           : 'archivesIndex'
-    '/collections/:id'                       : 'archivesShow'
-    '/collections/:collectionID/transcribe'  : 'transcribe'
+    '/institutes/:id': 'instituteShow'
 
-    '/transcribe'                 : 'transcribe'
-    '/transcribe/:id'             : 'transcribe'
-    '/institutes/:id'             : 'instituteShow'
-    '/login'                      : 'login'
-    '/profile'                    : 'profile'
-    '/about'                      : 'about'
-    '/about/:section'             : 'about'
-    '/badges/:id'                 : 'badges'
+    '/login': 'login'
+    '/profile': 'profile'
+    '/about': 'about'
+
+    '/badges/:id': 'badges'
 
   default: 'home'
 
-  constructor: ->
-    super
-    Api.init host: Config.apiHost
+app.stack.el.appendTo app.container
 
-    topBar = new customTopBar
-      el: '.zooniverseTopBar'
-      languages:
-        en: 'English'
-      app: 'notes_from_nature'
-      appName:'Notes From Nature'
+app.footer = new Footer
+app.footer.el.appendTo app.container
 
-    Spine.Route.setup()
+app.topBar = new topBar
+  app: 'notes_from_nature'
+  appName: 'Notes From Nature'
+app.topBar.el.prependTo 'body'
 
-    Badge.loadDefinitions()
+Badge.loadDefinitions()
 
-    # @append new NotificationController()
-    User.bind 'sign-in', =>
-      if User.current?
-        Badge.getUserBadges()
+# # @append new NotificationController()
+User.bind 'sign-in', =>
+  if User.current?
+    Badge.getUserBadges()
 
-    setTimeout (-> Institute.fetch()), 300
+setTimeout (-> Institute.fetch()), 300
 
-module.exports = App
+Spine.Route.setup()
+
+module.exports = app

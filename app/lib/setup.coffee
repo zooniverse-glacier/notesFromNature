@@ -8,4 +8,4 @@ require('spine/lib/manager')
 require('spine/lib/route')
 require('spine/lib/relation')
 
-
+Spine.Site = require 'lib/site'

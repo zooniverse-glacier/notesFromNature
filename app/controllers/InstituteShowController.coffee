@@ -1,6 +1,6 @@
 Institute = require 'models/Institute'
 
-class InstituteShowController extends Spine.Controller
+class InstituteShowController extends Spine.Site
   className: 'InstituteShowController'
   
   constructor: ->
@@ -13,21 +13,20 @@ class InstituteShowController extends Spine.Controller
       @setTitle()
       @render()
 
-  loadInstitute:(name=null)=>
+  loadInstitute: (name=null) =>
     @instituteName = name if name? 
     @currentInstitute = Institute.findBySlug(@instituteName)
     
-
-  setTitle:=>
+  setTitle: =>
     if @institutesLoadad 
       if @currentArchive?
-        document.title = "Notes From Nature - #{@currentInstitute.name} "     
+        @title = "#{@currentInstitute.name}"
       else
-        document.title = "Notes From Nature - Could not find institute"
+        @title = "Could not find institute"
     else
-      document.title = "Notes From Nature - Loading"
+      @title = "Loading"
 
-  active:(params)=>
+  active: (params) =>
     super
 
     @instituteName = params.id
@@ -38,12 +37,11 @@ class InstituteShowController extends Spine.Controller
     else
       document.title = "Notes From Nature - Loading"
 
-  render:()=>
-
+  render: =>
     if @currentInstitute?
       @html require("views/institutes/instituteShow")
         institute: @currentInstitute
-        archiveTemplate : require('views/institutes/archiveDetails')
+        archiveTemplate: require('views/institutes/archiveDetails')
     else
       @html require("views/institutes/instituteNotFound")()
 

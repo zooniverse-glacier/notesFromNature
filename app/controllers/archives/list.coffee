@@ -1,7 +1,7 @@
 Archive = require 'models/Archive'
 
-class ArchiveIndexController extends Spine.Controller
-  className: 'ArchivesIndexController'
+class ArchivesListController extends Spine.Site
+  className: 'ArchivesListController'
 
   events:
     "mouseenter .archive-list li" : 'showArchiveDetails'
@@ -14,15 +14,15 @@ class ArchiveIndexController extends Spine.Controller
     ".archive-list li.completed.mine" : "nonUserArchives"
     ".switch" : "toggleSwitch"
 
+  title: 'Collections'
+
   constructor: ->
     super
     Archive.bind 'refresh', @render
     @showCompleted = true
 
-  active: (params) =>
-    super 
-    document.title = 'Collections - Notes From Nature'
-    @render(params)
+  activate: (params) =>
+    super
 
   showArchiveDetails: (e) =>
     $(e.currentTarget).find(".translucent-box").stop().animate {top:0}, { duration: 200 }
@@ -41,7 +41,6 @@ class ArchiveIndexController extends Spine.Controller
     @append require('views/archives/archiveList')
       archives: archives
       archiveTemplate: require('views/archives/archive')
-
 
   toggleUserArchives: (e) =>
     e.preventDefault()
@@ -76,4 +75,4 @@ class ArchiveIndexController extends Spine.Controller
 
     slider.toggleClass("selected")
 
-module.exports = ArchiveIndexController
+module.exports = ArchivesListController

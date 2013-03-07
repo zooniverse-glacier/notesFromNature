@@ -1,13 +1,15 @@
 Badge = require 'models/Badge'
 
 class NotificationController extends Spine.Controller
-  className: "NotificationController"
+  className: 'NotificationController'
+
   elements: 
     'ul' : 'notifications'
+
   constructor:->
     super
     @render()
-    Badge.bind("badgeAwarded", (badge)=> @showNotificaiton('badge',badge))
+    Badge.bind('badgeAwarded', (badge)=> @showNotificaiton('badge',badge))
 
   render:=>
     @html require('views/notifications/notificationArea')

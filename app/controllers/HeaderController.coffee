@@ -1,8 +1,12 @@
 User = require 'zooniverse/lib/models/user'
 
 class HeaderController extends Spine.Controller
+  tag: 'header'
+  
   constructor: ->
     super
+    @render()
+    
     User.bind 'sign-in', =>
       @render()
 

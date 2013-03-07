@@ -2,6 +2,7 @@ Spine = require 'spine'
 
 class FAQController extends Spine.Controller
   className: 'FAQController'
+    
   elements:
     '.about_content': 'content'
     '.list-links li a': 'navLinks'

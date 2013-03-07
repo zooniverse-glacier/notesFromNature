@@ -11,7 +11,6 @@ files = [
   'vendor/jquery.mousewheel.min.js',
   'vendor/jquery.imagesloaded.min.js',
   'vendor/jquery.mCustomScrollbar.js',
-  'vendor/jquery.ui.addresspicker.js',
   'vendor/jquery.stylishSelect.js',
   'vendor/jquery.stylish.js',
   'vendor/jquery.jscrollpane.js',

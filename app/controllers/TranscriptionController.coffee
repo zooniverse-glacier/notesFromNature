@@ -29,8 +29,8 @@ class TranscriptionController extends Spine.Controller
     #   @render()
 
     # What archive are we looking at?
-    if params.archiveID
-      @archive = Archive.findBySlug(params.archiveID)
+    if params.id
+      @archive = Archive.findBySlug(params.id)
 
       unless @archive
         # Archive doesn't exist. Navigate away.

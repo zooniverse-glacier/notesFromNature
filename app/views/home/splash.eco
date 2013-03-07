@@ -9,7 +9,6 @@
     </div>
   </div>
 
-  <a href="#/collections" class="transcribing-launcher">START TRANSCRIBING<i></i></a>
+  <a href="#/archives" class="transcribing-launcher">START TRANSCRIBING</a>
 
-  <!--<a href="#/collections"><img src="images/box-view.png" alt="" /></a>-->
 </div>

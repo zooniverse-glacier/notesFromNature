@@ -2,21 +2,19 @@ Archive = require 'models/Archive'
 Badge = require 'models/Badge'
 
 class BadgesController extends Spine.Controller
-  className: "BadgeController"
+  className: 'BadgeController'
 
   constructor: ->
     super
     Archive.bind 'refresh', =>
       @loadBadge()
-      @setTitle()
       @render()
 
     Badge.bind 'badgesLoaded', =>
       @loadBadge()
-      @setTitle()
       @render()
 
-  loadBadge: (name=null) =>
+  loadBadge: (name = null) =>
     @badgeName = name if name?
     @currentBadge = Badge.findBySlug(@badgeName)
     @currentArchive = Archive.findBySlug(@currentBadge?.collection)

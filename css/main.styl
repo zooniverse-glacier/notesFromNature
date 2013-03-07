@@ -1,17 +1,19 @@
+
 div.zooniverse-top-bar
   #zooniverse-top-bar-button
+    left: 50px
     a.top-bar-button
       img
         margin-left: 12px
         margin-top: 14px
   div#zooniverse-top-bar-container
     div#zooniverse-top-bar-info
-      width: 368px 
+      width: 368px
 
 
 .dialog-underlay { display: none; }
 
-.stack
+.stack, .page-stack
   > div 
     display: none
   > div.active 
@@ -89,11 +91,6 @@ p, li {
 a {
   text-decoration: none;
   color: #333;
-}
-
-header {
-  padding: 27px 0;
-  margin-top: -100px
 }
 
 h1 {
@@ -418,7 +415,6 @@ a.badge {
   background: #fff url(images/aboutPageBanner.png) no-repeat bottom left
 
 .faq-content, .about-content
-  @extends #white-box
   background: #fff url(images/bg-divided.png) repeat-y
 
 
@@ -548,8 +544,7 @@ a.badge {
   -o-transition: all 0.3s linear;
 }
 
-#content .transcribing-launcher {
-
+.transcribing-launcher {
   display: inline-block;
   text-align: center;
   position:relative;
@@ -563,7 +558,7 @@ a.badge {
   font-size: 21px;
   font-weight: 300;
 
-  box-shadow:         0px 0px 5px rgba(#000, .5);
+  box-shadow: 0px 0px 5px rgba(#000, .5);
 
   padding: 23px 0;
 
@@ -572,18 +567,6 @@ a.badge {
 
   &:hover   { background: #669933 url(../images/button-green-bg.png) repeat-x left -20px; }
   &:active  { background: #669933 url(../images/button-green-bg.png) repeat-x left bottom; }
-
-    i { 
-    display: block; 
-    right: 13px;
-    position:absolute;
-    top: 50%;
-    margin-top: -5px;
-    background: url(../images/right-triangle.png) no-repeat;
-    width: 8px;
-    height: 10px;
-    }
-
 }
 
 footer.relative {

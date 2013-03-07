@@ -13,8 +13,8 @@
     "zooniverse"
   ],
   "libs": [
+    "lib/vendor/jquery.min.js",
     "node_modules/Zooniverse/vendor/base64.js",
-    "./lib/moment.min.js",
-    "./lib/d3.v3.min.js"
+    "lib/moment.min.js"
   ]
 }
