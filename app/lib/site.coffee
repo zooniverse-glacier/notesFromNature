@@ -1,5 +1,13 @@
 class Site extends Spine.Controller
 
+  @preload: (images) ->
+    unless Array.isArray images
+      images = [images]
+
+    for image in images
+      img = new Image
+      img.src = image
+
   activate: ->
     super
     @setTitle()
@@ -23,5 +31,6 @@ class Site extends Spine.Controller
       document.title = "#{@title} - Notes from Nature"
     else
       document.title = 'Notes from Nature'
+
 
 module.exports = Site

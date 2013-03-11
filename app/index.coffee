@@ -75,14 +75,20 @@ app.topBar = new topBar
 app.topBar.el.prependTo 'body'
 
 Badge.loadDefinitions()
+Institute.fetch()
 
 # # @append new NotificationController()
 User.bind 'sign-in', =>
   if User.current?
     Badge.getUserBadges()
 
-setTimeout (-> Institute.fetch()), 300
-
 Spine.Route.setup()
+
+images = [
+  'images/archives/calbugBg.jpg'
+  'images/archives/sernecBg.jpg'
+  'images/archives/birdsBg.jpg'
+]
+Spine.Site.preload images
 
 module.exports = app
