@@ -41,6 +41,7 @@ class InterfaceController extends Spine.Controller
 
     classification.save()
     @currentSubject.retire()
+    @archive.checkBadges()
     classification.send()
     @nextSubject()
 

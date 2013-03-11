@@ -1,8 +1,7 @@
-Spine = require 'spine'
-Api = require 'zooniverse/lib/api'
 Subject = require 'models/Subject'
+
+Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/lib/models/user'
-Badges = require 'models/Badge'
 
 class Classification extends Spine.Model
   @configure 'Classification', 'subject_id', 'annotations', 'workflow_id'
@@ -47,10 +46,7 @@ class Classification extends Spine.Model
     if User.current?
       User.current.project.classification_count += 1
       User.current.save()
-      User.current.trigger("updateProfile")
-
-      for badge in Badges.all()
-        badge.checkAward()
+      User.current.trigger 'updateProfile'
 
     Classification.trigger 'classified'
     Api.post @url(), @toJSON()

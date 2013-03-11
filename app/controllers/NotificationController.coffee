@@ -1,31 +1,29 @@
 Badge = require 'models/Badge'
 
 class NotificationController extends Spine.Controller
-  className: 'NotificationController'
+  className: 'notifications'
 
   elements: 
-    'ul' : 'notifications'
+    'ul': 'notifications'
+
+  events:
+    'click': 'dismiss'
 
   constructor: ->
     super
     @html require 'views/notifications/notificationArea'
-    Badge.bind 'badgeAwarded', @showNotificaiton
+    Badge.bind 'badgeAwarded', @showNotification
 
-  showNotificaiton: (badge) =>
-    notificationDiv = require('views/notifications/badgeNotification')(badge: badge)
-    @notifications.append notificationDiv
+  showNotification: (badge) =>
+    @notifications.append require('views/notifications/badgeNotification')(badge: badge)
+    @$el.show()
 
-    @$.show()
-
-    @delay ->
-      $("li").css('margin-top',0)
-    ,200
     @delay =>
-      $("li").css('opacity',0)
-      @delay =>
-        $("li").remove()
-        @$.hide()
-      , 2000
+      @dismiss()
     , 7000
+
+  dismiss: =>
+    $('li').remove()
+    @$el.hide()
 
 module.exports = NotificationController

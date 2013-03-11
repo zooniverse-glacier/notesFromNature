@@ -1,17 +1,10 @@
-badgeDefinitions = require 'lib/BadgeDefinitions'
-
 Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/lib/models/user'
 
 class Badge extends Spine.Model
-  @configure 'Badge', 'name', 'url', 'description', 'collection', 'awardText'
+  @configure 'Badge', 'name', 'url', 'description', 'collection', 'awardText', 'condition'
+  @belongsTo 'archive', 'models/Archive'
   
-  @loadDefinitions: ->
-    for name, badgeDefinition of badgeDefinitions
-      badgeDefinition.name = name
-      @create badgeDefinition
-    @trigger 'badgesLoaded'
-
   @getUserBadges: ->
     if User.current?
       Api.get("/users/#{User.current.id}/badges").onSuccess (badges) =>
@@ -22,8 +15,6 @@ class Badge extends Spine.Model
           @insertIntoUser(badge[0], badge[1])
         Badge.update_weekly_report()
         @trigger 'badgesLoaded'
-    else
-      throw 'Need user logged in to award badges'
 
   @insertIntoUser: (name, created_at) ->
     if name.indexOf('weekly_report') > -1
@@ -66,22 +57,15 @@ class Badge extends Spine.Model
       d.name is name
     result[0]
 
-  constructor: ->
-    super
-
-  slug: =>
-    @name.replace /\s/g, "_"
+  slug: => @name.replace /\s/g, "_"
 
   checkAward: =>
-    result = badgeDefinitions[@name].condition
-      user: User.current
-    if result
-      @award()
+    if @condition.func({user: User.current, archive: @archive()}) then @award()
 
   award: =>
     if User.current?
-      Badge.trigger('badgeAwarded', @)
-      Api.post("/users/#{User.current.id}/badges", { badge:{name: @name} }).onSuccess (data) =>
+      Badge.trigger 'badgeAwarded', @
+      Api.post("/users/#{User.current.id}/badges", {badge: {name: @name}}).onSuccess (data) =>
         Badge.getUserBadges()
 
 module.exports = Badge

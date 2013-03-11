@@ -1,11 +1,11 @@
-Subject= require 'models/Subject'
-
 Api = require 'zooniverse/lib/api'
+badgeDefinitions = require 'lib/BadgeDefinitions'
 
 class Archive extends Spine.Model
   @configure 'Archive', 'name', 'metadata', 'complete', 'stats', 'categories'
   @belongsTo 'institute', 'models/Institute'
-  @hasMany   'subjects', Subject
+  @hasMany 'subjects', 'models/Subject'
+  @hasMany 'badges', 'models/Badge'
 
   @findBySlug: (slug) =>
     result = @select (archive) =>
@@ -18,6 +18,15 @@ class Archive extends Spine.Model
         archive.categories.indexOf(params.type) != -1 or archive.categories.indexOf(_.str.capitalize(params.type)) != -1
     else
       @all()
+
+  addBadges: =>
+    for badge in badgeDefinitions
+      if badge.collection is @slug()
+        @badges().create badge
+
+  checkBadges: =>
+    for badge in @badges().all()
+      badge.checkAward()
 
   nextSubject: (callback = null) =>
     if @subjects().findByAttribute('active', true)

@@ -27,8 +27,6 @@ class topBar extends ZooniverseBar
     $(".buttons button[name=signup]").click =>
       Spine.Route.navigate('/login')
 
-    # new notificationController({el:$(".NotificationController")})
-
 if window.location.port > 1024
   Api.init host: 'https://dev.zooniverse.org'
 else
@@ -76,7 +74,6 @@ app.topBar = new topBar
   appName: 'Notes From Nature'
 app.topBar.el.prependTo 'body'
 
-Badge.loadDefinitions()
 Institute.fetch()
 
 User.bind 'sign-in', =>

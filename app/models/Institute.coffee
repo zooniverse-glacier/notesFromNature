@@ -1,6 +1,6 @@
-Spine = require 'spine'
 Archive = require 'models/Archive'
-API = require 'zooniverse/lib/api'
+
+Api = require 'zooniverse/lib/api'
 
 class Institute extends Spine.Model
   @configure 'Institute', 'name', 'metadata'
@@ -8,7 +8,7 @@ class Institute extends Spine.Model
 
   # Class methods
   @fetch: =>
-    API.get '/projects/notes_from_nature/groups/', (data) =>
+    Api.get '/projects/notes_from_nature/groups/', (data) =>
       window.inst = data
 
       institutes =  (group for group in data  when group.type == 'institution')
@@ -42,7 +42,8 @@ class Institute extends Spine.Model
   # Instance methods
   setupArchives: (archives) =>
     for archive in archives
-      @archives().create(archive) 
+      archive = @archives().create(archive)
+      archive.addBadges()
 
   slug: ->
     @name.replace /\s/g, "_"
@@ -58,6 +59,5 @@ class Institute extends Spine.Model
       for type in ['active', 'complete', 'inactive', 'total']
         total_stats[type] += archive.stats[type]
     total_stats
-
 
 module.exports = Institute
