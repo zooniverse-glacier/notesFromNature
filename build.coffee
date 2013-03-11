@@ -33,10 +33,6 @@ files = [
   'nfn/ui/photos.js',
   'nfn/ui/closer.js',
 
-  'nfn/ui/birds/photos.js',
-  'nfn/ui/birds/transcriber.js',
-  'nfn/ui/birds/widget.js',
-
   'nfn/ui/herbarium/transcriber.js',
   'nfn/ui/herbarium/widget.js',
   'nfn/ui/herbarium/launcher.js',

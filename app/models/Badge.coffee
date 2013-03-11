@@ -83,7 +83,5 @@ class Badge extends Spine.Model
       Badge.trigger('badgeAwarded', @)
       Api.post("/users/#{User.current.id}/badges", { badge:{name: @name} }).onSuccess (data) =>
         Badge.getUserBadges()
-    else
-      throw 'Need user logged in to award badge'
 
 module.exports = Badge

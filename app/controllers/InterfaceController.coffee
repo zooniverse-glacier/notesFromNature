@@ -8,6 +8,7 @@ class InterfaceController extends Spine.Controller
   constructor: ->
     super
     Spine.bind 'finishedTranscription', @saveClassification
+    Spine.bind 'skipTranscription', @skipClassification
 
   render: (opts = null) =>
     @html @template(opts)
@@ -41,6 +42,10 @@ class InterfaceController extends Spine.Controller
     classification.save()
     @currentSubject.retire()
     classification.send()
+    @nextSubject()
+
+  skipClassification: =>
+    @currentSubject.retire()
     @nextSubject()
 
 module.exports = InterfaceController

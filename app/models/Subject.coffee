@@ -1,7 +1,6 @@
-Spine = require('spine')
-Archive = require('models/Archive')
-API = require('zooniverse/lib/api')
-BaseSubject = require('zooniverse/lib/models/subject')
+Archive = require 'models/Archive'
+
+BaseSubject = require 'zooniverse/lib/models/subject'
 
 class Subject extends BaseSubject
   @configure 'Subject','location', 'metadata', 'active', 'workflow_ids', 'collection_id'
@@ -12,12 +11,6 @@ class Subject extends BaseSubject
     @active = true
 
   # Class methods
-  @next_subject: =>
-    @purge()
-    API.get '/subjects', (data) =>
-      Subject.create(data)
-      Subject.trigger 'gotNext'
-
   @active: =>
     @select (s) =>
       s.active
@@ -28,25 +21,17 @@ class Subject extends BaseSubject
   @current: =>
     Subject.first()
 
-  @getNextForCollection: (collection_id, number = 2) =>
-    _(number).times =>
-      API.get "/projects/notes_from_nature/groups/#{@archive_id}/subjects?limit=#{number}", (data)=> 
-        Subject.create(data)
-
   @purge: =>
     for subject in Subject.all()
       subject.destroy()
 
   @random: =>
-    randomNo = Math.floor(Math.random()*(@activeCount()))
+    randomNo = Math.floor(Math.random() * (@activeCount()))
     @active()[randomNo]
 
   # Instance methods
   retire: =>
     @active = false 
     @save()
-    if Subject.activeCount() < 3
-      Subject.getNextForCollection(self.collection_id, 10)
-
 
 module.exports = Subject

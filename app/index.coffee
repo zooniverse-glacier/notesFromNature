@@ -7,7 +7,6 @@ FAQController = require 'controllers/FAQController'
 HomeController = require 'controllers/HomeController'
 InstituteShowController = require 'controllers/InstituteShowController'
 LoginController = require 'controllers/LoginController'
-NotificationController = require 'controllers/NotificationController'
 ProfileController = require 'controllers/ProfileController'
 
 Api = require 'zooniverse/lib/api'
@@ -20,6 +19,7 @@ Institute = require 'models/Institute'
 
 Header = require 'controllers/layout/header'
 Footer = require 'controllers/layout/footer'
+Notifications = require 'controllers/NotificationController'
 
 class topBar extends ZooniverseBar
   constructor: ->
@@ -27,7 +27,6 @@ class topBar extends ZooniverseBar
     $(".buttons button[name=signup]").click =>
       Spine.Route.navigate('/login')
 
-    # var notificationController = require("controllers/NotificationController") 
     # new notificationController({el:$(".NotificationController")})
 
 if window.location.port > 1024
@@ -66,6 +65,9 @@ app.stack = new Spine.Stack
 
 app.stack.el.appendTo app.container
 
+app.notifications = new Notifications
+app.notifications.el.prependTo app.container
+
 app.footer = new Footer
 app.footer.el.appendTo app.container
 
@@ -77,7 +79,6 @@ app.topBar.el.prependTo 'body'
 Badge.loadDefinitions()
 Institute.fetch()
 
-# # @append new NotificationController()
 User.bind 'sign-in', =>
   if User.current?
     Badge.getUserBadges()
@@ -88,6 +89,7 @@ images = [
   'images/archives/calbugBg.jpg'
   'images/archives/sernecBg.jpg'
   'images/archives/birdsBg.jpg'
+  'images/bg-green.jpg'
 ]
 Spine.Site.preload images
 

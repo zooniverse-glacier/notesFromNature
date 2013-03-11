@@ -6,17 +6,17 @@ class NotificationController extends Spine.Controller
   elements: 
     'ul' : 'notifications'
 
-  constructor:->
+  constructor: ->
     super
-    @render()
-    Badge.bind('badgeAwarded', (badge)=> @showNotificaiton('badge',badge))
+    @html require 'views/notifications/notificationArea'
+    Badge.bind 'badgeAwarded', @showNotificaiton
 
-  render:=>
-    @html require('views/notifications/notificationArea')
-
-  showNotificaiton:(type,data)=>
-    notificationDiv = require('views/notifications/badgeNotification')(badge: data)
+  showNotificaiton: (badge) =>
+    notificationDiv = require('views/notifications/badgeNotification')(badge: badge)
     @notifications.append notificationDiv
+
+    @$.show()
+
     @delay ->
       $("li").css('margin-top',0)
     ,200
@@ -24,7 +24,8 @@ class NotificationController extends Spine.Controller
       $("li").css('opacity',0)
       @delay =>
         $("li").remove()
-      ,2000
+        @$.hide()
+      , 2000
     , 7000
 
 module.exports = NotificationController

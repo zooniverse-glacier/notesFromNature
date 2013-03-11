@@ -1,6 +1,6 @@
-Spine = require 'spine'
 Subject= require 'models/Subject'
-API = require 'zooniverse/lib/api'
+
+Api = require 'zooniverse/lib/api'
 
 class Archive extends Spine.Model
   @configure 'Archive', 'name', 'metadata', 'complete', 'stats', 'categories'
@@ -23,7 +23,7 @@ class Archive extends Spine.Model
     if @subjects().findByAttribute('active', true)
       callback @subjects().findByAttribute('active', true) if callback?
     else
-      API.get "/projects/notes_from_nature/groups/#{@id}/subjects?limit=10", (subjects) =>
+      Api.get "/projects/notes_from_nature/groups/#{@id}/subjects?limit=10", (subjects) =>
         for subject in subjects
           if subject?
             @subjects().create subject 
