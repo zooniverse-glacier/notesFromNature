@@ -1,8 +1,8 @@
-<% if @data?: %>
-  <section>
-    <h2>Encyclopedia of Life</h2>
-  </section>
+<section>
+  <h2>Encyclopedia of Life</h2>
+</section>
 
+<% if @data?: %>
   <section>
     <h1><%= @data.title %></h1>
     <h2><%= @data.content %></h2>
@@ -21,10 +21,6 @@
     </section>
   <% end %>
 <% else: %>
-  <section>
-    <h2>Encyclopedia of Life</h2>
-  </section>
-
   <section>
     <h2>No Data Available</h2>
   </section>

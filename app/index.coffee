@@ -10,8 +10,6 @@ LoginController = require 'controllers/LoginController'
 NotificationController = require 'controllers/NotificationController'
 ProfileController = require 'controllers/ProfileController'
 
-Config = require 'lib/config'
-
 Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/lib/models/user'
 ZooniverseBar = require 'zooniverse/lib/controllers/top_bar'
@@ -32,7 +30,10 @@ class topBar extends ZooniverseBar
     # var notificationController = require("controllers/NotificationController") 
     # new notificationController({el:$(".NotificationController")})
 
-Api.init host: Config.apiHost
+if window.location.port > 1024
+  Api.init host: 'https://dev.zooniverse.org'
+else
+  Api.init host: 'https://dev.zooniverse.org'
 
 app = {}
 app.container = '#app'

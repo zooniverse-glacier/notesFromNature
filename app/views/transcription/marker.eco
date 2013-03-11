@@ -1,9 +1,0 @@
-<div class="marker" >
-  <ul>
-    <% for record in @annotation : %>
-      <li>
-        <%= record.name %> : <%= record.value%>
-      </li>
-    <%end%>
-  </ul>
-</div>

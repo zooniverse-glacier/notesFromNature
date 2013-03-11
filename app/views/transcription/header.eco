@@ -1,9 +1,0 @@
-
-<div class="left">
-  <h1>BIRDS COLLECTION</h1>
-  <h2>from The Natural History Museum of London</h2>
-</div>
-<div class="right">
-  <span><h5 class='noOfRecordsDone'>0</h5><label>RECORDS DONE</label></span>
-  <a class="button green nextSubject" href="/transcribing.html?2">NEXT PAGE</a>
-</div>

@@ -11,8 +11,6 @@ files = [
   'vendor/jquery.mousewheel.min.js',
   'vendor/jquery.imagesloaded.min.js',
   'vendor/jquery.mCustomScrollbar.js',
-  'vendor/jquery.stylishSelect.js',
-  'vendor/jquery.stylish.js',
   'vendor/jquery.jscrollpane.js',
   'vendor/spin.min.js',
   'vendor/mustache.js',

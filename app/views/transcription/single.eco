@@ -1,3 +1,0 @@
-<div class="transcribing" style='margin-top:100px'>
-  <img src="<%=@subject.location%>" alt="" title="" />
-</div>
