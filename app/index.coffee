@@ -77,8 +77,8 @@ app.topBar.el.prependTo 'body'
 Institute.fetch()
 
 User.bind 'sign-in', =>
-  if User.current?
-    Badge.getUserBadges()
+  # if User.current?
+  #   Badge.getUserBadges()
 
 Spine.Route.setup()
 

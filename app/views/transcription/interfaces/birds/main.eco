@@ -30,9 +30,7 @@
   </div>
 </section>
 
-<div class="boxes">
-  <img src="images/ocr/AV16008.JPG"></img>
-</div>
+<div class="boxes" id="boxes"></div>
 
 <div id="eol-widget"></div>
 

@@ -5,7 +5,6 @@ InterfaceController = require 'controllers/InterfaceController'
 Classification = require 'models/Classification'
 Subject = require 'models/Subject'
 
-data = require 'lib/ocr-data'
 Eol = require 'lib/eol'
 Modal = require 'lib/modal'
 
@@ -13,7 +12,7 @@ class BirdsTranscriptionController extends InterfaceController
   className: 'birds-interface'
 
   elements:
-    '.boxes': 'boxes'
+    '#boxes': 'boxes'
     '#data-entry': 'widget'
     '#entry': 'entry'
     '#tool-actions': 'actions'
@@ -45,7 +44,7 @@ class BirdsTranscriptionController extends InterfaceController
     @preferences.show_eol = true
     @preferences.auto_move = true
 
-    if User.current? and User.current.preferences[window.project.id]
+    if User.current? and window.project? and User.current.preferences[window.project.id]
       for key, value of User.current.preferences[window.project.id]
         if value in ['true', 'false']
           @preferences[key] = (value is 'true')
@@ -150,36 +149,57 @@ class BirdsTranscriptionController extends InterfaceController
         value: $(@).data('value')
       data.push obj
 
-    console.log 'test data', data
     # classification = Classification.create({subject_id: testSubject.id, workflow_id: testSubject.workflow_ids[0] } )
     
     # testSubject.retire()
     # classification.send()
-    # @nextSubject()
+    @boxes.empty()
+
+    @currentSubject.retire()
+    @nextSubject()
 
   nextSubject: =>
-    @counter = 1
-    lastMid = 0
+    @boxes.empty().hide()
 
-    for datum, i in data
-        box = datum.split(',')
-        y = parseInt(box[1])
-        x = parseInt(box[0])
-        width = parseInt(box[2] - box[0])
-        height = parseInt(box[3] - box[1])
-        mid = y + (height / 2)
+    spin = new Spinner({color: '#fff'}).spin(document.querySelector('.' + @className))
 
-        style = "top: #{box[1]}px; left: #{box[0]}px; width: #{width}px; height: #{height}px"
+    @archive.nextSubject (@currentSubject) =>
+      img = new Image
+      img.src = @currentSubject.location.standard
+      @boxes.append img
 
-        unless width > 600 or height > 100 or box[0] < 45 or box[1] < 50 or width < 3 or height < 3
-          @boxes.append('<div data-id='+@counter+' class="box" style="' + style + '"></div>')
-          @counter += 1
-          lastMid = mid
+      @boxes.imagesLoaded =>
+        @boxes.fadeIn()
+        spin.stop()
 
-    @$('.box').resizable({
-      handles: 'all'
-      disabled: true
-    })
+      $.ajax
+        type: 'GET'
+        url: @currentSubject.location.ocr + '?callback=?'
+        dataType: 'jsonp'
+        jsonpCallback: 'jsonCallback'
+        success: (data) =>
+          @counter = 1
+          lastMid = 0
+
+          for datum, i in data
+              box = datum.split(',')
+              y = parseInt(box[1])
+              x = parseInt(box[0])
+              width = parseInt(box[2] - box[0])
+              height = parseInt(box[3] - box[1])
+              mid = y + (height / 2)
+
+              style = "top: #{box[1]}px; left: #{box[0]}px; width: #{width}px; height: #{height}px"
+
+              unless width > 600 or height > 100 or box[0] < 45 or box[1] < 50 or width < 3 or height < 3
+                @boxes.append('<div data-id='+@counter+' class="box" style="' + style + '"></div>')
+                @counter += 1
+                lastMid = mid
+
+          @$('.box').resizable({
+            handles: 'all'
+            disabled: true
+          })
 
   selectTool: (tool) =>
     # Reset selected boxes for new tool. 

@@ -5,7 +5,7 @@ BirdsTranscriptionController = require 'controllers/interfaces/Birds'
 BugsTranscriptionController = require 'controllers/interfaces/BugsTranscriptionController'
 SernacTranscriptionController = require 'controllers/interfaces/SernacTranscriptionController'
 
-class TranscriptionController extends Spine.Controller
+class TranscriptionController extends Spine.Site
   className: 'TranscriptionController'
 
   constructor: ->
