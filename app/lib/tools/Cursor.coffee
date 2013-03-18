@@ -1,5 +1,8 @@
 BaseTool = require 'lib/tools/BaseTool'
 
+BOX_OFFSET_LEFT = 100
+BOX_OFFSET_TOP = 150
+
 class Cursor extends BaseTool
   actions: [
       key: 'delete'
@@ -52,16 +55,37 @@ class Cursor extends BaseTool
       @interface.counter += 1
 
       @interface.boxes.append box
-      $(document).on 'mouseup.createBox', {box: box}, @onDoneCreateBox
-      $(document).on 'mousemove.createBox', (de) =>
-        $(box).width de.pageX - e.pageX
-        $(box).height de.pageY - e.pageY
+      $('#boxes').on 'mouseup.createBox', {box: box}, @onDoneCreateBox
+      $('#boxes').on 'mousemove.createBox', (de) =>
+        if de.pageX > e.pageX and de.pageY > e.pageY
+          $(box).width de.pageX - e.pageX
+          $(box).height de.pageY - e.pageY
+        else if de.pageX > e.pageX and de.pageY <= e.pageY
+          $(box).width de.pageX - e.pageX
+          $(box).css
+            top: de.pageY - BOX_OFFSET_TOP
+            height: e.pageY - de.pageY
+        else if de.pageX <= e.pageX and de.pageY > e.pageY
+          $(box).height de.pageY - e.pageY
+          $(box).css
+            left: de.pageX - BOX_OFFSET_LEFT
+            width: e.pageX - de.pageX
+        else if de.pageX <= e.pageX and de.pageY <= e.pageY
+          $(box).css
+            left: de.pageX - BOX_OFFSET_LEFT
+            width: e.pageX - de.pageX
+          $(box).css
+            top: de.pageY - BOX_OFFSET_TOP
+            height: e.pageY - de.pageY
+        else
+          console.log 'something funky'
         
   onDoneCreateBox: (e) =>
     box = $(e.data.box)
-    $(document).off 'mousemove.createBox mouseup.createBox'
+    $('#boxes').off 'mousemove.createBox mouseup.createBox'
 
-    @clickBox box
+    # Don't actually create the box if it's really really small.
+    if box.width() < 3 or box.height() < 3 then box.remove() else @clickBox box
 
   deleteBox: (e) =>
     boxToDelete = @currentBox
