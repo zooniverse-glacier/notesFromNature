@@ -5,7 +5,8 @@
 <% if @data?: %>
   <section>
     <h1><%= @data.title %></h1>
-    <h2><%= @data.content %></h2>
+    <% content = if @data.content.length > 90 then @data.content.slice(0, 90) + '...' else @data.content %>
+    <h2><%= content %></h2>
   </section>
 
   <% if @data.images?: %>

@@ -80,7 +80,7 @@ class BirdsTranscriptionController extends InterfaceController
     e.preventDefault()
     @tool.nextBox
       onData: (data) =>
-        if 200 < @currentBox.position().left < 500
+        if 200 < @currentBox.position().left < 500 and @currentBox.data('value').length > 2
           Eol.getSpeciesImages data, {images: 10}, (results) =>
             @eolWidget.html @eolTemplate(data: results)
             @eolWidget.find('img').on 'click', ->

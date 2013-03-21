@@ -87,7 +87,11 @@ class Cursor extends BaseTool
     # Don't actually create the box if it's really really small.
     if box.width() < 3 or box.height() < 3 then box.remove() else @clickBox box
 
+
+  # Actions
   deleteBox: (e) =>
+    unless @currentBox then return
+
     boxToDelete = @currentBox
     if @interface.preferences.auto_move
       if boxToDelete.next().length
@@ -98,6 +102,8 @@ class Cursor extends BaseTool
     $(boxToDelete).remove()
 
   nextBox: (opts = {}) =>
+    unless @currentBox then return
+
     if $('#field').val()
       @currentBox.data('value', $('#field').val()).addClass('green')
 
@@ -111,9 +117,13 @@ class Cursor extends BaseTool
         @clickBox $('.box').first()
 
   previousBox: (e) =>
+    unless @currentBox then return
+
     @clickBox $(@currentBox).prev()
 
   sameBox: (e) =>
+    unless @currentBox then return
+    
     @currentBox.data 'value', 'same'
     $('#field').val 'same'
     @nextBox() if @interface.preferences.auto_move
