@@ -70,10 +70,11 @@
       <li><span class="text">USERS PARTICIPATING</span><%=window.project.user_count%></li>
       <li><span class="text">AVG. TIME PER PAGE</span>3 min.</li>
       <li><span class="text">AVG. DIFFICULTY</span><%=@archive.metadata.difficulty%></li>
-      <li class="mar-button"><a href="<%=@archive.transcriptionUrl()%>" class="button next">
+    </ul>
+    <span class="mar-button">
+      <a href="<%=@archive.transcriptionUrl()%>" class="button next">
         <span>TRY WITH ONE PAGE</span>
       </a>
-      </li>
-    </ul>
+    </span>
   </div>
 </div>
