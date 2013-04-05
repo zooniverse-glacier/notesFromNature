@@ -30,24 +30,23 @@
     <h3 class="title"><%= @users %> Users already participating</h3>
     <p>We have thousands of pages from biologists and researchers that contain information about where and when a species occurred in the past. We need you to help us transcribe that data and make it available to scientists and researchers. We can uncover the history of some of these species and possibly find species that have never been observed any where else!
     </p>
-  </div>
-  <div class="col3">  
-    <ul class="status-list inline">
-      <li class="logos">
-        <span class="text">PARTICIPATING INSTITUTIONS</span>
+    
+    <div class="box-logos">
+      <span class="text">ORGANIZATIONS INVOLVED</span>
 
-        <ul class="logos">
-          <li><a href="http://www.nhm.ac.uk/tring/research-and-curation/index.html"><img alt="Natural History Museum" src="images/natural_history_museum.png" /></a></li>
-          <li><a href="http://www.sernec.org/"><img alt="SERNEC" src="images/sernec.png" /></a></li>
-          <li><a href="http://calbug.berkeley.edu/"><img alt="Calbug" src="images/calbug.png" /></a></li>
-          <li><a href="http://cumuseum.colorado.edu/"><img src="images/mnh-cu.jpg"></a></li>
-        </ul>
+      <ul class="logos">
+        <li><a href="http://www.nhm.ac.uk/tring/research-and-curation/index.html"><img alt="Natural History Museum" src="images/natural_history_museum.png" /></a></li>
+        <li><a href="http://www.sernec.org/"><img alt="SERNEC" src="images/sernec.png" /></a></li>
+        <li><a href="http://calbug.berkeley.edu/"><img alt="Calbug" src="images/calbug.png" /></a></li>
+        <li><a href="http://cumuseum.colorado.edu/"><img src="images/mnh-cu.jpg"></a></li>
+        <li><a href="http://vizzuality.com/"><img src="images/logos/vizzuality.png"></a></li>
+      </ul>
 
-        <p>Interested in publishing your collection? <a href="mailto:arfon@zooniverse.org?Subject=We%20want%20to%20be%20involved%20with%20Notes%20from%20Nature!" class="object">Contact us</a></p>
-      </li>
-      <li class="mar-button">
-        <a href="#/archives" class="button next"><span>TRY WITH ONE PAGE</span></a>
-      </li>
-    </ul>
+      <p>Interested in publishing your collection? <a href="mailto:arfon@zooniverse.org?Subject=We%20want%20to%20be%20involved%20with%20Notes%20from%20Nature!" class="object">Contact us</a></p>
+    </div>
+
+    <span class="mar-button">
+      <a href="#/archives" class="button next"><span>TRY WITH ONE PAGE</span></a>
+    </span>
   </div>
 </div>

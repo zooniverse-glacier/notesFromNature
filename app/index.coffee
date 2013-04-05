@@ -1,4 +1,11 @@
-require 'lib/setup'
+require 'spine'
+require 'spine/lib/local'
+require 'spine/lib/ajax'
+require 'spine/lib/manager'
+require 'spine/lib/route'
+require 'spine/lib/relation'
+
+Spine.Site = require 'lib/site'
 
 Archives = require 'controllers/archives'
 AboutController = require 'controllers/AboutController'
@@ -19,7 +26,7 @@ Institute = require 'models/Institute'
 
 Header = require 'controllers/layout/header'
 Footer = require 'controllers/layout/footer'
-Notifications = require 'controllers/NotificationController'
+Notifications = require 'controllers/notifications'
 
 class topBar extends ZooniverseBar
   constructor: ->

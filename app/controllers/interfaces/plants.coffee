@@ -1,8 +1,8 @@
 Archive = require 'models/Archive'
 
-InterfaceController = require 'controllers/InterfaceController'
+Interfaces = require 'controllers/interfaces'
 
-class SernacTranscriptionController extends InterfaceController
+class Plants extends Interfaces
   className: 'SernacTranscriptionController'
   template: require 'views/transcription/sernac'
   widgetName: 'Herbarium'
@@ -20,4 +20,4 @@ class SernacTranscriptionController extends InterfaceController
       @transcriber.loadPhoto(@currentSubject.location.standard, callback)
       @transcriber.loadLargePhoto(@currentSubject.location.large)
 
-module.exports = SernacTranscriptionController
+module.exports = Plants

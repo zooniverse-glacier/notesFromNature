@@ -49,4 +49,9 @@ class InterfaceController extends Spine.Controller
     @currentSubject.retire()
     @nextSubject()
 
+    
+  # Generic UI
+  exit: =>
+    Spine.Route.navigate window.location.hash.split('/').slice(0,3).join('/')
+
 module.exports = InterfaceController

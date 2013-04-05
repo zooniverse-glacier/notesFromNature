@@ -1,0 +1,9 @@
+<section class="entry" id="entry">
+  <div id="entity"></div>
+</section>
+
+<section class="actions">
+  <ul id="tool-actions"></ul>
+</section>
+
+<section class="helper-box" id="helper-box"></section>

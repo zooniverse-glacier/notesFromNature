@@ -1,0 +1,10 @@
+<% for field, i in @field.sub_fields: %>
+  <% if field.type is 'input': %>
+    <% cssClass = field.size || 'small' %>
+    <input type="text" class="<%- cssClass %>" id="field-<%- i %>" value="<%- @value %>" autocomplete="off">
+  <% else: %>
+    unrecognized field type
+  <% end %>
+<% end %>
+
+<button id="next">Next</button>

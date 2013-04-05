@@ -43,7 +43,7 @@ class Institute extends Spine.Model
   setupArchives: (archives) =>
     for archive in archives
       archive = @archives().create(archive)
-      archive.addBadges()
+      # archive.addBadges()
 
   slug: ->
     @name.replace /\s/g, "_"

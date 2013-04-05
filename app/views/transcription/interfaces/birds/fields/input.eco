@@ -1,0 +1,2 @@
+<input type="text" id="field" value="<%- @value %>" autocomplete="off">
+<button id="done">Ok</button>

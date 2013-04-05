@@ -32,6 +32,7 @@ files = [
   'nfn/ui/transcriber.js',
   'nfn/ui/photos.js',
   'nfn/ui/closer.js',
+  'nfn/ui/popup.js',
 
   'nfn/ui/herbarium/transcriber.js',
   'nfn/ui/herbarium/widget.js',
@@ -51,14 +52,11 @@ files = [
 
 source = ''
 
-processFiles = (modifiedFile = '') ->
+processFiles = ->
   for file in files
     source += fs.readFileSync filePath + file
 
   fs.writeFileSync __dirname + '/public/nfn/build.js', source
 
 processFiles()
-
-# watch './', processFiles
-
 

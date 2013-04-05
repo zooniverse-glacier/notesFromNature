@@ -1,0 +1,21 @@
+<section class="menu">
+  <div class="left">
+    <div class="block">
+      <h1><%- @archive.name %></h1>
+      <p>from <%- @archive.institute().name %></p>
+    </div>
+  </div>
+  <div class="right">
+    <div class="block power" id="power"><div class="ring"><span></span></div></div>
+  </div>
+</section>
+
+<section id="transcription-area">
+  <div id="images"></div>
+
+  <div id="rows"></div>
+
+  <div id="buttons">
+    <button id="new-row">New Row</button>
+  </div>
+</section>

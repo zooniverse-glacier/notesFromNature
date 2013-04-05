@@ -1,6 +1,17 @@
+#interface-box
+  background: rgba(#000, 0.8)
+  border: 1px solid #000
+  border-radius: 6px
+  box-shadow: 0 0 15px 2px rgba(#000, 0.4)
+  box-sizing: border-box
+  padding: 14px 15px 15px
+
+
 .birds-interface
   @extends #interface
   @import "menu"
+
+  overflow: none !important
 
   a
     &.full
@@ -10,31 +21,63 @@
       top: 0
       width: 100%
 
+  $data-entry-height = 60px
   .data-entry
-    background: rgba(#000, 0.8)
-    border: 1px solid #000
-    border-radius: 8px
-    bottom: 33px
-    box-shadow: 0 0 15px 2px rgba(#000, 0.4)
-    box-sizing: border-box
+    @extends #interface-box
+    bottom: 20px
     color: #d3d3d3
-    height: 60px
-    padding: 14px 15px 15px
+    height: $data-entry-height
     position: fixed !important
     width: 770px
     z-index: 1000
-    left: 33px
-    left: calc(50% \- @width / 2)
-    left: -webkit-calc(50% \- @width / 2)
+    left: 220px
 
     > *
       display: inline-block
 
+    > .helper-box
+      @extends #interface-box
+      bottom: $data-entry-height + 20px
+      color: #d3d3d3
+      left: 50px
+      opacity: 0
+      position: absolute
+      transition: all 0.7s cubic-bezier(.27, .66, .49, .95)
+      width: 100%
+
+      &.shown
+        left: 0
+        opacity: 1
+
+    > .field-box
+      @extends #interface-box
+      bottom: 0
+      font-size: 0.85em
+      left: -200px
+      padding: 14px 0 15px 0
+      position: absolute
+      width: 180px
+
+      section
+
+        ul
+          @extends #semantic-list
+          transition: all 0.7s cubic-bezier(.27, .66, .49, .95)
+
+          li
+            border-bottom: 1px solid #777
+            color: #fff
+            height: $data-entry-height
+
+            &:hover
+              background: rgba(#bbb, 0.5)
+
+            .data
+              color: #0f0
+
     .entry
-      float: left
 
       div
-        background: #fff
         border-radius: 3px
         display: inline-block
         height: 30px
@@ -58,9 +101,21 @@
           appearance: none
           border: 0
           border-radius: 3px
-          margin: 0
+          margin: 0 10px 0 0
           outline: none
           padding: 3px 5px
+
+          &.large
+            width: 150px
+
+          &.medium
+            width: 100px
+
+          &.small
+            width: 50px
+
+          &.focus-text
+            color: #999
 
         button
           background: #693
@@ -106,6 +161,57 @@
 
           &:hover
             background: lighten(#693, 10%)
+
+  $transcription-area-padding = $menu-height + 30
+  #transcription-area
+    margin-top: $transcription-area-padding
+    overflow-y: auto
+    position: relative
+
+  #buttons
+    background: rgba(#000, 0.4)
+    display: none
+    left: 10px
+    padding: 10px
+    position: absolute
+    top: 0
+
+  #rows
+    margin: 0 auto
+    position: absolute
+    top: 0
+    width: 100%
+
+    .row
+      background: rgba(#f00, 0.22)
+      height: 12px
+      position: absolute
+      top: 0
+      width: 100%
+
+      &.selected
+        background: rgba(#f00, 0.36)
+
+  #images
+    height: 100%
+    max-height: 100%
+    width: 100%
+
+    img
+      display: none
+
+      &#corner
+        position: absolute
+
+      &#page
+        box-sizing: border-box
+        padding: 0 10px $transcription-area-padding
+        width: 100%
+
+
+
+
+
 
   .boxes
     margin: 150px 100px

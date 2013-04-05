@@ -1,7 +1,5 @@
 {
   "dependencies": [
-    "es5-shimify", 
-    "json2ify", 
     "spine",
     "spine/lib/local",
     "spine/lib/ajax",
@@ -13,8 +11,8 @@
     "zooniverse"
   ],
   "libs": [
-    "lib/vendor/jquery.min.js",
     "node_modules/Zooniverse/vendor/base64.js",
-    "lib/moment.min.js"
+    "lib/vendor/jquery.min.js",
+    "lib/vendor/moment.min.js"
   ]
 }

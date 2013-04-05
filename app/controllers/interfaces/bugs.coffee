@@ -1,8 +1,8 @@
 Archive = require 'models/Archive'
 
-InterfaceController = require 'controllers/InterfaceController'
+Interfaces = require 'controllers/interfaces'
 
-class BugsTranscriptionController extends InterfaceController
+class Bugs extends Interfaces
   className: 'BugsTranscriptionController'
   template: require 'views/transcription/bugs'
   widgetName: 'Bugs'
@@ -19,4 +19,4 @@ class BugsTranscriptionController extends InterfaceController
 
       @transcriber.loadPhoto(@currentSubject.location.standard, callback)
 
-module.exports = BugsTranscriptionController
+module.exports = Bugs

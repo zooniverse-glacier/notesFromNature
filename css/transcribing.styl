@@ -20,7 +20,7 @@
 
 
 /* TOOLTIPS */
-.transcriber.birds, .transcriber.sernac { 
+.transcriber.birds, .transcriber.sernac {
   .tooltip {
     display: none;
     position: absolute;
@@ -42,13 +42,13 @@
     z-index: 1001;
 
     img {
-    margin: 0 0 3px 0;
-    display: none;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -o-border-radius: 2px;
-  }
+      margin: 0 0 3px 0;
+      display: none;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -ms-border-radius: 2px;
+      -o-border-radius: 2px;
+    }
 
     .description a { text-decoration: underline; }
 
@@ -203,6 +203,51 @@
    }
   }
 }
+
+.transcriber.birds, .transcriber.sernac
+  > .popup
+    background: rgba(#000, 0.5)
+    display: none
+    height: 100%
+    left: 0
+    position: fixed
+    top: 0
+    width: 100%
+    z-index: 100000
+
+    $popup-width = 500px
+    > .content
+      background: rgba(#000, 0.6)
+      border: 1px solid #000
+      border-radius: 8px
+      box-shadow: 0 0 5px 3px rgba(#000, 0.4)
+      box-sizing: border-box
+      color: #fff
+      left: calc(50% \- ($popup-width / 2))
+      left: -webkit-calc(50% \- ($popup-width / 2))
+      padding: 20px
+      position: absolute
+      top: 100px
+      width: $popup-width
+
+      button
+        appearance: none
+        background: #693
+        border: 1px solid #060
+        border-radius: 3px
+        color: #fff
+        font-family: 'Open Sans', sans-serif
+        font-size: 13px
+        margin: 15px 0 0 0
+        padding: 5px 0
+        text-transform: uppercase
+        width: 100%
+
+      p
+        margin: 0 0 0.7em 0
+        text-shadow: rgba(#666, 0.5)
+
+
 
 /* STATUSBAR */
 .transcriber.birds, .transcriber.sernac { 
@@ -361,14 +406,8 @@
   display: none;
   margin: 120px auto 20px auto;
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   -webkit-user-drag: none;
-  -webkit-box-shadow: 0 0 15px 13px rgba(0, 0, 0, 0.7);
-  -moz-box-shadow: 0 0 15px 13px rgba(0, 0, 0, 0.7);
   box-shadow: 0 0 15px 13px rgba(0, 0, 0, 0.7);
 }
 
@@ -377,28 +416,18 @@
 }
 
 .transcriber.birds .bar,
-.transcriber.sernac .bar {
-  display: none;
-  position: absolute;
-  width: 520px;
-  height: 55px;
-  padding: 11px 11px 11px 10px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  background: #333;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid black;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
-  z-index: 100;
-}
+.transcriber.sernac .bar
+  background: rgba(0, 0, 0, 0.8)
+  border: 1px solid #000
+  border-radius: 8px
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4)
+  box-sizing: border-box
+  display: none
+  height: 55px
+  padding: 11px 11px 11px 10px
+  position: absolute
+  width: 710px
+  z-index: 100
 
 .transcriber.birds .backdrop,
 .transcriber.sernac .backdrop {
@@ -745,33 +774,34 @@
 
 }
 
-.transcriber.sernac .highlight {
-  display: none;
-  position: absolute;
-  background: rgba(255, 103, 1, 0.15);
-  border: 1px solid #FF6701;
-  cursor: pointer;
-  -webkit-transition-property: background-color;
-  -moz-transition-property: background-color;
-  -o-transition-property: background-color;
-  transition-property: background-color;
-  -webkit-transition-duration: 300ms;
-  -moz-transition-duration: 300ms;
-  -o-transition-duration: 300ms;
-  transition-duration: 300ms;
-  z-index: 1000;
-}
-.transcriber.sernac .highlight .close {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  top: -10px;
-  right: -10px;
-  background: url(images/transcribers/close.png) no-repeat;
-}
-.transcriber.sernac .highlight:hover {
-  background: rgba(255, 103, 1, 0.35);
-}
+.transcriber.sernac .highlight
+  display: none
+  position: absolute
+  background: rgba(255, 103, 1, 0.15)
+  border: 1px solid #FF6701
+  cursor: pointer
+  -webkit-transition-property: background-color
+  -moz-transition-property: background-color
+  -o-transition-property: background-color
+  transition-property: background-color
+  -webkit-transition-duration: 300ms
+  -moz-transition-duration: 300ms
+  -o-transition-duration: 300ms
+  transition-duration: 300ms
+  z-index: 1000
+
+  &:hover
+    background: rgba(255, 103, 1, 0.35)
+
+  .close
+    position: absolute
+    width: 18px
+    height: 18px
+    top: -10px
+    right: -10px
+    background: url(images/transcribers/close.png) no-repeat
+
+
 .transcriber.sernac .selection {
   position: absolute;
   visibility: hidden;
@@ -786,10 +816,9 @@
   box-sizing: border-box;
   color: #fff;
   font: 11px "Open Sans";
+  height: 70px
+  width: 690px;
   z-index: 1001;
-  width: 600px;
-  left: calc(50% \- @width / 2);
-  left: -webkit-calc(50% \- @width / 2);
 
   .title {
     margin: 0 0 2px 0;
@@ -871,10 +900,10 @@
 
 }
 
-.transcriber.bugs .bugs-widget
-  width: 580px
-  left: calc(50% \- @width / 2)
-  left: -webkit-calc(50% \- @width / 2)
+.transcriber.bugs
+  > .bugs-widget,
+  > .helper
+    width: 580px
 
 .transcriber.sernac .sernac-widget {
   z-index: 10001;

@@ -1,9 +1,9 @@
 Archive = require 'models/Archive'
 Institute = require 'models/Institute'
 
-BirdsTranscriptionController = require 'controllers/interfaces/Birds'
-BugsTranscriptionController = require 'controllers/interfaces/BugsTranscriptionController'
-SernacTranscriptionController = require 'controllers/interfaces/SernacTranscriptionController'
+BirdsTranscriptionController = require 'controllers/interfaces/birds'
+BugsTranscriptionController = require 'controllers/interfaces/bugs'
+SernacTranscriptionController = require 'controllers/interfaces/plants'
 
 class TranscriptionController extends Spine.Site
   className: 'TranscriptionController'

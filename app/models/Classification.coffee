@@ -8,13 +8,27 @@ class Classification extends Spine.Model
   
   constructor: ->
     super
-    @annotations ||= []
+    @annotations ?= []
+
+    @started_at = (new Date).toUTCString()
+    @user_agent = window.navigator.userAgent
 
   subject: ->
     Subject.find @subject_id 
 
   saveData: (@annotations) -> @save()
   
+  addAnnotation: (annotation) ->
+    for a, i in @annotations when annotation.id is a.id
+      return a = annotation
+
+    @annotations.push annotation
+    annotation
+
+  removeAnnotation: (annotation) ->
+    for a, i in @annotations when annotation.id is a.id
+      return @annotations.splice i, 1
+
   annotateLine: (line, number) ->
     for annotation in line.transcriptions?.toJSON()
       annotation =
@@ -34,15 +48,16 @@ class Classification extends Spine.Model
     "/projects/notes_from_nature/workflows/#{@workflow_id}/classifications"
   
   toJSON: ->
-    json =
-      classification:
-        subject_ids: [@subject_id]
-        favorite: false
-    
-    json.classification = $.extend json.classification, super
+    json = classification:
+      subject_ids: [@subject_id]
+      favorite: false
+      annotations: @annotations.concat [{@started_at, @finished_at}, {@user_agent}]
+
     json
   
   send: ->
+    @finished_at = (new Date).toUTCString()
+
     if User.current?
       User.current.project.classification_count += 1
       User.current.save()

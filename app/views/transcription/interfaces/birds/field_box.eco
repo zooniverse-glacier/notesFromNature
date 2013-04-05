@@ -1,0 +1,10 @@
+<section>
+  <% if @fields: %>
+    <ul>
+    <% for field, i in @fields: %>
+      <% name = if field.display? then field.display else field.name %>
+      <li data-field-id="<%- i %>"><%- name %></li>
+    <% end %>
+    </ul>
+  <% end %>
+</section>
