@@ -834,7 +834,7 @@
   }
 
   .description {
-    font: 12px "Helvetica";
+    font: 12px/1.5em "Helvetica";
 
     .example {
       border-bottom: 1px solid #ccc;
@@ -989,48 +989,62 @@
   left: 10px;
 }
 
-.transcriber.sernac .sernac-widget .left .input_field {
-  float: left;
-  position: relative;
-  background: #fff;
-  width: 180px;
-  height: 31px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-}
-.transcriber.sernac .sernac-widget .left .input_field.date {
-  background: none;
-  width: 405px;
-}
-.transcriber.sernac .sernac-widget .left .input_field.date .btn.ok {
-  float: right;
-}
-.transcriber.sernac .sernac-widget .left .input_field.date .date_field {
-  position:absolute;
+.transcriber.sernac .sernac-widget .left .input_field
+  background: #fff
+  border-radius: 3px
+  float: left
+  height: 31px
+  position: relative
+  width: 180px
 
-  background: #fff;
-  height: 31px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  float: left;
-  margin: 0 7px 0 0;
+  &.date
+    background: none
+    width: 405px
 
-  &.month { left: 0px; }
-  &.day   { left: 150px; }
-  &.year  { left: 260px; }
-}
+    .btn.ok
+      float: right
 
-.transcriber.sernac .sernac-widget .left .input_field.date  {
-  input.month { width: 120px; }
-  input.day   { width: 80px; }
-  input.year  { width: 90px; }
-}
+    .date_field
+      background: #fff
+      border-radius: 3px
+      height: 31px
+      margin: 0 7px 0 0
+      overflow: hidden
+      position: absolute
+
+      &.month
+        left: 0
+        width: 120px
+      &.day
+        left: 150px
+        width: 80px
+      &.year
+        left: 260px
+        width: 90px
+
+  &.latlng
+    background: none
+    width: 350px
+
+    .btn.ok
+      float: right
+
+    .latlng_field
+      background: #fff
+      border-radius: 3px
+      float: left
+      height: 31px
+      margin: 0 7px 0 0
+      overflow: hidden
+      position: absolute
+
+      &.lat
+        left: 0
+        width: 120px
+
+      &.lng
+        left: 130px
+        width: 120px
 
 .transcriber.sernac .sernac-widget .left .input_field input[type="text"]::-webkit-input-placeholder { line-height: 15px; text-transform: uppercase; }
 .transcriber.sernac .sernac-widget .left .input_field input[type="text"]:-moz-placeholder { color: #ccc; line-height: 15px; text-transform: uppercase; } 

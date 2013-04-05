@@ -51,6 +51,11 @@
   <div class="date_field year"><input type="text" name="year" class="year" placeholder="year" /></div>
 </script>
 
+<script type="text/template" id="latlng-input-template">
+  <div class="latlng_field lat"><input type="text" name="lat" class="lat" placeholder="latitude"></div> 
+  <div class="latlng_field lng"><input type="text" name="lng" class="lng" placeholder="longitude"></div> 
+</script>
+
 <script type="text/template" id="tooltip-error-template">
   <strong class="title">{{title}}</strong>
   <div class="description">{{description}}</div>
