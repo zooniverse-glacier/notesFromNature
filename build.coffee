@@ -2,7 +2,6 @@ fs = require 'fs'
 
 filePath = './lib/'
 files = [
-  'vendor/modernizr.custom.59967.js',
   'vendor/underscore-min.js',
   'vendor/backbone-min.js',
 

@@ -1,3 +1,8 @@
+if typeof console is 'undefined'
+  @console =
+    log: (message) ->
+      # Do Nothing
+
 require 'spine'
 require 'spine/lib/local'
 require 'spine/lib/ajax'
@@ -84,8 +89,8 @@ app.topBar.el.prependTo 'body'
 Institute.fetch()
 
 User.bind 'sign-in', =>
-  # if User.current?
-  #   Badge.getUserBadges()
+  if User.current?
+    Badge.getUserBadges()
 
 Spine.Route.setup()
 

@@ -7,7 +7,9 @@ class Badge extends Spine.Model
   
   @getUserBadges: ->
     if User.current?
-      Api.get("/users/#{User.current.id}/badges").onSuccess (badges) =>
+      Api.get("/projects/notes_from_nature/badges").onSuccess (badges) =>
+        if badges is null then return
+        
         badges = ([name,created_at] for name, created_at of badges.badges)
         badges = _(badges).sortBy (badge) -> moment().diff(moment(badge[1]))
         User.current.badges = []
