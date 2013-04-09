@@ -432,8 +432,7 @@ a.badge {
   background: #F2F7F7;
 }
 .box-general.divided {
-  background: white url(images/bg-divided.png) repeat-y;
-  padding: 20px 17px;
+  background: white url(images/bg-divided.png) repeat-y -10px 0;
 }
 .box-general.divided-bg {
   background: #f5f8f8 url(images/bg-divided.png) repeat-y;
@@ -576,7 +575,7 @@ hr.absolute {
   position: relative;
 }
 .box-general.green {
-  background: white url(images/bg-green.jpg) repeat-y right top;
+  background: #fff url(images/bg-green.jpg) repeat-y top right;
 }
 .box-general .marker {
   background: url(images/marker.png) no-repeat -16px 20px;
@@ -809,15 +808,17 @@ ul.logos li {
   color: #333;
 }
 
-.links-left {
-  margin-left: 40px;
-}
-.links-left span:first-child {
-  margin-top: 12px;
-}
-.links-left span {
-  margin-top: 20px;
-}
+.links-left
+  margin-left: 40px
+
+  span
+    margin-top: 20px
+
+    &:first-child
+      margin-top: 0
+
+  ul
+    margin: 0 0 0 10px
 
 .list-contributors img {
   float: left;
@@ -839,18 +840,18 @@ ul.logos li {
   font-size: 13px;
 }
 
-.list-contributors.user {
-  margin-top: 15px;
-}
-.list-contributors.user li {
-  margin-top: -4px;
-}
-.list-contributors.advanced {
-  margin-top: 20px;
-}
-.list-contributors.advanced img {
-  border-radius: 3px;
-}
+.list-contributors.user
+  margin-top: 15px
+
+  li
+    margin-top: -4px
+
+.list-contributors.advanced 
+  margin-top: 20px
+
+  img
+    border-radius: 3px
+
 .list-contributors.advanced li {
   border-bottom: 1px solid #E6E8E8;
   padding: 20px 0 20px 0;
@@ -862,17 +863,19 @@ ul.logos li {
 .list-contributors.advanced li:last-child {
   border-bottom: 0px none;
 }
-.list-contributors.advanced div.right {
-  text-align: right;
-}
-.list-contributors.advanced div.right span:first-child {
-  color: #666;
-  font-size: 19px;
-  font-weight: 600;
-}
-.list-contributors.advanced div.right span:last-child {
-  color: #CCCCCC;
-}
+
+.list-contributors.advanced div.right
+  text-align: right
+
+  span
+
+    &:first-child 
+      color: #666
+      font-size: 19px
+      font-weight: 600
+
+    &:last-child
+      color: #ccc
 
 .bullet {
   background: url(images/icons.png) no-repeat 0px -444px;
