@@ -22,7 +22,7 @@ class ArchivesList extends Spine.Site
     @showCompleted = true
 
   showArchiveDetails: (e) =>
-    $(e.currentTarget).find('.translucent-box').stop().animate {top: 0}, {duration: 200}
+    $(e.currentTarget).find('.translucent-box:not(.disable)').stop().animate {top: 0}, {duration: 200}
 
   hideListDetails: (e) =>
     $(e.currentTarget).find('.translucent-box').stop().animate {top: '160px'}, {duration: 200}

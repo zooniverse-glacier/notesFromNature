@@ -3,6 +3,17 @@
     <% for archive in @archives: %>
       <%- @archiveTemplate({archive: archive}) %>
     <% end %>
+
+    <li class="mine">
+      <img src="images/img-collections2.jpg"> 
+      <div class="translucent-box disable">
+        <p class="coming-soon"><i>Coming Soon</i></p>
+      </div>
+      
+      <h3 class="title">
+        Ornithological
+        <span class="subtitle">Natural History Museum</span>
+      </h3>
+    </li>
   </ul>
 </div>
-
