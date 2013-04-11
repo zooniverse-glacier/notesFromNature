@@ -76,40 +76,31 @@ html, button, input, select, textarea {
   color: #333;
 }
 
-body {
-  background: #333333 url("images/bg.jpg") repeat-x;
-}
+p, li 
+  font-family: 'Open Sans', Helvetica, sans-serif
+  line-height: 19px
 
-p, li {
-  font-family: 'Open Sans', Helvetica, sans-serif;
-  line-height: 19px;
-}
+a 
+  text-decoration: none
+  color: #333
 
-a {
-  text-decoration: none;
-  color: #333;
-}
+h1
+  position: relative
 
-h1 {
-  position: relative;
-}
-h1 img {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-h1.title {
-  color: #fff;
-  cursor: pointer;
-  font-size: 25px;
-  font-weight: normal;
-  margin-top: 24px;
+  &.title
+    color: #fff
+    cursor: pointer
+    font-size: 25px
+    font-weight: normal
+    margin-top: 24px
 
-  // Don't like this.
-  a {
-    color: #fff;
-  }
-}
+    a
+      color: #fff
+
+  img
+    position: absolute
+    right: 0
+    top: 0
 
 h1 span.green {
   background: url(images/icons.png) no-repeat 90px 21px;
@@ -629,9 +620,8 @@ hr.absolute {
   margin-bottom: 30px;
 }
 .status-list span.text {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.5);
   display: block;
-  font-family: 'Open Sans', sans-serif;
   font-size: 11px;
   font-weight: 700;
 }
@@ -639,7 +629,6 @@ hr.absolute {
 span.text {
   color: rgba(0, 0, 0, 0.3);
   display: block;
-  font-family: 'Open Sans', sans-serif;
   font-size: 11px;
   font-weight: 600;
 }
@@ -857,9 +846,7 @@ ul.logos li {
   padding: 20px 0 20px 0;
   width: 100%;
 }
-.list-contributors.advanced li span.numbers {
-  font-family: 'Open Sans';
-}
+
 .list-contributors.advanced li:last-child {
   border-bottom: 0px none;
 }
@@ -905,7 +892,6 @@ ul.logos li {
   width: 100%;
 }
 .list-graphics li .count strong {
-  font-family: 'Open Sans';
   font-weight: 600;
   display: block;
   clear: both;
@@ -1098,7 +1084,6 @@ span.ico-comments {
   li
     background: rgba(0, 0, 0, 0.2)
     float: left
-    font-family: 'Open Sans', sans-serif
     height: 320px
     overflow: hidden
     position: relative

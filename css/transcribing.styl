@@ -812,43 +812,64 @@
 }
 
 .transcriber.sernac .helper,
-.transcriber.bugs .helper {
-  box-sizing: border-box;
-  color: #fff;
-  font: 11px "Open Sans";
-  height: 70px
-  width: 690px;
-  z-index: 1001;
+.transcriber.bugs .helper 
+  display: none
+  overflow: visible !important
+  position: absolute
+  width: 690px
+  z-index: 1001
 
-  .title {
-    margin: 0 0 2px 0;
-    text-transform: uppercase;
+  > .container
+    height: 0
+    position: relative
 
-    .required {
-      color: #f33;
-    }
+    > .sub-container
+      @extends .transcriber.sernac .bar
+      bottom: 0
+      box-sizing: border-box
+      color: #fff
+      display: block
+      font: 11px "Open Sans"
+      height: 22px
+      overflow: hidden
+      position: absolute
+      width: 100%
 
-    .additional {
-      color: #0f0;
-    }
-  }
+  .toggle
+    cursor: pointer
+    position: absolute
+    right: 11px
+    text-decoration: dotted
+    text-transform: uppercase
+    top: 4px
 
-  .description {
-    font: 12px/1.5em "Helvetica";
+  .title
+    left: 10px
+    margin: 0 0 2px 0
+    position: absolute
+    text-transform: uppercase
+    top: 4px
 
-    .example {
-      border-bottom: 1px solid #ccc;
-      color: #fff;
-      font: 12px "Helvetica";
-      position: relative;
-      text-decoration: none;
+    .required
+      color: #f33
+    
+    .additional
+      color: #0f0
+    
+  .description
+    font: 12px/1.5em "Helvetica"
+    margin-top: 11px
 
-      &:hover {
-        border-bottom: 1px dashed #fff;
-      }
-    }
-  }
-}
+    .example
+      border-bottom: 1px solid #ccc
+      color: #fff
+      font: 12px "Helvetica"
+      position: relative
+      text-decoration: none
+
+      &:hover
+        border-bottom: 1px dashed #fff
+
 
 .transcriber.sernac .launcher {
 
