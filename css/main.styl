@@ -433,10 +433,6 @@ a.badge {
   background: white url(images/bg-divided-blue.png) repeat-y;
   padding-bottom: 40px;
 }
-.box-general.divided-blue .list-contributors li {
-  margin-bottom: 18px;
-}
-
 .box-general.home {
   background: white url(images/bg-home.jpg) no-repeat top left;
   height: 500px;
@@ -502,30 +498,6 @@ a.badge {
   margin-right: -4px;
 }
 
-.species-selector {
-  margin: auto;
-  overflow: hidden;
-  width: 125px;
-}
-.species-selector a {
-  display: block;
-  float: left;
-  margin: 7px;
-  height: 111px;
-}
-
-.species-selector a img {
-  padding: 0;
-  margin: 0;
-}
-
-.species-selector a:hover {
-  box-shadow: 0 0 7px 5px rgba(255, 255, 255, 0.4);
-  -webkit-transition: all 0.3s linear;
-  -moz-transition: all 0.3s linear;
-  -o-transition: all 0.3s linear;
-}
-
 .transcribing-launcher {
   display: inline-block;
   text-align: center;
@@ -547,8 +519,8 @@ a.badge {
   margin: auto;
   width: 280px;
 
-  &:hover   { background: #669933 url(images/button-green-bg.png) repeat-x left -20px; }
-  &:active  { background: #669933 url(images/button-green-bg.png) repeat-x left bottom; }
+  &:hover { background: #669933 url(images/button-green-bg.png) repeat-x left -20px; }
+  &:active { background: #669933 url(images/button-green-bg.png) repeat-x left bottom; }
 }
 
 footer.relative {
@@ -601,7 +573,7 @@ hr.absolute {
 }
 
 
-.status-list, .logos, .list-graphics, .links-left ul, .list-contributors {
+.status-list, .logos, .links-left ul {
   @extends #semantic-list
 }
 
@@ -644,25 +616,18 @@ span.text {
   margin-right: 40px;
 }
 
-.box-green {
-  background: #669933;
-  background: -moz-linear-gradient(top, #669933 0%, #85c645 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #669933), color-stop(100%, #85c645));
-  background: -webkit-linear-gradient(top, #669933 0%, #85c645 100%);
-  background: -o-linear-gradient(top, #669933 0%, #85c645 100%);
-  background: -ms-linear-gradient(top, #669933 0%, #85c645 100%);
-  background: linear-gradient(top, #669933 0%, #85c645 100%);
-  
-  padding: 40px;
-}
+.box-green
+  background: linear-gradient(top, #669933 0%, #85c645 100%)
+  padding: 40px
 
-.box-center {
-  text-align: center;
-  padding-top: 30px;
-}
-.box-center.results {
-  padding: 30px 0 20px 0;
-}
+
+.box-center
+  padding: 30px 0 0 0
+  text-align: center
+
+  &.results
+    padding: 30px 0 20px 0
+
 
 hr {
   border: 0 none;
@@ -694,49 +659,46 @@ hr {
   margin-bottom: 3px;
 }
 
-ul.logos li {
-  float: left;
-  margin-right: 38px;
-}
+ul.logos li
+  float: left
+  margin-right: 38px
 
-.box-logos {
-  margin-top: 50px;
-  padding-top: 40px;
-  border-top: 1px solid #CCC;
-  border-top: 1px solid rgba(204, 204, 204, 0.4);
 
-  ul {
+.box-logos
+  border-top: 1px solid rgba(204, 204, 204, 0.4)
+  margin: 50px 0 20px 0
+  padding: 40px 0 0 0
+
+  p
+    margin: 20px 0 0 0
+
+  span
+
+    &.text
+      font-weight: bold
+      padding: 0 0 20px 0
+
+  ul
     @extends #semantic-list
-  }
-}
-.box-logos span.text {
-  font-weight: bold;
-  padding-bottom: 20px;
-}
-.box-logos p {
-  margin-top: 20px;
-}
 
 
+.collection .translucent-box 
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%
 
-.collection .translucent-box {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
+.box-badge 
+  padding: 76px 0px 46px 0
+  text-align: center
 
-.box-badge {
-  padding: 76px 0px 46px 0;
-  text-align: center;
-}
+  h3
 
-.box-badge h3.title {
-  margin-bottom: 10px;
-}
-.box-badge span {
-  font-family: helvetica;
-}
+    &.title
+      margin: 0 0 10px 0
+
+  span
+    font-family: Helvetica
 
 .box-badge-footer {
   padding: 30px;
@@ -749,53 +711,54 @@ ul.logos li {
   font-family: helvetica;
 }
 
-.progress {
-  font-size: 15px;
-  width: 100%;
-}
-.progress.hover {
-  padding-bottom: 10px;
-}
-.progress.blue {
-  color: #0099CC;
-}
-.progress span.subtitle {
-  color: #7F7F7F;
-}
-.progress img {
-  margin-right: 10px;
-  margin-top: 10px;
-}
+.progress 
+  font-size: 15px
+  width: 100%
+
+  &.blue
+    color: #09c
+
+  &.hover
+    padding: 0 0 10px 0
+
+  img
+    margin: 10px 10px 0 0
+
+  span
+
+    &.subtitle
+      color: #7f7f7f
 
 .box-user {
   margin-top: 20px;
 }
 
 /* List */
-.list-links {
-  list-style: none;
-  margin-top: 20px;
-  padding-left: 30px;
-}
-.list-links li {
-  border-bottom: 1px solid #CCC;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-}
-.list-links li:last-child {
-  border-bottom: 0px none;
-}
-.list-links li a {
-  color: #0099CC;
-  font-size: 17px;
-  font-weight: 600;
-}
-.list-links li a:hover {
-  color: #006688;
-}
-.list-links li a.selected {
-  color: #333;
-}
+.list-links 
+  list-style: none
+  margin-top: 20px
+  padding-left: 30px
+
+  li
+    border-bottom: 1px solid #ccc
+    margin: 0 0 20px 0
+    padding: 0 0 20px 0
+
+    &:last-child
+      border-bottom-color: transparent
+
+    a
+      color: #09c
+      font-size: 17px
+      font-weight: 600
+
+      &:hover
+        color: #068
+
+      &.selected
+        color: #333
+
+
 
 .links-left
   margin-left: 40px
@@ -809,60 +772,6 @@ ul.logos li {
   ul
     margin: 0 0 0 10px
 
-.list-contributors img {
-  float: left;
-  margin-right: 10px;
-  border-radius: 3px;
-}
-.list-contributors li {
-  padding-top: 0;
-  margin-bottom: 15px;
-}
-
-.list-forum li div {
-  padding-top: 10px;
-}
-
-.list-contributors span, .list-forum span {
-  color: rgba(51, 51, 51, 0.5);
-  font-family: helvetica;
-  font-size: 13px;
-}
-
-.list-contributors.user
-  margin-top: 15px
-
-  li
-    margin-top: -4px
-
-.list-contributors.advanced 
-  margin-top: 20px
-
-  img
-    border-radius: 3px
-
-.list-contributors.advanced li {
-  border-bottom: 1px solid #E6E8E8;
-  padding: 20px 0 20px 0;
-  width: 100%;
-}
-
-.list-contributors.advanced li:last-child {
-  border-bottom: 0px none;
-}
-
-.list-contributors.advanced div.right
-  text-align: right
-
-  span
-
-    &:first-child 
-      color: #666
-      font-size: 19px
-      font-weight: 600
-
-    &:last-child
-      color: #ccc
 
 .bullet {
   background: url(images/icons.png) no-repeat 0px -444px;
@@ -870,46 +779,6 @@ ul.logos li {
   padding-left: 10px;
 }
 
-.list-graphics li {
-  float: left;
-  position: relative;
-  width: 150px;
-  height: 135px;
-  margin-right: 50px;
-}
-.list-graphics li:last-child {
-  margin-right: 0;
-}
-.list-graphics li .count {
-  text-align: center;
-  bottom: 50px;
-  color: #333;
-  font-size: 45px;
-  font-weight: 600;
-  text-align: center;
-  position: absolute;
-  z-index: 100;
-  width: 100%;
-}
-.list-graphics li .count strong {
-  font-weight: 600;
-  display: block;
-  clear: both;
-  margin-bottom: 20px;
-}
-.list-graphics li .count span {
-  display: block;
-  width: 100%;
-  color: #666;
-  font-size: 13px;
-  font-weight: normal;
-  position: absolute;
-}
-.list-graphics li .chart {
-  position: absolute;
-  z-index: 0;
-  margin: auto;
-}
 
 li.img-graphic {
   background: url(images/bg-graph.png) no-repeat 0px 20px;
@@ -1035,26 +904,6 @@ li.img-graphic2 {
   display: block;
   font-family: helvetica;
 }
-
-.list-forum li {
-  border-bottom: 1px solid #E6E8E8;
-  padding-bottom: 13px;
-  padding-top: 10px;
-  width: 100%;
-}
-.list-forum li:first-child {
-  padding-top: 0px;
-}
-.list-forum li:last-child {
-  border-bottom: 0px none;
-}
-
-span.ico-comments {
-  background: url(images/icons.png) no-repeat 2px -475px;
-  margin-left: -4px;
-  padding-left: 25px;
-}
-
 
 .badges-list
   @extends #semantic-list
@@ -1188,21 +1037,9 @@ a.button {
   white-space: nowrap;
 }
 a.button:hover {
-  background: #52792a;
-  background: -moz-linear-gradient(top, #52792a 0%, #669933 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #52792a), color-stop(100%, #669933));
-  background: -webkit-linear-gradient(top, #52792a 0%, #669933 100%);
-  background: -o-linear-gradient(top, #52792a 0%, #669933 100%);
-  background: -ms-linear-gradient(top, #52792a 0%, #669933 100%);
   background: linear-gradient(top, #52792a 0%, #669933 100%);
 }
 a.button:active {
-  background: #669933;
-  background: -moz-linear-gradient(top, #669933 0%, #52792a 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #669933), color-stop(100%, #52792a));
-  background: -webkit-linear-gradient(top, #669933 0%, #52792a 100%);
-  background: -o-linear-gradient(top, #669933 0%, #52792a 100%);
-  background: -ms-linear-gradient(top, #669933 0%, #52792a 100%);
   background: linear-gradient(top, #669933 0%, #52792a 100%);
 }
 a.button.nocolor {
@@ -1212,22 +1049,10 @@ a.button.nocolor {
   text-shadow: 0px 0px;
 }
 a.button.nocolor:hover {
-  background: #dadada;
-  background: -moz-linear-gradient(top, #dadada 0%, white 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dadada), color-stop(100%, white));
-  background: -webkit-linear-gradient(top, #dadada 0%, white 100%);
-  background: -o-linear-gradient(top, #dadada 0%, white 100%);
-  background: -ms-linear-gradient(top, #dadada 0%, white 100%);
   background: linear-gradient(top, #dadada 0%, #ffffff 100%);
   text-shadow: 0px 1px #FFF;
 }
 a.button.nocolor:active {
-  background: #ffffff;
-  background: -moz-linear-gradient(top, white 0%, #dadada 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #dadada));
-  background: -webkit-linear-gradient(top, white 0%, #dadada 100%);
-  background: -o-linear-gradient(top, white 0%, #dadada 100%);
-  background: -ms-linear-gradient(top, white 0%, #dadada 100%);
   background: linear-gradient(top, #ffffff 0%, #dadada 100%);
 }
 a.button.next {
@@ -1312,22 +1137,7 @@ span.switch.selected {
   background-position: 32px -553px;
 }
 
-/* Globals */
-.left {
-  float: left;
-}
 
-.right {
-  float: right;
-}
-
-.center {
-  text-align: center;
-}
-
-.nomargin {
-  margin: 0px!important;
-}
 
 .progress-bar {
   position: relative;
