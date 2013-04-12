@@ -22,6 +22,7 @@
 /* TOOLTIPS */
 .transcriber.birds, .transcriber.sernac {
   .tooltip {
+    border-radius: 2px;
     display: none;
     position: absolute;
     width: 175px;
@@ -30,11 +31,6 @@
     background: white;
     text-align: left;
 
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -o-border-radius: 2px;
-    border-radius: 2px;
 
     -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
     -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 0 3px 2px;
@@ -42,21 +38,18 @@
     z-index: 1001;
 
     img {
-      margin: 0 0 3px 0;
+      border-radius: 2px;
       display: none;
-      -webkit-border-radius: 2px;
-      -moz-border-radius: 2px;
-      -ms-border-radius: 2px;
-      -o-border-radius: 2px;
+      margin: 0 0 3px 0;
     }
 
     .description a { text-decoration: underline; }
 
     &.example { 
-    height: 150px;
+      height: 150px;
 
-    .loader { top: 80px; }
-      .btn    { position: absolute; bottom: 14px; left: 50%; width: 80px; margin-left: -40px; }
+      .loader { top: 80px; }
+        .btn    { position: absolute; bottom: 14px; left: 50%; width: 80px; margin-left: -40px; }
 
     }
 
@@ -112,8 +105,6 @@
     width: 369px;
     height: 203px;
     box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
 
     img { position: absolute; width: auto; height: auto; left: 5px; top: 5px; border: 1px solid #838383; }
     .btn { position: absolute; bottom: 15px; right: 15px; width: 80px; }
@@ -128,8 +119,6 @@
     margin-top: -30px;
     margin-left: -30px;
     border: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
     box-shadow: none;
   }
 
@@ -204,7 +193,7 @@
   }
 }
 
-.transcriber.birds, .transcriber.sernac
+.transcriber.sernac
   > .popup
     background: rgba(#000, 0.5)
     display: none
@@ -254,7 +243,7 @@
 
 
 /* STATUSBAR */
-.transcriber.birds, .transcriber.sernac { 
+.transcriber.sernac { 
 
   .statusbar {
 
@@ -264,9 +253,6 @@
     width: 100%;
     min-width: 1024px;
     height: 80px;
-    -webkit-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
-    -moz-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
-    -o-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.6);
     background: #222222 url("images/transcribers/bg-header.png");
     border-bottom: 1px solid rgba(255, 255, 255, 0.02);
@@ -374,7 +360,6 @@
   }
 }
 
-.transcriber.birds .photos,
 .transcriber.sernac .photos {
   box-sizing: border-box;
   height: 100%;
@@ -385,7 +370,6 @@
   z-index: 10;
 }
 
-.transcriber.birds .photos.selectable img,
 .transcriber.sernac .photos.selectable img {
   cursor: crosshair;
 }
@@ -419,7 +403,6 @@
   max-width: 80%;
 }
 
-.transcriber.birds .bar,
 .transcriber.sernac .bar
   background: rgba(0, 0, 0, 0.8)
   border: 1px solid #000
@@ -433,7 +416,6 @@
   width: 710px
   z-index: 100
 
-.transcriber.birds .backdrop,
 .transcriber.sernac .backdrop {
   display: none;
   background-color: #000000;
@@ -456,10 +438,6 @@
   height: 200px;
   margin: -250px auto auto -250px;
   text-align: center;
-
-  -webkit-text-shadow: 1px 1px 1px #999999;
-  -moz-text-shadow: 1px 1px 1px #999999;
-  -o-text-shadow: 1px 1px 1px #999999;
   text-shadow: 1px 1px 1px #999999;
 
   h1 { font-size: 50px; color: #000; opacity:.4; }
@@ -467,8 +445,7 @@
   p.loading { margin: 70px 0 0 0; }
 }
 
-.transcriber.sernac .tooltip .loader, 
-.transcriber.birds .loader {
+.transcriber.sernac .tooltip .loader {
   position: absolute;
   display: none;
   top: 50%;
@@ -480,13 +457,7 @@
   background: rgba(0, 0, 0, 0.7);
   border: 1px solid black;
   padding: 11px 11px 11px 10px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
   border-radius: 8px;
-  -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
   z-index: 2000;
 }
@@ -503,279 +474,9 @@
   z-index: 2000;
 }
 
-.transcriber.birds .loader .spinner,
 .transcriber.sernac .loader .spinner {
   top: 20px;
   margin: auto;
-}
-
-.transcriber.birds .photos {
-  width: 100%;
-  height: 100%;
-}
-.transcriber.birds .photos img {
-  margin-top: 0;
-}
-.transcriber.birds .birds-widget {
-  display: none;
-  position: absolute;
-  background: none;
-  // left: 10px;
-  top: 100px;
-  height: 180px;
-  width: 705px;
-  max-width: 2000px;
-  min-width: 500px;
-  min-height: 200px;
-  margin: 0;
-  padding: 0;
-  z-index: 10001;
-  //filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  // border: 1px solid black;
-  // border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px;
-}
-.transcriber.birds .birds-widget.ui-draggable {
-  cursor: move;
-}
-.transcriber.birds .birds-widget.ui-draggable-disabled {
-  cursor: default;
-}
-.transcriber.birds .birds-widget .btn {
-  float: right;
-  font-weight: normal;
-  font-size:11px;
-}
-
-.transcriber.birds .birds-widget .btn.finish {
-  display: none;
-  background: #FF7C09;
-  padding: 9px;
-  font-weight: normal;
-  font: normal 11px Helvetica;
-
- -webkit-transition-property: background-color;
- -moz-transition-property: background-color;
- -o-transition-property: background-color;
- transition-property: background-color;
- -webkit-transition-duration: 300ms;
- -moz-transition-duration: 300ms;
- -o-transition-duration: 300ms;
- transition-duration: 300ms;
-
-  &:hover { background: #FF7C09; }
-}
-
-.transcriber.birds .birds-widget .top, .transcriber.birds .birds-widget .bottom {
-  position: absolute;
-  display: block;
-}
-.transcriber.birds .birds-widget .top {
-  top: 4px;
-  left: 0;
-  right: 0;
-  bottom: 57px;
-  box-shadow: #444444 0 -1px 0 3px;
-
-  border-radius: 3px 0 0 0;
-
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
-  z-index: 0;
-}
-.transcriber.birds .birds-widget .top .title {
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  padding: 5px 8px;
-  font: bold 11px "Helvetica",Arial;
-  color: white;
-  border: none;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-  background: #444;
-  text-transform: uppercase;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  -ms-border-bottom-right-radius: 4px;
-  -o-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-.transcriber.birds .birds-widget .bottom {
-  padding: 12px 13px 12px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 33px;
-  background: #444;
-  -moz-border-radius-bottomleft: 6px;
-  -webkit-border-bottom-left-radius: 6px;
-  -ms-border-bottom-left-radius: 6px;
-  -o-border-bottom-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-  -moz-border-radius-bottomright: 6px;
-  -webkit-border-bottom-right-radius: 6px;
-  -ms-border-bottom-right-radius: 6px;
-  -o-border-bottom-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-}
-.transcriber.birds .birds-widget .bottom .left {
-  position: absolute;
-  left: 10px;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field {
-  float: left;
-  position: relative;
-  width: 180px;
-  height: 31px;
-  margin: 0 10px 0 0;
-  background: #fff;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.hidden {
-  display: none;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.extra {
-  background: none;
-  width: 405px;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.extra .btn.ok {
-  float: right;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.extra .extra_field {
-  background: #fff;
-  height: 31px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  float: left;
-  margin: 0 7px 0 0;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.extra input.gender {
-  width: 90px;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.extra input.age {
-  width: 90px;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.extra input.register {
-  width: 90px;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.date {
-  background: none;
-  width: 405px;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.date .btn.ok {
-  float: right;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.date .date_field {
-  background: #fff;
-  height: 31px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  float: left;
-  margin: 0 7px 0 0;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.date input.day {
-  width: 80px;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.date .month {
-  width: 120px;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field.date input.year {
-  width: 90px;
-}
-
-.transcriber.birds .birds-widget .bottom .left .input_field input[type="text"]::-webkit-input-placeholder { line-height: 15px; text-transform: uppercase; }
-.transcriber.birds .birds-widget .bottom .left .input_field input[type="text"]:-moz-input-placeholder     { line-height: 15px; text-transform: uppercase; }
-
-.transcriber.birds .birds-widget .bottom .left .input_field input[type="text"] {
-  border: none;
-  outline: none;
-  color: #666;
-  vertical-align: top;
-  font: bold 13px "Helvetica", Arial;
-  line-height: 13px!important;
-  text-transform: none;
-  height: 13px;
-  margin: 0 5px 0 0;
-  padding: 9px 8px 9px;
-  background: none;
-}
-.transcriber.birds .birds-widget .bottom .left .input_field .btn.ok {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  width: 20px;
-  height: 19px;
-  padding: 4px;
-  border: none;
-
-  font-weight: normal;
-  text-align:center;
-  font-size:11px;
-}
-.transcriber.birds .birds-widget .bottom .left .description {
-  float: left;
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  height: 15px;
-  padding: 9px 14px;
-  font: normal 13px "Helvetica",Arial;
-  line-height: 15px;
-  color: white;
-  background: black;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-}
-.transcriber.birds .birds-widget .bottom .left .description .skip,
-.transcriber.birds .birds-widget .bottom .left .description .example {
-  position: relative;
-  border-bottom: 1px solid #ccc;
-  text-decoration: none;
-  font: 12px "Helvetica";
-  color: white;
-}
-.transcriber.birds .birds-widget .bottom .left .description .skip:hover, .transcriber.birds .birds-widget .bottom .left .description .example:hover {
-  border-bottom: 1px dashed #fff;
-}
-.transcriber.birds .birds-widget .bottom .right {
-  position: absolute;
-  right: 10px;
-}
-.transcriber.birds .birds-widget .bottom .right .step {
-  display: none;
-  float: left;
-  margin: 0 5px 0 0;
-  color: white;
-  height: 13px;
-  padding: 10px;
-  font: bold 11px "Helvetica",Arial;
-  background: black;
-  line-height: 13px;
-  color: white;
-  text-decoration: none;
-  text-transform: uppercase;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-
-  &:hover { background: #ccc; color: #333; }
-
 }
 
 .transcriber.sernac .highlight
@@ -969,10 +670,6 @@
   line-height: 13px;
   text-transform: uppercase;
   background:#333;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   height:12px;
   width: 24px;
@@ -1136,8 +833,6 @@
   position: absolute;
   background: url("images/transcribers/bg-transcriber.png");
   overflow: hidden;
-  -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4);
   z-index: 1000;
 
@@ -1146,8 +841,6 @@
   background: rgba(255, 103, 1, 0.15);
   border: 1px solid #FF6701;
   cursor: pointer;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
   box-shadow: none;
   -webkit-transition-property: background-color;
   -moz-transition-property: background-color;
@@ -1174,10 +867,6 @@ a.btn, .btn {
   vertical-align: top;
   padding: 6px 13px 7px;
   border: 1px solid black;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
   border-radius: 3px;
   font: 13px "Open Sans";
   line-height: 18px;
@@ -1309,17 +998,7 @@ a.btn, .btn {
 
   font: normal 13px "Helvetica",Arial;
   color: #666;
-
-  @include box-shadow(0 0 2px 1px rgba(0,0,0, 0.2));
-
-  -webkit-box-shadow: 0 0 2px 1px rgba(0,0,0, 0.2);
-  -o-box-shadow:      0 0 2px 1px rgba(0,0,0, 0.2);
-  -moz-box-shadow:    0 0 2px 1px rgba(0,0,0, 0.2);
-  box-shadow:         0 0 2px 1px rgba(0,0,0, 0.2);
-
-  -webkit-border-radius: 3px;
-  -moz-border-radius:    3px;
-  -o-border-radius:      3px;
+  box-shadow:  0 0 2px 1px rgba(0,0,0, 0.2);
   border-radius:         3px;
 
   li {
@@ -1398,8 +1077,6 @@ a.btn, .btn {
 
 .mCSB_scrollTools .mCSB_draggerContainer {
   height: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -1411,8 +1088,6 @@ a.btn, .btn {
   width: 2px;
   height: 100%;
   margin: 0 auto;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
   border-radius: 10px;
 }
 
@@ -1426,8 +1101,6 @@ a.btn, .btn {
   width: 10px;
   height: 100%;
   margin: 0 auto;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
   border-radius: 10px;
   text-align: center;
 }
@@ -1485,8 +1158,6 @@ a.btn, .btn {
   width: 100%;
   height: 2px;
   margin: 7px 0;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
   border-radius: 10px;
 }
 
@@ -1499,8 +1170,6 @@ a.btn, .btn {
   width: 100%;
   height: 10px;
   margin: 6px auto;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
   border-radius: 10px;
 }
 
@@ -1664,17 +1333,9 @@ a.btn, .btn {
   float: none;
   position: absolute;
   z-index: 100;
-  -webkit-border-radius: 3px 0 0 3px;
-  -moz-border-radius: 3px 0 0 3px;
-  -ms-border-radius: 3px 0 0 3px;
-  -o-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
 }
 .stylishSelectWrapper .ssSelectWrapper .ssOpenButton {
-  -webkit-border-radius: 0 3px 3px 0;
-  -moz-border-radius: 0 3px 3px 0;
-  -ms-border-radius: 0 3px 3px 0;
-  -o-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
   position: absolute;
   right: 0px;
