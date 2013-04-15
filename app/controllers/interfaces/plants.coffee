@@ -17,6 +17,9 @@ class Plants extends Interfaces
 
       callback = => 
         $(".photos img").animate({ marginLeft: "0" }, 500)
+        @transcriber.$backgroundMessage.fadeOut 250, =>
+          @transcriber.$backgroundMessage.html("");
+          
         @transcriber.spinner.hide()
         @transcriber.startTranscribing()
 
