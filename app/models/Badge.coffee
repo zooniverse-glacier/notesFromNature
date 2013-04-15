@@ -7,7 +7,7 @@ class Badge extends Spine.Model
   
   @getUserBadges: ->
     if User.current?
-      Api.get("/projects/notes_from_nature/badges").onSuccess (badges) =>
+      Api.get('/projects/notes_from_nature/badges').onSuccess (badges) =>
         if badges is null then return
         
         badges = ([name,created_at] for name, created_at of badges.badges)
@@ -42,7 +42,7 @@ class Badge extends Spine.Model
       
   @post_weekly_report: =>
     if User.current?
-      Api.post("/users/#{User.current.id}/badges", {badge: {name: "weekly_report_#{moment().format('d-MM-YYYY')}"}}).onSuccess (data) =>
+      Api.post('/project/notes_from_nature/badges', {badge: {name: "weekly_report_#{moment().format('d-MM-YYYY')}"}}).onSuccess (data) =>
         Badge.getUserBadges()
 
   @findBySlug: (slug) =>
@@ -67,7 +67,7 @@ class Badge extends Spine.Model
   award: =>
     if User.current?
       Badge.trigger 'badgeAwarded', @
-      Api.post("/users/#{User.current.id}/badges", {badge: {name: @name}}).onSuccess (data) =>
+      Api.post('/project/notes_from_nature/badges', {badge: {name: @name}}).onSuccess (data) =>
         Badge.getUserBadges()
 
 module.exports = Badge
