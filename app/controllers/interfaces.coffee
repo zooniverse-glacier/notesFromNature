@@ -35,8 +35,7 @@ class InterfaceController extends Spine.Controller
     @delay go, 200
 
   saveClassification: (data) =>
-    for annotation in data.toJSON()
-      @classification.annotate annotation.step, annotation.value
+    @classification.annotate(annotation.stepTitle, annotation.value) for annotation in data.toJSON()
 
     @classification.save()
     @currentSubject.retire()
