@@ -432,7 +432,7 @@
 .transcriber.sernac .message {
   display:none;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   width: 500px;
   height: 200px;
@@ -519,6 +519,8 @@
 .transcriber.sernac .helper,
 .transcriber.bugs .helper 
   display: none
+  color: #fff
+  font: 11px "Open Sans"
   overflow: visible !important
   position: absolute
   width: 690px
@@ -532,9 +534,7 @@
       @extends .transcriber.sernac .bar
       bottom: 0
       box-sizing: border-box
-      color: #fff
       display: block
-      font: 11px "Open Sans"
       height: 22px
       overflow: hidden
       position: absolute
@@ -741,6 +741,20 @@
       float: right
 
     .date_field
+
+      input
+        background: #fff
+        position: absolute
+        
+        &.month
+          left: 0
+          width: 120px
+        &.day
+          left: 150px
+          width: 80px
+        &.year
+          left: 260px
+          width: 90px
 
       select
         appearance: none
