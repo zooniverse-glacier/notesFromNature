@@ -723,6 +723,16 @@
   position: relative
   width: 180px
 
+  .state_field, .date_field, .county_field
+
+    select
+      appearance: none
+      border: none
+      height: 100%
+      padding: 3px 5px
+      text-align: center
+      width: 100%
+
   &.date
     background: none
     width: 405px
@@ -731,30 +741,25 @@
       float: right
 
     .date_field
-      background: #fff
-      border-radius: 3px
-      height: 31px
-      margin: 0 7px 0 0
-      overflow: hidden
-      position: absolute
 
       select
         appearance: none
         border: none
         height: 100%
         padding: 3px 5px
+        position: absolute
         text-align: center
         width: 100%
 
-      &.month
-        left: 0
-        width: 120px
-      &.day
-        left: 150px
-        width: 80px
-      &.year
-        left: 260px
-        width: 90px
+        &.month
+          left: 0
+          width: 120px
+        &.day
+          left: 150px
+          width: 80px
+        &.year
+          left: 260px
+          width: 90px
 
   &.latlng
     background: none

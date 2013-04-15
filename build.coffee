@@ -41,6 +41,7 @@ files = [
   'nfn/ui/herbarium/highlight.js',
   'nfn/ui/herbarium/helper.js',
 
+  'nfn/ui/bugs/data/counties.js',
   'nfn/ui/bugs/transcriber.js',
   'nfn/ui/bugs/widget.js',
   'nfn/ui/bugs/magnifier.js',

@@ -35,14 +35,13 @@ class InterfaceController extends Spine.Controller
     @delay go, 200
 
   saveClassification: (data) =>
-    classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0] } )
     for annotation in data.toJSON()
-      classification.annotate annotation.step, annotation.value
+      @classification.annotate annotation.step, annotation.value
 
-    classification.save()
+    @classification.save()
     @currentSubject.retire()
     @archive.checkBadges()
-    classification.send()
+    @classification.send()
     @nextSubject()
 
   skipClassification: =>
