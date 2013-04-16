@@ -37,7 +37,6 @@ class InterfaceController extends Spine.Controller
   saveClassification: (data) =>
     @classification.annotate(annotation.stepTitle, annotation.value) for annotation in data.toJSON()
 
-    @classification.save()
     @currentSubject.retire()
     @archive.checkBadges()
     @classification.send()

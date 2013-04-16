@@ -16,31 +16,13 @@ class Classification extends Spine.Model
   subject: ->
     Subject.find @subject_id 
 
-  saveData: (@annotations) -> @save()
-  
-  addAnnotation: (annotation) ->
-    for a, i in @annotations when annotation.id is a.id
-      return a = annotation
-
-    @annotations.push annotation
-    annotation
-
   removeAnnotation: (annotation) ->
     for a, i in @annotations when annotation.id is a.id
       return @annotations.splice i, 1
 
-  annotateLine: (line, number) ->
-    for annotation in line.transcriptions?.toJSON()
-      annotation =
-        line: number
-        step: annotation.step
-        value: annotation.value
-      @annotations.push annotation
-    @save()
-
-  annotate: (questionId, answerId) ->
-    annotation = { }
-    annotation[questionId] = answerId
+  annotate: (key, value) ->
+    annotation = {}
+    annotation[key] = value
     @annotations.push annotation
     @save()
 
