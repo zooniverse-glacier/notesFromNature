@@ -15,11 +15,11 @@ class Plants extends Interfaces
     @archive.nextSubject (@currentSubject) =>
       @classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0]})
 
-      callback = => 
+      callback = =>
         $(".photos img").animate({ marginLeft: "0" }, 500)
         @transcriber.$backgroundMessage.fadeOut 250, =>
           @transcriber.$backgroundMessage.html("");
-          
+
         @transcriber.spinner.hide()
         @transcriber.startTranscribing()
 
