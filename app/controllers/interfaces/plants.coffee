@@ -21,7 +21,7 @@ class Plants extends Interfaces
           @transcriber.$backgroundMessage.html("");
 
         @transcriber.spinner.hide()
-        @transcriber.startTranscribing()
+        @transcriber.startTranscribing(@currentSubject)
 
       @transcriber.loadPhoto(@currentSubject.location.standard, callback)
       @transcriber.loadLargePhoto(@currentSubject.location.large)

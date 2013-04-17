@@ -32,6 +32,7 @@ files = [
   'nfn/ui/photos.js',
   'nfn/ui/closer.js',
   'nfn/ui/popup.js',
+  'nfn/ui/discuss.js',
 
   'nfn/ui/herbarium/transcriber.js',
   'nfn/ui/herbarium/widget.js',

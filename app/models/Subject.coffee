@@ -3,7 +3,7 @@ Archive = require 'models/Archive'
 BaseSubject = require 'zooniverse/lib/models/subject'
 
 class Subject extends BaseSubject
-  @configure 'Subject','location', 'metadata', 'active', 'workflow_ids', 'collection_id'
+  @configure 'Subject','location', 'metadata', 'active', 'workflow_ids', 'collection_id', 'zooniverse_id'
   @belongsTo 'archive', Archive
   
   constructor: ->
