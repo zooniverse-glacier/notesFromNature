@@ -1,6 +1,6 @@
 Archive = require 'models/Archive'
-Classification = require 'models/Classification'
-Subject = require 'models/Subject'
+# Classification = require 'models/Classification'
+Subject = require 'zooniverse/models/subject'
 
 class InterfaceController extends Spine.Controller
   preferences: {}
@@ -10,11 +10,16 @@ class InterfaceController extends Spine.Controller
     Spine.bind 'finishedTranscription', @saveClassification
     Spine.bind 'skipTranscription', @skipClassification
 
+    Subject.on 'select', =>
+      @nextSubject()
+
   render: (opts = null) =>
     @html @template(opts)
 
   startWorkflow: (@archive) =>
     @render()
+
+    Subject.group = @archive.id
 
     go = =>
       window.GOD = new nfn.ui.view.GOD({
@@ -29,26 +34,19 @@ class InterfaceController extends Spine.Controller
 
       $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
 
-      @nextSubject()
+      Subject.next()
       window.transcriber = @transcriber
 
     @delay go, 200
 
   saveClassification: (data) =>
-    @classification.annotate(annotation.stepTitle, annotation.value) for annotation in data.toJSON()
+    @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in data.toJSON()
 
-    @currentSubject.retire()
     @archive.checkBadges()
     @classification.send()
-    @nextSubject()
+    Subject.next()
 
   skipClassification: =>
-    @currentSubject.retire()
-    @nextSubject()
-
-    
-  # Generic UI
-  exit: =>
-    Spine.Route.navigate window.location.hash.split('/').slice(0,3).join('/')
+    Subject.next()
 
 module.exports = InterfaceController

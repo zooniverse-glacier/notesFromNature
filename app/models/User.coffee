@@ -1,5 +1,5 @@
-Archive = require('models/Archive')
-BaseUser = require('zooniverse/lib/models/user')
+Archive = require 'models/Archive'
+BaseUser = require 'zooniverse/models/user'
 
 class User extends BaseUser
   @configure 'User', 'collection_ids', 'avatar'

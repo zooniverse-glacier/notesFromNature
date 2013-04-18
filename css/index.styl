@@ -7,6 +7,7 @@
 @import './normalize'
 @import './mixin'
 @import '../node_modules/nib/lib/nib'
+@import "node_modules/zooniverse/src/css/zooniverse"
 
 @import './layout'
 @import './main'
@@ -25,24 +26,3 @@ $tb-box-shadow-inset = #CECEC4
 $tb-button-text-shadow = #003a54
 $tb-bottom-border = #F1F1EF
 $tb-input-bg = #fff
-
-@import '../node_modules/zooniverse/css/top_bar'
-@import '../node_modules/zooniverse/css/login_forms'
-
-.zooniverseTopBar
-  margin-bottom: 150px
-  transition: top margin-top 0.7s ease-in-out
-
-  #zooniverse-top-bar-button
-    left: 40px
-
-#zooniverse-top-bar-container p
-  font-family: "Open Sans"
-  line-height: normal
-
-#zooniverse-top-bar-container #zooniverse-top-bar-projects
-  border-left: 1px solid
-
-#zooniverse-top-bar-container #zooniverse-top-bar-login .welcome .buttons
-  top: 0
-

@@ -1,25 +1,23 @@
 Archive = require 'models/Archive'
-Classification = require 'models/Classification'
 
 Interfaces = require 'controllers/interfaces'
+
+Classification = require 'zooniverse/models/classification'
+Subject = require 'zooniverse/models/subject'
 
 class Bugs extends Interfaces
   className: 'BugsTranscriptionController'
   template: require 'views/transcription/bugs'
   widgetName: 'Bugs'
 
-  constructor: ->
-    super
-
   nextSubject: =>
-    @archive.nextSubject (@currentSubject) =>
-      @classification = Classification.create({subject_id: @currentSubject.id, workflow_id: @currentSubject.workflow_ids[0]})
+    @classification = new Classification subject: Subject.current
 
-      callback = =>
-        $('.photos img').animate({ marginLeft: '0' }, 500)
-        @transcriber.spinner.hide()
-        @transcriber.startTranscribing()
+    callback = =>
+      $('.photos img').animate({ marginLeft: '0' }, 500)
+      @transcriber.spinner.hide()
+      @transcriber.startTranscribing()
 
-      @transcriber.loadPhoto(@currentSubject.location.standard, callback)
+    @transcriber.loadPhoto(Subject.current.location.standard, callback)
 
 module.exports = Bugs

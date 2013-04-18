@@ -7,8 +7,11 @@
     "spine/lib/manager",
     "spine/lib/relation",
     "underscore",
-    "zooniverse/lib/controllers/top_bar",
-    "zooniverse"
+    "zooniverse/controllers/top-bar",
+    "zooniverse/lib/api",
+    "zooniverse/models/classification",
+    "zooniverse/models/subject",
+    "zooniverse/models/user"
   ],
   "libs": [
     "node_modules/Zooniverse/vendor/base64.js",

@@ -8,7 +8,7 @@ class Institute extends Spine.Model
 
   # Class methods
   @fetch: =>
-    Api.get '/projects/notes_from_nature/groups/', (data) =>
+    Api.current.get '/projects/notes_from_nature/groups/', (data) =>
       window.inst = data
 
       institutes = (group for group in data  when group.type == 'institution')

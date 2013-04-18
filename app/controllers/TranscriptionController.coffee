@@ -1,5 +1,6 @@
 Archive = require 'models/Archive'
 Institute = require 'models/Institute'
+Subject = require 'zooniverse/models/subject'
 
 BirdsTranscriptionController = require 'controllers/interfaces/birds'
 BugsTranscriptionController = require 'controllers/interfaces/bugs'
@@ -58,6 +59,7 @@ class TranscriptionController extends Spine.Site
     if @archive? then $('body').removeClass("transcribingScreen #{@archive.slug()}")
     $('.transcriber').remove()
     $(document).off 'keypress'
+    Subject.destroyAll()
     Spine.unbind 'finishedTranscription'
 
 module.exports = TranscriptionController

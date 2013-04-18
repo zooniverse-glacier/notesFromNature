@@ -1,4 +1,4 @@
-User  = require 'zooniverse/lib/models/user'
+User  = require 'zooniverse/models/user'
 Badge = require 'models/Badge'
 
 class ProfileController extends Spine.Controller

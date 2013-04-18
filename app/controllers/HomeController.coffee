@@ -12,7 +12,7 @@ class HomeController extends Spine.Site
     Institute.bind 'refresh', =>
       @render()
 
-    Api.get('/projects/notes_from_nature').onSuccess (data) =>
+    Api.current.get '/projects/notes_from_nature', (data) =>
       @project = data
       window.project = @project
       @render()

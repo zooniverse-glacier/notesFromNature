@@ -22,8 +22,9 @@ LoginController = require 'controllers/LoginController'
 ProfileController = require 'controllers/ProfileController'
 
 Api = require 'zooniverse/lib/api'
-User = require 'zooniverse/lib/models/user'
-ZooniverseBar = require 'zooniverse/lib/controllers/top_bar'
+Subject = require 'zooniverse/models/subject'
+User = require 'zooniverse/models/user'
+ZooniverseBar = require 'zooniverse/controllers/top-bar'
 
 Archive = require 'models/Archive'
 Badge = require 'models/Badge'
@@ -40,9 +41,11 @@ class topBar extends ZooniverseBar
       Spine.Route.navigate('/login')
 
 if window.location.port > 1024
-  Api.init host: 'https://dev.zooniverse.org'
+  host = 'https://dev.zooniverse.org'
 else
-  Api.init host: 'https://dev.zooniverse.org'
+  host = 'https://dev.zooniverse.org'
+
+new Api project: 'notes_from_nature', host: host
 
 app = {}
 app.container = '#app'
@@ -86,11 +89,13 @@ app.topBar = new topBar
   appName: 'Notes From Nature'
 app.topBar.el.prependTo 'body'
 
-Institute.fetch()
-
 User.bind 'sign-in', =>
   if User.current?
     Badge.getUserBadges()
+
+Institute.fetch()
+User.fetch()
+Subject.queueLength = 2
 
 Spine.Route.setup()
 

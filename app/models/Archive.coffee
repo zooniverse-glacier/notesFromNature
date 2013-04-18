@@ -1,10 +1,11 @@
 Api = require 'zooniverse/lib/api'
 badgeDefinitions = require 'lib/BadgeDefinitions'
 
+Subject = require 'zooniverse/models/subject'
+
 class Archive extends Spine.Model
-  @configure 'Archive', 'name', 'metadata', 'complete', 'stats', 'categories'
+  @configure 'Archive', 'group_id', 'name', 'metadata', 'complete', 'stats', 'categories'
   @belongsTo 'institute', 'models/Institute'
-  @hasMany 'subjects', 'models/Subject'
   @hasMany 'badges', 'models/Badge'
 
   @findBySlug: (slug) =>
@@ -29,14 +30,16 @@ class Archive extends Spine.Model
       badge.checkAward()
 
   nextSubject: (callback = null) =>
-    if @subjects().findByAttribute('active', true)
-      callback @subjects().findByAttribute('active', true) if callback?
-    else
-      Api.get "/projects/notes_from_nature/groups/#{@id}/subjects?limit=10", (subjects) =>
-        for subject in subjects
-          if subject?
-            @subjects().create subject 
-        callback @subjects().findByAttribute('active', true) if callback?
+
+
+    # if @subjects().findByAttribute('active', true)
+    #   callback @subjects().findByAttribute('active', true) if callback?
+    # else
+    #   Api.get "/projects/notes_from_nature/groups/#{@id}/subjects?limit=3", (subjects) =>
+    #     for subject in subjects
+    #       if subject?
+    #         @subjects().create subject 
+    #     callback @subjects().findByAttribute('active', true) if callback?
 
   transcriptionUrl: =>
     "#/archives/#{@slug()}/transcribe"

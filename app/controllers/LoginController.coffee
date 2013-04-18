@@ -1,5 +1,5 @@
-User = require 'zooniverse/lib/models/user'
-LoginForm = require 'zooniverse/lib/controllers/login_form'
+User = require 'zooniverse/models/user'
+LoginForm = require 'zooniverse/controllers/login-form'
 
 class LoginController extends Spine.Controller
   className: 'LoginController'

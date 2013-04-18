@@ -1,5 +1,5 @@
 Api = require 'zooniverse/lib/api'
-User = require 'zooniverse/lib/models/user'
+User = require 'zooniverse/models/user'
 
 class Badge extends Spine.Model
   @configure 'Badge', 'name', 'url', 'description', 'collection', 'awardText', 'condition'

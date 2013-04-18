@@ -1,4 +1,4 @@
-User = require 'zooniverse/lib/models/user'
+User = require 'zooniverse/models/user'
 
 class HeaderController extends Spine.Controller
   tag: 'header'
