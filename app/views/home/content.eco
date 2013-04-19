@@ -27,7 +27,11 @@
 
 <div class="box-general laptop laptop-home">        
   <div class="col2">
-    <h3 class="title"><%= @users %> Users already participating</h3>
+    <% if @users is 1: %>
+      <h3 class="title">1 User already participating</h3>
+    <% else: %>
+      <h3 class="title"><%= @users %> Users already participating</h3>
+    <% end %>
     <p>We have thousands of pages from biologists and researchers that contain information about where and when a species occurred in the past. We need you to help us transcribe that data and make it available to scientists and researchers. We can uncover the history of some of these species and possibly find species that have never been observed any where else!
     </p>
     

@@ -1,18 +1,22 @@
 <div class="counters"> 
-    <div class="box-black-numbers">
-        <span class="numbers"><%=@archiveCount%></span>
-        <span class="subtitle">Collections available</span> 
-    </div>          
-    <div class="box-black-numbers">
-        <span class="numbers"><%=@subjects%></span>
-        <span class="subtitle">Total specimens</span>  
-    </div>          
-    <div class="box-black-numbers">
-        <span class="numbers"><%=@progress%>%</span>
-        <span class="subtitle">Transcription progress</span> 
-    </div>          
-    <div class="box-black-numbers">
-        <span class="numbers"><%=@users%></span>
-        <span class="subtitle">Users contributing</span>  
-    </div>          
+  <div class="box-black-numbers">
+    <span class="numbers"><%=@archiveCount%></span>
+    <span class="subtitle">Collections available</span>
+  </div>
+  <div class="box-black-numbers">
+    <span class="numbers"><%=@subjects%></span>
+    <span class="subtitle">Total specimens</span>
+  </div>
+  <div class="box-black-numbers">
+    <span class="numbers"><%=@progress%>%</span>
+    <span class="subtitle">Transcription progress</span>
+  </div>
+  <div class="box-black-numbers">
+    <span class="numbers"><%= @users %></span>
+    <% if @users is 1: %>
+      <span class="subtitle">User contributing</span>
+    <% else: %>
+      <span class="subtitle">Users contributing</span>
+    <% end %>
+  </div>
 </div>
