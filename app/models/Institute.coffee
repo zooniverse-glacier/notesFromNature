@@ -2,6 +2,8 @@ Archive = require 'models/Archive'
 
 Api = require 'zooniverse/lib/api'
 
+Groups = require 'lib/groups'
+
 class Institute extends Spine.Model
   @configure 'Institute', 'name', 'metadata'
   @hasMany 'archives', 'models/Archive'
@@ -16,7 +18,7 @@ class Institute extends Spine.Model
       archives = (group for group in data  when group.type == 'archive')
 
       for institute in institutes
-        inst = Institute.create institute
+        inst = Institute.create _.extend(institute, Groups[institute.name])
         instArchives = (archive for archive in archives when archive.group_id == inst.id)
         inst.setupArchives instArchives
 
@@ -43,7 +45,7 @@ class Institute extends Spine.Model
   # Instance methods
   setupArchives: (archives) =>
     for archive in archives
-      archive = @archives().create(archive)
+      archive = @archives().create(_.extend(archive, Groups[archive.name]))
       archive.addBadges()
 
   slug: ->
