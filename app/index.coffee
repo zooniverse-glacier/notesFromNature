@@ -23,8 +23,8 @@ ProfileController = require 'controllers/ProfileController'
 
 Api = require 'zooniverse/lib/api'
 Subject = require 'zooniverse/models/subject'
+TopBar = require 'zooniverse/controllers/top-bar'
 User = require 'zooniverse/models/user'
-ZooniverseBar = require 'zooniverse/controllers/top-bar'
 
 Archive = require 'models/Archive'
 Badge = require 'models/Badge'
@@ -33,12 +33,6 @@ Institute = require 'models/Institute'
 Header = require 'controllers/layout/header'
 Footer = require 'controllers/layout/footer'
 Notifications = require 'controllers/notifications'
-
-class topBar extends ZooniverseBar
-  constructor: ->
-    super 
-    $(".buttons button[name=signup]").click =>
-      Spine.Route.navigate('/login')
 
 if window.location.port > 1024
   host = 'https://dev.zooniverse.org'
@@ -84,9 +78,7 @@ app.notifications.el.prependTo app.container
 app.footer = new Footer
 app.footer.el.appendTo app.container
 
-app.topBar = new topBar
-  app: 'notes_from_nature'
-  appName: 'Notes From Nature'
+app.topBar = new TopBar
 app.topBar.el.prependTo 'body'
 
 User.on 'change', (e, user) =>
