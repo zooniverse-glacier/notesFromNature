@@ -1,4 +1,4 @@
-<div class="columns">
+<!-- <div class="columns">
   <div class="col2">
     <h2>Notes from Nature</h2>
     <p>
@@ -8,10 +8,10 @@
       To help solve that problem, a team of scientists, developers, and educators has built Notes from Nature. Through this website, we are asking you to help us transcribe data that will lead to new knowledge about our biodiversity. This is your opportunity to directly interact with and enable better science for conservation and understanding our natural world. Join us!
     </p>
   </div>
-</div>
+</div> -->
 
 <hr />
-
 <div class="col3 legal">
   Notes from Nature 2013. <a href="https://www.zooniverse.org/privacy">Privacy</a>
 </div>
+<hr />
