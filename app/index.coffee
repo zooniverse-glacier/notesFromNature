@@ -43,7 +43,7 @@ class topBar extends ZooniverseBar
 if window.location.port > 1024
   host = 'https://dev.zooniverse.org'
 else
-  host = 'https://dev.zooniverse.org'
+  host = 'https://api.zooniverse.org'
 
 new Api project: 'notes_from_nature', host: host
 
