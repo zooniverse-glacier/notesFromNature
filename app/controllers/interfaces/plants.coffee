@@ -21,7 +21,7 @@ class Plants extends Interfaces
       @transcriber.spinner.hide()
       @transcriber.startTranscribing(Subject.current)
 
-    @transcriber.loadPhoto(Subject.current.location.standard, callback)
-    @transcriber.loadLargePhoto(Subject.current.location.large)
+    @transcriber.loadPhoto(Subject.current.location.small, callback)
+    @transcriber.loadLargePhoto(Subject.current.location.standard)
 
 module.exports = Plants

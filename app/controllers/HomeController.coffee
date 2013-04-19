@@ -8,6 +8,7 @@ class HomeController extends Spine.Site
 
   constructor: ->
     super
+    @render()
 
     Institute.bind 'refresh', =>
       @render()
