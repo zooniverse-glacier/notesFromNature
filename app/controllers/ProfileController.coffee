@@ -2,7 +2,7 @@ User  = require 'zooniverse/models/user'
 Badge = require 'models/Badge'
 
 class ProfileController extends Spine.Controller
-  className: "ProfileController"
+  className: 'ProfileController'
 
   constructor: ->
     super
@@ -11,13 +11,13 @@ class ProfileController extends Spine.Controller
       @render()
       Spine.Route.navigate '/' unless user
 
-  active:->
+  active: ->
     super
     Spine.Route.navigate '/' unless User.current
     document.title = "Notes From Nature - Profile"
     @render()
 
-  render:=>
+  render: =>
     if User.current
       @html require('views/profile/profile')
         user: User.current

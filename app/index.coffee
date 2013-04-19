@@ -34,12 +34,7 @@ Header = require 'controllers/layout/header'
 Footer = require 'controllers/layout/footer'
 Notifications = require 'controllers/notifications'
 
-if window.location.port > 1024
-  host = 'https://dev.zooniverse.org'
-else
-  host = 'https://api.zooniverse.org'
-
-new Api project: 'notes_from_nature', host: host
+new Api project: 'notes_from_nature'
 
 app = {}
 app.container = '#app'
@@ -89,13 +84,5 @@ User.fetch()
 Subject.queueLength = 2
 
 Spine.Route.setup()
-
-images = [
-  'images/archives/calbugBg.jpg'
-  'images/archives/sernecBg.jpg'
-  'images/archives/birdsBg.jpg'
-  'images/bg-green.jpg'
-]
-Spine.Site.preload images
 
 module.exports = app
