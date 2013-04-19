@@ -7,7 +7,7 @@ class Badge extends Spine.Model
   
   @getUserBadges: ->
     if User.current?
-      Api.get('/projects/notes_from_nature/badges').onSuccess (badges) =>
+      Api.current.get '/projects/notes_from_nature/badges', (badges) =>
         if badges is null then return
         
         badges = ([name,created_at] for name, created_at of badges.badges)

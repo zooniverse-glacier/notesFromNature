@@ -89,9 +89,8 @@ app.topBar = new topBar
   appName: 'Notes From Nature'
 app.topBar.el.prependTo 'body'
 
-User.bind 'sign-in', =>
-  if User.current?
-    Badge.getUserBadges()
+User.on 'change', (e, user) =>
+  Badge.getUserBadges() if user
 
 Institute.fetch()
 User.fetch()

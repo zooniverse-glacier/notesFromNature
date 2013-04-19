@@ -6,19 +6,21 @@ class ProfileController extends Spine.Controller
 
   constructor: ->
     super
-    Badge.bind "badgesLoaded", @render
+    Badge.bind 'badgesLoaded', @render
+    User.on 'change', (e, user) =>
+      @render()
+      Spine.Route.navigate '/' unless user
 
   active:->
-    super 
-    document.title = "Notes From Nature - profile"
+    super
+    Spine.Route.navigate '/' unless User.current
+    document.title = "Notes From Nature - Profile"
     @render()
-    User.bind 'sign-in', =>
-      @render()
 
   render:=>
-    if User.current?
+    if User.current
       @html require('views/profile/profile')
-        user : User.current
+        user: User.current
     else
       @html require('views/profile/notLoggedIn')
     

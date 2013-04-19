@@ -2,7 +2,7 @@ Archive = require 'models/Archive'
 Institute = require 'models/Institute'
 Subject = require 'zooniverse/models/subject'
 
-BirdsTranscriptionController = require 'controllers/interfaces/birds'
+# BirdsTranscriptionController = require 'controllers/interfaces/birds'
 BugsTranscriptionController = require 'controllers/interfaces/bugs'
 SernacTranscriptionController = require 'controllers/interfaces/plants'
 
@@ -45,7 +45,7 @@ class TranscriptionController extends Spine.Site
       # Set the appropriate transcription controller and start it up.
       switch @archive.slug()
         when 'calbug' then @transcriptionController = new BugsTranscriptionController()
-        when 'ornithological' then @transcriptionController = new BirdsTranscriptionController()
+        # when 'ornithological' then @transcriptionController = new BirdsTranscriptionController()
         when 'herbarium' then @transcriptionController = new SernacTranscriptionController()
         else
           console.log 'No transcription interface for that archive is available.'

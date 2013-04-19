@@ -2,7 +2,7 @@
   <h1 class="title"><a href="#/">Notes from <span class="green">Nature</span></a></h1>
 </div>
 
-<%if @user?: %>
+<%if @user: %>
   <div class="link-navigation right">
     <a class="signin_nav_link" href="#/profile"><%= @user.name %></a>
   </div>

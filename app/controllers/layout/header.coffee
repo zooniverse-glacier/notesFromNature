@@ -7,7 +7,7 @@ class HeaderController extends Spine.Controller
     super
     @render()
     
-    User.bind 'sign-in', =>
+    User.on 'change', (e, user) =>
       @render()
 
     Spine.Route.bind 'change', =>

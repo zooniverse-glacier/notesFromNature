@@ -10,7 +10,7 @@
 <div class="link-navigation right">
   <a href="">Forum</a>
   <a href="https://docs.google.com/a/zooniverse.org/spreadsheet/viewform?formkey=dGQ1TGZvdFdraGlXbFpTREd6d0gwdnc6MA#gid=0">feedback</a>
-  <%if @user?: %>
+  <%if @user: %>
     <a class="signin_nav_link" href="#/profile"><%= @user.name %></a>
   <% end %>
 </div>

@@ -29,18 +29,6 @@ class Archive extends Spine.Model
     for badge in @badges().all()
       badge.checkAward()
 
-  nextSubject: (callback = null) =>
-
-
-    # if @subjects().findByAttribute('active', true)
-    #   callback @subjects().findByAttribute('active', true) if callback?
-    # else
-    #   Api.get "/projects/notes_from_nature/groups/#{@id}/subjects?limit=3", (subjects) =>
-    #     for subject in subjects
-    #       if subject?
-    #         @subjects().create subject 
-    #     callback @subjects().findByAttribute('active', true) if callback?
-
   transcriptionUrl: =>
     "#/archives/#{@slug()}/transcribe"
 
