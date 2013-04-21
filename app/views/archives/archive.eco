@@ -9,7 +9,7 @@
       </div>
       <p>
         <%= @archive.metadata.snippet %>
-         <a class="object" href="#/archives/<%= @archive.slug() %>">Checkout this collection</a>
+         <a class="object" href="#/archives/<%= @archive.slug() %>">Check out this collection</a>
       </p>
     </div>
     
