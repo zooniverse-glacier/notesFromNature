@@ -73,7 +73,7 @@
     </ul>
     <span class="mar-button">
       <a href="<%=@archive.transcriptionUrl()%>" class="button next">
-        <span>TRY WITH ONE PAGE</span>
+        <span>TRY WITH ONE RECORD</span>
       </a>
     </span>
   </div>
