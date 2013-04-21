@@ -334,7 +334,12 @@
       }
     }
 
-    h1, h3 { margin: 0; font-family: "Open Sans", sans-serif; }
+    h1, h3 {
+      cursor: default;
+      font-family: "Open Sans", sans-serif;
+      margin: 0;
+    }
+
     h1 { font-weight:bold; font-size: 17px; color: white; font-weight: 800; text-transform: uppercase; }
     h3 { font-weight: normal; font-size: 13px; color: #999; } 
 
@@ -584,6 +589,7 @@
   box-shadow: 0 0 5px 3px rgba(#000, 0.4)
   box-sizing: border-box
   color: #fff
+  display: none
   position: absolute
   transition: background 0.4s ease
   z-index: 1000
