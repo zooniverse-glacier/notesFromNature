@@ -256,6 +256,7 @@
   <div class="state_field">
     <select name="state" class="state"> 
       <option value="placeholder">-- State --</option>
+      <option value="Unknown">Unknown State</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
       <option value="AZ">Arizona</option>
@@ -314,6 +315,8 @@
 <script type="text/template" id="county-input-template">
   <div class="county_field">
     <select name="county" class="county">
+      <option value="placeholder">-- County --</option>
+      <option value="unknown">Unknown County</option>
       {{#counties}}
       <option value="{{.}}">{{.}}</option>
       {{/counties}}
