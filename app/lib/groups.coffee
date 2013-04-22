@@ -25,6 +25,7 @@ module.exports =
     "name":"Essig Museum Collections"
     "metadata":
       "description":"The Essig Museum of Entomology is a world-class terrestrial arthropod collection with a historical focus on surveying the insect fauna of California. Today that focus has broadened to include the eastern Pacific Rim and the islands of the Pacific Basin."
+      "regions":["California and surrounding region"]
       "location":
         "url": "http://calbug.berkeley.edu/"
         "standard":"/images/bg-collection.jpg"

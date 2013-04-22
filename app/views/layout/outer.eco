@@ -7,8 +7,8 @@
     </h2>
   </div>
 
-  <div class="columns">
-    <div class="col2">
+  <div class="columns two">
+    <div class="column wide">
       <div class="about_content"><%- @content %></div>
       <div class="box-logos">
         <span class="text">ORGANIZATIONS INVOLVED</span>
@@ -22,7 +22,7 @@
         <p>Interested in publishing your collection? <a href="mailto:arfon@zooniverse.org?Subject=We%20want%20to%20be%20involved%20with%20Notes%20from%20Nature!" class="object">Contact us</a></p>
       </div>
     </div>
-    <div class="col1"></div>
+    <div class="column narrow"></div>
   </div>
 
 </div>

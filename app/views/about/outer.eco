@@ -9,9 +9,9 @@
     </div>
   </div>
 
-  <div class="columns about-content">
+  <div class="columns two about-content">
 
-    <div class="col2">
+    <div class="column wide">
       <div class="about_content"></div>
 
       <div class="box-logos">
@@ -24,7 +24,7 @@
         </ul>
       </div>
     </div>
-    <div class="col1">
+    <div class="column narrow">
       <!-- <ul class="list-links">
         <li><a href="#/about/project" data-section="project">The project</a></li>
         <li><a href="#/about/research" data-section="research">Research</a></li>
