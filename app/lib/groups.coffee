@@ -36,6 +36,7 @@ module.exports =
     "metadata":
       "description":"Calbug is an effort to digitize terrestrial arthropod specimen records with a focus on California. Using data from specimens the impacts of climate change and habitat modification will be examined. The project is a collaboration of eight entomological collections in California to digitize museum specimens and thus allow assessment of how species distributions have responded to environmental change. It makes use of a long history of entomological collecting in the region to develop a database of approximately 1 million georeferenced specimens collected over the last century."
       "snippet": "Calbug digitizes collections of pinned insect specimens drawn from eight of California's major institutions, showcasing the stunning diversity of insect life in our world."
+      "extra_template": require "views/archives/calbug"
       "difficulty":"Easy"
       "regions":["California and surrounding region"]
       "start_date":"1880"

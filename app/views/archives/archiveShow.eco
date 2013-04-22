@@ -58,6 +58,16 @@
   </div>
 <% end %>
 
+<% if @archive.metadata.extra_template?: %>
+  <div class="box-general">
+    <div class="columns two">
+      <div class="column wide">
+        <%- @archive.metadata.extra_template() %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <div class="box-general laptop white">
   <div class="col2">
     <h3 class="title">What do we need from you?</h3>
@@ -67,12 +77,12 @@
   </div>
   <div class="col3">  
     <ul class="status-list inline">
-      <li><span class="text">USERS PARTICIPATING</span><%=window.project.user_count%></li>
+      <li><span class="text">USERS PARTICIPATING</span><%= window.project?.user_count %></li>
       <li><span class="text">AVG. TIME PER RECORD</span>3 min.</li>
-      <li><span class="text">AVG. DIFFICULTY</span><%=@archive.metadata.difficulty%></li>
+      <li><span class="text">AVG. DIFFICULTY</span><%= @archive.metadata.difficulty %></li>
     </ul>
     <span class="mar-button">
-      <a href="<%=@archive.transcriptionUrl()%>" class="button next">
+      <a href="<%= @archive.transcriptionUrl() %>" class="button next">
         <span>TRY WITH ONE RECORD</span>
       </a>
     </span>
