@@ -8,6 +8,7 @@
     "spine/lib/relation",
     "underscore",
     "zooniverse/controllers/top-bar",
+    "zooniverse/controllers/footer",
     "zooniverse/lib/api",
     "zooniverse/models/classification",
     "zooniverse/models/subject",

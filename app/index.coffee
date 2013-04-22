@@ -24,6 +24,7 @@ ProfileController = require 'controllers/ProfileController'
 Api = require 'zooniverse/lib/api'
 Subject = require 'zooniverse/models/subject'
 TopBar = require 'zooniverse/controllers/top-bar'
+Footer = require 'zooniverse/controllers/footer'
 User = require 'zooniverse/models/user'
 
 Archive = require 'models/Archive'
@@ -31,7 +32,6 @@ Badge = require 'models/Badge'
 Institute = require 'models/Institute'
 
 Header = require 'controllers/layout/header'
-Footer = require 'controllers/layout/footer'
 Notifications = require 'controllers/notifications'
 
 new Api project: 'notes_from_nature'
