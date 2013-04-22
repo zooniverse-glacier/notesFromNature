@@ -66,7 +66,7 @@
 
                 <ul class="user-list inline">
                     <li>
-                    <h3 class="title"><%=@user.project.classification_count%><span class="subtitle">Entries transcribed</span></h3>
+                    <h3 class="title"><%= @user.project.classification_count || 0 %><span class="subtitle">Entries transcribed</span></h3>
                     </li>
                     <li>
                     <h3 class="title"><%= if @user.project.groups? then _.size(@user.project.groups) else 0 %><span class="subtitle">Collections</span></h3>

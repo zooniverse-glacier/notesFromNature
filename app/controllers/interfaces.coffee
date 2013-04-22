@@ -40,7 +40,6 @@ class InterfaceController extends Spine.Controller
     @delay go, 200
 
   saveClassification: (data) =>
-    console.log 'here', data
     @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in data.toJSON()
 
     @archive.checkBadges()

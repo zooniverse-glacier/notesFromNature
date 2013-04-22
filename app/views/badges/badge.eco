@@ -12,8 +12,8 @@
   <div class="col3">
     <div class="box-badge-footer">
       <span>Get it at:
-        <a class="object line-r" href="#/institutes/<%=@archive?.institute().slug()%>">NFN - insititue : <%=@archive?.institute().name%></a>
-        <a class="object" href="#/archives/<%=@archive?.slug()%>">NFN - collection : <%=@archive?.name%></a>
+        <a class="object line-r" href="#/institutes/<%=@archive?.institute().slug()%>">NFN - Insititue: <%=@archive?.institute().name%></a>
+        <a class="object" href="#/archives/<%=@archive?.slug()%>">NFN - Collection: <%=@archive?.name%></a>
       </span>
     </div>
   </div>
