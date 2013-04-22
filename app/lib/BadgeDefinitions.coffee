@@ -5,10 +5,10 @@ module.exports = [
     awardText: 'You earned this badge for transcribing a SERNEC record'
     condition: 
       func: (details) ->
-        if details.user.project.groups[details.archive.id]
-          return details.user.project.groups[details.archive.id].classification_count is 1
-        else
-          return false
+        if details.user.project.hasOwnProperty 'groups'
+          if details.user.project.groups.hasOwnProperty details.archive.id
+            return false
+        return true
     collection: 'herbarium'
   ,
     name: 'Seedling'
@@ -17,7 +17,7 @@ module.exports = [
     awardText: 'You earned this badge for transcribing 10 SERNEC records'
     condition:
       func: (details) ->
-        if details.user.project.groups[details.archive.id]
+        if details.user.project.groups?[details.archive.id]?
           return details.user.project.groups[details.archive.id].classification_count is 10
         else
           return false
@@ -29,7 +29,7 @@ module.exports = [
     awardText: 'You earned this badge for transcribing 25 SERNEC records'
     condition:
       func: (details) ->
-        if details.user.project.groups[details.archive.id]
+        if details.user.project.groups?[details.archive.id]?
           return details.user.project.groups[details.archive.id].classification_count is 25
         else
           return false
@@ -41,7 +41,7 @@ module.exports = [
     awardText: 'You earned this badge for transcribing 75 SERNEC records'
     condition:
       func: (details) ->
-        if details.user.project.groups[details.archive.id]
+        if details.user.project.groups?[details.archive.id]?
           return details.user.project.groups[details.archive.id].classification_count is 75
         else
           return false
@@ -53,7 +53,7 @@ module.exports = [
     awardText: 'You earned this badge for transcribing 250 SERNEC records'
     condition:
       func: (details) ->
-        if details.user.project.groups[details.archive.id]
+        if details.user.project.groups?[details.archive.id]?
           return details.user.project.groups[details.archive.id].classification_count is 250
         else
           return false

@@ -67,6 +67,7 @@ class Badge extends Spine.Model
   award: =>
     if User.current
       Badge.trigger 'badgeAwarded', @
+      @condition.func = -> return false
       Api.current.post '/projects/notes_from_nature/badges', {badge: {name: @name}}, (data) =>
         Badge.getUserBadges()
 
