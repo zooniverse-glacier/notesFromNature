@@ -57,7 +57,7 @@
     <% end %>
   </div>
 <% end %>
-
+<!-- 
 <% if @archive.metadata.extra_template?: %>
   <div class="box-general">
     <div class="columns two">
@@ -67,7 +67,7 @@
     </div>
   </div>
 <% end %>
-
+ -->
 <div class="box-general laptop white">
   <div class="col2">
     <h3 class="title">What do we need from you?</h3>
