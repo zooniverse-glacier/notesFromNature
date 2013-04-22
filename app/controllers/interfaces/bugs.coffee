@@ -16,7 +16,7 @@ class Bugs extends Interfaces
     callback = =>
       $('.photos img').animate({ marginLeft: '0' }, 500)
       @transcriber.spinner.hide()
-      @transcriber.startTranscribing()
+      @transcriber.startTranscribing(Subject.current)
 
     @transcriber.loadPhoto(Subject.current.location.standard, callback)
 
