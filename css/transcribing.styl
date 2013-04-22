@@ -762,16 +762,19 @@
   position: relative
   width: 180px
 
-  &.state, &.county
-    width: auto
+  &.state, &.county, &.country
+    width: 250px
 
-  .state_field, .date_field, .county_field
+  .state_field, .date_field, .county_field, .country_field
+
+    input
+      width: 250px
 
     select
       appearance: none
       border: none
       height: 100%
-      padding: 3px 5px
+      padding: 3px 10px 3px 5px
       text-align: center
       width: 100%
 
