@@ -1,6 +1,6 @@
 <div class="box-general">       
   <div class="col3">
-    <h3 class="title">Why should you get involved</h3>
+    <h3 class="title">Why should you get involved?</h3>
   </div>
   <div class="col1 omega">
     <div class="center">
@@ -21,11 +21,11 @@
       <img src="images/home_icon_lab.png" alt="avian best friend">
       <h3 class="badge">You are contributing to real science. Thank you!</h3>
       <p class="badge">The digitized data you are creating will help advance research related to species extinction, ecosystem changes, environmental health and even human health.<p>
-    </div>    
+    </div>
   </div>
 </div>
 
-<div class="box-general laptop laptop-home">        
+<div class="box-general laptop laptop-home">
   <div class="col2">
     <% if @users is 1: %>
       <h3 class="title">1 User already participating</h3>
