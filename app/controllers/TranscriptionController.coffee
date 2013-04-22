@@ -58,8 +58,8 @@ class TranscriptionController extends Spine.Site
     super
     if @archive? then $('body').removeClass("transcribingScreen #{@archive.slug()}")
     $('.transcriber').remove()
-    $(document).off 'keypress'
     Subject.destroyAll()
     Spine.unbind 'finishedTranscription'
+    Spine.unbind 'skipTranscription'
 
 module.exports = TranscriptionController
