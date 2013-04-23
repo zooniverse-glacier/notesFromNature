@@ -28,7 +28,7 @@ class HomeController extends Spine.Site
     @append require('views/home/stats')
       archiveCount: if Archive.count() > 0 then Archive.count() else 'loading'
       transcriptions: @formatNumber(transcriptions) || 'loading'
-      progress: if totalStats.total > 0 then ((totalStats.complete / totalStats.total) + "")[0..2] else "loading"
+      progress: if totalStats.total > 0 then ((totalStats.complete / totalStats.total) + "")[0..3] else "loading"
       users: @formatNumber user_count
 
     @append require('views/home/content')
