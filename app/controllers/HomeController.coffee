@@ -22,13 +22,14 @@ class HomeController extends Spine.Site
     totalStats = Institute.allStats()
 
     transcriptions = window.project?.classification_count
+    progress = ((window.project?.complete_count / window.project?.classification_count) * 100).toPrecision(3)
     user_count = @project?.user_count || 0
 
     @html require('views/home/splash')()
     @append require('views/home/stats')
       archiveCount: if Archive.count() > 0 then Archive.count() else 'loading'
       transcriptions: @formatNumber(transcriptions) || 'loading'
-      progress: if totalStats.total > 0 then ((totalStats.complete / totalStats.total) + "")[0..3] else "loading"
+      progress: unless progress is 'NaN' then progress else 'loading'
       users: @formatNumber user_count
 
     @append require('views/home/content')
