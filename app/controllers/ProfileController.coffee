@@ -9,11 +9,9 @@ class ProfileController extends Spine.Controller
     Badge.bind 'badgesLoaded', @render
     User.on 'change', (e, user) =>
       @render()
-      Spine.Route.navigate '/' unless user
 
   active: ->
     super
-    Spine.Route.navigate '/' unless User.current
     document.title = "Notes From Nature - Profile"
     @render()
 
