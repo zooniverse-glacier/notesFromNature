@@ -22,16 +22,17 @@ class HomeController extends Spine.Site
     totalStats = Institute.allStats()
 
     transcriptions = window.project?.classification_count
+    user_count = @project?.user_count || 0
 
     @html require('views/home/splash')()
     @append require('views/home/stats')
       archiveCount: if Archive.count() > 0 then Archive.count() else 'loading'
       transcriptions: @formatNumber(transcriptions) || 'loading'
-      progress: if totalStats.total > 0 then ((totalStats.complete/totalStats.total)+"")[0..4] else "loading"
-      users: @project?.user_count || 0
+      progress: if totalStats.total > 0 then ((totalStats.complete / totalStats.total) + "")[0..2] else "loading"
+      users: @formatNumber user_count
 
     @append require('views/home/content')
-      users: @project?.user_count || 0
+      users: @formatNumber user_count
 
   formatNumber: (n) ->
     return n unless n
