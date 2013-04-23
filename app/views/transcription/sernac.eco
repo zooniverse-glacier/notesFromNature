@@ -386,3 +386,17 @@
     </select>
   </div>
 </script>
+
+<script type="text/template" id="country-input-template">
+  <div class="country_field">
+    <select name="countries" class="countries">
+      <option value="placeholder">-- Country --</option>
+      <option value="United States">United States</option>
+      <option value="Mexico">Mexico</option>
+      <option value="Canada">Canada</option>
+      <option value="unknown">Unknown Country</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+</script>
+
