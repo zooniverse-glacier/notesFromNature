@@ -44,4 +44,4 @@ module.exports =
       "location":
         "image":"images/img-collections5.jpg"
         "thumbnail":"images/calbug.png"
-        "headerImage": "images/archives/calbugBg.jpg"
+        "headerImage": "images/archives/calbugBg2.jpg"
