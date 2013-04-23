@@ -4,8 +4,8 @@
     <span class="subtitle">Collections available</span>
   </div>
   <div class="box-black-numbers">
-    <span class="numbers"><%=@subjects%></span>
-    <span class="subtitle">Total specimens</span>
+    <span class="numbers"><%= @transcriptions %></span>
+    <span class="subtitle">Total transcriptions</span>
   </div>
   <div class="box-black-numbers">
     <span class="numbers"><%=@progress%>%</span>
