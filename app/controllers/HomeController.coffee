@@ -35,8 +35,4 @@ class HomeController extends Spine.Site
     @append require('views/home/content')
       users: @formatNumber user_count
 
-  formatNumber: (n) ->
-    return n unless n
-    n.toString().replace /(\d)(?=(\d{3})+(?!\d))/g, '$1,'
-
 module.exports = HomeController

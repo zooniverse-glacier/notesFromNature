@@ -31,6 +31,10 @@ class Site extends Spine.Controller
       document.title = "#{@title} - Notes from Nature"
     else
       document.title = 'Notes from Nature'
+      
+  formatNumber: (n) ->
+    return n unless n
+    n.toString().replace /(\d)(?=(\d{3})+(?!\d))/g, '$1,'
 
 
 module.exports = Site

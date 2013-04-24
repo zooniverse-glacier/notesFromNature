@@ -77,7 +77,7 @@
   </div>
   <div class="col3">  
     <ul class="status-list inline">
-      <li><span class="text">USERS PARTICIPATING</span><%= window.project?.user_count %></li>
+      <li><span class="text">USERS PARTICIPATING</span><%= @user_count %></li>
       <li><span class="text">AVG. TIME PER RECORD</span>3 min.</li>
       <li><span class="text">AVG. DIFFICULTY</span><%= @archive.metadata.difficulty %></li>
     </ul>
