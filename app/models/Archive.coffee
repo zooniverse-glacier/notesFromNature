@@ -4,7 +4,7 @@ badgeDefinitions = require 'lib/BadgeDefinitions'
 Subject = require 'zooniverse/models/subject'
 
 class Archive extends Spine.Model
-  @configure 'Archive', 'group_id', 'name', 'metadata', 'complete', 'stats', 'categories'
+  @configure 'Archive', 'group_id', 'classification_count', 'name', 'metadata', 'complete', 'stats', 'categories'
   @belongsTo 'institute', 'models/Institute'
   @hasMany 'badges', 'models/Badge'
 
@@ -39,6 +39,6 @@ class Archive extends Spine.Model
     @progress() is 100
   
   progress: =>
-    if @stats?.total > 0 then (parseInt((100.0*@stats?.complete)/@stats?.total)+"") else 0
+    if @stats?.total > 0 then Math.min(100, (parseInt((@classification_count / @stats.total) * 10))) else 0
 
 module.exports = Archive
