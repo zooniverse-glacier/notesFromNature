@@ -6,7 +6,6 @@
     "spine/lib/route",
     "spine/lib/manager",
     "spine/lib/relation",
-    "underscore",
     "zooniverse/controllers/top-bar",
     "zooniverse/controllers/footer",
     "zooniverse/lib/api",
@@ -17,6 +16,7 @@
   "libs": [
     "node_modules/Zooniverse/vendor/base64.js",
     "lib/vendor/jquery.min.js",
-    "lib/vendor/moment.min.js"
+    "lib/vendor/moment.min.js",
+    "lib/vendor/underscore.min.js"
   ]
 }
