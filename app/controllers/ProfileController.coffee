@@ -13,6 +13,7 @@ class ProfileController extends Spine.Controller
   active: ->
     super
     document.title = "Notes From Nature - Profile"
+    User.fetch()
     @render()
 
   render: =>

@@ -80,7 +80,6 @@ User.on 'change', (e, user) =>
   Badge.getUserBadges() if user
 
 Institute.fetch()
-User.fetch()
 Subject.queueLength = 3
 
 Spine.Route.setup()
