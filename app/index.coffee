@@ -81,7 +81,7 @@ User.on 'change', (e, user) =>
 
 Institute.fetch()
 User.fetch()
-Subject.queueLength = 2
+Subject.queueLength = 3
 
 Spine.Route.setup()
 

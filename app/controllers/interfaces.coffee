@@ -47,6 +47,8 @@ class InterfaceController extends Spine.Controller
     Subject.next()
 
   skipClassification: =>
+    @classification.annotate({skip: true})
+    @classification.send()
     Subject.next()
 
 module.exports = InterfaceController
