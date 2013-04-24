@@ -529,7 +529,7 @@
   overflow: visible !important
   position: absolute
   width: 690px
-  z-index: 1001
+  z-index: 3001
 
   > .container
     height: 0
@@ -880,27 +880,24 @@
   font-size:11px;
 }
 
-.transcriber.sernac .sernac-widget .left .input_field .error {
-  display:none;
-  background:red;
+.transcriber.sernac .sernac-widget .left .input_field .error 
+  display: none
+  background: red
 
-}
+.transcriber.sernac .closer 
+  display: none
+  height: 18px
+  position: absolute
+  width: 18px
+  z-index: 2000
 
-.transcriber.sernac .closer {
-  display: none;
-  height: 18px;
-  position: absolute;
-  width: 18px;
-  z-index: 9001;
+  a
+    background: url(images/transcribers/close.png) no-repeat
+    display: block
+    height: 18px
+    margin-top: -5px
+    width: 18px
 
-  a {
-    background: url(images/transcribers/close.png) no-repeat;
-    display: block;
-    height: 18px;
-    margin-top: -5px;
-    width: 18px;
-  }
-}
 .transcriber.sernac .magnifier {
   position: absolute;
   background: url("images/transcribers/bg-transcriber.png");
