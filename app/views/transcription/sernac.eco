@@ -442,9 +442,6 @@
     <select name="countries" class="countries">
       <option value="placeholder">-- Country --</option>
       <option value="unknown">Unknown Country</option>
-      <option value="United States">United States</option>
-      <option value="Canada">Canada</option>
-      <option value="Mexico">Mexico</option>
       <option value="Afganistan">Afghanistan</option>
       <option value="Albania">Albania</option>
       <option value="Algeria">Algeria</option>
@@ -481,6 +478,7 @@
       <option value="Burundi">Burundi</option>
       <option value="Cambodia">Cambodia</option>
       <option value="Cameroon">Cameroon</option>
+      <option value="Canada">Canada</option>
       <option value="Canary Islands">Canary Islands</option>
       <option value="Cape Verde">Cape Verde</option>
       <option value="Cayman Islands">Cayman Islands</option>
@@ -583,6 +581,7 @@
       <option value="Mauritania">Mauritania</option>
       <option value="Mauritius">Mauritius</option>
       <option value="Mayotte">Mayotte</option>
+      <option value="Mexico">Mexico</option>
       <option value="Midway Islands">Midway Islands</option>
       <option value="Moldova">Moldova</option>
       <option value="Monaco">Monaco</option>
@@ -674,6 +673,7 @@
       <option value="Ukraine">Ukraine</option>
       <option value="United Arab Erimates">United Arab Emirates</option>
       <option value="United Kingdom">United Kingdom</option>
+      <option value="United States">United States</option>
       <option value="Uraguay">Uruguay</option>
       <option value="Uzbekistan">Uzbekistan</option>
       <option value="Vanuatu">Vanuatu</option>
