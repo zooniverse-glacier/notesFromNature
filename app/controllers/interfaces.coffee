@@ -1,6 +1,6 @@
 Archive = require 'models/Archive'
-# Classification = require 'models/Classification'
 Subject = require 'zooniverse/models/subject'
+User = require 'zooniverse/models/user'
 
 class InterfaceController extends Spine.Controller
   preferences: {}
@@ -43,7 +43,12 @@ class InterfaceController extends Spine.Controller
     @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in data.toJSON()
 
     @archive.checkBadges()
-    @classification.send()
+
+    done = ->
+      User.fetch()
+      
+    @classification.send done
+
     Subject.next()
 
   skipClassification: =>

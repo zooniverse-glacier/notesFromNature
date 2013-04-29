@@ -5,10 +5,10 @@ module.exports = [
     awardText: 'You earned this badge for transcribing a SERNEC record'
     condition: 
       func: (details) ->
-        if details.user.project.hasOwnProperty 'groups'
-          if details.user.project.groups.hasOwnProperty details.archive.id
-            return false
-        return true
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count is 1
+        else
+          return false
     collection: 'herbarium'
   ,
     name: 'Seedling'
