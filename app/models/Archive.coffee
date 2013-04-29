@@ -20,6 +20,8 @@ class Archive extends Spine.Model
     else
       @all()
 
+  classification_count: 0
+    
   addBadges: =>
     for badge in badgeDefinitions
       if badge.collection is @slug()
