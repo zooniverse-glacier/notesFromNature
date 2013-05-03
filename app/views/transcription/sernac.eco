@@ -317,7 +317,7 @@
 <script type="text/template" id="tooltip-step-template">
   <ul>
     {{#links}}
-    <li><a href="#">{{title}}</a></li>
+    <li><a href="#">{{title}}</a><span></span></li>
     {{/links}}
   </ul>
   <div class="tip"></div>
