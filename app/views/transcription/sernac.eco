@@ -27,7 +27,7 @@
     <div class="text">
       <p>Welcome to the SERNEC Herbarium collections on Notes from Nature and thank you for helping us transcribe specimen records.</p>
       <p>One of the key ways of storing plant material in natural history collections is through herbarium sheets. The gurus working on the SERNEC project have imaged hundreds of thousands of these sheets. Each sheet contains a plant specimen and a label that contains the species name, locality information and date collected - the who, where and when that is critical for use of these specimens to map biodiversity and its change. All we need is to get those data in usable form.</p>
-      <p>You can help us unlock these data for use biodiversity scientists by first finding the label, selecting it via a click-and-drag, and then helping to enter the label content via a step-by-step transcription process that is explained in more detail once you enter the collection.</p>
+      <p>You can help us unlock these data for use by biodiversity scientists by first finding the label, selecting it via a click-and-drag, and then helping to enter the label content via a step-by-step transcription process that is explained in more detail once you enter the collection.</p>
     </div>
     <button>Got it. Let me transcribe!</button>
   </div>

@@ -7,6 +7,6 @@
     "underscore": "latest",
     "nib": "latest",
     "clean-css" : "latest",
-    "Zooniverse": "git://github.com/kycan/Zooniverse.git"
+    "zooniverse": "git+ssh://git@github.com:zooniverse/Zooniverse.git#no-deps"
   }
 }
