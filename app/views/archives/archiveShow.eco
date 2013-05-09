@@ -21,22 +21,22 @@
   <div class="col1">
     <div class="box-right">
       <ul class="status-list">
-        <li><span class="text">TEMPORAL RANGE</span><%=@archive.metadata.start_date%> / <%=@archive.metadata.end_date%></li>
+        <li><span class="text">TEMPORAL RANGE</span><%= @archive.metadata.start_date %> / <%= @archive.metadata.end_date %></li>
 
         <% if @archive.metadata.regions: %>
           <li><span class="text">GEOGRAPHIC CONTEXT</span> <%= @archive.metadata.regions.join(" | ") %></li>
         <% end %>
-        <li><span class="text">TAXONOMIC COVERAGE</span><%=@archive.categories.join(" | ")%></li>
+        <li><span class="text">TAXONOMIC COVERAGE</span><%= @archive.categories.join(" | ") %></li>
         <li><span class="text">PROGRESS</span>
 
         <div class="progress-bar">
-          <div class="bar" style="width:<%=@archive.progress()%>%"></div>
-          <span class="progress"><%=@archive.progress()%>%</span>
+          <div class="bar" style="width:<%= @archive.progress() %>%"></div>
+          <span class="progress"><%= @archive.progress() %>%</span>
         </div>
         </li>
         <li><span class="text">USERS PARTICIPATING</span><%=@archive.metadata.userCount%></li>
       </ul>
-      <a href="<%=@archive.transcriptionUrl()%>" class="button nocolor">START TRANSCRIBING</a>
+      <a href="<%= @archive.transcriptionUrl() %>" class="button nocolor">START TRANSCRIBING</a>
     </div>
   </div>
 </div>
@@ -49,7 +49,7 @@
     <% for badge in @badges[0..2]: %>
       <div class="col1 omega">
         <div class="center">
-          <img src="images/<%= badge.url %>" alt="<%= badge.name %>">
+          <img class="badge" src="images/<%= badge.url %>" alt="<%= badge.name %>">
           <h3 class="badge"><%= badge.name.charAt(0).toUpperCase() + badge.name.slice(1, badge.length) %></h3>
           <p class="badge"><%= badge.description %><p>
         </div>
@@ -57,17 +57,7 @@
     <% end %>
   </div>
 <% end %>
-<!-- 
-<% if @archive.metadata.extra_template?: %>
-  <div class="box-general">
-    <div class="columns two">
-      <div class="column wide">
-        <%- @archive.metadata.extra_template() %>
-      </div>
-    </div>
-  </div>
-<% end %>
- -->
+
 <div class="box-general laptop white">
   <div class="col2">
     <h3 class="title">What do we need from you?</h3>
