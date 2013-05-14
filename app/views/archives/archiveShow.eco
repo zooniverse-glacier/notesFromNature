@@ -27,14 +27,14 @@
           <li><span class="text">GEOGRAPHIC CONTEXT</span> <%= @archive.metadata.regions.join(" | ") %></li>
         <% end %>
         <li><span class="text">TAXONOMIC COVERAGE</span><%= @archive.categories.join(" | ") %></li>
-        <li><span class="text">PROGRESS</span>
+        <li>
+          <span class="text">PROGRESS</span>
 
-        <div class="progress-bar">
-          <div class="bar" style="width:<%= @archive.progress() %>%"></div>
-          <span class="progress"><%= @archive.progress() %>%</span>
-        </div>
+          <div class="progress-bar">
+            <div class="bar" style="width:<%= @archive.progress() %>%"></div>
+            <span class="progress"><%= @archive.progress() %>%</span>
+          </div>
         </li>
-        <li><span class="text">USERS PARTICIPATING</span><%=@archive.metadata.userCount%></li>
       </ul>
       <a href="<%= @archive.transcriptionUrl() %>" class="button nocolor">START TRANSCRIBING</a>
     </div>
