@@ -48,6 +48,13 @@
   </div>
 </script>
 
+<script type="text/template" id="metadata-template">
+  <div class="container">
+    <div class="sub-container"><div class="meta"></div></div>
+  </div>
+</script>
+
+
 <script type="text/template" id="launcher-template">
   <span>Drag a square around the specimen label</span> 
   <a href="#" class="example" data-src="images/sernac.png">See example</a>

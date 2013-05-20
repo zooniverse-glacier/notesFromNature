@@ -47,7 +47,8 @@ files = [
   'nfn/ui/bugs/magnifier.js',
   'nfn/ui/bugs/selection.js',
   'nfn/ui/bugs/highlight.js',
-  'nfn/ui/bugs/helper.js'
+  'nfn/ui/bugs/helper.js',
+  'nfn/ui/bugs/metadata.js'
 ]
 
 source = ''
