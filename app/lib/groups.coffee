@@ -35,7 +35,7 @@ module.exports =
     "name":"Calbug"
     "categories":["Insects","Spiders"]
     "metadata":
-      "description":"Calbug is an effort to digitize terrestrial arthropod-specimen records, with a focus on California. The project represents a collaboration among eight entomological collections in California to capture data from specimen labels. The Calbug Science Team will then use the collection data to assess how arthropods have responded to climate change and habitat modification. Drawing from over a century of insect collecting in the region, our goal is to develop a database of over 1 million geographically referenced specimens."
+      "description":"Calbug is an effort to digitize terrestrial arthropod-specimen records with a focus on California. The project represents a collaboration among eight entomological collections in California to capture data from specimen labels. The Calbug Science Team will then use the collection data to assess how arthropods have responded to climate change and habitat modification. Drawing from over a century of insect collecting in the region, our goal is to develop a database of over 1 million geographically referenced specimens."
       "snippet": "Calbug digitizes collections of pinned insect specimens drawn from eight of California's major institutions, showcasing the stunning diversity of insect life in our world."
       "extra_template": require "views/archives/calbug"
       "difficulty":"Easy"
