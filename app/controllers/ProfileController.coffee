@@ -1,5 +1,6 @@
 User  = require 'zooniverse/models/user'
 Badge = require 'models/Badge'
+Archive = require 'models/Archive'
 
 class ProfileController extends Spine.Controller
   className: 'ProfileController'
@@ -7,8 +8,8 @@ class ProfileController extends Spine.Controller
   constructor: ->
     super
     Badge.bind 'badgesLoaded', @render
-    User.on 'change', (e, user) =>
-      @render()
+    Archive.bind 'refresh', @render
+    User.on 'change', @render
 
   active: ->
     super
@@ -20,6 +21,7 @@ class ProfileController extends Spine.Controller
     if User.current
       @html require('views/profile/profile')
         user: User.current
+        archives: Archive.records
     else
       @html require('views/profile/notLoggedIn')
     
