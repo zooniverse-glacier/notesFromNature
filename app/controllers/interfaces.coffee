@@ -43,9 +43,11 @@ class InterfaceController extends Spine.Controller
     @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in data.toJSON()
 
     done = =>
+      badges = User.current.badges
       userFetch = User.fetch()
 
       userFetch.done =>
+        User.current.badges = badges # sigh
         @archive.checkBadges()
       
     @classification.send done

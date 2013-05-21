@@ -30,7 +30,7 @@ class Archive extends Spine.Model
 
   checkBadges: =>
     notAwardedYet = _.reject @badges().all(), (badge) ->
-      return _.some User.current.badges, (userBadge) -> userBadge.name is badge.name
+      return _.some(User.current.badges, (userBadge) -> userBadge.name is badge.name)
 
     for badge in notAwardedYet
       badge.checkAward()
