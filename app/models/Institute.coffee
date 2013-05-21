@@ -52,7 +52,7 @@ class Institute extends Spine.Model
     @name.replace /\s/g, "_"
 
   stats: =>
-    total_stats = 
+    total_stats =
       active: 0
       complete: 0
       inactive: 0

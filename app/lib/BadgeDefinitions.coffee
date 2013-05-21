@@ -6,7 +6,7 @@ module.exports = [
     condition: 
       func: (details) ->
         if details.user.project.groups?[details.archive.id]?
-          return details.user.project.groups[details.archive.id].classification_count is 1
+          return details.user.project.groups[details.archive.id].classification_count > 0
         else
           return false
     collection: 'herbarium'
@@ -18,7 +18,7 @@ module.exports = [
     condition:
       func: (details) ->
         if details.user.project.groups?[details.archive.id]?
-          return details.user.project.groups[details.archive.id].classification_count is 10
+          return details.user.project.groups[details.archive.id].classification_count > 10
         else
           return false
     collection: 'herbarium'
@@ -30,7 +30,7 @@ module.exports = [
     condition:
       func: (details) ->
         if details.user.project.groups?[details.archive.id]?
-          return details.user.project.groups[details.archive.id].classification_count is 25
+          return details.user.project.groups[details.archive.id].classification_count > 25
         else
           return false
     collection: 'herbarium'
@@ -42,7 +42,7 @@ module.exports = [
     condition:
       func: (details) ->
         if details.user.project.groups?[details.archive.id]?
-          return details.user.project.groups[details.archive.id].classification_count is 75
+          return details.user.project.groups[details.archive.id].classification_count > 75
         else
           return false
     collection: 'herbarium'
@@ -54,7 +54,7 @@ module.exports = [
     condition:
       func: (details) ->
         if details.user.project.groups?[details.archive.id]?
-          return details.user.project.groups[details.archive.id].classification_count is 250
+          return details.user.project.groups[details.archive.id].classification_count > 250
         else
           return false
     collection: 'herbarium'
@@ -66,31 +66,31 @@ module.exports = [
     condition:
       func: (details) ->
         if details.user.project.groups?[details.archive.id]?
-          return details.user.project.groups[details.archive.id].classification_count is 1
+          return details.user.project.groups[details.archive.id].classification_count > 0
         else
           return false
     collection: 'calbug'
   ,
     name: 'Caterpillar'
     url: 'badges/calbug/caterpillar.png'
-    description: 'You earn this badge for transcribing 10 Calbug records'
-    awardText: 'You earned this badge for transcribing 10 Calbug records'
+    description: 'You earn this badge for transcribing 25 Calbug records'
+    awardText: 'You earned this badge for transcribing 25 Calbug records'
     condition:
       func: (details) ->
         if details.user.project.groups?[details.archive.id]?
-          return details.user.project.groups[details.archive.id].classification_count is 10
+          return details.user.project.groups[details.archive.id].classification_count > 25
         else
           return false
     collection: 'calbug'
   ,
     name: 'Butterfly'
     url: 'badges/calbug/butterfly.png'
-    description: 'You earn this badge for transcribing 25 Calbug records'
-    awardText: 'You earned this badge for transcribing 25 Calbug records'
+    description: 'You earn this badge for transcribing 100 Calbug records'
+    awardText: 'You earned this badge for transcribing 100 Calbug records'
     condition:
       func: (details) ->
         if details.user.project.groups?[details.archive.id]?
-          return details.user.project.groups[details.archive.id].classification_count is 25
+          return details.user.project.groups[details.archive.id].classification_count > 100
         else
           return false
     collection: 'calbug'

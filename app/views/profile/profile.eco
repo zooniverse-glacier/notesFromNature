@@ -1,98 +1,93 @@
  <div class="box-general">
-        <div class="col3" >
-            <div class="box-user" style="height: 50px;width: 0px">
-                
-            </div>
+  <div class="col3" >
+    <div class="box-user" style="height: 50px;width: 0px"></div>
 
-            <h2 class="title user">
-                <%=@user.name%>
-            </h2>
-        </div>
-    </div>          
+    <h2 class="title user">
+      <%= @user.name %>
+    </h2>
+  </div>
+</div>
 
-    <div class="box-general divided">
+<div class="box-general divided">
 
-        <div class="col2">
+  <div class="col2">
 
-            <h3 class="title">A transcriber's life <span class="subtitle">See <%=@user.name%> activity</span></h3>
+      <h3 class="title">A transcriber's life <span class="subtitle">See <%=@user.name%> activity</span></h3>
 
-            <div class="time-box">
-                <ul class="time-life">
-                    <% if @user.badges?: %>
-                        <% for badge in @user.badges: %>
-                            <% if badge.name != 'weekly_report': %>
-                              <li>
-                                  <div>
-                                      <span class="text"><%=moment(badge.created_at).from(moment())%></span>
-                                      <span class="value">Won the</span>
-                                      <a class="object" href="#/badges/<%=badge.slug()%>"><%=badge.name%> Badge</a>
-                                  </div>
-                              </li>
-                            <% else: %>
-                              <li>
-                                  <div>
-                                      <span class="text"><%= moment(badge.created_at).from(moment()) %></span>
-                                      <% if badge.number is 1: %>
-                                        <span class="object">You transcribed 1 item</span>
-                                    <% else: %>
-                                        <span class="object">You transcribed <%- badge.number %> items</span>
-                                    <% end %>
-                                  </div>
-                              </li>
-                            <% end %>
-                        <% end %>
-                    <% end %>
-                    
+      <div class="time-box">
+          <ul class="time-life">
+              <% if @user.badges?: %>
+                  <% for badge in @user.badges: %>
+                      <% if badge.name != 'summary': %>
+                        <li>
+                          <div>
+                            <span class="text"><%=moment(badge.created_at).from(moment())%></span>
+                            <span class="value">Won the</span>
+                            <a class="object" href="#/badges/<%= badge.slug() %>"><%= badge.name %> Badge</a>
+                          </div>
+                        </li>
+                      <% else: %>
+                        <li>
+                            <div>
+                              <span class="text"><%= moment(badge.created_at).from(moment()) %></span>
+                              <% if badge.number is 1: %>
+                                <span class="object">You transcribed 1 item</span>
+                              <% else: %>
+                                <span class="object">You transcribed <%- badge.number %> items</span>
+                              <% end %>
+                            </div>
+                        </li>
+                      <% end %>
+                  <% end %>
+              <% end %>
+              
 
-                </ul>
+          </ul>
 
-                <ul class="time-life-graf">
-                    <% if @user.badges?: %>
-                        <% for badge in @user.badges : %>
-                            <li>
-                                <div>
-                                    <img <%- unless badge.url? then 'style="width:39px"'%> src="images/<%=badge.url || 'ico-write.png' %>" />
-                                </div>
-                            </li>
-                        <%end%>
-                    <%end%>
-                </ul>
-            </div>
-        </div>
+          <ul class="time-life-graf">
+            <% if @user.badges?: %>
+              <% for badge in @user.badges : %>
+                <li>
+                  <div>
+                    <img <%- unless badge.url? then 'style="width: 39px"'%> src="images/<%=badge.url || 'ico-write.png' %>" />
+                  </div>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+      </div>
+  </div>
 
+  <div class="col1">
+    <div class="box-right">
 
-        <div class="col1">
-            <div class="box-right">
+      <ul class="user-list inline">
+        <li>
+          <h3 class="title"><%= @user.project.classification_count || 0 %><span class="subtitle">Entries transcribed</span></h3>
+        </li>
+        <li>
+          <h3 class="title"><%= if @user.project.groups? then _.size(@user.project.groups) else 0 %><span class="subtitle">Collections</span></h3>
+        </li>
+      </ul>
 
-                <ul class="user-list inline">
-                    <li>
-                    <h3 class="title"><%= @user.project.classification_count || 0 %><span class="subtitle">Entries transcribed</span></h3>
-                    </li>
-                    <li>
-                    <h3 class="title"><%= if @user.project.groups? then _.size(@user.project.groups) else 0 %><span class="subtitle">Collections</span></h3>
-                    </li>
-                </ul>
+      <hr>
 
-                <hr>
+      <h3 class="title">
+        Your Badges 
+        <span class="subtitle">Transcribe to earn badges</span>
+      </h3>
+      <ul class="badges-list">
+        <% if @user.badges?: %>
+          <% for badge in @user.badges: %>
+            <% if badge.name !='summary': %>
+              <li>
+                <a href="#/badges/<%= badge.slug() %>"><img src="images/<%= badge.url %>"></a>
+              </li>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 
-                <h3 class="title"><%=@user.name%>'s badges <span class="subtitle">
-                    <%if @user.badges? and @user.badges >0 : %>
-                        Won 5 badges up to row
-                    <%else : %>
-                        Transcribe to earn badges
-                    <%end%>
-                </span></h3>
-                <ul class="badges-list">
-                    <%if @user.badges? : %>
-                        <%for badge in @user.badges : %>
-                            <% if badge.name !='weekly_report' : %>
-                                <li>
-                                    <a href="#/badges/<%=badge.slug()%>"><img src="images/<%=badge.url%>"></img> </a>
-                                </li>    
-                        <%end%>
-                    <%end%>
-                </ul>
-            </div>
-        </div>
-
-    </div>          
+</div>

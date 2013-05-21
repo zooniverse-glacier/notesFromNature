@@ -10,40 +10,63 @@ class Badge extends Spine.Model
       Api.current.get '/projects/notes_from_nature/badges', (badges) =>
         if badges is null then return
         
-        badges = ([name,created_at] for name, created_at of badges.badges)
-        badges = _(badges).sortBy (badge) -> moment().diff(moment(badge[1]))
+        badges = ([name, created_at] for name, created_at of badges.badges)
         User.current.badges = []
+
         for badge in badges
           @insertIntoUser(badge[0], badge[1])
-        Badge.update_weekly_report()
+
+        Badge.updateReport()
+
+        User.current.badges = _(User.current.badges).sortBy (badge) -> moment().diff(moment(badge.created_at))
+
         @trigger 'badgesLoaded'
 
   @insertIntoUser: (name, created_at) ->
-    if name.indexOf('weekly_report') > -1
-      @process_weekly_report(name, created_at)
+    if !!~name.indexOf 'summary'
+      @processReport(name, created_at)
+
+    else if !!~name.indexOf 'weekly'
+      # do nothing
     else
-      badge = @findByName(name)
-      if badge? 
+      badge = @findByName name
+      if badge?
         badge.created_at = created_at
         User.current.badges.push badge
 
-  @process_weekly_report: (name, created_at) ->
-    number = parseInt(name.replace('weekly_report_',''))
-    User.current.badges.push {name: 'weekly_report', number: number, created_at: created_at}
+  @processReport: (name, created_at) ->
+    ccAtTime = parseInt(name.replace('summary_',''))
 
-  @update_weekly_report: ->
-    reports = (moment(badge.created_at).diff(moment(), 'weeks') for badge in User.current.badges when badge.name == 'weekly_report')
+    previousReport = @previousReport()
+    if previousReport
+      number = ccAtTime - previousReport.number
+    else
+      number = ccAtTime
 
-    if reports.length == 0
-      @post_weekly_report()
+    User.current.badges.push {name: 'summary', number: number, created_at: created_at}
+
+  @updateReport: ->
+    reports = (moment(badge.created_at).diff(moment(), 'weeks') for badge in User.current.badges when badge.name is 'summary')
+
+    if reports.length is 0
+      @postReport()
     else 
-      if reports.indexOf(0) == -1
-        @post_weekly_report()
-      
-  @post_weekly_report: =>
-    if User.current
-      Api.current.post '/projects/notes_from_nature/badges', {badge: {name: "weekly_report_#{moment().format('d-MM-YYYY')}"}}, (data) =>
-        Badge.getUserBadges()
+      if reports.indexOf(0) is -1
+        @postReport()
+
+  @postReport: =>
+    badge = 
+      name: "summary_#{ User.current.project.classification_count }"
+
+    Api.current.post '/projects/notes_from_nature/badges', { badge: badge }, (data) =>
+      Badge.getUserBadges()
+
+  @previousReport: =>
+    for badge in User.current.badges
+      if badge.name is 'summary' then return badge
+
+    return false
+
 
   @findBySlug: (slug) =>
     result = @select (b) ->

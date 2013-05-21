@@ -2,6 +2,7 @@ Api = require 'zooniverse/lib/api'
 badgeDefinitions = require 'lib/BadgeDefinitions'
 
 Subject = require 'zooniverse/models/subject'
+User = require 'zooniverse/models/user'
 
 class Archive extends Spine.Model
   @configure 'Archive', 'group_id', 'classification_count', 'name', 'metadata', 'complete', 'stats', 'categories'
@@ -28,7 +29,10 @@ class Archive extends Spine.Model
         @badges().create badge
 
   checkBadges: =>
-    for badge in @badges().all()
+    notAwardedYet = _.reject @badges().all(), (badge) ->
+      return _.some User.current.badges, (userBadge) -> userBadge.name is badge.name
+
+    for badge in notAwardedYet
       badge.checkAward()
 
   transcriptionUrl: =>
