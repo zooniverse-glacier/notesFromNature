@@ -72,7 +72,7 @@
   <div class="date_field month">
     <select name="month" class="month">
       <option value="placeholder">-- Month --</option>
-      <option value="00">Unknown</option>
+      <option value="00">Not Shown</option>
       <option value="01">01 - January - I</option>
       <option value="02">02 - February - II</option>
       <option value="03">03 - March - III</option>
@@ -90,7 +90,7 @@
   <div class="date_field day">
     <select name="day" class="day">
       <option value="placeholder">-- Day --</option>
-      <option value="00">Unknown</option>
+      <option value="00">Not Shown</option>
       <option value="01">01</option>
       <option value="02">02</option>
       <option value="03">03</option>
@@ -127,7 +127,7 @@
   <div class="date_field year">
     <select name="year" class="year">
       <option value="placeholder">-- Year --</option>
-      <option value="0000">Unknown</option>
+      <option value="0000">Not Shown</option>
       <option value="2013">2013</option>
       <option value="2012">2012</option>
       <option value="2011">2011</option>
