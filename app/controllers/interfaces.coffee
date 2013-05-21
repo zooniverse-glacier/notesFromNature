@@ -10,8 +10,7 @@ class InterfaceController extends Spine.Controller
     Spine.bind 'finishedTranscription', @saveClassification
     Spine.bind 'skipTranscription', @skipClassification
 
-    Subject.on 'select', =>
-      @nextSubject()
+    Subject.on 'select', @nextSubject
 
   render: (opts = null) =>
     @html @template(opts)
@@ -22,15 +21,15 @@ class InterfaceController extends Spine.Controller
     Subject.group = @archive.id
 
     go = =>
-      window.GOD = new nfn.ui.view.GOD({
+      window.GOD = new nfn.ui.view.GOD
         model: new nfn.ui.model.GOD()
-      })
 
       transcriberModel = new nfn.ui.model[@widgetName]()
-      @transcriber = new nfn.ui.view[@widgetName]({
+      @transcriber = new nfn.ui.view[@widgetName]
         model: transcriberModel
         Spine: Spine
-      })
+        user: User.current
+        archive: @archive
 
       $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
 

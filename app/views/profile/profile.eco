@@ -79,11 +79,13 @@
 
             <li>
               <% archive = _.find(@archives, (archive) -> archive.id is groupId) %>
-              <h3 class="title"><%- archive.name %></h3>
-              <% if groupObj.classification_count is 1: %>
-                <p><%- groupObj.classification_count %> transcription done</p>
-              <% else: %>
-                <p><%- groupObj.classification_count %> transcriptions done</p>
+              <% if archive?.name?: %>
+                <h3 class="title"><%- archive.name %></h3>
+                <% if groupObj.classification_count is 1: %>
+                  <p><%- groupObj.classification_count %> transcription done</p>
+                <% else: %>
+                  <p><%- groupObj.classification_count %> transcriptions done</p>
+                <% end %>
               <% end %>
             </li>
 
