@@ -46,7 +46,7 @@ class InterfaceController extends Spine.Controller
       userFetch = User.fetch()
 
       userFetch.done =>
-        User.current.badges = badges # sigh
+        User.current.badges = badges if User.current # sigh
         @archive.checkBadges()
       
     @classification.send done
