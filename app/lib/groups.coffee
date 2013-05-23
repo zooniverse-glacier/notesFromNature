@@ -18,7 +18,7 @@ module.exports =
       "difficulty":"Easy"
       "start_date": "1880"
       "end_date": "2012"
-      "regions":["Sourtheastern US"]
+      "regions":["Southeastern US"]
       "location":
         "image":"images/img-collections3.jpg"
         "headerImage": "images/archives/sernecBg.jpg"
