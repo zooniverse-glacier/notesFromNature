@@ -47,4 +47,15 @@ class Archive extends Spine.Model
   progress: =>
     if @stats?.total > 0 then Math.min(100, (parseInt((@classification_count / @stats.total) * 10))) else 0
 
+  recordsComplete: =>
+    @formatNumber Math.floor(@classification_count / 10)
+
+  total: =>
+    @formatNumber @stats.total
+
+  # Private
+  formatNumber: (n) ->
+    return n unless n
+    n.toString().replace /(\d)(?=(\d{3})+(?!\d))/g, '$1,'
+
 module.exports = Archive
