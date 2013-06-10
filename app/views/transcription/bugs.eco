@@ -270,6 +270,70 @@
   </div>
 </script>
 
+
+<script type="text/template" id="canadian-input-template">
+  <div class="state_field">
+    <select name="state" class="state">
+      <option value="placeholder">-- Province --</option>
+      <option value="Unknown">Unknown Province</option>
+      <option value="Alberta">Alberta</option>
+      <option value="British Columbia">British Columbia</option>
+      <option value="Manitoba">Manitoba</option>
+      <option value="New Brunswick">New Brunswick</option>
+      <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+      <option value="Northwest Territories">Northwest Territories</option>
+      <option value="Nova Scotia">Nova Scotia</option>
+      <option value="Nunavut">Nunavut</option>
+      <option value="Ontario">Ontario</option>
+      <option value="Prince Edward Island">Prince Edward Island</option>
+      <option value="Quebec">Quebec</option>
+      <option value="Saskatchewan">Saskatchewan</option>
+      <option value="Yukon">Yukon</option>
+    </select>
+  </div>
+</script>
+
+<script type="text/template" id="mexican-input-template">
+  <div class="state_field">
+    <select name="state" class="state">
+      <option value="placeholder">-- Province --</option>
+      <option value="Unknown">Unknown Province</option>
+      <option value="Aguascalientes">Aguascalientes</option>
+      <option value="Baja California">Baja California</option>
+      <option value="Baja California Sur">Baja California Sur</option>
+      <option value="Campeche">Campeche</option>
+      <option value="Chiapas">Chiapas</option>
+      <option value="Chihuahua">Chihuahua</option>
+      <option value="Coahuila">Coahuila</option>
+      <option value="Colima">Colima</option>
+      <option value="Durango">Durango</option>
+      <option value="Guanajuato">Guanajuato</option>
+      <option value="Guerrero">Guerrero</option>
+      <option value="Hidalgo">Hidalgo</option>
+      <option value="Jalisco">Jalisco</option>
+      <option value="México">México</option>
+      <option value="Mexico City (Federal District)">Mexico City (Federal District)</option>
+      <option value="Michoacán">Michoacán</option>
+      <option value="Morelos">Morelos</option>
+      <option value="Nayarit">Nayarit</option>
+      <option value="Nuevo León">Nuevo León</option>
+      <option value="Oaxaca">Oaxaca</option>
+      <option value="Puebla">Puebla</option>
+      <option value="Querétaro">Querétaro</option>
+      <option value="Quintana Roo">Quintana Roo</option>
+      <option value="San Luis Potosí">San Luis Potosí</option>
+      <option value="Sinaloa">Sinaloa</option>
+      <option value="Sonora">Sonora</option>
+      <option value="Tabasco">Tabasco</option>
+      <option value="Tamaulipas">Tamaulipas</option>
+      <option value="Tlaxcala">Tlaxcala</option>
+      <option value="Veracruz">Veracruz</option>
+      <option value="Yucatán">Yucatán</option>
+      <option value="Zacatecas">Zacatecas</option>
+    </select>
+  </div>
+</script>
+
 <script type="text/template" id="state-input-template">
   <div class="state_field">
     <select name="state" class="state"> 
@@ -401,6 +465,7 @@
 
   </div>
 </script>
+
 
 <script type="text/template" id="country-input-template">
   <div class="country_field">
