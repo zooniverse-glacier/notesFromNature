@@ -54,30 +54,30 @@ class Badge extends Spine.Model
       if reports.indexOf(0) is -1
         @postReport()
 
-  @postReport: =>
+  @postReport: ->
     badge = 
       name: "summary_#{ User.current.project.classification_count }"
 
-    Api.current.post '/projects/notes_from_nature/badges', { badge: badge }, (data) =>
+    Api.current.post '/projects/notes_from_nature/badges', { badge: badge }, (data) ->
       Badge.getUserBadges()
 
-  @previousReport: =>
+  @previousReport: ->
     for badge in User.current.badges
       if badge.name is 'summary' then return badge
 
     return false
 
 
-  @findBySlug: (slug) =>
+  @findBySlug: (slug) ->
     result = @select (b) ->
       b.slug() is slug 
     result[0]
 
-  @badgesForProject: (projectSlug) =>
-    @select (b) =>
+  @badgesForProject: (projectSlug) ->
+    @select (b) ->
       b.collection is projectSlug
 
-  @findByName: (name) =>
+  @findByName: (name) ->
     result = @select (d) ->
       d.name is name
     result[0]

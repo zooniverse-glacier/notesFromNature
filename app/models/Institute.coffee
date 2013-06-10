@@ -9,8 +9,8 @@ class Institute extends Spine.Model
   @hasMany 'archives', 'models/Archive'
 
   # Class methods
-  @fetch: =>
-    Api.current.get '/projects/notes_from_nature/groups/', (data) =>
+  @fetch: ->
+    Api.current.get '/projects/notes_from_nature/groups/', (data) ->
       window.inst = data
 
       institutes = (group for group in data  when group.type == 'institution')
@@ -25,8 +25,8 @@ class Institute extends Spine.Model
       Archive.trigger 'refresh'
       Institute.trigger 'refresh'
 
-  @findBySlug: (slug) =>
-    result = @select (institute) =>
+  @findBySlug: (slug) ->
+    result = @select (institute) ->
       institute.slug() is slug
     result[0]
 

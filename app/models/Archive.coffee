@@ -9,14 +9,14 @@ class Archive extends Spine.Model
   @belongsTo 'institute', 'models/Institute'
   @hasMany 'badges', 'models/Badge'
 
-  @findBySlug: (slug) =>
-    result = @select (archive) =>
+  @findBySlug: (slug) ->
+    result = @select (archive) ->
       archive.slug() is slug
     result[0]
 
-  @filter: (params) =>
+  @filter: (params) ->
     if params? and params.type?
-      @select (archive) =>
+      @select (archive) ->
         archive.categories.indexOf(params.type) != -1 or archive.categories.indexOf(_.str.capitalize(params.type)) != -1
     else
       @all()
