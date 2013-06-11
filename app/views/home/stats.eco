@@ -1,6 +1,6 @@
 <div class="counters"> 
   <div class="box-black-numbers">
-    <span class="numbers"><%=@archiveCount%></span>
+    <span class="numbers"><%= @archiveCount %></span>
     <span class="subtitle">Collections available</span>
   </div>
   <div class="box-black-numbers">
@@ -8,7 +8,7 @@
     <span class="subtitle">Total transcriptions</span>
   </div>
   <div class="box-black-numbers">
-    <span class="numbers"><%=@progress%>%</span>
+    <span class="numbers"><%= @progress %>%</span>
     <span class="subtitle">Transcription progress</span>
   </div>
   <div class="box-black-numbers">
