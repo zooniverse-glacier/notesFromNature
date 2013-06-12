@@ -6,7 +6,7 @@
     "spine": "~1.0.5",
     "underscore": "latest",
     "nib": "latest",
-    "clean-css" : "latest",
-    "zooniverse": "git+ssh://git@github.com:zooniverse/Zooniverse.git#no-deps"
+    "clean-css": "latest",
+    "zooniverse": "git://github.com/zooniverse/Zooniverse.git#no-deps"
   }
 }
