@@ -44,6 +44,11 @@ class TranscriptionController extends Spine.Site
         Spine.Route.navigate '/archives' # Rather abrupt, but at least a user doesn't sit at a blank page.
 
     @transcriptionController.startWorkflow(@archive)
+
+    $(document).on 'keydown.nfn keypress.nfn', (e) ->
+      if e.which is 8 and not (e.target.tagName is 'INPUT')
+        e.preventDefault()
+
     @render()
 
   deactivate: =>
@@ -53,5 +58,6 @@ class TranscriptionController extends Spine.Site
     Subject.destroyAll()
     Spine.unbind 'finishedTranscription'
     Spine.unbind 'skipTranscription'
+    $(document).off 'keydown.nfn keypress.nfn'
 
 module.exports = TranscriptionController
