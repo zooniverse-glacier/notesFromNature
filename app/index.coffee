@@ -22,10 +22,13 @@ LoginController = require 'controllers/LoginController'
 ProfileController = require 'controllers/ProfileController'
 
 Api = require 'zooniverse/lib/api'
+
+Project = require 'zooniverse/models/project'
 Subject = require 'zooniverse/models/subject'
+User = require 'zooniverse/models/user'
+
 TopBar = require 'zooniverse/controllers/top-bar'
 Footer = require 'zooniverse/controllers/footer'
-User = require 'zooniverse/models/user'
 
 Archive = require 'models/Archive'
 Badge = require 'models/Badge'
@@ -80,6 +83,7 @@ User.on 'change', (e, user) =>
   Badge.getUserBadges() if user
 
 Institute.fetch()
+Project.fetch()
 User.fetch()
 Subject.queueLength = 3
 

@@ -11,7 +11,8 @@
     "zooniverse/lib/api",
     "zooniverse/models/classification",
     "zooniverse/models/subject",
-    "zooniverse/models/user"
+    "zooniverse/models/user",
+    "zooniverse/models/project"
   ],
   "libs": [
     "node_modules/Zooniverse/vendor/base64.js",

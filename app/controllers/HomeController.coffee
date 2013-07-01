@@ -1,4 +1,5 @@
 Api  = require 'zooniverse/lib/api'
+Project = require 'zooniverse/models/project'
 
 Archive = require 'models/Archive'
 Institute = require 'models/Institute'
@@ -10,20 +11,15 @@ class HomeController extends Spine.Site
     super
     @render()
 
-    Institute.bind 'refresh', =>
-      @render()
-
-    Api.current.get '/projects/notes_from_nature', (data) =>
-      @project = data
-      window.project = @project
-      @render()
+    Institute.bind 'refresh', @render
+    Project.on 'fetch', @render
 
   render: =>
     totalStats = Institute.allStats()
 
-    transcriptions = window.project?.classification_count
-    progress = ((window.project?.classification_count / (totalStats.total * 10)) * 100).toPrecision(3)
-    user_count = @project?.user_count || 0
+    transcriptions = Project.current?.classification_count
+    progress = ((Project.current?.classification_count / (totalStats.total * 10)) * 100).toPrecision(3)
+    user_count = Project.current?.user_count || 0
 
     @html require('views/home/splash')()
     @append require('views/home/stats')
