@@ -59,12 +59,16 @@ new_format = [{
   }]
 },{
   name: 'scientific_name'
+  display: 'Scientific Name'
+  helper_text: 'Scientific Name'
   type: 'input'
 },{
   name: 'location'
+  display: 'Location'
   type: 'input'
 },{
   name: 'date_collected'
+  display: 'Date Collected'
   type: 'multi'
   sub_fields: [{
     name: 'collected_year'

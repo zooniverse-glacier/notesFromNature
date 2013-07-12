@@ -46,3 +46,16 @@ module.exports =
         "image":"images/img-collections5.jpg"
         "thumbnail":"images/calbug.png"
         "headerImage": "images/archives/calbugBg2.jpg"
+  "NHM":
+    "name": "Natural History Museum"
+  "Ornithological":
+    "name":"Ornithological"
+    "categories":["Birds"]
+    "metadata":
+      "description":""
+      "snippet": ""
+      "difficulty":"Very Hard"
+      "location":
+        "image":"images/img-collections2.jpg"
+        "headerImage": "images/archives/birdsBg.jpg"
+    

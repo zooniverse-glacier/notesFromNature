@@ -2,6 +2,7 @@ Archive = require 'models/Archive'
 Institute = require 'models/Institute'
 Subject = require 'zooniverse/models/subject'
 
+Birds = require 'controllers/interfaces/birds'
 BugsTranscriptionController = require 'controllers/interfaces/bugs'
 SernacTranscriptionController = require 'controllers/interfaces/plants'
 
@@ -40,6 +41,7 @@ class TranscriptionController extends Spine.Site
     switch @archive.slug()
       when 'calbug' then @transcriptionController = new BugsTranscriptionController()
       when 'herbarium' then @transcriptionController = new SernacTranscriptionController()
+      when 'ornithological' then @transcriptionController = new Birds()
       else
         Spine.Route.navigate '/archives' # Rather abrupt, but at least a user doesn't sit at a blank page.
 

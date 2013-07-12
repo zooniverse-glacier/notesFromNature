@@ -1,425 +1,463 @@
-# Api = require 'zooniverse/lib/api'
-# User  = require 'zooniverse/lib/models/user'
+Api = require 'zooniverse/lib/api'
+Classification = require 'zooniverse/models/classification'
+Subject = require 'zooniverse/models/subject'
+User = require 'zooniverse/models/user'
 
-# data_fields = require 'lib/birds_fields'
+data_fields = require 'lib/birds_fields'
 
-# Interfaces = require 'controllers/interfaces'
-# Classification = require 'models/Classification'
+Interfaces = require 'controllers/interfaces'
+
+$.fn.center = ->
+  @css
+    top: (@parent().height() / 2) - (@height() / 2)
+    left: (@parent().width() / 2) - (@width() / 2)
+
+$.fn.pixels = (property) ->
+  parseInt(@css(property).slice(0, -2))
+
+DEBUG = true
+
+log = (args...) ->
+  if DEBUG then console.log args...
 
 
-# $.fn.center = ->
-#   @css
-#     top: (@parent().height() / 2) - (@height() / 2)
-#     left: (@parent().width() / 2) - (@width() / 2)
 
-# $.fn.pixels = (property) ->
-#   parseInt(@css(property).slice(0, -2))
+class Field extends Spine.Controller
 
+  events:
+    'click #done': 'done'
+    'click #next': 'next'
 
+  constructor: (opts) ->
+    super
+    @id = opts.id if opts?.id?
+    @opField = opts.field if opts?.field?
+    @data = opts.data if opts?.data?
 
-# class Field extends Spine.Controller
-
-#   events:
-#     'click #done': 'done'
-#     'click #next': 'next'
-
-#   constructor: (opts) ->
-#     super
-#     @id = opts.id if opts?.id?
-#     @opField = opts.field if opts?.field?
-#     @data = opts.data if opts?.data?
-
-#     @html @template({id: @id, field: @opField})
-#     @setValue()
+    @html @template({id: @id, field: @opField})
+    @setValue()
     
-#   done: =>
-#     @trigger 'done', {name: @opField.name, value: @getValue()}
-
-#   next: =>
-#     @trigger 'next', {name: @opField.name, value: @getValue()}
-
-# class MultiField extends Field
-#   className: 'field multi'
-#   template: require 'views/transcription/interfaces/birds/fields/multi'
-
-#   constructor: (opts) ->
-#     throw new Error('Must provide sub fields for MultiField') unless opts.field.sub_fields
-#     super
-
-#     opField = @opField
-#     @el.find('input, select').each (i) ->
-#       $(@).focus ->
-#         $(@).removeClass 'focus-text'
-#         if $(@).val() is opField.sub_fields[i].helper_text
-#           $(@).val ''
+  done: =>
+    @trigger 'done', {name: @opField.name, value: @getValue()}
+
+  next: =>
+    @trigger 'next', {name: @opField.name, value: @getValue()}
+
+class MultiField extends Field
+  className: 'field multi'
+  template: require 'views/transcription/interfaces/birds/fields/multi'
+
+  constructor: (opts) ->
+    throw new Error('Must provide sub fields for MultiField') unless opts.field.sub_fields
+    super
+
+    opField = @opField
+    @el.find('input, select').each (i) ->
+      $(@).focus ->
+        $(@).removeClass 'focus-text'
+        if $(@).val() is opField.sub_fields[i].helper_text
+          $(@).val ''
+
+      $(@).blur ->
+        if $(@).val() is ''
+          $(@).addClass 'focus-text'
+          $(@).val opField.sub_fields[i].helper_text
+
+  getValue: =>
+    data = []
+    opField = @opField
+
+    log 'getting value of multi field', @el, @el.find('input, select')
 
-#       $(@).blur ->
-#         if $(@).val() is ''
-#           $(@).addClass 'focus-text'
-#           $(@).val opField.sub_fields[i].helper_text
-
-#   getValue: =>
-#     data = []
-#     opField = @opField
-
-#     console.log 'getting value of multi field', @el, @el.find('input, select')
-#     @el.find('input, select').each (i) ->
-#       console.log 'field val', $(@).val()
-#       if $(@).val() is opField.sub_fields[i].helper_text
-#         data.push ''
-#       else
-#         data.push $(@).val()
-#     return data
-
-#   setValue: =>
-#     data = @data
-#     opField = @opField
-
-#     @el.find('input, select').each (i) ->
-#       console.log 'setValue', data, i
-#       if data?.data?.value?[i]?
-#         console.log 'data exists at i', data.data.value[i]
-#         $(@).val data.data.value[i]
-#       else
-#         $(@).val opField.sub_fields[i].helper_text
-#         $(@).addClass 'focus-text'
-
+    @el.find('input, select').each (i) ->
+      console.log 'field val', $(@).val()
+      if $(@).val() is opField.sub_fields[i].helper_text
+        data.push ''
+      else
+        data.push $(@).val()
+    return data
 
-# class InputField extends Field
-#   className: 'field input'
-#   template: require 'views/transcription/interfaces/birds/fields/input'
+  setValue: =>
+    data = @data
+    opField = @opField
 
-#   elements:
-#     '#field': 'field'
-
-#   getValue: =>
-#     @field.val()
-
-#   setValue: =>
-#     if @data?.data?.value?
-#       @field.val @data.data.value
-#     else
-#       console.log ''
-
-# class FieldBox extends Spine.Controller
-#   className: 'field-box'
-#   template: require 'views/transcription/interfaces/birds/field_box'
-
-#   elements:
-#     'ul': 'fieldList'
-
-#   events:
-#     'click li': 'onClickField'
-
-#   constructor: (opts) ->
-#     super
-#     @html @template({fields: opts.fields})
-
-#     opts.widget.bind 'next', (currentField) =>
-#       @fieldList.css
-#         top: -(currentField * 60)
-
-#   onClickField: (e) ->
-#     @trigger 'select-field', $(e.currentTarget).index()
-
-# class EntryWidget extends Spine.Controller
-#   className: 'data-entry'
-#   template: require 'views/transcription/interfaces/birds/entry_widget'
-
-#   data: {}
-
-#   elements:
-#     '#entity': 'entity'
-#     '#helper-box': 'helperBox'
-
-#   @loadFormat: (fields) ->
-#     @::fields = fields
-
-#   constructor: (opts) ->
-#     super
-#     @fields = opts.fields if opts?.fields?
-
-#     @currentField = 0
-
-#     @html @template({fields: @fields})
-
-#     @fieldBox = new FieldBox {fields: @fields, widget: @}
-#     @prepend @fieldBox.el
-
-#     @fieldBox.bind 'select-field', (id) =>
-#       @currentField = id
-#       @renderField()
-
-#   # Public
-#   load: (@record) =>
-#     @currentField = 0
-#     @renderField()
-
-#   start: => @renderField()
-#   next: => @saveAndContinue({})
-#   destroy: =>
-#     @el.fadeOut =>
-#       @el.remove()
+    @el.find('input, select').each (i) ->
+      log 'setValue', data, i
+      if data?.data?.value?[i]?
+        log 'data exists at i', data.data.value[i]
+        $(@).val data.data.value[i]
+      else
+        $(@).val opField.sub_fields[i].helper_text
+        $(@).addClass 'focus-text'
 
-#   # Private
-#   renderField: =>
-#     console.log 'Fields:', @fields, @record
 
-#     data = @record?.load(@currentField) || []
-#     field = @fields[@currentField]
+class InputField extends Field
+  className: 'field input'
+  template: require 'views/transcription/interfaces/birds/fields/input'
+
+  elements:
+    '#field': 'field'
 
-#     switch field.type
-#       when 'input' then FieldType = InputField
-#       when 'multi' then FieldType = MultiField
+  getValue: =>
+    @field.val()
 
-#     console.log 'data im passing into the field', data, field, @id
-#     the_field = new FieldType {id: @id, field: field, data: data}
-#     the_field.bind 'next done', @saveAndContinue
+  setValue: =>
+    if @data?.data?.value?
+      @field.val @data.data.value
+    else
+      log ''
+
+class FieldBox extends Spine.Controller
+  className: 'field-box'
+  template: require 'views/transcription/interfaces/birds/field_box'
+
+  elements:
+    'ul': 'fieldList'
 
-#     @entity.html the_field.el
-
-#     if field.description
-#       @helperBox.html field.description()
-#       @helperBox.addClass 'shown'
-#     else
-#       @helperBox.removeClass 'shown'
+  events:
+    'click li': 'onClickField'
 
-#   saveAndContinue: (fieldData) =>
-#     @trigger 'data', {id: @id, data: fieldData}
-#     @record?.save {id: @currentField, data: fieldData}
-
-#     if field = @fields[@currentField + 1]
-#       console.log 'Another field to collect data for!'
-#       @currentField += 1
-#       @trigger 'next', @currentField
-#       @renderField()
-#     else
-#       console.log 'No more fields.'
-#       if @record?.isComplete()
-#         console.log 'all fields have valid data.'
-#         @trigger 'done'
-#       else
-#         console.log 'there is a gap somewhere.'
-#         @currentField = 0
-#         @trigger 'next', @currentField
-#         @renderField()
-
-#       @trigger 'done'
-
-
-# class RowBox extends Spine.Controller
-#   className: 'row'
-#   tag: 'span'
-
-#   events:
-#     'mousedown': 'onStartDrag'
-
-#   constructor: ->
-#     super
-#     @html ''
-
-#   onStartDrag: (e) =>
-#     e.preventDefault()
+  fields: {}
+  constructor: (opts) ->
+    super
+    @fields = opts.fields
+    @render()
+
+    opts.widget.bind 'next', (currentField) =>
+      @fieldList.css
+        top: -(currentField * 60)
+
+    opts.widget.bind 'data', ({id, data}) =>
+      # Hmmm
+      dataString = @squashDatum data
+
+      log 'data triggered in field box', id, dataString, @el.find("[data-field-id=#{ id }] .data")
+      @el.find("[data-field-id=#{ id }] .data").html dataString
+
+  render: (rawData) ->
+    @data = @squashData rawData
+    log 'DATA', @data
+    @html @template({fields: @fields, data: @data})
+
+  onClickField: (e) ->
+    @trigger 'select-field', $(e.currentTarget).index()
+
+  squashData: (data = []) ->
+    for datum in data
+      datum = @squashDatum datum.data
 
-#     @dragging = true
-#     $(document).on 'mouseup.moveRow', @onEndDrag
-#     $(document).on 'mousemove.moveRow', (de) =>
-#       if @dragging
-#         @el.css
-#           top: de.pageY - (@el.height() / 2) - 110
-
-#   onEndDrag: (e) =>
-#     @dragging = false
-#     $(document).off 'mousemove.moveRow mouseup.moveRow'
-
-# class Record extends Spine.Controller
-#   @instances: []
-
-#   @resetRecords: =>
-#     for record in @instances
-#       record.selected = false
-#       record.rowBox.el.removeClass 'selected'
-
-#   className: 'record'
-#   tag: 'div'
-
-#   events:
-#     'click': 'select'
-
-#   constructor: (opts) ->
-#     super
-#     @constructor.resetRecords()
-
-#     @id = _.uniqueId()
-#     @data = []
-#     @fields = opts.fields
-#     console.log 'record opts', opts
-
-#     @html ''
+  squashDatum: (datum) ->
+    if typeof datum is Array
+      dataString = datum.join '/'
+    else
+      dataString = datum.value
 
-#     @rowBox = new RowBox
-#     @append @rowBox.el
+    return dataString
 
-#     @constructor.instances.push @
 
-#     @select()
+class EntryWidget extends Spine.Controller
+  className: 'data-entry'
+  template: require 'views/transcription/interfaces/birds/entry_widget'
 
-#   select: =>
-#     if @selected
-#       console.log 'already selected'
-#     else
-#       console.log 'Selecting the row.'
-#       @constructor.resetRecords()
+  data: {}
 
-#       @rowBox.el.addClass 'selected'
-#       @selected = true
-#       @trigger 'select', @
+  elements:
+    '#entity': 'entity'
+    '#helper-box': 'helperBox'
 
-#   save: (data) =>
-#     console.log 'Record: save: data', data
-#     for datum in @data when data.id is datum.id
-#       datum = data
-#       return
+  @loadFormat: (fields) ->
+    @::fields = fields
+
+  constructor: (opts) ->
+    super
+    @fields = opts.fields if opts?.fields?
 
-#     @data.push data
+    @currentField = 0
 
-#   load: (id) =>
-#     console.log 'loading data id #', id
-#     for datum in @data when id is datum.id
-#       console.log 'datum', datum
-#       return datum
+    @html @template({fields: @fields})
+
+    @fieldBox = new FieldBox {fields: @fields, widget: @}
+    @prepend @fieldBox.el
+
+    @fieldBox.bind 'select-field', (id) =>
+      @currentField = id
+      @renderField()
 
-#     console.log 'no data found'
-#     return []
+  # Public
+  load: (@record) =>
+    log 'record', @record
+    @currentField = 0
+    @fieldBox.render(@record.data)
+    @renderField()
 
-#   remove: =>
-#     for r, i in @constructor.instances when r.id is @id
-#       @constructor.instances.splice i, 1
+  start: => @renderField()
+  next: => @saveAndContinue({})
+  destroy: =>
+    @el.fadeOut =>
+      @el.remove()
 
-#   isComplete: =>
-#     completedData = []
+  # Private
+  renderField: =>
+    log 'Fields:', @fields, @record
 
-#     for datum in @data
-#       completed = true
-#       if Array.isArray datum.data.value
-#         for value in datum.data.value
-#           if value is '' then completed = false
-#       else
-#         if datum.data.value is '' then completed = false
+    data = @record?.load(@currentField) || []
+    field = @fields[@currentField]
 
-#       if completed then completedData.push datum
+    switch field.type
+      when 'input' then FieldType = InputField
+      when 'multi' then FieldType = MultiField
 
-#     # if completedData.length is @fields.length then return true else return false
-#     if completedData.length is @fields.length
-#       return true
-#     else
-#       return false
+    log 'data im passing into the field', data, field, @id
+    the_field = new FieldType {id: @id, field: field, data: data}
+    the_field.bind 'next done', @saveAndContinue
 
+    @entity.html the_field.el
 
-# class Birds extends Interfaces
-#   className: 'birds-interface'
-#   template: require 'views/transcription/interfaces/birds'
+    if field.description
+      @helperBox.html field.description()
+      @helperBox.addClass 'shown'
+    else
+      @helperBox.removeClass 'shown'
 
-#   records: []
+  saveAndContinue: (fieldData) =>
+    log 'save and continue', @
+    @trigger 'data', {id: @currentField, data: fieldData}
+    @record?.save {id: @currentField, data: fieldData}
 
-#   elements:
-#     '#buttons': 'buttons'
-#     '#entry-widget': 'entryWidget'
-#     '#images': 'images'
-#     '#rows': 'rows'
-#     '#transcription-area': 'workspace'
+    if field = @fields[@currentField + 1]
+      log 'Another field to collect data for!'
+      @currentField += 1
+      @trigger 'next', @currentField
+      @renderField()
+    else
+      log 'No more fields.'
+      if @record?.isComplete()
+        log 'all fields have valid data.'
+        @trigger 'done'
+      else
+        log 'there is a gap somewhere.'
+        @currentField = 0
+        @trigger 'next', @currentField
+        @renderField()
 
-#   events:
-#     'click #new-row': 'onCreateNewRow'
-#     'click #finish': 'finish'
-#     'click #power': 'exit'
+      @trigger 'done'
 
-#   constructor: ->
-#     super
 
-#   startWorkflow: (@archive) =>
-#     @render({archive: @archive, preferences: @preferences})
+class RowBox extends Spine.Controller
+  className: 'row'
+  tag: 'span'
+
+  events:
+    'mousedown': 'onStartDrag'
 
-#     @delay =>
-#       @workspace.height ($(window).height() - @workspace.pixels('margin-top'))
-#       @nextSubject()
+  constructor: ->
+    super
+    @html ''
 
-#   nextSubject: =>
-#     loadingIndicator = new Spinner({color: '#fff', shadow: true, width: 4}).spin(document.getElementsByClassName(@className)[0])
+  onStartDrag: (e) =>
+    e.preventDefault()
 
-#     @archive.nextSubject (@currentSubject) =>
-#       @classification = new Classification
+    @dragging = true
+    $(document).on 'mouseup.moveRow', @onEndDrag
+    $(document).on 'mousemove.moveRow', (de) =>
+      if @dragging
+        @el.css
+          top: de.pageY - (@el.height() / 2) - 110
 
-#       for type, source of @currentSubject.location
-#         img = new Image
-#         img.src = source
-#         img.id = type
+  onEndDrag: (e) =>
+    @dragging = false
+    $(document).off 'mousemove.moveRow mouseup.moveRow'
 
-#         @images.append img
+class Record extends Spine.Controller
+  @instances: []
 
-#       # subject will have type of record on it. For now, pick one
-#       EntryWidget.loadFormat [{name: 'page_number', type: 'input'}]
+  @resetRecords: ->
+    for record in @instances
+      record.selected = false
+      record.rowBox.el.removeClass 'selected'
 
-#       @images.imagesLoaded =>
-#         loadingIndicator.stop()
-#         corner = document.getElementById 'corner'
-#         $(corner).center().show()
+  className: 'record'
+  tag: 'div'
 
-#         # Get page number
-#         numberWidget = new EntryWidget
-#         numberWidget.el.appendTo @workspace
-#         numberWidget.start()
+  events:
+    'click': 'select'
 
-#         numberWidget.bind 'data', (annotation) =>
-#           console.log 'Adding classification'
-#           @classification.addAnnotation annotation
+  constructor: (opts) ->
+    super
+    @constructor.resetRecords()
 
-#         numberWidget.bind 'done', =>
-#           console.log 'Collected data for all fields in the format.'
-#           numberWidget.destroy()
+    @id = _.uniqueId()
+    @data = []
+    @fields = opts.fields
+    log 'record opts', opts
+
+    @html ''
 
-#           corner = document.getElementById 'corner'
-#           page = document.getElementById 'page'
+    @rowBox = new RowBox
+    @append @rowBox.el
 
-#           $(corner).hide()
-#           $(page).show()
-#           @buttons.fadeIn()
+    @constructor.instances.push @
 
-#           @pageWidget = new EntryWidget {fields: data_fields.new_format}
-#           @pageWidget.el.appendTo @workspace
+    @select()
 
-#   finish: =>
-#     for record in @records
-#       @classification.addAnnotation record.data
+  select: =>
+    if @selected
+      log 'already selected'
+    else
+      log 'Selecting the row.'
+      @constructor.resetRecords()
 
-#     @classification.send()
-#     @reset()
-#     @nextSubject()
+      @rowBox.el.addClass 'selected'
+      @selected = true
+      @trigger 'select', @
 
-#   reset: =>
-#     @buttons.fadeOut()
-#     @images.empty()
+  save: (data) =>
+    log 'Record: save: data', data
+    for datum in @data when data.id is datum.id
+      datum = data
+      return
 
-#     record.unbind() for record in @records
-#     @records = []
+    @data.push data
 
-#   # Events
-#   onCreateNewRow: (e) =>
-#     record = new Record {fields: @pageWidget.fields}
-#     record.el.appendTo @rows
-#     @records.push record
+  load: (id) =>
+    log 'loading data id #', id
+    for datum in @data when id is datum.id
+      log 'datum', datum
+      return datum
 
-#     @pageWidget.load record
+    log 'no data found'
+    return []
 
-#     record.bind 'select', =>
-#       console.log 'record', record, @
-#       @pageWidget.load record
+  remove: =>
+    for r, i in @constructor.instances when r.id is @id
+      @constructor.instances.splice i, 1
 
-#     record.trigger 'start'
+  collect: =>
+    data: @data
+    top: @rowBox.el.css 'top'
 
-#   onFinish: (e) =>
-#     @finish()
+  isComplete: =>
+    completedData = []
 
+    for datum in @data
+      completed = true
+      if Array.isArray datum.data.value
+        for value in datum.data.value
+          if value is '' then completed = false
+      else
+        if datum.data.value is '' then completed = false
 
+      if completed then completedData.push datum
 
-# module.exports = Birds
+    # if completedData.length is @fields.length then return true else return false
+    if completedData.length is @fields.length
+      return true
+    else
+      return false
+
+
+class Birds extends Interfaces
+  className: 'birds-interface'
+  template: require 'views/transcription/interfaces/birds'
+
+  records: []
+
+  elements:
+    '#buttons': 'buttons'
+    '#entry-widget': 'entryWidget'
+    '#images': 'images'
+    '#rows': 'rows'
+    '#transcription-area': 'workspace'
+
+  events:
+    'click #new-row': 'onCreateNewRow'
+    'click #finish': 'finish'
+    'click #power': 'exit'
+
+  startWorkflow: (@archive) =>
+    @render({archive: @archive, preferences: @preferences})
+
+    @delay =>
+      @workspace.height ($(window).height() - @workspace.pixels('margin-top'))
+      Subject.group = @archive.id
+      Subject.next()
+
+  nextSubject: =>
+    loadingIndicator = new Spinner({color: '#fff', shadow: true, width: 4}).spin(document.getElementsByClassName(@className)[0])
+    @classification = new Classification subject: Subject.current
+
+    for type, source of Subject.current.location
+      img = new Image
+      img.src = source
+      img.id = type
+
+      @images.append img
+
+    # subject will have type of record on it. For now, pick one
+    EntryWidget.loadFormat [{name: 'page_number', display: 'Page Number', helper_text: 'Page Number', type: 'input'}]
+
+    @images.imagesLoaded =>
+      loadingIndicator.stop()
+      $('#corner').center().show()
+
+      # Get page number
+      numberWidget = new EntryWidget
+      numberWidget.el.appendTo @workspace
+      numberWidget.start()
+
+      numberWidget.bind 'data', (annotation) =>
+        @classification.annotate annotation
+
+      numberWidget.bind 'done', =>
+        numberWidget.destroy()
+
+        $('#corner').hide()
+        $('#page').show()
+
+        @buttons.fadeIn()
+
+        @pageWidget = new EntryWidget {fields: data_fields.new_format}
+        @pageWidget.el.hide()
+        @pageWidget.el.appendTo @workspace
+
+  finish: =>
+    for record in @records
+      @classification.annotate record.collect()
+
+    log 'CLASSIFICATION', @classification
+    @classification.send()
+    @reset()
+    Subject.next()
+
+  reset: =>
+    @pageWidget.destroy()
+    @buttons.fadeOut()
+    @images.empty()
+    @rows.empty()
+
+    record.unbind() for record in @records
+    @records = []
+
+  # Events
+  onCreateNewRow: (e) =>
+    record = new Record {fields: @pageWidget.fields}
+    record.el.appendTo @rows
+    @records.push record
+
+    @pageWidget.el.show()
+    @pageWidget.load record
+
+    record.bind 'select', =>
+      log 'record', record, @
+      @pageWidget.load record
+
+    record.trigger 'start'
+
+  onFinish: (e) =>
+    @finish()
+
+  exit: =>
+    Spine.Route.navigate window.location.hash.split('/').slice(0,3).join('/')
+
+
+module.exports = Birds

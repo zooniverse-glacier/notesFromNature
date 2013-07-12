@@ -1,3 +1,5 @@
+<button id="finish" class="action">Finish</button>
+
 <section class="entry" id="entry">
   <div id="entity"></div>
 </section>

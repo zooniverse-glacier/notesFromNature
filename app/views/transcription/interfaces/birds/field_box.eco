@@ -3,7 +3,10 @@
     <ul>
     <% for field, i in @fields: %>
       <% name = if field.display? then field.display else field.name %>
-      <li data-field-id="<%- i %>"><%- name %></li>
+      <li data-field-id="<%- i %>">
+        <div class="label"><%- name %></div>
+        <div class="data"><%- @data?[i] || '' %></div>
+      </li>
     <% end %>
     </ul>
   <% end %>

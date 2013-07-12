@@ -21,20 +21,15 @@
   <div class="col1">
     <div class="box-right">
       <ul class="status-list">
-
-        <li>
-          <span class="text">TEMPORAL RANGE</span><%= @archive.metadata.start_date %> / <%= @archive.metadata.end_date %>
-        </li>
-
-        <% if @archive.metadata.regions: %>
-        <li>
-          <span class="text">GEOGRAPHIC CONTEXT</span> <%= @archive.metadata.regions.join(" | ") %>
-        </li>
+        <% if @archive.metadata.start_date and @archive.metadata.end_date: %>
+          <li><span class="text">TEMPORAL RANGE</span><%= @archive.metadata.start_date %> / <%= @archive.metadata.end_date %></li>
         <% end %>
 
-        <li>
-          <span class="text">TAXONOMIC COVERAGE</span><%= @archive.categories.join(" | ") %>
-        </li>
+        <% if @archive.metadata.regions: %>
+          <li><span class="text">GEOGRAPHIC CONTEXT</span> <%= @archive.metadata.regions.join(" | ") %></li>
+        <% end %>
+
+        <li><span class="text">TAXONOMIC COVERAGE</span><%= @archive.categories.join(" | ") %></li>
 
         <li>
           <span class="text">PROGRESS - <%- @archive.recordsComplete() %> / <%- @archive.total() %></span>

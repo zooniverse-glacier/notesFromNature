@@ -14,7 +14,7 @@ class Institute extends Spine.Model
       window.inst = data
 
       institutes = (group for group in data  when group.type == 'institution')
-      institutes = (institute for institute in institutes when institute.name != 'The Natural History Museum')
+      institutes = (institute for institute in institutes)
       archives = (group for group in data  when group.type == 'archive')
 
       for institute in institutes

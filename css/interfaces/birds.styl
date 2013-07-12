@@ -1,10 +1,10 @@
 #interface-box
-  background: rgba(#000, 0.8)
+  background: rgba(#000, 0.75)
   border: 1px solid #000
   border-radius: 6px
   box-shadow: 0 0 15px 2px rgba(#000, 0.4)
   box-sizing: border-box
-  padding: 14px 15px 15px
+  padding: 11px 12px 13px
 
 
 .birds-interface
@@ -21,7 +21,7 @@
       top: 0
       width: 100%
 
-  $data-entry-height = 60px
+  $data-entry-height = 54px
   .data-entry
     @extends #interface-box
     bottom: 20px
@@ -34,6 +34,19 @@
 
     > *
       display: inline-block
+
+    button
+      background: #693
+      border: 2px solid #fff
+      border-radius: 3px
+      color: #fff
+      font-family: 'Open Sans', sans-serif
+      font-size: 11px
+      text-transform: uppercase
+
+      &.action
+        background: #f90
+        float: right
 
     > .helper-box
       @extends #interface-box
@@ -54,7 +67,7 @@
       bottom: 0
       font-size: 0.85em
       left: -200px
-      padding: 14px 0 15px 0
+      padding: 0
       position: absolute
       width: 180px
 
@@ -65,12 +78,28 @@
           transition: all 0.7s cubic-bezier(.27, .66, .49, .95)
 
           li
+            box-sizing: border-box
             border-bottom: 1px solid #777
             color: #fff
-            height: $data-entry-height
+            height: 50px
+            padding: 4px 10px
+            transition: all 0.1s cubic-bezier(.27, .66, .49, .95)
 
             &:hover
               background: rgba(#bbb, 0.5)
+              cursor: pointer
+
+            &:first-child
+              border-top-left-radius: 6px
+              border-top-right-radius: 6px
+
+            &:last-child
+              border-bottom-color: transparent
+              border-bottom-left-radius: 6px
+              border-bottom-right-radius: 6px
+
+            .label
+              font-weight: 700
 
             .data
               color: #0f0
@@ -116,16 +145,6 @@
 
           &.focus-text
             color: #999
-
-        button
-          background: #693
-          border: 2px solid #fff
-          border-radius: 3px
-          color: #fff
-          font-family: 'Open Sans', sans-serif
-          font-size: 11px
-          text-transform: uppercase
-
 
     .actions
       float: right
@@ -199,6 +218,7 @@
 
     img
       display: none
+      box-shadow: 0 0 25px 0 rgba(#000, 0.5)
 
       &#corner
         position: absolute
@@ -207,11 +227,6 @@
         box-sizing: border-box
         padding: 0 10px $transcription-area-padding
         width: 100%
-
-
-
-
-
 
   .boxes
     margin: 150px 100px
