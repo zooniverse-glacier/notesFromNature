@@ -19,7 +19,7 @@ FAQController = require 'controllers/FAQController'
 HomeController = require 'controllers/HomeController'
 InstituteShowController = require 'controllers/InstituteShowController'
 LoginController = require 'controllers/LoginController'
-ProfileController = require 'controllers/ProfileController'
+Profile = require 'controllers/profile'
 
 Api = require 'zooniverse/lib/api'
 
@@ -51,7 +51,7 @@ app.stack = new Spine.Stack
     archives: Archives
     instituteShow: InstituteShowController
     login: LoginController
-    profile: ProfileController
+    profile: Profile
     about: AboutController
     badges: BadgesController
 
