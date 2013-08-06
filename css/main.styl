@@ -11,6 +11,12 @@
 
 *[lang='de'], *[lang='pl']
   display : none
+  
+#no-select
+  user-select: none
+
+.no-transition
+  transition: none !important
 
 /* Better than clearfix */
 aside:after, div:after, form:after, header:after, nav:after, ul:after, li:after, article:after, caption:after, ol:after, footer:after {
@@ -193,9 +199,11 @@ span.subtitle
     text-shadow: 1px 1px 8px #000
 
 .home
+
   .col3
     margin: 0 !important
     width: 100% !important
+
   hgroup 
     margin: 38px 0 120px 0
 
@@ -257,15 +265,6 @@ h3.title
 
   &.black
     color: #666
-
-img.badge
-  max-width: 88px
-
-h3.badge {
-  color: #333;
-  font-size: 19px;
-  font-weight: 600;
-}
 
 span.numbers {
   color: #FFF;
@@ -1232,10 +1231,12 @@ h1.notlogged
   form
     text-align: center
 
-.ProfileController 
+.profile 
   margin-bottom: 39px
+
   .title.user
     margin-left: -6px
+    
 .BadgeController 
   margin-bottom: 39px
 

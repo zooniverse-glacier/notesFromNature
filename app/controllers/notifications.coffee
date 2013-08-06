@@ -3,7 +3,7 @@ Badge = require 'models/Badge'
 class NotificationController extends Spine.Controller
   className: 'notifications'
 
-  elements: 
+  elements:
     'ul': 'notifications'
 
   events:

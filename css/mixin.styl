@@ -38,24 +38,30 @@
 .columns
   clearfix()
 
-  .column
+  > .column
     box-sizing: border-box
     float: left
-    margin: 0 0 0 25px
+    padding: 0 15px
 
   &.one
 
-    .column
+    > .column
       width: 100%
       
   &.two
 
-    .column
+    > .column
+      width: 50%
 
       &.wide
         width: 66%
 
       &.narrow
         width: 33%
+
+  &.three
+
+    > .column
+      width: 33%
 
 

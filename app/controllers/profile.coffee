@@ -2,8 +2,8 @@ User  = require 'zooniverse/models/user'
 Badge = require 'models/Badge'
 Archive = require 'models/Archive'
 
-class ProfileController extends Spine.Controller
-  className: 'ProfileController'
+class Profile extends Spine.Controller
+  className: 'profile'
 
   constructor: ->
     super
@@ -18,11 +18,8 @@ class ProfileController extends Spine.Controller
     @render()
 
   render: =>
-    if User.current
-      @html require('views/profile/profile')
-        user: User.current
-        archives: Archive.records
-    else
-      @html require('views/profile/notLoggedIn')
+    @html require('views/profile')
+      user: User.current
+      archives: Archive.records
     
-module.exports = ProfileController
+module.exports = Profile

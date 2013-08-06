@@ -1,26 +1,20 @@
-<div class="box-general">       
-  <div class="col3">
-    <h3 class="title">Why should you get involved?</h3>
-  </div>
-  <div class="col1 omega">
-    <div class="center">
+<div class="box-general">
+  <h3 class="title center">Why should you get involved?</h3>
+  <div class="columns three center">
+    <div class="column">
       <img src="images/home_icon_bird.png" alt="avian best friend">
-      <h3 class="badge">To improve our world.</h3>
-      <p class="badge">Museum records contain historical biodiversity data. Scientists and researchers can use the data to conduct new research and make better conservation decisions.<p> 
+      <h3>To improve our world.</h3>
+      <p>Museum records contain historical biodiversity data. Scientists and researchers can use the data to conduct new research and make better conservation decisions.<p> 
     </div>
-  </div>
-  <div class="col1 omega">  
-    <div class="center">
+    <div class="column">
       <img src="images/home_icon_troffee.png" alt="avian best friend">
-      <h3 class="badge">Transcribe with pride!</h3>
-      <p class="badge">Transcribe records in any collection and earn badges along the way!<p>
+      <h3>Transcribe with pride!</h3>
+      <p>Transcribe records in any collection and earn badges along the way!<p>
     </div>
-  </div>
-  <div class="col1">  
-    <div class="center">
+    <div class="column">
       <img src="images/home_icon_lab.png" alt="avian best friend">
-      <h3 class="badge">You are contributing to real science. Thank you!</h3>
-      <p class="badge">The digitized data you are creating will help advance research related to species extinction, ecosystem changes, environmental health and even human health.<p>
+      <h3>You are contributing to real science. Thank you!</h3>
+      <p>The digitized data you are creating will help advance research related to species extinction, ecosystem changes, environmental health and even human health.<p>
     </div>
   </div>
 </div>
@@ -33,9 +27,6 @@
       <h3 class="title"><%= @users %> Users already participating</h3>
     <% end %>
     <p>We have thousands of specimen images, labels and ledgers from museum collections and the biologists who maintain those collections. These contain information about the where and when a species was found in the past. We need you to help us transcribe that data and make it available for further use in biodiversity and conservation research. Along the way, you will be possibly be finding species that have never been observed anywhere else!</p>
-    <!-- <span class="mar-button">
-      <a href="#/archives" class="button next"><span>TRY IT OUT</span></a>
-    </span> -->
   </div>
   <div class="col3">
     <div class="box-logos">

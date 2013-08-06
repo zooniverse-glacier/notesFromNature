@@ -4,6 +4,7 @@ class SubPage extends Spine.Site
 
   constructor: ->
     super
-    @html @template({content: @content()})
+    @html @template
+    	content: @content()
 
 module.exports = SubPage

@@ -1,18 +1,22 @@
 Archive = require 'models/Archive'
 Badge = require 'models/Badge'
 
+ACTIVE = true
+
 class BadgesController extends Spine.Controller
   className: 'BadgeController'
 
   constructor: ->
     super
-    Archive.bind 'refresh', =>
-      @loadBadge()
-      @render()
+    
+    if ACTIVE
+      Archive.bind 'refresh', =>
+        @loadBadge()
+        @render()
 
-    Badge.bind 'badgesLoaded', =>
-      @loadBadge()
-      @render()
+      Badge.bind 'badgesLoaded', =>
+        @loadBadge()
+        @render()
 
   loadBadge: (name = null) =>
     @badgeName = name if name?
