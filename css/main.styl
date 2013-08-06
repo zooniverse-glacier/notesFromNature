@@ -192,28 +192,43 @@ span.subtitle
     margin: 0
     text-shadow: 1px 1px 8px #000
 
+.home
+  .col3
+    margin: 0 !important
+    width: 100% !important
+  hgroup 
+    margin: 38px 0 120px 0
 
-.home hgroup {
-  margin: 60px 0 82px 0;
-}
-.home h3 {
-  color: #FFF;
-  font-size: 25px;
-  line-height: 30px;
-  margin-top: 40px;
-  text-shadow: 1px 1px 6px #000;
-  font-weight: 600;
-  margin: 0 0 5px 0;
-}
-.home h2 {
-  color: #FFF;
-  font-size: 81px;
-  line-height: 73px;
-  text-shadow: 1px 1px 6px #000;
-  font-weight: 800;
-  letter-spacing: -2px;
-  margin: 0;
-}
+  h2, h3, h4
+    color: #fff
+
+  h2
+    font-size: 81px
+    line-height: 73px
+    text-shadow: 1px 1px 8px #000
+    font-weight: 800
+    letter-spacing: -2px
+    margin: 0
+
+  h3
+    font-size: 25px
+    line-height: 30px
+    margin-top: 40px
+    text-shadow: 1px 1px 6px rgba(#000, 0.8)
+    font-weight: 600
+    margin: 0 0 5px 0
+
+    a
+      border-bottom: 1px dashed #fff
+      color: #fff
+
+      &:hover
+        text-shadow: 1px 1px 15px #000
+
+  h4
+    margin: 0.5em 0
+    text-shadow: 1px 1px 6px #000
+
 
 h2.title {
   font-size: 39px;
@@ -454,7 +469,7 @@ a.badge {
   padding-bottom: 40px;
 }
 .box-general.home {
-  background: white url(images/bg-home.jpg) no-repeat top left;
+  background: white url(images/bg-home.jpg) no-repeat center;
   height: 500px;
   width: 950px;
   margin-bottom: 41px;
@@ -533,7 +548,7 @@ a.badge {
   font-size: 21px;
   font-weight: 300;
 
-  box-shadow: 0px 0px 5px rgba(#000, .5);
+  box-shadow: 0px 0px 10px rgba(#000, .5);
 
   padding: 23px 0;
 
