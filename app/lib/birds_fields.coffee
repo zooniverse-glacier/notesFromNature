@@ -61,10 +61,13 @@ new_format = [{
   name: 'scientific_name'
   display: 'Scientific Name'
   helper_text: 'Scientific Name'
+  size: 'large'
   type: 'input'
 },{
   name: 'location'
   display: 'Location'
+  helper_text: 'Location'
+  size: 'large'
   type: 'input'
 },{
   name: 'date_collected'
@@ -72,12 +75,15 @@ new_format = [{
   type: 'multi'
   sub_fields: [{
     name: 'collected_year'
+    helper_text: 'Year Collected'
     type: 'input'
   },{
     name: 'collected_month'
+    helper_text: 'Month Collected'
     type: 'input'
   },{
     name: 'collected_day'
+    helper_text: 'Day Collected'
     type: 'input'
   }]
 }]

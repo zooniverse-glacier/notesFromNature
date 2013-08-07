@@ -6,6 +6,25 @@
   box-sizing: border-box
   padding: 11px 12px 13px
 
+#birds-button
+  background: #693
+  border: 2px solid #fff
+  border-radius: 3px
+  color: #fff
+  font-family: 'Open Sans', sans-serif
+  font-size: 11px
+  text-transform: uppercase
+
+  &:hover
+    background-color: lighten(#693, 25%)
+
+  &.action
+    background: #f90
+    float: right
+
+    &:hover
+      background-color: lighten(#f90, 25%)
+
 
 .birds-interface
   @extends #interface
@@ -36,17 +55,7 @@
       display: inline-block
 
     button
-      background: #693
-      border: 2px solid #fff
-      border-radius: 3px
-      color: #fff
-      font-family: 'Open Sans', sans-serif
-      font-size: 11px
-      text-transform: uppercase
-
-      &.action
-        background: #f90
-        float: right
+      @extends #birds-button
 
     > .helper-box
       @extends #interface-box
@@ -135,13 +144,13 @@
           padding: 3px 5px
 
           &.large
-            width: 150px
+            width: 220px
 
           &.medium
-            width: 100px
+            width: 160px
 
           &.small
-            width: 50px
+            width: 100px
 
           &.focus-text
             color: #999
@@ -189,11 +198,15 @@
 
   #buttons
     background: rgba(#000, 0.4)
+    border-bottom-right-radius: 4px
     display: none
     left: 10px
     padding: 10px
-    position: absolute
-    top: 0
+    position: fixed
+    top: 110px
+
+    button
+      @extends #birds-button
 
   #rows
     margin: 0 auto
@@ -202,14 +215,24 @@
     width: 100%
 
     .row
-      background: rgba(#f00, 0.22)
       height: 12px
       position: absolute
-      top: 0
+      top: 100px
       width: 100%
 
+      &:before
+        background: rgba(#f00, 0.22)
+        box-shadow: 0 0 12px 2px rgba(#000, 0.35)
+        content: ""
+        height: 2px
+        position: absolute
+        top: 5px
+        width: 100%
+
       &.selected
-        background: rgba(#f00, 0.36)
+
+        &:before
+          background: rgba(#0f0, 0.42)
 
   #images
     height: 100%

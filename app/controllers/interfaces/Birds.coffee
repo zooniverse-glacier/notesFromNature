@@ -27,12 +27,15 @@ class Field extends Spine.Controller
   events:
     'click #done': 'done'
     'click #next': 'next'
+    'keypress': 'onKeypress'
 
   constructor: (opts) ->
     super
     @id = opts.id if opts?.id?
     @opField = opts.field if opts?.field?
     @data = opts.data if opts?.data?
+
+    @preRenderHook()
 
     @html @template({id: @id, field: @opField})
     @setValue()
@@ -42,6 +45,15 @@ class Field extends Spine.Controller
 
   next: =>
     @trigger 'next', {name: @opField.name, value: @getValue()}
+
+  preRenderHook: =>
+    # no-op
+
+  onKeypress: (e) =>
+    console.log 'here'
+    switch e.which
+      when 13
+        @next()
 
 class MultiField extends Field
   className: 'field multi'
@@ -70,7 +82,7 @@ class MultiField extends Field
     log 'getting value of multi field', @el, @el.find('input, select')
 
     @el.find('input, select').each (i) ->
-      console.log 'field val', $(@).val()
+      log 'field val', $(@).val()
       if $(@).val() is opField.sub_fields[i].helper_text
         data.push ''
       else
@@ -107,6 +119,23 @@ class InputField extends Field
     else
       log ''
 
+  preRenderHook: =>
+    log @opField
+
+    fieldClass = []
+
+    switch @opField.size
+      when 'large'
+        fieldClass.push 'large'
+      when 'medium'
+        fieldClass.push 'medium'
+      when 'small'
+        fieldClass.push 'small'
+      else
+        fieldClass.push 'medium'
+
+    @opField.class = fieldClass.join(' ')
+
 class FieldBox extends Spine.Controller
   className: 'field-box'
   template: require 'views/transcription/interfaces/birds/field_box'
@@ -118,6 +147,7 @@ class FieldBox extends Spine.Controller
     'click li': 'onClickField'
 
   fields: {}
+
   constructor: (opts) ->
     super
     @fields = opts.fields
@@ -147,8 +177,8 @@ class FieldBox extends Spine.Controller
       datum = @squashDatum datum.data
 
   squashDatum: (datum) ->
-    if typeof datum is Array
-      dataString = datum.join '/'
+    if Array.isArray datum.value
+      dataString = datum.value.join '-'
     else
       dataString = datum.value
 
@@ -218,6 +248,10 @@ class EntryWidget extends Spine.Controller
       @helperBox.addClass 'shown'
     else
       @helperBox.removeClass 'shown'
+
+    setTimeout =>
+      @entity.find('input, select, textarea').first().focus()
+    , 15
 
   saveAndContinue: (fieldData) =>
     log 'save and continue', @
@@ -293,7 +327,11 @@ class Record extends Spine.Controller
 
     @html ''
 
+    lastRowPosition = $('#rows').find('.row').last().position()?.top || 100
+    log 'LRP', $('#rows').find('.row').last()
+
     @rowBox = new RowBox
+    @rowBox.el.css 'top', (lastRowPosition + 35)
     @append @rowBox.el
 
     @constructor.instances.push @
@@ -333,6 +371,8 @@ class Record extends Spine.Controller
       @constructor.instances.splice i, 1
 
   collect: =>
+    console.log 'CLASS DATA', @data
+
     data: @data
     top: @rowBox.el.css 'top'
 
@@ -398,7 +438,7 @@ class Birds extends Interfaces
 
     @images.imagesLoaded =>
       loadingIndicator.stop()
-      $('#corner').center().show()
+      $('#corner').center().fadeIn()
 
       # Get page number
       numberWidget = new EntryWidget
@@ -411,8 +451,8 @@ class Birds extends Interfaces
       numberWidget.bind 'done', =>
         numberWidget.destroy()
 
-        $('#corner').hide()
-        $('#page').show()
+        $('#corner').fadeOut()
+        $('#page').fadeIn()
 
         @buttons.fadeIn()
 

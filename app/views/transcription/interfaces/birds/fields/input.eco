@@ -1,2 +1,2 @@
-<input type="text" id="field" value="<%- @value %>" autocomplete="off" placeholder="<%- @field.helper_text?.toUpperCase() %>">
+<input type="text" id="field" class="<%- @field.class %>" value="<%- @value %>" autocomplete="off" placeholder="<%- @field.helper_text?.toUpperCase() %>">
 <button id="done">Ok</button>
