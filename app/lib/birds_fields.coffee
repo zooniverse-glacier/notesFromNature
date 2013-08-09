@@ -60,30 +60,33 @@ new_format = [{
 },{
   name: 'scientific_name'
   display: 'Scientific Name'
+  description: require 'lib/data_format_views/new/scientific_name'
   helper_text: 'Scientific Name'
   size: 'large'
   type: 'input'
 },{
   name: 'location'
   display: 'Location'
+  description: require 'lib/data_format_views/new/location'
   helper_text: 'Location'
   size: 'large'
   type: 'input'
 },{
   name: 'date_collected'
   display: 'Date Collected'
+  description: require 'lib/data_format_views/new/date_collected'
   type: 'multi'
   sub_fields: [{
-    name: 'collected_year'
-    helper_text: 'Year Collected'
+    name: 'collected_day'
+    helper_text: 'Day Collected'
     type: 'input'
   },{
     name: 'collected_month'
     helper_text: 'Month Collected'
     type: 'input'
   },{
-    name: 'collected_day'
-    helper_text: 'Day Collected'
+    name: 'collected_year'
+    helper_text: 'Year Collected'
     type: 'input'
   }]
 }]

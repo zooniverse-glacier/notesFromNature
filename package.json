@@ -7,6 +7,7 @@
     "underscore": "latest",
     "nib": "latest",
     "clean-css": "latest",
-    "zooniverse": "git://github.com/zooniverse/Zooniverse.git#no-deps"
+    "zooniverse": "git://github.com/zooniverse/Zooniverse.git#no-deps",
+    "zootorial": "~0.3.6"
   }
 }

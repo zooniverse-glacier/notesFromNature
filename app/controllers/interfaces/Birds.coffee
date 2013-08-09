@@ -452,7 +452,7 @@ class Birds extends Interfaces
         numberWidget.destroy()
 
         $('#corner').fadeOut()
-        $('#page').fadeIn()
+        $('#standard').fadeIn()
 
         @buttons.fadeIn()
 

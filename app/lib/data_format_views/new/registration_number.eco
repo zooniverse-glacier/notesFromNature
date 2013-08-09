@@ -1,1 +1,6 @@
-Registration number helper text!
+<h4>Registration Number</h4>
+<p>
+	The registration number consists of the year from the top left corner of the page 
+	combined with the first two columns. The first column is the Batch number. The second
+	column is the record within the batch.
+</p>
