@@ -46,7 +46,7 @@ module.exports =
         "image":"images/img-collections5.jpg"
         "thumbnail":"images/calbug.png"
         "headerImage": "images/archives/calbugBg2.jpg"
-  "NHM":
+  "Natural History Museum":
     "name": "Natural History Museum"
   "Ornithological":
     "name":"Ornithological"
