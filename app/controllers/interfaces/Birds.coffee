@@ -371,10 +371,17 @@ class Record extends Spine.Controller
       @constructor.instances.splice i, 1
 
   collect: =>
-    console.log 'CLASS DATA', @data
+    # Reduces record data down to something manageable.
+    collectedData = {}
+    collectedData["top_percent"] = @rowBox.el.pixels("top") / $("#standard").pixels("height")
+    for datum in @data
+      datumData = datum.data
+      if Array.isArray datumData.value
+        collectedData[datumData.name] = datumData.value.join("-")
+      else
+        collectedData[datumData.name] = datumData.value
 
-    data: @data
-    top: @rowBox.el.css 'top'
+    collectedData
 
   isComplete: =>
     completedData = []
@@ -446,7 +453,7 @@ class Birds extends Interfaces
       numberWidget.start()
 
       numberWidget.bind 'data', (annotation) =>
-        @classification.annotate annotation
+        @classification.annotate {page_number: annotation.data.value}
 
       numberWidget.bind 'done', =>
         numberWidget.destroy()

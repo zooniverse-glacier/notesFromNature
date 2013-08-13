@@ -52,9 +52,18 @@ module.exports =
     "name":"Ornithological"
     "categories":["Birds"]
     "metadata":
-      "description":""
-      "snippet": ""
-      "difficulty":"Very Hard"
+      "description":"""
+        <h3>Introductory Blog Post</h3>
+        <a href="#">Blog post</a>
+
+        <h3>Tutorial</h3>
+        <a href="http://www.youtube.com/watch?v=-pYlUmGxCOs">Video tutorial</a>
+      """
+      "snippet": "Bird register information from the Natural History Museum of Tring, Hertfordshire, spanning from 1837 to 1990."
+      "difficulty": "Very Hard"
+      "average_length": "15 minutes"
+      "start_date":"1837"
+      "end_date":"1990"
       "location":
         "image":"images/img-collections2.jpg"
         "headerImage": "images/archives/birdsBg.jpg"

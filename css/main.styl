@@ -440,29 +440,31 @@ a.badge {
   p
     margin: 0.2em 0 1em 0
 
-.box-general {
-  background: #fff;
-  padding: 12px 19px;
-  border-bottom: 1px solid #000;
+.box-general
+  background: #fff
+  padding: 12px 19px
+  border-bottom: 1px solid #000
 
-  &.museum {
+  a
+    color: #693
 
-  }
-  &.detail {
-    height: 466px;
-  }
+    &:hover
+      color: darken(#693, 35%)
+      text-decoration: underline
 
-}
-.box-general.highlighted {
-  background: #F2F7F7;
-}
-.box-general.divided {
-  background: white url(images/bg-divided.png) repeat-y -10px 0;
-}
-.box-general.divided-bg {
-  background: #f5f8f8 url(images/bg-divided.png) repeat-y;
-  padding-bottom: 50px;
-}
+  &.detail
+    height: 466px
+
+  &.highlighted
+    background: #f2f7f7
+
+  &.divided
+    background: white url(images/bg-divided.png) repeat-y -10px 0
+
+  &.divided-bg
+    background: #f5f8f8 url(images/bg-divided.png) repeat-y
+    padding-bottom: 50px
+
 .box-general.divided-blue {
   background: white url(images/bg-divided-blue.png) repeat-y;
   padding-bottom: 40px;
