@@ -54,7 +54,7 @@ module.exports =
     "metadata":
       "description":"""
         <h3>Introductory Blog Post</h3>
-        <a href="#">Blog post</a>
+        <a href="http://blog.notesfromnature.org/2013/08/13/crowd-sourcing-of-the-natural-history-museum-bird-registers/">Blog post</a>
 
         <h3>Tutorial</h3>
         <a href="http://www.youtube.com/watch?v=-pYlUmGxCOs">Video tutorial</a>
