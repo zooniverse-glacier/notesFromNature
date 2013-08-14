@@ -194,6 +194,7 @@ class EntryWidget extends Spine.Controller
   elements:
     '#entity': 'entity'
     '#helper-box': 'helperBox'
+    '#finish': 'finish'
 
   @loadFormat: (fields) ->
     @::fields = fields
@@ -415,11 +416,18 @@ class Birds extends Interfaces
     '#images': 'images'
     '#rows': 'rows'
     '#transcription-area': 'workspace'
+    '#post-finish': 'postFinish'
+    '#next-button': 'nextButton'
+    '#discuss': 'discuss'
+    '#back': 'back'
 
   events:
     'click #new-row': 'onCreateNewRow'
-    'click #finish': 'finish'
+    'click #finish': 'onFinish'
     'click #power': 'exit'
+    'click #next-button': 'onNext'
+    'click #discuss': 'onDiscuss'
+    'click #back': 'onBack'
 
   startWorkflow: (@archive) =>
     @render({archive: @archive, preferences: @preferences})
@@ -450,6 +458,7 @@ class Birds extends Interfaces
       # Get page number
       numberWidget = new EntryWidget
       numberWidget.el.appendTo @workspace
+      numberWidget.finish.hide()
       numberWidget.start()
 
       numberWidget.bind 'data', (annotation) =>
@@ -467,7 +476,7 @@ class Birds extends Interfaces
         @pageWidget.el.hide()
         @pageWidget.el.appendTo @workspace
 
-  finish: =>
+  next: =>
     for record in @records
       @classification.annotate record.collect()
 
@@ -477,7 +486,7 @@ class Birds extends Interfaces
     Subject.next()
 
   reset: =>
-    @pageWidget.destroy()
+    @pageWidget?.destroy()
     @buttons.fadeOut()
     @images.empty()
     @rows.empty()
@@ -501,7 +510,33 @@ class Birds extends Interfaces
     record.trigger 'start'
 
   onFinish: (e) =>
-    @finish()
+    $('#finish').fadeOut()
+    $('#entry').fadeOut()
+    $('#actions').fadeOut()
+    $('#helper-box').fadeOut()
+    $('.field-box').fadeOut()
+
+    setTimeout ->
+      $('.post-finish').show()
+    , 400
+
+  onDiscuss: =>
+    window.location = Subject.current.talkHref()
+
+  onBack: =>
+    $('.post-finish').fadeOut()
+
+    setTimeout ->
+      $('#finish').fadeIn()
+      $('#entry').fadeIn()
+      $('#actions').fadeIn()
+      $('#helper-box').fadeIn()
+      $('.field-box').fadeIn()
+    , 400
+
+  onNext: =>
+    log @
+    @next()
 
   exit: =>
     Spine.Route.navigate window.location.hash.split('/').slice(0,3).join('/')
