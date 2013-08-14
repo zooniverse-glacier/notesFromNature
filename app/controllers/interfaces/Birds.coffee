@@ -349,13 +349,13 @@ class Record extends Spine.Controller
       @selected = true
       @trigger 'select', @
 
-  save: (data) =>
-    log 'Record: save: data', data
-    for datum in @data when data.id is datum.id
-      datum = data
+  save: (newFieldData) =>
+    log 'Record: save: data', newFieldData, @data
+    for datum, i in @data when newFieldData.id is datum.id
+      @data[i].data = newFieldData.data
       return
 
-    @data.push data
+    @data.push newFieldData
 
   load: (id) =>
     log 'loading data id #', id
@@ -495,7 +495,7 @@ class Birds extends Interfaces
     @pageWidget.load record
 
     record.bind 'select', =>
-      log 'record', record, @
+      # log 'record', record, @
       @pageWidget.load record
 
     record.trigger 'start'
