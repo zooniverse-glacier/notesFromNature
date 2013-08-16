@@ -297,7 +297,7 @@ class RowBox extends Spine.Controller
     $(document).on 'mousemove.moveRow', (de) =>
       if @dragging
         @el.css
-          top: de.pageY - (@el.height() / 2) - 110
+          top: de.pageY + $('#transcription-area').scrollTop() - (@el.height() / 2) - 110
 
   onEndDrag: (e) =>
     @dragging = false
