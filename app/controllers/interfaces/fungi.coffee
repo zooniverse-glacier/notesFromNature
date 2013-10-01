@@ -6,6 +6,8 @@ Classification = require 'zooniverse/models/classification'
 Subject = require 'zooniverse/models/subject'
 
 Eol = require 'lib/eol'
+Modal = require 'lib/modal'
+
 eolView = require 'views/widgets/eol'
 
 class Fungi extends Interfaces
@@ -14,11 +16,17 @@ class Fungi extends Interfaces
   widgetName: 'Fungi'
 
   nextSubject: =>
-    Eol.getSpeciesImages "mushroom", (result) =>
+    species = Subject.current.metadata.species || "mushroom"
+    Eol.getSpeciesImages species, (result) =>
+      if $('#eol-widget').length
+        $('#eol-widget').remove()
+
       div = document.createElement 'div'
       div.id = 'eol-widget'
       div.innerHTML = eolView { data: result }
       $('.transcriber.fungi').append div
+      $('#eol-widget').find('img').on 'click', ->
+        new Modal $(@).data('standard')
 
     @classification = new Classification subject: Subject.current
 
