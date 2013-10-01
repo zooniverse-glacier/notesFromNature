@@ -67,4 +67,23 @@ module.exports =
       "location":
         "image":"images/img-collections2.jpg"
         "headerImage": "images/archives/birdsBg.jpg"
+  "New York Botanical Gardens":
+    "name": "New York Botanical Gardens"
+  "Macrofungi":
+    "name": "Macrofungi"
+    "categories":["Fungi"]
+    "metadata":
+      "description":"""
+        <p>The Macrofungi Collection Consortium is a partnership of 35 institutions across the U.S that collectively will digitize about 1.5 million specimens that have been collected the past 150 years.</p>
+        <p>Macrofungi are important to humans in many ways – many people like to eat them, but some species are also deadly poisonous.  Macrofungi are also key to the health of our forests – indeed, most forest trees could not survive if their roots did not form a relationship with a macrofungus (called mycorrhizae) that helps tree roots absorb water and minerals from the soil.  Macrofungi are also an important source of food for forest animals and they serve as homes for many soil insects and other small organisms that are also part of a healthy forest ecosystem.</p>
+        <p>Many macrofungi are very beautiful, and are the subject of nature photographers.  Their pigments may be used for dyeing wool or cotton, and for paper-making. Macrofungi are important religious symbols in some cultures.  Recently it has been discovered that macrofungi can play a role in the cleanup of environmental disasters.  Through a process called “mycoremediation” macrofungi are able to break down or remove contaminants such as pesticides and fuel oils.</p>
+      """
+      "snippet": "The Macrofungi Collection comprises mushrooms and related fungi. Macrofungi are often short-lived, documenting their occurrence with specimens is critically important for knowing which macrofungi grow where."
+      "difficulty": "Easy"
+      "average_length": "3 minutes"
+      "start_date":"~1900"
+      "end_date":"~2000"
+      "location":
+        "image":"images/archives/macrofungi/collection-list-bg.jpg"
+        "headerImage": "images/archives/macrofungi/archive-bg.jpg"
     

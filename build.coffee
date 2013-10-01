@@ -49,7 +49,15 @@ files = [
   'nfn/ui/bugs/selection.js',
   'nfn/ui/bugs/highlight.js',
   'nfn/ui/bugs/helper.js',
-  'nfn/ui/bugs/metadata.js'
+  'nfn/ui/bugs/metadata.js',
+
+  'nfn/ui/fungi/transcriber.js',
+  'nfn/ui/fungi/widget.js',
+  'nfn/ui/fungi/launcher.js',
+  'nfn/ui/fungi/magnifier.js',
+  'nfn/ui/fungi/selection.js',
+  'nfn/ui/fungi/highlight.js',
+  'nfn/ui/fungi/helper.js'
 ]
 
 source = ''

@@ -483,7 +483,6 @@ a.badge {
     padding-bottom: 40px
 
   &.divided-green
-    height: 320px
     overflow: hidden
     padding-top: 21px
     position: relative
@@ -1078,23 +1077,25 @@ li.img-graphic2 {
 }
 
 /* Buttons */
-a.button {
-  background: #669933;
-  border-radius: 3px;
-  box-shadow: 0px 1px #000;
-  color: #FFF;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 15px 20px;
-  text-shadow: 0px 1px #416122;
-  white-space: nowrap;
-}
-a.button:hover {
-  background: linear-gradient(top, #52792a 0%, #669933 100%);
-}
-a.button:active {
-  background: linear-gradient(top, #669933 0%, #52792a 100%);
-}
+a.button
+  background: #669933
+  border-radius: 3px
+  box-shadow: 0px 1px #000
+  color: #fff
+  font-size: 13px
+  font-weight: 600
+  padding: 15px 20px
+  text-shadow: 0px 1px #416122
+  white-space: nowrap
+
+  &:hover
+    background: linear-gradient(top, #52792a 0%, #669933 100%)
+    color: #fff
+    text-decoration: none
+
+  &:active
+    background: linear-gradient(top, #669933 0%, #52792a 100%)
+
 a.button.nocolor {
   background: #FFF;
   color: #557F2C;
