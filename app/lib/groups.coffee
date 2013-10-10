@@ -67,8 +67,8 @@ module.exports =
       "location":
         "image":"images/img-collections2.jpg"
         "headerImage": "images/archives/birdsBg.jpg"
-  "New York Botanical Gardens":
-    "name": "New York Botanical Gardens"
+  "New York Botanical Garden":
+    "name": "New York Botanical Garden"
   "Macrofungi":
     "name": "Macrofungi"
     "categories":["Fungi"]
