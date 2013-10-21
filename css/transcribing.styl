@@ -222,6 +222,13 @@
       > .text
         overflow: auto
 
+      a
+        color: lighten(#693, 10%)
+
+        &:hover
+          color: lighten(#693, 30%)
+          text-decoration: underline
+
       button
         appearance: none
         background: #693
@@ -396,8 +403,17 @@
   -o-box-shadow:      1px 1px 9px rgba(0,0,0,.7);
   box-shadow:         1px 1px 9px rgba(0,0,0,.7);
 }
-.transcriber.fungi .photos img
-  max-width: 800px
+
+
+.transcriber.fungi
+  
+  .magnifier img
+    max-width: 1400px
+
+  .photos img
+    max-width: 700px
+
+
 
 .transcriber.birds .photos img {
   display: none;
