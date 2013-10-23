@@ -1,7 +1,6 @@
 <div class="counters"> 
   <div class="box-black-numbers">
-    <!-- <span class="numbers"><%= @archiveCount %></span> -->
-    <span class="numbers">3</span>
+    <span class="numbers"><%= @archiveCount %></span>
     <span class="subtitle">Collections available</span>
   </div>
   <div class="box-black-numbers">

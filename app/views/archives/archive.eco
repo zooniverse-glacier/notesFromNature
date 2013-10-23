@@ -1,4 +1,4 @@
-<% if @archive? and (@archive.name != "Macrofungi"): %>
+<% if @archive?: %>
 <li class="mine">
   <img src="<%= @archive.metadata.location.image %>"> 
   <div class="translucent-box">
