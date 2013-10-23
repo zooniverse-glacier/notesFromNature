@@ -38,7 +38,7 @@ class Fungi extends Interfaces
       @transcriber.spinner.hide()
       @transcriber.startTranscribing(Subject.current)
 
-    @transcriber.loadPhoto(Subject.current.location.standard, callback)
-    @transcriber.loadLargePhoto(Subject.current.location.standard)
+    @transcriber.loadPhoto(Subject.current.metadata.original_url, callback)
+    @transcriber.loadLargePhoto(Subject.current.metadata.original_url)
 
 module.exports = Fungi
