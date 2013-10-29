@@ -2,12 +2,13 @@
   "name": "notes_from_nature",
   "version": "0.0.1",
   "dependencies": {
-    "hem": "git://github.com/spine/hem.git",
+    "hem": "git://github.com/chrissnyder/hem#1232e6d0dc",
     "spine": "~1.0.5",
-    "underscore": "latest",
-    "nib": "latest",
-    "clean-css": "latest",
-    "zooniverse": "git://github.com/zooniverse/Zooniverse.git#no-deps",
-    "zootorial": "~0.3.6"
+    "underscore": "~1.4.4",
+    "nib": "~0.9.1",
+    "clean-css": "~0.9.1",
+    "zooniverse": "git://github.com/zooniverse/Zooniverse#6a95d98",
+    "zootorial": "~0.3.6",
+    "coffee-script": "~1.6.3"
   }
 }
