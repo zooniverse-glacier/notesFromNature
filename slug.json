@@ -15,7 +15,7 @@
     "zooniverse/models/project"
   ],
   "libs": [
-    "node_modules/Zooniverse/vendor/base64.js",
+    "node_modules/zooniverse/vendor/base64.js",
     "lib/vendor/jquery.min.js",
     "lib/vendor/moment.min.js",
     "lib/vendor/underscore.min.js"
