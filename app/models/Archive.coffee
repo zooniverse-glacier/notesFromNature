@@ -45,10 +45,11 @@ class Archive extends Spine.Model
     @progress() is 100
   
   progress: =>
-    if @stats?.total > 0 then Math.min(100, (parseInt((@classification_count / @stats.total) * 4))) else 0
+    unless @stats? then return 0
+    Math.ceil ((@stats.complete / @stats.total) * 100)
 
   recordsComplete: =>
-    @formatNumber Math.floor(@classification_count / 10)
+    @formatNumber Math.floor(@classification_count / 4)
 
   total: =>
     @formatNumber @stats.total
