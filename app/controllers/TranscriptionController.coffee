@@ -34,6 +34,8 @@ class TranscriptionController extends Spine.Site
       Spine.Route.navigate '/'
       return
 
+    if @archive.progress() is 100 then Spine.Route.navigate '/'
+
     # Adjust page attributes for archive.
     $('body').addClass("transcribingScreen #{ @archive.slug() }")
     document.title = "Notes From Nature - #{ @archive.institute().name } - #{ @archive.name } - Transcribe"
