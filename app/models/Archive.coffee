@@ -49,7 +49,7 @@ class Archive extends Spine.Model
     Math.ceil ((@stats.complete / @stats.total) * 100)
 
   recordsComplete: =>
-    @formatNumber Math.floor(@classification_count / 4)
+    @formatNumber @stats.complete
 
   total: =>
     @formatNumber @stats.total
