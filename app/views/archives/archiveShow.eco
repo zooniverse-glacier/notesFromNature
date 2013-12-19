@@ -4,7 +4,9 @@
     <h1><%= @archive.name %></h1>
     <div class="translucent-box">
       <div>
-        <a class="button left" href="<%= @archive.transcriptionUrl() %>">START TRANSCRIBING</a>
+        <% unless @archive.progress() is 100: %>
+          <a class="button left" href="<%= @archive.transcriptionUrl() %>">START TRANSCRIBING</a>
+        <% end %>
         <div class="percentage">
           <span class="title"><%= @archive.progress() %>%</span>
           <span class="subtitle done">DONE</span>
