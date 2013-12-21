@@ -672,6 +672,7 @@
 
   & > a.skip,
   & > a.back,
+  & > a.allmodal,
   & > a.example {
     position: relative;
     margin: 0 0 0 10px;
@@ -701,16 +702,21 @@
 
 .transcriber
   .sernac-widget, .bugs-widget
+
     cursor: move
+
+
 
 .transcriber.sernac .sernac-widget {
   z-index: 10001;
+
 
   .right {
     position: absolute;
     right: 10px;
 
     .skip,
+    .allmodal,
     .back {
       position: relative;
       float: left;
@@ -728,6 +734,141 @@
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.transcriber.sernac .sernac-widget .popup {
+  background: rgba(#000, 0.8);
+  color: white;
+  position:relative;
+  top:42px;
+
+}
+
+.transcriber.sernac .sernac-widget .popup .content .button {
+  
+  appearance: none;
+  background: #693;
+  border: 1px solid #060;
+  border-radius: 3px;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  margin: 15px 0 0 0;
+  padding: 5px 0;
+  text-transform: uppercase;
+  width: 33%;
+}
+
+.transcriber.sernac .sernac-widget .popup .content .countries {
+  background: #fff;
+  border-radius: 3px;
+ left: 0;
+  width: 120px;
+  
+}
+
+.transcriber.sernac .sernac-widget .popup .content .state {
+  background: #fff;
+  border-radius: 3px;
+  left: 220px;
+  width: 120px;
+  
+}
+
+.transcriber.sernac .sernac-widget .popup .content .county {
+  background: #fff;
+  border-radius: 3px;
+  left: 420px;
+  width: 120px;
+  
+}
+
+.transcriber.sernac .sernac-widget .popup .content .month {
+  left: 0;
+  border-radius: 3px;
+  width: 120px;
+}
+
+.transcriber.sernac .sernac-widget .popup .content .day {
+  left: 150px;
+  border-radius: 3px;
+  width: 80px;
+}
+
+.transcriber.sernac .sernac-widget .popup .content .year {
+  left: 260px;
+  border-radius: 3px;
+  width: 90px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .transcriber.sernac .sernac-widget .right .step {
   position: relative;
@@ -1501,3 +1642,6 @@ a.btn, .btn {
   border-bottom: solid white 1px !important;
   border-right: solid white 1px !important;
 }
+
+
+
