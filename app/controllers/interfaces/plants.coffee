@@ -13,15 +13,14 @@ class Plants extends Interfaces
   nextSubject: =>
     @classification = new Classification subject: Subject.current
 
-    callback = =>
+    Subject.current.location.small ?= Subject.current.location.standard
+
+    @transcriber.loadPhoto Subject.current.location.standard, =>
       $(".photos img").animate({ marginLeft: "0" }, 500)
       @transcriber.$backgroundMessage.fadeOut 250, =>
         @transcriber.$backgroundMessage.html("")
 
       @transcriber.spinner.hide()
-      @transcriber.startTranscribing(Subject.current)
-
-    @transcriber.loadPhoto(Subject.current.location.small, callback)
-    @transcriber.loadLargePhoto(Subject.current.location.standard)
+      @transcriber.startTranscribing Subject.current
 
 module.exports = Plants

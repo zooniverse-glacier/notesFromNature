@@ -30,15 +30,15 @@ class Fungi extends Interfaces
 
     @classification = new Classification subject: Subject.current
 
-    callback = =>
+    url = Subject.current.location.standard
+    url ?= Subject.current.metadata.original_url
+
+    @transcriber.loadPhoto url, =>
       $(".photos img").animate({ marginLeft: "0" }, 500)
       @transcriber.$backgroundMessage.fadeOut 250, =>
         @transcriber.$backgroundMessage.html("")
 
       @transcriber.spinner.hide()
-      @transcriber.startTranscribing(Subject.current)
-
-    @transcriber.loadPhoto(Subject.current.metadata.original_url, callback)
-    @transcriber.loadLargePhoto(Subject.current.metadata.original_url)
+      @transcriber.startTranscribing Subject.current
 
 module.exports = Fungi
