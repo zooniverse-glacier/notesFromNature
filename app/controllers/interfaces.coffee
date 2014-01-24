@@ -51,7 +51,7 @@ class InterfaceController extends Spine.Controller
     #     User.current.badges = badges
     #     @archive.checkBadges()
       
-    @classification.send done
+    @classification.send()
 
     Subject.next()
 
