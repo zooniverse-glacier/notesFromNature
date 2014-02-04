@@ -4,7 +4,7 @@ module.exports =
     "categories":["Plants"]
     "metadata":
       "description":"SERNEC is an organization that supports the 222 Herbaria and over 12 million plant specimen found in the Southeastern United States.  Each of these herbaria are valued collections of plants specimens used in research and teaching.  Their value is amplified in partnership and  SERNEC is devoted to making the resources of all these Herbaria available online as one virtual, researchable collection. SERNEC will improve access to specimen data of a richly biodiverse region, and provide a platform for herbarium curators and plant scientists to exchange ideas, share expertise, and benefit from the value of information shared across institutions."
-      "regions":["Sourtheastern US"]
+      "regions":["Southeastern US"]
       "location":
         "url": "http://www.sernec.org/"
         "standard":"/images/bg-collection.jpg"
