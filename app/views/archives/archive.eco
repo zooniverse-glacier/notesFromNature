@@ -2,10 +2,7 @@
 <li class="mine">
   <img src="<%= @archive.metadata.location.image %>"> 
   <div class="translucent-box">
-    <div class="progress-bar  <%='completed' if @archive.complete() %>">
-      <div class="bar" style="width:<%= @archive.progress() %>%"></div>
-      <span class="progress"> <%= @archive.progress() %>%</span>
-    </div>
+    <p> <%= @archive.total() %> total subjects</p>
     <p>
       <%= @archive.metadata.snippet %>
      <a class="object" href="#/archives/<%= @archive.slug() %>">Check out this collection</a>
