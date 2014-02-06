@@ -30,7 +30,7 @@
         <li><span class="text">TAXONOMIC COVERAGE</span><%= @archive.categories.join(" | ") %></li>
 
         <li>
-          <span class="text">PROGRESS</span><%= @archive.classification_count %>transcriptions completed.
+          <span class="text">PROGRESS</span><%= @archive.classification_count %> transcriptions completed.
         </li>
 
       </ul>

@@ -25,8 +25,8 @@ class ArchivesList extends Spine.Site
     $(e.currentTarget).find('.translucent-box:not(.disable)').stop().animate {top: 0}, {duration: 200}
 
   hideListDetails: (e) =>
-    $(e.currentTarget).find('.translucent-box').stop().animate {top: '160px'}, {duration: 200}
-
+    $(e.currentTarget).find('.translucent-box').stop().animate {top: '185px'}, {duration: 200}
+  
   render: (options = undefined) =>
     archives = Archive.filter(options)
 
