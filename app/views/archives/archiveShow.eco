@@ -13,9 +13,7 @@
 </div>
 
 <div class="box-general divided-green">
-  <div class="col2">
-    <p><%- @archive.metadata.description %></p>
-  </div>
+
   <div class="col1">
     <div class="box-right">
       <ul class="status-list">
@@ -39,6 +37,10 @@
       <% end %>
     </div>
   </div>
+  <div class="col2">
+    <p><%- @archive.metadata.description %></p>
+  </div>
+
 </div>
 
 <% if @badges.length: %>
