@@ -15,32 +15,49 @@
 <div class="box-general divided-green">
 
   <div class="col1">
-    <div class="box-right">
+    
       <ul class="status-list">
         <% if @archive.metadata.start_date and @archive.metadata.end_date: %>
-          <li><span class="text">TEMPORAL RANGE</span><%= @archive.metadata.start_date %> / <%= @archive.metadata.end_date %></li>
+          <li>
+            <span class="text">TEMPORAL RANGE</span><%= @archive.metadata.start_date %> / <%= @archive.metadata.end_date %>
+          </li>
         <% end %>
-
         <% if @archive.metadata.regions: %>
           <li><span class="text">GEOGRAPHIC CONTEXT</span> <%= @archive.metadata.regions.join(" | ") %></li>
         <% end %>
 
         <li><span class="text">TAXONOMIC COVERAGE</span><%= @archive.categories.join(" | ") %></li>
-
         <li>
-          <span class="text">PROGRESS</span><%= @archive.classification_count %> transcriptions completed.
-        </li>
-
-      </ul>
-      <% unless @archive.complete(): %>
-        <a href="<%= @archive.transcriptionUrl() %>" class="button nocolor">START TRANSCRIBING</a>
-      <% end %>
-    </div>
+      
+          <div class="progress-stats">
+            <span class="text">PROGRESS</span>
+            <!--
+            <span class="text">Total Subjects: <%- @archive.total() %></span>
+            <span class="text">Active Subjects: <%- @archive.stats.active %></span>
+            <span class="text">Complete Subjects: <%- @archive.stats.complete %></span>
+            -->
+          </div>
+          <span class="text progress-bar-label">
+              <%- @archive.classification_count %>  / <%-  @archive.transcriptions_needed() %> transcriptions needed.
+          </span>
+          <div class="progress-bar">
+            <div class="bar" style="width:<%= @archive.progress() %>%"></div>
+            <span class="progress"><%= @archive.progress() %>%</span>
+            <span class="progress-bar-label text"><a href="">Notes on our numbers. </a></span>
+          </div>
+        </li> 
+        </ul>
+         <% if not @archive.complete(): %>
+            <a href="<%= @archive.transcriptionUrl() %>" class="button nocolor">START TRANSCRIBING</a>
+         <% else: %>
+            <span class="text">No images to transcribe.  Check back later as we will be adding more specimens.</span> 
+         <% end %>
+       
+   
   </div>
   <div class="col2">
     <p><%- @archive.metadata.description %></p>
   </div>
-
 </div>
 
 <% if @badges.length: %>

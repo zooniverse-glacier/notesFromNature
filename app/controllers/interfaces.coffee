@@ -1,6 +1,8 @@
 Archive = require 'models/Archive'
+Institute =  require 'models/Institute'
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
+
 
 class InterfaceController extends Spine.Controller
   preferences: {}
@@ -52,7 +54,9 @@ class InterfaceController extends Spine.Controller
     #     @archive.checkBadges()
       
     @classification.send()
-
+    setTimeout ->
+      Institute.fetch()
+    , 500
     Subject.next()
 
   skipClassification: =>
