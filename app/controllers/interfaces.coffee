@@ -2,7 +2,7 @@ Archive = require 'models/Archive'
 Institute =  require 'models/Institute'
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
-
+Project = require 'zooniverse/models/project'
 
 class InterfaceController extends Spine.Controller
   preferences: {}
@@ -43,20 +43,27 @@ class InterfaceController extends Spine.Controller
   saveClassification: (data) =>
     @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in data.toJSON()
 
-    # Sigh
-    # done = =>
-    #   unless User.current then return
-    #   badges = User.current.badges
-    #   userFetch = User.fetch()
+    
+    done = =>
+      #throttle to reduce abuse of endpoints
+      setTimeout =>
+        #refresh other data
+        Institute.fetch()
+        Project.fetch()
+        
+        #refresh User data, primarily to up the badges
+        unless User.current then return
+        badges = User.current.badges
+        userFetch = User.fetch()
 
-    #   userFetch.done =>
-    #     User.current.badges = badges
-    #     @archive.checkBadges()
-      
-    @classification.send()
-    setTimeout ->
-      Institute.fetch()
-    , 500
+        userFetch.done =>
+          User.current.badges = badges
+          @archive?.checkBadges()
+        
+      , 500
+    
+    @classification.send done
+   
     Subject.next()
 
   skipClassification: =>
