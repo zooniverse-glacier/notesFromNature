@@ -54,7 +54,11 @@ class Archive extends Spine.Model
   # we are displaying this number
   progress: =>
     unless @stats? then return 0
-    Math.ceil ( (@classification_count / @transcriptions_needed() ) * 100)
+    result = Math.ceil ( (@classification_count / @transcriptions_needed() ) * 100)
+    if result > 100
+      return 100
+    else
+      return result
 
   recordsComplete: =>
     @formatNumber @stats.complete
