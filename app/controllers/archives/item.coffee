@@ -42,9 +42,10 @@ class ArchivesItem extends Spine.Site
       @html require('/views/archives/archiveNotFound')()
 
   disableStartTranscribing: =>
-    btnStartTranscribing = $("#a_btn_start_transcribing")
+    btnStartTranscribing = $("#a-btn-start-transcribing")
     btnStartTranscribing.addClass("disabled")
     btnStartTranscribing.attr("disabled", true) 
+    btnStartTranscribing.attr("href", "/")
     btnStartTranscribing.text("No active images") 
     btnStartTranscribing.on( "click", (e) ->
       e.preventDefault()

@@ -27,28 +27,31 @@
       <% end %>
 
       <li><span class="text">TAXONOMIC COVERAGE</span><%= @archive.categories.join(" | ") %></li>
-      <li>
-    
+      <li class="api-stat-list">
         <div class="progress-stats">
           <span class="text">PROGRESS</span>
-          <!--
-          <span class="text">Total Subjects: <%- @archive.total() %></span>
-          <span class="text">Active Subjects: <%- @archive.stats.active %></span>
-          <span class="text">Complete Subjects: <%- @archive.stats.complete %></span>
-          -->
+          <span class="api_stat">Total Images: <%- @archive.total() %></span>
+          <span class="api_stat" >Active Images: <%- @archive.stats.active %></span>
+          <span class="api_stat">Complete Images: <%- @archive.stats.complete %></span> 
         </div>
-        <span class="text progress-bar-label">
+      </li>
+      <li id="progress_bar_li" >
+        <span lass="progress-bar-ratio">
             <%- @archive.classification_count %>  / <%-  @archive.transcriptions_needed() %> transcriptions needed.
         </span>
         <div class="progress-bar">
           <div class="bar" style="width:<%= @archive.progress() %>%"></div>
           <span class="progress"><%= @archive.progress() %>%</span>
-          <span class="progress-bar-label text"><a href="">Notes on our numbers. </a></span>
         </div>
       </li> 
-      </ul>
-        <a id="a_btn_start_transcribing" href="" class="button nocolor" >START TRANSCRIBING</a>
-   
+      <li class="start-transcribing"> 
+        <%# see dynamic logic on ArchiveItem.render() when archive is complete %>
+        <a id="a-btn-start-transcribing" href="<%= @archive.transcriptionUrl() %>" class="button nocolor">START TRANSCRIBING</a>
+      </li>
+      <li class="notes_on_numbers">
+        <span class="notes_on_numbers"> <a href="http://blog.notesfromnature.org/2014/02/24/making-progress-clear-on-notes-from-nature/">Notes on our numbers. </a></span>
+      </li>
+    </ul>
   </div>
   <div class="col2">
     <p><%- @archive.metadata.description %></p>
