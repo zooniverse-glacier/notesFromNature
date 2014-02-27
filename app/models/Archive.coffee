@@ -8,6 +8,8 @@ class Archive extends Spine.Model
   @configure 'Archive', 'group_id', 'classification_count', 'name', 'metadata', 'complete', 'stats', 'categories'
   @belongsTo 'institute', 'models/Institute'
   @hasMany 'badges', 'models/Badge'
+  COMPLETION_FACTOR: 4
+  classification_count: 0
 
   @findBySlug: (slug) ->
     result = @select (archive) ->
@@ -20,9 +22,7 @@ class Archive extends Spine.Model
         archive.categories.indexOf(params.type) != -1 or archive.categories.indexOf(_.str.capitalize(params.type)) != -1
     else
       @all()
-
-  classification_count: 0
-    
+  
   addBadges: =>
     for badge in badgeDefinitions
       if badge.collection is @slug()
@@ -41,18 +41,34 @@ class Archive extends Spine.Model
   slug: ->
     (@name.replace /\s/g, "_").toLowerCase()
 
-  complete: =>
-    @progress() is 100
-  
+  transcriptions_needed: =>
+    @stats.total * @COMPLETION_FACTOR
+
+  # progress_strict reflects that historically the completion criteria changed 
+  # from 10 to 4 transcriptions per image
+  progress_strict: =>
+    unless @stats? then return 0
+    Math.ceil ( (@stats.complete / @stats.total) * 100)
+
+    # however in order to display a number that prgress reflects real time transcriptions
+  # we are displaying this number
   progress: =>
     unless @stats? then return 0
-    Math.ceil ((@stats.complete / @stats.total) * 100)
+    result = Math.ceil ( (@classification_count / @transcriptions_needed() ) * 100)
+    if result > 100
+      return 100
+    else
+      return result
 
   recordsComplete: =>
     @formatNumber @stats.complete
 
   total: =>
     @formatNumber @stats.total
+
+  complete: =>
+    unless @stats? then return 0
+    (@stats.complete is @stats.total)
 
   # Private
   formatNumber: (n) ->

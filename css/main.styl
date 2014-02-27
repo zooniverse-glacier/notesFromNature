@@ -120,6 +120,11 @@ span.subtitle
   background: rgba(#000, 0.7)
   float: left
 
+  .complete_notice
+    text-align: right;
+    color: rgb(169, 169, 169);
+    font-size: 75%;
+
   img
     float: left
 
@@ -513,17 +518,20 @@ a.badge {
   margin-right: -10px;
 }
 
+.box-general.divided-green {
+  background: transparent url(images/bg-green-repeat.jpg) repeat-y
+}
+
+.box-general.divided-green .col2{
+  width: 511px; 
+}
+
 .box-general.divided-green .col1 {
   height: 320px;
-  position: absolute;
-  width: 330px;
-  top: -10px;
-  padding: 33px 0 60px 0;
-  right: -30px;
-  border-left: 1px solid #333;
-  border-bottom: 1px solid #333;
-  background: url(images/bg-green.jpg) no-repeat bottom;
-  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
+  float:right;
+  width: 290px;
+  padding: 0 0 60px 20px;
+  margin: 0 0 0 60px;
 }
 
 .box-general.laptop {
@@ -686,7 +694,7 @@ hr {
 .counters .box-black-numbers {
   float: left;
   padding: 35px 0 25px 0;
-  width: 239px;
+  width: 319px;
   background: #000;
   border-right: 1px solid rgba(42, 42, 42, 0.7);
   text-align: center;
@@ -1024,7 +1032,7 @@ li.img-graphic2 {
   height: 100%;
   left: 0;
   position: absolute;
-  top: 160px;
+  top: 185px;
   width: 100%;
   z-index: 6;
 }
@@ -1101,8 +1109,13 @@ a.button.nocolor {
   background: #FFF;
   color: #557F2C;
   padding: 14px 50px;
+  text-align: center;
   text-shadow: 0px 0px;
+  display:block;
+  box-sizing: border-box;
+  width: 100%;
 }
+
 a.button.nocolor:hover {
   background: linear-gradient(top, #dadada 0%, #ffffff 100%);
   text-shadow: 0px 1px #FFF;
@@ -1110,6 +1123,13 @@ a.button.nocolor:hover {
 a.button.nocolor:active {
   background: linear-gradient(top, #ffffff 0%, #dadada 100%);
 }
+
+a.button.nocolor.disabled {
+  opacity: 0.6;
+  background: #537c2a;
+  color: #2C2C2C;
+}
+
 a.button.next {
   background: url(images/icons.png) no-repeat 2px -20px;
   box-shadow: 0 0;
@@ -1192,10 +1212,44 @@ span.switch.selected {
   background-position: 32px -553px;
 }
 
+.progress-stats {
+  padding-bottom: 0px;
+}
 
+#progress-bar-li,shorter_li {
+  margin-bottom:0px;
+}
+
+.api_stat {
+  color: #FFF;
+  margin-bottom:5px;
+  display:block;
+}
+
+.progress-bar-label {
+  padding-top: 6px;
+  margin-bottom: 3px;
+  text-align: right;
+}
+
+.status-list .api-stat-list {
+  margin-bottom: 5px;
+}
+
+.status-list .start-transcribing {
+   margin-bottom: 5px;
+}
+.status-list li.notes_on_numbers {
+   margin: 10px 0 0 10px;
+}
+
+.status-list .notes_on_numbers a {
+  color: #FFF
+}
 
 .progress-bar {
   position: relative;
+  margin-bottom: 15px;
   width: 204px;
   height: 3px;
   background: rgba(0, 0, 0, 0.2);
@@ -1281,3 +1335,7 @@ h1.notlogged
   color: #a9a9a9
   margin: 40px 0
   text-shadow: 1px 1px 0 #000
+
+
+
+

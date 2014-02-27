@@ -8,10 +8,6 @@
     <span class="subtitle">Total transcriptions</span>
   </div>
   <div class="box-black-numbers">
-    <span class="numbers"><%= @progress %>%</span>
-    <span class="subtitle">Transcription progress</span>
-  </div>
-  <div class="box-black-numbers">
     <span class="numbers"><%= @users %></span>
     <% if @users is 1: %>
       <span class="subtitle">User contributing</span>
