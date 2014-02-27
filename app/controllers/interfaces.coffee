@@ -45,20 +45,23 @@ class InterfaceController extends Spine.Controller
 
     
     done = =>
-      
-      #refresh other data
-      Institute.fetch()
-      Project.fetch()
-      
-      #refresh User data, primarily to up the badges
-      unless User.current then return
-      badges = User.current.badges
-      userFetch = User.fetch()
+      #throttle to reduce abuse of endpoints
+      setTimeout =>
+        #refresh other data
+        Institute.fetch()
+        Project.fetch()
+        
+        #refresh User data, primarily to up the badges
+        unless User.current then return
+        badges = User.current.badges
+        userFetch = User.fetch()
 
-      userFetch.done =>
-        User.current.badges = badges
-        @archive?.checkBadges()
-      
+        userFetch.done =>
+          User.current.badges = badges
+          @archive?.checkBadges()
+        
+      , 500
+    
     @classification.send done
    
     Subject.next()
