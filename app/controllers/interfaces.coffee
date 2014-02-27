@@ -45,7 +45,7 @@ class InterfaceController extends Spine.Controller
 
     
     done = =>
-      #throttle to reduce abuse of endpoints
+      #throttle to allow async POST to suceed on backend before refresh of other data 
       setTimeout =>
         #refresh other data
         Institute.fetch()
