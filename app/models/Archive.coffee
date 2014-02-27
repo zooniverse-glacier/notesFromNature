@@ -67,7 +67,7 @@ class Archive extends Spine.Model
     @formatNumber @stats.total
 
   complete: =>
-    @progress_strict() is 100
+    (@stats.complete === @stats.total)
 
   # Private
   formatNumber: (n) ->
