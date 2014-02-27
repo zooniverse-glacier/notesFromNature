@@ -32,13 +32,13 @@
           <span class="text">PROGRESS</span>
           <span class="api_stat">Total Images: <%- @archive.total() %></span>
           <span class="api_stat" >Active Images: <%- @archive.stats.active %></span>
-          <span class="api_stat">Complete Images: <%- @archive.stats.complete %></span> 
+          <span class="api_stat">Complete Images: <%- @archive.stats.complete %></span>
+          <span class="progress-bar-ratio">
+            <%- @archive.classification_count %>  / <%-  @archive.transcriptions_needed() %> transcriptions needed.
+          </span> 
         </div>
       </li>
-      <li id="progress_bar_li" >
-        <span lass="progress-bar-ratio">
-            <%- @archive.classification_count %>  / <%-  @archive.transcriptions_needed() %> transcriptions needed.
-        </span>
+      <li id="progress-bar-li" >
         <div class="progress-bar">
           <div class="bar" style="width:<%= @archive.progress() %>%"></div>
           <span class="progress"><%= @archive.progress() %>%</span>
