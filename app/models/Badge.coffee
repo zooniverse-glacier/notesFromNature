@@ -14,7 +14,7 @@ class Badge extends Spine.Model
         User.current.badges = []
 
         for badge in badges
-          @insertIntoUser(badge[0], badge[1])
+          @insertIntoUser badge[0], badge[1]
 
         Badge.updateReport()
 
@@ -35,15 +35,11 @@ class Badge extends Spine.Model
         User.current.badges.push badge
 
   @processReport: (name, created_at) ->
-    ccAtTime = parseInt(name.replace('summary_',''))
-
-    previousReport = @previousReport()
-    if previousReport
-      number = ccAtTime - previousReport.number
-    else
-      number = ccAtTime
-
-    User.current.badges.push {name: 'summary', number: number, created_at: created_at}
+    classificationsAtMoment = parseInt name.replace 'summary_', ''
+    User.current.badges.push
+      name: 'summary'
+      number: classificationsAtMoment
+      created_at: created_at
 
   @updateReport: ->
     reports = (moment(badge.created_at).diff(moment(), 'weeks') for badge in User.current.badges when badge.name is 'summary')
@@ -60,13 +56,6 @@ class Badge extends Spine.Model
 
     Api.current.post '/projects/notes_from_nature/badges', { badge: badge }, (data) ->
       Badge.getUserBadges()
-
-  @previousReport: ->
-    for badge in User.current.badges
-      if badge.name is 'summary' then return badge
-
-    return false
-
 
   @findBySlug: (slug) ->
     result = @select (b) ->
