@@ -4,14 +4,14 @@
 
   <div class="box-general">
     <div class="col3">
-      <div class="box-user" style="height: 50px;width: 0px"></div>
-        <h2 class="title user"><%= @user.name %></h2>
+      <div class="box-user" style="height: 50px; width: 0px"></div>
+      <h2 class="title user"><%= @user.name %></h2>
     </div>
   </div>
 
   <div class="box-general divided">
     <div class="col2">
-      <h3 class="title">A transcriber's life <span class="subtitle">See <%=@user.name%> activity</span></h3>
+      <h3 class="title">A transcriber's life <span class="subtitle">See <%= @user.name%> activity</span></h3>
       <div class="time-box">
         <ul class="time-life">
           <% if @user.badges?: %>
@@ -19,21 +19,20 @@
               <% if badge.name != 'summary': %>
                 <li>
                   <div>
-                    <span class="text"><%=moment(badge.created_at).from(moment())%></span>
+                    <span class="text"><%= moment(badge.created_at).from moment() %></span>
                     <span class="value">Won the</span>
                     <a class="object" href="#/badges/<%= badge.slug() %>"><%= badge.name %> Badge</a>
                   </div>
                 </li>
               <% else: %>
                 <li>
-                    <div>
-                      <span class="text"><%= moment(badge.created_at).from(moment()) %></span>
-                      <% if badge.number is 1: %>
-                        <span class="object">You transcribed 1 item</span>
-                      <% else: %>
-                        <span class="object">You transcribed <%- badge.number %> items</span>
-                      <% end %>
-                    </div>
+                  <div>
+                    <% if badge.number is 1: %>
+                      <span class="object">You transcribed 1 item</span>
+                    <% else: %>
+                      <span class="object"><span class="text">As of <%= moment(badge.created_at).from moment() %>, you had a cumulative total of</span> <b><%- badge.number %> transcribed records</b></span>
+                    <% end %>
+                  </div>
                 </li>
               <% end %>
             <% end %>
@@ -44,9 +43,7 @@
           <% if @user.badges?: %>
             <% for badge in @user.badges : %>
               <li>
-                <div>
-                  <img <%- unless badge.url? then 'style="width: 39px"'%> src="images/<%=badge.url || 'ico-write.png' %>" />
-                </div>
+                <div><img <%- unless badge.url? then 'style="width: 39px"'%> src="images/<%=badge.url || 'ico-write.png' %>" /></div>
               </li>
             <% end %>
           <% end %>
