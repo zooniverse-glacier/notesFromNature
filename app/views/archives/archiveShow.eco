@@ -1,3 +1,5 @@
+<% { formatNumber } = require 'lib/utils' %>
+
 <div class="box-general detail" style='background-image:url("<%= @archive.metadata.location.headerImage %>")'>
   <section class="header-content">
     <h3><%= @archive.institute().name %></h3>
@@ -31,10 +33,10 @@
         <div class="progress-stats">
           <span class="text">PROGRESS</span>
           <span class="api_stat">Total Images: <%- @archive.total() %></span>
-          <span class="api_stat" >Active Images: <%- @archive.stats.active %></span>
-          <span class="api_stat">Complete Images: <%- @archive.stats.complete %></span>
+          <span class="api_stat" >Active Images: <%- formatNumber @archive.stats.active %></span>
+          <span class="api_stat">Complete Images: <%- formatNumber @archive.stats.complete %></span>
           <span class="progress-bar-ratio">
-            <%- @archive.classification_count %>  / <%-  @archive.transcriptions_needed() %> transcriptions needed.
+            <%- formatNumber @archive.classification_count %>  / <%-  formatNumber @archive.transcriptions_needed() %> transcriptions needed.
           </span> 
         </div>
       </li>

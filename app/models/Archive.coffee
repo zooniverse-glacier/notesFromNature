@@ -4,6 +4,8 @@ badgeDefinitions = require 'lib/BadgeDefinitions'
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
 
+{ formatNumber } = require 'lib/utils'
+
 class Archive extends Spine.Model
   @configure 'Archive', 'group_id', 'classification_count', 'name', 'metadata', 'complete', 'stats', 'categories'
   @belongsTo 'institute', 'models/Institute'
@@ -61,18 +63,13 @@ class Archive extends Spine.Model
       return result
 
   recordsComplete: =>
-    @formatNumber @stats.complete
+    formatNumber @stats.complete
 
   total: =>
-    @formatNumber @stats.total
+    formatNumber @stats.total
 
   complete: =>
     unless @stats? then return 0
     (@stats.complete is @stats.total)
-
-  # Private
-  formatNumber: (n) ->
-    return n unless n
-    n.toString().replace /(\d)(?=(\d{3})+(?!\d))/g, '$1,'
 
 module.exports = Archive
