@@ -34,7 +34,7 @@ class TranscriptionController extends Spine.Site
       Spine.Route.navigate '/'
       return
 
-    if @archive.progress() is 100 then return Spine.Route.navigate '/'
+    if @archive.progress_strict() is 100 then return Spine.Route.navigate '/'
 
 
     # Adjust page attributes for archive.

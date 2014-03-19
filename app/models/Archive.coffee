@@ -46,14 +46,12 @@ class Archive extends Spine.Model
   transcriptions_needed: =>
     @stats.total * @COMPLETION_FACTOR
 
-  # progress_strict reflects that historically the completion criteria changed 
-  # from 10 to 4 transcriptions per image
+  # progress_strict calculates progress using raw complete and total values from the API
   progress_strict: =>
     unless @stats? then return 0
-    Math.ceil ( (@stats.complete / @stats.total) * 100)
+    Math.floor(@stats.complete / @stats.total * 100)
 
-    # however in order to display a number that prgress reflects real time transcriptions
-  # we are displaying this number
+  # However in order to display a number that prgress reflects real time transcriptions, we typically display this number
   progress: =>
     unless @stats? then return 0
     result = Math.ceil ( (@classification_count / @transcriptions_needed() ) * 100)
