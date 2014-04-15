@@ -69,6 +69,8 @@ module.exports =
         "headerImage": "images/archives/birdsBg.jpg"
   "New York Botanical Garden":
     "name": "New York Botanical Garden"
+    "metadata":
+      "logo": "images/logos/new-york-botanical-garden.jpg"
   "Macrofungi":
     "name": "Macrofungi"
     "categories":["Fungi"]

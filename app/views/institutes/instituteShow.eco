@@ -2,21 +2,24 @@
   <div class="col3">
     <h2 class="title">
       <%= @institute.name %>
-      <span class="subtitle"><%= @institute.metadata.regions.join(",") %></span>
-      <img class="logo" src="images/logoMuseum.png" alt="Natural History Museum">
+      <span class="subtitle"><%= @institute.metadata.regions?.join(",") %></span>
+
+      <% if @institute.metadata.logo?: %>
+        <img class="logo" src="<%- @institute.metadata.logo %>" alt="<%- @institute.name %>">
+      <% end %>
     </h2>
   </div>
 </div>
 
 <div class="box-general divided">
   <div class="col2">
-    <p><%- @institute.metadata.description %></p>
+    <p><%= @institute.metadata.description %></p>
   </div>
 
   <div class="col1">
     <div class="links-left">
       <span class="text">MORE INFORMATION</span>
-      <a href="<%= @institute.metadata.location.url %>" class="object noline"><%= @institute.metadata.location.url %></a>
+      <a href="<%= @institute.metadata.location?.url %>" class="object noline"><%= @institute.metadata.location?.url %></a>
       <span class="text">COLLECTIONS</span>
       <ul>
         <% for archive in @institute.archives().all(): %>
