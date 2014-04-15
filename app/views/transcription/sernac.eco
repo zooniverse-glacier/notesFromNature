@@ -445,7 +445,7 @@
     <select name="countries" class="countries">
       <option value="placeholder">-- Country --</option>
       <option value="unknown">Unknown Country</option>
-      <option value="Afganistan">Afghanistan</option>
+      <option value="Afghanistan">Afghanistan</option>
       <option value="Albania">Albania</option>
       <option value="Algeria">Algeria</option>
       <option value="American Samoa">American Samoa</option>
@@ -497,10 +497,10 @@
       <option value="Congo">Congo</option>
       <option value="Cook Islands">Cook Islands</option>
       <option value="Costa Rica">Costa Rica</option>
-      <option value="Cote DIvoire">Cote D'Ivoire</option>
+      <option value="Cote D'Ivoire">Cote D'Ivoire</option>
       <option value="Croatia">Croatia</option>
       <option value="Cuba">Cuba</option>
-      <option value="Curaco">Curacao</option>
+      <option value="Curacao">Curacao</option>
       <option value="Cyprus">Cyprus</option>
       <option value="Czech Republic">Czech Republic</option>
       <option value="Denmark">Denmark</option>
@@ -559,7 +559,7 @@
       <option value="Kenya">Kenya</option>
       <option value="Kiribati">Kiribati</option>
       <option value="Korea North">Korea North</option>
-      <option value="Korea Sout">Korea South</option>
+      <option value="Korea South">Korea South</option>
       <option value="Kuwait">Kuwait</option>
       <option value="Kyrgyzstan">Kyrgyzstan</option>
       <option value="Laos">Laos</option>
@@ -593,7 +593,7 @@
       <option value="Morocco">Morocco</option>
       <option value="Mozambique">Mozambique</option>
       <option value="Myanmar">Myanmar</option>
-      <option value="Nambia">Nambia</option>
+      <option value="Namibia">Namibia</option>
       <option value="Nauru">Nauru</option>
       <option value="Nepal">Nepal</option>
       <option value="Netherland Antilles">Netherland Antilles</option>
@@ -615,7 +615,7 @@
       <option value="Papua New Guinea">Papua New Guinea</option>
       <option value="Paraguay">Paraguay</option>
       <option value="Peru">Peru</option>
-      <option value="Phillipines">Philippines</option>
+      <option value="Philippines">Philippines</option>
       <option value="Pitcairn Island">Pitcairn Island</option>
       <option value="Poland">Poland</option>
       <option value="Portugal">Portugal</option>
@@ -674,10 +674,10 @@
       <option value="Tuvalu">Tuvalu</option>
       <option value="Uganda">Uganda</option>
       <option value="Ukraine">Ukraine</option>
-      <option value="United Arab Erimates">United Arab Emirates</option>
+      <option value="United Arab Emirates">United Arab Emirates</option>
       <option value="United Kingdom">United Kingdom</option>
       <option value="United States">United States</option>
-      <option value="Uraguay">Uruguay</option>
+      <option value="Uruguay">Uruguay</option>
       <option value="Uzbekistan">Uzbekistan</option>
       <option value="Vanuatu">Vanuatu</option>
       <option value="Vatican City State">Vatican City State</option>
@@ -694,4 +694,3 @@
     </select>
   </div>
 </script>
-
