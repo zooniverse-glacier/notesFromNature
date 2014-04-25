@@ -12,6 +12,8 @@
     "coffee-script": "~1.6.3"
   },
   "scripts": {
-    "start": "hem server"
+    "start": "hem server",
+    "deploy-to-production": "ruby build.rb",
+    "deploy-to-staging": "ruby staging-build.rb"
   }
 }
