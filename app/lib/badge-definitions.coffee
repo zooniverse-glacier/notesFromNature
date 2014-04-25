@@ -59,6 +59,18 @@ module.exports = [
           return false
     collection: 'herbarium'
   ,
+    name: 'Mature Tree'
+    url: 'badges/herbarium/mature-tree.png'
+    description: 'You earn this badge for transcribing 1000 SERNEC records'
+    awardText: 'You earned this badge for transcribing 1000 SERNEC records'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 1000
+        else
+          return false
+    collection: 'herbarium'
+  ,
     name: 'Egg'
     url: 'badges/calbug/egg.png'
     description: 'You earn this badge for transcribing a Calbug record'
@@ -94,5 +106,52 @@ module.exports = [
         else
           return false
     collection: 'calbug'
-
+  ,
+    name: 'Butterflies'
+    url: 'badges/calbug/butterflies.png'
+    description: 'You earn this badge for transcribing 500 Calbug records'
+    awardText: 'You earned this badge for transcribing 500 Calbug records'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 100
+        else
+          return false
+    collection: 'calbug'
+  ,
+    name: 'Spore'
+    url: 'badges/macrofungi/spore.png'
+    description: 'You earn this badge for transcribing 1 Macrofungi record'
+    awardText: 'You earned this badge for transcribing 1 Macrofungi record'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 0
+        else
+          return false
+    collection: 'macrofungi'
+  ,
+    name: 'Mycelium'
+    url: 'badges/macrofungi/mycelium.png'
+    description: 'You earn this badge for transcribing 25 Macrofungi records'
+    awardText: 'You earned this badge for transcribing 25 Macrofungi records'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 25
+        else
+          return false
+    collection: 'macrofungi'
+  ,
+    name: 'Mushroom'
+    url: 'badges/macrofungi/mushroom.png'
+    description: 'You earn this badge for transcribing 100 Macrofungi records'
+    awardText: 'You earned this badge for transcribing 100 Macrofungi records'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 100
+        else
+          return false
+    collection: 'macrofungi'
 ]
