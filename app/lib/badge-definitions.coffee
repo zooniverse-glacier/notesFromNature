@@ -1,6 +1,6 @@
 module.exports = [
     name: 'Seed'
-    url: 'badges/seed.png'
+    url: 'badges/herbarium/seed.png'
     description: 'You earn this badge for transcribing a SERNEC record'
     awardText: 'You earned this badge for transcribing a SERNEC record'
     condition: 
@@ -12,7 +12,7 @@ module.exports = [
     collection: 'herbarium'
   ,
     name: 'Seedling'
-    url: 'badges/seedling.png'
+    url: 'badges/herbarium/seedling.png'
     description: 'You earn this badge for transcribing 10 SERNEC records'
     awardText: 'You earned this badge for transcribing 10 SERNEC records'
     condition:
@@ -24,7 +24,7 @@ module.exports = [
     collection: 'herbarium'
   ,
     name: 'Sprout'
-    url: 'badges/sapling.png'
+    url: 'badges/herbarium/sapling.png'
     description: 'You earn this badge for transcribing 25 SERNEC records'
     awardText: 'You earned this badge for transcribing 25 SERNEC records'
     condition:
@@ -36,7 +36,7 @@ module.exports = [
     collection: 'herbarium'
   ,
     name: 'Tree'
-    url: 'badges/tree.png'
+    url: 'badges/herbarium/tree.png'
     description: 'You earn this badge for transcribing 75 SERNEC records'
     awardText: 'You earned this badge for transcribing 75 SERNEC records'
     condition:
@@ -48,7 +48,7 @@ module.exports = [
     collection: 'herbarium'
   ,
     name: 'Oak'
-    url: 'badges/oak.png'
+    url: 'badges/herbarium/oak.png'
     description: 'You earn this badge for transcribing 250 SERNEC records'
     awardText: 'You earned this badge for transcribing 250 SERNEC records'
     condition:

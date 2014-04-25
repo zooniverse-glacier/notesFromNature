@@ -1,5 +1,5 @@
 Api = require 'zooniverse/lib/api'
-badgeDefinitions = require 'lib/BadgeDefinitions'
+badgeDefinitions = require 'lib/badge-definitions'
 
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
