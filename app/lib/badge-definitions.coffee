@@ -114,7 +114,7 @@ module.exports = [
     condition:
       func: (details) ->
         if details.user.project.groups?[details.archive.id]?
-          return details.user.project.groups[details.archive.id].classification_count > 100
+          return details.user.project.groups[details.archive.id].classification_count > 500
         else
           return false
     collection: 'calbug'
