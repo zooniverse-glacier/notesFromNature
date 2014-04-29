@@ -42,6 +42,11 @@ new Api project: 'notes_from_nature'
 app = {}
 app.container = '#app'
 
+app.models = {}
+app.models.Archive = Archive
+app.models.Badge = Badge
+app.models.Institute = Institute
+
 app.header = new Header
 app.header.el.prependTo app.container
 
