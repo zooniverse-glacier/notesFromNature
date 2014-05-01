@@ -31,6 +31,7 @@ module.exports =
         "url": "http://calbug.berkeley.edu/"
         "standard":"/images/bg-collection.jpg"
         "thumbnail":"/images/logoMuseum.png"
+      "logo": "images/logos/essig.jpg"
   "Calbug":
     "name":"Calbug"
     "categories":["Insects","Spiders"]
