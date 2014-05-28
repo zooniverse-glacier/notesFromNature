@@ -56,6 +56,7 @@ class Institute extends Spine.Model
       active: 0
       complete: 0
       inactive: 0
+      paused: 0
       total: 0
 
     for archive in @archives().all()

@@ -4,7 +4,7 @@
   <section class="header-content">
     <h3><%= @archive.institute().name %></h3>
     <h1><%= @archive.name %></h1>
-    <% unless @archive.complete(): %>
+    <% unless @archive.isComplete(): %>
     <div class="translucent-box">
       <div>
         <a class="button left" href="<%= @archive.transcriptionUrl() %>">START TRANSCRIBING</a>
@@ -91,7 +91,7 @@
       <li><span class="text">AVG. DIFFICULTY</span><%= @archive.metadata.difficulty %></li>
     </ul>
 
-    <% unless @archive.complete(): %>
+    <% unless @archive.isComplete(): %>
       <span class="mar-button">
         <a href="<%= @archive.transcriptionUrl() %>" class="button next">
           <span>TRY WITH ONE RECORD</span>

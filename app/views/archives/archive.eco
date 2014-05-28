@@ -3,7 +3,7 @@
   <img src="<%= @archive.metadata.location.image %>"> 
   <div class="translucent-box">
     <p> 
-      <% if @archive.complete(): %>
+      <% if @archive.isComplete(): %>
        <span class="complete_notice">Check back.  We'll load more images soon!</span> 
       <% end %>
     </p>

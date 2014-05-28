@@ -30,13 +30,12 @@ class ArchivesItem extends Spine.Site
     super
     
   render: =>
-
     if @currentArchive?
       @html require('/views/archives/archiveShow')
         archive: @currentArchive
         user_count: @formatNumber Project.current?.user_count || 0
         badges: Badges.badgesForProject(@currentArchive.slug())
-      if @currentArchive.complete()
+      if @currentArchive.isComplete()
         @disableStartTranscribing()
     else  
       @html require('/views/archives/archiveNotFound')()
