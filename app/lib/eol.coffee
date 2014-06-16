@@ -51,16 +51,11 @@ class Eol
         if Array.isArray(results) then cb results[0].error, null; return
         unless results.dataObjects.length > 0 then cb firstResult; return
 
-        images = []
-        for object in results.dataObjects
-          image = {}
-          if object.hasOwnProperty 'eolMediaURL' then image.standard = object.eolMediaURL
-          if object.hasOwnProperty 'eolThumbnailURL' then image.thumbnail = object.eolThumbnailURL
+        dataObjectsWithImage = []
+        for dataObject in results.dataObjects
+          if 'eolMediaURL' of dataObject then dataObjectsWithImage.push dataObject
 
-          if image.hasOwnProperty 'standard'
-            images.push image
-
-        firstResult.images = images
+        firstResult.images = dataObjectsWithImage
         cb firstResult
 
   # Private methods

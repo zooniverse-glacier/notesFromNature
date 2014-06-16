@@ -2,20 +2,20 @@
   <h2>Encyclopedia of Life</h2>
 </section>
 
-<% if @data?: %>
+<% if @title? and @content? and @images?: %>
   <section>
-    <h1><%= @data.title %></h1>
-    <% content = if @data.content.length > 90 then @data.content.slice(0, 90) + '...' else @data.content %>
+    <h1><%- @title %></h1>
+    <% content = if @content.length > 90 then @content.slice(0, 90) + '...' else @content %>
     <h2><%= content %></h2>
   </section>
 
-  <% if @data.images?: %>
+  <% if @images?: %>
     <section>
-      <% if @data.images.length > 0: %>
+      <% if @images.length > 0: %>
       <ul>
-        <% for image in @data.images: %>
-          <% source = if image.thumbnail then image.thumbnail else image.standard %>
-          <li><img src="<%= source %>" data-standard="<%= image.standard %>"></li>
+        <% for image, i in @images: %>
+          <% source = if image.eolThumbnailURL then image.eolThumbnailURL else image.eolMediaURL %>
+          <li><img src="<%= source %>" data-index="<%= i %>"></li>
         <% end %>
       </ul>
       <% end %>

@@ -1,6 +1,23 @@
 <div id="modal">
   <div class="modal-overlay"></div>
   <div class="modal-content">
-    <img id="modal-image" src="<%- @image %>">
+    <img id="modal-image" src="<%- @eolMediaURL %>">
+  </div>
+  <div class="attribution">
+    <% if @photographer?: %>
+      Image by <%- @photographer.full_name %><br>
+    <% end %>
+
+    <% if @rightsHolder?: %>
+      &copy; <%- @rightsHolder %>
+    <% end %>
+
+    <% if @provider?: %>
+      <a href="<%- @provider.homepage %>"><%- @provider.full_name %></a><br>
+    <% end %>
+
+    <% if @license?: %>
+      License: <a href="<%- @license %>"><%- @license %></a><br>
+    <% end %>
   </div>
 </div>

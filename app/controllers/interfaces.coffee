@@ -43,7 +43,6 @@ class InterfaceController extends Spine.Controller
   saveClassification: (data) =>
     @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in data.toJSON()
 
-    
     done = =>
       #throttle to allow async POST to suceed on backend before refresh of other data 
       setTimeout =>
