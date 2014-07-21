@@ -8,15 +8,15 @@ class BadgesController extends Spine.Controller
 
   constructor: ->
     super
-    
-    if ACTIVE
-      Archive.bind 'refresh', =>
-        @loadBadge()
-        @render()
+    return unless ACTIVE
 
-      Badge.bind 'badgesLoaded', =>
-        @loadBadge()
-        @render()
+    Archive.bind 'refresh', =>
+      @loadBadge()
+      @render()
+
+    Badge.bind 'badgesLoaded', =>
+      @loadBadge()
+      @render()
 
   loadBadge: (name = null) =>
     @badgeName = name if name?

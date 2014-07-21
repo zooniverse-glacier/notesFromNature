@@ -74,7 +74,9 @@ class Badge extends Spine.Model
   slug: => @name.replace /\s/g, "_"
 
   checkAward: =>
-    if User.current and @condition.func({user: User.current, archive: @archive()}) then @award()
+    archive = @archive() || null
+    if User.current and @condition.func { user: User.current, archive: archive }
+      @award()
 
   award: =>
     if User.current

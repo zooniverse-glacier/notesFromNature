@@ -27,7 +27,7 @@ class Archive extends Spine.Model
   
   addBadges: =>
     for badge in badgeDefinitions
-      if badge.collection is @slug()
+      if badge.collection is @slug() or 'collection' not of badge
         @badges().create badge
 
   checkBadges: =>
