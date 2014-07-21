@@ -56,7 +56,8 @@ class Archive extends Spine.Model
     unless @stats? then return 0
     result = Math.ceil ( (@classification_count / @transcriptions_needed() ) * 100)
 
-    if result > 100 then 100 else result
+    # fake it until we are sure its complete
+    if result >= 100 then 99 else result
 
   recordsComplete: =>
     formatNumber @stats.complete
