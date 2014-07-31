@@ -205,7 +205,7 @@ module.exports = [
           return false
     collection: 'ornithological'
   ,
-    name: 'First-Level Multi-Collections Badge'
+    name: "Novice Collection's Explorer"
     url: 'badges/multi/beginner.png'
     description: 'You earn this badge for transcribing 1 record from 3 collections'
     awardText: 'You earned this badge for transcribing 1 record from 3 collections'
@@ -213,11 +213,11 @@ module.exports = [
       func: (details) ->
         checkWorkSpread.call details.user, 1, 3
   ,
-    name: 'Second-Level Multi-Collections Badge'
+    name: "Intermediate Collection's Explorer"
     url: 'badges/multi/intermediate.png'
     description: 'You earn this badge for transcribing 25 record from 3 collections'
     awardText: 'You earned this badge for transcribing 25 record from 3 collections'
     condition:
       func: (details) ->
-        checkWorkSpread.call details.user, 3, 3
+        checkWorkSpread.call details.user, 25, 3
 ]
