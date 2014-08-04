@@ -56,7 +56,7 @@ class TranscriptionController extends Spine.Site
       if e.which is 8 and not (e.target.tagName is 'INPUT')
         e.preventDefault()
       else if e.which is 80 and e.ctrlKey and $(".ui-autocomplete:visible").length == 0
-		# ditto functionality      	
+        # ditto functionality      	
         $(".ui-autocomplete-input").first().autocomplete("search","")       
         $(".ui-autocomplete > li").parent().css("width", $(".ui-autocomplete-input").first().css("width"));
         $(".ui-autocomplete > li").parent().css("padding", "0px");

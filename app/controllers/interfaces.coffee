@@ -69,6 +69,14 @@ class InterfaceController extends Spine.Controller
     cachedSet["" + (parseInt(maxId)+1)] = @classification.toJSON()
     localStorage.setItem("classifications", JSON.stringify cachedSet)    
       
+    cachedSet = JSON.parse(localStorage.getItem("classifications"))
+    cachedSet = {} unless cachedSet
+    max = 0
+    maxId = 0
+    maxId= (if key > max then key else max) for key, value of cachedSet       
+    cachedSet["" + (parseInt(maxId)+1)] = @classification.toJSON()
+    localStorage.setItem("classifications", JSON.stringify cachedSet)    
+      
     @classification.send done
    
     Subject.next()
