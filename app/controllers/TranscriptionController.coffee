@@ -56,9 +56,11 @@ class TranscriptionController extends Spine.Site
       if e.which is 8 and not (e.target.tagName is 'INPUT')
         e.preventDefault()
       else if e.which is 80 and e.ctrlKey and $(".ui-autocomplete:visible").length == 0
+		# ditto functionality      	
         $(".ui-autocomplete-input").first().autocomplete("search","")       
         $(".ui-autocomplete > li").parent().css("width", $(".ui-autocomplete-input").first().css("width"));
         $(".ui-autocomplete > li").parent().css("padding", "0px");
+        e.stopImmediatePropagation()
         e.preventDefault()        
       else if $(".ui-autocomplete:visible").length > 0	
       	# if menu is open and we press any key that has no meaning for jquery autocomplete menus (arrows, enter, escape, etc), close the menu
