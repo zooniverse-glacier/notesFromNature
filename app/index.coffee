@@ -24,6 +24,7 @@ Profile = require 'controllers/profile'
 Api = require 'zooniverse/lib/api'
 
 Project = require 'zooniverse/models/project'
+Project::groups = null
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
 
