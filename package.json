@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "hem server",
-    "deploy-to-production": "ruby build.rb",
+    "deploy": "ruby build.rb",
     "deploy-to-staging": "ruby staging-build.rb"
   }
 }
