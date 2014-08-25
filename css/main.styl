@@ -118,7 +118,7 @@ h3 span.black {
   color: #666666;
 }
 
-span.subtitle
+.subtitle
   color: #666
 
 .translucent-box 
@@ -140,12 +140,6 @@ span.subtitle
       font-family: "Open Sans", sans-serif
       font-size: 21px
       font-weight: 600
-
-    &.subtitle
-      font-family: "Helvetica", sans-serif
-      font-size: 17px
-      font-weight: normal
-      padding-top: 0px
 
   .percentage
     margin-top: 10px
@@ -284,13 +278,6 @@ span.numbers {
   font-size: 41px;
   font-weight: 600;
 }
-span.subtitle {
-  display: block;
-  font-family: helvetica;
-  font-size: 15px;
-  font-weight: normal;
-  padding-top: 10px;
-}
 
 h2 span.subtitle {
   font-size: 13px;
@@ -308,10 +295,6 @@ h2.title span.subtitle a {
 }
 h2 span.subtitle {
   padding-top: 12px;
-}
-
-h3 span.subtitle {
-  font-size: 13px;
 }
 
 figcaption {
@@ -1007,10 +990,6 @@ li.img-graphic2 {
     position: relative
     width: 320px
 
-.archive-list h3 span.subtitle {
-  font-size: 15px;
-}
-
 .archive-list .emptyArchive{
   border-box()
   border-right: 1px solid #333333
@@ -1068,26 +1047,23 @@ li.img-graphic2 {
   color: #83C046;
   font-size: 13px;
 }
-.archive-list h3 {
-  background-color: #000;
-  position: absolute;
-  bottom: 0;
-  width: 245px;
-  margin: 0;
-  padding: 22px 40px;
-  z-index: 10;
-  color: #83C046;
-}
 
-.archive-list h3 span a{
-  color:#666
-}
-.archive-list h3 a {
-  color: #83C046;
-}
-.archive-list h3 a:hover {
-  color: #FFF;
-}
+.archive-list .archive-details 
+  background: linear-gradient(rgba(black, 0.7), rgba(black, 1))
+  bottom: 0
+  color: #777
+  margin: 0
+  padding: 22px 40px
+  position: absolute
+  width: 245px
+  z-index: 10
+
+  .archive-link
+    color: #83c046
+    font-size: 26px
+
+    &:hover
+      color: white
 
 .archive-list li.selected h3 a {
   color: #FFF;

@@ -1,19 +1,5 @@
-<div>
-  <ul class="archive-list">                  
-    <% for archive in @archives: %>
-      <%- @archiveTemplate({archive: archive}) %>
-    <% end %>
-
-<!--     <li class="mine">
-      <img src="images/img-collections2.jpg"> 
-      <div class="translucent-box disable">
-        <p class="coming-soon"><i>Coming Soon</i></p>
-      </div>
-      
-      <h3 class="title">
-        <a href="#/archives/nhm">Ornithological
-        <span class="subtitle">Natural History Museum</span></a>
-      </h3>
-    </li> -->
-  </ul>
-</div>
+<ul class="archive-list">                  
+  <% for archive in @archives: %>
+    <%- @archiveTemplate({archive: archive}) %>
+  <% end %>
+</ul>
