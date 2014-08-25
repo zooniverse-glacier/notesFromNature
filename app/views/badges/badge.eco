@@ -11,10 +11,14 @@
 <div class="box-general highlighted nomargin">
   <div class="col3">
     <div class="box-badge-footer">
+      <% if @archive?: %>
       <span>Get it at:
         <a class="object line-r" href="#/institutes/<%=@archive?.institute().slug()%>">NFN - Insititue: <%=@archive?.institute().name%></a>
         <a class="object" href="#/archives/<%=@archive?.slug()%>">NFN - Collection: <%=@archive?.name%></a>
       </span>
+      <% else: %>
+        Get it at: <a href="#/archives">any 3 collections!</a>
+      <% end %>
     </div>
   </div>
 </div>
