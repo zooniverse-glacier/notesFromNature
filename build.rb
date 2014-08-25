@@ -73,7 +73,8 @@ to_upload.each.with_index do |file, index|
     options[:cache_control] = 'no-cache'
   end
 
-  bucket.objects["www.notesfromnature.org/#{file}"].write(file, options)
+  path = Pathname.new(file)
+  bucket.objects["www.notesfromnature.org/#{file}"].write(path, options)
 end
 
 Dir.chdir working_directory
