@@ -55,7 +55,7 @@ class TranscriptionController extends Spine.Site
     $(document).on 'keydown.nfn keypress.nfn', (e) ->
       if e.which is 8 and not (e.target.tagName is 'INPUT')
         e.preventDefault()
-      else if e.which is 80 and e.ctrlKey and $(".ui-autocomplete:visible").length == 0
+      else if e.which is 77 and e.ctrlKey and $(".ui-autocomplete:visible").length == 0
         # ditto functionality      	
         $(".ui-autocomplete-input").first().autocomplete("search","")       
         $(".ui-autocomplete > li").parent().css("width", $(".ui-autocomplete-input").first().css("width"));
