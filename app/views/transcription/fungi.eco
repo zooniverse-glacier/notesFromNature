@@ -257,6 +257,7 @@
   <div class="state_field">
     <select name="state" class="state"> 
       <option value="placeholder">-- State --</option>
+      <option value="unknown">Unknown State</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
       <option value="AZ">Arizona</option>
