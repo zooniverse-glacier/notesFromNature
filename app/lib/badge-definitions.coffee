@@ -168,43 +168,43 @@ module.exports = [
         else
           return false
     collection: 'macrofungi'
-  ,
-    name: 'Nest'
-    url: 'badges/ornithology/nest.png'
-    description: 'You earn this badge for transcribing 1 Ornithological records'
-    awardText: 'You earned this badge for transcribing 1 Ornithological records'
-    condition:
-      func: (details) ->
-        if details.user.project.groups?[details.archive.id]?
-          return details.user.project.groups[details.archive.id].classification_count > 0
-        else
-          return false
-    collection: 'ornithological'
-  ,
-    name: 'Fledgling'
-    url: 'badges/ornithology/fledgling.png'
-    description: 'You earn this badge for transcribing 25 Ornithological records'
-    awardText: 'You earned this badge for transcribing 25 Ornithological records'
-    condition:
-      func: (details) ->
-        if details.user.project.groups?[details.archive.id]?
-          return details.user.project.groups[details.archive.id].classification_count > 25
-        else
-          return false
-    collection: 'ornithological'
-  ,
-    name: 'Adult Bird'
-    url: 'badges/ornithology/adult.png'
-    description: 'You earn this badge for transcribing 100 Ornithological records'
-    awardText: 'You earned this badge for transcribing 100 Ornithological records'
-    condition:
-      func: (details) ->
-        if details.user.project.groups?[details.archive.id]?
-          return details.user.project.groups[details.archive.id].classification_count > 100
-        else
-          return false
-    collection: 'ornithological'
-  ,
+    ,
+  #   name: 'Nest'
+  #   url: 'badges/ornithology/nest.png'
+  #   description: 'You earn this badge for transcribing 1 Ornithological records'
+  #   awardText: 'You earned this badge for transcribing 1 Ornithological records'
+  #   condition:
+  #     func: (details) ->
+  #       if details.user.project.groups?[details.archive.id]?
+  #         return details.user.project.groups[details.archive.id].classification_count > 0
+  #       else
+  #         return false
+  #   collection: 'ornithological'
+  # ,
+  #   name: 'Fledgling'
+  #   url: 'badges/ornithology/fledgling.png'
+  #   description: 'You earn this badge for transcribing 25 Ornithological records'
+  #   awardText: 'You earned this badge for transcribing 25 Ornithological records'
+  #   condition:
+  #     func: (details) ->
+  #       if details.user.project.groups?[details.archive.id]?
+  #         return details.user.project.groups[details.archive.id].classification_count > 25
+  #       else
+  #         return false
+  #   collection: 'ornithological'
+  # ,
+  #   name: 'Adult Bird'
+  #   url: 'badges/ornithology/adult.png'
+  #   description: 'You earn this badge for transcribing 100 Ornithological records'
+  #   awardText: 'You earned this badge for transcribing 100 Ornithological records'
+  #   condition:
+  #     func: (details) ->
+  #       if details.user.project.groups?[details.archive.id]?
+  #         return details.user.project.groups[details.archive.id].classification_count > 100
+  #       else
+  #         return false
+  #   collection: 'ornithological'
+  # ,
     name: "Novice Collection's Explorer"
     url: 'badges/multi/beginner.png'
     description: 'You earn this badge for transcribing 1 record from 3 collections'
