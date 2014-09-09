@@ -48,6 +48,7 @@
       <div class="toggle">Show Help Text</div>
       <div class="title"></div>
       <div class="description"></div>
+      <div class="dittoDescription"></div>
     </div>
   </div>
 </script>
@@ -66,8 +67,8 @@
 </script>
 
 <script type="text/template" id="date-input-template">
-  <div class="date_field month">
-    <select name="month" class="month">
+  <div class="date_field month" >
+    <select name="month" class="month" data-title="">
       <option value="placeholder">-- Month --</option>
       <option value="00">Not Shown</option>
       <option value="01">01 - January - I</option>
