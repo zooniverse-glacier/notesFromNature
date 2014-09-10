@@ -21,7 +21,7 @@ class HomeController extends Spine.Site
 
     # Use per-row transcription data, rather than page data for Ornithology collection. This is a hack until I figure out a better solution
     if Project.current
-      rowClassifications = 205056 # As of 2014/07/13
+      rowClassifications = 265084 # As of 2014/09/17
       ornithologyPageClassificationCount = Project.current.groups['5266c83a3ae740d5e3000002']?.classification_count || 0
       transcriptions = transcriptions - ornithologyPageClassificationCount + rowClassifications
 
