@@ -42,6 +42,7 @@
 <script type="text/template" id="helper-template">
   <div class="title"></div>
   <div class="description"></div>
+  <div class="dittoDescription"></div>  
 </script>
 
 <script type="text/template" id="launcher-template">
@@ -58,7 +59,7 @@
 
 <script type="text/template" id="date-input-template">
   <div class="date_field month">
-    <select name="month" class="month">
+    <select name="month" class="month" data-title="">
       <option value="placeholder">-- Month --</option>
       <option value="00">Not Shown</option>
       <option value="01">01 - January</option>
