@@ -17,7 +17,6 @@ AboutController = require 'controllers/AboutController'
 BadgesController = require 'controllers/BadgesController'
 FAQController = require 'controllers/FAQController'
 HomeController = require 'controllers/HomeController'
-InstituteShowController = require 'controllers/InstituteShowController'
 LoginController = require 'controllers/LoginController'
 Profile = require 'controllers/profile'
 
@@ -55,7 +54,6 @@ app.stack = new Spine.Stack
   controllers:
     home: HomeController
     archives: Archives
-    instituteShow: InstituteShowController
     login: LoginController
     profile: Profile
     about: AboutController
@@ -65,7 +63,6 @@ app.stack = new Spine.Stack
     '/': 'home'
     '/archives': 'archives'
 
-    '/institutes/:id': 'instituteShow'
     '/badges/:id': 'badges'
 
     '/about': 'about'
