@@ -49,21 +49,10 @@ class Archive extends Spine.Model
   # progress_strict calculates progress using raw complete and total values from the API
   progress_strict: =>
     unless @stats? then return 0
-    Math.floor(@stats.complete / (@stats.total - @stats.paused) * 100)
-
-  # However in order to display a number that prgress reflects real time transcriptions, we typically display this number
-  progress: =>
-    unless @stats? then return 0
-    result = Math.ceil ( (@classification_count / @transcriptions_needed() ) * 100)
-
-    # fake it until we are sure its complete
-    if result >= 100 then 99 else result
+    Math.floor(@stats.complete / (@stats.total) * 100)
 
   recordsComplete: =>
     formatNumber @stats.complete
-
-  total: =>
-    formatNumber (@stats.total - @stats.paused)
 
   isComplete: =>
     unless @stats? then return 0

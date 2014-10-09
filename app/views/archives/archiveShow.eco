@@ -32,18 +32,16 @@
       <li class="api-stat-list">
         <div class="progress-stats">
           <span class="text">PROGRESS</span>
-          <span class="api_stat">Total Images: <%- @archive.total() %></span>
-          <span class="api_stat" >Active Images: <%- formatNumber @archive.stats.active %></span>
-          <span class="api_stat">Complete Images: <%- formatNumber @archive.stats.complete %></span>
-          <span class="progress-bar-ratio">
-            <%- formatNumber @archive.classification_count %>  / <%-  formatNumber @archive.transcriptions_needed() %> transcriptions needed.
-          </span> 
+          <span class="api-stat">Total Images: <%- @archive.stats.total %></span>
+          <span class="api-stat" >Active Images: <%- formatNumber @archive.stats.active %></span>
+          <span class="api-stat">Complete Images: <%- formatNumber @archive.stats.complete %></span>
+          <span class="api-stat"><%- formatNumber @archive.classification_count %> transcriptions completed</span>
         </div>
       </li>
-      <li id="progress-bar-li" >
+      <li id="progress-bar-li">
         <div class="progress-bar">
-          <div class="bar" style="width:<%= @archive.progress() %>%"></div>
-          <span class="progress"><%= @archive.progress() %>%</span>
+          <div class="bar" style="width:<%= @archive.progress_strict() %>%"></div>
+          <span class="progress"><%= @archive.progress_strict() %>%</span>
         </div>
       </li> 
       <li class="start-transcribing"> 
