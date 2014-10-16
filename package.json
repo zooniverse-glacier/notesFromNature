@@ -7,7 +7,7 @@
     "underscore": "~1.4.4",
     "nib": "~0.9.1",
     "clean-css": "~0.9.1",
-    "zooniverse": "~0.6.4",
+    "zooniverse": "~0.7.1",
     "zootorial": "~0.3.6",
     "coffee-script": "~1.6.3"
   },
