@@ -2,17 +2,17 @@
   "name": "notes_from_nature",
   "version": "0.0.1",
   "dependencies": {
-    "hem": "git://github.com/chrissnyder/hem#1232e6d0dc",
     "spine": "~1.0.5",
     "underscore": "~1.4.4",
-    "nib": "~0.9.1",
     "clean-css": "~0.9.1",
-    "zooniverse": "~0.7.1",
+    "zooniverse": "0.7.1",
     "zootorial": "~0.3.6",
-    "coffee-script": "~1.6.3"
+    "coffee-script": "~1.6.3",
+    "snapsvg": "0.3.0",
+    "react": "0.12.0"
   },
   "scripts": {
-    "start": "hem server",
+    "start": "haw serve",
     "deploy": "ruby build.rb",
     "deploy-to-staging": "ruby staging-build.rb"
   }
