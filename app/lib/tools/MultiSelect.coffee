@@ -1,4 +1,4 @@
-BaseTool = require 'lib/tools/BaseTool'
+BaseTool = require './tools/BaseTool'
 
 class MultiSelect extends BaseTool
   actions: [

@@ -1,7 +1,7 @@
 BaseController = require 'zooniverse/controllers/base-controller'
 
 class Modal extends BaseController
-  template: require 'views/widgets/modal'
+  template: require '../views/widgets/modal'
 
   eolMediaURL: ''
 

@@ -1,3 +1,4 @@
+Spine = require 'spine'
 User = require 'zooniverse/models/user'
 
 class HeaderController extends Spine.Controller
@@ -14,7 +15,7 @@ class HeaderController extends Spine.Controller
       @render()
 
   render: =>
-    @html require('views/header')
+    @html require('../../views/header')
       user: User.current
 
 module.exports = HeaderController

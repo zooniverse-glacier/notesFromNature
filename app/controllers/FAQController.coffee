@@ -11,8 +11,8 @@ class FAQController extends Spine.Controller
     super
 
   render: (section = "general") =>
-    @html require('views/faq/outer')
-    @content.html require("views/faq/#{section}")
+    @html require('../views/faq/outer')
+    @content.html require("../views/faq/#{section}")
 
     @navLinks.removeClass('selected')
     $('[data-section="' + section + '"]').addClass('selected')

@@ -1,5 +1,6 @@
-Archive = require 'models/Archive'
-Badge = require 'models/Badge'
+Spine = require 'spine'
+Archive = require '../models/Archive'
+Badge = require '../models/Badge'
 
 ACTIVE = true
 
@@ -41,10 +42,10 @@ class BadgesController extends Spine.Controller
     
   render: =>
     if @currentBadge?
-      @html require('/views/badges/badge')
+      @html require('../views/badges/badge')
         badge: @currentBadge
         archive: @currentArchive
     else
-      @html require('/views/badges/badgeNotFound')()
+      @html require('../views/badges/badgeNotFound')()
 
 module.exports = BadgesController

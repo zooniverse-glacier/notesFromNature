@@ -1,12 +1,12 @@
 BaseController = require 'zooniverse/controllers/base-controller'
 Subject = require 'zooniverse/models/subject'
 
-Eol = require 'lib/eol'
-Modal = require 'lib/modal'
+Eol = require '../../lib/eol'
+Modal = require '../../lib/modal'
 
 class EolController extends BaseController
   className: 'eol-widget'
-  template: require 'views/widgets/eol'
+  template: require '../../views/widgets/eol'
 
   id: ''
   title: ''

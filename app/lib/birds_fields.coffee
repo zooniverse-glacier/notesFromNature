@@ -1,6 +1,6 @@
 old_format = [{
   name: 'registration_number'
-  description: require 'lib/data_format_views/old/registration_number'
+  description: require './data_format_views/old/registration_number'
   type: 'multi'
   fields: [{
     name: 'registration_year'
@@ -39,7 +39,7 @@ old_format = [{
 new_format = [{
   name: 'registration_number'
   display: 'Registration Number'
-  description: require 'lib/data_format_views/new/registration_number'
+  description: require './data_format_views/new/registration_number'
   type: 'multi'
   sub_fields: [{
     name: 'registration_year'
@@ -60,21 +60,21 @@ new_format = [{
 },{
   name: 'scientific_name'
   display: 'Scientific Name'
-  description: require 'lib/data_format_views/new/scientific_name'
+  description: require './data_format_views/new/scientific_name'
   helper_text: 'Scientific Name'
   size: 'large'
   type: 'input'
 },{
   name: 'location'
   display: 'Location'
-  description: require 'lib/data_format_views/new/location'
+  description: require './data_format_views/new/location'
   helper_text: 'Location'
   size: 'large'
   type: 'input'
 },{
   name: 'date_collected'
   display: 'Date Collected'
-  description: require 'lib/data_format_views/new/date_collected'
+  description: require './data_format_views/new/date_collected'
   type: 'multi'
   sub_fields: [{
     name: 'collected_day'

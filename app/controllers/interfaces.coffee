@@ -1,5 +1,5 @@
-Archive = require 'models/Archive'
-Institute =  require 'models/Institute'
+Spine = require 'spine'
+Institute = require '../models/Institute'
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
 Project = require 'zooniverse/models/project'
@@ -9,8 +9,8 @@ class InterfaceController extends Spine.Controller
   
   constructor: ->
     super
-    Spine.bind 'finishedTranscription', @saveClassification
-    Spine.bind 'skipTranscription', @skipClassification
+    addEventListener 'finished-transcription', @saveClassification
+    addEventListener 'skip-transcription', @skipClassification
 
     Subject.on 'select', @nextSubject
 
@@ -29,7 +29,6 @@ class InterfaceController extends Spine.Controller
       transcriberModel = new nfn.ui.model[@widgetName]()
       @transcriber = new nfn.ui.view[@widgetName]
         model: transcriberModel
-        Spine: Spine
         user: User.current
         archive: @archive
 
@@ -40,8 +39,8 @@ class InterfaceController extends Spine.Controller
 
     @delay go, 200
 
-  saveClassification: (data) =>
-    @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in data.toJSON()
+  saveClassification: ({transcriptions}) =>
+    @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in transcriptions.toJSON()
 
     done = =>
       #throttle to allow async POST to suceed on backend before refresh of other data 

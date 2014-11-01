@@ -1,6 +1,7 @@
-User  = require 'zooniverse/models/user'
-Badge = require 'models/Badge'
-Archive = require 'models/Archive'
+Spine = require 'spine'
+User = require 'zooniverse/models/user'
+Badge = require '../models/Badge'
+Archive = require '../models/Archive'
 
 class Profile extends Spine.Controller
   className: 'profile'
@@ -18,7 +19,7 @@ class Profile extends Spine.Controller
     @render()
 
   render: =>
-    @html require('views/profile')
+    @html require('../views/profile')
       user: User.current
       archives: Archive.records
     

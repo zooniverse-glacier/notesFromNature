@@ -1,10 +1,11 @@
+Site = require '../../lib/site'
 Project = require 'zooniverse/models/project'
 
-Archive = require 'models/Archive'
-Badges = require 'models/Badge'
+Archive = require '../../models/Archive'
+Badges = require '../../models/Badge'
 $ = window.jQuery
 
-class ArchivesItem extends Spine.Site
+class ArchivesItem extends Site
   className: 'ArchivesItem'
 
   constructor: ->
@@ -21,7 +22,7 @@ class ArchivesItem extends Spine.Site
     @loadArchive params.id
 
     if @currentArchive?
-      @title = "#{@currentArchive.institute().name} - #{@currentArchive.name}"
+      @title = "#{@currentArchive.metadata.institute} - #{@currentArchive.name}"
     else
       delete @title
 
@@ -31,14 +32,14 @@ class ArchivesItem extends Spine.Site
     
   render: =>
     if @currentArchive?
-      @html require('/views/archives/archiveShow')
+      @html require('../../views/archives/archiveShow')
         archive: @currentArchive
         user_count: @formatNumber Project.current?.user_count || 0
         badges: Badges.badgesForProject(@currentArchive.slug())
       if @currentArchive.isComplete()
         @disableStartTranscribing()
     else  
-      @html require('/views/archives/archiveNotFound')()
+      @html require('../../views/archives/archiveNotFound')()
 
   disableStartTranscribing: =>
     btnStartTranscribing = $("#a-btn-start-transcribing")
@@ -50,6 +51,5 @@ class ArchivesItem extends Spine.Site
       e.preventDefault()
       e.stopImmediatePropagation  
     )
-
 
 module.exports = ArchivesItem

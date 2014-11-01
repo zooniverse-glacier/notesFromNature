@@ -1,6 +1,7 @@
-Archive = require 'models/Archive'
+Site = require '../../lib/site'
+Archive = require '../../models/Archive'
 
-class ArchivesList extends Spine.Site
+class ArchivesList extends Site
   className: 'ArchivesList'
 
   elements:
@@ -31,13 +32,13 @@ class ArchivesList extends Spine.Site
     archives = Archive.filter(options)
 
     @html ''
-    @append require('views/archives/topBar')
+    @append require('../../views/archives/topBar')
       archives: archives
       options: options
 
-    @append require('views/archives/archiveList')
+    @append require('../../views/archives/archiveList')
       archives: archives
-      archiveTemplate: require('views/archives/archive')
+      archiveTemplate: require('../../views/archives/archive')
 
   toggleUserArchives: (e) =>
     e.preventDefault()

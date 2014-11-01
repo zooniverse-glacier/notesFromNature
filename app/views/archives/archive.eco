@@ -14,7 +14,7 @@
   </div>
   <div class="archive-details">
     <a href="#/archives/<%= @archive.slug() %>" class="archive-link"><%= @archive.name %></a>
-    <div class="institute-name"><%= @archive.institute().name%></div>
+    <div class="institute-name"><%= @archive.metadata.institute %></div>
   </div>
 </li>
 <% end %>

@@ -1,24 +1,19 @@
-if typeof console is 'undefined'
-  @console =
-    log: (message) ->
-      # Do Nothing
+Spine = require 'spine'
 
-require 'spine'
-require 'spine/lib/local'
-require 'spine/lib/ajax'
 require 'spine/lib/manager'
-require 'spine/lib/route'
 require 'spine/lib/relation'
+require 'spine/lib/route'
 
-Spine.Site = require 'lib/site'
+require './models/Institute'
+require './models/Archive'
+require './models/Badge'
 
-Archives = require 'controllers/archives'
-AboutController = require 'controllers/AboutController'
-BadgesController = require 'controllers/BadgesController'
-FAQController = require 'controllers/FAQController'
-HomeController = require 'controllers/HomeController'
-LoginController = require 'controllers/LoginController'
-Profile = require 'controllers/profile'
+SubPage = require './controllers/PageController'
+BadgesController = require './controllers/BadgesController'
+FAQController = require './controllers/FAQController'
+HomeController = require './controllers/HomeController'
+LoginController = require './controllers/LoginController'
+Profile = require './controllers/profile'
 
 Api = require 'zooniverse/lib/api'
 
@@ -30,12 +25,12 @@ User = require 'zooniverse/models/user'
 TopBar = require 'zooniverse/controllers/top-bar'
 Footer = require 'zooniverse/controllers/footer'
 
-Archive = require 'models/Archive'
-Badge = require 'models/Badge'
-Institute = require 'models/Institute'
+Archive = require './models/Archive'
+Badge = require './models/Badge'
+Institute = require './models/Institute'
 
-Header = require 'controllers/layout/header'
-Notifications = require 'controllers/notifications'
+Header = require './controllers/layout/header'
+Notifications = require './controllers/notifications'
 
 new Api project: 'notes_from_nature'
 
@@ -53,19 +48,28 @@ app.header.el.prependTo app.container
 app.stack = new Spine.Stack
   controllers:
     home: HomeController
-    archives: Archives
+    archives: require './controllers/archives/list'
+    archivesItem: require './controllers/archives/item'
+    transcriptions: require './controllers/TranscriptionController'
+    about: class extends SubPage
+      content: require './views/about/index'
+      title: 'About'
+    aboutProject: class extends SubPage then content: require './views/about/project'
+    badges: BadgesController
     login: LoginController
     profile: Profile
-    about: AboutController
-    badges: BadgesController
 
   routes:
     '/': 'home'
     '/archives': 'archives'
+    '/archives/:id': 'archivesItem'
+    '/archives/:id/transcribe': 'transcriptions'
 
     '/badges/:id': 'badges'
 
     '/about': 'about'
+    '/about/project': 'aboutProject'
+
     '/login': 'login'
     '/profile': 'profile'
 

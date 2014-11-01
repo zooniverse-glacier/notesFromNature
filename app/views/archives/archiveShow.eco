@@ -1,8 +1,8 @@
-<% { formatNumber } = require 'lib/utils' %>
+<% { formatNumber } = require '../../lib/utils' %>
 
 <div class="box-general detail" style='background-image:url("<%= @archive.metadata.location.headerImage %>")'>
   <section class="header-content">
-    <h3><%= @archive.institute().name %></h3>
+    <h3><%= @archive.metadata.institute %></h3>
     <h1><%= @archive.name %></h1>
     <% unless @archive.isComplete(): %>
     <div class="translucent-box">

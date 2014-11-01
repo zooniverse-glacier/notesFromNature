@@ -1,13 +1,13 @@
-Archive = require 'models/Archive'
+Archive = require '../../models/Archive'
 
-Interfaces = require 'controllers/interfaces'
+Interfaces = require '../interfaces'
 
 Classification = require 'zooniverse/models/classification'
 Subject = require 'zooniverse/models/subject'
 
 class Plants extends Interfaces
   className: 'SernacTranscriptionController'
-  template: require 'views/transcription/sernac'
+  template: require '../../views/transcription/sernac'
   widgetName: 'Herbarium'
 
   nextSubject: =>

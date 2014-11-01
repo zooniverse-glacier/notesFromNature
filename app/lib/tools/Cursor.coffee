@@ -1,4 +1,4 @@
-BaseTool = require 'lib/tools/BaseTool'
+BaseTool = require './tools/BaseTool'
 
 BOX_OFFSET_LEFT = 100
 BOX_OFFSET_TOP = 150

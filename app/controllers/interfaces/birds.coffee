@@ -1,11 +1,12 @@
+Spine = require 'spine'
 Api = require 'zooniverse/lib/api'
 Classification = require 'zooniverse/models/classification'
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
 
-data_fields = require 'lib/birds_fields'
+data_fields = require '../../lib/birds_fields'
 
-Interfaces = require 'controllers/interfaces'
+Interfaces = require '../interfaces'
 
 $.fn.center = ->
   @css
@@ -19,8 +20,6 @@ DEBUG = true
 
 log = (args...) ->
   if DEBUG then console.log args...
-
-
 
 class Field extends Spine.Controller
 
@@ -57,7 +56,7 @@ class Field extends Spine.Controller
 
 class MultiField extends Field
   className: 'field multi'
-  template: require 'views/transcription/interfaces/birds/fields/multi'
+  template: require '../../views/transcription/interfaces/birds/fields/multi'
 
   constructor: (opts) ->
     throw new Error('Must provide sub fields for MultiField') unless opts.field.sub_fields
@@ -105,7 +104,7 @@ class MultiField extends Field
 
 class InputField extends Field
   className: 'field input'
-  template: require 'views/transcription/interfaces/birds/fields/input'
+  template: require '../../views/transcription/interfaces/birds/fields/input'
 
   elements:
     '#field': 'field'
@@ -138,7 +137,7 @@ class InputField extends Field
 
 class FieldBox extends Spine.Controller
   className: 'field-box'
-  template: require 'views/transcription/interfaces/birds/field_box'
+  template: require '../../views/transcription/interfaces/birds/field_box'
 
   elements:
     'ul': 'fieldList'
@@ -187,7 +186,7 @@ class FieldBox extends Spine.Controller
 
 class EntryWidget extends Spine.Controller
   className: 'data-entry'
-  template: require 'views/transcription/interfaces/birds/entry_widget'
+  template: require '../../views/transcription/interfaces/birds/entry_widget'
 
   data: {}
 
@@ -406,7 +405,7 @@ class Record extends Spine.Controller
 
 class Birds extends Interfaces
   className: 'birds-interface'
-  template: require 'views/transcription/interfaces/birds'
+  template: require '../../views/transcription/interfaces/birds'
 
   records: []
 
@@ -540,6 +539,5 @@ class Birds extends Interfaces
 
   exit: =>
     Spine.Route.navigate window.location.hash.split('/').slice(0,3).join('/')
-
 
 module.exports = Birds

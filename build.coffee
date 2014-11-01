@@ -2,6 +2,7 @@ fs = require 'fs'
 
 filePath = './lib/'
 files = [
+  'vendor/underscore.min.js',
   'vendor/backbone-min.js',
 
   'vendor/jquery-ui-1.8.24.custom.min.js',

@@ -13,6 +13,7 @@ module.exports =
     "name":"Herbarium"
     "categories":["Plants"]
     "metadata":
+      "institute": "SERNEC"
       "description":"SERNEC is an organization that supports the 222 Herbaria and over 12 million plant specimens found in the Southeastern United States.  Each of these herbaria are valued collections of plants specimens used in research and teaching.  Their value is amplified in partnership and  SERNEC is devoted to making the resources of all these Herbaria available online as one virtual, researchable collection. SERNEC will improve access to specimen data of a richly biodiverse region, and provide a platform for herbarium curators and plant scientists to exchange ideas, share expertise, and benefit from the value of information shared across institutions."
       "snippet": "The SERNEC collection is comprised of herbarium specimens: these flowers and plants are carefully pressed onto sheets along with descriptive labels, and contain vital information for broader understanding of biodiversity at regional and national scales."
       "difficulty":"Easy"
@@ -34,11 +35,12 @@ module.exports =
       "logo": "images/logos/essig.jpg"
   "Calbug":
     "name":"Calbug"
-    "categories":["Insects","Spiders"]
+    "categories":["Insects", "Spiders"]
     "metadata":
+      "institute": "Essig Museum Collections"
       "description":"Calbug is an effort to digitize terrestrial arthropod-specimen records with a focus on California. The project, funded by the National Science Foundation, represents a collaboration among eight entomological collections in California to capture data from specimen labels. The Calbug Science Team will then use the collection data to assess how arthropods have responded to climate change and habitat modification. Drawing from over a century of insect collecting in the region, our goal is to develop a database of over 1 million geographically referenced specimens."
       "snippet": "Calbug digitizes collections of pinned insect specimens drawn from eight of California's major institutions, showcasing the stunning diversity of insect life in our world."
-      "extra_template": require "views/archives/calbug"
+      "extra_template": require "../views/archives/calbug"
       "difficulty":"Easy"
       "regions":["California and surrounding region"]
       "start_date":"1880"
@@ -53,7 +55,8 @@ module.exports =
     "name":"Ornithological"
     "categories":["Birds"]
     "metadata":
-      "description":"""
+      "institute": "Natural History Museum"
+      "description": """
         <h3>Introductory Blog Post</h3>
         <a href="http://blog.notesfromnature.org/2013/08/13/crowd-sourcing-of-the-natural-history-museum-bird-registers/">Blog post</a>
 
@@ -76,6 +79,7 @@ module.exports =
     "name": "Macrofungi"
     "categories":["Fungi"]
     "metadata":
+      "institute": "New York Botanical Garden"
       "description":"""
         <p>The Macrofungi Collection Consortium, funded by the National Science Foundation, is a partnership of 35 institutions across the U.S that collectively will digitize about 1.5 million specimens that have been collected the past 150 years.</p>
         <p>Macrofungi are important to humans in many ways – many people like to eat them, but some species are also deadly poisonous.  Macrofungi are also key to the health of our forests – indeed, most forest trees could not survive if their roots did not form a relationship with a macrofungus (called mycorrhizae) that helps tree roots absorb water and minerals from the soil.  Macrofungi are also an important source of food for forest animals and they serve as homes for many soil insects and other small organisms that are also part of a healthy forest ecosystem.</p>
