@@ -11,7 +11,7 @@ require './models/Badge'
 SubPage = require './controllers/PageController'
 BadgesController = require './controllers/BadgesController'
 FAQController = require './controllers/FAQController'
-HomeController = require './controllers/HomeController'
+Home = require './controllers/home'
 LoginController = require './controllers/LoginController'
 Profile = require './controllers/profile'
 
@@ -47,7 +47,7 @@ app.header.el.prependTo app.container
 
 app.stack = new Spine.Stack
   controllers:
-    home: HomeController
+    home: Home
     archives: require './controllers/archives/list'
     archivesItem: require './controllers/archives/item'
     transcriptions: require './controllers/TranscriptionController'

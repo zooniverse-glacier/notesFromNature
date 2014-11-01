@@ -35,7 +35,7 @@
           <span class="api-stat">Total Images: <%- formatNumber @archive.stats.total %></span>
           <span class="api-stat" >Active Images: <%- formatNumber @archive.stats.active %></span>
           <span class="api-stat">Complete Images: <%- formatNumber @archive.stats.complete %></span>
-          <span class="api-stat"><%- formatNumber @archive.classification_count %> transcriptions completed</span>
+          <span class="api-stat"><%- formatNumber @archive.transcription_count() %> transcriptions completed</span>
         </div>
       </li>
       <li id="progress-bar-li">

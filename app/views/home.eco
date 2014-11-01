@@ -1,3 +1,31 @@
+<div class="box-general home">
+  <div class="col3">
+    <div class="center">          
+      <hgroup>
+        <h3>Transcribe museum records to</h3>
+        <h2>TAKE NOTES FROM<br> NATURE</h2>
+      </hgroup>
+    </div>
+  </div>
+
+  <a href="#/archives" class="transcribing-launcher">START TRANSCRIBING</a>
+</div>
+
+<div class="counters"> 
+  <div class="box-black-numbers">
+    <span id="archive-count" class="numbers">-</span>
+    <span class="subtitle">Archives available</span>
+  </div>
+  <div class="box-black-numbers">
+    <span id="transcription-count" class="numbers">-</span>
+    <span class="subtitle">Total transcriptions</span>
+  </div>
+  <div class="box-black-numbers">
+    <span id="user-count" class="numbers">-</span>
+    <span class="subtitle">Users contributing</span>
+  </div>
+</div>
+
 <div class="box-general">
   <h3 class="title center">Why should you get involved?</h3>
   <div class="columns three center">
@@ -21,11 +49,7 @@
 
 <div class="box-general laptop laptop-home">
   <div class="col2">
-    <% if @users is 1: %>
-      <h3 class="title">1 User already participating</h3>
-    <% else: %>
-      <h3 class="title"><%= @users %> Users already participating</h3>
-    <% end %>
+    <h3 class="tittle"><span id="home-user-count">-</span> users already participating</h3>
     <p>We have thousands of specimen images, labels and ledgers from museum collections and the biologists who maintain those collections. These contain information about the where and when a species was found in the past. We need you to help us transcribe that data and make it available for further use in biodiversity and conservation research. Along the way, you will be possibly be finding species that have never been observed anywhere else!</p>
   </div>
   <div class="col3">
