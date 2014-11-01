@@ -1,4 +1,5 @@
 Spine = require 'spine'
+moment = require 'moment'
 Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/models/user'
 Archive = require './Archive'
