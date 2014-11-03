@@ -59,6 +59,6 @@ class Archive extends Spine.Model
     @stats.complete >= (@stats.total - @stats.paused)
 
   transcription_count: =>
-    @stats.rows_transcribed || @classification_count || 0
+    @metadata.rows_transcribed || @classification_count || 0
 
 module.exports = Archive

@@ -24,7 +24,7 @@
           <span class="text">TEMPORAL RANGE</span><%= @archive.metadata.start_date %> / <%= @archive.metadata.end_date %>
         </li>
       <% end %>
-      <% if @archive.metadata.regions: %>
+      <% if @archive.metadata.regions?.length: %>
         <li><span class="text">GEOGRAPHIC CONTEXT</span> <%= @archive.metadata.regions.join(" | ") %></li>
       <% end %>
 
