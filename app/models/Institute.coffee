@@ -18,7 +18,7 @@ class Institute extends Spine.Model
       archives = (group for group in data  when group.type == 'archive')
 
       for institute in institutes
-        inst = Institute.create _.extend(institute, Groups[institute.name])
+        inst = Institute.create $.extend true, {}, institute, Groups[institute.name]
         instArchives = (archive for archive in archives when archive.group_id == inst.id)
         inst.setupArchives instArchives
 
@@ -45,7 +45,7 @@ class Institute extends Spine.Model
   # Instance methods
   setupArchives: (archives) =>
     for archive in archives
-      archive = @archives().create(_.extend(archive, Groups[archive.name]))
+      archive = @archives().create $.extend true, {}, archive, Groups[archive.name]
       archive.addBadges()
 
   slug: ->
