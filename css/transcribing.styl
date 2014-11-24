@@ -207,7 +207,6 @@
     width: 100%
     z-index: 100000
 
-    $popup-width = 550px
     > .content
       background: rgba(#000, 0.6)
       border: 1px solid #000
@@ -215,12 +214,11 @@
       box-shadow: 0 0 5px 3px rgba(#000, 0.4)
       box-sizing: border-box
       color: #fff
-      left: calc(50% \- ($popup-width / 2))
-      left: -webkit-calc(50% \- ($popup-width / 2))
+      left: calc(50% - 550px / 2)
       padding: 20px
       position: absolute
       top: 100px
-      width: $popup-width
+      width: 550px
 
       > .text
         overflow: auto
@@ -390,7 +388,6 @@
     text-align: center
     z-index: 10
 
-
 .transcriber.sernac .photos.selectable img {
   cursor: crosshair;
 }
@@ -444,7 +441,6 @@
   border-radius: 8px
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4)
   box-sizing: border-box
-  display: none
   height: 95px
   padding: 11px 11px 11px 10px
   position: absolute
@@ -554,7 +550,6 @@
 .transcriber.sernac .helper,
 .transcriber.bugs .helper,
 .transcriber.bugs .metadata
-  display: none
   color: #fff
   font: 11px "Open Sans"
   overflow: visible !important
@@ -630,7 +625,6 @@
   box-shadow: 0 0 5px 3px rgba(#000, 0.4)
   box-sizing: border-box
   color: #fff
-  display: none
   position: absolute
   transition: background 0.4s ease
   z-index: 1000
