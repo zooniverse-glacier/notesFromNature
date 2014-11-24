@@ -6,9 +6,10 @@
     "underscore": "1.7.0",
     "zooniverse": "0.7.1",
     "coffee-script": "~1.6.3",
-    "snapsvg": "0.3.0",
+    "snapsvg": "git://github.com/adobe-webplatform/Snap.svg.git#0bd3b5b6785e44a1056ac1dbbbc069007e3d8f94",
     "haw": "0.5.0",
-    "moment": "2.8.3"
+    "moment": "2.8.3",
+    "snap.svg.zpd": "0.0.8"
   },
   "scripts": {
     "start": "haw serve",
