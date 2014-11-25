@@ -37,10 +37,6 @@ files = [
 
   'nfn/ui/herbarium/transcriber.js',
   'nfn/ui/herbarium/widget.js',
-  'nfn/ui/herbarium/launcher.js',
-  'nfn/ui/herbarium/magnifier.js',
-  'nfn/ui/herbarium/selection.js',
-  'nfn/ui/herbarium/highlight.js',
   'nfn/ui/herbarium/helper.js',
 
   'nfn/ui/bugs/data/counties.js',

@@ -26,50 +26,47 @@ class InterfaceController extends Spine.Controller
       window.GOD = new nfn.ui.view.GOD
         model: new nfn.ui.model.GOD()
 
-      transcriberModel = new nfn.ui.model[@widgetName]()
       @transcriber = new nfn.ui.view[@widgetName]
-        model: transcriberModel
+        model: new nfn.ui.model[@widgetName]()
         user: User.current
         archive: @archive
 
       $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
 
       Subject.next()
-      window.transcriber = @transcriber
 
     @delay go, 200
 
   saveClassification: ({transcriptions}) =>
     @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in transcriptions.toJSON()
 
-    done = =>
-      #throttle to allow async POST to suceed on backend before refresh of other data 
-      setTimeout =>
-        #refresh other data
-        Institute.fetch()
-        Project.fetch()
+    # done = =>
+    #   #throttle to allow async POST to suceed on backend before refresh of other data 
+    #   setTimeout =>
+    #     #refresh other data
+    #     Institute.fetch()
+    #     Project.fetch()
         
-        #refresh User data, primarily to up the badges
-        unless User.current then return
-        badges = User.current.badges
-        userFetch = User.fetch()
+    #     #refresh User data, primarily to up the badges
+    #     unless User.current then return
+    #     badges = User.current.badges
+    #     userFetch = User.fetch()
 
-        userFetch.done =>
-          User.current.badges = badges
-          @archive?.checkBadges()
+    #     userFetch.done =>
+    #       User.current.badges = badges
+    #       @archive?.checkBadges()
         
-      , 500
-    
+    #   , 500
+
     cachedSet = JSON.parse(localStorage.getItem("classifications"))
     cachedSet = {} unless cachedSet
     max = 0
     maxId = 0
-    maxId = (if key > max then key else max) for key, value of cachedSet       
-    cachedSet["" + (parseInt(maxId)+1)] = @classification.toJSON()
+    maxId = (if key > max then key else max) for key, value of cachedSet
+    cachedSet["" + (parseInt(maxId) + 1)] = @classification.toJSON()
     localStorage.setItem("classifications", JSON.stringify cachedSet)    
 
-    @classification.send done
-   
+    @classification.send()
     Subject.next()
 
   skipClassification: =>

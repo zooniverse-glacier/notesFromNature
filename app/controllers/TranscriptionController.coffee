@@ -15,7 +15,7 @@ class TranscriptionController extends Site
   render: =>
     @html @transcriptionController.el
 
-  active: (params) =>
+  activate: (params) =>
     super
     
     if Institute.count() is 0 
@@ -28,12 +28,9 @@ class TranscriptionController extends Site
     # What archive are we looking at?
     @archive = Archive.findBySlug(params.id)
 
-    unless @archive
-      # Archive doesn't exist. Navigate away.
+    unless @archive or @archive.progress_strict() is 100
       Spine.Route.navigate '/'
       return
-
-    if @archive.progress_strict() is 100 then return Spine.Route.navigate '/'
 
     # Adjust page attributes for archive.
     $('body').addClass("transcribingScreen #{ @archive.slug() }")
@@ -63,7 +60,7 @@ class TranscriptionController extends Site
       else if $(".ui-autocomplete:visible").length > 0	
       	# if menu is open and we press any key that has no meaning for jquery autocomplete menus (arrows, enter, escape, etc), close the menu
         $(".ui-autocomplete-input").autocomplete("close") if jQuery.inArray(e.which, [17,27,38,40,13,9,33,34]) == -1
-        e.preventDefault()        
+        e.preventDefault()
 
     @render()
 
