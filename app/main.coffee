@@ -17,7 +17,7 @@ User = require 'zooniverse/models/user'
 Badge = require './models/Badge'
 Institute = require './models/Institute'
 
-new Api project: 'notes_from_nature', host: 'http://localhost:3000'
+new Api project: 'notes_from_nature'
 
 app = {}
 app.container = '#app'
