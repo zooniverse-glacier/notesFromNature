@@ -1,4 +1,4 @@
-<div class="box-general home">
+<div class="box-general home not-one-million" id="not-one-million">
   <div class="col3">
     <div class="center">          
       <hgroup>
@@ -10,6 +10,8 @@
 
   <a href="#/archives" class="transcribing-launcher">START TRANSCRIBING</a>
 </div>
+
+<div class="box-general home one-million" id="one-million"></div>
 
 <div class="counters"> 
   <div class="box-black-numbers">
