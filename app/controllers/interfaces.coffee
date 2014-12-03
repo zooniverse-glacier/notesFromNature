@@ -33,9 +33,13 @@ class InterfaceController extends Spine.Controller
 
       $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
 
+      @setupInterfaceWorkflow()
       Subject.next()
 
     @delay go, 200
+
+  setupInterfaceWorkflow: =>
+    # defined within interfaces
 
   saveClassification: ({transcriptions}) =>
     @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in transcriptions.toJSON()

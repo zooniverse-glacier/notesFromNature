@@ -20,25 +20,18 @@ class Plants extends Interfaces
     rawSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     rawSvg.setAttribute 'id', 'image-container'
     @surface = Snap rawSvg
-    window.surface = @surface
 
-  nextSubject: =>
-    @surface.clear()
-    @classification = new Classification subject: Subject.current
-
-    Subject.current.location.small ?= Subject.current.location.standard
-    subjectImage = Subject.current.location.standard
-
+  setupInterfaceWorkflow: =>
     @transcriber.$el.append @surface.node
 
     zoomInDiv = document.createElement 'div'
-    zoomInDiv.innerHTML = 'zoom in'
+    zoomInDiv.innerHTML = '+'
 
     zoomOutDiv = document.createElement 'div'
-    zoomOutDiv.innerHTML = 'zoom out'
+    zoomOutDiv.innerHTML = '-'
 
-    zoomInDiv.classList.add 'temp-box', 'one'
-    zoomOutDiv.classList.add 'temp-box', 'two'
+    zoomInDiv.classList.add 'zoom-control', 'zoom-in'
+    zoomOutDiv.classList.add 'zoom-control', 'zoom-out'
 
     # this is what i get for working with unstable dependencies
     zoomInDiv.addEventListener 'click', =>
@@ -64,6 +57,14 @@ class Plants extends Interfaces
     @transcriber.$el.append zoomInDiv
     @transcriber.$el.append zoomOutDiv
 
+  nextSubject: =>
+    @surface.zpd 'destroy'
+    @surface.clear()
+    @classification = new Classification subject: Subject.current
+
+    Subject.current.location.small ?= Subject.current.location.standard
+    subjectImage = Subject.current.location.standard
+
     img = new Image
     img.onload = =>
       maxHeight = window.innerHeight - 150
@@ -71,6 +72,7 @@ class Plants extends Interfaces
 
       @image = @surface.image subjectImage, 0, 0, img.naturalWidth * scaleFactor, img.naturalHeight * scaleFactor
       @image.transform("t#{(window.innerWidth / 2) - (@image.getBBox().width / 2)},20")
+
       @surface.zpd()
 
       @transcriber.startTranscribing()
