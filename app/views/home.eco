@@ -11,7 +11,9 @@
   <a href="#/archives" class="transcribing-launcher">START TRANSCRIBING</a>
 </div>
 
-<div class="box-general home one-million" id="one-million"></div>
+<div class="box-general home one-million" id="one-million">
+  <a href="#/archives" class="transcribing-launcher">START TRANSCRIBING</a>
+</div>
 
 <div class="counters"> 
   <div class="box-black-numbers">
