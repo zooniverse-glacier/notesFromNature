@@ -1,6 +1,7 @@
 Site = require '../lib/site'
 
 class SubPage extends Site
+  className: 'subpage'
   content: ''
   template: require '../views/layout/outer'
 
