@@ -1,10 +1,12 @@
+<% User = require 'zooniverse/models/User' %>
+
 <div class="col1">
   <h1 class="title"><a href="#/">Notes from <span class="green">Nature</span></a></h1>
 </div>
 
-<%if @user: %>
+<% if User.current: %>
   <div class="link-navigation right">
-    <a class="signin_nav_link" href="#/profile"><%= @user.name %></a>
+    <a class="signin_nav_link" href="#/profile"><%= User.current.name %></a>
   </div>
 <% end %>
 

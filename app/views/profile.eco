@@ -1,3 +1,5 @@
+<% moment = require 'moment' %>
+
 <% unless @user: %>
   <h1 class="notlogged"> Please <a href="#/login">Log in</a> to view your profile</h1>
 <% else: %>

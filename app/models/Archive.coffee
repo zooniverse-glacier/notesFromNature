@@ -1,17 +1,21 @@
+Spine = require 'spine'
 Api = require 'zooniverse/lib/api'
-badgeDefinitions = require 'lib/badge-definitions'
+badgeDefinitions = require '../lib/badge-definitions'
+
+Institute = require './Institute'
+Badge = require './Badge'
 
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
 
-{ formatNumber } = require 'lib/utils'
+{ formatNumber } = require '../lib/utils'
 
 class Archive extends Spine.Model
   @configure 'Archive', 'group_id', 'classification_count', 'name', 'metadata', 'complete', 'stats', 'categories'
-  @belongsTo 'institute', 'models/Institute'
-  @hasMany 'badges', 'models/Badge'
-  COMPLETION_FACTOR: 4
-  classification_count: 0
+  @hasMany 'badges', Badge
+
+  # COMPLETION_FACTOR: 4
+  # classification_count: 0
 
   @findBySlug: (slug) ->
     result = @select (archive) ->

@@ -1,9 +1,12 @@
+Spine = require 'spine'
+moment = require 'moment'
 Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/models/user'
+Archive = require './Archive'
 
 class Badge extends Spine.Model
   @configure 'Badge', 'name', 'url', 'description', 'collection', 'awardText', 'condition'
-  @belongsTo 'archive', 'models/Archive'
+  @belongsTo 'archive', Archive
   
   @getUserBadges: ->
     if User.current

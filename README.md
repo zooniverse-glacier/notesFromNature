@@ -10,7 +10,7 @@
 ```
 npm install .
 coffee build.coffee
-hem server
+haw server
 ```
 
-- Navigate to http://0.0.0.0:9294
+- Navigate to http://localhost:2217

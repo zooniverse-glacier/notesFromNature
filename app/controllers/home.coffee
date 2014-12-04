@@ -1,9 +1,11 @@
+Site = require '../lib/site'
+_ = require 'underscore'
 Api = require 'zooniverse/lib/api'
 Project = require 'zooniverse/models/project'
 
-class Home extends Spine.Site
+class Home extends Site
   className: 'HomeController'
-  template: require 'views/home'
+  template: require '../views/home'
 
   elements:
     '#archive-count': 'archiveCount'

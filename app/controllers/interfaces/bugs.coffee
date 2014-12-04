@@ -1,13 +1,13 @@
-Archive = require 'models/Archive'
+Archive = require '../../models/Archive'
 
-Interfaces = require 'controllers/interfaces'
+Interfaces = require '../interfaces'
 
 Classification = require 'zooniverse/models/classification'
 Subject = require 'zooniverse/models/subject'
 
 class Bugs extends Interfaces
   className: 'BugsTranscriptionController'
-  template: require 'views/transcription/bugs'
+  template: require '../../views/transcription/bugs'
   widgetName: 'Bugs'
 
   nextSubject: =>

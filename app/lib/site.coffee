@@ -1,3 +1,5 @@
+Spine = require 'spine'
+
 class Site extends Spine.Controller
 
   @preload: (images) ->
@@ -35,6 +37,5 @@ class Site extends Spine.Controller
   formatNumber: (n) ->
     return n unless n
     n.toString().replace /(\d)(?=(\d{3})+(?!\d))/g, '$1,'
-
 
 module.exports = Site

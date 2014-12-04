@@ -1,6 +1,6 @@
 class BaseTool extends Spine.Controller
   actions: []
-  itemTemplate: require 'views/transcription/interfaces/birds/action'
+  itemTemplate: require '../views/transcription/interfaces/birds/action'
 
   constructor: (opts) ->
     super(opts)

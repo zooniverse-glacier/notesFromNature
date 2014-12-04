@@ -1,6 +1,7 @@
-Badge = require 'models/Badge'
+Spine = require 'spine'
+Badge = require '../models/Badge'
 
-class NotificationController extends Spine.Controller
+class Notifications extends Spine.Controller
   className: 'notifications'
 
   elements:
@@ -11,11 +12,11 @@ class NotificationController extends Spine.Controller
 
   constructor: ->
     super
-    @html require 'views/notifications/notificationArea'
+    @html require '../views/notifications/notificationArea'
     Badge.bind 'badgeAwarded', @showNotification
 
   showNotification: (badge) =>
-    @notifications.append require('views/notifications/badgeNotification')(badge: badge)
+    @notifications.append require('../views/notifications/badgeNotification')(badge: badge)
     @$el.show()
 
     @delay =>
@@ -26,4 +27,4 @@ class NotificationController extends Spine.Controller
     $('li').remove()
     @$el.hide()
 
-module.exports = NotificationController
+module.exports = Notifications

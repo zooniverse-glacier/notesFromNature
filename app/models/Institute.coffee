@@ -1,18 +1,18 @@
-Archive = require 'models/Archive'
+Spine = require 'spine'
+_ = require 'underscore'
+Archive = require './Archive'
 
 Api = require 'zooniverse/lib/api'
 
-Groups = require 'lib/groups'
+Groups = require '../lib/groups'
 
 class Institute extends Spine.Model
   @configure 'Institute', 'name', 'metadata'
-  @hasMany 'archives', 'models/Archive'
+  @hasMany 'archives', require './Archive'
 
   # Class methods
   @fetch: ->
     Api.current.get '/projects/notes_from_nature/groups/', (data) ->
-      window.inst = data
-
       institutes = (group for group in data  when group.type == 'institution')
       institutes = (institute for institute in institutes)
       archives = (group for group in data  when group.type == 'archive')

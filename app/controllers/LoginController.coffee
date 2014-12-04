@@ -1,3 +1,4 @@
+Spine = require 'spine'
 User = require 'zooniverse/models/user'
 LoginForm = require 'zooniverse/controllers/login-form'
 

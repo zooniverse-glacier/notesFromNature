@@ -2,6 +2,7 @@ fs = require 'fs'
 
 filePath = './lib/'
 files = [
+  'vendor/underscore.min.js',
   'vendor/backbone-min.js',
 
   'vendor/jquery-ui-1.8.24.custom.min.js',
@@ -36,10 +37,6 @@ files = [
 
   'nfn/ui/herbarium/transcriber.js',
   'nfn/ui/herbarium/widget.js',
-  'nfn/ui/herbarium/launcher.js',
-  'nfn/ui/herbarium/magnifier.js',
-  'nfn/ui/herbarium/selection.js',
-  'nfn/ui/herbarium/highlight.js',
   'nfn/ui/herbarium/helper.js',
 
   'nfn/ui/bugs/data/counties.js',

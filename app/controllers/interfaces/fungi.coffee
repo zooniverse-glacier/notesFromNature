@@ -1,15 +1,15 @@
-Archive = require 'models/Archive'
+Archive = require '../../models/Archive'
 
-Interfaces = require 'controllers/interfaces'
+Interfaces = require '../interfaces'
 
 Classification = require 'zooniverse/models/classification'
 Subject = require 'zooniverse/models/subject'
 
-EolController = require 'controllers/widgets/eol'
+EolController = require '../widgets/eol'
 
 class Fungi extends Interfaces
   className: 'FungiTranscriptionController'
-  template: require 'views/transcription/fungi'
+  template: require '../../views/transcription/fungi'
 
   widgetName: 'Fungi'
 

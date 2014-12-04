@@ -1,6 +1,8 @@
-class SubPage extends Spine.Site
+Site = require '../lib/site'
+
+class SubPage extends Site
   content: ''
-  template: require 'views/layout/outer'
+  template: require '../views/layout/outer'
 
   constructor: ->
     super
