@@ -1542,3 +1542,29 @@ a.btn, .btn {
 
   &.zoom-out
     top: 145px
+
+.species-checker
+  height: 30px
+  left: 25px
+  position: fixed
+  top: 50%
+
+  .feedback
+    background: rgba(black, 0.7)
+    border-radius: 5px
+    box-shadow: 0 0 8px rgba(black, 0.7)
+    box-sizing: border-box
+    color: white
+    float: left
+    height: 30px
+    margin: 0 10px
+    min-width: 30px
+    padding: 5px
+    text-align: center
+    transition: all 0.6s ease-in-out
+
+    &.exact
+      background: rgba(green, 0.7)
+
+    &.none
+      background: rgba(red, 0.7)

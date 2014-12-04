@@ -1,6 +1,7 @@
 Archive = require '../../models/Archive'
 
 Interfaces = require '../interfaces'
+SpeciesChecker = require '../../lib/species-checker'
 
 Classification = require 'zooniverse/models/classification'
 Subject = require 'zooniverse/models/subject'
@@ -22,6 +23,9 @@ class Plants extends Interfaces
     @surface = Snap rawSvg
 
   setupInterfaceWorkflow: =>
+    @speciesChecker = new SpeciesChecker
+      attachPoint: @transcriber.$el.get(0)
+
     @transcriber.$el.append @surface.node
 
     zoomInDiv = document.createElement 'div'
@@ -60,6 +64,8 @@ class Plants extends Interfaces
   nextSubject: =>
     @surface.zpd 'destroy'
     @surface.clear()
+    @speciesChecker.reset()
+
     @classification = new Classification subject: Subject.current
 
     Subject.current.location.small ?= Subject.current.location.standard
