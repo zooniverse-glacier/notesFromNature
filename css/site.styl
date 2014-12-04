@@ -485,10 +485,11 @@ a.badge {
     position: relative
     z-index: 100
 
-  &.home
+  &.home.not-one-million
     background: #fff url(images/splashes/home.jpg) no-repeat center
     background-size: cover
     border: 5px solid rgba(0, 0, 0, 0.83)
+    display: none
     height: 500px
     margin-bottom: 21px
     padding: 0
@@ -497,6 +498,21 @@ a.badge {
 
     a
       color: #fff
+
+  &.home.one-million
+    background: #fff url(images/splashes/oneMillion.jpg) no-repeat center
+    background-size: cover
+    border: 5px solid rgba(0, 0, 0, 0.83)
+    display: none
+    height: 500px
+    margin-bottom: 21px
+    padding: 0
+    text-align: center
+    width: 950px
+
+    a
+      color: #fff
+      margin-top: 335px
 
 .box-general.collection {
   background: white url(images/bg-collection.jpg) no-repeat bottom left;
