@@ -30,7 +30,7 @@ SubPage = require './controllers/PageController'
 app.stack = new Spine.Stack
   controllers:
     home: require './controllers/home'
-    archives: require './controllers/archives/list'
+    archives: require './controllers/collections'
     archiveDetails: require './controllers/archive-details'
     transcriptions: require './controllers/TranscriptionController'
     about: class extends SubPage

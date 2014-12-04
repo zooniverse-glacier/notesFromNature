@@ -166,7 +166,6 @@ h3 span.black {
     span
       font-size: 20px
 
-
 .detail
   position: relative
 
@@ -369,18 +368,6 @@ a.name
 
   &:hover
     color: #006687
-
-a.object
-  color: #0099CC
-  font-family: helvetica
-  font-size: 15px
-  text-decoration: underline
-
-  &:hover
-    color: #068
-
-  &.noline
-    text-decoration: none
     
 a.legal
   color: #666
@@ -751,13 +738,6 @@ ul.logos li
   ul
     @extends #semantic-list
 
-
-.collection .translucent-box 
-  position: absolute
-  bottom: 0
-  left: 0
-  width: 100%
-
 .box-badge 
   padding: 76px 0px 46px 0
   text-align: center
@@ -999,10 +979,10 @@ li.img-graphic2 {
     margin-right: 29px
 
 
-.archive-list
+.collections-list
   @extends #semantic-list
 
-  li
+  .collection-item
     background: rgba(0, 0, 0, 0.2)
     float: left
     height: 320px
@@ -1010,92 +990,46 @@ li.img-graphic2 {
     position: relative
     width: 320px
 
-.archive-list .emptyArchive{
-  border-box()
-  border-right: 1px solid #333333
-  border-bottom: 1px solid #333333
+  .translucent-box 
+    color: white
+    font-size: 13px
+    height: 100%
+    left: 0
+    position: absolute
+    top: 185px
+    width: 100%
+    z-index: 1
 
-}
+    p
+      padding: 0 25px
 
-.archive-list .emptyArchive h3{
-  position: absolute 
-  top: 120px
+    a
+      color: #83c046
+      &:hover
+        color: lighten(#83c046, 33%)
 
-  color: #333333
-  background: none 
-  text-align: center
-}
-.archive-list li.empty {
-  height: 319px;
-  width: 319px;
-  border-right: 1px solid #3F3F3F;
-  border-bottom: 1px solid #3F3F3F;
-}
-.archive-list li.empty::nth-child(3n+1) {
-  border-left: 1px solid #3F3F3F;
-}
-.archive-list .translucent-box {
-  color: #FFF;
-  font-size: 13px;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 185px;
-  width: 100%;
-  z-index: 6;
-}
-.archive-list li.selected .translucent-box {
-  top: 0;
-}
-.archive-list .translucent-box p {
-  padding: 0 25px;
-  line-height: 14px;
-  font-size: 12px;
-  font-weight: 100;
-  line-height: 1.5em;
-}
-.archive-list .translucent-box a {
-  color: #83C046;
-  font-size: 13px;
-  display: block;
-  margin-top: 10px;
-}
-.archive-list .translucent-box a:hover {
-  color: #FFF;
-}
-.archive-list .translucent-box a:link {
-  color: #83C046;
-  font-size: 13px;
-}
+  .collection-details
+    background: linear-gradient(top, rgba(black, 0.6), black)
+    bottom: 0
+    box-sizing: border-box
+    padding: 28px
+    position: absolute
+    width: 100%
+    z-index: 2
 
-.archive-list .archive-details 
-  background: linear-gradient(rgba(black, 0.7), rgba(black, 1))
-  bottom: 0
-  color: #777
-  margin: 0
-  padding: 22px 40px
-  position: absolute
-  width: 245px
-  z-index: 10
+    .collection-link
+      color: #83c046
+      font-size: 24px
 
-  .archive-link
-    color: #83c046
-    font-size: 26px
-
-    &:hover
-      color: white
-
-.archive-list li.selected h3 a {
-  color: #FFF;
-  white-space: nowrap;
-}
+    .institute-name
+      color: #999
 
 /* Buttons */
 a.button
   background: #669933
   border-radius: 3px
   box-shadow: 0px 1px #000
-  color: #fff
+  color: white
   font-size: 13px
   font-weight: 600
   padding: 15px 20px
@@ -1155,66 +1089,6 @@ a.button.next.active {
 }
 a.button.next span.active {
   background: url(images/icons.png) no-repeat -210px -320px;
-}
-
-div.switch {
-  display: none;
-  border: 1px solid #E5E5E5;
-  border-radius: 5px;
-  margin-top: 20px;
-  padding: 0px;
-  position: relative;
-  right: 30px;
-  float: right;
-  width: 240px;
-  position: relative;
-  background: #E5E5E5;
-}
-div.switch a {
-  color: #999;
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  float: left;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  width: 120px;
-  z-index: 100;
-  position: relative;
-  outline: none;
-}
-div.switch a.selected {
-  color: #0099CC;
-  z-index: 100;
-  background: none;
-}
-div.switch .bkg {
-  border-radius: 5px;
-  background: #fff;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 30px;
-  width: 120px;
-  z-index: 0;
-}
-
-span.switch {
-
-  display:none;  // TODO: show 
-
-  background: url(images/icons.png) no-repeat 32px -523px;
-  color: #7F7F7F;
-  float: right;
-  font-family: helvetica;
-  margin-top: 10px;
-  padding-left: 65px;
-  margin-right: 30px;
-  cursor: pointer;
-}
-span.switch.selected {
-  background-position: 32px -553px;
 }
 
 .progress-stats {
@@ -1348,7 +1222,3 @@ h1.notlogged
   color: #a9a9a9
   margin: 40px 0
   text-shadow: 1px 1px 0 #000
-
-
-
-
