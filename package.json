@@ -9,7 +9,8 @@
     "snapsvg": "git://github.com/adobe-webplatform/Snap.svg.git#0bd3b5b678",
     "haw": "0.5.0",
     "moment": "2.8.3",
-    "snap.svg.zpd": "0.0.8"
+    "snap.svg.zpd": "0.0.8",
+    "publisssh": "^0.2.6"
   },
   "scripts": {
     "start": "haw serve",
