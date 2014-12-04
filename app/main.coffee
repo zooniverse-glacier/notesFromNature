@@ -36,7 +36,6 @@ app.stack = new Spine.Stack
     about: class extends SubPage
       content: require './views/about/index'
       title: 'About'
-    aboutProject: class extends SubPage then content: require './views/about/project'
     badges: require './controllers/BadgesController'
     login: require './controllers/LoginController'
     profile: require './controllers/profile'
@@ -50,7 +49,6 @@ app.stack = new Spine.Stack
     '/badges/:id': 'badges'
 
     '/about': 'about'
-    '/about/project': 'aboutProject'
 
     '/login': 'login'
     '/profile': 'profile'
