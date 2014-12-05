@@ -7,7 +7,7 @@ formatNumber = (n) ->
 
 class SpeciesChecker
   attachPoint: null
-  possibleResults: ['exact', 'none']
+  possibleResults: ['exact', 'fuzzy', 'none']
 
   constructor: (params) ->
     @[key] = value for key, value of params
@@ -25,7 +25,6 @@ class SpeciesChecker
     @attachPoint.appendChild @el
 
     $(window).on 'check-species', @runSpeciesCheck
-    $(window).on 'check-records', @runRecordsCheck
 
   runSpeciesCheck: (e, {species}) =>
     @reset()
@@ -36,14 +35,20 @@ class SpeciesChecker
           @speciesEl.classList.add 'exact'
           @speciesEl.innerHTML = '&#x2713'
           @runRecordsCheck response.scientificName
+        when 'FUZZY'
+          @speciesEl.classList.add 'fuzzy'
+          @speciesEl.innerHTML = '&#8776'
+          @runRecordsCheck response.scientificName
         when 'NONE'
           @speciesEl.classList.add 'none'
         else
-          console.log 'other match', response.matchType
+          console?.log 'other match', response.matchType
 
   runRecordsCheck: (scientificName) =>
     $.getJSON "#{GBIF_API_ROOT}/occurrence/search?scientificName=#{encodeURIComponent scientificName}", (response) =>
       count = response.count || 0
+
+      if count is 0 then $(window).trigger 'unrecorded-species', {species: scientificName}
       recordsFeedbackDiv = @el.querySelector '.feedback.records'
       recordsFeedbackDiv.innerHTML = formatNumber count
 
