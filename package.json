@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "haw serve",
-    "deploy": "haw build ./build --force && publisssh ./build zooniverse-static/www.notesfromnature.org && rm -rf ./build",
+    "deploy": "haw build ./build --force && ruby build.rb && publisssh ./build zooniverse-static/www.notesfromnature.org && rm -rf ./build",
     "deploy-to-staging": "haw build ./build --force && publisssh ./build zooniverse-static/www.notesfromnature.org/staging && rm -rf ./build"
   }
 }
