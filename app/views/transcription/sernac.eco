@@ -14,6 +14,10 @@
   </div>
 </script>
 
+<script type="text/template" id="skipper-template">
+  <a href="#"><span>Skip Record</span></a>
+</script>
+
 <script type="text/template" id="closer-template">
   <a href="#" class="close"></a>
 </script>
