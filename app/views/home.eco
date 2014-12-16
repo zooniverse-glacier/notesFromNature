@@ -1,4 +1,4 @@
-<div class="box-general home not-one-million" id="not-one-million">
+<div class="box-general home">
   <div class="col3">
     <div class="center">          
       <hgroup>
@@ -8,10 +8,6 @@
     </div>
   </div>
 
-  <a href="#/archives" class="transcribing-launcher">START TRANSCRIBING</a>
-</div>
-
-<div class="box-general home one-million" id="one-million">
   <a href="#/archives" class="transcribing-launcher">START TRANSCRIBING</a>
 </div>
 

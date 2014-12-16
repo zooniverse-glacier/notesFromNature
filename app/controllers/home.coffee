@@ -21,11 +21,6 @@ class Home extends Site
           count + (group.rows_transcribed || group.classification_count || 0)
         , 0
 
-      if transcriptions >= 1000000
-        $('#one-million').show()
-      else
-        $('#not-one-million').show()
-
       @archiveCount.text Object.keys(project.groups).length
       @transcriptionCount.text @formatNumber transcriptions
       @userCount.text @formatNumber project.user_count
