@@ -2,7 +2,7 @@
   <div class="left">
     <div class="block">
       <h1><%- @archive.name %></h1>
-      <p>from <%- @archive.institute().name %></p>
+      <p>from <%- @archive.metadata.institute.name %></p>
     </div>
   </div>
   <div class="right">
