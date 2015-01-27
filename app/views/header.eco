@@ -1,4 +1,4 @@
-<% User = require 'zooniverse/models/User' %>
+<% User = require 'zooniverse/models/user' %>
 
 <div class="col1">
   <h1 class="title"><a href="#/">Notes from <span class="green">Nature</span></a></h1>
