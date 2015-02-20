@@ -1,5 +1,3 @@
-Spine = require 'spine'
-
 class FAQController extends Spine.Controller
   className: 'FAQController'
     

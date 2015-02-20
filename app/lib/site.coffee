@@ -1,5 +1,3 @@
-Spine = require 'spine'
-
 class Site extends Spine.Controller
 
   @preload: (images) ->

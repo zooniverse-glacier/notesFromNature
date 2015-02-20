@@ -1,5 +1,4 @@
-Spine = require 'spine'
-Badge = require '../models/Badge'
+Badge = require '../models/badge'
 
 class Notifications extends Spine.Controller
   className: 'notifications'
@@ -17,7 +16,7 @@ class Notifications extends Spine.Controller
 
   showNotification: (badge) =>
     @notifications.append require('../views/notifications/badgeNotification')(badge: badge)
-    @$el.show()
+    @el.show()
 
     @delay =>
       @dismiss()
@@ -25,6 +24,6 @@ class Notifications extends Spine.Controller
 
   dismiss: =>
     $('li').remove()
-    @$el.hide()
+    @el.hide()
 
 module.exports = Notifications

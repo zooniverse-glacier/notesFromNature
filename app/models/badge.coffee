@@ -1,12 +1,11 @@
-Spine = require 'spine'
+Archive = require './archive'
+
 moment = require 'moment'
 Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/models/user'
-Archive = require './Archive'
 
 class Badge extends Spine.Model
   @configure 'Badge', 'name', 'url', 'description', 'collection', 'awardText', 'condition'
-  @belongsTo 'archive', Archive
   
   @getUserBadges: ->
     if User.current
@@ -77,9 +76,8 @@ class Badge extends Spine.Model
   slug: => @name.replace /\s/g, "_"
 
   checkAward: =>
-    archive = @archive() || null
-    if User.current and @condition.func { user: User.current, archive: archive }
-      @award()
+    return false unless User.current
+    @award() if @condition.func { user: User.current, archive: @archive }
 
   award: =>
     if User.current

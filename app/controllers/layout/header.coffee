@@ -1,4 +1,3 @@
-Spine = require 'spine'
 User = require 'zooniverse/models/user'
 
 class HeaderController extends Spine.Controller

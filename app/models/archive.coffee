@@ -1,9 +1,8 @@
-Spine = require 'spine'
 Api = require 'zooniverse/lib/api'
 badgeDefinitions = require '../lib/badge-definitions'
 
-Institute = require './Institute'
-Badge = require './Badge'
+Institute = require './institute'
+Badge = require './badge'
 
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
@@ -13,9 +12,6 @@ User = require 'zooniverse/models/user'
 class Archive extends Spine.Model
   @configure 'Archive', 'group_id', 'classification_count', 'name', 'metadata', 'complete', 'stats', 'categories'
   @hasMany 'badges', Badge
-
-  # COMPLETION_FACTOR: 4
-  # classification_count: 0
 
   @findBySlug: (slug) ->
     result = @select (archive) ->
@@ -29,13 +25,17 @@ class Archive extends Spine.Model
     else
       @all()
   
+  badges: []
+
   addBadges: =>
     for badge in badgeDefinitions
-      if badge.collection is @slug() or 'collection' not of badge
-        @badges().create badge
+      continue unless 'collection' of badge
+      continue unless badge.collection is @slug()
+      badge['archive'] = @
+      @badges.push new Badge badge
 
   checkBadges: =>
-    notAwardedYet = _.reject @badges().all(), (badge) ->
+    notAwardedYet = _.reject @badges, (badge) ->
       return _.some(User.current.badges, (userBadge) -> userBadge.name is badge.name)
 
     for badge in notAwardedYet

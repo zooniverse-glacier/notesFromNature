@@ -1,5 +1,4 @@
-Spine = require 'spine'
-Institute = require '../models/Institute'
+Institute = require '../models/institute'
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
 Project = require 'zooniverse/models/project'
@@ -44,23 +43,23 @@ class InterfaceController extends Spine.Controller
   saveClassification: ({transcriptions}) =>
     @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in transcriptions.toJSON()
 
-    # done = =>
-    #   #throttle to allow async POST to suceed on backend before refresh of other data 
-    #   setTimeout =>
-    #     #refresh other data
-    #     Institute.fetch()
-    #     Project.fetch()
+    done = =>
+      #throttle to allow async POST to suceed on backend before refresh of other data 
+      setTimeout =>
+        #refresh other data
+        Institute.fetch()
+        Project.fetch()
         
-    #     #refresh User data, primarily to up the badges
-    #     unless User.current then return
-    #     badges = User.current.badges
-    #     userFetch = User.fetch()
+        #refresh User data, primarily to up the badges
+        unless User.current then return
+        badges = User.current.badges
+        userFetch = User.fetch()
 
-    #     userFetch.done =>
-    #       User.current.badges = badges
-    #       @archive?.checkBadges()
+        userFetch.done =>
+          User.current.badges = badges
+          @archive?.checkBadges()
         
-    #   , 500
+      , 500
 
     cachedSet = JSON.parse(localStorage.getItem("classifications"))
     cachedSet = {} unless cachedSet

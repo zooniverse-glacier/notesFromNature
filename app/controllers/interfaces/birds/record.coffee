@@ -1,4 +1,3 @@
-Spine = require 'spine'
 RowBox = require './row-box'
 
 class Record extends Spine.Controller

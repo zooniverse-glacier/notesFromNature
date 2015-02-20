@@ -1,11 +1,5 @@
-Spine = require 'spine'
-require 'spine/lib/manager'
-require 'spine/lib/relation'
-require 'spine/lib/route'
-
-require './models/Institute'
-require './models/Archive'
-require './models/Badge'
+Institutte = window.Institute = require './models/institute'
+Badge = window.Badge = require './models/badge'
 
 Api = require 'zooniverse/lib/api'
 
@@ -14,8 +8,8 @@ Project::groups = null
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
 
-Badge = require './models/Badge'
-Institute = require './models/Institute'
+Badge = require './models/badge'
+Institute = require './models/institute'
 
 new Api project: 'notes_from_nature'
 

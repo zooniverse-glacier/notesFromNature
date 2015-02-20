@@ -1,4 +1,3 @@
-Spine = require 'spine'
 FieldBox = require './field-box'
 InputField = require './input-field'
 MultiField = require './multi-field'

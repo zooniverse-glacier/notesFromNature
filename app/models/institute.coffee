@@ -1,6 +1,5 @@
-Spine = require 'spine'
 _ = require 'underscore'
-Archive = require './Archive'
+Archive = require './archive'
 
 Api = require 'zooniverse/lib/api'
 
@@ -8,7 +7,7 @@ Groups = require '../lib/groups'
 
 class Institute extends Spine.Model
   @configure 'Institute', 'name', 'metadata'
-  @hasMany 'archives', require './Archive'
+  @hasMany 'archives', Archive
 
   # Class methods
   @fetch: ->

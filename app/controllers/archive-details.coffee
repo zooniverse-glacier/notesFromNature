@@ -1,9 +1,8 @@
-Spine = require 'spine'
 { formatNumber } = require '../lib/utils'
 Project = require 'zooniverse/models/project'
 
-Archive = require '../models/Archive'
-Badges = require '../models/Badge'
+Archive = require '../models/archive'
+Badges = require '../models/badge'
 
 class ArchiveDetails extends Spine.Controller
   className: 'archive-details'

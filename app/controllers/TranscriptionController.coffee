@@ -1,7 +1,6 @@
-Spine = require 'spine'
 Site = require '../lib/site'
-Archive = require '../models/Archive'
-Institute = require '../models/Institute'
+Archive = require '../models/archive'
+Institute = require '../models/institute'
 Subject = require 'zooniverse/models/subject'
 
 Birds = require './interfaces/birds'

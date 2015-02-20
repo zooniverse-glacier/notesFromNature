@@ -1,5 +1,3 @@
-Spine = require 'spine'
-
 class FieldBox extends Spine.Controller
   className: 'field-box'
   template: require '../../../views/transcription/interfaces/birds/field_box'

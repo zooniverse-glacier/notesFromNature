@@ -1,6 +1,5 @@
-Spine = require 'spine'
-Archive = require '../models/Archive'
-Badge = require '../models/Badge'
+Archive = require '../models/archive'
+Badge = require '../models/badge'
 
 ACTIVE = true
 

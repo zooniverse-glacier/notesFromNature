@@ -1,4 +1,4 @@
-Archive = require '../../models/Archive'
+Archive = require '../../models/archive'
 
 Interfaces = require '../interfaces'
 

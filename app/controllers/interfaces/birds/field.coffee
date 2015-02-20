@@ -1,5 +1,3 @@
-Spine = require 'spine'
-
 class Field extends Spine.Controller
   events:
     'click #done': 'done'

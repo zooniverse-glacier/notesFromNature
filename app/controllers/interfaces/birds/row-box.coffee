@@ -1,5 +1,3 @@
-Spine = require 'spine'
-
 class RowBox extends Spine.Controller
   className: 'row'
   tag: 'span'

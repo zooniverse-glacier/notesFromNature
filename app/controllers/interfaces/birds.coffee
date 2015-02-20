@@ -1,8 +1,10 @@
-Spine = require 'spine'
 Api = require 'zooniverse/lib/api'
 Classification = require 'zooniverse/models/classification'
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
+
+Institute = require '../../models/institute'
+Project = require 'zooniverse/models/project'
 
 data_fields = require '../../lib/birds_fields'
 
@@ -94,7 +96,22 @@ class Birds extends Interfaces
     for record in @records
       @classification.annotate record.collect()
 
-    @classification.send()
+    done = =>
+      setTimeout =>
+        Institute.fetch()
+        Project.fetch()
+        
+        unless User.current then return
+        badges = User.current.badges
+        userFetch = User.fetch()
+
+        userFetch.done =>
+          User.current.badges = badges
+          @archive?.checkBadges()
+        
+      , 500
+
+    @classification.send done, ->
     @reset()
     Subject.next()
 
