@@ -10,8 +10,7 @@ User = require 'zooniverse/models/user'
 { formatNumber } = require '../lib/utils'
 
 class Archive extends Spine.Model
-  @configure 'Archive', 'group_id', 'classification_count', 'name', 'metadata', 'complete', 'stats', 'categories'
-  @hasMany 'badges', Badge
+  @configure 'Archive', 'group_id', 'classification_count', 'name', 'metadata', 'complete', 'stats', 'categories', 'badges'
 
   @findBySlug: (slug) ->
     result = @select (archive) ->
@@ -24,8 +23,10 @@ class Archive extends Spine.Model
         archive.categories.indexOf(params.type) != -1 or archive.categories.indexOf(_.str.capitalize(params.type)) != -1
     else
       @all()
-  
-  badges: []
+
+  constructor: ->
+    super
+    @badges = []
 
   addBadges: =>
     for badge in badgeDefinitions

@@ -20,8 +20,6 @@ class ArchiveDetails extends Spine.Controller
   render: =>
     @archive = Archive.findBySlug @archiveId
     @userCount = formatNumber Project.current?.user_count || 0
-    @badges = Badges.badgesForProject @archive?.slug()
-
     @html @template @
 
 module.exports = ArchiveDetails

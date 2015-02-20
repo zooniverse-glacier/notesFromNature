@@ -63,12 +63,12 @@
   </div>
 </div>
 
-<% if @badges.length: %>
+<% if @archive.badges.length: %>
   <div class="box-general">
     <div class="col3">
       <h3 class="title">Transcribe to earn!</h3>
     </div>
-    <% for badge in @badges[0..2]: %>
+    <% for badge in @archive.badges[0..2]: %>
       <div class="col1 omega">
         <div class="center">
           <img class="badge" src="images/<%= badge.url %>" alt="<%= badge.name %>">
