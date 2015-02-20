@@ -199,24 +199,24 @@ module.exports = [
   ,
     name: 'Fledgling'
     url: 'badges/ornithology/fledgling.png'
-    description: 'You earn this badge for transcribing 100 Ornithological records'
-    awardText: 'You earned this badge for transcribing 100 Ornithological records'
+    description: 'You earn this badge for transcribing 25 Ornithological records'
+    awardText: 'You earned this badge for transcribing 25 Ornithological records'
     condition:
       func: (details) ->
         if details.user.project.groups?[details.archive.id]?
-          return details.user.project.rows_transcribed >= 100
+          return details.user.project.rows_transcribed >= 25
         else
           return false
     collection: 'ornithological'
   ,
     name: 'Adult Bird'
     url: 'badges/ornithology/adult.png'
-    description: 'You earn this badge for transcribing 500 Ornithological records'
-    awardText: 'You earned this badge for transcribing 500 Ornithological records'
+    description: 'You earn this badge for transcribing 200 Ornithological records'
+    awardText: 'You earned this badge for transcribing 200 Ornithological records'
     condition:
       func: (details) ->
         if details.user.project.groups?[details.archive.id]?
-          return details.user.project.rows_transcribed >= 500
+          return details.user.project.rows_transcribed >= 200
         else
           return false
     collection: 'ornithological'
