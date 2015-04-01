@@ -150,7 +150,7 @@ class Birds extends Interfaces
     , 400
 
   onDiscuss: =>
-    window.location = Subject.current.talkHref()
+    window.open Subject.current.talkHref(), 'notes-from-nature-talk'
 
   onBack: =>
     $('.post-finish').fadeOut()
