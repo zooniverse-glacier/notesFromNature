@@ -33,7 +33,6 @@ class Plants extends Interfaces
     zoomInDiv.classList.add 'zoom-control', 'zoom-in'
     zoomOutDiv.classList.add 'zoom-control', 'zoom-out'
 
-    # this is what i get for working with unstable dependencies
     zoomInDiv.addEventListener 'click', =>
       g = @surface.select "##{@image.node.parentNode.id}"
 
