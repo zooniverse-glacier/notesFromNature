@@ -5,7 +5,7 @@ Project = require 'zooniverse/models/project'
 
 class InterfaceController extends Spine.Controller
   preferences: {}
-  
+
   constructor: ->
     super
     addEventListener 'finished-transcription', @saveClassification
@@ -44,12 +44,12 @@ class InterfaceController extends Spine.Controller
     @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in transcriptions.toJSON()
 
     done = =>
-      #throttle to allow async POST to suceed on backend before refresh of other data 
+      #throttle to allow async POST to succeed on backend before refresh of other data
       setTimeout =>
         #refresh other data
         Institute.fetch()
         Project.fetch()
-        
+
         #refresh User data, primarily to up the badges
         unless User.current then return
         badges = User.current.badges
@@ -58,7 +58,7 @@ class InterfaceController extends Spine.Controller
         userFetch.done =>
           User.current.badges = badges
           @archive?.checkBadges()
-        
+
       , 500
 
     cachedSet = JSON.parse(localStorage.getItem("classifications"))
@@ -67,7 +67,7 @@ class InterfaceController extends Spine.Controller
     maxId = 0
     maxId = (if key > max then key else max) for key, value of cachedSet
     cachedSet["" + (parseInt(maxId) + 1)] = @classification.toJSON()
-    localStorage.setItem("classifications", JSON.stringify cachedSet)    
+    localStorage.setItem("classifications", JSON.stringify cachedSet)
 
     @classification.send()
     Subject.next()

@@ -47,7 +47,6 @@
 </script>
 
 <script type="text/template" id="launcher-template">
-  <span>Click and drag a square around the specimen label, then click &quot;Start this Record&quot;</span> 
   <a href="#" class="example" data-src="images/sernac.png">See example</a>
   <a href="#" class="btn start hidden">Start this record</a>
   <a href="#" class="skip">Skip this record</a>
