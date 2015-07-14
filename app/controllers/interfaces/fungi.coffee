@@ -9,8 +9,6 @@ require 'snap.svg.zpd'
 
 ZOOM_FACTOR = 0.15
 
-#EolController = require '../widgets/eol'
-
 class Fungi extends Interfaces
   className: 'FungiTranscriptionController'
   template: require '../../views/transcription/fungi'
@@ -18,7 +16,6 @@ class Fungi extends Interfaces
 
   constructor: ->
     super
-    #@eolController = new EolController
 
     rawSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     rawSvg.setAttribute 'id', 'image-container'
@@ -36,7 +33,6 @@ class Fungi extends Interfaces
     zoomInDiv.classList.add 'zoom-control', 'zoom-in'
     zoomOutDiv.classList.add 'zoom-control', 'zoom-out'
 
-    # this is what i get for working with unstable dependencies
     zoomInDiv.addEventListener 'click', =>
       g = @surface.select "##{@image.node.parentNode.id}"
 
@@ -61,23 +57,6 @@ class Fungi extends Interfaces
     @transcriber.$el.append zoomOutDiv
 
   nextSubject: =>
-    ###
-    unless $('.transcriber.fungi .eol-widget').length
-      $('.transcriber.fungi').append @eolController.el
-
-    @classification = new Classification subject: Subject.current
-
-    url = Subject.current.location.standard
-    url ?= Subject.current.metadata.original_url
-
-    @transcriber.loadPhoto url, =>
-      $(".photos img").animate({ marginLeft: "0" }, 500)
-      @transcriber.$backgroundMessage.fadeOut 250, =>
-        @transcriber.$backgroundMessage.html("")
-
-      @transcriber.spinner.hide()
-      @transcriber.startTranscribing Subject.current
-    ###
     @surface.zpd 'destroy'
     @surface.clear()
     @classification = new Classification subject: Subject.current
