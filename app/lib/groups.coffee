@@ -49,6 +49,22 @@ module.exports =
         "image":"images/img-collections5.jpg"
         "thumbnail":"images/calbug.png"
         "headerImage": "images/archives/calbugBg2.jpg"
+  "calbug-expeditions":
+    "name":"calbug-expeditions"
+    "categories":["Insects", "Spiders"]
+    "metadata":
+      "institute": "Essig Museum Collections"
+      "description":"Calbug is an effort to digitize terrestrial arthropod-specimen records with a focus on California, with specimen imges drawn from among eight entomological collections. The Calbug Science Team will then use the collection data to assess how arthropods have responded to climate change and habitat modification.  CalBug Expeditions provide you with a focused taxonomic group to tackle.  Our first expedition is on a group known as Jewel Beetles.  They are both beautiful and destructive, and we need your help to learn more about them!"
+      "snippet": "Calbug digitizes collections of pinned insect specimens drawn from eight of California's major institutions, showcasing the stunning diversity of insect life in our world."
+      "extra_template": require "../views/archives/calbug"
+      "difficulty":"Easy"
+      "regions":["California and surrounding region"]
+      "start_date":"1880"
+      "end_date":"Present"
+      "location":
+        "image":"images/img-collections6.jpg"
+        "thumbnail":"images/calbug.png"
+        "headerImage": "images/archives/calbugBg3.jpg"
   "Natural History Museum":
     "name": "Natural History Museum"
   "Ornithological":
@@ -93,4 +109,4 @@ module.exports =
       "location":
         "image":"images/archives/macrofungi/collection-list-bg.jpg"
         "headerImage": "images/archives/macrofungi/archive-bg.jpg"
-    
+
