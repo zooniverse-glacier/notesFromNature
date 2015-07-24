@@ -133,6 +133,54 @@ module.exports = [
           return false
     collection: 'calbug'
   ,
+    name: 'Egg'
+    url: 'badges/calbug/egg.png'
+    description: 'You earn this badge for transcribing a Calbug record'
+    awardText: 'You earned this badge for transcribing a Calbug record'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 0
+        else
+          return false
+    collection: 'calbug-expeditions'
+  ,
+    name: 'Caterpillar'
+    url: 'badges/calbug/caterpillar.png'
+    description: 'You earn this badge for transcribing 25 Calbug records'
+    awardText: 'You earned this badge for transcribing 25 Calbug records'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 25
+        else
+          return false
+    collection: 'calbug-expeditions'
+  ,
+    name: 'Butterfly'
+    url: 'badges/calbug/butterfly.png'
+    description: 'You earn this badge for transcribing 100 Calbug records'
+    awardText: 'You earned this badge for transcribing 100 Calbug records'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 100
+        else
+          return false
+    collection: 'calbug-expeditions'
+  ,
+    name: 'Butterflies'
+    url: 'badges/calbug/butterflies.png'
+    description: 'You earn this badge for transcribing 500 Calbug records'
+    awardText: 'You earned this badge for transcribing 500 Calbug records'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 500
+        else
+          return false
+    collection: 'calbug-expeditions'
+  ,
     name: 'Spore'
     url: 'badges/macrofungi/spore.png'
     description: 'You earn this badge for transcribing 1 Macrofungi record'
