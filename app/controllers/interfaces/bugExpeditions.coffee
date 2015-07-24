@@ -63,7 +63,6 @@ class BugExpeditions extends Interfaces
     @classification = new Classification subject: Subject.current
 
     Subject.current.location.small ?= Subject.current.location.standard
-    console.log(Subject.current);
     subjectImage = Subject.current.location.standard
 
     img = new Image
