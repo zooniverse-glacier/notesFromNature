@@ -10,8 +10,8 @@ require 'snap.svg.zpd'
 
 ZOOM_FACTOR = 0.15
 
-class Bugs extends Interfaces
-  className: 'BugsTranscriptionController'
+class BugExpeditions extends Interfaces
+  className: 'BugExpeditionsTranscriptionController'
   template: require '../../views/transcription/bugs'
   widgetName: 'Bugs'
 
@@ -79,4 +79,4 @@ class Bugs extends Interfaces
 
     img.src = subjectImage
 
-module.exports = Bugs
+module.exports = BugExpeditions
