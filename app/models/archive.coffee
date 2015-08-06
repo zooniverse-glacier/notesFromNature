@@ -54,14 +54,14 @@ class Archive extends Spine.Model
   # progress_strict calculates progress using raw complete and total values from the API
   progress_strict: =>
     unless @stats? then return 0
-    Math.floor(@stats.complete / (@stats.total) * 100)
+    Math.floor(@recordsComplete() / (@stats.total) * 100)
 
   recordsComplete: =>
-    formatNumber @stats.complete
+    formatNumber @stats.total - @stats.active
 
   isComplete: =>
     unless @stats? then return 0
-    @stats.complete >= (@stats.total - @stats.paused)
+    @recordsComplete() >= (@stats.total - @stats.paused)
 
   transcription_count: =>
     @metadata.rows_transcribed || @classification_count || 0
