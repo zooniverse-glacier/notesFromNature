@@ -60,7 +60,7 @@ class Archive extends Spine.Model
       @stats.total - @stats.active
 
   recordsComplete: =>
-    formatNumber @completedRecords
+    formatNumber @completedRecords()
 
   isComplete: =>
     unless @stats? then return 0
