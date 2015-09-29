@@ -1,6 +1,6 @@
 <div class="box-general home">
   <div class="col3">
-    <div class="center">          
+    <div class="center">
       <hgroup>
         <h3>Transcribe museum records to</h3>
         <h2>TAKE NOTES FROM<br> NATURE</h2>
@@ -11,7 +11,7 @@
   <a href="#/archives" class="transcribing-launcher">START TRANSCRIBING</a>
 </div>
 
-<div class="counters"> 
+<div class="counters">
   <div class="box-black-numbers">
     <span id="archive-count" class="numbers">-</span>
     <span class="subtitle">Archives available</span>
@@ -32,7 +32,7 @@
     <div class="column">
       <img src="images/home_icon_bird.png" alt="avian best friend">
       <h3>To improve our world.</h3>
-      <p>Museum records contain historical biodiversity data. Scientists and researchers can use the data to conduct new research and make better conservation decisions.<p> 
+      <p>Museum records contain historical biodiversity data. Scientists and researchers can use the data to conduct new research and make better conservation decisions.<p>
     </div>
     <div class="column">
       <img src="images/home_icon_troffee.png" alt="avian best friend">
@@ -62,6 +62,7 @@
         <li><a href="http://calbug.berkeley.edu/"><img alt="Calbug" src="images/calbug.png" /></a></li>
         <li><a href="http://cumuseum.colorado.edu/"><img src="images/mnh-cu.jpg"></a></li>
         <li><a href="http://vizzuality.com/"><img src="images/logos/vizzuality.png"></a></li>
+        <li><a href="http://www.nsf.gov/"><img alt="National Science Foundation" src="images/logos/national-science-foundation.gif"></a></li>
       </ul>
     </div>
   </div>
