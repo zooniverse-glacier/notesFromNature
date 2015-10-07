@@ -43,6 +43,10 @@ class InterfaceController extends Spine.Controller
   saveClassification: ({transcriptions}) =>
     @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in transcriptions.toJSON()
 
+    # Save collection directly onto classification. Avoids having to do a join via the DB.
+    if Subject.current?.group
+      @classification.annotate group: Subject.current.group
+
     done = =>
       #throttle to allow async POST to succeed on backend before refresh of other data
       setTimeout =>

@@ -96,11 +96,15 @@ class Birds extends Interfaces
     for record in @records
       @classification.annotate record.collect()
 
+    # Save collection directly onto classification. Avoids having to do a join via the DB.
+    if Subject.current?.group
+      @classification.annotate group: Subject.current.group
+
     done = =>
       setTimeout =>
         Institute.fetch()
         Project.fetch()
-        
+
         unless User.current then return
         badges = User.current.badges
         userFetch = User.fetch()
@@ -108,7 +112,7 @@ class Birds extends Interfaces
         userFetch.done =>
           User.current.badges = badges
           @archive?.checkBadges()
-        
+
       , 500
 
     @classification.send done, ->
