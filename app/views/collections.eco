@@ -15,21 +15,19 @@
         </p>
         <p><%= archive.metadata.snippet %></p>
         <p>
-          <% unless archive.isComplete(): %>
-            <% if archive.metadata.collection_root: %>
-                <a href="#/archivegroup/<%= archive.metadata.collection_root %>">Check out this collection</a>
-            <% else if not archive.metadata.collection_group: %>
-                <a href="#/archives/<%= archive.slug() %>">Check out this collection</a>
-            <% end %>
-          <% end %>
+        <% if archive.metadata.collection_group and archive.metadata.collection_group.is_root: %>
+            <a href="#/archivegroup/<%= archive.metadata.collection_group.id %>">Check out these collections</a>
+        <% else if not (archive.metadata.collection_group and archive.isComplete()): %>
+            <a href="#/archives/<%= archive.slug() %>">Check out this collection</a>
+        <% end %>
         </p>
       </div>
       <div class="collection-details">
-        <% if archive.isComplete(): %>
+        <% if archive.metadata.collection_group and archive.metadata.collection_group.is_root: %>
+            <a href="#/archivegroup/<%= archive.metadata.collection_group.id %>" class="collection-link"><%= archive.name %></a>
+        <% else if archive.isComplete(): %>
           <div class="collection-complete">complete!</div>
           <div class="collection-link"><%= archive.name %></div>
-        <% else if archive.metadata.collection_root: %>
-            <a href="#/archivegroup/<%= archive.metadata.collection_root %>" class="collection-link"><%= archive.name %></a>
         <% else if not archive.metadata.collection_group: %>
           <a href="#/archives/<%= archive.slug() %>" class="collection-link"><%= archive.name %></a>
         <% end %>
