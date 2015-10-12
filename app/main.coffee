@@ -25,6 +25,7 @@ app.stack = new Spine.Stack
   controllers:
     home: require './controllers/home'
     archives: require './controllers/collections'
+    archiveGroup: require './controllers/archive-group'
     archiveDetails: require './controllers/archive-details'
     transcriptions: require './controllers/TranscriptionController'
     about: class extends SubPage
@@ -39,6 +40,7 @@ app.stack = new Spine.Stack
     '/archives': 'archives'
     '/archives/:id': 'archiveDetails'
     '/archives/:id/transcribe': 'transcriptions'
+    '/archivegroup/:id': 'archiveGroup'
 
     '/badges/:id': 'badges'
 

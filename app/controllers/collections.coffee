@@ -20,9 +20,11 @@ class Collections extends Site
 
   hideDetails: (e) =>
     $(e.currentTarget).find('.translucent-box').stop().animate {top: '185px'}, {duration: 200}
-  
+
   render: =>
     @archives = Archive.all()
+    for a in @archives
+        console.log(a)
     @html @template @
 
 module.exports = Collections

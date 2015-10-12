@@ -1,0 +1,34 @@
+<div class="page-header-small">
+  <h2 class="title"><%= @archives.length %> collections available</h2>
+  <p>Browse through them and select your favorite</p>
+</div>
+
+<div class="collections-list">                  
+  <% for archive in @archives: %>
+    <div class="collection-item">
+      <img src="<%= archive.metadata.location.image %>"> 
+      <div class="translucent-box">
+        <p> 
+          <% if archive.isComplete(): %>
+           <span class="complete_notice">Check back. We'll load more images soon!</span> 
+          <% end %>
+        </p>
+        <p><%= archive.metadata.snippet %></p>
+        <p>
+          <% unless archive.isComplete(): %>
+            <a href="#/archives/<%= archive.slug() %>">Check out this collection</a>
+          <% end %>
+        </p>
+      </div>
+      <div class="collection-details">
+        <% if archive.isComplete(): %>
+          <div class="collection-complete">complete!</div>
+          <div class="collection-link"><%= archive.name %></div>
+        <% else: %>
+          <a href="#/archives/<%= archive.slug() %>" class="collection-link"><%= archive.name %></a>
+        <% end %>
+        <div class="institute-name"><%= archive.metadata.institute %></div>
+      </div>
+    </div>
+  <% end %>
+</div>
