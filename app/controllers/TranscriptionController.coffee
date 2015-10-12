@@ -5,7 +5,7 @@ Subject = require 'zooniverse/models/subject'
 
 Birds = require './interfaces/birds'
 BugsTranscriptionController = require './interfaces/bugs'
-#CrabsTranscriptionController = require './interfaces/crabs'
+CrabsTranscriptionController = require './interfaces/crabs'
 SernacTranscriptionController = require './interfaces/plants'
 Fungi = require './interfaces/fungi'
 
@@ -39,10 +39,10 @@ class TranscriptionController extends Site
     # Set the appropriate transcription controller and start it up.
     switch @archive.metadata.controller
       when 'bugs' then @transcriptionController = new BugsTranscriptionController()
-      when 'plants' then @transcriptionController = new SernacTranscriptionController()
       when 'birds' then @transcriptionController = new Birds()
       when 'fungi' then @transcriptionController = new Fungi()
-      #when 'crabs' then @transcriptionController = new CrabsTranscriptionController()
+      when 'plants' then @transcriptionController = new SernacTranscriptionController()
+      when 'crabs' then @transcriptionController = new CrabsTranscriptionController()
       else
         Spine.Route.navigate '/archives' # Rather abrupt, but at least a user doesn't sit at a blank page.
 
