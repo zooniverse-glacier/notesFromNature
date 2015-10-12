@@ -23,8 +23,6 @@ class Collections extends Site
 
   render: =>
     @archives = Archive.all()
-    for a in @archives
-        console.log(a)
     @html @template @
 
 module.exports = Collections

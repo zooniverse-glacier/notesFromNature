@@ -8,18 +8,27 @@ class ArchiveGroup extends Spine.Controller
   className: 'archive-group'
   template: require '../views/archives/archive-group'
 
+  events:
+    'mouseenter .collections-list .collection-item': 'showDetails'
+    'mouseleave .collections-list .collection-item': 'hideDetails'
+
   constructor: ->
     super
-    #Archive.bind 'refresh', @render
+    Archive.bind 'refresh', @render
+
+  showDetails: (e) =>
+    $(e.currentTarget).find('.translucent-box:not(.disable)').stop().animate {top: 0}, {duration: 200}
+
+  hideDetails: (e) =>
+    $(e.currentTarget).find('.translucent-box').stop().animate {top: '185px'}, {duration: 200}
 
   activate: (params) =>
-    #@archiveId = params.id
-    #@render()
+    @archiveGroupId = params.id
+    @render()
     super
 
-  render: =>
-    #@archive = Archive.findBySlug @archiveId
-    #@userCount = formatNumber Project.current?.user_count || 0
+  render: () =>
+    @archives = (a for a in Archive.all() when a.metadata.collection_group == @archiveGroupId)
     @html @template @
 
 module.exports = ArchiveGroup
