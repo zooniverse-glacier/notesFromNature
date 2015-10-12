@@ -5,7 +5,7 @@ Subject = require 'zooniverse/models/subject'
 
 Birds = require './interfaces/birds'
 BugsTranscriptionController = require './interfaces/bugs'
-BugExpeditionsTranscriptionController = require './interfaces/bugExpeditions'
+#CrabsTranscriptionController = require './interfaces/crabs'
 SernacTranscriptionController = require './interfaces/plants'
 Fungi = require './interfaces/fungi'
 
@@ -37,12 +37,12 @@ class TranscriptionController extends Site
     document.title = "Notes From Nature - #{ @archive.metadata.institute } - #{ @archive.name } - Transcribe"
 
     # Set the appropriate transcription controller and start it up.
-    switch @archive.slug()
-      when 'calbug' then @transcriptionController = new BugsTranscriptionController()
-      when 'calbug-expeditions' then @transcriptionController = new BugExpeditionsTranscriptionController()
-      when 'herbarium' then @transcriptionController = new SernacTranscriptionController()
-      when 'ornithological' then @transcriptionController = new Birds()
-      when 'macrofungi' then @transcriptionController = new Fungi()
+    switch @archive.metadata.controller
+      when 'bugs' then @transcriptionController = new BugsTranscriptionController()
+      when 'plants' then @transcriptionController = new SernacTranscriptionController()
+      when 'birds' then @transcriptionController = new Birds()
+      when 'fungi' then @transcriptionController = new Fungi()
+      #when 'crabs' then @transcriptionController = new CrabsTranscriptionController()
       else
         Spine.Route.navigate '/archives' # Rather abrupt, but at least a user doesn't sit at a blank page.
 

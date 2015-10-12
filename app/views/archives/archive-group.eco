@@ -25,7 +25,7 @@
           </a>
         <% end %>
         <div class="institute-name">
-            <%= if archive.metadata.collection_group.institute then archive.metadata.collection_group.institute else archive.metadata.institute %>
+            <%= if archive.metadata.collection_group?.institute then archive.metadata.collection_group.institute else archive.metadata.institute %>
         </div>
       </div>
     </div>

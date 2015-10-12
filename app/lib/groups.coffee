@@ -3,6 +3,7 @@ module.exports =
     "name":"SERNEC"
     "categories":["Plants"]
     "metadata":
+      "controller": "plants"
       "description":"SERNEC is an organization that supports the 222 Herbaria and over 12 million plant specimen found in the Southeastern United States.  Each of these herbaria are valued collections of plants specimens used in research and teaching.  Their value is amplified in partnership and  SERNEC is devoted to making the resources of all these Herbaria available online as one virtual, researchable collection. SERNEC will improve access to specimen data of a richly biodiverse region, and provide a platform for herbarium curators and plant scientists to exchange ideas, share expertise, and benefit from the value of information shared across institutions."
       "regions":["Southeastern US"]
       "location":
@@ -13,6 +14,7 @@ module.exports =
     "name":"Herbarium"
     "categories":["Plants"]
     "metadata":
+      "controller": "plants"
       "collection_group":
         "id": "SERNEC"
         "is_root": true
@@ -30,6 +32,7 @@ module.exports =
   "Essig Museum Collections":
     "name":"Essig Museum Collections"
     "metadata":
+      "controller": "bugs"
       "description":"The Essig Museum of Entomology is a world-class terrestrial arthropod collection with a historical focus on surveying the insect fauna of California. Today that focus has broadened to include the eastern Pacific Rim and the islands of the Pacific Basin."
       "regions":["California and surrounding region"]
       "location":
@@ -41,6 +44,7 @@ module.exports =
     "name":"Calbug"
     "categories":["Insects", "Spiders"]
     "metadata":
+      "controller": "bugs"
       "institute": "Essig Museum Collections"
       "description":"Calbug is an effort to digitize terrestrial arthropod-specimen records with a focus on California. The project, funded by the National Science Foundation, represents a collaboration among eight entomological collections in California to capture data from specimen labels. The Calbug Science Team will then use the collection data to assess how arthropods have responded to climate change and habitat modification. Drawing from over a century of insect collecting in the region, our goal is to develop a database of over 1 million geographically referenced specimens."
       "snippet": "Calbug digitizes collections of pinned insect specimens drawn from eight of California's major institutions, showcasing the stunning diversity of insect life in our world."
@@ -57,6 +61,7 @@ module.exports =
     "name":"calbug-expeditions"
     "categories":["Insects", "Spiders"]
     "metadata":
+      "controller": "bugs"
       "institute": "Essig Museum Collections"
       "description":"Calbug is an effort to digitize terrestrial arthropod-specimen records with a focus on California, with specimen imges drawn from among eight entomological collections. The Calbug Science Team will then use the collection data to assess how arthropods have responded to climate change and habitat modification.  CalBug Expeditions provide you with a focused taxonomic group to tackle.  Our first expedition is on a group known as Jewel Beetles.  They are both beautiful and destructive, and we need your help to learn more about them!"
       "snippet": "Calbug digitizes collections of pinned insect specimens drawn from eight of California's major institutions, showcasing the stunning diversity of insect life in our world."
@@ -75,6 +80,7 @@ module.exports =
     "name":"Ornithological"
     "categories":["Birds"]
     "metadata":
+      "controller": "birds"
       "institute": "Natural History Museum"
       "description": """
         <h3>Introductory Blog Post</h3>
@@ -94,11 +100,13 @@ module.exports =
   "New York Botanical Garden":
     "name": "New York Botanical Garden"
     "metadata":
+      "controller": "plants"
       "logo": "images/logos/new-york-botanical-garden.jpg"
   "Macrofungi":
     "name": "Macrofungi"
     "categories":["Fungi"]
     "metadata":
+      "controller": "fungi"
       "institute": "New York Botanical Garden"
       "description":"""
         <p>The Macrofungi Collection Consortium, funded by the National Science Foundation, is a partnership of 35 institutions across the U.S that collectively will digitize about 1.5 million specimens that have been collected the past 150 years.</p>
@@ -117,6 +125,7 @@ module.exports =
     "name":"University of South Florida Herbarium Collection"
     "categories":["Plants"]
     "metadata":
+        "controller": "plants"
         "collection_group":
             "id": "SERNEC"
         "institute": "USF"
@@ -133,6 +142,7 @@ module.exports =
     "name":"Florida State University Herbarium Collection"
     "categories":["Plants"]
     "metadata":
+        "controller": "plants"
         "collection_group":
             "id": "SERNEC"
         "institute": "FSU"
@@ -149,6 +159,7 @@ module.exports =
     "name":"Botanical Research Institute of Texas"
     "categories":["Plants"]
     "metadata":
+        "controller": "plants"
         "collection_group":
             "id": "SERNEC"
         "institute": "BRIT"
@@ -165,6 +176,7 @@ module.exports =
     "name":"Natural History Museum of Los Angeles County"
     "categories":["Crabs"]
     "metadata":
+        "controller": "crabs"
         "institute": "Natural History Museum of Los Angeles County"
         "description": "The last time you met a crab may have been at the dinner table. Here at the Natural History Museum of Los Angeles County, our research collection of Crustacea (which includes the crabs) is one of the largest in the world, containing hundreds of thousands of specimens.  Because this collection has never been digitized, it is hard to use it efficiently to answer research questions. Unless we walk up to the shelves here at the Museum, we can’t tell you what species are in the collection, or where and when they were collected.  This subset of the collection includes crabs of the family Cancridae (the cancer crabs), and includes the popular (and edible) Rock Crabs and Dungeness Crab.  Many of our specimens are from the Eastern Pacific, but we have specimens from collecting expeditions all over the world.  These specimens, and the collection information about each of them, will contribute to research on crab evolution as well as research on how crab populations are changing through time in response to a changing world.  First, though, researchers around the world need to know what is in the collection. That’s where we need your help: to transcribe collecting information from specimen labels into a digitally searchable form."
         "snippet": "Crab specimens from around the world are just a small part of the research collection of the Natural History Museum of Los Angeles County. Digitizing these specimens will allow researchers to use them for studies of their ancestry and analysis of their survival in a changing climate."
