@@ -166,14 +166,14 @@ module.exports =
         "collection_name": ""
         "collection_group": "SERNEC"
         "institute": "BRIT"
-        "description": ""
+        "description": "Over one million plant specimens are housed in the BRIT Herbarium (the combined BRIT-SMU and VDB collections), making this the largest independent herbarium in the southeastern US. The herbarium has strengths in the plants of Texas, Oklahoma, Arkansas, Tennessee, the Gulf Coast, and the southeastern United States. However, these collections are worldwide in scope, and most of the Earth’s plant families are represented here. Two of our current research projects, one in Peru and one in Papua New Guinea, have greatly expanded the scope of our collection of tropical specimens. "
         "snippet": ""
         "difficulty":"Easy"
         "start_date": "1880"
         "end_date": "2015"
         "regions":["Southeastern US"]
         "location":
-          "image":"images/FSU_NFN_image.jpg"
+          "image":"images/Phylalower-herb.jpg"
           "headerImage": "images/FSU_NFN_image_banner.jpg"
   "crabs":
     "name":"Crustacea"
