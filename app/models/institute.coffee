@@ -25,7 +25,6 @@ class Institute extends Spine.Model
         ###################################################################
         mock = mocks.pop()
         if mock?
-            console.log mock
             group = Groups[mock]
             group.stats =
               active: 0
@@ -58,7 +57,6 @@ class Institute extends Spine.Model
 
   # Instance methods
   setupArchives: (archives) =>
-    console.log archives
     for archive in archives
       archive = @archives().create $.extend true, {}, archive, Groups[archive.name]
       archive.addBadges()

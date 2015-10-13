@@ -17,6 +17,7 @@ module.exports =
       "controller": "plants"
       "collection_group":
         "id": "SERNEC"
+        "name": "Southeastern Louisiana University Herbarium"
         "is_root": true
         "institute": "SELU"
       "institute": "SERNEC"

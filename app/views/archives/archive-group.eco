@@ -7,26 +7,16 @@
 <div class="collections-list">
   <% for archive in @archives: %>
     <div class="collection-item">
-      <img src="<%= archive.metadata.location.image %>">
-      <div class="collection-translucent-box">
-        <p>
-          <% if archive.isComplete(): %>
-           <span class="complete_notice">Check back. We'll load more images soon!</span>
-          <% end %>
-        </p>
-      </div>
-      <div class="collection-details">
+      <img class="archive-group-image" src="<%= archive.metadata.location.image %>">
+      <div class="archive-group-details">
         <% if archive.isComplete(): %>
           <div class="collection-complete">complete!</div>
           <div class="collection-link"><%= archive.name %></div>
         <% else: %>
           <a href="#/archives/<%= archive.slug() %>" class="collection-link">
-              <%= @archiveGroupId %> Member
+              <%= if archive.metadata.collection_group.name then archive.metadata.collection_group.name else archive.name %>
           </a>
         <% end %>
-        <div class="institute-name">
-            <%= if archive.metadata.collection_group?.institute then archive.metadata.collection_group.institute else archive.metadata.institute %>
-        </div>
       </div>
     </div>
   <% end %>
