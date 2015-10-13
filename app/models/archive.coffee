@@ -43,7 +43,11 @@ class Archive extends Spine.Model
       badge.checkAward()
 
   transcriptionUrl: =>
-    "#/archives/#{@slug()}/transcribe"
+    console.log @metadata.transcribe_url
+    if @metadata.transcribe_url
+        @metadata.transcribe_url
+    else
+        "#/archives/#{@slug()}/transcribe"
 
   slug: ->
     (@name.replace /\s/g, "_").toLowerCase()

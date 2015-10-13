@@ -176,7 +176,7 @@ module.exports =
           "image":"images/Phylalower-herb.jpg"
           "headerImage": "images/FSU_NFN_image_banner.jpg"
   "crabs":
-    "name":"Crustacea"
+    "name":"Crabs"
     "categories":["Crustacea"]
     "metadata":
         "controller": "crabs"
@@ -186,6 +186,7 @@ module.exports =
         "difficulty":"Easy"
         "start_date": "1880"
         "end_date": "2015"
+        "transcribe_url": "crabs.html"
         "location":
           "image":"images/outer-Cancercrab_1-scaled.jpg"
           "headerImage": "images/inner-Cancercrab_3-scaled.jpg"

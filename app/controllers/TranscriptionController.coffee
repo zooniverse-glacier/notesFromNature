@@ -6,7 +6,6 @@ Subject = require 'zooniverse/models/subject'
 Birds = require './interfaces/birds'
 Fungi = require './interfaces/fungi'
 BugsTranscriptionController = require './interfaces/bugs'
-CrabsTranscriptionController = require './interfaces/crabs'
 SernacTranscriptionController = require './interfaces/plants'
 
 class TranscriptionController extends Site
@@ -42,7 +41,6 @@ class TranscriptionController extends Site
       when 'birds' then @transcriptionController = new Birds()
       when 'fungi' then @transcriptionController = new Fungi()
       when 'plants' then @transcriptionController = new SernacTranscriptionController()
-      when 'crabs' then @transcriptionController = new CrabsTranscriptionController()
       else
         Spine.Route.navigate '/archives' # Rather abrupt, but at least a user doesn't sit at a blank page.
 
