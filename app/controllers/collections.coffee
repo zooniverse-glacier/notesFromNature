@@ -1,5 +1,6 @@
 Site = require '../lib/site'
 Archive = require '../models/archive'
+Groups = require '../lib/groups'
 
 class Collections extends Site
   className: 'ArchivesList'

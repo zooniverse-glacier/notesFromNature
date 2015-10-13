@@ -5,6 +5,7 @@
 
 <div class="collections-list">
   <% for archive in @archives: %>
+    <% if not archive.metadata.collection_group or archive.metadata.collection_group.is_root: %>
     <div class="collection-item">
       <img src="<%= archive.metadata.location.image %>">
       <div class="translucent-box">
@@ -34,5 +35,6 @@
         <div class="institute-name"><%= archive.metadata.institute %></div>
       </div>
     </div>
+    <% end %>
   <% end %>
 </div>

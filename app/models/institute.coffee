@@ -16,9 +16,24 @@ class Institute extends Spine.Model
       institutes = (institute for institute in institutes)
       archives = (group for group in data  when group.type == 'archive')
 
+      #####################################################################
+      mocks = ['Herbarium-USF', 'Herbarium-FSU', 'Herbarium-BRIT', 'crabs']
+      #####################################################################
       for institute in institutes
         inst = Institute.create $.extend true, {}, institute, Groups[institute.name]
         instArchives = (archive for archive in archives when archive.group_id == inst.id)
+        ###################################################################
+        mock = mocks.pop()
+        if mock?
+            console.log mock
+            group = Groups[mock]
+            group.stats =
+              active: 0
+              complete: 0
+              inactive: 0
+              total: 0
+            instArchives.push group
+        ###################################################################
         inst.setupArchives instArchives
 
       Archive.trigger 'refresh'
@@ -30,7 +45,7 @@ class Institute extends Spine.Model
     result[0]
 
   @allStats: ->
-    total_stats = 
+    total_stats =
       active: 0
       complete: 0
       inactive: 0
@@ -43,6 +58,7 @@ class Institute extends Spine.Model
 
   # Instance methods
   setupArchives: (archives) =>
+    console.log archives
     for archive in archives
       archive = @archives().create $.extend true, {}, archive, Groups[archive.name]
       archive.addBadges()

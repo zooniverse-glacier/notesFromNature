@@ -4,10 +4,10 @@ Institute = require '../models/institute'
 Subject = require 'zooniverse/models/subject'
 
 Birds = require './interfaces/birds'
+Fungi = require './interfaces/fungi'
 BugsTranscriptionController = require './interfaces/bugs'
 CrabsTranscriptionController = require './interfaces/crabs'
 SernacTranscriptionController = require './interfaces/plants'
-Fungi = require './interfaces/fungi'
 
 class TranscriptionController extends Site
   className: 'TranscriptionController'
