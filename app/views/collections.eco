@@ -5,7 +5,6 @@
 
 <div class="collections-list">
   <% for archive in @archives: %>
-    <% if not archive.metadata.collection_group or archive.metadata.collection_group.is_root: %>
     <div class="collection-item">
       <img src="<%= archive.metadata.location.image %>">
       <div class="translucent-box">
@@ -16,25 +15,24 @@
         </p>
         <p><%= archive.metadata.snippet %></p>
         <p>
-        <% if archive.metadata.collection_group and archive.metadata.collection_group.is_root: %>
-            <a href="#/archivegroup/<%= archive.metadata.collection_group.id %>">Check out these collections</a>
+        <% if archive.metadata.collection_root: %>
+            <a href="#/archivegroup/<%= archive.metadata.collection_group %>">Check out these collections</a>
         <% else if not (archive.metadata.collection_group and archive.isComplete()): %>
             <a href="#/archives/<%= archive.slug() %>">Check out this collection</a>
         <% end %>
         </p>
       </div>
       <div class="collection-details">
-        <% if archive.metadata.collection_group and archive.metadata.collection_group.is_root: %>
-            <a href="#/archivegroup/<%= archive.metadata.collection_group.id %>" class="collection-link"><%= archive.name %></a>
+        <% if archive.metadata.collection_root: %>
+            <a href="#/archivegroup/<%= archive.metadata.collection_group %>" class="collection-link"><%= archive.name %></a>
         <% else if archive.isComplete(): %>
           <div class="collection-complete">complete!</div>
           <div class="collection-link"><%= archive.name %></div>
-        <% else if not archive.metadata.collection_group: %>
+        <% else: %>
           <a href="#/archives/<%= archive.slug() %>" class="collection-link"><%= archive.name %></a>
         <% end %>
         <div class="institute-name"><%= archive.metadata.institute %></div>
       </div>
     </div>
     <% end %>
-  <% end %>
 </div>

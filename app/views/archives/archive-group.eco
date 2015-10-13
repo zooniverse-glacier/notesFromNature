@@ -11,10 +11,10 @@
       <div class="archive-group-details">
         <% if archive.isComplete(): %>
           <div class="collection-complete">complete!</div>
-          <div class="collection-link"><%= archive.name %></div>
+          <div class="collection-link"><%= archive.metadata.title %></div>
         <% else: %>
           <a href="#/archives/<%= archive.slug() %>" class="collection-link">
-              <%= if archive.metadata.collection_group.name then archive.metadata.collection_group.name else archive.name %>
+              <%= archive.metadata.title %>
           </a>
         <% end %>
       </div>

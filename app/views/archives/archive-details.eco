@@ -8,7 +8,7 @@
 <div class="box-general detail" style='background-image:url("<%= @archive.metadata.location.headerImage %>")'>
   <section class="header-content">
     <h3><%= @archive.metadata.institute %></h3>
-    <h1><%= @archive.name %></h1>
+    <h1><%= @archive.metadata.title %></h1>
     <% unless @archive.isComplete(): %>
       <div class="translucent-box">
         <a class="button left" href="<%= @archive.transcriptionUrl() %>">START TRANSCRIBING</a>
@@ -25,7 +25,7 @@
           <span class="text">TEMPORAL RANGE</span><%= @archive.metadata.start_date %> / <%= @archive.metadata.end_date %>
         </li>
       <% end %>
-      
+
       <% if @archive.metadata.regions: %>
         <li><span class="text">GEOGRAPHIC CONTEXT</span> <%= @archive.metadata.regions.join(" | ") %></li>
       <% end %>
@@ -45,8 +45,8 @@
           <div class="bar" style="width:<%= @archive.progress_strict() %>%"></div>
           <span class="progress"><%= @archive.progress_strict() %>%</span>
         </div>
-      </li> 
-      <li class="start-transcribing"> 
+      </li>
+      <li class="start-transcribing">
         <% if @archive.isComplete(): %>
           <a href="#/" class="button nocolor">No active images</a>
         <% else: %>

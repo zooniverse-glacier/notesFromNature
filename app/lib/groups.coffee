@@ -14,12 +14,11 @@ module.exports =
     "name":"Herbarium"
     "categories":["Plants"]
     "metadata":
+      "title": "Southeastern Louisiana University Herbarium"
+      "collection_name": ""
       "controller": "plants"
-      "collection_group":
-        "id": "SERNEC"
-        "name": "Southeastern Louisiana University Herbarium"
-        "is_root": true
-        "institute": "SELU"
+      "collection_group": "SERNEC"
+      "collection_root": true
       "institute": "SERNEC"
       "description":"SERNEC is an organization that supports the 222 Herbaria and over 12 million plant specimens found in the Southeastern United States.  Each of these herbaria are valued collections of plants specimens used in research and teaching.  Their value is amplified in partnership and  SERNEC is devoted to making the resources of all these Herbaria available online as one virtual, researchable collection. SERNEC will improve access to specimen data of a richly biodiverse region, and provide a platform for herbarium curators and plant scientists to exchange ideas, share expertise, and benefit from the value of information shared across institutions."
       "snippet": "A SERNEC collection is comprised of herbarium specimens: these flowers and plants are carefully pressed onto sheets along with descriptive labels, and contain vital information for broader understanding of biodiversity at regional and national scales."
@@ -123,12 +122,13 @@ module.exports =
         "image":"images/archives/macrofungi/collection-list-bg.jpg"
         "headerImage": "images/archives/macrofungi/archive-bg.jpg"
   "Herbarium-USF":
-    "name":"University of South Florida Herbarium Collection"
     "categories":["Plants"]
+    "name":"Herbarium-USF"
     "metadata":
+        "title":"University of South Florida Herbarium"
         "controller": "plants"
-        "collection_group":
-            "id": "SERNEC"
+        "collection_name": ""
+        "collection_group": "SERNEC"
         "institute": "USF"
         "description": "Welcome to the University of South Florida (USF) Herbarium and Notes from Nature. The USF Herbarium contains over 250,000 preserved plant specimens from as far back as the 1840s. As we depend on plants for food, medicine, water and air quality, soil health, paper, fabrics, cosmetics, building materials, and beautification, these plant specimens contain vital information that help us ensure the health and longevity of our species and the ecosystem. They are used by our scientists, our educators, our land managers, our resource providers, and many, many others. We need you to help us provide and disseminate that information to online users."
         "snippet": "The USF Herbarium collection is comprised of herbarium specimens: these flowers and plants are carefully pressed onto sheets along with descriptive labels, and contain vital information for broader understanding of biodiversity at regional and national scales."
@@ -140,12 +140,13 @@ module.exports =
           "image":"images/USF127737.jpg"
           "headerImage": "images/USF127737.jpg"
   "Herbarium-FSU":
-    "name":"Florida State University Herbarium Collection"
+    "name":"Herbarium-FSU"
     "categories":["Plants"]
     "metadata":
+        "title":"Florida State University Herbarium"
         "controller": "plants"
-        "collection_group":
-            "id": "SERNEC"
+        "collection_name": "Robert K. Godfrey Herbarium Collection"
+        "collection_group": "SERNEC"
         "institute": "FSU"
         "description": "Florida State University's Robert K. Godfrey Herbarium documents the distribution and natural variation of 2,400 species of flowering plants, ferns, conifers, and cycads found in northern Florida. In this region a number of plant groups, including pitcherplants, reach their greatest species richness in North America.  Join our effort to liberate specimen data from our cabinets and deploy it online—we currently serve data for a third of our 220,000 specimens and are adding to this each week with your help!"
         "snippet": "The FSU Herbarium collection is comprised of herbarium specimens: these flowers and plants are carefully pressed onto sheets along with descriptive labels, and contain vital information for broader understanding of biodiversity at regional and national scales."
@@ -157,12 +158,13 @@ module.exports =
           "image":"images/FSU_NFN_image.jpg"
           "headerImage": "images/FSU_NFN_image_banner.jpg"
   "Herbarium-BRIT":
-    "name":"Botanical Research Institute of Texas"
+    "name":"Herbarium-BRIT"
     "categories":["Plants"]
     "metadata":
+        "title":"Botanical Research Institute of Texas"
         "controller": "plants"
-        "collection_group":
-            "id": "SERNEC"
+        "collection_name": ""
+        "collection_group": "SERNEC"
         "institute": "BRIT"
         "description": ""
         "snippet": ""

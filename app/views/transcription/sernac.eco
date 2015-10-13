@@ -29,7 +29,7 @@
 <script type="text/template" id="popup-template">
   <div class="content">
     <div class="text">
-      <p>Welcome to the SERNEC Herbarium collections on Notes from Nature and thank you for helping us transcribe specimen records.</p>
+      <p>Welcome to this SERNEC member herbarium collection on Notes from Nature and thank you for helping us transcribe specimen records.</p>
       <p>One of the key ways of storing plant material in natural history collections is through herbarium sheets. The gurus working on the SERNEC project have imaged hundreds of thousands of these sheets. Each sheet contains a plant specimen and a label that contains the species name, locality information and date collected - the who, where and when that is critical for use of these specimens to map biodiversity and its change. All we need is to get those data in usable form.</p>
       <p>You can help us unlock these data for use by biodiversity scientists by panning and zooming on the label until you can read the content, and then helping us enter that content via a step-by-step transcription process that is explained in more detail once you enter the collection.</p>
     </div>
@@ -107,7 +107,7 @@
       <option value="30">30</option>
       <option value="31">31</option>
     </select>
-  </div> 
+  </div>
   <div class="date_field year">
     <select name="year" class="year">
       <option value="placeholder">-- Year --</option>
@@ -304,7 +304,7 @@
 
 <script type="text/template" id="state-input-template">
   <div class="state_field">
-    <select name="state" class="state"> 
+    <select name="state" class="state">
       <option value="placeholder">-- State --</option>
       <option value="unknown">Unknown State</option>
       <option value="AL">Alabama</option>
@@ -382,7 +382,7 @@
   <div class="description">{{{ description }}}</div>
 
   <div class="buttons">
-    <a href="#" class="btn main">{{ main }}</a> 
+    <a href="#" class="btn main">{{ main }}</a>
     <a href="#" class="btn secondary">{{ secondary }}</a>
   </div>
 
@@ -390,7 +390,7 @@
 </script>
 
 <script type="text/template" id="tooltip-example-template">
-  <div class="buttons"><a href="#/archives/Herbarium" class="btn main">{{ main }}</a></div> 
+  <div class="buttons"><a href="#/archives/Herbarium" class="btn main">{{ main }}</a></div>
   <div class="tip"></div>
 </script>
 
@@ -421,7 +421,7 @@
 
 <script type="text/template" id="state-input-template">
   <div class="state_field">
-    <select name="state" class="state"> 
+    <select name="state" class="state">
       <option value="placeholder">-- State --</option>
       <option value="unknown">Unknown State</option>
       <option value="AL">Alabama</option>

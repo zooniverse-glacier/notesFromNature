@@ -23,7 +23,7 @@ class Collections extends Site
     $(e.currentTarget).find('.translucent-box').stop().animate {top: '185px'}, {duration: 200}
 
   render: =>
-    @archives = Archive.all()
+    @archives = (a for a in Archive.all() when not a.metadata.collection_group or a.metadata.collection_root)
     @html @template @
 
 module.exports = Collections
