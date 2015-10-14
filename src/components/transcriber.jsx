@@ -31,7 +31,6 @@ class Transcriber extends React.Component {
         document.body.style.background = this.background;
     }
     render() {
-        console.log('Transcriber');
         const { collection, form, dispatch } = this.props;
         const { subject, imageSelected, fieldSelected } = form;
 
