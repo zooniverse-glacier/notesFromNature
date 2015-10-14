@@ -1,6 +1,6 @@
 <div class="page-header-small">
   <h2 class="title"><%= @archives.length %> <%= @archiveGroupId %>
-      <%= if @archives.length == 1 then 'collection' else 'collections' %> available
+      <%= if @archives.length == 1 then 'affiliated collection' else 'affiliated collections' %> available
   </h2>
 </div>
 
