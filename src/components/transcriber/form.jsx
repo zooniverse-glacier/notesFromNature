@@ -22,6 +22,9 @@ export default class Form extends React.Component {
         event.preventDefault();
         this.props.onSubmit();
     }
+    componentDidMount() {
+        React.findDOMNode(this.refs[this.props.focused]).focus();
+    }
     componentDidUpdate() {
         React.findDOMNode(this.refs[this.props.focused]).focus();
     }

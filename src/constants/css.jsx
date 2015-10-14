@@ -13,7 +13,7 @@ export const css = {
     footerHeight: 140,
     radius:       4,
     buttonRadius: 8,
-    transition: 'all 0.75s ease',
+    transition: 'all 0.5s ease',
     noUserSelect: {
         WebkitTouchCallout: 'none',
         WebkitUserSelect: 'none',

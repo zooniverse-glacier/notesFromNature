@@ -1,3 +1,4 @@
+export const START_TRANSCRIBING = 'START_TRANSCRIBING';
 export const INCREMENT_COMPLETED = 'INCREMENT_COMPLETED';
 export const SET_COLLECTION = 'SET_COLLECTION';
 
@@ -9,6 +10,10 @@ export const SELECT_FIELD = 'SELECT_FIELD';
 export const UPDATE_FIELD = 'UPDATE_FIELD';
 export const SKIP_SUBJECT = 'SKIP_SUBJECT';
 export const SUBMIT_SUBJECT = 'SUBMIT_SUBJECT';
+
+export function startTranscribing() {
+    return {type: START_TRANSCRIBING};
+}
 
 export function incrementCompleted() {
     return {type: INCREMENT_COMPLETED};

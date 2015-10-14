@@ -8,9 +8,9 @@ export default class ImageSelector extends React.Component {
                     let isSelected = image.location == imageSelected;
                     return (
                         <SelectorImage key={i} image={image}
-                                       onImageSelectorClick={onImageSelectorClick}
-                                       subject={subject}
-                                       isSelected={isSelected} />
+                            onImageSelectorClick={onImageSelectorClick}
+                            subject={subject}
+                            isSelected={isSelected} />
                     );
                 });
         return (

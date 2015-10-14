@@ -9,10 +9,7 @@ var webpack = require('webpack'),
 module.exports = {
     target: 'web',
     cache: true,
-    entry: {
-        module: path.join(srcPath, 'index.jsx'),
-        common: ['react']
-    },
+    entry: path.join(srcPath, 'index.jsx'),
     resolve: {
         root: srcPath,
         extensions: ['', '.js', '.jsx'],
@@ -41,7 +38,7 @@ module.exports = {
     },
     plugins: [
         //new webpack.optimize.CommonsChunkPlugin('common', 'common.js'),
-         //TODO: This needs to become index.html
+        //TODO: This needs to become index.html
         new HtmlWebpackPlugin({
             template: path.join(srcPath, 'crabs.html'),
             filename: 'crabs.html',
@@ -50,7 +47,7 @@ module.exports = {
         new webpack.NoErrorsPlugin(),
         new webpack.optimize.UglifyJsPlugin({minimize: true})
     ],
-    debug: true,
+    //debug: true,
     devtool: 'eval-cheap-module-source-map',
     devServer: {contentBase: './public', historyApiFallback: true}
 };

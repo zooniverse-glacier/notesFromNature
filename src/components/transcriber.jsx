@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Splash from 'components/transcriber/splash';
 import NavBar from 'components/transcriber/navbar';
 import ImageViewer from 'components/transcriber/image_viewer';
 import ImageSelector from 'components/transcriber/image_selector';
@@ -34,7 +35,17 @@ class Transcriber extends React.Component {
         const { collection, form, dispatch } = this.props;
         const { subject, imageSelected, fieldSelected } = form;
 
-        let images = subject.images.map((image, i) => {
+        const formControl = !form.ready ? undefined :
+            <Form fields={collection.fields}
+                focused={fieldSelected}
+                helpExpanded={form.helpExpanded}
+                onFieldFocus={n => dispatch(action.selectField(n))}
+                onFieldChange={(n, v, ...a) => dispatch(action.updateField(n, v, a))}
+                onToggleHelp={() => dispatch(action.toggleHelp())}
+                onSkip={() => dispatch(action.skipSubject())}
+                onSubmit={e => dispatch(action.submitSubject())} />;
+
+        const images = subject.images.map((image, i) => {
             let isSelected = image.location == imageSelected;
             return(
                 <ImageViewer key={i} src={image.location} subject={subject}
@@ -42,24 +53,19 @@ class Transcriber extends React.Component {
             );
         });
 
-        let footer = subject.images.length < 2 ? undefined :
+        const footer = subject.images.length < 2 ? undefined :
             <ImageSelector subject={subject}
                 imageSelected={imageSelected}
                 onImageSelectorClick={src => dispatch(action.selectImage(src))} />;
 
         return (
             <div>
+                <Splash data={collection}
+                    onHide={() => dispatch(action.startTranscribing())}/>
                 <NavBar data={collection} />
+                {formControl}
                 {images}
                 {footer}
-                <Form fields={collection.fields}
-                    focused={fieldSelected}
-                    helpExpanded={form.helpExpanded}
-                    onFieldFocus={n => dispatch(action.selectField(n))}
-                    onFieldChange={(n, v, ...a) => dispatch(action.updateField(n, v, a))}
-                    onToggleHelp={() => dispatch(action.toggleHelp())}
-                    onSkip={() => dispatch(action.skipSubject())}
-                    onSubmit={e => dispatch(action.submitSubject())} />
             </div>
         );
     }

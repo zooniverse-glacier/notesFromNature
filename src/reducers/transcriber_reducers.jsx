@@ -8,6 +8,7 @@ const initialState = {
     collection: Object.assign({}, collections.Crabs, {completed: 0}),
     subjects: [],
     form: {
+        ready: false,
         helpExpanded: false,
         imageSelected: mockSubjects[0].images[0].location,
         fieldSelected: '',
@@ -32,6 +33,8 @@ function collection(state=initialState.collection, action='') {
 function form(state=initialState.form, action='') {
     let newState;
     switch(action.type) {
+        case actionType.START_TRANSCRIBING:
+            return Object.assign({}, state, {ready: true});
         case actionType.SELECT_FIELD:
             if (action.fieldSelected) {
                 return Object.assign({}, state, {fieldSelected: action.fieldSelected});

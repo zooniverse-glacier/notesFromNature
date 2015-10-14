@@ -43,8 +43,8 @@
     "webpack-hot-middleware": "^2.2.0"
   },
   "scripts": {
-    "watch": "WEBPACK_ENV=dev webpack-dev-server --inline --progress --colors --content-base public",
-    "build": "WEBPACK_ENV=build webpack --optimize-minimize --optimize-occurrence-order --progress --profile --colors",
+    "watch": "NODE_ENV=dev webpack-dev-server --inline --progress --colors --content-base public",
+    "build": "NODE_ENV=production webpack --optimize-minimize --optimize-occurrence-order --progress --profile --colors",
     "start": "haw serve",
     "deploy": "haw build ./build --force && ruby build.rb && publisssh ./build zooniverse-static/www.notesfromnature.org && rm -rf ./build",
     "deploy-to-staging": "haw build ./build --force && publisssh ./build zooniverse-static/www.notesfromnature.org/staging && rm -rf ./build"
