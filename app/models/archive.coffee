@@ -43,7 +43,6 @@ class Archive extends Spine.Model
       badge.checkAward()
 
   transcriptionUrl: =>
-    console.log @metadata.transcribe_url
     if @metadata.transcribe_url
         @metadata.transcribe_url
     else
