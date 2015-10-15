@@ -1,18 +1,19 @@
 import React from 'react';
+import ReactDOM from "react-dom";
 import { css } from 'constants/css';
 import $ from 'jquery';
 require('bootstrap-webpack!../../../bootstrap.config.js');
 
 export default class Splash extends React.Component {
     componentDidMount() {
-        $(React.findDOMNode(this)).on('hidden.bs.modal', this.props.onHide);
-        $(React.findDOMNode(this)).modal('show');
-        $(React.findDOMNode(this)).find('.modal-footer button').focus();
+        $(ReactDOM.findDOMNode(this)).on('hidden.bs.modal', this.props.onHide);
+        $(ReactDOM.findDOMNode(this)).modal('show');
+        $(ReactDOM.findDOMNode(this)).find('.modal-footer button').focus();
     }
     render() {
         const { goText } = this.props.data;
-        const paragraphs = goText.map((p) => {
-            return <p>{p}</p>;
+        const paragraphs = goText.map((p, i) => {
+            return <p key={i}>{p}</p>;
         });
         return (
              <div id="splash" className="modal fade">

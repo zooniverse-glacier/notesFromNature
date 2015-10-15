@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from "react-dom";
 import { css } from 'constants/css';
 
 export default class ImageViewer extends React.Component {
@@ -44,7 +45,7 @@ export default class ImageViewer extends React.Component {
     }
     initializeCanvas() {
         const hasFooter = this.props.subject.images.length > 1;
-        this.canvas = React.findDOMNode(this.refs.canvas);
+        this.canvas = ReactDOM.findDOMNode(this.refs.canvas);
         this.context = this.canvas.getContext('2d');
         this.canvas.width  = window.innerWidth;
         this.canvas.height = window.innerHeight - css.navBarHeight;
@@ -70,7 +71,7 @@ export default class ImageViewer extends React.Component {
         this.image.src = this.props.src;
     }
     componentDidUpdate() {
-        let canvas = React.findDOMNode(this.refs.canvas);
+        let canvas = ReactDOM.findDOMNode(this.refs.canvas);
         this.context = canvas.getContext('2d');
     }
     componentWillUnmount() {

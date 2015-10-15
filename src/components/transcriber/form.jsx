@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from "react-dom";
 import { css } from 'constants/css';
 import Draggable from 'react-draggable';
 import FormHelp from 'components/transcriber/form/help';
@@ -23,10 +24,10 @@ export default class Form extends React.Component {
         this.props.onSubmit();
     }
     componentDidMount() {
-        React.findDOMNode(this.refs[this.props.focused]).focus();
+        ReactDOM.findDOMNode(this.refs[this.props.focused]).focus();
     }
     componentDidUpdate() {
-        React.findDOMNode(this.refs[this.props.focused]).focus();
+        ReactDOM.findDOMNode(this.refs[this.props.focused]).focus();
     }
     render() {
         const { onSubmit, onSkip, onFieldFocus, onFieldChange, onToggleHelp,

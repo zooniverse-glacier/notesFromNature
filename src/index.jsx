@@ -13,6 +13,7 @@ TODO:
 - Fix scaling on window resize?
 */
 import React from "react";
+import ReactDOM from "react-dom";
 import Transcriber from 'components/transcriber';
 import transcriberStore from 'reducers/transcriber_reducers';
 import { createStore } from 'redux';
@@ -20,9 +21,9 @@ import { Provider } from 'react-redux';
 
 let store = createStore(transcriberStore);
 
-React.render(
+ReactDOM.render(
     <Provider store={store}>
-        {() => <Transcriber />}
+        <Transcriber />
     </Provider>,
-    document.body
+    document.getElementById('nfn')
 );

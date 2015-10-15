@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from "react-dom";
 import { css } from 'constants/css';
 
 export default class ImageSelector extends React.Component {
@@ -28,7 +29,7 @@ class SelectorImage extends React.Component {
     }
     handleLoad() {
         const thumbnailSize = 120;
-        const img = React.findDOMNode(this);
+        const img = ReactDOM.findDOMNode(this);
         img.width  = thumbnailSize * img.naturalWidth / img.naturalHeight;
         img.height = thumbnailSize;
         this.setState({ isReady: true });
