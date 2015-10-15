@@ -32,6 +32,18 @@ export const fieldType = {
         placeholder: '-- Cat. No. --',
         submitHelpers: [helper.validatePresent],
         help: [
+            `On preprinted labels, this will be a 5-digit number immediately to the left of the text “Marine Biodiversity Processing Center”. Enter just the 5-digit number; do NOT bother typing in “Marine Biodiversity Processing Center”.`,
+            `This is a specimen number assigned by the Marine Biodiversity Center of the Natural History Museum of Los Angeles County.`,
+        ],
+    },
+    centerNumber: {
+        name: 'centerNumber',
+        dwc: '',
+        type: 'TextField',
+        label: 'Marine Biodiversity Center Number',
+        placeholder: '-- Marine Biodiversity Center Number --',
+        submitHelpers: [helper.validatePresent],
+        help: [
             'On preprinted labels, this will be in a field named “Cat. No.” Type in all characters from that field, including numbers, letters, and punctuation.',
             'This is a catalog number, one of several numbers the Museum uses to track incoming specimens and specimens used in publications.',
         ],

@@ -64,6 +64,7 @@ export const collections = {
             fieldType.accessionNumber,
             fieldType.catalogNumber,
             fieldType.stationNumber,
+            fieldType.centerNumber,
             {type: 'Label', label: 'Collecting Information'},
             fieldType.eventDate,
             fieldType.geographicLocality,
