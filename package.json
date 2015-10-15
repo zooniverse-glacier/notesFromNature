@@ -11,7 +11,7 @@
     "publisssh": "0.2.6",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-draggable": "^0.8.2",
+    "react-draggable": "^0.8.3",
     "snap.svg.zpd": "^0.0.10",
     "snapsvg": "git://github.com/adobe-webplatform/Snap.svg.git#0bd3b5b678",
     "spine": "^1.4.1",
@@ -42,8 +42,9 @@
     "webpack-hot-middleware": "^2.2.0"
   },
   "scripts": {
-    "watch": "NODE_ENV=dev webpack-dev-server --inline --progress --colors --content-base public",
-    "build": "NODE_ENV=production webpack --optimize-minimize --optimize-occurrence-order --progress --profile --colors",
+    "watch": "NODE_ENV=development webpack-dev-server --inline --progress --colors --content-base public",
+    "build": "NODE_ENV=production webpack -p",
+    "_build": "NODE_ENV=production webpack --optimize-minimize --optimize-occurrence-order --progress --profile --colors",
     "start": "haw serve",
     "deploy": "haw build ./build --force && ruby build.rb && publisssh ./build zooniverse-static/www.notesfromnature.org && rm -rf ./build",
     "deploy-to-staging": "haw build ./build --force && publisssh ./build zooniverse-static/www.notesfromnature.org/staging && rm -rf ./build"

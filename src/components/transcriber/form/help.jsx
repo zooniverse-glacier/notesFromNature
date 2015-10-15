@@ -12,7 +12,7 @@ export default class FormHelp extends React.Component {
             <div style={style.container}>
                 <div>
                     <div className="dragHandle" style={style.title}>
-                        {field.title}
+                        {field.label}
                     </div>
                     <button style={style.expandButton} onClick={() => onToggleHelp()}>
                         {helpExpanded ? 'Hide Help' : 'Show Help' }

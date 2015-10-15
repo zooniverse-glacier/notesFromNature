@@ -29,7 +29,7 @@ export const collections = {
     Crabs: { /////////////////////////////// WRONG! //////////////////////////
         groupId: '525e954dedf877560a000002',
         title: 'THE CRAB SHACK',
-        subtitle: 'from the Hancock Foundation',
+        subtitle: 'from the Natural History Museum of Los Angeles County',
         goText: [
                 `Welcome to the crab specimens of the family Cancridae at the Natural History Museum of
                 Los Angeles County! Because of the way wet-preserved marine specimens accumulate
@@ -60,9 +60,11 @@ export const collections = {
                 twenty-first century!`,
         ],
         fields: [
+            {type: 'Label', label: 'Collection Numbers'},
             fieldType.accessionNumber,
             fieldType.catalogNumber,
             fieldType.stationNumber,
+            {type: 'Label', label: 'Collecting Information'},
             fieldType.eventDate,
             fieldType.geographicLocality,
             fieldType.habitat,
@@ -71,6 +73,7 @@ export const collections = {
             fieldType.collectors,
             fieldType.identification,
             fieldType.identification2nd,
+            {type: 'Label', label: 'All Other Text from Label Fields'},
             fieldType.otherText,
         ]
     }

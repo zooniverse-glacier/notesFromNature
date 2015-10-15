@@ -4,7 +4,8 @@ var webpack = require('webpack'),
     publicPath = path.join(__dirname, 'public'),
     nodeModules = path.join(__dirname, 'node_modules'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    env = process.env.WEBPACK_ENV;
+    env = process.env.NODE_ENV;
+console.log(env);
 
 module.exports = {
     target: 'web',

@@ -4,7 +4,7 @@ import { collections } from 'constants/collections';
 import { mockSubjects } from 'constants/mock_subjects';
 import * as helper from 'reducers/transcriber_submit_helpers';
 
-const initialState = {
+let initialState = {
     collection: Object.assign({}, collections.Crabs, {completed: 0}),
     subjects: [],
     form: {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { css } from 'constants/css';
+import Label from 'components/transcriber/form/label';
 
 export default class IdentificationField extends React.Component {
     render() {
@@ -8,7 +9,7 @@ export default class IdentificationField extends React.Component {
             identifierName = field.name + 'Identifier';
         return (
             <div>
-                <label style={css.formLabel} className="dragHandle">{field.label}:</label>
+                <Label field={field} />
                 <input type="text" style={style}
                     name={scientificName}
                     onFocus={() => onFieldFocus(field.name)}

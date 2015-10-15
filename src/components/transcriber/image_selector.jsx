@@ -23,8 +23,8 @@ export default class ImageSelector extends React.Component {
 }
 
 class SelectorImage extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { isReady: false };
     }
     handleLoad() {

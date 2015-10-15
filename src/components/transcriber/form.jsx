@@ -4,6 +4,7 @@ import { css } from 'constants/css';
 import Draggable from 'react-draggable';
 import FormHelp from 'components/transcriber/form/help';
 
+import Label from 'components/transcriber/form/label';
 import DateField from 'components/transcriber/form/date_field';
 import DepthField from 'components/transcriber/form/depth_field';
 import GeographicCoordinatesField from 'components/transcriber/form/geographic_coordinates_field';
@@ -11,6 +12,7 @@ import TextField from 'components/transcriber/form/text_field';
 import IdentificationField from 'components/transcriber/form/identification_field';
 
 const fieldTypes = {
+    Label: Label,
     DateField: DateField,
     DepthField: DepthField,
     GeographicCoordinatesField: GeographicCoordinatesField,
@@ -34,9 +36,11 @@ export default class Form extends React.Component {
                 focused, fields, helpExpanded } = this.props;
         const helps = fields.map((field, i) => {
             if (field.name == focused) {
-                return(
-                    <FormHelp key={i} field={field} helpExpanded={helpExpanded}
-                        onToggleHelp={onToggleHelp}/>
+                return (
+                    field.type == 'Label' ?
+                        <Label field={field} /> :
+                        <FormHelp key={i} field={field} helpExpanded={helpExpanded}
+                            onToggleHelp={onToggleHelp}/>
                 );
             }
         });
@@ -75,15 +79,17 @@ const style = {
         border: css.canvasBorder,
         borderRadius: css.radius,
         fontFamily: '"Open Sans", sans-serif',
-        fontSize: 12,
-        fontWeight: 500,
         height: 'auto',
         padding: 4,
         position: 'absolute',
         right: 10,
         top: 160,
         width: '24em',
-        zIndex: 2
+        zIndex: 2,
+    },
+    form: {
+        borderTop: `1px solid ${css.gray}`,
+        paddingTop: 6,
     },
     floatingButton: {
         background: css.transparent,
@@ -91,13 +97,11 @@ const style = {
         borderRadius: css.buttonRadius,
         color: css.white,
         cursor: 'default',
-        fontSize: 14,
         padding: '4px 8px 4px 8px',
         position: 'absolute',
         top: -35,
     },
     link: {
-        borderBottom: `px solid ${css.white}`,
         color: css.white,
     },
     submitButton: {
@@ -105,7 +109,7 @@ const style = {
         border: `1px solid ${css.black}`,
         borderRadius: css.radius,
         color: css.white,
-        width: '100%'
+        width: '100%',
     },
     help: {
         color: css.white,

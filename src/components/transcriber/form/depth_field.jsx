@@ -8,8 +8,7 @@ export default class DepthField extends React.Component {
             unitsName = field.name + 'Units';
         return (
             <div>
-                <label style={css.formLabel} className="dragHandle">{field.label}</label>
-                <input type="text" style={style.text}
+                <input type="number" style={style.text}
                     name={numberName}
                     onFocus={() => onFieldFocus(field.name)}
                     onChange={(e) => onFieldChange(numberName, e.target.value)}

@@ -8,9 +8,12 @@ import Form from 'components/transcriber/form';
 import * as action from 'actions/transcriber_actions';
 
 class Transcriber extends React.Component {
-    componentDidMount() {
+    componentWillMount() {
         const { collection, dispatch } = this.props;
-        dispatch(action.selectField(collection.fields[0].name));
+        let firstField = collection.fields.findIndex(
+            (field, i) => { return field.type != 'Label'; }
+        );
+        dispatch(action.selectField(collection.fields[firstField].name));
 
         // Adjust surrounding markup to handle the fixed footer
         this.margin = document.body.style.margin;
