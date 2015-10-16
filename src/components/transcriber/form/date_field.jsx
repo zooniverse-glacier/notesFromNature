@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from 'constants/css';
 
-//const currentYear = ;
+const currentYear = (new Date()).getFullYear();
 
 export default class DateField extends React.Component {
     constructor(props) {
@@ -10,7 +10,6 @@ export default class DateField extends React.Component {
     }
     monthChanged(event) {
         let value = event.target.value;
-        console.log(month);
         if (value && value >= 1 && value <= 12) {
             this.setState({ month: value });
         } else if (! value) {
@@ -27,7 +26,7 @@ export default class DateField extends React.Component {
     }
     yearChanged(event) {
         let value = event.target.value;
-        if (value && value >= 1 && value <= (new Date()).getFullYear()) {
+        if (value && value >= 1 && value <= currentYear) {
             this.setState({ year: value });
         } else if (! value) {
             this.setState({ year: '' });
@@ -37,7 +36,7 @@ export default class DateField extends React.Component {
         //this.props.onFieldChange(name, event.target.value);
     }
     render() {
-        console.log(this.state);
+        //console.log(this.state);
         const { month, day, year } = this.state;
         const { field, onFieldFocus, onFieldChange } = this.props,
             monthName = field.name + 'Month',
@@ -59,7 +58,7 @@ export default class DateField extends React.Component {
                     onFocus={() => onFieldFocus(field.name)}
                     onChange={(e) => this.dayChanged(e)}
                     placeholder="-- Day --" />
-                <input type="number" min="1830" max={(new Date()).getFullYear()}
+                <input type="number" min="1830" max={currentYear}
                     maxLength="4"
                     style={style}
                     value={year}

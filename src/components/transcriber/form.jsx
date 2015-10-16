@@ -34,6 +34,11 @@ export default class Form extends React.Component {
     render() {
         const { onSubmit, onSkip, onFieldFocus, onFieldChange, onToggleHelp,
                 focused, fields, helpExpanded } = this.props;
+        const movePadding = 240,
+            moveLeft = -window.innerWidth + movePadding,
+            moveRight = movePadding,
+            moveTop = -movePadding,
+            moveBottom = window.innerHeight - movePadding;
         const helps = fields.map((field, i) => {
             if (field.name == focused) {
                 return (
@@ -51,7 +56,7 @@ export default class Form extends React.Component {
                     onFieldFocus: onFieldFocus});
         });
         return (
-            <Draggable handle=".dragHandle">
+            <Draggable handle=".dragHandle" bounds={{left: moveLeft, right: moveRight, top: moveTop, bottom: moveBottom}}>
                 <div style={style.container}>
                     <div style={style.discussButton}>
                         <a target="_blank" tabIndex="-1" style={style.link}>Discuss</a>
