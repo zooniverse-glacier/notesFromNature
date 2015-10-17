@@ -163,18 +163,18 @@ module.exports =
     "metadata":
         "title":"Botanical Research Institute of Texas"
         "controller": "plants"
-        "collection_name": ""
+        "collection_name": "VDB Collection"
         "collection_group": "SERNEC"
         "institute": "BRIT"
-        "description": "Over one million plant specimens are housed in the BRIT Herbarium (the combined BRIT-SMU and VDB collections), making this the largest independent herbarium in the southeastern US. The herbarium has strengths in the plants of Texas, Oklahoma, Arkansas, Tennessee, the Gulf Coast, and the southeastern United States. However, these collections are worldwide in scope, and most of the Earth’s plant families are represented here. Two of our current research projects, one in Peru and one in Papua New Guinea, have greatly expanded the scope of our collection of tropical specimens. "
+        "description": "The VDB collection of the Philecology Herbarium at the Botanical Research Institute of Texas is composed of ca. 360,000 plant specimens and is one of the best representations of the flora of the southeastern United States. Each of these herbarium sheets serve as testament to the existence of that species in space and time. Imagine if we were able to aggregate these in digital space, alongside other pertinent biological and physical data. Imagine the big, complex questions we could ask about evolution and adaptation in our environments. All this begins with the simple act of transcribing a specimen label; it all begins with YOU!"
         "snippet": ""
         "difficulty":"Easy"
         "start_date": "1880"
         "end_date": "2015"
-        "regions":["Southeastern US"]
+        "regions":["Tennessee & Alabama"]
         "location":
           "image":"images/Phylalower-herb.jpg"
-          "headerImage": "images/FSU_NFN_image_banner.jpg"
+          "headerImage": "images/brit_VDBWeDigBioImage_resized.jpg"
   "Crabs":
     "name":"Crabs"
     "categories":["Crustacea"]
