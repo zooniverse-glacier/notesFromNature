@@ -17,7 +17,7 @@ module.exports = [
     url: 'badges/herbarium/seed.png'
     description: 'You earn this badge for transcribing a SERNEC record'
     awardText: 'You earned this badge for transcribing a SERNEC record'
-    condition: 
+    condition:
       func: (details) ->
         if details.user.project.groups?[details.archive.id]?
           return details.user.project.groups[details.archive.id].classification_count > 0
@@ -85,6 +85,199 @@ module.exports = [
           return false
     collection: 'herbarium'
   ,
+      name: 'Seed'
+      url: 'badges/herbarium/seed.png'
+      description: 'You earn this badge for transcribing a SERNEC record'
+      awardText: 'You earned this badge for transcribing a SERNEC record'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 0
+          else
+            return false
+      collection: 'usf_herbaria'
+    ,
+      name: 'Seedling'
+      url: 'badges/herbarium/seedling.png'
+      description: 'You earn this badge for transcribing 10 SERNEC records'
+      awardText: 'You earned this badge for transcribing 10 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 10
+          else
+            return false
+      collection: 'usf_herbaria'
+    ,
+      name: 'Sprout'
+      url: 'badges/herbarium/sapling.png'
+      description: 'You earn this badge for transcribing 25 SERNEC records'
+      awardText: 'You earned this badge for transcribing 25 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 25
+          else
+            return false
+      collection: 'usf_herbaria'
+    ,
+      name: 'Tree'
+      url: 'badges/herbarium/tree.png'
+      description: 'You earn this badge for transcribing 75 SERNEC records'
+      awardText: 'You earned this badge for transcribing 75 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 75
+          else
+            return false
+      collection: 'usf_herbaria'
+    ,
+      name: 'Oak'
+      url: 'badges/herbarium/oak.png'
+      description: 'You earn this badge for transcribing 250 SERNEC records'
+      awardText: 'You earned this badge for transcribing 250 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 250
+          else
+            return false
+      collection: 'usf_herbaria'
+    ,
+      name: 'Mature Tree'
+      url: 'badges/herbarium/mature-tree.png'
+      description: 'You earn this badge for transcribing 1000 SERNEC records'
+      awardText: 'You earned this badge for transcribing 1000 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 1000
+          else
+            return false
+      collection: 'usf_herbaria'
+    ,
+      name: 'Seedling'
+      url: 'badges/herbarium/seedling.png'
+      description: 'You earn this badge for transcribing 10 SERNEC records'
+      awardText: 'You earned this badge for transcribing 10 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 10
+          else
+            return false
+      collection: 'fsu_herbaria'
+    ,
+      name: 'Sprout'
+      url: 'badges/herbarium/sapling.png'
+      description: 'You earn this badge for transcribing 25 SERNEC records'
+      awardText: 'You earned this badge for transcribing 25 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 25
+          else
+            return false
+      collection: 'fsu_herbaria'
+    ,
+      name: 'Tree'
+      url: 'badges/herbarium/tree.png'
+      description: 'You earn this badge for transcribing 75 SERNEC records'
+      awardText: 'You earned this badge for transcribing 75 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 75
+          else
+            return false
+      collection: 'fsu_herbaria'
+    ,
+      name: 'Oak'
+      url: 'badges/herbarium/oak.png'
+      description: 'You earn this badge for transcribing 250 SERNEC records'
+      awardText: 'You earned this badge for transcribing 250 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 250
+          else
+            return false
+      collection: 'fsu_herbaria'
+    ,
+      name: 'Mature Tree'
+      url: 'badges/herbarium/mature-tree.png'
+      description: 'You earn this badge for transcribing 1000 SERNEC records'
+      awardText: 'You earned this badge for transcribing 1000 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 1000
+          else
+            return false
+      collection: 'fsu_herbaria'
+    ,
+      name: 'Seedling'
+      url: 'badges/herbarium/seedling.png'
+      description: 'You earn this badge for transcribing 10 SERNEC records'
+      awardText: 'You earned this badge for transcribing 10 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 10
+          else
+            return false
+      collection: 'brit_herbaria'
+    ,
+      name: 'Sprout'
+      url: 'badges/herbarium/sapling.png'
+      description: 'You earn this badge for transcribing 25 SERNEC records'
+      awardText: 'You earned this badge for transcribing 25 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 25
+          else
+            return false
+      collection: 'brit_herbaria'
+    ,
+      name: 'Tree'
+      url: 'badges/herbarium/tree.png'
+      description: 'You earn this badge for transcribing 75 SERNEC records'
+      awardText: 'You earned this badge for transcribing 75 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 75
+          else
+            return false
+      collection: 'brit_herbaria'
+    ,
+      name: 'Oak'
+      url: 'badges/herbarium/oak.png'
+      description: 'You earn this badge for transcribing 250 SERNEC records'
+      awardText: 'You earned this badge for transcribing 250 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 250
+          else
+            return false
+      collection: 'brit_herbaria'
+    ,
+      name: 'Mature Tree'
+      url: 'badges/herbarium/mature-tree.png'
+      description: 'You earn this badge for transcribing 1000 SERNEC records'
+      awardText: 'You earned this badge for transcribing 1000 SERNEC records'
+      condition:
+        func: (details) ->
+          if details.user.project.groups?[details.archive.id]?
+            return details.user.project.groups[details.archive.id].classification_count > 1000
+          else
+            return false
+      collection: 'brit_herbaria'
+    ,
+
     name: 'Egg'
     url: 'badges/calbug/egg.png'
     description: 'You earn this badge for transcribing a Calbug record'
