@@ -59,7 +59,7 @@ const style = {
         marginTop: 10,
     },
     button: {
-        backgroundColor: 'rgba(black, 0)',
+        backgroundColor: 'rgba(0, 0, 0, 0)',
         border: 'none',
         color: css.orange,
         fontSize: 38,

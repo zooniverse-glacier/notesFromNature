@@ -5,7 +5,6 @@ var webpack = require('webpack'),
     nodeModules = path.join(__dirname, 'node_modules'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     env = process.env.NODE_ENV;
-console.log(env);
 
 module.exports = {
     target: 'web',

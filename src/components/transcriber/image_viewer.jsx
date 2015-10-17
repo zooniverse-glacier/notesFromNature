@@ -128,9 +128,9 @@ export default class ImageViewer extends React.Component {
         let viewerStyle = isSelected && isReady ? style.viewer : style.hidden;
         return (
             <div style={viewerStyle}>
-                <span style={style.zoomIn} className="glyphicon glyphicon-plus"
+                <span style={style.zoomIn} className="glyphicon glyphicon-zoom-in"
                     onClick={() => this.zoom(1)}></span>
-                <span style={style.zoomOut} className="glyphicon glyphicon-minus"
+                <span style={style.zoomOut} className="glyphicon glyphicon-zoom-out"
                     onClick={() => this.zoom(-1)}></span>
                 <canvas ref='canvas' style={style.canvas}
                     onDrop={e => this.handleWheel(e)}
@@ -164,10 +164,11 @@ const style = {
         cursor: 'default',
     },
     zoomControl: {
-        backgroundColor: css.black,
+        background: css.black,
         border: css.canvasBorder,
         borderRadius: css.buttonRadius,
         color: css.white,
+        fontSize: 20,
         left: 10,
         padding: 12,
         position: 'fixed',

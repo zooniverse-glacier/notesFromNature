@@ -5,7 +5,15 @@ export default class Label extends React.Component {
     render() {
         const { field } = this.props;
         return (
-            <label style={css.formLabel} className="dragHandle">{field.label + ':'}</label>
+            <label style={style} className="dragHandle">{field.label + ':'}</label>
         );
     }
 }
+
+const style = {
+    color: css.white,
+    cursor: 'move',
+    fontWeight: 500,
+    margin: '5px 0 0 6px',
+    width: '100%',
+};

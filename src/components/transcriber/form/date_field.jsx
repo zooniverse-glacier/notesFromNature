@@ -10,60 +10,64 @@ export default class DateField extends React.Component {
     }
     monthChanged(event) {
         let value = event.target.value;
-        if (value && value >= 1 && value <= 12) {
-            this.setState({ month: value });
-        } else if (! value) {
-            this.setState({ month: '' });
+        if (!value || (value && value >= 1 && value <= 12)) {
+            this.setState({month: value});
         }
     }
     dayChanged(event) {
         let value = event.target.value;
-        if (value && value >= 1 && value <= 31) {
-            this.setState({ day: '' + value });
-        } else if (! value) {
-            this.setState({ day: '' });
+        if (!value || (value && value >= 1 && value <= 31)) {
+            this.setState({day: value});
         }
     }
     yearChanged(event) {
         let value = event.target.value;
-        if (value && value >= 1 && value <= currentYear) {
-            this.setState({ year: value });
-        } else if (! value) {
-            this.setState({ year: '' });
+        if (!value || (value && value >= 1 && value <= currentYear)) {
+            this.setState({year: value});
         }
     }
-    dateChanged(event) {
-        //this.props.onFieldChange(name, event.target.value);
+    handleBlur(event) {
+        const { field, onFieldChange } = this.props;
+        let { month, day, year } = this.state,
+            value = '';
+        month = ('00'   + month).substr(-2);
+        day =   ('00'   + day  ).substr(-2);
+        year =  ('0000' + year ).substr(-4);
+        if (+month || +day || +year) {
+            value = `${year}-${month}-${day}`;
+        }
+        onFieldChange(field.name, value);
     }
     render() {
-        //console.log(this.state);
         const { month, day, year } = this.state;
-        const { field, onFieldFocus, onFieldChange } = this.props,
+        const { field, onFieldFocus } = this.props,
             monthName = field.name + 'Month',
             dayName = field.name + 'Day',
             yearName = field.name + 'Year';
         return (
             <div>
-                <input type="number" min="1" max="12" maxLength="2"
+                <input type="number" maxLength="2"
                     style={style}
                     value={month}
                     name={monthName}
                     onFocus={() => onFieldFocus(field.name)}
+                    onBlur={() => this.handleBlur(event)}
                     onChange={(e) => this.monthChanged(e)}
                     placeholder="-- Month --" />
-                <input type="number" min="1" max="31" maxLength="2"
+                <input type="number" maxLength="2"
                     style={style}
                     value={day}
                     name={dayName}
                     onFocus={() => onFieldFocus(field.name)}
+                    onBlur={() => this.handleBlur(event)}
                     onChange={(e) => this.dayChanged(e)}
                     placeholder="-- Day --" />
-                <input type="number" min="1830" max={currentYear}
-                    maxLength="4"
+                <input type="number" maxLength="4"
                     style={style}
                     value={year}
                     name={yearName}
                     onFocus={() => onFieldFocus(field.name)}
+                    onBlur={() => this.handleBlur(event)}
                     onChange={(e) => this.yearChanged(e)}
                     placeholder="-- Year --" />
               </div>

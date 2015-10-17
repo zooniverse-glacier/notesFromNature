@@ -20,18 +20,7 @@ export const css = {
         KhtmlUserSelect: 'none',
         MozUserSelect: 'none',
         msUserSelect: 'none',
-        userUelect: 'none'
+        userSelect: 'none'
     },
 };
 css.canvasBorder = `1px solid ${css.gray}`;
-css.formLabel = {
-    color: css.white,
-    cursor: 'move',
-    margin: '5px 0 0 6px',
-    width: '100%',
-};
-css.formSelectControl = {
-    borderRadius: css.radius,
-    color: css.black,
-    padding: '3px',
-};

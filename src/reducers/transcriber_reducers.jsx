@@ -46,11 +46,13 @@ function form(state=initialState.form, action='') {
 
         case actionType.UPDATE_FIELD:
             newState = Object.assign({}, state);
-            newState.values[action.name] = action.value;
+            newState.values[action.name] = (action.value || '').trim();
+            console.log(newState.values);
             return newState;
 
         case actionType.SUBMIT_SUBJECT:
             newState = helper.runFieldLevelSubmitHelpers(state, stores.collection());
+            console.log(newState.errors);
             return newState;
 
         case actionType.SKIP_SUBJECT:

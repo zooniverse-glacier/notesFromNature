@@ -6,17 +6,13 @@ import FormHelp from 'components/transcriber/form/help';
 
 import Label from 'components/transcriber/form/label';
 import DateField from 'components/transcriber/form/date_field';
-import DepthField from 'components/transcriber/form/depth_field';
-import GeographicCoordinatesField from 'components/transcriber/form/geographic_coordinates_field';
+import SelectField from 'components/transcriber/form/select_field';
 import TextField from 'components/transcriber/form/text_field';
-import IdentificationField from 'components/transcriber/form/identification_field';
 
 const fieldTypes = {
     Label: Label,
     DateField: DateField,
-    DepthField: DepthField,
-    GeographicCoordinatesField: GeographicCoordinatesField,
-    IdentificationField: IdentificationField,
+    SelectField: SelectField,
     TextField: TextField,
 };
 
