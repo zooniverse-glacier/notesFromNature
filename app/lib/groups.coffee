@@ -121,9 +121,9 @@ module.exports =
       "location":
         "image":"images/archives/macrofungi/collection-list-bg.jpg"
         "headerImage": "images/archives/macrofungi/archive-bg.jpg"
-  "Herbarium-USF":
+  "USF_Herbaria":
     "categories":["Plants"]
-    "name":"Herbarium-USF"
+    "name":"USF_Herbaria"
     "metadata":
         "title":"University of South Florida Herbarium"
         "controller": "plants"
@@ -139,8 +139,8 @@ module.exports =
         "location":
           "image":"images/USF127737.jpg"
           "headerImage": "images/USF127737.jpg"
-  "Herbarium-FSU":
-    "name":"Herbarium-FSU"
+  "FSU_Herbaria":
+    "name":"FSU_Herbaria"
     "categories":["Plants"]
     "metadata":
         "title":"Florida State University Herbarium"
@@ -157,8 +157,8 @@ module.exports =
         "location":
           "image":"images/FSU_NFN_image.jpg"
           "headerImage": "images/FSU_NFN_image_banner.jpg"
-  "Herbarium-BRIT":
-    "name":"Herbarium-BRIT"
+  "BRIT_Herbaria":
+    "name":"BRIT_Herbaria"
     "categories":["Plants"]
     "metadata":
         "title":"Botanical Research Institute of Texas"
@@ -175,7 +175,7 @@ module.exports =
         "location":
           "image":"images/Phylalower-herb.jpg"
           "headerImage": "images/FSU_NFN_image_banner.jpg"
-  "crabs":
+  "Crabs":
     "name":"Crabs"
     "categories":["Crustacea"]
     "metadata":

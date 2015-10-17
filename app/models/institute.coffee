@@ -11,32 +11,17 @@ class Institute extends Spine.Model
 
   # Class methods
   @fetch: ->
-    Api.current.get '/projects/notes_from_nature/groups/', (data) ->
-      institutes = (group for group in data  when group.type == 'institution')
-      institutes = (institute for institute in institutes)
-      archives = (group for group in data  when group.type == 'archive')
+    Api.current.get '/projects/notes_from_nature/groups/?type=institution', (institutes) ->
+        Api.current.get '/projects/notes_from_nature/groups/?type=archive', (archives) ->
+            for institute in institutes
+                inst = Institute.create $.extend true, {}, institute, Groups[institute.name]
+                instArchives = []
+                if institute == institutes[0]
+                    instArchives = archives
+                inst.setupArchives instArchives
 
-      #####################################################################
-      mocks = ['Herbarium-USF', 'Herbarium-FSU', 'Herbarium-BRIT', 'crabs']
-      #####################################################################
-      for institute in institutes
-        inst = Institute.create $.extend true, {}, institute, Groups[institute.name]
-        instArchives = (archive for archive in archives when archive.group_id == inst.id)
-        ###################################################################
-        mock = mocks.pop()
-        if mock?
-            group = Groups[mock]
-            group.stats =
-              active: 0
-              complete: 0
-              inactive: 0
-              total: 0
-            instArchives.push group
-        ###################################################################
-        inst.setupArchives instArchives
-
-      Archive.trigger 'refresh'
-      Institute.trigger 'refresh'
+            Archive.trigger 'refresh'
+            Institute.trigger 'refresh'
 
   @findBySlug: (slug) ->
     result = @select (institute) ->
