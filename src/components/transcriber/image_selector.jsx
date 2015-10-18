@@ -6,7 +6,7 @@ export default class ImageSelector extends React.Component {
     render() {
         const { subject, imageSelected, onImageSelectorClick } = this.props,
                 images = subject.images.map((image, i) => {
-                    let isSelected = image.location == imageSelected;
+                    let isSelected = image == imageSelected;
                     return (
                         <SelectorImage key={i} image={image}
                             onImageSelectorClick={onImageSelectorClick}
@@ -36,15 +36,14 @@ class SelectorImage extends React.Component {
     }
     render() {
         const { subject, onImageSelectorClick, image, isSelected } = this.props,
-              { isReady } = this.state,
-              src = image.location;
+              { isReady } = this.state;
         let imgStyle = style.imgHidden;
         if (isReady) {
             imgStyle = isSelected ? style.imgSelected : style.img;
         }
         return (
-            <img src={src} style={imgStyle}
-                onClick={() => onImageSelectorClick(src)}
+            <img src={image} style={imgStyle}
+                onClick={() => onImageSelectorClick(image)}
                 onLoad={() => this.handleLoad()}>
             </img>
         );

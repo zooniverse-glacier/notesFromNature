@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { css } from 'constants/css';
 import Draggable from 'react-draggable';
 import FormHelp from 'components/transcriber/form/help';
+import { talkUrl } from 'helpers/url_helpers';
 
 import Label from 'components/transcriber/form/label';
 import DateField from 'components/transcriber/form/date_field';
@@ -29,7 +30,8 @@ export default class Form extends React.Component {
     }
     render() {
         const { onSubmit, onSkip, onFieldFocus, onFieldChange, onToggleHelp,
-                focused, fields, helpExpanded } = this.props;
+                focused, fields, helpExpanded, subject } = this.props;
+        console.log(subject);
         const movePadding = 240,
             moveLeft = -window.innerWidth + movePadding,
             moveRight = movePadding,
@@ -55,7 +57,7 @@ export default class Form extends React.Component {
             <Draggable handle=".dragHandle" bounds={{left: moveLeft, right: moveRight, top: moveTop, bottom: moveBottom}}>
                 <div style={style.container}>
                     <div style={style.discussButton}>
-                        <a target="_blank" tabIndex="-1" style={style.link}>Discuss</a>
+                        <a target="_blank" tabIndex="-1" style={style.link} href={talkUrl(subject.zooniverseId)}>Discuss</a>
                     </div>
                     <div style={style.skipButton}>
                         <a tabIndex="-1" style={style.link}>Skip Record</a>
@@ -80,6 +82,7 @@ const style = {
         border: css.canvasBorder,
         borderRadius: css.radius,
         fontFamily: '"Open Sans", sans-serif',
+        fontSize: 13,
         height: 'auto',
         padding: 4,
         position: 'absolute',

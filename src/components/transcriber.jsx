@@ -28,11 +28,16 @@ class Transcriber extends React.Component {
         document.body.style.background = 'url("/images/transcribers/bg-transcriber.png")';
     }
     componentWillUnmount() {
+        // Restore surrounding markup
         document.position = this.position;
         document.minHeight = this.minHeight;
         document.body.style.margin = this.margin;
         document.body.style.overflow = this.overflow;
         document.body.style.background = this.background;
+    }
+    componentDidMount() {
+        const { collection, form, dispatch } = this.props;
+        dispatch(action.fetchSubjectList(collection));
     }
     render() {
         const { collection, form, dispatch } = this.props;
@@ -40,6 +45,7 @@ class Transcriber extends React.Component {
 
         const formControl = !form.ready ? undefined :
             <Form fields={collection.fields}
+                subject={subject}
                 focused={fieldSelected}
                 helpExpanded={form.helpExpanded}
                 onFieldFocus={n => dispatch(action.selectField(n))}
@@ -49,9 +55,10 @@ class Transcriber extends React.Component {
                 onSubmit={e => dispatch(action.submitSubject())} />;
 
         const images = subject.images.map((image, i) => {
-            let isSelected = image.location == imageSelected;
+            let isSelected = image == imageSelected;
             return(
-                <ImageViewer key={i} src={image.location} subject={subject}
+                <ImageViewer key={i} src={image}
+                    subject={subject}
                     isSelected={isSelected} />
             );
         });

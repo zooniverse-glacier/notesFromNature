@@ -1,11 +1,14 @@
+import 'babel-core/polyfill';
 import React from "react";
+import thunkMiddleware from 'redux-thunk';
 import ReactDOM from "react-dom";
 import Transcriber from 'components/transcriber';
 import transcriberStore from 'reducers/transcriber_reducers';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-let store = createStore(transcriberStore);
+const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
+const store = createStoreWithMiddleware(transcriberStore);
 
 ReactDOM.render(
     <Provider store={store}>

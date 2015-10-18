@@ -1,4 +1,4 @@
-import * as helper from 'reducers/transcriber_submit_helpers';
+import * as helper from 'helpers/transcriber_reducer_helpers';
 
 // fieldKey : {
 //      name:           Form input name
@@ -9,7 +9,7 @@ import * as helper from 'reducers/transcriber_submit_helpers';
 //      placeholder:    Form input placeholder
 //      submitHelpers:  A list of functions to run ON THE FIELD when a form is submitted
 //      help:           Help text given as an array of paragraphs
-//      ETC:          There are other optional fields like maxLength, min, max etc.
+//      ETC:            There are other optional fields like maxLength, min, max, width, etc.
 //}
 
 export const fieldType = {
@@ -160,6 +160,7 @@ export const fieldType = {
         name: 'scientificName2nd',
         type: 'TextField',
         label: 'Second Scientific Name',
+        placeholder: '-- Scientific Name --',
         submitHelpers: [helper.validatePresent],
         width: '50%',
         help: [
@@ -171,6 +172,7 @@ export const fieldType = {
         name: 'identifierName2nd',
         type: 'TextField',
         label: `Second Identifier's Name`,
+        placeholder: `-- Identifier's Name --`,
         submitHelpers: [helper.validatePresent],
         width: '50%',
         help: [

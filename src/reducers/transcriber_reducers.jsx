@@ -1,22 +1,25 @@
 import { combineReducers } from 'redux';
 import * as actionType from 'actions/transcriber_actions';
 import { collections } from 'constants/collections';
-import { mockSubjects } from 'constants/mock_subjects';
-import * as helper from 'reducers/transcriber_submit_helpers';
+import * as helper from 'helpers/transcriber_reducer_helpers';
 
-let initialState = {
+const initialState = {
     collection: Object.assign({}, collections.Crabs, {completed: 0}),
-    subjects: [],
     form: {
+        subjects: [],
+        subjectIndex: 0,
+        subject: {images: []},
+        imageSelected: undefined,
+        isFetching: true,
         ready: false,
+        archiveFetched: true,
+        subjectListFetched: false,
+        startClicked: false,
         helpExpanded: false,
-        imageSelected: mockSubjects[0].images[0].location,
         fieldSelected: '',
-        subject: Object.assign({}, mockSubjects[0]),
         values: {},
         errors: [],
     },
-    splash: { visible: true },
 };
 
 function collection(state=initialState.collection, action='') {
@@ -31,10 +34,29 @@ function collection(state=initialState.collection, action='') {
 }
 
 function form(state=initialState.form, action='') {
-    let newState;
-    switch(action.type) {
+    let nextState;
+    switch (action.type) {
+        case actionType.REQUEST_SUBJECT_LIST:
+            return Object.assign({}, state, {isFetching: true});
+
+        case actionType.RECEIVE_SUBJECT_LIST:
+            nextState = Object.assign({}, state, {
+                isFetching: false,
+                subjectListFetched: true,
+                subjects: helper.reshapeSubjectList(action.json),
+                subjectIndex: 0,
+            });
+            nextState.subject = nextState.subjects[0];
+            nextState.imageSelected = nextState.subject.images[0];
+            helper.isReady(nextState);
+            console.log(nextState.subjects);
+            return nextState;
+
         case actionType.START_TRANSCRIBING:
-            return Object.assign({}, state, {ready: true});
+            nextState = Object.assign({}, state, {startClicked: true});
+            helper.isReady(nextState);
+            return nextState;
+
         case actionType.SELECT_FIELD:
             if (action.fieldSelected) {
                 return Object.assign({}, state, {fieldSelected: action.fieldSelected});
@@ -45,15 +67,14 @@ function form(state=initialState.form, action='') {
             return Object.assign({}, state, {helpExpanded: !state.helpExpanded});
 
         case actionType.UPDATE_FIELD:
-            newState = Object.assign({}, state);
-            newState.values[action.name] = (action.value || '').trim();
-            console.log(newState.values);
-            return newState;
+            nextState = Object.assign({}, state);
+            nextState.values[action.name] = (action.value || '').trim();
+            return nextState;
 
         case actionType.SUBMIT_SUBJECT:
-            newState = helper.runFieldLevelSubmitHelpers(state, stores.collection());
-            console.log(newState.errors);
-            return newState;
+            nextState = Object.assign({}, state);
+            helper.runFieldLevelSubmitHelpers(nextState, stores.collection());
+            return nextState;
 
         case actionType.SKIP_SUBJECT:
             break;

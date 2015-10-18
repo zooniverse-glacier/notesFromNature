@@ -26,8 +26,8 @@ export const collections = {
         title: 'ORNITHOLOGICAL',
         subtitle: ''
     },
-    Crabs: { /////////////////////////////// WRONG! //////////////////////////
-        groupId: '525e954dedf877560a000002',
+    Crabs: {
+        groupId: '5621461d8688883075000002',
         title: 'THE CRAB SHACK',
         subtitle: 'from the Natural History Museum of Los Angeles County',
         goText: [
