@@ -2,8 +2,10 @@ import React from 'react';
 import { css } from 'constants/css';
 
 export default class TextField extends React.Component {
+    componentWillReceiveProps(nextProps) {
+    }
     render() {
-        const { field, onFieldFocus, onFieldChange } = this.props,
+        const { field, onFieldFocus, onFieldChange, value } = this.props,
             placeholder = field.placeholder || `-- ${field.label} --`,
             maxLength = field.maxLength || 256,
             style = {
@@ -12,7 +14,7 @@ export default class TextField extends React.Component {
                 width: field.width || '100%',
             };
         return (
-            <input type="text" style={style}
+            <input type="text" style={style} value={value}
                name={field.name}
                maxLength={maxLength}
                onFocus={() => onFieldFocus(field.name)}

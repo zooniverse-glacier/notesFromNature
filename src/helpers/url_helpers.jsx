@@ -1,5 +1,5 @@
-export function subjectsUrl(collection_id) {
-    return `${baseUrl()}/groups/${collection_id}/subjects?limit=10`;
+export function subjectsUrl(collectionId) {
+    return `${baseUrl()}/groups/${collectionId}/subjects?limit=10`;
 }
 
 export function archivesUrl() {
@@ -10,7 +10,9 @@ export function talkUrl(zooniverseId) {
     return `http://talk.notesfromnature.org/#/subjects/${zooniverseId}`;
 }
 
-//https://dev.zooniverse.org/projects/notes_from_nature/workflows/5008739f516bcbd236000002/classifications
+export function postFormUrl(workflowId) {
+    return `${baseUrl()}/workflows/${workflowId}/classifications`;
+}
 
 function baseUrl() {
     const host = window.location.hostname.toLowerCase();

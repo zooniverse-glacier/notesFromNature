@@ -26,7 +26,7 @@ const initialState = {
         values: {},
         errors: [],
         started: undefined,
-        ended: undefined,
+        finshed: undefined,
     },
 };
 
@@ -41,7 +41,8 @@ function collection(state=initialState.collection, action='') {
                 archiveListFetched: true,
                 collections: helper.reshapeCollectionsList(action.json),
             });
-            nextState = helper.updateCurrentCollection(nextState);
+            nextState = helper.setCurrentCollection(nextState);
+            console.log(nextState);
             return nextState;
 
         case actionType.INCREMENT_COMPLETED:
@@ -106,9 +107,10 @@ function form(state=initialState.form, action='') {
             break;
 
         case actionType.POST_SKIP_SUBJECT:
-            nextState = Object.assign({}, state);
-            console.log(nextState.subject);
-            break;
+            return Object.assign({}, state, {finished: new Date()});
+
+        case actionType.POST_SUBMIT_SUBJECT:
+            return Object.assign({}, state, {finished: new Date()});
     }
     return state;
 }

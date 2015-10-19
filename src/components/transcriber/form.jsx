@@ -30,7 +30,7 @@ export default class Form extends React.Component {
     }
     render() {
         const { onSubmit, onSkip, onFieldFocus, onFieldChange, onToggleHelp,
-                focused, fields, helpExpanded, subject } = this.props;
+                focused, fields, helpExpanded, subject, values } = this.props;
         const movePadding = 240,
             moveLeft = -window.innerWidth + movePadding,
             moveRight = movePadding,
@@ -47,8 +47,9 @@ export default class Form extends React.Component {
             }
         });
         const inputs = fields.map((field, i) => {
+            let value = values[field.name] || '';
             return React.createElement(fieldTypes[field.type],
-                {key: i, field: field, ref: field.name,
+                {key: i, field: field, ref: field.name, value: value,
                     onFieldChange: onFieldChange,
                     onFieldFocus: onFieldFocus});
         });

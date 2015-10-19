@@ -58,20 +58,25 @@ export function reshapeCollectionsList(json) {
     return collectionList;
 }
 
-export function updateCurrentCollection(nextState) {
+export function setCurrentCollection(nextState) {
     // TODO This is clearly a temporary hack
     // Get the collection name from window.location and use a lowercase version of that for searching
     let i = nextState.collections.findIndex(collection => collection.name == 'Crabs');
     return Object.assign(nextState, collections.Crabs, {
-        collection_id: nextState.collections[i].id,
-        workflow_id: nextState.collections[i].workflow_ids[0],
+        collectionId: nextState.collections[i].id,
+        workflowId: nextState.collections[i].workflow_ids[0],
+        zooniverseId: nextState.collections[i].zooniverse_id,
     });
 }
 
 export function nextSubject(nextState) {
+    nextState = Object.assign(nextState, {
+        started: new Date(),
+        errors: [],
+        values: {},
+    });
     nextState.subjectIndex += 1;
     nextState.subject = nextState.subjects[nextState.subjectIndex];
     nextState.imageSelected = nextState.subject.images[0];
-    nextState.started = Date.now();
     return nextState;
 }

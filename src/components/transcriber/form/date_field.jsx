@@ -8,21 +8,29 @@ export default class DateField extends React.Component {
         super(props);
         this.state = {month: '', day: '', year: ''};
     }
+    componentWillReceiveProps(nextProps) {
+        const [year, month, day] = nextProps.value.split('-');
+        this.setState({
+            year:  +year  ? year  : '',
+            month: +month ? month : '',
+            day:   +day   ? day   : '',
+        });
+    }
     monthChanged(event) {
         let value = event.target.value;
-        if (!value || (value && value >= 1 && value <= 12)) {
+        if (!value || (value && value >= 0 && value <= 12)) {
             this.setState({month: value});
         }
     }
     dayChanged(event) {
         let value = event.target.value;
-        if (!value || (value && value >= 1 && value <= 31)) {
+        if (!value || (value && value >= 0 && value <= 31)) {
             this.setState({day: value});
         }
     }
     yearChanged(event) {
         let value = event.target.value;
-        if (!value || (value && value >= 1 && value <= currentYear)) {
+        if (!value || (value && value >= 0 && value <= currentYear)) {
             this.setState({year: value});
         }
     }

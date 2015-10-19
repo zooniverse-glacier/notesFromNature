@@ -40,13 +40,14 @@ class Transcriber extends React.Component {
     }
     render() {
         const { collection, form, dispatch } = this.props;
-        const { subject, imageSelected, fieldSelected } = form;
+        const { subject, imageSelected, fieldSelected, values, helpExpanded } = form;
 
         const formControl = !form.ready ? undefined :
             <Form fields={collection.fields}
+                values={values}
                 subject={subject}
                 focused={fieldSelected}
-                helpExpanded={form.helpExpanded}
+                helpExpanded={helpExpanded}
                 onFieldFocus={n => dispatch(action.selectField(n))}
                 onFieldChange={(n, v, ...a) => dispatch(action.updateField(n, v, a))}
                 onToggleHelp={() => dispatch(action.toggleHelp())}
@@ -56,15 +57,12 @@ class Transcriber extends React.Component {
         const images = subject.images.map((image, i) => {
             let isSelected = image == imageSelected;
             return(
-                <ImageViewer key={i} src={image}
-                    subject={subject}
-                    isSelected={isSelected} />
+                <ImageViewer key={i} src={image} subject={subject} isSelected={isSelected} />
             );
         });
 
         const footer = subject.images.length < 2 ? undefined :
-            <ImageSelector subject={subject}
-                imageSelected={imageSelected}
+            <ImageSelector subject={subject} imageSelected={imageSelected}
                 onImageSelectorClick={src => dispatch(action.selectImage(src))} />;
 
         return (

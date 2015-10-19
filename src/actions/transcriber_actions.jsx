@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import { subjectsUrl, archivesUrl } from 'helpers/url_helpers';
+import { subjectsUrl, archivesUrl, postFormUrl } from 'helpers/url_helpers';
+import * as helper from 'helpers/transcriber_action_helpers';
 
 export const START_TRANSCRIBING = 'START_TRANSCRIBING';
 export function startTranscribing() {
@@ -43,7 +44,7 @@ function receiveSubjectList(json) {
 
 export function fetchSubjectList() {
     return (dispatch, getState) => {
-        return fetch(subjectsUrl(getState().collection.collection_id))
+        return fetch(subjectsUrl(getState().collection.collectionId))
             .then(response => response.json())
             .then(json => dispatch(receiveSubjectList(json)));
     };
@@ -76,27 +77,42 @@ export function nextSubject() {
 
 export const POST_SKIP_SUBJECT = 'POST_SKIP_SUBJECT';
 export function postSkipSubject() {
-    return {type: POST_SKIP_SUBJECT, ended: Date.now()};
+    return {type: POST_SKIP_SUBJECT};
+}
+
+export const POST_SUBMIT_SUBJECT = 'POST_SUBMIT_SUBJECT';
+export function postSubmitSubject() {
+    return {type: POST_SUBMIT_SUBJECT};
 }
 
 export function skipSubject() {
     return (dispatch, getState) => {
-        if (getState().form.subjectIndex < getState().form.subjects.length - 1) {
-            return Promise.all([
-                dispatch(postSkipSubject()),
-                (() => {$.get('google.com');}),
-                dispatch(nextSubject()),
-            ]);
-        } else {
-            return Promise.all([
-                dispatch(postSkipSubject()),
-                dispatch(fetchSubjectList()),
-            ]);
-        }
+        const form = getState().form,
+            finalDispatch = helper.isLastSubject(form) ? nextSubject : fetchSubjectList;
+        return Promise.all([
+            dispatch(postSkipSubject()),
+            $.post(
+                postFormUrl(getState().collection.workflow_id),
+                helper.skipSubjectData(getState().form),
+                'json'
+            ),
+            dispatch(finalDispatch()),
+        ]);
     };
 }
 
-export const SUBMIT_SUBJECT = 'SUBMIT_SUBJECT';
 export function submitSubject() {
-    return {type: SUBMIT_SUBJECT};
+    return (dispatch, getState) => {
+        const form = getState().form,
+            finalDispatch = helper.isLastSubject(form) ? nextSubject : fetchSubjectList;
+        return Promise.all([
+            dispatch(postSubmitSubject()),
+            $.post(
+                postFormUrl(getState().collection.workflow_id),
+                helper.submitSubjectData(getState().form, getState().collection),
+                'json'
+            ),
+            dispatch(finalDispatch()),
+        ]);
+    };
 }

@@ -3,7 +3,7 @@ import { css } from 'constants/css';
 
 export default class SelectField extends React.Component {
     render() {
-        const { field, onFieldFocus, onFieldChange } = this.props,
+        const { field, onFieldFocus, onFieldChange, value } = this.props,
             placeholder = field.placeholder || `-- ${field.label} --`,
             maxLength = field.maxLength || 256,
             style = {
@@ -19,7 +19,7 @@ export default class SelectField extends React.Component {
                 <option key="-1" value="" disabled>{placeholder}</option>
             );
         return (
-            <select name={field.name} style={style} defaultValue={''}
+            <select name={field.name} style={style} value={value}
                onChange={(e) => onFieldChange(field.name, e.target.value)}
                onFocus={() => onFieldFocus(field.name)}>
                {options}
