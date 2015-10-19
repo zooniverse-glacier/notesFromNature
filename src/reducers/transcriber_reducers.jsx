@@ -4,7 +4,11 @@ import { collections } from 'constants/collections';
 import * as helper from 'helpers/transcriber_reducer_helpers';
 
 const initialState = {
-    collection: Object.assign({}, collections.Crabs, {completed: 0}),
+    // TODO collections needs to be handled better
+    collection: Object.assign({}, collections.Crabs, {
+        completed: 0,
+        collections: [],
+    }),
     form: {
         subjects: [],
         subjectIndex: 0,
@@ -12,7 +16,6 @@ const initialState = {
         imageSelected: undefined,
         isFetching: true,
         ready: false,
-        archiveFetched: true,
         subjectListFetched: false,
         startClicked: false,
         helpExpanded: false,
@@ -23,7 +26,19 @@ const initialState = {
 };
 
 function collection(state=initialState.collection, action='') {
+    let nextState;
     switch(action.type) {
+        case actionType.REQUEST_COLLECTION_LIST:
+            break;
+
+        case actionType.RECEIVE_COLLECTION_LIST:
+            nextState = Object.assign({}, state, {
+                archiveListFetched: true,
+                collections: helper.reshapeCollectionsList(action.json),
+            });
+            nextState = helper.updateCurrentCollection(nextState);
+            return nextState;
+
         case actionType.INCREMENT_COMPLETED:
             return Object.assign({}, state, {completed: state.completed + 1});
 
@@ -49,7 +64,6 @@ function form(state=initialState.form, action='') {
             nextState.subject = nextState.subjects[0];
             nextState.imageSelected = nextState.subject.images[0];
             helper.isReady(nextState);
-            console.log(nextState.subjects);
             return nextState;
 
         case actionType.START_TRANSCRIBING:
@@ -76,8 +90,10 @@ function form(state=initialState.form, action='') {
             helper.runFieldLevelSubmitHelpers(nextState, stores.collection());
             return nextState;
 
-        case actionType.SKIP_SUBJECT:
-            break;
+        case actionType.NEXT_SUBJECT:
+            nextState = Object.assign({}, state);
+            nextState = helper.nextSubject(nextState);
+            return nextState;
 
         case actionType.SELECT_IMAGE:
             if (action.imageSelected) {

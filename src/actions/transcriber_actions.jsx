@@ -1,8 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { subjectsUrl, archivesUrl } from 'helpers/url_helpers';
 
-//export const SET_COLLECTION = 'SET_COLLECTION';
-
 export const START_TRANSCRIBING = 'START_TRANSCRIBING';
 export function startTranscribing() {
     return {type: START_TRANSCRIBING};
@@ -11,6 +9,26 @@ export function startTranscribing() {
 export const INCREMENT_COMPLETED = 'INCREMENT_COMPLETED';
 export function incrementCompleted() {
     return {type: INCREMENT_COMPLETED};
+}
+
+export const REQUEST_COLLECTION_LIST = 'REQUEST_COLLECTION_LIST';
+function requestCollectionList() {
+    return {type: REQUEST_COLLECTION_LIST};
+}
+
+export const RECEIVE_COLLECTION_LIST = 'RECEIVE_COLLECTION_LIST';
+function receiveCollectionList(json) {
+    return {type: RECEIVE_COLLECTION_LIST, json};
+}
+
+export function fetchCollectionList() {
+    return (dispatch) => {
+        dispatch(requestCollectionList());
+        return fetch(archivesUrl())
+            .then(response => response.json())
+            .then(json => dispatch(receiveCollectionList(json)))
+            .then(() => dispatch(fetchSubjectList()));
+    };
 }
 
 export const REQUEST_SUBJECT_LIST = 'REQUEST_SUBJECT_LIST';
@@ -23,10 +41,9 @@ function receiveSubjectList(json) {
     return {type: RECEIVE_SUBJECT_LIST, json};
 }
 
-export function fetchSubjectList(collection) {
-    return function(dispatch) {
-        dispatch(requestSubjectList());
-        return fetch(subjectsUrl(collection))
+export function fetchSubjectList() {
+    return (dispatch, getState) => {
+        return fetch(subjectsUrl(getState().collection.collection_id))
             .then(response => response.json())
             .then(json => dispatch(receiveSubjectList(json)));
     };
@@ -52,9 +69,19 @@ export function updateField(name, value) {
     return {type: UPDATE_FIELD, name, value};
 }
 
-export const SKIP_SUBJECT = 'SKIP_SUBJECT';
+export const NEXT_SUBJECT = 'NEXT_SUBJECT';
+export function nextSubject() {
+    return {type: NEXT_SUBJECT};
+}
+
 export function skipSubject() {
-    return {type: SKIP_SUBJECT};
+    return (dispatch, getState) => {
+        if (getState().form.subjectIndex < getState().form.subjects.length - 1) {
+            return dispatch(nextSubject());
+        } else {
+            return dispatch(fetchSubjectList());
+        }
+    };
 }
 
 export const SUBMIT_SUBJECT = 'SUBMIT_SUBJECT';

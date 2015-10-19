@@ -31,7 +31,6 @@ export default class Form extends React.Component {
     render() {
         const { onSubmit, onSkip, onFieldFocus, onFieldChange, onToggleHelp,
                 focused, fields, helpExpanded, subject } = this.props;
-        console.log(subject);
         const movePadding = 240,
             moveLeft = -window.innerWidth + movePadding,
             moveRight = movePadding,
@@ -60,7 +59,7 @@ export default class Form extends React.Component {
                         <a target="_blank" tabIndex="-1" style={style.link} href={talkUrl(subject.zooniverseId)}>Discuss</a>
                     </div>
                     <div style={style.skipButton}>
-                        <a tabIndex="-1" style={style.link}>Skip Record</a>
+                        <a tabIndex="-1" style={style.link} onClick={() => onSkip()}>Skip Record</a>
                     </div>
                     <div style={style.help}>
                         {helps}

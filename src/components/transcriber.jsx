@@ -36,8 +36,7 @@ class Transcriber extends React.Component {
         document.body.style.background = this.background;
     }
     componentDidMount() {
-        const { collection, form, dispatch } = this.props;
-        dispatch(action.fetchSubjectList(collection));
+        this.props.dispatch(action.fetchCollectionList());
     }
     render() {
         const { collection, form, dispatch } = this.props;

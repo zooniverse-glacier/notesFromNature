@@ -2,147 +2,83 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import { css } from 'constants/css';
 
-export default class ImageViewer extends React.Component {
-    constructor(props) {
-        super(props);
-        let svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
-        this.transform = svg.createSVGMatrix();
-        this.point = svg.createSVGPoint();
-        this.image = new Image();
-        this.image.crossOrigin = 'anonymous';
-        this.scaleFactor = 1.1;
-        this.state = { isReady: false, dragStart: undefined };
-    }
-    transformedPoint(x, y) {
-        this.point.x = x;
-        this.point.y = y;
-        return this.point.matrixTransform(this.transform.inverse());
-    }
-    scale(scale) {
-        this.transform = this.transform.scale(scale);
-        this.context.scale(scale, scale);
-    }
-    translate(dx, dy) {
-        this.transform = this.transform.translate(dx, dy);
-        this.context.translate(dx, dy);
-    }
-    clear() {
-        this.context.save();
-        this.context.setTransform(1, 0, 0, 1, 0, 0);
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.context.restore();
-    }
-    draw() {
-        this.clear();
-        this.context.drawImage(
-            this.image, this.imageX, this.imageY, this.imageWidth, this.imageHeight);
-    }
-    resize() {
-        this.clear();
-        this.initializeCanvas();
-        this.intializeImage();
-        this.draw();
-    }
-    initializeCanvas() {
+let ImageViewer = React.createClass({
+    getInitialState: function() {
+        return { isReady: false };
+    },
+    componentDidMount: function() {
+        $(window).on('resize', () => {
+            this.scale();
+            this.center();
+        });
+    },
+    zoomIn: function() {
+        $(ReactDOM.findDOMNode(this.refs.image)).panzoom('zoom');
+    },
+    zoomOut: function() {
+        $(ReactDOM.findDOMNode(this.refs.image)).panzoom('zoom', true);
+    },
+    handleLoad: function() {
+        this.scale();
+        this.makePanZoom();
+        this.center();
+        this.setState({isReady: true});
+    },
+    getMaxDimensions: function() {
         const hasFooter = this.props.subject.images.length > 1;
-        this.canvas = ReactDOM.findDOMNode(this.refs.canvas);
-        this.context = this.canvas.getContext('2d');
-        this.canvas.width  = window.innerWidth;
-        this.canvas.height = window.innerHeight - css.navBarHeight;
-        this.canvas.height -= hasFooter ? css.footerHeight : 0;
-        this.lastX = this.canvas.width / 2;
-        this.lastY = this.canvas.height / 2;
-    }
-    intializeImage() {
-        let scale = Math.min(1, this.canvas.height / this.image.naturalHeight);
-        this.imageWidth  = this.image.naturalWidth  * scale;
-        this.imageHeight = this.image.naturalHeight * scale;
-        this.imageX = Math.max((this.canvas.width  - this.imageWidth)  / 2, 0);
-        this.imageY = Math.max((this.canvas.height - this.imageHeight) / 2, 0);
-    }
-    componentDidMount() {
-        window.addEventListener('resize', () => { this.resize(); }, false);
-        this.initializeCanvas();
-        this.image.onload = () => {
-            this.intializeImage();
-            this.draw();
-            this.setState({ isReady: true });
-        };
-        this.image.src = this.props.src;
-    }
-    componentDidUpdate() {
-        let canvas = ReactDOM.findDOMNode(this.refs.canvas);
-        this.context = canvas.getContext('2d');
-    }
-    componentWillUnmount() {
-        window.removeEventListener('resize');
-    }
-    zoom(exponent, point) {
-        let factor = Math.pow(this.scaleFactor, exponent);
-        if (!point) {
-            point = { x: this.canvas.width / 2, y: this.canvas.height / 2 };
+        let img = ReactDOM.findDOMNode(this.refs.image),
+            maxWidth  = window.innerWidth,
+            maxHeight = window.innerHeight - css.navBarHeight;
+        maxHeight -= hasFooter ? css.footerHeight : 0;
+        return [maxHeight, maxWidth];
+    },
+    scale: function() {
+        let [maxHeight, maxWidth] = this.getMaxDimensions(),
+            img = ReactDOM.findDOMNode(this.refs.image),
+            scale  = Math.min(1, maxHeight / img.naturalHeight);
+        img.width  = img.naturalWidth  * scale;
+        img.height = img.naturalHeight * scale;
+    },
+    center: function() {
+        let [maxHeight, maxWidth] = this.getMaxDimensions(),
+            img = ReactDOM.findDOMNode(this.refs.image),
+            moveX = Math.max((maxWidth  - img.width)  / 2, 0),
+            moveY = Math.max((maxHeight - img.height) / 2, 0);
+        $(ReactDOM.findDOMNode(this.refs.image)).panzoom("reset").panzoom('pan', moveX, moveY);
+    },
+    makePanZoom: function() {
+        let [maxHeight, maxWidth] = this.getMaxDimensions(),
+            img  = ReactDOM.findDOMNode(this.refs.image),
+            $img = $(img).panzoom({increment: 0.2, maxScale: 20});
+        if (!$img.parent().hasClass('mousewheel')) {
+            $img.parent().addClass('mousewheel').on('mousewheel.focal', function(event) {
+                event.preventDefault();
+                var delta = event.delta || event.originalEvent.wheelDelta;
+                var zoomOut = delta ? delta < 0 : event.originalEvent.deltaY > 0;
+                $img.panzoom('zoom', zoomOut, {increment: 0.1, animate: false, focal: event});
+            });
         }
-        this.translate(point.x, point.y);
-        this.scale(factor);
-        this.translate(-point.x, -point.y);
-        this.draw();
-        event.preventDefault();
-    }
-    handleWheel(event) {
-        let exponent = !(event && event.deltaY) ? 0 : event.deltaY > 0 ? -1 : 1;
-        if (exponent) {
-            this.zoom(exponent, this.transformedPoint(this.lastX, this.lastY));
-        }
-    }
-    handleMouseDown(event) {
-        this.lastX = event.clientX;
-        this.lastY = event.clientY;
-        this.setState({ dragStart: this.transformedPoint(this.lastX, this.lastY) });
-    }
-    handleMouseMove(event) {
-        this.lastX = event.clientX;
-        this.lastY = event.clientY;
-        let { dragStart } = this.state;
-        if (dragStart) {
-            let point = this.transformedPoint(this.lastX, this.lastY);
-            this.translate(point.x - dragStart.x, point.y - dragStart.y);
-            this.draw();
-        }
-    }
-    handleMouseUp(event) {
-        this.setState({ dragStart: undefined });
-    }
-    handleMouseEnter(event) {
-        let { dragStart } = this.state;
-        if (!(event && event.buttons && dragStart)) {
-            this.setState({ dragStart: undefined });
-        }
-    }
-    handleDrop(event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    render() {
-        const { isSelected } = this.props;
+        $img.parent().css('overflow', 'visible'); // panzoom gives us hidden we want visible
+    },
+    componentWillUnmount: function() {
+        $(ReactDOM.findDOMNode(this.refs.image)).panzoom('destroy');
+        $(window).off('resize');
+    },
+    render: function() {
+        const { isSelected, src } = this.props;
         const { isReady } = this.state;
         let viewerStyle = isSelected && isReady ? style.viewer : style.hidden;
         return (
             <div style={viewerStyle}>
                 <span style={style.zoomIn} className="glyphicon glyphicon-zoom-in"
-                    onClick={() => this.zoom(1)}></span>
+                    onClick={this.zoomIn}></span>
                 <span style={style.zoomOut} className="glyphicon glyphicon-zoom-out"
-                    onClick={() => this.zoom(-1)}></span>
-                <canvas ref='canvas' style={style.canvas}
-                    onDrop={e => this.handleWheel(e)}
-                    onWheel={e => this.handleWheel(e)}
-                    onMouseDown={e => this.handleMouseDown(e)}
-                    onMouseMove={e => this.handleMouseMove(e)}
-                    onMouseUp={e => this.handleMouseUp(e)}
-                    onMouseEnter={e => this.handleMouseEnter(e)} />
+                    onClick={this.zoomOut}></span>
+                <img src={src} ref="image" onLoad={this.handleLoad}></img>
             </div>
         );
     }
-}
+});
 
 const style = {
     viewer: Object.assign(
@@ -179,3 +115,5 @@ const style = {
 };
 style.zoomIn = Object.assign({top: 100}, style.zoomControl);
 style.zoomOut = Object.assign({top: 150}, style.zoomControl);
+
+export default ImageViewer;
