@@ -42,7 +42,6 @@ function collection(state=initialState.collection, action='') {
                 collections: helper.reshapeCollectionsList(action.json),
             });
             nextState = helper.setCurrentCollection(nextState);
-            console.log(nextState);
             return nextState;
 
         case actionType.INCREMENT_COMPLETED:

@@ -9,10 +9,12 @@ import Label from 'components/transcriber/form/label';
 import DateField from 'components/transcriber/form/date_field';
 import SelectField from 'components/transcriber/form/select_field';
 import TextField from 'components/transcriber/form/text_field';
+import NumericField from 'components/transcriber/form/numeric_field';
 
 const fieldTypes = {
     Label: Label,
     DateField: DateField,
+    NumericField: NumericField,
     SelectField: SelectField,
     TextField: TextField,
 };

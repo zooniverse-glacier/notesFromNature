@@ -56,7 +56,7 @@ export const fieldType = {
     },
     depth: {
         name: 'depth',
-        type: 'TextField',
+        type: 'NumericField',
         label: 'Depth',
         submitHelpers: [helper.validatePresent],
         width: '50%',
