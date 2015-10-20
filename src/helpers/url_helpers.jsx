@@ -15,9 +15,13 @@ export function postFormUrl(workflowId) {
 }
 
 function baseUrl() {
-    const host = window.location.hostname.toLowerCase();
+    const host = window.location.hostname.toLowerCase(),
+        path = window.location.pathname.toLowerCase(),
+        port = window.location.port,
+        isDemo = host.indexOf('demo') > -1,
+        isBeta = path.indexOf('beta') > -1;
     let url = `https://dev.zooniverse.org/projects/notes_from_nature`;
-    if (host.indexOf('notesfromnature.org') >  -1) {
+    if (host.indexOf('notesfromnature.org') >  -1 && port < 1024) {
         url = `https://api.zooniverse.org/projects/notes_from_nature`;
     }
     return url;

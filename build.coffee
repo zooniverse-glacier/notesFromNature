@@ -66,4 +66,3 @@ processFiles = ->
   fs.writeFileSync __dirname + '/public/nfn/build.js', source
 
 processFiles()
-
