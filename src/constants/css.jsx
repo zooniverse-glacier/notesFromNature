@@ -25,3 +25,12 @@ export const css = {
     },
 };
 css.canvasBorder = `1px solid ${css.gray}`;
+
+css.hidden = {
+    height: 0,
+    visibility: 'hidden',
+};
+
+css.toggleHide = Object.assign({}, css.hidden, {
+    transition: css.transition
+});

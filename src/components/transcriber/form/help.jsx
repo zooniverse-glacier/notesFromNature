@@ -4,7 +4,7 @@ import { css } from 'constants/css';
 export default class FormHelp extends React.Component {
     render() {
         const { field, helpExpanded, onToggleHelp } = this.props;
-        const expandStyle = helpExpanded ? style.showHelp : style.hideHelp;
+        const expandStyle = helpExpanded ? style.showHelp : css.toggleHide;
         let paragraphs = field.help.map(function(paragraph, i) {
             return <p key={i} className="dragHandle">{paragraph}</p>;
         });
@@ -55,10 +55,5 @@ let style = {
         marginTop: 6,
         overflow: 'auto',
         transition: css.transition,
-    },
-    hideHelp: {
-        height: 0,
-        transition: css.transition,
-        visibility: 'hidden',
     },
 };

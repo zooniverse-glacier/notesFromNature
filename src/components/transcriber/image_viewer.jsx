@@ -70,7 +70,7 @@ let ImageViewer = React.createClass({
     render: function() {
         const { isSelected, src } = this.props;
         const { isReady } = this.state;
-        let viewerStyle = isSelected && isReady ? style.viewer : style.hidden;
+        let viewerStyle = isSelected && isReady ? style.viewer : css.hidden;
         return (
             <div style={viewerStyle}>
                 <span style={style.zoomIn} className="glyphicon glyphicon-zoom-in"
@@ -96,9 +96,6 @@ const style = {
         },
         css.noUserSelect
     ),
-    hidden: {
-        visibility: 'hidden'
-    },
     canvas: {
         cursor: 'default',
     },

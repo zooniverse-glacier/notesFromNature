@@ -37,8 +37,8 @@ export default class Form extends React.Component {
             fields, zooniverseId, form } = this.props;
         const { fieldSelected, helpExpanded, values, errors, skipClicked, submitClicked } = form;
 
-        const skipWarningStyle = skipClicked ? style.confirm : style.confirmHide;
-        const submitWarningStyle = submitClicked && errors.length ? style.confirm : style.confirmHide;
+        const skipWarningStyle = skipClicked ? style.confirm : css.toggleHide;
+        const submitWarningStyle = submitClicked && errors.length ? style.confirm : css.toggleHide;
 
         // These will limit how much you can move the dialog itself so you cannot move it off screen
         const movePadding = 240,
@@ -124,11 +124,6 @@ const style = {
         padding: 4,
         position: 'relative',
         transition: css.transition,
-    },
-    confirmHide: {
-        height: 0,
-        transition: css.transition,
-        visibility: 'hidden',
     },
     warning: {
         margin: 0,

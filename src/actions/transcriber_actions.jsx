@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { subjectsUrl, archivesUrl, postFormUrl } from 'helpers/url_helpers';
 import * as helper from 'helpers/transcriber_action_helpers';
+import $ from 'jquery';
 
 export const START_TRANSCRIBING = 'START_TRANSCRIBING';
 export function startTranscribing() {

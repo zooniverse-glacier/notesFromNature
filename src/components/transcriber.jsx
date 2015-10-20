@@ -5,6 +5,7 @@ import NavBar from 'components/transcriber/navbar';
 import ImageViewer from 'components/transcriber/image_viewer';
 import ImageSelector from 'components/transcriber/image_selector';
 import Form from 'components/transcriber/form';
+import ProxyIFrame from 'components/proxy_iframe';
 import * as action from 'actions/transcriber_actions';
 
 class Transcriber extends React.Component {
@@ -65,6 +66,7 @@ class Transcriber extends React.Component {
 
         return (
             <div>
+                <ProxyIFrame />
                 <Splash data={collection}
                     onHide={() => dispatch(action.startTranscribing())}/>
                 <NavBar data={collection} />

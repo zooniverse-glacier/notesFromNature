@@ -37,7 +37,7 @@ class SelectorImage extends React.Component {
     render() {
         const { subject, onImageSelectorClick, image, isSelected } = this.props,
               { isReady } = this.state;
-        let imgStyle = style.imgHidden;
+        let imgStyle = css.hidden;
         if (isReady) {
             imgStyle = isSelected ? style.imgSelected : style.img;
         }
@@ -74,7 +74,4 @@ const style = {
         marginLeft: 20,
         marginTop: 10,
     },
-    imgHidden: {
-        visibility: 'hidden'
-    }
 };
