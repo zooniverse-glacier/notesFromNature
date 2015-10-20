@@ -10,13 +10,13 @@ export default class FormHelp extends React.Component {
         });
         return (
             <div style={style.container}>
-                <div>
+                <div style={style.titleContainer}>
                     <div className="dragHandle" style={style.title}>
-                        {field.label}
+                        <div className="dragHandle">{field.label}</div>
+                        <button style={style.expandButton} onClick={() => onToggleHelp()}>
+                            {helpExpanded ? 'Hide Help' : 'Show Help' }
+                        </button>
                     </div>
-                    <button style={style.expandButton} onClick={() => onToggleHelp()}>
-                        {helpExpanded ? 'Hide Help' : 'Show Help' }
-                    </button>
                 </div>
                 <div className="dragHandle" style={expandStyle}>
                     {paragraphs}
@@ -33,6 +33,9 @@ let style = {
         height: 'auto',
         padding: 4,
     },
+    titleContainer: {
+        position: 'relative',
+    },
     title: {
         minWidth: '100%',
     },
@@ -43,9 +46,9 @@ let style = {
         position: 'absolute',
         color: css.black,
         cursor: 'default',
-        right: 4,
+        right: 0,
         padding: '0 6px',
-        top: 6,
+        top: -2,
     },
     showHelp: {
         height: 170,

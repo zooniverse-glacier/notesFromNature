@@ -10,23 +10,30 @@ const initialState = {
         collections: [],
         // currentCollection
     }),
-    // subjects: {}, // subjects, subject, subjectIndex/currentSubject, imageSelected
-    // splash: {}, // show/hide flag
-    form: { // Move some of this onto other stores (see above)
-        subjects: [],
-        subjectIndex: 0,
-        subject: {images: []},
-        imageSelected: undefined,
-        isFetching: true,
-        ready: false,
-        subjectListFetched: false,
-        startClicked: false,
+    form: {
+        //Form state, this is what remains after we move the rest
         helpExpanded: false,
         fieldSelected: '',
         values: {},
         errors: [],
         started: undefined,
         finshed: undefined,
+        submitClicked: false,
+        skipClicked: false,
+
+        // TODO Roll this into another store
+        ready: false,
+
+        // TODO subjects: {}, Make this a new store
+        subjects: [],
+        subjectIndex: 0,
+        subject: {images: []},
+        imageSelected: undefined,
+        isFetchingSubjectList: true,
+        subjectListFetched: false,
+
+        // TODO splash: {},  Make this a new store
+        startClicked: false,
     },
 };
 
@@ -46,9 +53,6 @@ function collection(state=initialState.collection, action='') {
 
         case actionType.INCREMENT_COMPLETED:
             return Object.assign({}, state, {completed: state.completed + 1});
-
-        case actionType.DECREMENT_COMPLETED:
-            return Object.assign({}, state, {completed: state.completed - 1});
     }
     return state;
 }
@@ -57,11 +61,11 @@ function form(state=initialState.form, action='') {
     let nextState;
     switch (action.type) {
         case actionType.REQUEST_SUBJECT_LIST:
-            return Object.assign({}, state, {isFetching: true});
+            return Object.assign({}, state, {isFetchingSubjectList: true});
 
         case actionType.RECEIVE_SUBJECT_LIST:
             nextState = Object.assign({}, state, {
-                isFetching: false,
+                isFetchingSubjectList: false,
                 subjectListFetched: true,
                 subjects: helper.reshapeSubjectList(action.json),
                 subjectIndex: -1,
@@ -85,13 +89,8 @@ function form(state=initialState.form, action='') {
             return Object.assign({}, state, {helpExpanded: !state.helpExpanded});
 
         case actionType.UPDATE_FIELD:
-            nextState = Object.assign({}, state);
+            nextState = Object.assign({}, state, {submitClicked: false, skipClicked: false});
             nextState.values[action.name] = (action.value || '').trim();
-            return nextState;
-
-        case actionType.SUBMIT_SUBJECT:
-            nextState = Object.assign({}, state);
-            helper.runFieldLevelSubmitHelpers(nextState, stores.collection());
             return nextState;
 
         case actionType.NEXT_SUBJECT:
@@ -108,8 +107,19 @@ function form(state=initialState.form, action='') {
         case actionType.POST_SKIP_SUBJECT:
             return Object.assign({}, state, {finished: new Date()});
 
+        case actionType.PREVENT_SKIP_SUBJECT:
+            return Object.assign({}, state, {skipClicked: true});
+
         case actionType.POST_SUBMIT_SUBJECT:
             return Object.assign({}, state, {finished: new Date()});
+
+        case actionType.PREVENT_SUBMIT_SUBJECT:
+            return Object.assign({}, state, {submitClicked: true});
+
+        case actionType.VALIDATE_SUBJECT:
+            nextState = Object.assign({}, state);
+            helper.runFieldLevelSubmitHelpers(nextState, stores.collection());
+            return nextState;
     }
     return state;
 }

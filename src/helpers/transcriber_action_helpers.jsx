@@ -16,7 +16,7 @@ export function submitSubjectData(form, collection) {
             n += 1;
         }
     });
-    a[`${prefix}[${n}][group][_id]`] = collection.groupId;
+    a[`${prefix}[${n}][group][_id]`] = collection.collectionId;
     a[`${prefix}[${n}][group][name]`] = collection.name;
     a[`${prefix}[${n}][group][zooniverse_id]`] = collection.zooniverseId;
     Object.assign(a, classificationTail(form, n+1));

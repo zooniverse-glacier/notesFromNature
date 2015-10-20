@@ -25,21 +25,30 @@ export default class Form extends React.Component {
         this.props.onSubmit();
     }
     componentDidMount() {
-        ReactDOM.findDOMNode(this.refs[this.props.focused]).focus();
+        const { form } = this.props;
+        ReactDOM.findDOMNode(this.refs[form.fieldSelected]).focus();
     }
     componentDidUpdate() {
-        ReactDOM.findDOMNode(this.refs[this.props.focused]).focus();
+        const { form } = this.props;
+        ReactDOM.findDOMNode(this.refs[form.fieldSelected]).focus();
     }
     render() {
         const { onSubmit, onSkip, onFieldFocus, onFieldChange, onToggleHelp,
-                focused, fields, helpExpanded, subject, values } = this.props;
+            fields, zooniverseId, form } = this.props;
+        const { fieldSelected, helpExpanded, values, errors, skipClicked, submitClicked } = form;
+
+        const skipWarningStyle = skipClicked ? style.confirm : style.confirmHide;
+        const submitWarningStyle = submitClicked && errors.length ? style.confirm : style.confirmHide;
+
+        // These will limit how much you can move the dialog itself so you cannot move it off screen
         const movePadding = 240,
             moveLeft = -window.innerWidth + movePadding,
             moveRight = movePadding,
             moveTop = -movePadding,
             moveBottom = window.innerHeight - movePadding;
+
         const helps = fields.map((field, i) => {
-            if (field.name == focused) {
+            if (field.name == fieldSelected) {
                 return (
                     field.type == 'Label' ?
                         <Label field={field} /> :
@@ -48,6 +57,7 @@ export default class Form extends React.Component {
                 );
             }
         });
+
         const inputs = fields.map((field, i) => {
             let value = values[field.name] || '';
             return React.createElement(fieldTypes[field.type],
@@ -55,11 +65,23 @@ export default class Form extends React.Component {
                     onFieldChange: onFieldChange,
                     onFieldFocus: onFieldFocus});
         });
+
+        const warnings = form.errors.map((error, i) => {
+            return (<p key={i} style={style.warning} className="dragHandle">{error}</p>);
+        });
+
         return (
             <Draggable handle=".dragHandle" bounds={{left: moveLeft, right: moveRight, top: moveTop, bottom: moveBottom}}>
                 <div style={style.container}>
+                    <div style={skipWarningStyle} className="dragHandle">
+                        Are you sure you want to skip?
+                    </div>
+                    <div style={submitWarningStyle} className="dragHandle">
+                        <p className="dragHandle">Are you sure you want to finish this record?</p>
+                        {warnings}
+                    </div>
                     <div style={style.discussButton}>
-                        <a target="_blank" tabIndex="-1" style={style.link} href={talkUrl(subject.zooniverseId)}>Discuss</a>
+                        <a target="_blank" tabIndex="-1" style={style.link} href={talkUrl(zooniverseId)}>Discuss</a>
                     </div>
                     <div style={style.skipButton}>
                         <a tabIndex="-1" style={style.link} onClick={() => onSkip()}>Skip Record</a>
@@ -69,8 +91,7 @@ export default class Form extends React.Component {
                     </div>
                     <form style={style.form} onSubmit={e => this.handleSubmit(e)}>
                         {inputs}
-                        <input style={style.submitButton} type="submit"
-                            value="Finish This Record" />
+                        <input style={style.submitButton} type="submit" value="Finish This Record" />
                     </form>
                 </div>
             </Draggable>
@@ -92,6 +113,25 @@ const style = {
         top: 160,
         width: '24em',
         zIndex: 2,
+    },
+    confirm: {
+        backgroundColor: css.red,
+        borderRadius: css.radius,
+        color: css.white,
+        cursor: 'move',
+        height: 170,
+        overflow: 'auto',
+        padding: 4,
+        position: 'relative',
+        transition: css.transition,
+    },
+    confirmHide: {
+        height: 0,
+        transition: css.transition,
+        visibility: 'hidden',
+    },
+    warning: {
+        margin: 0,
     },
     form: {
         borderTop: `1px solid ${css.gray}`,

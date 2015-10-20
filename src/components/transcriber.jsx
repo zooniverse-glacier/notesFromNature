@@ -40,14 +40,12 @@ class Transcriber extends React.Component {
     }
     render() {
         const { collection, form, dispatch } = this.props;
-        const { subject, imageSelected, fieldSelected, values, helpExpanded } = form;
+        const { subject, imageSelected } = form;
 
         const formControl = !form.ready ? undefined :
             <Form fields={collection.fields}
-                values={values}
-                subject={subject}
-                focused={fieldSelected}
-                helpExpanded={helpExpanded}
+                form={form}
+                zooniverseId={subject.zooniverseId}
                 onFieldFocus={n => dispatch(action.selectField(n))}
                 onFieldChange={(n, v, ...a) => dispatch(action.updateField(n, v, a))}
                 onToggleHelp={() => dispatch(action.toggleHelp())}

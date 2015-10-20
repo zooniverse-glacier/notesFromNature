@@ -80,39 +80,64 @@ export function postSkipSubject() {
     return {type: POST_SKIP_SUBJECT};
 }
 
-export const POST_SUBMIT_SUBJECT = 'POST_SUBMIT_SUBJECT';
-export function postSubmitSubject() {
-    return {type: POST_SUBMIT_SUBJECT};
+export const PREVENT_SKIP_SUBJECT = 'PREVENT_SKIP_SUBJECT';
+export function preventSkipSubject() {
+    return {type: PREVENT_SKIP_SUBJECT};
 }
 
 export function skipSubject() {
     return (dispatch, getState) => {
         const form = getState().form,
             finalDispatch = helper.isLastSubject(form) ? nextSubject : fetchSubjectList;
-        return Promise.all([
-            dispatch(postSkipSubject()),
-            $.post(
-                postFormUrl(getState().collection.workflow_id),
-                helper.skipSubjectData(getState().form),
-                'json'
-            ),
-            dispatch(finalDispatch()),
-        ]);
+        if (!form.skipClicked) {
+            return dispatch(preventSkipSubject());
+        } else {
+            return Promise.all([
+                dispatch(postSkipSubject()),
+                $.post(
+                    postFormUrl(getState().collection.workflow_id),
+                    helper.skipSubjectData(getState().form),
+                    'json'
+                ),
+                dispatch(finalDispatch()),
+            ]);
+        }
     };
+}
+
+export const POST_SUBMIT_SUBJECT = 'POST_SUBMIT_SUBJECT';
+export function postSubmitSubject() {
+    return {type: POST_SUBMIT_SUBJECT};
+}
+
+export const VALIDATE_SUBJECT = 'VALIDATE_SUBJECT';
+export function validateSubject() {
+    return {type: VALIDATE_SUBJECT};
+}
+
+export const PREVENT_SUBMIT_SUBJECT = 'PREVENT_SUBMIT_SUBJECT';
+export function preventSubmitSubject() {
+    return {type: PREVENT_SUBMIT_SUBJECT};
 }
 
 export function submitSubject() {
     return (dispatch, getState) => {
-        const form = getState().form,
-            finalDispatch = helper.isLastSubject(form) ? nextSubject : fetchSubjectList;
-        return Promise.all([
-            dispatch(postSubmitSubject()),
-            $.post(
-                postFormUrl(getState().collection.workflow_id),
-                helper.submitSubjectData(getState().form, getState().collection),
-                'json'
-            ),
-            dispatch(finalDispatch()),
-        ]);
+        const finalDispatch = helper.isLastSubject(getState().form) ?
+            nextSubject : fetchSubjectList;
+        dispatch(validateSubject());
+        if (! getState().form.submitClicked && getState().form.errors.length) {
+            return dispatch(preventSubmitSubject());
+        } else {
+            return Promise.all([
+                dispatch(postSubmitSubject()),
+                $.post(
+                    postFormUrl(getState().collection.workflow_id),
+                    helper.submitSubjectData(getState().form, getState().collection),
+                    'json'
+                ),
+                dispatch(incrementCompleted()),
+                dispatch(finalDispatch()),
+            ]);
+        }
     };
 }

@@ -29,8 +29,8 @@ export const fieldType = {
         label: 'Cat. No.',
         submitHelpers: [helper.validatePresent],
         help: [
-            `On preprinted labels, this will be a 5-digit number immediately to the left of the text “Marine Biodiversity Processing Center”. Enter just the 5-digit number; do NOT bother typing in “Marine Biodiversity Processing Center”.`,
-            `This is a specimen number assigned by the Marine Biodiversity Center of the Natural History Museum of Los Angeles County.`,
+            'On preprinted labels, this will be in a field named “Cat. No.” Type in all characters from that field, including numbers, letters, and punctuation.',
+            'This is a catalog number, one of several numbers the Museum uses to track incoming specimens and specimens used in publications.',
         ],
     },
     centerNumber: {
@@ -39,8 +39,8 @@ export const fieldType = {
         label: 'Marine Biodiversity Center Number',
         submitHelpers: [helper.validatePresent],
         help: [
-            'On preprinted labels, this will be in a field named “Cat. No.” Type in all characters from that field, including numbers, letters, and punctuation.',
-            'This is a catalog number, one of several numbers the Museum uses to track incoming specimens and specimens used in publications.',
+            `On preprinted labels, this will be a 5-digit number immediately to the left of the text “Marine Biodiversity Processing Center”. Enter just the 5-digit number; do NOT bother typing in “Marine Biodiversity Processing Center”.`,
+            `This is a specimen number assigned by the Marine Biodiversity Center of the Natural History Museum of Los Angeles County.`,
         ],
     },
     collectors: {
@@ -161,7 +161,7 @@ export const fieldType = {
         type: 'TextField',
         label: 'Second Scientific Name',
         placeholder: '-- Scientific Name --',
-        submitHelpers: [helper.validatePresent],
+        submitHelpers: [],
         width: '50%',
         help: [
             'In some cases, more than one identification has been made of a single specimen or group of specimens. In that case, use this field to record a second identification. For details, see help for “Scientific Name”.',
@@ -173,7 +173,7 @@ export const fieldType = {
         type: 'TextField',
         label: `Second Identifier's Name`,
         placeholder: `-- Identifier's Name --`,
-        submitHelpers: [helper.validatePresent],
+        submitHelpers: [],
         width: '50%',
         help: [
             'In some cases, more than one identification has been made of a single specimen or group of specimens. In the case of a second identification, if the name of the person who made that identification is given, enter that identifier’s name here. For details, see help for “Identifier’s Name”.',
