@@ -5,7 +5,6 @@ import { css } from 'constants/css';
 
 export default class ProxyIFrame extends React.Component {
     handleLoad() {
-        console.log(document.cookie);
     }
     render() {
         return (
