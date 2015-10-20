@@ -90,7 +90,7 @@ function form(state=initialState.form, action='') {
 
         case actionType.UPDATE_FIELD:
             nextState = Object.assign({}, state, {submitClicked: false, skipClicked: false});
-            nextState.values[action.name] = (action.value || '').trim();
+            nextState.values[action.name] = (action.value || ''); //.trim();
             return nextState;
 
         case actionType.NEXT_SUBJECT:
