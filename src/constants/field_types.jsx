@@ -143,6 +143,7 @@ export const fieldType = {
         help: [
             'Enter the latitude as it appears on the label. This is likely to be a series of numbers and punctuation, and may include a final “N” or “S”. The first number (the degrees of latitude) must be between -90 and 90.',
             'Examples include: 23.82N, 23° 49’ 12” N, or -23° 49.2’',
+            `Entering the degree symbol is done differently depending on your operating system:  Mac: [Shift]-[Option]-8  PC/Windows: using numbers on the keypad: [Alt]-0176`,
         ],
     },
     longitude: {
@@ -154,6 +155,7 @@ export const fieldType = {
         help: [
             'Enter the longitude as it appears on the label. This is likely to be a series of numbers and punctuation, and may include a final “E” or “W”. The first number (the degrees of longitude) must be between -180 and 180.',
             'Examples include: 118.73W, 118° 43’ 48” W, or -118° 43.8’',
+            `Entering the degree symbol is done differently depending on your operating system:  Mac: [Shift]-[Option]-8  PC/Windows: using numbers on the keypad: [Alt]-0176`,
         ],
     },
     otherText: {
@@ -167,6 +169,7 @@ export const fieldType = {
             `Please DO NOT enter the number or text from the white label with a barcode (something like “1000123 LACM MBC”). We already have that specimen number.`,
             'Please DO enter preprinted collection names, such as “Dominion Museum, Wellington, N.Z.” There is an exception to that guideline: because they are so common in this collection, do NOT enter “Allan Hancock Foundation” or “University of Southern California”.',
             'Do NOT type in preprinted field names such as “Acc. No.” or “Sta. No.” as long as the contents of these fields have been entered elsewhere.',
+            `Special characters such as the male and female symbols (♂ ♀) can be entered on the Mac using the Symbol Viewer.  Activate that  using:  SystemPreferences > Keyboard > Show Keyboard… Viewers in menu bar.  Select "Show Emoji & Symbols" and then search for "male". Double-click the symbol to insert it into the web form.`,
         ],
     },
     recordNumber: {
