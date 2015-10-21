@@ -461,4 +461,52 @@ module.exports = [
         else
           return false
     collection: 'ornithological'
+  ,
+    name: 'Egg'
+    url: 'badges/crabs/Egg.png'
+    description: 'You earn this badge for transcribing a crab record'
+    awardText: 'You earned this badge for transcribing a crab record'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 0
+        else
+          return false
+    collection: 'crabs'
+  ,
+    name: 'Zoea'
+    url: 'badges/crabs/Zoea.png'
+    description: 'You earn this badge for transcribing 25 crab records'
+    awardText: 'You earned this badge for transcribing 25 crab records'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 25
+        else
+          return false
+    collection: 'crabs'
+  ,
+    name: 'Megalops'
+    url: 'badges/crabs/Megalops.png'
+    description: 'You earn this badge for transcribing 50 crab records'
+    awardText: 'You earned this badge for transcribing 50 crab records'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 50
+        else
+          return false
+    collection: 'crabs'
+  ,
+    name: 'Rock Crab'
+    url: 'badges/crabs/Rockcrab.png'
+    description: 'You earn this badge for transcribing 100 crab records'
+    awardText: 'You earned this badge for transcribing 100 crab records'
+    condition:
+      func: (details) ->
+        if details.user.project.groups?[details.archive.id]?
+          return details.user.project.groups[details.archive.id].classification_count > 100
+        else
+          return false
+    collection: 'crabs'
 ]

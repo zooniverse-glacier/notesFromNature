@@ -54,7 +54,7 @@ export default class DateField extends React.Component {
             yearName = field.name + 'Year';
         return (
             <div>
-                <input type="number" maxLength="2"
+                <input type="number" maxLength="2" min="1"
                     style={style}
                     value={month}
                     name={monthName}
@@ -62,7 +62,7 @@ export default class DateField extends React.Component {
                     onBlur={() => this.handleBlur(event)}
                     onChange={(e) => this.monthChanged(e)}
                     placeholder="-- Month --" />
-                <input type="number" maxLength="2"
+                <input type="number" maxLength="2" min="1"
                     style={style}
                     value={day}
                     name={dayName}
@@ -70,7 +70,7 @@ export default class DateField extends React.Component {
                     onBlur={() => this.handleBlur(event)}
                     onChange={(e) => this.dayChanged(e)}
                     placeholder="-- Day --" />
-                <input type="number" maxLength="4"
+                <input type="number" maxLength="4" min="1"
                     style={style}
                     value={year}
                     name={yearName}
