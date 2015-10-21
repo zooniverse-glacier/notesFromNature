@@ -11,7 +11,7 @@ export default class ReadOnlyField extends React.Component {
                 width: field.width || '100%',
             };
         return (
-            <input type="text" style={style} defaultValue={defaultValue}
+            <input type="text" style={style} value={defaultValue}
                 disabled="disabled" />
         );
     }

@@ -2,15 +2,12 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import { proxyUrl } from  'helpers/url_helpers';
 import { css } from 'constants/css';
+//import $ from 'jquery';
 
 export default class ProxyIFrame extends React.Component {
-    handleLoad() {
-    }
     render() {
         return (
-            <iframe src={proxyUrl()} style={css.hidden}
-                onLoad={this.handleLoad}>
-            </iframe>
+            <iframe id="proxyIFrame" src={proxyUrl()} style={css.hidden} />
         );
     }
 }

@@ -108,13 +108,13 @@ function form(state=initialState.form, action='') {
             return Object.assign({}, state, {finished: new Date()});
 
         case actionType.PREVENT_SKIP_SUBJECT:
-            return Object.assign({}, state, {skipClicked: true});
+            return Object.assign({}, state, {skipClicked: true, submitClicked: false});
 
         case actionType.POST_SUBMIT_SUBJECT:
             return Object.assign({}, state, {finished: new Date()});
 
         case actionType.PREVENT_SUBMIT_SUBJECT:
-            return Object.assign({}, state, {submitClicked: true});
+            return Object.assign({}, state, {submitClicked: true, skipClicked: false});
 
         case actionType.VALIDATE_SUBJECT:
             nextState = Object.assign({}, state);
