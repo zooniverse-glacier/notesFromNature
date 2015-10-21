@@ -177,7 +177,7 @@ module.exports =
           "headerImage": "images/brit_VDBWeDigBioImage_resized.jpg"
   "Crabs":
     "name":"Crabs"
-    "categories":["Crustacea"]
+    "categories":["Crustaceans"]
     "metadata":
         "controller": "crabs"
         "institute": "Natural History Museum of Los Angeles County"

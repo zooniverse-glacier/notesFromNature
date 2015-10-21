@@ -43,6 +43,7 @@ export function reshapeSubjectList(json) {
     return subjects.map(function(subject) {
         return {
             id: subject.id,
+            name: subject.metadata.name,
             zooniverseId: subject.zooniverse_id,
             images: subject.metadata.images.map(function(image){
                 return image.location;
@@ -70,7 +71,7 @@ export function setCurrentCollection(nextState) {
     });
 }
 
-export function nextSubject(nextState) {
+export function nextSubject(nextState, collection) {
     nextState = Object.assign(nextState, {
         started: new Date(),
         errors: [],
@@ -80,6 +81,9 @@ export function nextSubject(nextState) {
     });
     nextState.subjectIndex += 1;
     nextState.subject = nextState.subjects[nextState.subjectIndex];
+    if (collection.imageSort) {
+        collection.imageSort(nextState.subject.images);
+    }
     nextState.imageSelected = nextState.subject.images[0];
     return nextState;
 }

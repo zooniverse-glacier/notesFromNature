@@ -55,9 +55,10 @@ export const collections = {
         ],
         fields: [
             {type: 'Label', label: 'Collection Numbers'},
+            fieldType.recordNumber,
+            fieldType.stationNumber,
             fieldType.accessionNumber,
             fieldType.catalogNumber,
-            fieldType.stationNumber,
             fieldType.centerNumber,
             {type: 'Label', label: 'Collecting Information'},
             fieldType.eventDate,
@@ -76,6 +77,7 @@ export const collections = {
             fieldType.identifierName2nd,
             {type: 'Label', label: 'All Other Text from Label Fields'},
             fieldType.otherText,
-        ]
+        ],
+        imageSort: images => images.unshift(images.pop()),
     }
 };

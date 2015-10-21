@@ -7,14 +7,16 @@ import { talkUrl } from 'helpers/url_helpers';
 
 import Label from 'components/transcriber/form/label';
 import DateField from 'components/transcriber/form/date_field';
+import NumericField from 'components/transcriber/form/numeric_field';
+import ReadOnlyField from 'components/transcriber/form/read_only_field';
 import SelectField from 'components/transcriber/form/select_field';
 import TextField from 'components/transcriber/form/text_field';
-import NumericField from 'components/transcriber/form/numeric_field';
 
 const fieldTypes = {
     Label: Label,
     DateField: DateField,
     NumericField: NumericField,
+    ReadOnlyField: ReadOnlyField,
     SelectField: SelectField,
     TextField: TextField,
 };
@@ -34,24 +36,24 @@ export default class Form extends React.Component {
     }
     render() {
         const { onSubmit, onSkip, onFieldFocus, onFieldChange, onToggleHelp,
-            fields, zooniverseId, form } = this.props;
+            fields, subject, form } = this.props;
         const { fieldSelected, helpExpanded, values, errors, skipClicked, submitClicked } = form;
 
         const skipWarningStyle = skipClicked ? style.confirm : css.toggleHide;
-        const submitWarningStyle = submitClicked && errors.length ? style.confirm : css.toggleHide;
+        const submitWarningStyle = submitClicked && errors.length ? style.confirm: css.toggleHide;
 
         // These will limit how much you can move the dialog itself so you cannot move it off screen
         const movePadding = 240,
-            moveLeft = -window.innerWidth + movePadding,
-            moveRight = movePadding,
+            moveLeft = -movePadding,
+            moveRight = window.innerWidth - movePadding,
             moveTop = -movePadding,
-            moveBottom = window.innerHeight - movePadding;
+            moveBottom = window.innerHeight - 2 * movePadding;
 
         const helps = fields.map((field, i) => {
             if (field.name == fieldSelected) {
                 return (
                     field.type == 'Label' ?
-                        <Label field={field} /> :
+                        <Label key={i} field={field} /> :
                         <FormHelp key={i} field={field} helpExpanded={helpExpanded}
                             onToggleHelp={onToggleHelp}/>
                 );
@@ -61,13 +63,9 @@ export default class Form extends React.Component {
         const inputs = fields.map((field, i) => {
             let value = values[field.name] || '';
             return React.createElement(fieldTypes[field.type],
-                {key: i, field: field, ref: field.name, value: value,
+                {key: i, field: field, ref: field.name, value: value, subject: subject,
                     onFieldChange: onFieldChange,
                     onFieldFocus: onFieldFocus});
-        });
-
-        const warnings = form.errors.map((error, i) => {
-            return (<p key={i} style={style.warning} className="dragHandle">{error}</p>);
         });
 
         return (
@@ -78,10 +76,9 @@ export default class Form extends React.Component {
                     </div>
                     <div style={submitWarningStyle} className="dragHandle">
                         <p className="dragHandle">Are you sure you want to finish this record?</p>
-                        {warnings}
                     </div>
                     <div style={style.discussButton}>
-                        <a target="_blank" tabIndex="-1" style={style.link} href={talkUrl(zooniverseId)}>Discuss</a>
+                        <a target="_blank" tabIndex="-1" style={style.link} href={talkUrl(subject.zooniverseId)}>Discuss</a>
                     </div>
                     <div style={style.skipButton}>
                         <a tabIndex="-1" style={style.link} onClick={() => onSkip()}>Skip Record</a>
@@ -109,8 +106,8 @@ const style = {
         height: 'auto',
         padding: 4,
         position: 'absolute',
-        right: 10,
-        top: 160,
+        left: 10,
+        top: 240,
         width: '24em',
         zIndex: 2,
     },
@@ -119,10 +116,10 @@ const style = {
         borderRadius: css.radius,
         color: css.white,
         cursor: 'move',
-        height: 170,
-        overflow: 'auto',
+        height: 30,
         padding: 4,
         position: 'relative',
+        textAlign: 'center',
         transition: css.transition,
     },
     warning: {

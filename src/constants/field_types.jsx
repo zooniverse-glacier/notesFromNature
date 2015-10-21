@@ -56,12 +56,12 @@ export const fieldType = {
     },
     depth: {
         name: 'depth',
-        type: 'NumericField',
+        type: 'TextField',
         label: 'Depth',
         submitHelpers: [helper.validatePresent],
         width: '50%',
         help: [
-            'Enter the collection depth, using just numbers (and an optional decimal point, if present). Leave blank if no depth is given.',
+            `Enter the collection depth, using just numbers (and optional decimal points or a dash between numbers, if present). Leave blank if no depth is given.`,
         ],
     },
     depthUnits: {
@@ -71,13 +71,13 @@ export const fieldType = {
         submitHelpers: [helper.validatePresent],
         width: '50%',
         help: [
-            'Pick the units in which depth is given (if a depth is present on the labels). If no units are given or no depth is given, leave this as “no units”. “Feet” may abbreviated as “f”; “meters” may be abbreviated as “m”; “fathoms” may be abbreviated as “ftm”.',
+            'Pick the units in which depth is given (if a depth is present on the labels). If no units are given or no depth is given, leave this as “no units”. “Feet” may abbreviated as “f”; “meters” may be abbreviated as “m”; “fathoms” may be abbreviated as "fms".',
         ],
         options: [
             {value: 'none',    label: 'No Units'},
-            {value: 'feet',    label: 'feet'},
-            {value: 'meters',  label: 'meters'},
-            {value: 'fathoms', label: 'fathoms'},
+            {value: 'feet',    label: 'fms fathoms'},
+            {value: 'meters',  label: 'f feet'},
+            {value: 'fathoms', label: 'm meters'},
         ],
     },
     eventDate: {
@@ -87,10 +87,51 @@ export const fieldType = {
         placeholder: '',
         submitHelpers: [helper.validatePresent, helper.validateDate],
         help: [
-            'MONTH: This is a one- or two-digit month. Leave blank if there is no collection month or date on the label(s).',
-            'Occasionally, months are given as Roman numerals. Please interpret to a two-digit month: 1 = Jan = i, 2 = Feb = ii, 3 = Mar = iii, 4 = Apr = iv, 5 = May = v, 6 = Jun = vi, 7 = Jul = vii, 8 = Aug = viii, 9 = Sep = ix, 10 = Oct = x, 11 = Nov = xi, 12 = Dec = xii',
+            `MONTH: Enter the month as a one- or two-digit Arabic number (1-12). Leave blank if there is no collection month or date on the label(s).`,
+            `Occasionally, months are given as month names or Roman numerals. Please use the following guide to translate the month into an Arabic number between 1-12: 1 = Jan = i, 2 = Feb = ii, 3 = Mar = iii, 4 = Apr = iv, 5 = May = v, 6 = Jun = vi, 7 = Jul = vii, 8 = Aug = viii, 9 = Sep = ix, 10 = Oct = x, 11 = Nov = xi, 12 = Dec = xii`,
             'DAY: This is a one- or two-digit day of the month. Leave blank if there is no collection day or date given on the label(s).',
             'YEAR: This is a four-digit year. Leave blank if there is no collection year or date given on the label(s).',
+        ],
+    },
+    geographicLocality: {
+        name: 'geographicLocality',
+        type: 'TextField',
+        label: 'Geographic Locality',
+        submitHelpers: [helper.validatePresent],
+        help: [
+            'This is the geographic location where the specimen was found. An example might be “Hesketh I., Kachemak Bay, Cook Inlet, Alaska”. Do NOT include the description of the site or habitat, if that is also present.',
+        ],
+    },
+    habitat: {
+        name: 'habitat',
+        type: 'TextField',
+        label: 'Site Description / Habitat',
+        submitHelpers: [helper.validatePresent],
+        help: [
+            'This is any text that describes the site or habitat. Examples might be “intertidal” or “with algae under cobbles”. Do NOT include the geographic locality itself.',
+        ],
+    },
+    identifierName: {
+        name: 'identifierName',
+        type: 'TextField',
+        label: `Identifier's Name`,
+        submitHelpers: [helper.validatePresent],
+        width: '50%',
+        help: [
+            'In some cases the person who identified the species of the specimen will be noted on the label. If there is a scientific name but no identifier, leave this field blank.',
+            'On preprinted labels, this information will be in a field named “Id. By”, “Id.”, or “Identified By”. In other cases, it may be before or after the scientific name. Note, however, that it is NOT the author name that may immediately follow the genus and species parts of the scientific name.',
+            'Enter the name or initials of the identifier exactly as they appear on the labels.',
+        ],
+    },
+    identifierName2nd: {
+        name: 'identifierName2nd',
+        type: 'TextField',
+        label: `Second Identifier's Name`,
+        placeholder: `-- Identifier's Name --`,
+        submitHelpers: [],
+        width: '50%',
+        help: [
+            'In some cases, more than one identification has been made of a single specimen or group of specimens. In the case of a second identification, if the name of the person who made that identification is given, enter that identifier’s name here. For details, see help for “Identifier’s Name”.',
         ],
     },
     latitude: {
@@ -115,23 +156,22 @@ export const fieldType = {
             'Examples include: 118.73W, 118° 43’ 48” W, or -118° 43.8’',
         ],
     },
-    geographicLocality: {
-        name: 'geographicLocality',
+    otherText: {
+        name: 'otherText',
         type: 'TextField',
-        label: 'Geographic Locality',
+        label: 'Other Text',
+        maxLength: 2048,
         submitHelpers: [helper.validatePresent],
         help: [
-            'This is the geographic location where the specimen was found. An example might be “Hesketh I., Kachemak Bay, Cook Inlet, Alaska”. Do NOT include the description of the site or habitat, if that is also present.',
+            'If there is other text on the label that doesn’t seem to fit any of the other predefined fields, please enter it here.',
+            `Please DO NOT enter the number or text from the white label with a barcode (something like “1000123 LACM MBC”). We already have that specimen number.`,
+            'Please DO enter preprinted collection names, such as “Dominion Museum, Wellington, N.Z.” There is an exception to that guideline: because they are so common in this collection, do NOT enter “Allan Hancock Foundation” or “University of Southern California”.',
+            'Do NOT type in preprinted field names such as “Acc. No.” or “Sta. No.” as long as the contents of these fields have been entered elsewhere.',
         ],
     },
-    habitat: {
-        name: 'habitat',
-        type: 'TextField',
-        label: 'Site Description / Habitat',
-        submitHelpers: [helper.validatePresent],
-        help: [
-            'This is any text that describes the site or habitat. Examples might be “intertidal” or “with algae under cobbles”. Do NOT include the geographic locality itself.',
-        ],
+    recordNumber: {
+        type: 'ReadOnlyField',
+        defaultValue: (subject) => { return subject.name + ' LACM MBC'; },
     },
     scientificName: {
         name: 'scientificName',
@@ -142,18 +182,6 @@ export const fieldType = {
         help: [
             'This will be made of two words: the capitalized genus name and the lower-case species name. The scientific name may be followed by the capitalized name of the author who originally described the species (and that may be in parentheses). Enter ONLY the genus and species name; ignore the (optional) trailing name of the author.',
             'Examples include: “Cancer anthonyi Rathbun” (enter only “Cancer anthonyi”), “Cancer oregonensis (Dana)” (enter only “Cancer oregonensis”), or “Metacarcinus sp.” (enter “Metacarcinus sp.”)',
-        ],
-    },
-    identifierName: {
-        name: 'identifierName',
-        type: 'TextField',
-        label: `Identifier's Name`,
-        submitHelpers: [helper.validatePresent],
-        width: '50%',
-        help: [
-            'In some cases the person who identified the species of the specimen will be noted on the label. If there is a scientific name but no identifier, leave this field blank.',
-            'On preprinted labels, this information will be in a field named “Id. By”, “Id.”, or “Identified By”. In other cases, it may be before or after the scientific name. Note, however, that it is NOT the author name that may immediately follow the genus and species parts of the scientific name.',
-            'Enter the name or initials of the identifier exactly as they appear on the labels.',
         ],
     },
     scientificName2nd: {
@@ -168,38 +196,15 @@ export const fieldType = {
             'In the rare case of a third identification, enter the Scientific Name and Identifier’s Name in the “Other Text” field.',
         ],
     },
-    identifierName2nd: {
-        name: 'identifierName2nd',
-        type: 'TextField',
-        label: `Second Identifier's Name`,
-        placeholder: `-- Identifier's Name --`,
-        submitHelpers: [],
-        width: '50%',
-        help: [
-            'In some cases, more than one identification has been made of a single specimen or group of specimens. In the case of a second identification, if the name of the person who made that identification is given, enter that identifier’s name here. For details, see help for “Identifier’s Name”.',
-        ],
-    },
-    otherText: {
-        name: 'otherText',
-        type: 'TextField',
-        label: 'Other Text',
-        maxLength: 2048,
-        submitHelpers: [helper.validatePresent],
-        help: [
-            'If there is other text on the label that doesn’t seem to fit any of the other predefined fields, please enter it here.',
-            'Please DO enter preprinted collection names, such as “Dominion Museum, Wellington, N.Z.” There is an exception to that guideline: because they are so common in this collection, do NOT enter “Allan Hancock Foundation” or “University of Southern California”.',
-            'Do NOT type in preprinted field names such as “Acc. No.” or “Sta. No.” as long as the contents of these fields have been entered elsewhere.',
-        ],
-    },
     stationNumber: {
         name: 'stationNumber',
         type: 'TextField',
         label: 'Sta. No.',
         submitHelpers: [helper.validatePresent],
         help: [
-            'On preprinted labels, this information will be in a field named “Sta. No.” or “Sta.” Type in all characters from that field, including numbers, letters, and punctuation.',
-            'In some cases the station number will be present without any field name. It may consist of four digits, or it may be four digits, a dash, and two more digits (for example: “1638-48”).',
-            'This is the collecting station number, which indicates the expedition log entry that holds information about when and where the specimen was collected.',
+            `If there is a number isolated on a label or with no preprinted field name, it is almost certainly the station number (“Sta. No.”) and should be entered here. It may consist of about four digits, or it may be four digits, a dash, and two more digits (for example: “1638-48”).`,
+            `On preprinted labels, this information will be in a field named “Sta. No.” or “Sta.” Type in all characters from that field, including numbers, letters, and punctuation.`,
+            `This is the collecting station number, which indicates the expedition log entry that holds information about when and where the specimen was collected.`,
         ],
     },
 };

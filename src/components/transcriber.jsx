@@ -12,7 +12,7 @@ class Transcriber extends React.Component {
     componentWillMount() {
         const { collection, dispatch } = this.props;
         let firstField = collection.fields.findIndex(
-            (field, i) => { return field.type != 'Label'; }
+            (field, i) => { return field.name; }
         );
         dispatch(action.selectField(collection.fields[firstField].name));
 
@@ -46,7 +46,7 @@ class Transcriber extends React.Component {
         const formControl = !form.ready ? undefined :
             <Form fields={collection.fields}
                 form={form}
-                zooniverseId={subject.zooniverseId}
+                subject={subject}
                 onFieldFocus={n => dispatch(action.selectField(n))}
                 onFieldChange={(n, v, ...a) => dispatch(action.updateField(n, v, a))}
                 onToggleHelp={() => dispatch(action.toggleHelp())}

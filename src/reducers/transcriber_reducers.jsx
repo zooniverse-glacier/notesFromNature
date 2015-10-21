@@ -70,7 +70,7 @@ function form(state=initialState.form, action='') {
                 subjects: helper.reshapeSubjectList(action.json),
                 subjectIndex: -1,
             });
-            nextState = helper.nextSubject(nextState);
+            nextState = helper.nextSubject(nextState, stores.collection());
             helper.isReady(nextState);
             return nextState;
 
@@ -90,12 +90,12 @@ function form(state=initialState.form, action='') {
 
         case actionType.UPDATE_FIELD:
             nextState = Object.assign({}, state, {submitClicked: false, skipClicked: false});
-            nextState.values[action.name] = (action.value || ''); //.trim();
+            nextState.values[action.name] = (action.value || '').trimLeft();
             return nextState;
 
         case actionType.NEXT_SUBJECT:
             nextState = Object.assign({}, state);
-            nextState = helper.nextSubject(nextState);
+            nextState = helper.nextSubject(nextState, stores.collection());
             return nextState;
 
         case actionType.SELECT_IMAGE:
