@@ -7,10 +7,10 @@
       </hgroup>
     </div>
   </div>
-
-  <a href="#/archives" class="transcribing-launcher">START TRANSCRIBING</a>
 </div>
-
+<div class="transcribing-launcher-container">
+    <a href="#/archives" class="transcribing-launcher">START TRANSCRIBING</a>
+</div>
 <div class="counters">
   <div class="box-black-numbers">
     <span id="archive-count" class="numbers">-</span>
