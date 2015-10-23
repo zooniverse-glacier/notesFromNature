@@ -39,7 +39,7 @@ let style = {
     title: {
         fontWeight: 'bold',
         fontSize: 14,
-        paddingLeft: 102,
+        paddingLeft: 110,
         minWidth: '100%',
     },
     expandButton: {

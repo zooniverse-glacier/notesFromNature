@@ -17,65 +17,75 @@ export default class DateField extends React.Component {
         });
     }
     monthChanged(event) {
-        let value = event.target.value;
-        if (!value || (value && value >= 0 && value <= 12)) {
-            this.setState({month: value});
+        let { month, day, year } = this.state,
+            value = event.target.value.replace(/\D/g, '');
+        if (!value) {
+            month = '';
+        } else if (+value <= 12) {
+            month = value;
         }
+        this.setState({month: month});
+        this.updateField(month, day, year);
     }
     dayChanged(event) {
-        let value = event.target.value;
-        if (!value || (value && value >= 0 && value <= 31)) {
-            this.setState({day: value});
+        let { month, day, year } = this.state,
+            value = event.target.value.replace(/\D/g, '');
+        if (!value) {
+            day = '';
+        } else if (+value <= 31) {
+            day = value;
         }
+        this.setState({day: day});
+        this.updateField(month, day, year);
     }
     yearChanged(event) {
-        let value = event.target.value;
-        if (!value || (value && value >= 0 && value <= currentYear)) {
-            this.setState({year: value});
-        }
-    }
-    handleBlur(event) {
-        const { field, onFieldChange } = this.props;
         let { month, day, year } = this.state,
-            value = '';
+            value = event.target.value.replace(/\D/g, '');
+        if (!value) {
+            year = '';
+        } else if (+value <= currentYear) {
+            year = value;
+        }
+        this.setState({year: year});
+        this.updateField(month, day, year);
+    }
+    updateField(month, day, year) {
+        const { field, onFieldChange } = this.props;
+        let value = '';
         month = ('00'   + month).substr(-2);
         day =   ('00'   + day  ).substr(-2);
         year =  ('0000' + year ).substr(-4);
         if (+month || +day || +year) {
             value = `${year}-${month}-${day}`;
         }
+        console.log(value);
         onFieldChange(field.name, value);
     }
     render() {
         const { month, day, year } = this.state;
-        const { field, onFieldFocus } = this.props,
-            monthName = field.name + 'Month',
-            dayName = field.name + 'Day',
-            yearName = field.name + 'Year';
+        console.log(this.state);
+        const { field, onFieldFocus } = this.props;
         return (
             <div>
-                <input type="number" maxLength="2" min="1"
+                <input type="number" maxLength="2" min="1" ref="month"
                     style={style}
                     value={month}
-                    name={monthName}
+                    name={field.name + 'Month'}
                     onFocus={() => onFieldFocus(field.name)}
-                    onBlur={() => this.handleBlur(event)}
                     onChange={(e) => this.monthChanged(e)}
                     placeholder="-- Month --" />
-                <input type="number" maxLength="2" min="1"
+                <input type="number" maxLength="2" min="1" ref="day"
                     style={style}
                     value={day}
-                    name={dayName}
+                    name={field.name + 'Day'}
                     onFocus={() => onFieldFocus(field.name)}
-                    onBlur={() => this.handleBlur(event)}
                     onChange={(e) => this.dayChanged(e)}
                     placeholder="-- Day --" />
-                <input type="number" maxLength="4" min="1"
+                <input type="number" maxLength="4" min="1" ref="year"
                     style={style}
                     value={year}
-                    name={yearName}
+                    name={field.name + 'Year'}
                     onFocus={() => onFieldFocus(field.name)}
-                    onBlur={() => this.handleBlur(event)}
                     onChange={(e) => this.yearChanged(e)}
                     placeholder="-- Year --" />
               </div>
