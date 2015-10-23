@@ -58,12 +58,10 @@ export default class DateField extends React.Component {
         if (+month || +day || +year) {
             value = `${year}-${month}-${day}`;
         }
-        console.log(value);
         onFieldChange(field.name, value);
     }
     render() {
         const { month, day, year } = this.state;
-        console.log(this.state);
         const { field, onFieldFocus } = this.props;
         return (
             <div>

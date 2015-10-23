@@ -74,7 +74,6 @@ export default class ImageViewer extends React.Component {
         let canvas = ReactDOM.findDOMNode(this.refs.canvas);
         this.context = canvas.getContext('2d');
         this.draw();
-        console.log(this.image.src);
     }
     componentWillUnmount() {
         window.removeEventListener('resize');
