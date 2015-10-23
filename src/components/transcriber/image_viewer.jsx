@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { css } from 'constants/css';
 import $ from 'jquery';
 import panzoom from 'jquery.panzoom';
-//import panzoom from 'jquery-mousewheel';
+import mousewheel from 'jquery-mousewheel';
 
 let ImageViewer = React.createClass({
     getInitialState: function() {

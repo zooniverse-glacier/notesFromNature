@@ -25,6 +25,7 @@ export default class DateField extends React.Component {
             month = value;
         }
         this.setState({month: month});
+        event.target.value = month; // Firefox needs this
         this.updateField(month, day, year);
     }
     dayChanged(event) {
@@ -36,6 +37,7 @@ export default class DateField extends React.Component {
             day = value;
         }
         this.setState({day: day});
+        event.target.value = day; // Firefox needs this
         this.updateField(month, day, year);
     }
     yearChanged(event) {
@@ -47,6 +49,7 @@ export default class DateField extends React.Component {
             year = value;
         }
         this.setState({year: year});
+        event.target.value = year; // Firefox needs this
         this.updateField(month, day, year);
     }
     updateField(month, day, year) {
