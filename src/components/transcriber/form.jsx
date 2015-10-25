@@ -101,7 +101,7 @@ const style = {
         background: css.transparent,
         border: css.canvasBorder,
         borderRadius: css.radius,
-        fontFamily: '"Open Sans", sans-serif',
+        fontFamily: css.fontFamily,
         fontSize: 13,
         height: 'auto',
         padding: 4,

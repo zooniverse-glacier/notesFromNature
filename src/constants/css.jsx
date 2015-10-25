@@ -7,6 +7,7 @@ export const css = {
     orange: '#ff7c09',
     green:  '#693',
     red:    '#df4c06',
+    fontFamily: 'Verdana,Geneva,sans-serif',
     blackSolid: 'rgba(2, 2, 2, 1.0)',
     transparent: 'rgba(0, 0, 0, 0.6)',
     gossamer: 'rgba(0, 0, 0, 0.2)',
