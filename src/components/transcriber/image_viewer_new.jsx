@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
 import { css } from 'constants/css';
 
 export default class ImageViewer extends React.Component {
     constructor(props) {
         super(props);
-        let svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
+        let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         this.transform = svg.createSVGMatrix();
         this.point = svg.createSVGPoint();
         this.image = new Image();

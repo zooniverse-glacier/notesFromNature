@@ -45,7 +45,8 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        new webpack.optimize.UglifyJsPlugin({minimize: true})
+        new webpack.optimize.UglifyJsPlugin({minimize: true, compress: { warnings: false }}),
+        new webpack.optimize.DedupePlugin(),
     ],
     //debug: true,
     devtool: 'eval-cheap-module-source-map',

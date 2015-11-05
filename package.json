@@ -48,8 +48,8 @@
   },
   "scripts": {
     "watch": "NODE_ENV=development webpack-dev-server --inline --progress --colors --content-base public",
-    "build": "NODE_ENV=production webpack -p",
-    "_build": "NODE_ENV=production webpack --optimize-minimize --optimize-occurrence-order --progress --profile --colors",
+    "__build": "NODE_ENV=production webpack --optimize-minimize --optimize-occurence-order --optimize-dedupe --progress --profile --colors",
+    "build": "NODE_ENV=production webpack -p --optimize-dedupe --progress --profile --colors",
     "start": "haw serve",
     "deploy": "haw build ./build --force && ruby build.rb && publisssh ./build zooniverse-static/www.notesfromnature.org && rm -rf ./build",
     "deploy-to-staging": "haw build ./build --force && publisssh ./build zooniverse-static/www.notesfromnature.org/staging && rm -rf ./build"

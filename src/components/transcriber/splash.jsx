@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
 import { css } from 'constants/css';
 import $ from 'jquery';
 require('bootstrap-webpack!../../../bootstrap.config.js');

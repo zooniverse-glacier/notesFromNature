@@ -1,7 +1,7 @@
 import 'babel-core/polyfill';
 import React from "react";
 import thunkMiddleware from 'redux-thunk';
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
 import Transcriber from 'components/transcriber';
 import transcriberStore from 'reducers/transcriber_reducers';
 import { createStore, applyMiddleware } from 'redux';
