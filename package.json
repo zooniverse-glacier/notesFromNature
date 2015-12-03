@@ -5,7 +5,7 @@
     "bootstrap": "^3.3.5",
     "bootstrap-webpack": "0.0.3",
     "es6-promise": "^3.0.2",
-    "haw": "^0.5.0",
+    "haw": "^0.5.1",
     "imports-loader": "^0.6.4",
     "isomorphic-fetch": "^2.1.1",
     "jquery": "^2.1.4",
