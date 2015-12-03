@@ -1,8 +1,6 @@
 Institutte = window.Institute = require './models/institute'
 Badge = window.Badge = require './models/badge'
 
-Api = require 'zooniverse/lib/api'
-
 Project = require 'zooniverse/models/project'
 Project::groups = null
 Subject = require 'zooniverse/models/subject'
@@ -11,7 +9,11 @@ User = require 'zooniverse/models/user'
 Badge = require './models/badge'
 Institute = require './models/institute'
 
-new Api project: 'notes_from_nature'
+Api = require 'zooniverse/lib/api'
+api = if window.location.hostname is 'www.notesfromnature.org'
+  new Api project: 'notes_from_nature', host: 'http://www.notesfromnature.org', path: '/_ouroboros_api/proxy'
+else
+  new Api project: 'notes_from_nature'
 
 app = {}
 app.container = '#app'
