@@ -1,0 +1,30 @@
+<div class="page-header-small">
+  <h2 class="title"><%= @archives.length %>completed collections </h2>
+</div>
+
+<div class="collections-list">
+  <% for archive in @archives: %>
+    <div class="collection-item">
+      <img src="<%= archive.metadata.location.image %>">
+      <div class="translucent-box">
+        <p>
+          <% if archive.isComplete(): %>
+           <span class="complete_notice">Check back. We'll load more images soon!</span>
+          <% end %>
+        </p>
+        <p><%= archive.metadata.snippet %></p>
+      </div>
+      <div class="collection-details">
+        <% if archive.metadata.collection_root: %>
+            <a href="#/archivegroup/<%= archive.metadata.collection_group %>" class="collection-link"><%= archive.name %></a>
+        <% else if archive.isComplete(): %>
+          <div class="collection-complete">complete!</div>
+          <div class="collection-link"><%= archive.name %></div>
+        <% else: %>
+          <a href="#/archives/<%= archive.slug() %>" class="collection-link"><%= archive.name %></a>
+        <% end %>
+        <div class="institute-name"><%= archive.metadata.institute %></div>
+      </div>
+    </div>
+    <% end %>
+</div>

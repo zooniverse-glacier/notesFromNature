@@ -86,7 +86,6 @@ class Record extends Spine.Controller
 
       if completed then completedData.push datum
 
-    # if completedData.length is @fields.length then return true else return false
     if completedData.length is @fields.length
       return true
     else

@@ -1,4 +1,3 @@
-# { formatNumber } = require '../lib/utils'
 Project = require 'zooniverse/models/project'
 
 Archive = require '../models/archive'

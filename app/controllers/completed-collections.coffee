@@ -2,15 +2,15 @@ Site = require '../lib/site'
 Archive = require '../models/archive'
 Groups = require '../lib/groups'
 
-class Collections extends Site
+class CompletedCollections extends Site
   className: 'ArchivesList'
-  template: require '../views/collections'
+  template: require '../views/completed-collections'
 
   events:
     'mouseenter .collections-list .collection-item': 'showDetails'
     'mouseleave .collections-list .collection-item': 'hideDetails'
 
-  title: 'Collections'
+  title: 'Completed Collections'
 
   constructor: ->
     super
@@ -23,7 +23,7 @@ class Collections extends Site
     $(e.currentTarget).find('.translucent-box').stop().animate {top: '185px'}, {duration: 200}
 
   render: =>
-    @archives = (a for a in Archive.all() when (not a.metadata.collection_group or a.metadata.collection_root) and not a.isComplete())
+    @archives = (a for a in Archive.all() when a.isComplete())
     @html @template @
 
-module.exports = Collections
+module.exports = CompletedCollections

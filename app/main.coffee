@@ -27,6 +27,7 @@ app.stack = new Spine.Stack
   controllers:
     home: require './controllers/home'
     archives: require './controllers/collections'
+    completedCollections: require './controllers/completed-collections'
     archiveGroup: require './controllers/archive-group'
     archiveDetails: require './controllers/archive-details'
     transcriptions: require './controllers/TranscriptionController'
@@ -40,6 +41,7 @@ app.stack = new Spine.Stack
   routes:
     '/': 'home'
     '/archives': 'archives'
+    '/completed-collections': 'completedCollections'
     '/archives/:id': 'archiveDetails'
     '/archives/:id/transcribe': 'transcriptions'
     '/archivegroup/:id': 'archiveGroup'
