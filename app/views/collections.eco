@@ -1,5 +1,5 @@
 <div class="page-header-small">
-  <h2 class="title"><%= @archives.length %> collections available</h2>
+  <h2 class="title"><%= @archives.length %> main collections available</h2>
   <p>Browse through them and select your favorite</p>
 </div>
 
