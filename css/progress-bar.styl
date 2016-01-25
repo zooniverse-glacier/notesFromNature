@@ -1,0 +1,54 @@
+body
+  border-top: 0
+
+.zooniverse-top-bar
+  margin-top: 38px
+
+#progress-bar
+  position: relative
+  background-color: #333333
+  max-width: 100%
+  min-height: 18px
+  overflow: hidden
+  padding: 10px 0
+  line-height: 12px
+  font-size: 12px
+
+  .progress
+    position: absolute
+    z-index: 0
+    top: 0
+    left: 0
+    width: 0
+    height: 100%
+    vendor('transition-property', 'all')
+    vendor('transition-duration', 1s)
+    background-color: #693
+
+  .title, .label, .go-button, .remaining
+    position: relative
+    z-index: 1
+    color: white
+    word-wrap: break-word
+    text-align: center
+    line-height: 18px
+    font-size: 18px
+
+  .label
+    float: left
+    padding-left: 5%
+
+  .remaining
+    float: right
+    padding-right: 5%
+
+  .go-button
+    top: -3px
+    padding: 3px 6px
+    margin-left: 10px
+    background-color: #5784CB
+    border: 1px solid darken(#5784CB, 30%)
+    border-radius: 3px
+    line-height: 12px
+    font-size: 12px
+    font-weight: bold

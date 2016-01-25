@@ -79,4 +79,7 @@ Subject.queueLength = 3
 
 Spine.Route.setup()
 
+ProgressBar = require './lib/progress-bar'
+new ProgressBar
+
 module.exports = app
