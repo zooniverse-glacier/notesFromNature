@@ -27,7 +27,7 @@ class TranscriptionController extends Site
     # What archive are we looking at?
     @archive = Archive.findBySlug(params.id)
 
-    unless @archive or @archive.progress_strict() is 100
+    unless @archive or @archive.isComplete()
       Spine.Route.navigate '/'
       return
 

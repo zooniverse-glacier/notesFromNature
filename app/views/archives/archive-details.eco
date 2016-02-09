@@ -42,8 +42,8 @@
       </li>
       <li id="progress-bar-li">
         <div class="progress-bar">
-          <div class="bar" style="width:<%= @archive.progress_strict() %>%"></div>
-          <span class="progress"><%= @archive.progress_strict() %>%</span>
+          <div class="bar" style="width:<%= @archive.progress() %>%"></div>
+          <span class="progress"><%= @archive.progress() %>%</span>
         </div>
       </li>
       <li class="start-transcribing">

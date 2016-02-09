@@ -51,25 +51,17 @@ class Archive extends Spine.Model
   slug: ->
     (@name.replace /\s/g, "_").toLowerCase()
 
-  transcriptions_needed: =>
-    (@stats.total - @stats.paused) * @COMPLETION_FACTOR
-
-  # progress_strict calculates progress using raw complete and total values from the API
-  progress_strict: =>
+  progress: =>
     unless @stats? then return 0
-    Math.floor(@completedRecords() / (@stats.total) * 100)
-
-  completedRecords: =>
-      @stats.total - @stats.active
+    Math.floor(@stats.complete / (@stats.total) * 100)
 
   recordsComplete: =>
-    formatNumber @completedRecords()
+    formatNumber @stats.complete
 
   isComplete: =>
-    unless @stats? then return 0
-    @completedRecords() >= (@stats.total - @stats.paused)
+    @stats.active < 1
 
   transcription_count: =>
-    @metadata.rows_transcribed || @classification_count || 0
+    @metadata?.rows_transcribed or @classification_count or 0
 
 module.exports = Archive

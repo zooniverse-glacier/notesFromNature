@@ -12,7 +12,7 @@
     "jquery-mousewheel": "^3.1.13",
     "jquery.panzoom": "^2.0.5",
     "moment": "2.8.3",
-    "publisssh": "1.0.1",
+    "publisssh": "0.2.6",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-draggable": "^0.8.3",
@@ -51,8 +51,8 @@
     "__build": "NODE_ENV=production webpack --optimize-minimize --optimize-occurence-order --optimize-dedupe --progress --profile --colors",
     "build": "NODE_ENV=production webpack -p --optimize-dedupe --progress --profile --colors",
     "start": "haw serve",
-    "deploy": "haw build ./build --force && ruby build.rb && publisssh ./build zooniverse-static/www.notesfromnature.org && rm -rf ./build",
-    "deploy-to-staging": "haw build ./build --force && publisssh ./build zooniverse-static/www.notesfromnature.org/staging && rm -rf ./build"
+    "deploy": "coffee build.coffee && haw build --force && ruby build.rb && publisssh ./build zooniverse-static/www.notesfromnature.org && rm -rf ./build",
+    "deploy-to-staging": "coffee build.coffee && haw build --force && ruby build.rb && publisssh ./build zooniverse-static/www.notesfromnature.org/staging && rm -rf ./build"
   },
   "license": "Apache-2.0",
   "repository": {
