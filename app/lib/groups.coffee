@@ -164,7 +164,7 @@ module.exports =
         "title":"Botanical Research Institute of Texas"
         "controller": "plants"
         "collection_name": "VDB Collection"
-        "collection_group": "SERNEC"
+        "_collection_group": "SERNEC"
         "institute": "BRIT"
         "description": "The VDB collection of the Philecology Herbarium at the Botanical Research Institute of Texas is composed of ca. 360,000 plant specimens and is one of the best representations of the flora of the southeastern United States. Each of these herbarium sheets serve as testament to the existence of that species in space and time. Imagine if we were able to aggregate these in digital space, alongside other pertinent biological and physical data. Imagine the big, complex questions we could ask about evolution and adaptation in our environments. All this begins with the simple act of transcribing a specimen label; it all begins with YOU!"
         "snippet": ""

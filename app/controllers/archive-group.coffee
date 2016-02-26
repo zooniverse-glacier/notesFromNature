@@ -17,7 +17,7 @@ class ArchiveGroup extends Spine.Controller
     super
 
   render: () =>
-    @archives = (a for a in Archive.all() when a.metadata.collection_group == @archiveGroupId)
+    @archives = (a for a in Archive.all() when a.metadata?.collection_group == @archiveGroupId)
     @html @template @
 
 module.exports = ArchiveGroup
