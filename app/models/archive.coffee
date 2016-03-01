@@ -10,7 +10,7 @@ User = require 'zooniverse/models/user'
 { formatNumber } = require '../lib/utils'
 
 class Archive extends Spine.Model
-  @configure 'Archive', 'group_id', 'classification_count', 'name', 'metadata', 'complete', 'stats', 'categories', 'badges'
+  @configure 'Archive', 'group_id', 'classification_count', 'name', 'metadata', 'complete', 'stats', 'categories', 'badges', 'state'
 
   @findBySlug: (slug) ->
     result = @select (archive) ->
