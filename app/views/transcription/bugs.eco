@@ -16,7 +16,7 @@
 </script>
 
 <script type="text/template" id="discuss-template">
-  <a href="http://talk.notesfromnature.org/#/subjects/{{subject.zooniverse_id}}" id="talk-link" target="_blank"><span>Discuss</span></a>
+  <a href="https://talk.notesfromnature.org/#/subjects/{{subject.zooniverse_id}}" id="talk-link" target="_blank"><span>Discuss</span></a>
 </script>
 
 <script type="text/template" id="popup-template">

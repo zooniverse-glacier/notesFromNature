@@ -11,7 +11,7 @@ Institute = require './models/institute'
 
 Api = require 'zooniverse/lib/api'
 api = if window.location.hostname is 'www.notesfromnature.org'
-  new Api project: 'notes_from_nature', host: 'http://www.notesfromnature.org', path: '/_ouroboros_api/proxy'
+  new Api project: 'notes_from_nature', host: 'https://www.notesfromnature.org', path: '/_ouroboros_api/proxy'
 else
   new Api project: 'notes_from_nature'
 
